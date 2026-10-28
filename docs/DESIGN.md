@@ -18,7 +18,7 @@ All eleven user-supplied images are references, including the initial Fixr image
 
 Purpose: help Nigerian customers choose an artisan, agree a job and understand progress and milestone payments. Artisans need work/availability at a glance; admins need clear evidence and safe decisions.
 
-Tone: warm and credible in discovery; calm and precise in payments/admin. Proposed starting tokens: forest #075E46, ivory #F7F6F2, white #FFFFFF, ink #17251F, muted #58655D, pale mint #E8F4EE, restrained amber #E5B85C. Validate contrast in rendered designs, especially text on colour. User reference synthesis is the source; this palette is a proposal, not a claimed extracted match.
+Tone: warm and credible in discovery; calm and precise in payments/admin. Approved palette: light sky blue #38A8E8 for brand and accents, pale blue #EFF8FF and white surfaces, dark slate #172B3A text; accessible darker blue #1478B5 for filled actions with white labels. Keep the visual weight light. Validate contrast in rendered designs, especially text on colour. User reference synthesis is the source; this palette is a proposal, not a claimed extracted match.
 
 Use one readable sans-serif family for body text and an expressive but legible heading weight. Desktop display headings can be stronger; operational screens keep compact titles. Spacing scale 4/8/12/16/24/32/48/64. Corners 12-16 px on content, with consistent controls. Natural artisan/work photography with Nigerian representation; licensed assets, no fabricated identity checks or borrowed logos. Avoid fake review counts, discounts and customer totals.
 
@@ -115,3 +115,9 @@ Figma pages: 00 Cover & flows, 01 Foundations, 02 Components, 03 Public & accoun
 ## Design acceptance evidence
 
 Store actual M/T/D captures and review notes, not only token values. Review navigation, focus order, contrast, long names, large NGN amounts, form validation, empty results, denied access and payment verification/failure. At initial setup no rendered design or Figma file has been completed; all visual/accessibility checks remain pending.
+
+## Latest approved layout and brand requirements
+
+Edit the existing Stitch project 6038732663245800013 in place. Preserve the original S01 homepage with its centred headline/search and fan of five artisan portrait cards, the taller middle card and category grid. Refine this layout creatively; do not replace it with a different homepage or create another project/file. Add only genuinely missing screens and responsive layouts.
+
+Use a single icon-only slim ribbon-S logo; SabiWork is separate editable text. All members personally implement at least one responsive screen per TEAM.md. Shared public, customer, artisan and admin navigation must have role-appropriate destinations, active states, account/logout and responsive menu behaviour. Buttons must retain touch size and readable single-line labels; stack actions rather than shrink or break words.
