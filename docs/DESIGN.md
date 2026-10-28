@@ -121,3 +121,7 @@ Store actual M/T/D captures and review notes, not only token values. Review navi
 Edit the existing Stitch project 6038732663245800013 in place. Preserve the original S01 homepage with its centred headline/search and fan of five artisan portrait cards, the taller middle card and category grid. Refine this layout creatively; do not replace it with a different homepage or create another project/file. Add only genuinely missing screens and responsive layouts.
 
 Use a single icon-only slim ribbon-S logo; SabiWork is separate editable text. All members personally implement at least one responsive screen per TEAM.md. Shared public, customer, artisan and admin navigation must have role-appropriate destinations, active states, account/logout and responsive menu behaviour. Buttons must retain touch size and readable single-line labels; stack actions rather than shrink or break words.
+
+## Canonical design system
+
+The user-supplied [Clear Trade Modern](CLEAR-TRADE-MODERN.md) specification is now the single source of truth and supersedes earlier palette/type/component proposals. Use it consistently on all S01-S48 and M/T/D variants in the existing Stitch project. Preserve the selected original fan-layout homepage. The leader approved deleting only unused/duplicate drafts while retaining the chosen original homepage. Complete full-screen frames, not tiny concept panels; export completeness must be counted and visually checked.

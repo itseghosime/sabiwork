@@ -1,17 +1,15 @@
 # Message from Abdulrahman to Group Four
 
-Team, our project is **SabiWork: Skilled hands. Trusted work.** It connects customers with verified artisans and supports quotes, milestone payments in test mode, job tracking, reviews, disputes and training.
+Team, our project is **SabiWork — Skilled hands. Trusted work.** The 48 screen IDs are now shared across all ten of us: eight people have five pages and two have four. Check TEAM.md for your exact allocation and non-code role.
 
-**Your working code is due to me on Friday, 30 October 2026, at 2:00 p.m. WAT. Final submission is Monday, 2 November.** See TEAM.md for your feature, non-code responsibility and acceptance criteria.
+**Bring your working frontend code by Friday, 30 October 2026, 2 p.m. WAT.** It must run inside our shared Next.js app, work on phone/tablet/desktop, follow DESIGN.md, navigate correctly and show meaningful form/state behaviour using agreed typed demo data. Screenshots, Stitch HTML or a ZIP alone are not the submission.
 
-This is an opportunity for everyone to learn. I will not do your assigned work for you. Each person must implement, test and explain their own feature. As project lead, I coordinate, review, merge and support the group, and I retain my own search/categories responsibility under the project brief.
+Copy/export your assigned Stitch screen's code and supply it together with a screenshot to OpenCode inside our cloned repo. Read AGENTS.md and use docs/OPENCODE-PROMPT.md. Ask it to adapt the export to our existing React/TypeScript components and routes. Do not let it create another app, another navbar, another design system or pretend backend/payment features work. Open an early draft PR; only I merge main.
 
-I can assist when you have a challenge or meaningful progress to show. Share your branch or PR, what you tried, what you expected, what happened and the precise help you need. Raise blockers early.
+Submit your PR, routes/screen IDs, three viewport screenshots, short walkthrough, test steps/results, backend-pending notes and your non-code output. Every person must understand and explain their code.
 
-Use one shared design system and the agreed mobile/tablet/desktop screens. Build against the shared data and route contract. Do not invent separate login systems or databases. Stitch/Figma designs are our implementation reference; a screenshot is not working code.
+Saturday is a whole-team backend integration session. Start the shared types/schema/auth foundation beforehand. Each original feature owner handles their backend responsibility and coordinates with the person who built its UI. Do not wait until Saturday to mention a dependency or blocker.
 
-Work on your own branch and submit a pull request. **Only I will merge into main.** Do not commit secrets, real identity documents or live payment credentials. Paystack stays in test mode.
+I will not do your assigned work for you: this is an opportunity to learn. I coordinate, review, merge and contribute my assigned work. I can help when you have a challenge or meaningful progress to show. Share your branch/PR, what you tried, expected versus actual behaviour and the precise issue. Everyone fixes their own defects.
 
-By Friday at 2 p.m., send: your PR link, working demo/recording, screenshots at all three sizes, setup and test steps, known limitations and your non-code deliverable. Be ready to explain your code. Send your GitHub username tonight so access can be arranged.
-
-**Everyone must personally implement at least one responsive UI screen, including backend/security owners.** Your named minimum screen is listed in TEAM.md. Submit its route, code/PR, mobile/tablet/desktop screenshots, relevant tests and an explanation with your Friday submission. Design generation or a screenshot alone does not count. This is in addition to your feature and non-code role.
+Send your GitHub username so access can be arranged. Never commit secrets, real identity documents or live payment credentials; Paystack stays in TEST mode. Final submission is Monday, 2 November.

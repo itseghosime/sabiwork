@@ -7,6 +7,8 @@ Customers discover verified artisans, request work, compare quotes, pay in miles
 ## Start here
 
 - [Team assignments and Friday acceptance criteria](docs/TEAM.md)
+- [Screen routes and owners](docs/SCREEN-OWNERSHIP.md)
+- [Canonical Clear Trade Modern design](DESIGN.md)
 - [Contribution and merge rules](CONTRIBUTING.md)
 - [Shared implementation contract](docs/IMPLEMENTATION.md)
 - [Screen inventory and design handoff](docs/DESIGN.md)
@@ -16,7 +18,9 @@ Customers discover verified artisans, request work, compare quotes, pay in miles
 
 ## Delivery
 
-Working code is due to Abdulrahman **Friday, 30 October 2026 at 2:00 p.m. WAT (UTC+1)**. Final submission: **Monday, 2 November 2026**; instructor's submission time is to be confirmed.
+Working responsive frontend code (with disclosed typed mock data) is due to Abdulrahman **Friday, 30 October 2026 at 2:00 p.m. WAT (UTC+1)**. Final submission: **Monday, 2 November 2026**; instructor's submission time is to be confirmed.
+
+Backend foundations start early; whole-team backend integration is Saturday, 31 October. Read [the beginner guide](docs/BEGINNER-GUIDE.md) and [OpenCode prompt](docs/OPENCODE-PROMPT.md).
 
 ## Stack and current status
 
