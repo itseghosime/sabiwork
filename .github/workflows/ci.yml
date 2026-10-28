@@ -1,0 +1,48 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  checks:
+    name: Repository checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check coordination files and environment hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in README.md CONTRIBUTING.md docs/TEAM.md docs/IMPLEMENTATION.md docs/DESIGN.md docs/DELIVERY.md .github/CODEOWNERS; do
+            test -s "$file"
+          done
+          if git ls-files | grep -E '(^|/)\.env($|\.)' | grep -Ev '(^|/)\.env\.(example|sample)$'; then
+            echo 'Remove tracked environment secrets; use placeholders in .env.example.'
+            exit 1
+          fi
+      - name: Inspect application readiness
+        id: app
+        shell: bash
+        run: |
+          if [ -f package.json ]; then
+            echo 'present=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'Documentation-only baseline. Application checks start when package.json is added.'
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.app.outputs.present == 'true'
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install and validate application
+        if: steps.app.outputs.present == 'true'
+        run: |
+          test -f package-lock.json
+          npm ci
+          npm run lint
+          npm run typecheck
+          npm test
+          npm run build
