@@ -28,3 +28,22 @@ One common fixture must be shared: customer Ada, artisan Osaze (plumbing, Benin 
 ## Early dependencies
 
 Natalie opens the application/auth/database foundation PR immediately; Abdulrahman reviews it and coordinates shared layouts. This is foundation work for Natalie's existing feature, not a transfer of other people's implementation. Abigail and George agree the quote/milestone data with Natalie before building. Sophia and Emmanuel agree verification state. Godswill, Mohammed and Rachel use the same job identifiers/statuses. Each owner supplies typed fixtures early, then replaces fixtures with real shared data before Friday.
+
+## Mandatory individual UI contribution
+
+**Every member must personally develop at least one working, responsive UI screen**, including members whose main feature is backend/security. This is required in addition to the assigned feature and non-code role. Stitch/Figma output is a reference: generating a design, submitting a screenshot, or copying an unexplained screen does not fulfil the requirement. Each member must implement, connect, test and explain their screen in the shared Next.js application.
+
+| Member | Minimum personally implemented screen |
+|---|---|
+| Abdulrahman Itseghosime Bello | S03: Artisan search results and filters |
+| Uduehi Emmanuel | S04: Artisan profile |
+| Abigail Oghogho Igbinomwanhia | S14: New job request |
+| George Elueze | S21: Milestone deposit checkout |
+| Godswill Silvanus | S28: Job detail and progress timeline |
+| Mohammed Usman | S31: Write review |
+| Chukwu Chikodili Rachel | S36: Artisan dashboard |
+| Amuele Sophia Ifeanyi | S42: Admin verification queue |
+| Obiekwe Chioma Benedicta | S44: Training directory |
+| Natalie Ekun Omokhafue | S09: Login |
+
+Each screen must work on mobile, tablet and desktop, reuse the shared sky-blue design system/navigation and icon-only logo with separate SabiWork text, include relevant validation/loading/empty/error feedback, and connect to the owner's feature. Buttons must not shrink, clip labels or break words. Submit the screen route, PR/commits, three viewport screenshots, test steps and a short explanation by Friday, 30 October 2026, 2 p.m. WAT. One screen at three widths counts as one screen, not three. Shared components are encouraged, but each person must identify their own implementation. Extra required screens remain with their feature owner; one screen is the minimum, not the entire feature scope.

@@ -13,3 +13,5 @@ Use one shared design system and the agreed mobile/tablet/desktop screens. Build
 Work on your own branch and submit a pull request. **Only I will merge into main.** Do not commit secrets, real identity documents or live payment credentials. Paystack stays in test mode.
 
 By Friday at 2 p.m., send: your PR link, working demo/recording, screenshots at all three sizes, setup and test steps, known limitations and your non-code deliverable. Be ready to explain your code. Send your GitHub username tonight so access can be arranged.
+
+**Everyone must personally implement at least one responsive UI screen, including backend/security owners.** Your named minimum screen is listed in TEAM.md. Submit its route, code/PR, mobile/tablet/desktop screenshots, relevant tests and an explanation with your Friday submission. Design generation or a screenshot alone does not count. This is in addition to your feature and non-code role.
