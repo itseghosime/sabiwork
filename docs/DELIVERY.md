@@ -1,28 +1,17 @@
 # Delivery schedule
 
-All times are WAT (Africa/Lagos, UTC+1). Final submission is Monday, 2 November 2026; the instructor's exact submission time remains to be confirmed.
+All times WAT (Africa/Lagos, UTC+1). Final submission Monday, 2 November 2026; instructor time to be confirmed.
 
-| When | Checkpoint |
+| When | Required result |
 |---|---|
-| Wednesday 28 October, tonight | Confirm assignments; collect GitHub usernames; agree shared types, routes and database contract; start foundation PR; establish design direction from all supplied samples. |
-| Thursday 29 October, 10 a.m. | Foundation/auth/database skeleton and fictional seed ready; each member has a pushed draft PR and agreed dependencies. |
-| Thursday 29 October, 6 p.m. | Every core flow demonstrated; connect features and external test services; raise blockers with reproducible evidence. |
-| Friday 30 October, 2 p.m. | Hard internal deadline: every member submits working code and their complete evidence package. |
-| Friday afternoon | Abdulrahman reviews and merges passing PRs; owners fix integration defects. |
-| Saturday 31 October | Full customer/artisan/admin journey, negative access/payment tests and responsive fixes; feature owners fix their own defects. |
-| Sunday 1 November, 6 p.m. | Proposed code freeze; deployment smoke test, README, fictional demo accounts, pitch rehearsal and backup recording. |
-| Monday 2 November | Final rehearsal and submission at the instructor's required time. |
+| Before members build in parallel | Natalie supplies the shared app/types/fixtures/shell foundation; Abdulrahman reviews/merges. Members use one route/component system. |
+| Thursday 29 October | Agree schema/auth/data contracts early; push draft frontend PRs and demonstrate at least one working page each. Raise blockers with evidence. |
+| Friday 30 October, 2 p.m. | Each member submits all assigned working responsive frontend pages, typed mock-service integration, navigation/form interactions, screenshots/demo, checks and non-code role output. Clearly disclose backend work not yet connected. |
+| Friday afternoon | Leader reviews/merges ready work; each owner fixes their own integration/layout defects. Confirm the Saturday connection plan. |
+| Saturday 31 October | Whole-team backend workshop: replace mock adapters with shared database/API/auth integrations, enforce server-side roles/ownership, connect Paystack TEST flow and test the full journey. Each feature owner implements their backend responsibility. |
+| Sunday 1 November | Finish backend/access/payment and responsive checks, deploy, polish README/demo and rehearse. Proposed code freeze 6 p.m. |
+| Monday 2 November | Final smoke test and submission at the instructor's deadline. |
 
-The Friday deadline is for working code. Design work must not consume the implementation window. The full screen inventory remains the design target; first complete the connected core journey and shared components, then expand the remaining screens in batches.
+Friday is frontend readiness, not a claim that database/auth/payments work. Backend foundations must start early; completing all backend work from zero on Saturday is risky for beginners. No one should quietly replace missing integrations with fake success messages. The leader supports/reviews and contributes their own work; they do not take over everyone else's implementation.
 
-## Demo acceptance
-
-1. Customer signs in, finds a verified artisan and views their profile.
-2. Customer posts a job; artisan submits a quote; customer accepts.
-3. Customer pays a deposit in Paystack test mode; server confirms the payment.
-4. Assigned artisan records progress; customer signs off completion and pays the balance.
-5. Customer leaves a review or reports a dispute; admin reviews a verification request/dispute.
-6. Artisan sees own jobs, verified payment totals and availability; completes a training guide.
-7. Unauthenticated, wrong-role and wrong-owner requests are rejected by the server.
-
-No live money, real identity documents or fabricated claims of production escrow. Tests must cover failed and repeated payment notifications. Keep a backup demo recording and disclose unavailable test integrations.
+Before final submission demonstrate: login -> artisan search/profile -> request -> quote/acceptance -> server-confirmed TEST deposit -> progress -> customer sign-off -> TEST balance -> review/dispute. Also demonstrate verification admin, availability and guide completion, with wrong-role/wrong-owner requests rejected by the server. Duplicate/unverified payment events must not mark milestones paid twice.

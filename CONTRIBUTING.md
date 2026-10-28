@@ -1,6 +1,6 @@
 # Working together
 
-1. Read your assignment in docs/TEAM.md and the shared contract before starting.
+1. Read root AGENTS.md and DESIGN.md, your assignment in docs/TEAM.md, docs/SCREEN-OWNERSHIP.md and docs/BEGINNER-GUIDE.md before starting.
 2. Until collaborator usernames are collected, fork this public repository. Later, members may receive ordinary collaborator access. Only the owner administers the repository.
 3. Create a branch: `feat/03-job-requests-abigail` or `fix/03-quote-validation`. Never work directly on main.
 4. Keep one feature per pull request. Push an early draft rather than waiting until Friday.

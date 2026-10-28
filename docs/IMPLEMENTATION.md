@@ -1,6 +1,6 @@
 # Shared implementation contract
 
-This is the starting contract for team implementation, not a claim that endpoints or schemas exist. Owners must agree changes in the relevant issue before dependent code is changed.
+This is the starting contract for team implementation, not a claim that endpoints or schemas exist. Friday now targets frontend pages using typed mock adapters; shared foundations start early and backend integration is scheduled for Saturday. SCREEN-OWNERSHIP.md supersedes the approximate routes below. Owners must agree changes in the relevant issue before dependent code is changed.
 
 ## Application conventions
 
