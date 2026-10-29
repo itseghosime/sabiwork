@@ -1,0 +1,368 @@
+[
+  {
+    "screen": "S07",
+    "width": 390,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show confirm password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview signup",
+        "whiteSpace": "nowrap",
+        "width": 316
+      }
+    ],
+    "heading": "Create a customer account",
+    "scrollWidth": 390,
+    "viewport": 390
+  },
+  {
+    "screen": "S09",
+    "width": 390,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview login",
+        "whiteSpace": "nowrap",
+        "width": 316
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Fill sample details",
+        "whiteSpace": "normal",
+        "width": 120.375
+      }
+    ],
+    "heading": "Welcome back.",
+    "scrollWidth": 390,
+    "viewport": 390
+  },
+  {
+    "screen": "S10",
+    "width": 390,
+    "buttons": [
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview resend email",
+        "whiteSpace": "nowrap",
+        "width": 316
+      }
+    ],
+    "heading": "Check your sample inbox",
+    "scrollWidth": 390,
+    "viewport": 390
+  },
+  {
+    "screen": "S11",
+    "width": 390,
+    "buttons": [
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview reset request",
+        "whiteSpace": "nowrap",
+        "width": 316
+      }
+    ],
+    "heading": "Forgot your password?",
+    "scrollWidth": 390,
+    "viewport": 390
+  },
+  {
+    "screen": "S12",
+    "width": 390,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show new password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show confirm password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview password reset",
+        "whiteSpace": "nowrap",
+        "width": 316
+      }
+    ],
+    "heading": "Choose a new password",
+    "scrollWidth": 390,
+    "viewport": 390
+  },
+  {
+    "screen": "S07",
+    "width": 768,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show confirm password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview signup",
+        "whiteSpace": "nowrap",
+        "width": 554
+      }
+    ],
+    "heading": "Create a customer account",
+    "scrollWidth": 768,
+    "viewport": 768
+  },
+  {
+    "screen": "S09",
+    "width": 768,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview login",
+        "whiteSpace": "nowrap",
+        "width": 554
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Fill sample details",
+        "whiteSpace": "normal",
+        "width": 120.375
+      }
+    ],
+    "heading": "Welcome back.",
+    "scrollWidth": 768,
+    "viewport": 768
+  },
+  {
+    "screen": "S10",
+    "width": 768,
+    "buttons": [
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview resend email",
+        "whiteSpace": "nowrap",
+        "width": 554
+      }
+    ],
+    "heading": "Check your sample inbox",
+    "scrollWidth": 768,
+    "viewport": 768
+  },
+  {
+    "screen": "S11",
+    "width": 768,
+    "buttons": [
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview reset request",
+        "whiteSpace": "nowrap",
+        "width": 554
+      }
+    ],
+    "heading": "Forgot your password?",
+    "scrollWidth": 768,
+    "viewport": 768
+  },
+  {
+    "screen": "S12",
+    "width": 768,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show new password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show confirm password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview password reset",
+        "whiteSpace": "nowrap",
+        "width": 554
+      }
+    ],
+    "heading": "Choose a new password",
+    "scrollWidth": 768,
+    "viewport": 768
+  },
+  {
+    "screen": "S07",
+    "width": 1440,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show confirm password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview signup",
+        "whiteSpace": "nowrap",
+        "width": 454
+      }
+    ],
+    "heading": "Create a customer account",
+    "scrollWidth": 1440,
+    "viewport": 1440
+  },
+  {
+    "screen": "S09",
+    "width": 1440,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview login",
+        "whiteSpace": "nowrap",
+        "width": 454
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Fill sample details",
+        "whiteSpace": "normal",
+        "width": 120.375
+      }
+    ],
+    "heading": "Welcome back.",
+    "scrollWidth": 1440,
+    "viewport": 1440
+  },
+  {
+    "screen": "S10",
+    "width": 1440,
+    "buttons": [
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview resend email",
+        "whiteSpace": "nowrap",
+        "width": 454
+      }
+    ],
+    "heading": "Check your sample inbox",
+    "scrollWidth": 1440,
+    "viewport": 1440
+  },
+  {
+    "screen": "S11",
+    "width": 1440,
+    "buttons": [
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview reset request",
+        "whiteSpace": "nowrap",
+        "width": 454
+      }
+    ],
+    "heading": "Forgot your password?",
+    "scrollWidth": 1440,
+    "viewport": 1440
+  },
+  {
+    "screen": "S12",
+    "width": 1440,
+    "buttons": [
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show new password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Show confirm password",
+        "whiteSpace": "normal",
+        "width": 44
+      },
+      {
+        "height": 50,
+        "overflow": false,
+        "text": "Preview password reset",
+        "whiteSpace": "nowrap",
+        "width": 454
+      }
+    ],
+    "heading": "Choose a new password",
+    "scrollWidth": 1440,
+    "viewport": 1440
+  }
+]
