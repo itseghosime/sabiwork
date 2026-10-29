@@ -1,15 +1,18 @@
-# Message from Abdulrahman to Group Four
+# WhatsApp message from Abdulrahman
 
-Team, our project is **SabiWork — Skilled hands. Trusted work.** The 48 screen IDs are now shared across all ten of us: eight people have five pages and two have four. Check TEAM.md for your exact allocation and non-code role.
+*Hello Groupies 👋*
 
-**Bring your working frontend code by Friday, 30 October 2026, 2 p.m. WAT.** It must run inside our shared Next.js app, work on phone/tablet/desktop, follow DESIGN.md, navigate correctly and show meaningful form/state behaviour using agreed typed demo data. Screenshots, Stitch HTML or a ZIP alone are not the submission.
+The SabiWork designs are ready! Start today and submit your working frontend code by *Friday 30 October, at 2 p.m. WAT.*
 
-Copy/export your assigned Stitch screen's code and supply it together with a screenshot to OpenCode inside our cloned repo. Read AGENTS.md and use docs/OPENCODE-PROMPT.md. Ask it to adapt the export to our existing React/TypeScript components and routes. Do not let it create another app, another navbar, another design system or pretend backend/payment features work. Open an early draft PR; only I merge main.
+1. Send me your *GitHub username*. Accept my repository invitation when it arrives.
+2. Find your assigned pages: https://github.com/itseghosime/sabiwork/issues
+3. Find those screen IDs in Stitch: https://stitch.withgoogle.com/projects/6038732663245800013
+4. Read the repo’s START-HERE.md, clone the repo and open its folder in OpenCode. Use the shared app foundation; if it is missing, tell me immediately—do not create a separate project.
+5. Copy/export your assigned designs’ code and screenshots. Follow AGENTS.md, DESIGN.md and docs/OPENCODE-PROMPT.md to implement your pages.
+6. Work on your own branch, check mobile/tablet/desktop and submit a *pull request*. *Only I will merge.*
 
-Submit your PR, routes/screen IDs, three viewport screenshots, short walkthrough, test steps/results, backend-pending notes and your non-code output. Every person must understand and explain their code.
+Submit your *PR link and a short explanation of your code*. AI can help write the explanation, but you must understand and explain the code yourself. Use agreed mock data for Friday; we integrate the backend together on Saturday.
 
-Saturday is a whole-team backend integration session. Start the shared types/schema/auth foundation beforehand. Each original feature owner handles their backend responsibility and coordinates with the person who built its UI. Do not wait until Saturday to mention a dependency or blocker.
+I won’t do your assigned work for you, but I’ll help with challenges when you share what you tried and your progress. *Raise blockers early—don’t wait until the deadline.*
 
-I will not do your assigned work for you: this is an opportunity to learn. I coordinate, review, merge and contribute my assigned work. I can help when you have a challenge or meaningful progress to show. Share your branch/PR, what you tried, expected versus actual behaviour and the precise issue. Everyone fixes their own defects.
-
-Send your GitHub username so access can be arranged. Never commit secrets, real identity documents or live payment credentials; Paystack stays in TEST mode. Final submission is Monday, 2 November.
+Repository and all instructions: https://github.com/itseghosime/sabiwork
