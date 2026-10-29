@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { areas, artisans, categories } from "./data";
+import { areas, artisans, categories, tradeAliases } from "./data";
 import { CategoryCard } from "@/components/discovery";
 import { Icon } from "@/components/icon";
 
@@ -10,15 +10,21 @@ export function CategoryDirectory() {
   const [area, setArea] = useState("");
   const [withProfiles, setWithProfiles] = useState(false);
   const visible = categories.filter((category) => {
-    const text = [category.name, category.description, ...category.services]
+    const text = [
+      category.name,
+      category.description,
+      ...category.services,
+      ...tradeAliases[category.id],
+    ]
       .join(" ")
       .toLowerCase();
     return (
       text.includes(query.trim().toLowerCase()) &&
-      (!withProfiles ||
+      ((!withProfiles && !area) ||
         artisans.some(
           (person) =>
-            person.category === category.id && (!area || person.area === area),
+            person.skills.includes(category.id) &&
+            (!area || person.area === area),
         ))
     );
   });

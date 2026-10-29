@@ -2778,3 +2778,86 @@ body {
     font-size: 12px;
   }
 }
+
+.workspace-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: 100vh;
+  background: var(--surface);
+}
+.workspace-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 28px 22px;
+  background: white;
+  border-right: 1px solid var(--border);
+}
+.workspace-sidebar .eyebrow {
+  margin: 12px 0 0;
+  text-transform: uppercase;
+}
+.workspace-sidebar nav,
+.workspace-mobile-nav nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.workspace-sidebar nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.workspace-sidebar nav a:hover {
+  background: var(--pale);
+  color: var(--primary);
+}
+.workspace-main > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 32px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.workspace-main > main {
+  padding: 32px;
+}
+.workspace-mobile-nav {
+  display: none;
+}
+@media (max-width: 900px) {
+  .workspace-shell {
+    grid-template-columns: 1fr;
+  }
+  .workspace-sidebar {
+    display: none;
+  }
+  .workspace-main > header {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  .workspace-main > main {
+    padding: 20px;
+  }
+  .workspace-mobile-nav {
+    display: block;
+    margin: 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    background: white;
+  }
+  .workspace-mobile-nav summary,
+  .workspace-mobile-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+  }
+}

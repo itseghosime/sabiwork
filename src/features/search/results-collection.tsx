@@ -1,10 +1,23 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { searchHref, type SearchFilters } from "./service";
 import { ArtisanCard } from "@/components/discovery";
 import { Icon } from "@/components/icon";
 import type { Artisan } from "./data";
-export function ResultsCollection({ items }: { items: Artisan[] }) {
-  const [view, setView] = useState<"list" | "grid">("list");
+export function ResultsCollection({
+  items,
+  filters,
+}: {
+  items: Artisan[];
+  filters: SearchFilters;
+}) {
+  const router = useRouter();
+  const [view, setView] = useState<"list" | "grid">(filters.view);
+  function selectView(next: "list" | "grid") {
+    setView(next);
+    router.replace(searchHref(filters, { view: next }), { scroll: false });
+  }
   return (
     <>
       <div className="result-view-toolbar">
@@ -16,7 +29,7 @@ export function ResultsCollection({ items }: { items: Artisan[] }) {
             aria-label="List"
             title="List view"
             aria-pressed={view === "list"}
-            onClick={() => setView("list")}
+            onClick={() => selectView("list")}
           >
             <Icon name="list" />
           </button>
@@ -26,7 +39,7 @@ export function ResultsCollection({ items }: { items: Artisan[] }) {
             aria-label="Grid"
             title="Grid view"
             aria-pressed={view === "grid"}
-            onClick={() => setView("grid")}
+            onClick={() => selectView("grid")}
           >
             <Icon name="grid" />
           </button>

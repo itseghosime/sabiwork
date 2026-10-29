@@ -1,4 +1,10 @@
-import { areas, artisans, categories, type Artisan } from "./data";
+import {
+  areas,
+  artisans,
+  categories,
+  tradeAliases,
+  type Artisan,
+} from "./data";
 
 export type SearchInput = Record<string, string | string[] | undefined>;
 export interface SearchFilters {
@@ -8,6 +14,7 @@ export interface SearchFilters {
   rating: number;
   sort: string;
   page: number;
+  view: "list" | "grid";
 }
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
@@ -25,6 +32,7 @@ export function parseFilters(input: SearchInput): SearchFilters {
     sort: ["recommended", "rating", "price-asc", "price-desc"].includes(sort)
       ? sort
       : "recommended",
+    view: first(input.view) === "grid" ? "grid" : "list",
     page: Number.isSafeInteger(page) && page > 0 ? page : 1,
   };
 }
@@ -40,19 +48,23 @@ export function searchArtisans(
 ): SearchResult {
   const query = filters.q.toLocaleLowerCase("en-NG");
   const filtered = records.filter((person) => {
-    const category = categories.find((item) => item.id === person.category)!;
+    const trades = categories.filter((item) => person.skills.includes(item.id));
     const text = [
       person.name,
       person.headline,
       person.bio,
-      category.name,
-      ...category.services,
+      ...trades.flatMap((category) => [
+        category.name,
+        ...category.services,
+        ...tradeAliases[category.id],
+      ]),
       person.area,
     ]
       .join(" ")
       .toLocaleLowerCase("en-NG");
     return (
-      (!filters.category || person.category === filters.category) &&
+      (!filters.category ||
+        person.skills.some((skill) => skill === filters.category)) &&
       (!filters.area || person.area === filters.area) &&
       person.rating >= filters.rating &&
       (!query || text.includes(query))
@@ -98,6 +110,7 @@ export function searchHref(
   if (values.area) params.set("area", values.area);
   if (values.rating) params.set("rating", String(values.rating));
   if (values.sort !== "recommended") params.set("sort", values.sort);
+  if (values.view === "grid") params.set("view", "grid");
   if (values.page > 1) params.set("page", String(values.page));
   return `/artisans${params.size ? `?${params}` : ""}`;
 }

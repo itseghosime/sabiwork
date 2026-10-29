@@ -27,9 +27,21 @@ export function Brand() {
 }
 export function PublicShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [openPath, setOpenPath] = useState<string | null>(null);
+  return (
+    <PublicShellContent key={pathname} pathname={pathname}>
+      {children}
+    </PublicShellContent>
+  );
+}
+function PublicShellContent({
+  children,
+  pathname,
+}: {
+  children: React.ReactNode;
+  pathname: string;
+}) {
+  const [open, setOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
-  const open = openPath === pathname;
   const links = [
     { href: "/", label: "Home" },
     { href: "/categories", label: "Explore services" },
@@ -41,7 +53,15 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <header className="site-header">
+      <header
+        className="site-header"
+        onKeyDown={(event) => {
+          if (event.key === "Escape" && open) {
+            setOpen(false);
+            menuButton.current?.focus();
+          }
+        }}
+      >
         <div className="container header-inner">
           <Brand />
           <nav aria-label="Main navigation" className="desktop-nav">
@@ -69,7 +89,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
             aria-controls="mobile-navigation"
-            onClick={() => setOpenPath(open ? null : pathname)}
+            onClick={() => setOpen(!open)}
           >
             <Icon name={open ? "x" : "menu"} />
           </button>
@@ -81,7 +101,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             className="mobile-navigation container"
             onKeyDown={(event) => {
               if (event.key === "Escape") {
-                setOpenPath(null);
+                setOpen(false);
                 menuButton.current?.focus();
               }
             }}
@@ -90,28 +110,30 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setOpenPath(null)}
+                onClick={() => setOpen(false)}
                 aria-current={pathname === link.href ? "page" : undefined}
               >
                 {link.label}
                 <Icon name="next" size={17} />
               </Link>
             ))}
-            <Link href="/login" onClick={() => setOpenPath(null)}>
+            <Link href="/login" onClick={() => setOpen(false)}>
               Log in
               <Icon name="next" size={17} />
             </Link>
             <Link
               className="button button-primary"
               href="/signup/artisan"
-              onClick={() => setOpenPath(null)}
+              onClick={() => setOpen(false)}
             >
               Join as an artisan <Icon name="arrow" size={17} />
             </Link>
           </nav>
         )}
       </header>
-      <main id="main-content">{children}</main>
+      <main id="main-content" tabIndex={-1}>
+        {children}
+      </main>
       <footer className="site-footer">
         <div className="container footer-top">
           <div>
@@ -137,7 +159,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             © {new Date().getFullYear()} SabiWork. Built by Group Four.
           </span>
           <span>
-            Fictional profiles & ratings. Payments use test mode only.
+            Fictional profiles & ratings. Payments are not connected yet.
           </span>
         </div>
       </footer>

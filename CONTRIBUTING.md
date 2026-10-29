@@ -15,7 +15,7 @@ Coordinate changes to package.json, lockfiles, auth, shared layouts, components,
 
 ## Local commands once the application exists
 
-The foundation PR must define `npm run lint`, `npm run typecheck`, `npm test` (non-watch) and `npm run build`. After cloning: `npm ci`, copy the documented environment template, apply the documented migrations, seed fictional records, then `npm run dev`.
+The foundation PR must define `npm run lint`, `npm run typecheck`, `npm test` (non-watch) and `npm run build`. For the current discovery frontend: run `npm ci`, then `npm run dev`; no environment file, migrations or database seeds are needed. Backend owners will document environment templates and migration/seed commands when those integrations are added.
 
 CI initially checks repository documentation and accidental environment-file commits. Once package.json is present, CI additionally requires the four application scripts and lockfile and runs them. A green documentation-only run does not prove application functionality.
 

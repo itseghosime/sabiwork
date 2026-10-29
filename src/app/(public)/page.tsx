@@ -136,7 +136,7 @@ export default function HomePage() {
               {
                 icon: "shield" as const,
                 title: "Start with a milestone",
-                text: "The demo journey uses Paystack TEST mode for deposit and balance payments.",
+                text: "Deposit and balance payments are planned for Paystack TEST mode; checkout is not connected yet.",
               },
               {
                 icon: "check" as const,

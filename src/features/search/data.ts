@@ -74,6 +74,7 @@ export interface Artisan {
   id: string;
   name: string;
   category: CategoryId;
+  skills: readonly CategoryId[];
   area: Area;
   headline: string;
   bio: string;
@@ -89,6 +90,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000001",
     name: "Osaze Ighodaro",
     category: "plumbing",
+    skills: ["plumbing"],
     area: "GRA",
     headline: "Plumber & water systems specialist",
     bio: "Careful repairs for leaks, fittings and household water systems.",
@@ -103,6 +105,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000002",
     name: "Blessing Okon",
     category: "tailoring",
+    skills: ["tailoring"],
     area: "Ugbowo",
     headline: "Tailor & fashion designer",
     bio: "Beautiful everyday pieces, precise alterations and occasion wear.",
@@ -117,6 +120,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000003",
     name: "Efe Omoruyi",
     category: "painting",
+    skills: ["painting"],
     area: "Ikpoba Hill",
     headline: "Painter & interior finisher",
     bio: "Neat preparation and lasting colour for homes and offices.",
@@ -131,6 +135,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000004",
     name: "Sunday Alabi",
     category: "carpentry",
+    skills: ["carpentry"],
     area: "Airport Road",
     headline: "Carpenter & furniture maker",
     bio: "Custom shelves, sturdy furniture and repairs worth keeping.",
@@ -145,6 +150,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000005",
     name: "Rosa Agbonlahor",
     category: "electrical",
+    skills: ["electrical"],
     area: "Ikpoba Hill",
     headline: "Electrician & lighting specialist",
     bio: "Practical electrical repairs and considered lighting installations.",
@@ -159,6 +165,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000006",
     name: "Ada Ehi",
     category: "cleaning",
+    skills: ["cleaning"],
     area: "Uselu",
     headline: "Home & office cleaning specialist",
     bio: "Thorough cleaning for lived-in homes and busy workspaces.",
@@ -173,6 +180,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000007",
     name: "Tunde Akin",
     category: "plumbing",
+    skills: ["plumbing"],
     area: "New Benin",
     headline: "Plumbing repairs & installations",
     bio: "Tap replacements, pipe repairs and bathroom maintenance.",
@@ -187,6 +195,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000008",
     name: "Ese Omoregie",
     category: "electrical",
+    skills: ["electrical"],
     area: "GRA",
     headline: "Electrical maintenance specialist",
     bio: "Sockets, fixtures and everyday electrical maintenance.",
@@ -201,6 +210,7 @@ export const artisans: readonly Artisan[] = [
     id: "00000000-0000-4000-8000-000000000009",
     name: "Ivie Osagie",
     category: "tailoring",
+    skills: ["tailoring"],
     area: "New Benin",
     headline: "Bespoke tailoring & alterations",
     bio: "Made-to-fit outfits and careful clothing repairs.",
@@ -216,5 +226,15 @@ export const formatNaira = (kobo: number) =>
   new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
-    maximumFractionDigits: 0,
+    minimumFractionDigits: kobo % 100 === 0 ? 0 : 2,
+    maximumFractionDigits: 2,
   }).format(kobo / 100);
+
+export const tradeAliases: Record<CategoryId, readonly string[]> = {
+  plumbing: ["plumber", "plumbers"],
+  electrical: ["electrician", "electricians"],
+  carpentry: ["carpenter", "carpenters"],
+  tailoring: ["tailor", "tailors"],
+  painting: ["painter", "painters"],
+  cleaning: ["cleaner", "cleaners"],
+};

@@ -39,6 +39,7 @@ describe("discovery search contract", () => {
       rating: 0,
       sort: "recommended",
       page: 1,
+      view: "list",
     });
     expect(
       parseFilters({ q: ["  tap ", "other"], page: "Infinity" }),
@@ -60,6 +61,41 @@ describe("discovery search contract", () => {
       artisans.every((item) => Number.isInteger(item.startingPriceKobo)),
     ).toBe(true);
     expect(formatNaira(1000000)).toContain("10,000");
+  });
+  it("finds secondary skills and sorts ratings independently of recommendation order", () => {
+    const records = [
+      {
+        ...artisans[0],
+        id: "first",
+        profileReviewed: true,
+        rating: 4.1,
+        skills: ["plumbing", "carpentry"] as const,
+      },
+      { ...artisans[1], id: "second", profileReviewed: false, rating: 4.9 },
+    ];
+    expect(
+      searchArtisans(
+        parseFilters({ category: "carpentry" }),
+        records,
+      ).items.map((p) => p.id),
+    ).toEqual(["first"]);
+    expect(
+      searchArtisans(parseFilters({ sort: "recommended" }), records).items.map(
+        (p) => p.id,
+      ),
+    ).toEqual(["first", "second"]);
+    expect(
+      searchArtisans(parseFilters({ sort: "rating" }), records).items.map(
+        (p) => p.id,
+      ),
+    ).toEqual(["second", "first"]);
+    expect(formatNaira(1000050)).toContain("10,000.50");
+    expect(
+      new URL(
+        searchHref(parseFilters({ view: "grid" }), { page: 2 }),
+        "https://example.test",
+      ).searchParams.get("view"),
+    ).toBe("grid");
   });
   it("paginates, clamps out-of-range pages and never mutates shared fixtures", () => {
     const before = artisans.map((item) => item.id);

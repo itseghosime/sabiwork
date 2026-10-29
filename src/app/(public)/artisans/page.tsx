@@ -20,6 +20,7 @@ export default async function ArtisansPage({
 }) {
   const filters = parseFilters(await searchParams);
   const results = await listArtisans(filters);
+  const resetHref = searchHref(parseFilters({ view: filters.view }));
   const selectedCategory = categories.find(
     (category) => category.id === filters.category,
   );
@@ -70,6 +71,7 @@ export default async function ArtisansPage({
         className="container section results-section"
       >
         <Form action="/artisans" className="results-form">
+          <input type="hidden" name="view" value={filters.view} />
           <div className="results-toolbar">
             <label className="results-search">
               <Icon name="search" size={19} />
@@ -96,7 +98,7 @@ export default async function ArtisansPage({
               <div className="filter-fields">
                 <div className="filter-heading">
                   <h2>Refine your search</h2>
-                  <Link href="/artisans" className="text-link">
+                  <Link href={resetHref} className="text-link">
                     Reset
                   </Link>
                 </div>
@@ -188,14 +190,14 @@ export default async function ArtisansPage({
                       <Icon name="x" size={14} />
                     </Link>
                   ))}
-                  <Link href="/artisans" className="text-link">
+                  <Link href={resetHref} className="text-link">
                     Clear all
                   </Link>
                 </div>
               )}
               {results.total ? (
                 <>
-                  <ResultsCollection items={results.items} />
+                  <ResultsCollection items={results.items} filters={filters} />
                   {results.pages > 1 && (
                     <nav aria-label="Results pages" className="pagination">
                       {results.page > 1 && (
@@ -230,7 +232,7 @@ export default async function ArtisansPage({
                     Try another area, lower the minimum rating or use a more
                     general search.
                   </p>
-                  <Link href="/artisans" className="button button-primary">
+                  <Link href={resetHref} className="button button-primary">
                     Clear filters <Icon name="arrow" size={17} />
                   </Link>
                 </div>

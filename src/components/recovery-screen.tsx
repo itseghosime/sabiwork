@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Form from "next/form";
+import { recoveryContent } from "@/features/accounts/access";
 import { Icon } from "./icon";
 export function RecoveryScreen({ forbidden = false }: { forbidden?: boolean }) {
+  const content = recoveryContent[forbidden ? "forbidden" : "notFound"];
   return (
     <section className="container recovery-page">
       <div className="recovery-art" aria-hidden="true">
@@ -14,21 +16,9 @@ export function RecoveryScreen({ forbidden = false }: { forbidden?: boolean }) {
         <span className="orbit-dot dot-one" />
         <span className="orbit-dot dot-two" />
       </div>
-      <p className="eyebrow">
-        {forbidden
-          ? "HTTP 403 · ACCESS RESTRICTED"
-          : "HTTP 404 · PAGE NOT FOUND"}
-      </p>
-      <h1>
-        {forbidden
-          ? "You don’t have access to this page."
-          : "We can’t find that page."}
-      </h1>
-      <p className="recovery-copy">
-        {forbidden
-          ? "You may need a different account or permission to open this page. You can still explore local services from here."
-          : "We couldn’t find the page you were looking for. The link may have changed, but the right helping hand is still close by."}
-      </p>
+      <p className="eyebrow">{content.eyebrow}</p>
+      <h1>{content.title}</h1>
+      <p className="recovery-copy">{content.description}</p>
       <div className="recovery-actions">
         <Link href="/" className="button button-primary">
           <Icon name="home" size={18} /> Back to home
@@ -157,9 +147,7 @@ export function RecoveryScreen({ forbidden = false }: { forbidden?: boolean }) {
           </>
         )}
       </div>
-      <p className="recovery-reference">
-        {forbidden ? "Access restricted · 403" : "Page not found · 404"}
-      </p>
+      <p className="recovery-reference">{content.reference}</p>
     </section>
   );
 }
