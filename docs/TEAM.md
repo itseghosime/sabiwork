@@ -25,7 +25,7 @@ Submit a PR linked to the member's existing issue, page routes/screen IDs, scree
 
 ## Foundation before parallel work
 
-Natalie opens a small foundation PR first: one Next.js App Router/TypeScript app, npm lockfile, scripts required by CI, shared types/fictional fixtures, initial route map, and public/customer/artisan/admin shells. Abigail coordinates shared UI components; Rachel checks responsive behaviour; Abdulrahman reviews and merges. Do not create ten separate apps. Members branch from the merged foundation and immediately open draft PRs. The repository currently contains coordination files, not a completed app scaffold.
+Abdulrahman’s discovery PR adds the minimal shared Next.js App Router/TypeScript app, npm lockfile, CI scripts, public shell and typed discovery fixtures because no app scaffold existed. Natalie retains accounts/authentication ownership and coordinates protected customer/artisan/admin shells and server contracts. Abigail coordinates shared UI components; Rachel checks responsive behaviour. Do not create ten separate apps. Members branch from the merged foundation and immediately open draft PRs.
 
 Start the shared Neon schema, Better Auth and API/data contracts before Saturday. Friday pages may use typed mock services while those foundations progress. Saturday is for replacing adapters and connecting feature flows, not discovering ten incompatible data models.
 

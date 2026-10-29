@@ -7,7 +7,7 @@
 5. Include the issue, implementation summary, migration/setup instructions, screenshots at 390 / 768 / 1440 px widths, test steps and known limitations.
 6. Request review from @itseghosime and resolve review conversations. Abdulrahman alone makes the acceptance decision and merges. GitHub requires no approving-review count, so owner-authored PRs do not require a teammate’s approval. Required checks still apply.
 7. Only Abdulrahman, through the owner account @itseghosime, merges into main. Approving a PR does not give a member permission to merge it.
-8. After a merge, update from main before continuing. Use squash merge. Do not force-push main or delete it.
+8. After a merge, update from main before continuing. Use squash merge. Keep feature branches after merging so the tutor can inspect each student’s commits. Automatic branch deletion is disabled. Do not force-push main or delete it.
 
 ## Shared files and boundaries
 
