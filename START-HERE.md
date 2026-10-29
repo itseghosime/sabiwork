@@ -36,9 +36,9 @@ Replace `your-name` with your own name, for example `feat/emmanuel-profiles`. If
 
 ## 3. Check the app foundation before coding
 
-At this documentation update, main has no application package.json. **Do not create your own separate app.** Tell Abdulrahman the foundation is missing, then use the time to read your assignment and prepare your Stitch code/screenshots. The shared foundation is coordinated through Natalie’s accounts/foundation task and must be reviewed/merged first.
+Abdulrahman’s discovery PR provides the shared app foundation. **Do not create your own separate app.** Wait for that PR to merge, then update your branch from main. Natalie still owns the accounts/authentication feature and coordinates protected shells and shared server contracts.
 
-Once merged, follow its README for Node version, environment placeholders and setup (normally npm ci followed by npm run dev). Do not copy credentials into GitHub or AI prompts. Everyone builds in the same app using shared types, layouts and components.
+Once merged, use Node 22 LTS, run `npm ci`, then `npm run dev`. Public demo pages need no environment variables. Do not copy credentials into GitHub or AI prompts. Everyone builds in the same app using shared types, layouts and components.
 
 ## 4. Implement your assigned screens
 

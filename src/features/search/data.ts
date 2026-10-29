@@ -1,0 +1,240 @@
+// Fictional demonstration records. Replace this adapter on Saturday; never treat
+// sample ratings or badges as persisted reviews or verification decisions.
+export const categories = [
+  {
+    id: "plumbing",
+    name: "Plumbing & drainage",
+    short: "Plumbing",
+    icon: "wrench",
+    description: "Leaky taps, water tanks and the pipes in between.",
+    services: ["Leak repairs", "Tank installations", "Bathroom fittings"],
+    portrait: 2,
+  },
+  {
+    id: "electrical",
+    name: "Electrical & wiring",
+    short: "Electrical",
+    icon: "zap",
+    description: "From faulty sockets to a brighter, better-connected home.",
+    services: ["Wiring", "Lighting", "Inverter installations"],
+    portrait: 4,
+  },
+  {
+    id: "carpentry",
+    name: "Carpentry & furniture",
+    short: "Carpentry",
+    icon: "hammer",
+    description: "Thoughtful repairs and woodwork made for your space.",
+    services: ["Furniture repairs", "Cabinet making", "Door fittings"],
+    portrait: 3,
+  },
+  {
+    id: "tailoring",
+    name: "Tailoring & fashion",
+    short: "Tailoring",
+    icon: "scissors",
+    description: "Everyday alterations. Outfits for your big moments.",
+    services: ["Alterations", "Bespoke outfits", "Uniforms"],
+    portrait: 1,
+  },
+  {
+    id: "painting",
+    name: "Painting & finishing",
+    short: "Painting",
+    icon: "paintbrush",
+    description: "Fresh colour and careful finishes, inside and out.",
+    services: ["Interior painting", "Exterior painting", "Wall preparation"],
+    portrait: 0,
+  },
+  {
+    id: "cleaning",
+    name: "Cleaning & care",
+    short: "Cleaning",
+    icon: "sparkles",
+    description: "A fresh start for your home, office or new space.",
+    services: [
+      "Deep cleaning",
+      "Office cleaning",
+      "Post-construction cleaning",
+    ],
+    portrait: null,
+  },
+] as const;
+export type CategoryId = (typeof categories)[number]["id"];
+export const areas = [
+  "GRA",
+  "Ugbowo",
+  "Ikpoba Hill",
+  "Airport Road",
+  "Uselu",
+  "New Benin",
+] as const;
+export type Area = (typeof areas)[number];
+export interface Artisan {
+  id: string;
+  name: string;
+  category: CategoryId;
+  skills: readonly CategoryId[];
+  area: Area;
+  headline: string;
+  bio: string;
+  rating: number;
+  reviewCount: number;
+  startingPriceKobo: number;
+  profileReviewed: boolean;
+  portrait: number | null;
+  initials: string;
+}
+export const artisans: readonly Artisan[] = [
+  {
+    id: "00000000-0000-4000-8000-000000000001",
+    name: "Osaze Ighodaro",
+    category: "plumbing",
+    skills: ["plumbing"],
+    area: "GRA",
+    headline: "Plumber & water systems specialist",
+    bio: "Careful repairs for leaks, fittings and household water systems.",
+    rating: 4.9,
+    reviewCount: 28,
+    startingPriceKobo: 1000000,
+    profileReviewed: true,
+    portrait: 2,
+    initials: "OI",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000002",
+    name: "Blessing Okon",
+    category: "tailoring",
+    skills: ["tailoring"],
+    area: "Ugbowo",
+    headline: "Tailor & fashion designer",
+    bio: "Beautiful everyday pieces, precise alterations and occasion wear.",
+    rating: 4.8,
+    reviewCount: 19,
+    startingPriceKobo: 800000,
+    profileReviewed: true,
+    portrait: 1,
+    initials: "BO",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000003",
+    name: "Efe Omoruyi",
+    category: "painting",
+    skills: ["painting"],
+    area: "Ikpoba Hill",
+    headline: "Painter & interior finisher",
+    bio: "Neat preparation and lasting colour for homes and offices.",
+    rating: 4.7,
+    reviewCount: 15,
+    startingPriceKobo: 1500000,
+    profileReviewed: true,
+    portrait: 0,
+    initials: "EO",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000004",
+    name: "Sunday Alabi",
+    category: "carpentry",
+    skills: ["carpentry"],
+    area: "Airport Road",
+    headline: "Carpenter & furniture maker",
+    bio: "Custom shelves, sturdy furniture and repairs worth keeping.",
+    rating: 4.8,
+    reviewCount: 22,
+    startingPriceKobo: 1200000,
+    profileReviewed: true,
+    portrait: 3,
+    initials: "SA",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000005",
+    name: "Rosa Agbonlahor",
+    category: "electrical",
+    skills: ["electrical"],
+    area: "Ikpoba Hill",
+    headline: "Electrician & lighting specialist",
+    bio: "Practical electrical repairs and considered lighting installations.",
+    rating: 4.9,
+    reviewCount: 24,
+    startingPriceKobo: 1000000,
+    profileReviewed: true,
+    portrait: 4,
+    initials: "RA",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000006",
+    name: "Ada Ehi",
+    category: "cleaning",
+    skills: ["cleaning"],
+    area: "Uselu",
+    headline: "Home & office cleaning specialist",
+    bio: "Thorough cleaning for lived-in homes and busy workspaces.",
+    rating: 4.6,
+    reviewCount: 12,
+    startingPriceKobo: 1800000,
+    profileReviewed: true,
+    portrait: null,
+    initials: "AE",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000007",
+    name: "Tunde Akin",
+    category: "plumbing",
+    skills: ["plumbing"],
+    area: "New Benin",
+    headline: "Plumbing repairs & installations",
+    bio: "Tap replacements, pipe repairs and bathroom maintenance.",
+    rating: 4.4,
+    reviewCount: 8,
+    startingPriceKobo: 700000,
+    profileReviewed: false,
+    portrait: null,
+    initials: "TA",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000008",
+    name: "Ese Omoregie",
+    category: "electrical",
+    skills: ["electrical"],
+    area: "GRA",
+    headline: "Electrical maintenance specialist",
+    bio: "Sockets, fixtures and everyday electrical maintenance.",
+    rating: 4.5,
+    reviewCount: 10,
+    startingPriceKobo: 900000,
+    profileReviewed: false,
+    portrait: null,
+    initials: "EO",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000009",
+    name: "Ivie Osagie",
+    category: "tailoring",
+    skills: ["tailoring"],
+    area: "New Benin",
+    headline: "Bespoke tailoring & alterations",
+    bio: "Made-to-fit outfits and careful clothing repairs.",
+    rating: 4.7,
+    reviewCount: 14,
+    startingPriceKobo: 600000,
+    profileReviewed: true,
+    portrait: null,
+    initials: "IO",
+  },
+];
+export const formatNaira = (kobo: number) =>
+  new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: kobo % 100 === 0 ? 0 : 2,
+    maximumFractionDigits: 2,
+  }).format(kobo / 100);
+
+export const tradeAliases: Record<CategoryId, readonly string[]> = {
+  plumbing: ["plumber", "plumbers"],
+  electrical: ["electrician", "electricians"],
+  carpentry: ["carpenter", "carpenters"],
+  tailoring: ["tailor", "tailors"],
+  painting: ["painter", "painters"],
+  cleaning: ["cleaner", "cleaners"],
+};

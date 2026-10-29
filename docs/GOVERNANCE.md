@@ -12,3 +12,7 @@ Abdulrahman is the sole decision maker for review, acceptance and merging. GitHu
 The owner can edit repository rules as administrator; no rule can prevent the repository owner from changing the rules themselves. Restriction enforcement must be checked using GitHub readback; source JSON files alone do not enforce anything.
 
 CI is documentation-only until the foundation adds package.json. Then a committed lockfile and lint, typecheck, test and build scripts are mandatory. Do not treat an empty repository's checks as application validation.
+
+## Tutor contribution history
+
+Automatic branch deletion after merging is disabled. Retain student feature branches and PRs for tutor inspection; do not manually delete them before assessment.
