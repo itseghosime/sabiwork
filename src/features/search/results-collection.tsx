@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ArtisanCard } from "@/components/discovery";
+import { Icon } from "@/components/icon";
 import type { Artisan } from "./data";
 export function ResultsCollection({ items }: { items: Artisan[] }) {
   const [view, setView] = useState<"list" | "grid">("list");
@@ -11,17 +12,23 @@ export function ResultsCollection({ items }: { items: Artisan[] }) {
         <div role="group" aria-label="Results layout">
           <button
             type="button"
+            className="layout-toggle"
+            aria-label="List"
+            title="List view"
             aria-pressed={view === "list"}
             onClick={() => setView("list")}
           >
-            List
+            <Icon name="list" />
           </button>
           <button
             type="button"
+            className="layout-toggle"
+            aria-label="Grid"
+            title="Grid view"
             aria-pressed={view === "grid"}
             onClick={() => setView("grid")}
           >
-            Grid
+            <Icon name="grid" />
           </button>
         </div>
       </div>
