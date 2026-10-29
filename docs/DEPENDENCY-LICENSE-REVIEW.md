@@ -30,3 +30,7 @@ This PR does not modify, vendor or commit those binaries. npm installs the pinne
 Review whether retaining the standard unmodified image dependencies is acceptable for this project and preserve applicable notices/source information when packaging or distributing it. If accepted, the 14 related review threads can be marked reviewed/resolved; the optional Sourcery check may remain red until its licence finding is triaged in Sourcery. No repository protections or security scanner rules were weakened by this code fix. If not accepted, select an alternative dependency/build approach before merging rather than editing away lockfile entries.
 
 The code findings are addressed independently. Only Abdulrahman makes the licence acceptance and merge decision.
+
+## Owner decision — 29 October 2026
+
+Abdulrahman explicitly approved retaining the packages and resolving the 14 licence-review threads after reviewing this inventory. No security scanner policy, required check or branch protection was disabled. Applicable upstream notices remain part of installed packages. This records the owner’s project decision; it does not claim blanket compliance for future distributions.
