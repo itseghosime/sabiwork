@@ -74,6 +74,29 @@ describe("account preview boundaries", () => {
     await expect(request).rejects.toMatchObject({ name: "AbortError" });
   });
 });
+describe("review regressions", () => {
+  it("accepts only the fields each operation needs and returns its own preview kind", async () => {
+    const login = await demoAuthAdapter.login({
+      email: valid.email,
+      password: valid.password,
+    });
+    expect(login).toEqual({ ok: true, mode: "demo", kind: "login-preview" });
+    const reset = await demoAuthAdapter.reset(
+      { password: valid.password, confirmation: valid.confirmation },
+      "demo-valid",
+    );
+    expect(reset).toEqual({ ok: true, mode: "demo", kind: "reset-preview" });
+  });
+  it("does not send customer signup visitors to an unimplemented artisan page", () => {
+    mount(<AccountForm mode="signup" />);
+    expect(
+      screen.queryByRole("link", { name: /Offer your skills/ }),
+    ).toBeNull();
+    expect(
+      screen.getByText("Artisan registration will be available soon."),
+    ).toBeTruthy();
+  });
+});
 describe("account forms", () => {
   it("focuses invalid fields and previews signup without persisting a password", async () => {
     mount(<AccountForm mode="signup" />);
@@ -101,6 +124,12 @@ describe("account forms", () => {
         .getByRole("button", { name: "Checking sample details…" })
         .hasAttribute("disabled"),
     ).toBe(true);
+    const emailField = screen.getByLabelText(
+      "Email address",
+    ) as HTMLInputElement;
+    expect(emailField.matches(":disabled")).toBe(true);
+    fireEvent.change(emailField, { target: { value: "changed@example.test" } });
+    expect(emailField.value).toBe(valid.email);
     await screen.findByRole("heading", {
       name: "Your signup preview is ready",
     });

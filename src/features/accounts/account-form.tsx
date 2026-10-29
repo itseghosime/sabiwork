@@ -119,6 +119,7 @@ export function AccountForm({
   const [result, setResult] = useState<DemoAuthResult | null>(null);
   useEffect(() => () => controller.current?.abort(), []);
   function update(name: keyof AccountValues, value: string) {
+    if (pending) return;
     setValues((previous) => ({ ...previous, [name]: value }));
     setErrors((previous) => ({ ...previous, [name]: undefined }));
     setResult(null);
@@ -145,14 +146,21 @@ export function AccountForm({
       if (mode === "signup")
         response = await demoAuthAdapter.signup(values, request.signal);
       else if (mode === "login")
-        response = await demoAuthAdapter.login(values, request.signal);
+        response = await demoAuthAdapter.login(
+          { email: values.email, password: values.password },
+          request.signal,
+        );
       else if (mode === "forgot")
         response = await demoAuthAdapter.requestReset(
           values.email,
           request.signal,
         );
       else
-        response = await demoAuthAdapter.reset(values, token, request.signal);
+        response = await demoAuthAdapter.reset(
+          { password: values.password, confirmation: values.confirmation },
+          token,
+          request.signal,
+        );
       if (request.signal.aborted) return;
       if (response.ok && mode !== "reset")
         setEmail(values.email.trim().toLowerCase());
@@ -275,139 +283,141 @@ export function AccountForm({
           <span>
             <Icon name="home" size={18} /> I’m looking for an artisan
           </span>
-          <Link href="/signup/artisan">
-            Offer your skills <Icon name="arrow" size={16} />
-          </Link>
+          <p>Artisan registration will be available soon.</p>
         </div>
       )}
       <form ref={form} onSubmit={submit} noValidate aria-busy={pending}>
-        {mode === "signup" && (
-          <div className="auth-field">
-            <label htmlFor={`${id}-name`}>Full name</label>
-            <input
-              id={`${id}-name`}
-              name="name"
-              value={values.name}
-              onChange={(event) => update("name", event.target.value)}
-              autoComplete="name"
-              maxLength={100}
-              placeholder="Ada Okafor"
-              aria-invalid={!!errors.name}
-              aria-describedby={errors.name ? `${id}-name-error` : undefined}
-            />
-            {errors.name && (
-              <p id={`${id}-name-error`} className="auth-field-error">
-                {errors.name}
-              </p>
-            )}
-          </div>
-        )}
-        {mode !== "reset" && (
-          <div className="auth-field">
-            <label htmlFor={`${id}-email`}>Email address</label>
-            <input
-              id={`${id}-email`}
-              name="email"
-              type="email"
-              value={values.email}
-              onChange={(event) => update("email", event.target.value)}
-              autoComplete="email"
-              maxLength={254}
-              placeholder="ada@example.test"
-              aria-invalid={!!errors.email}
-              aria-describedby={errors.email ? `${id}-email-error` : undefined}
-            />
-            {errors.email && (
-              <p id={`${id}-email-error`} className="auth-field-error">
-                {errors.email}
-              </p>
-            )}
-          </div>
-        )}
-        {mode !== "forgot" && (
-          <>
-            <PasswordInput
-              id={`${id}-password`}
-              name="password"
-              label={mode === "reset" ? "New password" : "Password"}
-              value={values.password}
-              onChange={(value) => update("password", value)}
-              error={errors.password}
-              autoComplete={
-                mode === "login" ? "current-password" : "new-password"
-              }
-            />
-            {mode === "login" && (
-              <div className="auth-forgot-link">
-                <Link className="text-link" href="/forgot-password">
-                  Forgot password?
-                </Link>
-              </div>
-            )}
-          </>
-        )}
-        {(mode === "signup" || mode === "reset") && (
-          <>
-            <ul
-              className="password-checks"
-              aria-label="Sample password requirements"
-            >
-              <li data-valid={checks.length}>
-                <Icon name={checks.length ? "check" : "help"} size={14} />
-                12–128 characters
-              </li>
-              <li data-valid={checks.letter}>
-                <Icon name={checks.letter ? "check" : "help"} size={14} />A
-                letter
-              </li>
-              <li data-valid={checks.number}>
-                <Icon name={checks.number ? "check" : "help"} size={14} />A
-                number
-              </li>
-            </ul>
-            <PasswordInput
-              id={`${id}-confirmation`}
-              name="confirmation"
-              label="Confirm password"
-              value={values.confirmation}
-              onChange={(value) => update("confirmation", value)}
-              error={errors.confirmation}
-              autoComplete="new-password"
-            />
-          </>
-        )}
-        {Object.values(errors).some(Boolean) && (
-          <p role="alert" className="auth-error-summary">
-            Please check the highlighted fields.
-          </p>
-        )}
-        {result && !result.ok && (
-          <div role="alert" className="auth-request-error">
-            <Icon name="help" size={18} />
-            <p>{result.message}</p>
-          </div>
-        )}
-        <button
-          type="submit"
-          disabled={pending}
-          className="button button-primary auth-submit"
-        >
-          {pending ? (
+        <fieldset disabled={pending} className="auth-fields">
+          {mode === "signup" && (
+            <div className="auth-field">
+              <label htmlFor={`${id}-name`}>Full name</label>
+              <input
+                id={`${id}-name`}
+                name="name"
+                value={values.name}
+                onChange={(event) => update("name", event.target.value)}
+                autoComplete="name"
+                maxLength={100}
+                placeholder="Ada Okafor"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? `${id}-name-error` : undefined}
+              />
+              {errors.name && (
+                <p id={`${id}-name-error`} className="auth-field-error">
+                  {errors.name}
+                </p>
+              )}
+            </div>
+          )}
+          {mode !== "reset" && (
+            <div className="auth-field">
+              <label htmlFor={`${id}-email`}>Email address</label>
+              <input
+                id={`${id}-email`}
+                name="email"
+                type="email"
+                value={values.email}
+                onChange={(event) => update("email", event.target.value)}
+                autoComplete="email"
+                maxLength={254}
+                placeholder="ada@example.test"
+                aria-invalid={!!errors.email}
+                aria-describedby={
+                  errors.email ? `${id}-email-error` : undefined
+                }
+              />
+              {errors.email && (
+                <p id={`${id}-email-error`} className="auth-field-error">
+                  {errors.email}
+                </p>
+              )}
+            </div>
+          )}
+          {mode !== "forgot" && (
             <>
-              <span className="auth-spinner" aria-hidden="true" />
-              Checking sample details…
-            </>
-          ) : (
-            <>
-              {heading.action}
-              <Icon name="arrow" size={18} />
+              <PasswordInput
+                id={`${id}-password`}
+                name="password"
+                label={mode === "reset" ? "New password" : "Password"}
+                value={values.password}
+                onChange={(value) => update("password", value)}
+                error={errors.password}
+                autoComplete={
+                  mode === "login" ? "current-password" : "new-password"
+                }
+              />
+              {mode === "login" && (
+                <div className="auth-forgot-link">
+                  <Link className="text-link" href="/forgot-password">
+                    Forgot password?
+                  </Link>
+                </div>
+              )}
             </>
           )}
-        </button>
-        <p className="auth-fineprint">
-          This is a local frontend preview. No account, session, email or
-          password change is created.
-        </p>
+          {(mode === "signup" || mode === "reset") && (
+            <>
+              <ul
+                className="password-checks"
+                aria-label="Sample password requirements"
+              >
+                <li data-valid={checks.length}>
+                  <Icon name={checks.length ? "check" : "help"} size={14} />
+                  12–128 characters
+                </li>
+                <li data-valid={checks.letter}>
+                  <Icon name={checks.letter ? "check" : "help"} size={14} />A
+                  letter
+                </li>
+                <li data-valid={checks.number}>
+                  <Icon name={checks.number ? "check" : "help"} size={14} />A
+                  number
+                </li>
+              </ul>
+              <PasswordInput
+                id={`${id}-confirmation`}
+                name="confirmation"
+                label="Confirm password"
+                value={values.confirmation}
+                onChange={(value) => update("confirmation", value)}
+                error={errors.confirmation}
+                autoComplete="new-password"
+              />
+            </>
+          )}
+          {Object.values(errors).some(Boolean) && (
+            <p role="alert" className="auth-error-summary">
+              Please check the highlighted fields.
+            </p>
+          )}
+          {result && !result.ok && (
+            <div role="alert" className="auth-request-error">
+              <Icon name="help" size={18} />
+              <p>{result.message}</p>
+            </div>
+          )}
+          <button
+            type="submit"
+            disabled={pending}
+            className="button button-primary auth-submit"
+          >
+            {pending ? (
+              <>
+                <span className="auth-spinner" aria-hidden="true" />
+                Checking sample details…
+              </>
+            ) : (
+              <>
+                {heading.action}
+                <Icon name="arrow" size={18} />
+              </>
+            )}
+          </button>
+          <p className="auth-fineprint">
+            This is a local frontend preview. No account, session, email or
+            password change is created.
+          </p>
+        </fieldset>
       </form>
       {mode === "login" && (
         <details className="auth-demo-help">
@@ -420,6 +430,7 @@ export function AccountForm({
           <button
             type="button"
             className="text-link auth-text-button"
+            disabled={pending}
             onClick={() => {
               setValues((previous) => ({
                 ...previous,

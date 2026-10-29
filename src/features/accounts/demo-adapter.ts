@@ -1,4 +1,9 @@
-import { validateAccount, type AccountValues } from "./validation";
+import {
+  validateAccount,
+  type SignupInput,
+  type LoginInput,
+  type ResetInput,
+} from "./validation";
 export type DemoAuthErrorCode =
   | "VALIDATION"
   | "BACKEND_NOT_CONNECTED"
@@ -6,25 +11,28 @@ export type DemoAuthErrorCode =
   | "UNAVAILABLE"
   | "INVALID_TOKEN"
   | "EXPIRED_TOKEN";
-export type DemoAuthResult =
-  | {
-      ok: true;
-      mode: "demo";
-      kind:
-        | "signup-preview"
-        | "login-preview"
-        | "reset-request-preview"
-        | "reset-preview"
-        | "resend-preview"
-        | "verification-preview"
-        | "verification-required";
-    }
-  | { ok: false; mode: "demo"; code: DemoAuthErrorCode; message: string };
+export type DemoAuthError = {
+  ok: false;
+  mode: "demo";
+  code: DemoAuthErrorCode;
+  message: string;
+};
+export type DemoSuccessKind =
+  | "signup-preview"
+  | "login-preview"
+  | "reset-request-preview"
+  | "reset-preview"
+  | "resend-preview"
+  | "verification-preview"
+  | "verification-required";
+export type DemoResult<K extends DemoSuccessKind> =
+  { ok: true; mode: "demo"; kind: K } | DemoAuthError;
+export type DemoAuthResult = DemoResult<DemoSuccessKind>;
 export const demoCredentials = {
   email: "ada@example.test",
   password: "SabiWork-demo-2026!",
 } as const;
-const fail = (code: DemoAuthErrorCode, message: string): DemoAuthResult => ({
+const fail = (code: DemoAuthErrorCode, message: string): DemoAuthError => ({
   ok: false,
   mode: "demo",
   code,
@@ -55,9 +63,9 @@ async function pause(signal?: AbortSignal) {
  * records, password mutations or sessions. Replace with Better Auth/Resend. */
 export const demoAuthAdapter = {
   async signup(
-    values: AccountValues,
+    values: SignupInput,
     signal?: AbortSignal,
-  ): Promise<DemoAuthResult> {
+  ): Promise<DemoResult<"signup-preview">> {
     await pause(signal);
     if (Object.keys(validateAccount("signup", values)).length)
       return fail("VALIDATION", "Check the highlighted fields.");
@@ -70,9 +78,9 @@ export const demoAuthAdapter = {
     return { ok: true, mode: "demo", kind: "signup-preview" };
   },
   async login(
-    values: AccountValues,
+    values: LoginInput,
     signal?: AbortSignal,
-  ): Promise<DemoAuthResult> {
+  ): Promise<DemoResult<"login-preview" | "verification-required">> {
     await pause(signal);
     if (Object.keys(validateAccount("login", values)).length)
       return fail("VALIDATION", "Enter an email address and password.");
@@ -99,17 +107,17 @@ export const demoAuthAdapter = {
   async requestReset(
     email: string,
     signal?: AbortSignal,
-  ): Promise<DemoAuthResult> {
+  ): Promise<DemoResult<"reset-request-preview">> {
     await pause(signal);
     if (!isSampleEmail(email)) return disconnected();
     // Identical reply for every sample address, without account enumeration.
     return { ok: true, mode: "demo", kind: "reset-request-preview" };
   },
   async reset(
-    values: AccountValues,
+    values: ResetInput,
     token: string,
     signal?: AbortSignal,
-  ): Promise<DemoAuthResult> {
+  ): Promise<DemoResult<"reset-preview">> {
     await pause(signal);
     if (token === "demo-expired")
       return fail(
@@ -125,12 +133,18 @@ export const demoAuthAdapter = {
       return fail("VALIDATION", "Check the highlighted fields.");
     return { ok: true, mode: "demo", kind: "reset-preview" };
   },
-  async resend(email: string, signal?: AbortSignal): Promise<DemoAuthResult> {
+  async resend(
+    email: string,
+    signal?: AbortSignal,
+  ): Promise<DemoResult<"resend-preview">> {
     await pause(signal);
     if (!isSampleEmail(email)) return disconnected();
     return { ok: true, mode: "demo", kind: "resend-preview" };
   },
-  async verify(token: string, signal?: AbortSignal): Promise<DemoAuthResult> {
+  async verify(
+    token: string,
+    signal?: AbortSignal,
+  ): Promise<DemoResult<"verification-preview">> {
     await pause(signal);
     if (token === "demo-expired")
       return fail(

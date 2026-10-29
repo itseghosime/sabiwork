@@ -25,7 +25,7 @@ Use the existing app: `npm ci`, then `npm run dev`. No authentication credential
 
 `validation.ts` checks fields without trimming passwords. `demo-adapter.ts` provides typed, cancellable local preview results. `account-form.tsx` renders signup/login/recovery variants and preserves input after failures. `verification-form.tsx` owns resend/verification feedback and its local countdown. The route group supplies the shared public navigation, brand and demo notice; its prefixed CSS keeps the homepage unchanged. Inputs use labels/error descriptions; invalid submission focuses the first invalid field. Buttons remain at least 44px high, password controls 44px square. Forms come first on mobile/tablet.
 
-The five server route wrappers provide metadata; reset/verification await Next.js `searchParams` and pass only a bounded token string. There is no custom API, database, cookie, session or email send. Success text explicitly describes a preview. The artisan signup link belongs to Sophia’s S08 and remains pending that implementation.
+The five server route wrappers provide metadata; reset/verification await Next.js `searchParams` and pass only a bounded token string. There is no custom API, database, cookie, session or email send. Success text explicitly describes a preview. Artisan registration belongs to Sophia’s S08. The customer form shows an availability notice until that route exists, rather than linking to a missing page.
 
 ## Saturday integration contract
 
@@ -35,10 +35,14 @@ Coordinate the shared workspace shells before adding authenticated layouts. Thei
 
 ## Checks and evidence
 
-`npm run lint`, `npm run typecheck`, `npm run test`, and `npm run build` are required. The suite now has 23 tests, including ten account tests covering validation, adapter boundaries/cancellation, invalid-field focus, password visibility/clearing, recoverable failure, login/signup/recovery previews, reset-token rejection, verification and resend cooldown.
+`npm run lint`, `npm run typecheck`, `npm run test`, and `npm run build` are required. The suite now has 25 tests, including twelve account tests covering validation, adapter boundaries/cancellation, invalid-field focus, password visibility/clearing, recoverable failure, login/signup/recovery previews, reset-token rejection, verification and resend cooldown.
 
 Browser evidence is in `docs/validation/natalie/`: five screens at 390/768/1440px, plus interaction-state screenshots and measured layout data. No page or button horizontal overflow was found at these widths. These are responsive screenshots, not a claim that the implementation is a pixel-for-pixel Stitch export. Layout follows the shared DESIGN.md tokens; the existing Stitch tab could not be inspected during this pass.
 
 ## Short explanation for the demo
 
 “I implemented five responsive account screens using reusable form components and a separate typed adapter. I validate the fields and show pending, error and completion states. Password visibility is local, and successful previews clear the password fields. No account or session is created yet. On Saturday we replace the preview adapter with server authentication and connect email verification and reset links.”
+
+## Review corrections
+
+Form fields and the sample-details fill button are disabled while a request is pending, preventing stale responses from clearing newer edits. Adapter inputs now contain only operation-specific fields, and each method has a restricted success-result type. Regression coverage checks the pending-input guard, minimal adapter inputs and the missing-artisan-route notice.
