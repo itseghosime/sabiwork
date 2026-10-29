@@ -11,7 +11,7 @@ The SabiWork designs are ready! Start today and submit your working frontend cod
 5. Copy/export your assigned designs’ code and screenshots. Follow AGENTS.md, DESIGN.md and docs/OPENCODE-PROMPT.md to implement your pages.
 6. Work on your own branch, check mobile/tablet/desktop and submit a *pull request*. *Only I will merge.*
 
-Submit your *PR link and a short explanation of your code*. AI can help write the explanation, but you must understand and explain the code yourself. Use agreed mock data for Friday; we integrate the backend together on Saturday.
+Submit your *PR link and a short explanation of your code*. Follow the complete submission checklist in docs/TEAM.md. AI can help write the explanation, but you must understand and explain the code yourself. Use agreed mock data for Friday; we integrate the backend together on Saturday.
 
 I won’t do your assigned work for you, but I’ll help with challenges when you share what you tried and your progress. *Raise blockers early—don’t wait until the deadline.*
 

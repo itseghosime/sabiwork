@@ -22,6 +22,8 @@ Send Abdulrahman your GitHub username. Accept the repository invitation when it 
 
 ## 2. Clone the shared repository
 
+The commands below assume you accepted the collaborator invitation. If you have not received access, prepare your exports/read the guide and wait for access; do not try to push to the shared origin. A fork contribution is also possible using the contribution guide.
+
 With Git installed, open a terminal in a suitable projects folder and run:
 
 ```sh
@@ -40,7 +42,7 @@ Once merged, follow its README for Node version, environment placeholders and se
 
 ## 4. Implement your assigned screens
 
-Open the cloned repository folder in OpenCode. Find your screen IDs in TEAM.md and the corresponding final frames in Stitch. Use Stitch’s available code/export option and include screenshots for mobile/tablet/desktop. Copy OPENCODE-PROMPT.md, fill in your name/IDs/routes and supply that code and those references.
+Open the cloned repository folder in OpenCode. Find your screen IDs in [docs/TEAM.md](docs/TEAM.md) and the corresponding final frames in Stitch. Use Stitch’s available code/export option and include screenshots for mobile/tablet/desktop. Copy [docs/OPENCODE-PROMPT.md](docs/OPENCODE-PROMPT.md), fill in your name/IDs/routes and supply that code and those references.
 
 Tell OpenCode to adapt the export into the existing Next.js/React/TypeScript app using AGENTS.md and DESIGN.md. One responsive implementation covers all three sizes. Reuse shared navigation/logo/components; do not create a new design system or paste a standalone HTML document into the app.
 
@@ -56,7 +58,7 @@ Push your branch after accepting the invitation:
 git push -u origin feat/your-name-pages
 ```
 
-Use your actual branch name. On GitHub choose Compare & pull request; base branch main, compare your branch. Include your screen IDs/routes, related issue number, PR summary, short code explanation, checks and remaining mock/backend dependencies. Screenshots and a short walkthrough help review. Never include secrets. Only Abdulrahman merges.
+Use your actual branch name. On GitHub choose Compare & pull request; base branch main, compare your branch. Include your screen IDs/routes, related issue number, PR summary, short code explanation, checks and remaining mock/backend dependencies. Include the complete required evidence from [the team submission checklist](docs/TEAM.md#friday-acceptance), including viewport screenshots, a short walkthrough, setup/test steps and your non-code output. Never include secrets. Only Abdulrahman merges.
 
 AI may help write the explanation, but you must understand it and be able to explain your implementation. Do not submit code you cannot demonstrate.
 

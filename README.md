@@ -14,7 +14,7 @@ Customers discover verified artisans, request work, compare quotes, pay in miles
 4. Follow [START-HERE.md](START-HERE.md) to clone the repo, create a branch and check the shared app foundation.
 5. Open the repo in OpenCode. Read [AGENTS.md](AGENTS.md), [DESIGN.md](DESIGN.md), [the beginner guide](docs/BEGINNER-GUIDE.md) and [your route ownership](docs/SCREEN-OWNERSHIP.md).
 6. Paste [the OpenCode implementation prompt](docs/OPENCODE-PROMPT.md), your assigned Stitch code and screenshots. Build inside the shared app; do not create a separate project.
-7. Check phone/tablet/desktop and submit a pull request with a short explanation of your code. AI may help draft it, but you must understand and explain it yourself. Only Abdulrahman merges main.
+7. Check phone/tablet/desktop and submit a pull request with a short explanation of your code. AI may help draft it, but you must understand and explain it yourself. Follow [the complete submission checklist](docs/TEAM.md#friday-acceptance). Only Abdulrahman reviews for acceptance and merges main.
 
 **Foundation status:** this checkout has no application package.json yet. You can clone, read the instructions and prepare your assigned design exports now. Report the missing foundation to Abdulrahman; do not create an independent app or run install/dev commands until the shared foundation is merged.
 

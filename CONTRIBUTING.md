@@ -5,7 +5,7 @@
 3. Create a branch: `feat/03-job-requests-abigail` or `fix/03-quote-validation`. Never work directly on main.
 4. Keep one feature per pull request. Push an early draft rather than waiting until Friday.
 5. Include the issue, implementation summary, migration/setup instructions, screenshots at 390 / 768 / 1440 px widths, test steps and known limitations.
-6. Request review from @itseghosime. Resolve review conversations. At least one approval is required. A teammate reviews an owner-authored PR, since authors cannot approve their own PRs.
+6. Request review from @itseghosime and resolve review conversations. Abdulrahman alone makes the acceptance decision and merges. GitHub requires no approving-review count, so owner-authored PRs do not require a teammate’s approval. Required checks still apply.
 7. Only Abdulrahman, through the owner account @itseghosime, merges into main. Approving a PR does not give a member permission to merge it.
 8. After a merge, update from main before continuing. Use squash merge. Do not force-push main or delete it.
 
