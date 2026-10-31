@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Clear Trade Modern — Quotes & Escrow Deposits (S17, S18, S19, S20, S21)
+   Tokens from DESIGN.md: Canvas #F7F6F2, Card #FFFFFF, Border #E2E0D8,
+   Primary #075E46, Accent #0E294B. Touch targets min 44px.
+   ========================================================================== */
+
+.qt-page {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  display: grid;
+  gap: 24px;
+  color: var(--text);
+  padding-bottom: 48px;
+}
+
+.qt-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.qt-breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.qt-breadcrumbs a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.qt-breadcrumbs strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Simulator Bar */
+.qt-simulator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f1ede4;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.qt-simulator-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark, #0e294b);
+}
+
+.qt-simulator-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.qt-sim-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 36px;
+}
+
+.qt-sim-btn:hover {
+  background: #f7f6f2;
+  border-color: var(--primary);
+}
+
+.qt-sim-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* Card Sections */
+.qt-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.qt-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+}
+
+.qt-field-group {
+  display: grid;
+  gap: 6px;
+}
+
+.qt-field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.qt-field-group input,
+.qt-field-group select,
+.qt-field-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.qt-field-group input:focus,
+.qt-field-group select:focus,
+.qt-field-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(7, 94, 70, 0.15);
+}
+
+/* Alerts */
+.qt-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.qt-alert-info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.qt-alert-warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.qt-alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.qt-alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+/* Comparison Table (S19) */
+.qt-comparison-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+.qt-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.qt-table th,
+.qt-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.qt-table th {
+  background: #f8fafc;
+  color: var(--text-dark, #0e294b);
+  font-weight: 700;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.qt-table tr:hover td {
+  background: #fcfbf9;
+}
+
+/* Checkout Card (S21) */
+.qt-checkout-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .qt-checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qt-payment-method-card {
+  border: 2px solid var(--primary);
+  background: #f0fdf4;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qt-order-summary {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+}
