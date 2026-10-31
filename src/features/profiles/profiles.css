@@ -1,0 +1,829 @@
+/* ==========================================================================
+   Clear Trade Modern — Artisan Profiles & Verification (S04, S05, S06, S40, S41)
+   Tokens from DESIGN.md: Canvas #F7F6F2, Card #FFFFFF, Border #E2E0D8,
+   Primary #075E46, Accent #0E294B. Touch targets min 44px.
+   ========================================================================== */
+
+.pf-page {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  display: grid;
+  gap: 24px;
+  color: var(--text);
+  padding-bottom: 48px;
+}
+
+.pf-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.pf-breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.pf-breadcrumbs a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.pf-breadcrumbs strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* State Simulator Bar */
+.pf-simulator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f1ede4;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.pf-simulator-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark, #0e294b);
+}
+
+.pf-simulator-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pf-sim-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 36px;
+}
+
+.pf-sim-btn:hover {
+  background: #f7f6f2;
+  border-color: var(--primary);
+}
+
+.pf-sim-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* Hero Header (S04) */
+.pf-hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: grid;
+  gap: 20px;
+}
+
+.pf-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pf-hero-profile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pf-avatar-large {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #e8f5ed;
+  border: 3px solid #075e46;
+  color: #075e46;
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.pf-avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pf-hero-info {
+  display: grid;
+  gap: 6px;
+}
+
+.pf-hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pf-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pf-badge-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pf-badge-master {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #fde68a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pf-badge-reviewed {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #e8f5ed;
+  color: #075e46;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #a7f3d0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pf-badge-pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef2f2;
+  color: #991b1b;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #fecaca;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pf-badge-testmode {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #0e294b;
+  color: #eff8ff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+.pf-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.pf-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pf-rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fffbeb;
+  color: #b45309;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #fef3c7;
+}
+
+.pf-hero-pricing-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  display: grid;
+  gap: 8px;
+  min-width: 240px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .pf-hero-pricing-box {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+.pf-price-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pf-price-value {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+/* Two-column layout */
+.pf-layout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .pf-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pf-main-col {
+  display: grid;
+  gap: 24px;
+}
+
+.pf-side-col {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+}
+
+/* Card Sections */
+.pf-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.pf-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+}
+
+/* Skill Tags Grid */
+.pf-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pf-skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.pf-skill-pill.vetted {
+  background: #e8f5ed;
+  border-color: #a7f3d0;
+  color: #075e46;
+}
+
+/* Portfolio Showcase Cards */
+.pf-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.pf-portfolio-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  overflow: hidden;
+  display: grid;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pf-portfolio-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: var(--primary);
+}
+
+.pf-portfolio-thumb {
+  height: 180px;
+  background: #e2e8f0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pf-portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pf-portfolio-thumb-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(14, 41, 75, 0.85);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.pf-portfolio-body {
+  padding: 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.pf-portfolio-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.pf-portfolio-meta {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Reviews List */
+.pf-reviews-list {
+  display: grid;
+  gap: 16px;
+}
+
+.pf-review-item {
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.pf-review-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.pf-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pf-reviewer-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-dark, #0e294b);
+}
+
+.pf-reviewer-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pf-review-comment {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+}
+
+/* Quick Quote Sticky Card */
+.pf-sticky-quote {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.pf-quote-field {
+  display: grid;
+  gap: 6px;
+}
+
+.pf-quote-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pf-quote-field input,
+.pf-quote-field select,
+.pf-quote-field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.pf-quote-field input:focus,
+.pf-quote-field select:focus,
+.pf-quote-field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(7, 94, 70, 0.15);
+}
+
+/* S05 Portfolio Modal / Viewer */
+.pf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 41, 75, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.pf-modal-dialog {
+  width: min(100%, 1024px);
+  max-height: 90vh;
+  background: #ffffff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.pf-modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+}
+
+.pf-modal-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+}
+
+.pf-modal-body {
+  overflow-y: auto;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+}
+
+.pf-viewer-stage {
+  width: 100%;
+  height: clamp(260px, 45vh, 480px);
+  background: #0f172a;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pf-viewer-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pf-viewer-thumbs {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.pf-viewer-thumb-btn {
+  width: 80px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  background: #e2e8f0;
+  flex-shrink: 0;
+}
+
+.pf-viewer-thumb-btn.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(7, 94, 70, 0.2);
+}
+
+.pf-viewer-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* S06 Profile Editor */
+.pf-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.pf-form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.pf-form-section-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 8px;
+}
+
+.pf-area-checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.pf-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pf-checkbox-label input {
+  margin-top: 3px;
+}
+
+.pf-checkbox-title {
+  font-weight: 600;
+  color: var(--text-dark, #0e294b);
+}
+
+.pf-checkbox-sub {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* S40 4-Step Verification Wizard */
+.pf-steps-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .pf-steps-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pf-step-tab {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.pf-step-tab.active {
+  border-color: var(--primary);
+  background: #e8f5ed;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.pf-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.pf-step-tab.active .pf-step-num {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.pf-upload-slot {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  text-align: center;
+  background: #f8fafc;
+  display: grid;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.pf-upload-slot:hover {
+  border-color: var(--primary);
+  background: #f1ede4;
+}
+
+/* S41 Verification Status Tracker */
+.pf-timeline {
+  display: grid;
+  gap: 16px;
+  position: relative;
+  padding-left: 24px;
+}
+
+.pf-timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 7px;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.pf-timeline-item {
+  position: relative;
+  display: grid;
+  gap: 4px;
+}
+
+.pf-timeline-dot {
+  position: absolute;
+  left: -24px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #cbd5e1;
+}
+
+.pf-timeline-item.complete .pf-timeline-dot {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.pf-timeline-item.current .pf-timeline-dot {
+  border-color: #f59e0b;
+  background: #f59e0b;
+}
+
+.pf-timeline-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+}
+
+.pf-timeline-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* Notification & Alert Banners */
+.pf-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.pf-alert-info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.pf-alert-warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.pf-alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.pf-alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
