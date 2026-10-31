@@ -1,0 +1,381 @@
+.sabi-verif-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+@media (min-width: 768px) {
+  .sabi-verif-container {
+    padding: 2rem 1.5rem 4rem;
+  }
+}
+
+/* Wizard Styles for S08 */
+.sabi-wizard-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--outline-variant, #dce2f7);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(20, 27, 43, 0.05);
+  overflow: hidden;
+}
+
+.sabi-wizard-header {
+  background: #f1f5fa;
+  border-bottom: 1px solid var(--outline-variant, #dce2f7);
+  padding: 1.25rem 1.5rem;
+}
+
+.sabi-wizard-stepper {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.sabi-wizard-step-pill {
+  flex: 1;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--outline-variant, #dce2f7);
+  transition: background 0.2s ease;
+}
+
+.sabi-wizard-step-pill.active {
+  background: var(--primary, #006491);
+}
+
+.sabi-wizard-step-pill.completed {
+  background: #107c41;
+}
+
+.sabi-wizard-body {
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .sabi-wizard-body {
+    padding: 2.25rem;
+  }
+}
+
+.sabi-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .sabi-form-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sabi-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.sabi-input-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--on-surface, #141b2b);
+}
+
+.sabi-input-group input,
+.sabi-input-group select,
+.sabi-input-group textarea {
+  min-height: 44px;
+  padding: 0.625rem 0.875rem;
+  border-radius: 8px;
+  border: 1px solid var(--outline-variant, #bec8d1);
+  background: #ffffff;
+  color: #141b2b;
+  font-size: 0.9375rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sabi-input-group input:focus,
+.sabi-input-group select:focus,
+.sabi-input-group textarea:focus {
+  outline: none;
+  border-color: var(--primary, #006491);
+  box-shadow: 0 0 0 3px rgba(0, 100, 145, 0.15);
+}
+
+/* Checkbox pill chips */
+.sabi-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.625rem;
+}
+
+.sabi-chip-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--outline-variant, #bec8d1);
+  border-radius: 8px;
+  cursor: pointer;
+  background: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  user-select: none;
+  min-height: 44px;
+}
+
+.sabi-chip-label:hover {
+  background: #f4f7fb;
+}
+
+.sabi-chip-label.selected {
+  border-color: var(--primary, #006491);
+  background: #eef6fc;
+  color: #004b6f;
+  font-weight: 600;
+}
+
+/* Document upload dropzone */
+.sabi-dropzone {
+  border: 2px dashed var(--outline-variant, #bec8d1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  background: #fafcff;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.sabi-dropzone:hover {
+  border-color: var(--primary, #006491);
+  background: #f1f7fd;
+}
+
+/* Action button bar */
+.sabi-wizard-actions {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--outline-variant, #e9edff);
+}
+
+@media (min-width: 640px) {
+  .sabi-wizard-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.sabi-btn-primary {
+  min-height: 44px;
+  padding: 0.625rem 1.5rem;
+  border-radius: 8px;
+  background: var(--primary, #006491);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.sabi-btn-primary:hover {
+  background: #004b6f;
+}
+
+.sabi-btn-secondary {
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid var(--outline-variant, #bec8d1);
+  color: var(--secondary, #485f84);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.sabi-btn-secondary:hover {
+  background: #f4f6fa;
+}
+
+.sabi-btn-danger {
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #ba1a1a;
+  color: #ba1a1a;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.sabi-btn-danger:hover {
+  background: #ffdad6;
+}
+
+/* Metric Cards for S42 */
+.sabi-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sabi-metric-card {
+  background: #ffffff;
+  border: 1px solid var(--outline-variant, #dce2f7);
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(20, 27, 43, 0.04);
+}
+
+.sabi-metric-val {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--on-surface, #141b2b);
+  margin-top: 0.25rem;
+}
+
+.sabi-metric-sub {
+  font-size: 0.75rem;
+  color: #576065;
+  margin-top: 0.25rem;
+}
+
+/* Table styles for S42 */
+.sabi-dossier-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--outline-variant, #dce2f7);
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.sabi-dossier-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.sabi-dossier-table th {
+  background: #f6f8fc;
+  padding: 0.875rem 1rem;
+  font-weight: 600;
+  color: #3f4850;
+  border-bottom: 1px solid var(--outline-variant, #dce2f7);
+  white-space: nowrap;
+}
+
+.sabi-dossier-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #edf0ff;
+  vertical-align: middle;
+}
+
+.sabi-dossier-table tr:hover td {
+  background: #fbfdff;
+}
+
+/* Status Badges */
+.sabi-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sabi-status-pill.pending {
+  background: #fff4e5;
+  color: #b76e00;
+  border: 1px solid #ffd599;
+}
+
+.sabi-status-pill.approved {
+  background: #e6f7ec;
+  color: #107c41;
+  border: 1px solid #a3e2bb;
+}
+
+.sabi-status-pill.rejected {
+  background: #ffdad6;
+  color: #ba1a1a;
+  border: 1px solid #ffb4ab;
+}
+
+/* S43 Dossier Split Layout */
+.sabi-dossier-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .sabi-dossier-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.sabi-evidence-card {
+  background: #ffffff;
+  border: 1px solid var(--outline-variant, #dce2f7);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.sabi-evidence-card.verified {
+  border-color: #a3e2bb;
+  background: #fafdfb;
+}
+
+/* Modal Backdrop */
+.sabi-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 27, 43, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 100;
+}
+
+.sabi-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 520px;
+  width: 100%;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
