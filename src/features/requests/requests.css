@@ -1,0 +1,262 @@
+/* ==========================================================================
+   Clear Trade Modern — Customer Requests & Matching (S13, S14, S15, S16)
+   Tokens from DESIGN.md: Canvas #F7F6F2, Card #FFFFFF, Border #E2E0D8,
+   Primary #075E46, Accent #0E294B. Touch targets min 44px.
+   ========================================================================== */
+
+.rq-page {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  display: grid;
+  gap: 24px;
+  color: var(--text);
+  padding-bottom: 48px;
+}
+
+.rq-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.rq-breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.rq-breadcrumbs a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.rq-breadcrumbs strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Simulator Bar */
+.rq-simulator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f1ede4;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.rq-simulator-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark, #0e294b);
+}
+
+.rq-simulator-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.rq-sim-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 36px;
+}
+
+.rq-sim-btn:hover {
+  background: #f7f6f2;
+  border-color: var(--primary);
+}
+
+.rq-sim-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* Card Sections */
+.rq-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.rq-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+}
+
+.rq-field-group {
+  display: grid;
+  gap: 6px;
+}
+
+.rq-field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.rq-field-group input,
+.rq-field-group select,
+.rq-field-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.rq-field-group input:focus,
+.rq-field-group select:focus,
+.rq-field-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(7, 94, 70, 0.15);
+}
+
+/* Alerts */
+.rq-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.rq-alert-info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.rq-alert-warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.rq-alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.rq-alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+/* Quote Cards Grid (S16) */
+.rq-quotes-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.rq-quote-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rq-quote-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary);
+}
+
+.rq-quote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.rq-quote-artisan {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.rq-quote-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #e8f5ed;
+  border: 2px solid #075e46;
+  color: #075e46;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.rq-quote-pricing {
+  text-align: right;
+  display: grid;
+  gap: 4px;
+}
+
+@media (max-width: 640px) {
+  .rq-quote-pricing {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.rq-quote-amount {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.rq-milestone-ledger {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  font-size: 13px;
+}
