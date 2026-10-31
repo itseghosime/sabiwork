@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Clear Trade Modern — Job Lifecycle & Progress Updates (S26, S27, S28, S29, S30)
+   Tokens from DESIGN.md: Canvas #F7F6F2, Card #FFFFFF, Border #E2E0D8,
+   Primary #075E46, Accent #0E294B. Touch targets min 44px.
+   ========================================================================== */
+
+.lc-page {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  display: grid;
+  gap: 24px;
+  color: var(--text);
+  padding-bottom: 48px;
+}
+
+.lc-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.lc-breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.lc-breadcrumbs a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.lc-breadcrumbs strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Simulator Bar */
+.lc-simulator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f1ede4;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.lc-simulator-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark, #0e294b);
+}
+
+.lc-simulator-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.lc-sim-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 36px;
+}
+
+.lc-sim-btn:hover {
+  background: #f7f6f2;
+  border-color: var(--primary);
+}
+
+.lc-sim-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* Card Sections */
+.lc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.lc-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+  margin: 0;
+}
+
+/* Timeline updates */
+.lc-timeline {
+  display: grid;
+  gap: 16px;
+  position: relative;
+  padding-left: 24px;
+}
+
+.lc-timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 7px;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.lc-timeline-item {
+  position: relative;
+  display: grid;
+  gap: 4px;
+}
+
+.lc-timeline-dot {
+  position: absolute;
+  left: -24px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--primary);
+}
+
+.lc-timeline-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark, #0e294b);
+}
+
+.lc-timeline-sub {
+  font-size: 13px;
+  color: #475569;
+}
+
+/* Alerts */
+.lc-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.lc-alert-info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.lc-alert-warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.lc-alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.lc-alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
