@@ -133,9 +133,19 @@ const error = (
 
 /** Demo adapter: replace with the feature owner's server implementation. */
 export const reviewsDemoService = {
-  async getJob(_jobId: string): Promise<DemoJob> {
+  async getJob(jobId: string): Promise<DemoJob | null> {
     await waitBriefly();
-    return job;
+    const normalized = jobId.toLowerCase().trim();
+    if (
+      normalized === "demo-job-8421" ||
+      normalized === "8421" ||
+      normalized === "bn-req-8421" ||
+      normalized.includes("8421") ||
+      normalized === "default"
+    ) {
+      return job;
+    }
+    return null;
   },
   async submitReview(input: {
     rating: number;
@@ -172,8 +182,6 @@ export const reviewsDemoService = {
     await waitBriefly();
     if (input.summary.trim().length < 20)
       return error("VALIDATION", "Add at least 20 characters about the issue.");
-    if (input.evidenceCount < 1)
-      return error("VALIDATION", "Add at least one evidence file.");
     if (input.simulateUnavailable)
       return error(
         "UNAVAILABLE",
@@ -186,9 +194,19 @@ export const reviewsDemoService = {
       message: `Dispute preview complete. Preferred next step: ${input.resolution}. No case was created and no payment status changed.`,
     };
   },
-  async getDispute(_disputeId: string): Promise<DemoDispute> {
+  async getDispute(disputeId: string): Promise<DemoDispute | null> {
     await waitBriefly();
-    return dispute;
+    const normalized = disputeId.toLowerCase().trim();
+    if (
+      normalized === "demo-dispute-01" ||
+      normalized === "disp-req-8421" ||
+      normalized.includes("8421") ||
+      normalized.includes("dispute") ||
+      normalized === "default"
+    ) {
+      return dispute;
+    }
+    return null;
   },
   async listDisputes(): Promise<readonly DemoDispute[]> {
     await waitBriefly();
@@ -196,11 +214,12 @@ export const reviewsDemoService = {
   },
   async submitParticipantNote(
     note: string,
+    fileNames: readonly string[] = [],
     simulateUnavailable = false,
   ): Promise<DemoResult<"note-preview">> {
     await waitBriefly();
-    if (note.trim().length < 3)
-      return error("VALIDATION", "Write a short note before submitting.");
+    if (note.trim().length < 3 && fileNames.length === 0)
+      return error("VALIDATION", "Write a short note or attach a file before submitting.");
     if (simulateUnavailable)
       return error(
         "UNAVAILABLE",
@@ -210,7 +229,9 @@ export const reviewsDemoService = {
       ok: true,
       mode: "demo",
       kind: "note-preview",
-      message: "Note preview complete. It was not sent or saved.",
+      message: fileNames.length
+        ? `Note preview complete with ${fileNames.length} attachment(s). It was not sent or saved.`
+        : "Note preview complete. It was not sent or saved.",
     };
   },
   async previewAdminAction(action: "request-info" | "continue-review") {
