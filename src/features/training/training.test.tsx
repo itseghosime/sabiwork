@@ -86,3 +86,4 @@ describe("Training Screens UI", () => {
     expect(screen.getByRole("link", { name: /View on Profile/i })).toBeDefined();
   });
 });
+

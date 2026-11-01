@@ -132,6 +132,10 @@ function waitBriefly(ms = 20) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+const savedDrafts = new Map<string, JobRequestDraft>();
+savedDrafts.set(defaultJobDraft.id, defaultJobDraft);
+savedDrafts.set("BEN-78401", defaultJobDraft);
+
 export const requestsDemoService = {
   async getSettings(): Promise<CustomerSettings> {
     await waitBriefly();
@@ -162,8 +166,8 @@ export const requestsDemoService = {
 
   async getJobDraft(jobId: string): Promise<JobRequestDraft | null> {
     await waitBriefly();
-    if (jobId === defaultJobDraft.id || jobId === "new" || jobId === "BEN-78401") {
-      return defaultJobDraft;
+    if (savedDrafts.has(jobId)) {
+      return savedDrafts.get(jobId)!;
     }
     return defaultJobDraft;
   },
@@ -185,6 +189,7 @@ export const requestsDemoService = {
       id: `BEN-${Math.floor(10000 + Math.random() * 90000)}`,
       status: "DRAFT",
     };
+    savedDrafts.set(draft.id, draft);
     return {
       ok: true,
       message: "Job request draft created! Review details before dispatching to artisans.",
@@ -218,3 +223,4 @@ export const requestsDemoService = {
     return defaultQuotes;
   },
 };
+

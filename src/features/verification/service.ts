@@ -357,3 +357,4 @@ export function registerArtisan(draft: ArtisanRegistrationDraft): {
     artisanId: newArtisanId,
   };
 }
+

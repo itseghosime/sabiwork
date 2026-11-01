@@ -4,3 +4,4 @@ import { defaultTransactions } from "@/features/lifecycle/service";
 export default function PaymentHistoryPage() {
   return <PaymentHistoryScreen initialTransactions={defaultTransactions} />;
 }
+

@@ -412,3 +412,4 @@ export function getModuleCertificate(id: string): TrainingCertificate | undefine
   const mod = mockModules.find((m) => m.id === id);
   return mod?.certificate;
 }
+

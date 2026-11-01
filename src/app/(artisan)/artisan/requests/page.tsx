@@ -5,3 +5,4 @@ export default async function OpenRequestsPage() {
   const requests = await quotesDemoService.getOpenRequests();
   return <OpenRequestsFeedScreen initialRequests={requests} />;
 }
+

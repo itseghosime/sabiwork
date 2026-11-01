@@ -5,3 +5,4 @@ export default async function ArtisanOverviewPage() {
   const data = await artisanOperationsDemoService.getDashboard();
   return <ArtisanDashboardScreen initialData={data} />;
 }
+

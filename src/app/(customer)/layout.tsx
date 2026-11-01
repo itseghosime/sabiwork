@@ -7,3 +7,4 @@ export default function CustomerWorkspaceLayout({
 }) {
   return <WorkspaceShell role="customer">{children}</WorkspaceShell>;
 }
+

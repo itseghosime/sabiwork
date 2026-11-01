@@ -5,3 +5,4 @@ export default async function ArtisanEarningsPage() {
   const ledger = await artisanOperationsDemoService.getEarningsLedger();
   return <ArtisanEarningsLedgerScreen initialLedger={ledger} />;
 }
+

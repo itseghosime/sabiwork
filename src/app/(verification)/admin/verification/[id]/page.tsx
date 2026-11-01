@@ -8,3 +8,4 @@ export default async function AdminDossierPage({
   const { id } = await params;
   return <AdminDossierReviewScreen id={id} />;
 }
+

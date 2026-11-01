@@ -116,6 +116,10 @@ export const defaultSchedule: readonly DayAvailability[] = [
   { day: "Sunday", active: false, timeSlot: "Unavailable (Church & Rest)", maxJobs: 0 },
 ];
 
+const dashboardStore: ArtisanDashboardData = { ...defaultArtisanDashboard };
+const ordersStore: ArtisanWorkOrder[] = [...defaultArtisanOrders];
+const ledgerEntriesStore: EarningsLedgerEntry[] = [...defaultLedgerEntries];
+
 function waitBriefly(ms = 20) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -123,17 +127,17 @@ function waitBriefly(ms = 20) {
 export const artisanOperationsDemoService = {
   async getDashboard(): Promise<ArtisanDashboardData> {
     await waitBriefly();
-    return defaultArtisanDashboard;
+    return dashboardStore;
   },
 
   async getWorkOrders(): Promise<readonly ArtisanWorkOrder[]> {
     await waitBriefly();
-    return defaultArtisanOrders;
+    return ordersStore;
   },
 
   async getEarningsLedger(): Promise<readonly EarningsLedgerEntry[]> {
     await waitBriefly();
-    return defaultLedgerEntries;
+    return ledgerEntriesStore;
   },
 
   async requestTestPayout(
@@ -147,6 +151,17 @@ export const artisanOperationsDemoService = {
         message: "Paystack TEST mode transfer node timed out. Please retry in 10 minutes.",
       };
     }
+    dashboardStore.availableBalanceKobo = Math.max(0, dashboardStore.availableBalanceKobo - amountKobo);
+    const newEntry: EarningsLedgerEntry = {
+      id: `LED-${Date.now()}`,
+      jobId: "PAYOUT",
+      jobTitle: "Direct Settlement to FirstBank Edo Account",
+      type: "TEST_PAYOUT",
+      amountKobo,
+      dateWat: "Just now",
+      status: "SETTLED_TEST_MODE",
+    };
+    ledgerEntriesStore.unshift(newEntry);
     return {
       ok: true,
       message: `Test payout of ₦${(amountKobo / 100).toLocaleString()} credited to simulated Edo State bank account!`,
@@ -176,3 +191,4 @@ export const artisanOperationsDemoService = {
     };
   },
 };
+

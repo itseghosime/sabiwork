@@ -119,6 +119,13 @@ export const defaultTransactions: readonly PaymentTransactionRecord[] = [
   },
 ];
 
+const activeJobsStore: ActiveJob[] = defaultActiveJobs.map((j) => ({
+  ...j,
+  updates: [...j.updates],
+}));
+
+const transactionsStore: PaymentTransactionRecord[] = [...defaultTransactions];
+
 function waitBriefly(ms = 20) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -126,12 +133,12 @@ function waitBriefly(ms = 20) {
 export const lifecycleDemoService = {
   async getActiveJobs(): Promise<readonly ActiveJob[]> {
     await waitBriefly();
-    return defaultActiveJobs;
+    return activeJobsStore;
   },
 
   async getJobById(id: string): Promise<ActiveJob | null> {
     await waitBriefly();
-    return defaultActiveJobs.find((j) => j.id === id) || defaultActiveJobs[0];
+    return activeJobsStore.find((j) => j.id === id) || activeJobsStore[0];
   },
 
   async addProgressUpdate(
@@ -153,6 +160,10 @@ export const lifecycleDemoService = {
       timeWat: "Just now",
       artisanName: "Osaze Ighodaro",
     };
+    const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
+    if (target) {
+      target.updates = [update, ...target.updates];
+    }
     return {
       ok: true,
       message: "Work progress logged! Customer notified with live milestone audit.",
@@ -173,6 +184,21 @@ export const lifecycleDemoService = {
         message: "Sign-off timeout. Could not finalize escrow release ledger.",
       };
     }
+    const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
+    if (target) {
+      target.status = "COMPLETED";
+      target.currentMilestone = 2;
+    }
+    transactionsStore.unshift({
+      id: `TXN-${Date.now()}`,
+      jobId,
+      jobTitle: target?.title || "Milestone 2 Completion Release",
+      type: "BALANCE_ESCROW",
+      amountKobo: target?.balanceKobo || 1100000,
+      status: "SETTLED",
+      dateWat: "Just now",
+      channel: "Paystack Milestone Release",
+    });
     return {
       ok: true,
       message: `Job #${jobId} signed off successfully! Milestone balance released and rating (${rating}★) published to artisan profile.`,
@@ -181,6 +207,7 @@ export const lifecycleDemoService = {
 
   async getTransactions(): Promise<readonly PaymentTransactionRecord[]> {
     await waitBriefly();
-    return defaultTransactions;
+    return transactionsStore;
   },
 };
+

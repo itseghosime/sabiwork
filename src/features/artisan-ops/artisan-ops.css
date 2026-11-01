@@ -51,6 +51,12 @@
   padding: 20px;
   display: grid;
   gap: 8px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ao-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(14, 41, 75, 0.08);
 }
 
 .ao-metric-label {
@@ -145,3 +151,4 @@
   border: 1px solid #fecaca;
   color: #991b1b;
 }
+

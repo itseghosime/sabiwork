@@ -16,3 +16,4 @@ export default async function CustomerSignoffPage({
 
   return <CustomerSignoffScreen job={job} />;
 }
+

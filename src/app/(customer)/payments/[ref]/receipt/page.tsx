@@ -10,3 +10,4 @@ export default async function PaymentReceiptPage({
   const receipt = await paymentsDemoService.getReceipt(ref);
   return <PaymentReceiptScreen receipt={receipt} />;
 }
+

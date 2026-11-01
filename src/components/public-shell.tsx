@@ -128,6 +128,19 @@ function PublicShellContent({
             >
               Join as an artisan <Icon name="arrow" size={17} />
             </Link>
+            <div style={{ borderTop: "1px solid var(--border, #e2e8f0)", margin: "8px 0" }} />
+            <Link href="/jobs" onClick={() => setOpen(false)}>
+              Customer Workspace
+              <Icon name="next" size={17} />
+            </Link>
+            <Link href="/artisan" onClick={() => setOpen(false)}>
+              Artisan Workspace
+              <Icon name="next" size={17} />
+            </Link>
+            <Link href="/admin/verification" onClick={() => setOpen(false)}>
+              Admin Desk
+              <Icon name="next" size={17} />
+            </Link>
           </nav>
         )}
       </header>

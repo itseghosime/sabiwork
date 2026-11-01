@@ -16,3 +16,4 @@ export default async function MilestoneCheckoutPage({
 
   return <MilestoneDepositCheckoutScreen quote={quote} />;
 }
+

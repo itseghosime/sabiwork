@@ -146,6 +146,13 @@
   border-radius: 50%;
   background: #ffffff;
   border: 3px solid var(--primary);
+  transition: all 0.2s ease;
+}
+
+.lc-timeline-item:first-child .lc-timeline-dot {
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgba(7, 94, 70, 0.25);
+  animation: sabiPulseDot 2s infinite ease-in-out;
 }
 
 .lc-timeline-title {
@@ -193,3 +200,4 @@
   border: 1px solid #fecaca;
   color: #991b1b;
 }
+

@@ -10,3 +10,4 @@ export default async function RequestQuotesPage({
   const quotes = await requestsDemoService.getMatchingQuotes(id);
   return <ArtisanMatchingScreen jobId={id} initialQuotes={quotes} />;
 }
+
