@@ -1,7 +1,5 @@
-import { AdminShell } from "@/components/workspace-shell";
-import { AdminDisputeQueueScreen } from "@/features/reviews/screens";
+import { AdminDisputesScreen } from "@/features/admin-workspace/screens";
 
 export default function AdminDisputesPage() {
-  return <AdminShell><AdminDisputeQueueScreen /></AdminShell>;
+  return <AdminDisputesScreen />;
 }
-

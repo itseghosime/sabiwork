@@ -1,4 +1,4 @@
-import { AdminDossierReviewScreen } from "@/features/verification/screens";
+import { AdminDossierReviewScreen } from "@/features/admin-workspace/screens";
 
 export default async function AdminDossierPage({
   params,
@@ -8,4 +8,3 @@ export default async function AdminDossierPage({
   const { id } = await params;
   return <AdminDossierReviewScreen id={id} />;
 }
-

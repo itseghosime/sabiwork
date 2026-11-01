@@ -1,8 +1,10 @@
-import { AdminShell } from "@/components/workspace-shell";
-import { AdminDisputeDetailScreen } from "@/features/reviews/screens";
+import { AdminDisputeDetailScreen } from "@/features/admin-workspace/screens";
 
-export default async function AdminDisputeDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function AdminDisputeDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
-  return <AdminShell><AdminDisputeDetailScreen disputeId={id} /></AdminShell>;
+  return <AdminDisputeDetailScreen id={id} />;
 }
-
