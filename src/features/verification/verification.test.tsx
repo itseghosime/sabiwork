@@ -66,7 +66,6 @@ describe("Verification Service", () => {
       coverageAreas: ["GRA"],
       workshopAddress: "10 Mission Rd",
       bio: "Skilled carpenter",
-      ninNumber: "12345678901",
     });
     expect(res.success).toBe(true);
     expect(res.dossierId).toContain("VET-BEN-");
@@ -105,8 +104,8 @@ describe("Verification Screens UI", () => {
   it("renders S42 Admin Verification Queue and filters list", () => {
     render(<AdminVerificationQueueScreen />);
     expect(screen.getByText(/Artisan Verification Queue/i)).toBeDefined();
-    expect(screen.getByText(/Edo State Desk Active/i)).toBeDefined();
-    expect(screen.getByText(/Export Audit Log/i)).toBeDefined();
+    expect(screen.getByText(/Demo queue/i)).toBeDefined();
+    expect(screen.getByText(/Download demo queue CSV/i)).toBeDefined();
 
     // Click Pending filter tab
     const pendingTab = screen.getByRole("button", { name: /Pending \(/i });
@@ -114,11 +113,17 @@ describe("Verification Screens UI", () => {
     expect(pendingTab).toBeDefined();
   });
 
+  it("shows a not-found state for an unknown dossier instead of another applicant", () => {
+    render(<AdminDossierReviewScreen id="UNKNOWN-DEMO-ID" />);
+    expect(screen.getByText(/Dossier Not Found/i)).toBeDefined();
+    expect(screen.queryByText(/Osaze Victor Ighodaro/i)).toBeNull();
+  });
+
   it("renders S43 Admin Dossier Review and shows competencies", () => {
     render(<AdminDossierReviewScreen id="VET-BEN-4085" />);
     expect(screen.getByText(/Dossier VET-BEN-4085/i)).toBeDefined();
     expect(screen.getByText(/Declared Competencies & Trade Testing/i)).toBeDefined();
-    expect(screen.getByRole("button", { name: /Issue Pro Badge/i })).toBeDefined();
+    expect(screen.getByRole("button", { name: /Simulate approval/i })).toBeDefined();
     expect(screen.getByRole("button", { name: /Request Revision \/ Reject/i })).toBeDefined();
   });
 });

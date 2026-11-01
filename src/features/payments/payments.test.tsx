@@ -24,19 +24,24 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
   it("renders S22 Payment Verification and handles webhook simulator states", () => {
     render(<PaymentVerificationScreen initialReceipt={defaultReceipt} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Payment Verification & Escrow Audit/i }),
+      screen.getByRole("heading", { level: 1, name: /Payment status preview \(S22\)/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Paystack TEST Mode Payment Verified/i)).toBeDefined();
+    expect(screen.getByText(/Demo pending state/i)).toBeDefined();
 
-    // Switch to pending webhook
+    const verifiedBtn = screen.getByRole("button", { name: "VERIFIED" });
+    fireEvent.click(verifiedBtn);
+    expect(screen.getByText(/Demo verified state only/i)).toBeDefined();
+    expect(screen.getByText(/No gateway request was made, no funds moved/i)).toBeDefined();
+
+    // Switch to pending demo state
     const pendingBtn = screen.getByRole("button", { name: "PENDING_WEBHOOK" });
     fireEvent.click(pendingBtn);
-    expect(screen.getByText(/Awaiting Paystack Webhook Confirmation/i)).toBeDefined();
+    expect(screen.getByText(/Demo pending state/i)).toBeDefined();
 
     // Switch to failed
     const failedBtn = screen.getByRole("button", { name: "FAILED" });
     fireEvent.click(failedBtn);
-    expect(screen.getByText(/Payment Authorization Failed or Declined/i)).toBeDefined();
+    expect(screen.getByText(/Demo failed state/i)).toBeDefined();
   });
 
   it("renders S23 Payment Receipt with escrow status and printable layout", () => {
@@ -45,7 +50,7 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
       screen.getByRole("heading", { level: 1, name: /SabiWork Payment Receipt/i }),
     ).toBeDefined();
     expect(screen.getByText("PAY-BN-2026-8819")).toBeDefined();
-    expect(screen.getByText(/Escrow Protected/i)).toBeDefined();
+    expect(screen.getByText(/Demo only · no escrow/i)).toBeDefined();
     expect(screen.getByText("Print Receipt")).toBeDefined();
   });
 

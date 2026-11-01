@@ -35,13 +35,11 @@ export interface ArtisanRegistrationDraft {
   fullName: string;
   phone: string;
   email: string;
-  password?: string;
   trade: string;
   experienceYears: number;
   coverageAreas: string[];
   workshopAddress: string;
   bio: string;
-  ninNumber: string;
 }
 
 export interface DossierMetrics {
@@ -78,7 +76,7 @@ const mockDossiers: VerificationDossier[] = [
         type: "nin",
         label: "National Identity Number (NIN Slip)",
         url: "/mock/docs/nin-ighodaro.pdf",
-        identifier: "NIN: 6721-9840-2311",
+        identifier: "MOCK-NIN-REDACTED",
         verified: false,
       },
       {
@@ -132,7 +130,7 @@ const mockDossiers: VerificationDossier[] = [
         type: "nin",
         label: "National Identification Slip",
         url: "/mock/docs/nin-osahon.pdf",
-        identifier: "NIN: 4310-8821-6674",
+        identifier: "MOCK-NIN-REDACTED",
         verified: false,
       },
       {
@@ -168,7 +166,7 @@ const mockDossiers: VerificationDossier[] = [
     status: "approved",
     badgeIssued: true,
     decidedAt: "2026-10-26T10:30:00Z",
-    reviewerNotes: "Physical workshop inspection verified by Desk Officer. NABTEB credentials authenticated with board registry.",
+    reviewerNotes: "Sample review note for preview; no external registry was contacted.",
     competencies: [
       "Hardwood Roofing Truss Fabrication",
       "Kitchen Modular Cabinet Assembly",
@@ -180,7 +178,7 @@ const mockDossiers: VerificationDossier[] = [
         type: "nin",
         label: "NIN Slip Verified",
         url: "/mock/docs/nin-godstime.pdf",
-        identifier: "NIN: 9012-3341-7782",
+        identifier: "MOCK-NIN-REDACTED",
         verified: true,
       },
     ],
@@ -243,7 +241,7 @@ const mockDossiers: VerificationDossier[] = [
         type: "nin",
         label: "NIMC Verification Slip",
         url: "/mock/docs/nin-aigbogun.pdf",
-        identifier: "NIN: 1120-7749-3301",
+        identifier: "MOCK-NIN-REDACTED",
         verified: false,
       },
       {
@@ -345,7 +343,6 @@ export function registerArtisan(draft: ArtisanRegistrationDraft): {
         type: "nin",
         label: "National Identity Number (NIN)",
         url: "#",
-        identifier: `NIN: ${draft.ninNumber}`,
         verified: false,
       },
     ],
