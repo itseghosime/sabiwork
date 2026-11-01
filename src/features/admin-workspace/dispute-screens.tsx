@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/icon";
 import {
   EmptyState,
@@ -16,14 +16,25 @@ import {
 import {
   SAMPLE_LEDGER_NOTE,
   disputeStatusLabel,
-  findDispute,
   formatNaira,
   formatWat,
   pluralUnit,
-  sampleDisputes,
+  type DisputeCase,
   type DisputePriority,
   type DisputeStatus,
 } from "./admin-data";
+
+type ApiError = { error?: { code?: string; message?: string } };
+
+async function readJson<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
+  const response = await fetch(input, { cache: "no-store", ...init });
+  if (!response.ok) {
+    const body = (await response.json().catch(() => ({}))) as ApiError;
+    throw new Error(body.error?.message ?? "Request failed.");
+  }
+  const body = (await response.json()) as { data: T };
+  return body.data;
+}
 
 const statusTone: Record<DisputeStatus, Tone> = {
   open: "info",
@@ -41,24 +52,73 @@ const priorityTone: Record<DisputePriority, Tone> = {
 
 type StatusFilter = DisputeStatus | "all";
 
+type DisputeCaseRecord = DisputeCase & {
+  slaDueAtIso: string;
+  determination: string | null;
+  determinationNote: string | null;
+};
+
+const DETERMINATION_OPTIONS = [
+  "Release escrow to artisan",
+  "Refund the customer",
+  "Split the disputed amount",
+  "No action required",
+] as const;
+
 export function AdminDisputesScreen() {
   const [status, setStatus] = useState<StatusFilter>("all");
   const [priority, setPriority] = useState<DisputePriority | "all">("all");
   const [query, setQuery] = useState("");
+  const [cases, setCases] = useState<DisputeCase[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const counts = useMemo(() => {
-    const open = sampleDisputes.filter((dispute) => dispute.status !== "resolved");
-    return {
-      open: open.length,
-      urgent: open.filter((dispute) => dispute.priority === "urgent").length,
-      awaiting: sampleDisputes.filter((dispute) => dispute.status === "awaiting_evidence").length,
-      value: open.reduce((sum, dispute) => sum + dispute.amountKobo, 0),
+  const load = useCallback(async (isRefresh = false) => {
+    if (isRefresh) setRefreshing(true);
+    try {
+      const next = await readJson<{ cases: DisputeCase[] }>("/api/admin/disputes");
+      setCases(next.cases);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not load dispute cases.");
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    readJson<{ cases: DisputeCase[] }>("/api/admin/disputes")
+      .then((next) => {
+        if (!active) return;
+        setCases(next.cases);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (!active) return;
+        setError(err instanceof Error ? err.message : "Could not load dispute cases.");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
     };
   }, []);
 
+  const counts = useMemo(() => {
+    const open = cases.filter((dispute) => dispute.status !== "resolved");
+    return {
+      open: open.length,
+      urgent: open.filter((dispute) => dispute.priority === "urgent").length,
+      awaiting: cases.filter((dispute) => dispute.status === "awaiting_evidence").length,
+      value: open.reduce((sum, dispute) => sum + dispute.amountKobo, 0),
+    };
+  }, [cases]);
+
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    return sampleDisputes.filter((dispute) => {
+    return cases.filter((dispute) => {
       if (status !== "all" && dispute.status !== status) return false;
       if (priority !== "all" && dispute.priority !== priority) return false;
       if (!needle) return true;
@@ -75,7 +135,7 @@ export function AdminDisputesScreen() {
         .toLowerCase()
         .includes(needle);
     });
-  }, [status, priority, query]);
+  }, [cases, status, priority, query]);
 
   return (
     <div className="ad-page">
@@ -85,6 +145,15 @@ export function AdminDisputesScreen() {
         description="Mediate customer–artisan disagreements, track evidence, and watch the response SLA."
         actions={
           <>
+            <button
+              type="button"
+              className="ad-btn ad-btn-ghost"
+              onClick={() => load(true)}
+              disabled={refreshing}
+            >
+              <Icon name="refresh" size={16} />
+              <span>{refreshing ? "Refreshing…" : "Refresh"}</span>
+            </button>
             <Link className="ad-btn ad-btn-ghost" href="/admin/audit">
               <Icon name="scroll" size={16} />
               <span>Audit trail</span>
@@ -99,21 +168,27 @@ export function AdminDisputesScreen() {
           <>
             <StatusPill tone="danger">{counts.urgent} urgent</StatusPill>
             <StatusPill tone="warning">{counts.awaiting} awaiting evidence</StatusPill>
-            <StatusPill tone="neutral" dot={false}>Sample cases</StatusPill>
+            <StatusPill tone="neutral" dot={false}>Neon records</StatusPill>
           </>
         }
       />
 
       <SampleNotice>
-        {SAMPLE_LEDGER_NOTE} Case records below are fictional examples; opening, escalating, or closing a case
-        does not change any database record or move funds.
+        {SAMPLE_LEDGER_NOTE} Cases below are stored in the Neon database but describe fictional parties.
+        Status changes persist; no payment provider is connected, so no funds move.
       </SampleNotice>
+
+      {error ? (
+        <p className="ad-inline-notice is-danger" role="alert">
+          <Icon name="alert" size={16} /> {error}
+        </p>
+      ) : null}
 
       <section className="ad-kpi-grid" aria-label="Dispute metrics">
         <KpiCard label="Open cases" value={String(counts.open)} unit={pluralUnit(counts.open, "case")} icon="gavel" tone="danger" footnote="Excludes resolved cases" />
         <KpiCard label="Urgent" value={String(counts.urgent)} unit={pluralUnit(counts.urgent, "case")} icon="alert" tone="warning" footnote="Priority flag set" />
         <KpiCard label="Awaiting evidence" value={String(counts.awaiting)} unit={pluralUnit(counts.awaiting, "case")} icon="file" tone="info" footnote="Artisan response pending" />
-        <KpiCard label="Disputed value" value={formatNaira(counts.value)} icon="banknote" tone="info" chip={<StatusPill tone="info" dot={false}>Sample</StatusPill>} footnote="Across open cases" />
+        <KpiCard label="Disputed value" value={formatNaira(counts.value)} icon="banknote" tone="info" chip={<StatusPill tone="info" dot={false}>Demo</StatusPill>} footnote="Across open cases" />
       </section>
 
       <div className="ad-toolbar">
@@ -132,7 +207,7 @@ export function AdminDisputesScreen() {
           value={status}
           onChange={setStatus}
           options={[
-            { value: "all", label: "All", count: sampleDisputes.length },
+            { value: "all", label: "All", count: cases.length },
             { value: "open", label: "Open" },
             { value: "under_review", label: "Under review" },
             { value: "awaiting_evidence", label: "Awaiting evidence" },
@@ -151,7 +226,11 @@ export function AdminDisputesScreen() {
         </label>
       </div>
 
-      {filtered.length === 0 ? (
+      {loading ? (
+        <p className="ad-loading" role="status">
+          Retrieving dispute cases from Neon…
+        </p>
+      ) : filtered.length === 0 ? (
         <EmptyState
           icon="gavel"
           title="No cases match this view"
@@ -263,18 +342,101 @@ export function AdminDisputesScreen() {
 }
 
 export function AdminDisputeDetailScreen({ id }: { id: string }) {
-  const dispute = findDispute(id);
+  const [dispute, setDispute] = useState<DisputeCaseRecord | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState<string | null>(null);
   const [checklist, setChecklist] = useState({ statements: false, evidence: false, policy: false });
   const [note, setNote] = useState("");
-  const [notice, setNotice] = useState<string | null>(null);
+  const [determination, setDetermination] = useState<string>(DETERMINATION_OPTIONS[0]);
+  const [officerDraft, setOfficerDraft] = useState("");
+  const [priorityDraft, setPriorityDraft] = useState<DisputePriority>("normal");
+
+  const applyCase = useCallback((next: DisputeCaseRecord) => {
+    setDispute(next);
+    setOfficerDraft(next.officer ?? "");
+    setPriorityDraft(next.priority);
+    setNote(next.determinationNote ?? "");
+    setDetermination(next.determination ?? DETERMINATION_OPTIONS[0]);
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    readJson<{ case: DisputeCaseRecord }>(`/api/admin/disputes/${id}`)
+      .then((next) => {
+        if (!active) return;
+        applyCase(next.case);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (!active) return;
+        setError(err instanceof Error ? err.message : "Could not load this dispute case.");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [id, applyCase]);
+
+  async function patch(body: Record<string, unknown>, message: string, key: string) {
+    setSubmitting(key);
+    setError(null);
+    setNotice(null);
+    try {
+      const next = await readJson<{ case: DisputeCaseRecord }>(`/api/admin/disputes/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      applyCase(next.case);
+      setNotice(message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not update this dispute case.");
+    } finally {
+      setSubmitting(null);
+    }
+  }
+
+  async function commitDetermination() {
+    const rationale = note.trim();
+    if (rationale.length < 10) {
+      setNotice(null);
+      setError("A determination needs a rationale of at least 10 characters.");
+      return;
+    }
+    await patch(
+      { determination, determinationNote: rationale, status: "resolved" },
+      "Determination recorded in Neon and the case marked resolved. No payment provider is connected, so no funds moved.",
+      "determine",
+    );
+  }
+
+  async function saveAssignment() {
+    await patch(
+      { officer: officerDraft.trim() || null, priority: priorityDraft },
+      "Case assignment saved in Neon.",
+      "assign",
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="ad-page">
+        <p className="ad-loading" role="status">
+          Retrieving dispute case from Neon…
+        </p>
+      </div>
+    );
+  }
 
   if (!dispute) {
     return (
       <div className="ad-page">
         <EmptyState
           icon="gavel"
-          title={`Case ${id} was not found`}
-          message="This case reference is not part of the sample dispute queue."
+          title={`Case ${id} could not be opened`}
+          message={error ?? "This case reference is not in the dispute queue."}
           action={
             <Link className="ad-btn ad-btn-primary" href="/admin/disputes">
               <Icon name="back" size={16} /> Back to dispute queue
@@ -286,6 +448,8 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
   }
 
   const checked = Object.values(checklist).filter(Boolean).length;
+  const busy = submitting !== null;
+  const resolved = dispute.status === "resolved";
 
   return (
     <div className="ad-page">
@@ -308,22 +472,30 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
             <StatusPill tone={priorityTone[dispute.priority]} dot={dispute.priority === "urgent"}>
               {dispute.priority} priority
             </StatusPill>
-            {dispute.status !== "resolved" ? (
+            {resolved ? (
+              <StatusPill tone="success" dot={false}>Determination recorded</StatusPill>
+            ) : (
               <StatusPill tone={dispute.slaHoursLeft <= 6 ? "danger" : "neutral"} dot={false}>
-                {dispute.slaHoursLeft}h left · sample SLA
+                {dispute.slaHoursLeft}h left on SLA
               </StatusPill>
-            ) : null}
+            )}
           </>
         }
       />
 
       <SampleNotice>
-        {SAMPLE_LEDGER_NOTE} Determinations, notes, and evidence checks on this page are interaction previews.
-        They do not change any case record or release funds.
+        {SAMPLE_LEDGER_NOTE} This case is stored in the Neon database and describes fictional parties. Status
+        changes, assignments, and determinations persist; no payment provider is connected, so no funds move.
       </SampleNotice>
 
+      {error ? (
+        <p className="ad-inline-notice is-danger" role="alert">
+          <Icon name="alert" size={16} /> {error}
+        </p>
+      ) : null}
+
       <div className="ad-kpi-grid ad-kpi-grid-3">
-        <KpiCard label="Disputed amount" value={formatNaira(dispute.amountKobo)} icon="banknote" tone="info" footnote="Sample amount" />
+        <KpiCard label="Disputed amount" value={formatNaira(dispute.amountKobo)} icon="banknote" tone="info" footnote="Frozen for the case" />
         <KpiCard label="Opened" value={formatWatDateShort(dispute.openedAtIso)} icon="clock" tone="neutral" footnote={formatWat(dispute.openedAtIso)} />
         <KpiCard label="Case officer" value={dispute.officer ?? "Unassigned"} icon="user" tone={dispute.officer ? "success" : "warning"} footnote={dispute.officer ? "Assigned" : "Needs assignment"} />
       </div>
@@ -383,7 +555,11 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
         </div>
 
         <aside className="ad-stack">
-          <SectionCard title="Determination panel" description="Preview a ruling; nothing is recorded." className="ad-sticky">
+          <SectionCard
+            title="Determination panel"
+            description="Recording a ruling writes it to Neon and closes the case."
+            className="ad-sticky"
+          >
             <div className="ad-checklist">
               <label>
                 <input type="checkbox" checked={checklist.statements} onChange={(event) => setChecklist({ ...checklist, statements: event.target.checked })} />
@@ -407,32 +583,108 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
             </div>
 
             <label className="ad-field">
-              <span>Officer rationale (preview only)</span>
+              <span>Ruling</span>
+              <select value={determination} onChange={(event) => setDetermination(event.target.value)} disabled={busy}>
+                {DETERMINATION_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="ad-field">
+              <span>Officer rationale</span>
               <textarea
                 rows={4}
                 value={note}
                 onChange={(event) => setNote(event.target.value)}
-                placeholder="Write the reasoning that would accompany this ruling…"
+                placeholder="Write the reasoning that accompanies this ruling…"
+                disabled={busy}
               />
             </label>
 
             <div className="ad-action-stack">
-              <button type="button" className="ad-btn ad-btn-primary" onClick={() => setNotice("Ruling preview recorded in this session only. No case state or payout was changed.")}>
-                <Icon name="checkCircle" size={16} /> Preview ruling
+              <button
+                type="button"
+                className="ad-btn ad-btn-primary"
+                onClick={commitDetermination}
+                disabled={busy || checked < 3}
+                title={checked < 3 ? "Complete all three checks first." : undefined}
+              >
+                <Icon name="checkCircle" size={16} /> {submitting === "determine" ? "Recording…" : resolved ? "Update determination" : "Record determination"}
               </button>
-              <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setNotice("Evidence request previewed. No notification was sent to either party.")}>
+              <button
+                type="button"
+                className="ad-btn ad-btn-ghost"
+                onClick={() => patch({ status: "awaiting_evidence" }, "Case marked awaiting evidence in Neon.", "evidence")}
+                disabled={busy || dispute.status === "awaiting_evidence"}
+              >
                 <Icon name="file" size={16} /> Request more evidence
               </button>
-              <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setNotice("Escalation previewed. No senior officer was notified.")}>
+              <button
+                type="button"
+                className="ad-btn ad-btn-ghost"
+                onClick={() => patch({ status: "escalated" }, "Case escalated to a senior officer in Neon.", "escalate")}
+                disabled={busy || dispute.status === "escalated"}
+              >
                 <Icon name="arrowUpRight" size={16} /> Escalate to senior officer
+              </button>
+              <button
+                type="button"
+                className="ad-btn ad-btn-ghost"
+                onClick={() =>
+                  patch(
+                    { status: resolved ? "open" : "under_review" },
+                    resolved ? "Case reopened in Neon." : "Review started in Neon.",
+                    "status",
+                  )
+                }
+                disabled={busy || dispute.status === "under_review"}
+              >
+                <Icon name="refresh" size={16} /> {resolved ? "Reopen case" : "Start review"}
               </button>
             </div>
 
             {notice ? (
               <p className="ad-inline-notice" role="status">
-                <Icon name="alert" size={16} /> {notice}
+                <Icon name="checkCircle" size={16} /> {notice}
               </p>
             ) : null}
+          </SectionCard>
+
+          <SectionCard title="Assignment" description="Who owns this case and how fast it must move.">
+            <label className="ad-field">
+              <span>Case officer</span>
+              <input
+                type="text"
+                value={officerDraft}
+                onChange={(event) => setOfficerDraft(event.target.value)}
+                placeholder="Unassigned"
+                maxLength={100}
+                disabled={busy}
+              />
+            </label>
+            <label className="ad-field">
+              <span>Priority</span>
+              <select
+                value={priorityDraft}
+                onChange={(event) => setPriorityDraft(event.target.value as DisputePriority)}
+                disabled={busy}
+              >
+                <option value="urgent">Urgent</option>
+                <option value="high">High</option>
+                <option value="normal">Normal</option>
+              </select>
+            </label>
+            <button
+              type="button"
+              className="ad-btn ad-btn-primary"
+              onClick={saveAssignment}
+              disabled={busy}
+            >
+              <Icon name="user" size={16} /> {submitting === "assign" ? "Saving…" : "Save assignment"}
+            </button>
           </SectionCard>
 
           <SectionCard title="Case facts">
@@ -458,8 +710,16 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
                 <dd>{formatWat(dispute.openedAtIso)}</dd>
               </div>
               <div>
-                <dt>Data source</dt>
-                <dd>Fictional sample</dd>
+                <dt>SLA due</dt>
+                <dd>{formatWat(dispute.slaDueAtIso)}</dd>
+              </div>
+              <div>
+                <dt>Determination</dt>
+                <dd>{dispute.determination ?? "Not yet recorded"}</dd>
+              </div>
+              <div>
+                <dt>Records note</dt>
+                <dd>Stored in Neon · fictional parties</dd>
               </div>
             </dl>
           </SectionCard>

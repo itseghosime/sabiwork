@@ -266,18 +266,16 @@ h3 {
   color: var(--muted);
 }
 .brand-mark {
-  width: 38px;
-  height: 42px;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
+  width: 42px;
+  height: 48px;
+  overflow: visible;
+  display: block;
   position: relative;
-  flex: 0 0 38px;
 }
 .brand-mark img {
   position: static;
-  width: 100%;
-  height: 100%;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 .desktop-nav,
@@ -2966,8 +2964,8 @@ button:not(:disabled):hover .lucide-arrow-right,
 }
 
 .sabi-pulse-dot.online {
-  background: #38a8e8;
-  box-shadow: 0 0 0 3px rgba(56, 168, 232, 0.2);
+  background: #107c41;
+  box-shadow: 0 0 0 3px rgba(16, 124, 65, 0.2);
   animation: sabiPulseDot 2s infinite ease-in-out;
 }
 
@@ -2983,6 +2981,124 @@ button:not(:disabled):hover .lucide-arrow-right,
   animation: sabiPulseDot 1.8s infinite ease-in-out;
 }
 
+/* Interactive Floating Role Navigator */
+.sabi-role-dock {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-family: var(--body);
+}
+
+.sabi-role-dock-panel {
+  background: rgba(14, 41, 75, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 10px 14px;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: sabiScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sabi-role-dock-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c9e6ff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sabi-role-dock-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #eff8ff;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.sabi-role-dock-link:hover {
+  background: rgba(56, 168, 232, 0.25);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.sabi-role-dock-link.active {
+  background: var(--sky, #38a8e8);
+  color: var(--navy, #0e294b);
+  box-shadow: 0 2px 8px rgba(56, 168, 232, 0.4);
+}
+
+.sabi-role-dock-toggle {
+  background: transparent;
+  border: none;
+  color: #bec8d1;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.sabi-role-dock-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.sabi-role-dock-collapsed-btn {
+  background: var(--navy, #0e294b);
+  border: 1px solid var(--accent-border, #bae6fd);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(14, 41, 75, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sabi-role-dock-collapsed-btn:hover {
+  background: var(--primary, #006491);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .sabi-role-dock {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+  }
+  .sabi-role-dock-panel {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .sabi-role-dock-title {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+    justify-content: center;
+  }
+}
 
 /* Reduced motion preference compliance */
 @media (prefers-reduced-motion: reduce) {

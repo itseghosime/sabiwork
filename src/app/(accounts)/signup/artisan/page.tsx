@@ -3,14 +3,14 @@ import { AuthFrame } from "@/features/accounts/auth-frame";
 import { AccountForm } from "@/features/accounts/account-form";
 
 export const metadata: Metadata = {
-  title: "Create your account",
+  title: "Join as an artisan",
   robots: { index: false, follow: false },
 };
 
 export default function ArtisanSignupPage() {
   return (
-    <AuthFrame recovery={false}>
-      <AccountForm mode="signup" />
+    <AuthFrame recovery={false} path="artisan">
+      <AccountForm mode="signup" path="artisan" />
     </AuthFrame>
   );
 }

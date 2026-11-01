@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Icon } from "@/components/icon";
+import { Icon, type IconName } from "@/components/icon";
 import {
   BarsChart,
   Donut,
+  EmptyState,
   KpiCard,
   PageHeader,
   ProgressBar,
@@ -14,17 +15,12 @@ import {
   StatusPill,
 } from "./admin-ui";
 import {
-  SAMPLE_LEDGER_NOTE,
   formatNaira,
   formatNairaCompact,
   formatWat,
   pluralUnit,
   relativeWat,
-  sampleActivity,
-  sampleAttentionQueue,
-  sampleDisputes,
-  sampleLedger,
-  sampleVolumeSeries,
+  type AuditLogEntry,
 } from "./admin-data";
 
 type UserSummary = {
@@ -56,6 +52,24 @@ type OverviewData = {
   users: UserSummary[];
   workProfiles: WorkProfileSummary[];
   requests: RequestSummary[];
+  disputes: {
+    total: number;
+    open: number;
+    urgent: number;
+    awaitingEvidence: number;
+    unassigned: number;
+    overdue: number;
+  };
+  escrow: {
+    heldKobo: number;
+    releaseDueKobo: number;
+    releasedKobo: number;
+    disputedKobo: number;
+    releasedLast7DaysKobo: number;
+    dueNow: number;
+  };
+  activity: AuditLogEntry[];
+  desk: { open: number; unclaimed: number };
 };
 
 type ApiError = { error?: { message?: string } };
@@ -131,11 +145,15 @@ export function AdminOverviewScreen() {
     };
   }, [data]);
 
-  const openDisputes = sampleDisputes.filter((dispute) => dispute.status !== "resolved").length;
-  const urgentDisputes = sampleDisputes.filter(
-    (dispute) => dispute.priority !== "normal" && dispute.status !== "resolved",
-  ).length;
-
+  const disputes = data?.disputes ?? { total: 0, open: 0, urgent: 0, awaitingEvidence: 0, unassigned: 0, overdue: 0 };
+  const escrow = data?.escrow ?? {
+    heldKobo: 0,
+    releaseDueKobo: 0,
+    releasedKobo: 0,
+    disputedKobo: 0,
+    releasedLast7DaysKobo: 0,
+    dueNow: 0,
+  };
   const pipeline = [
     { label: "Pending review", value: counts.pending, tone: "warning" as const },
     { label: "Approved", value: counts.approved, tone: "success" as const },
@@ -145,10 +163,85 @@ export function AdminOverviewScreen() {
   const pipelineTotal = pipeline.reduce((sum, item) => sum + item.value, 0) || 1;
 
   const escrowSegments = [
-    { value: sampleLedger.escrowHeldKobo, color: "#006491", label: "Held in escrow" },
-    { value: sampleLedger.releaseDueKobo, color: "#38a8e8", label: "Release due" },
-    { value: sampleLedger.disputedKobo, color: "#ba1a1a", label: "Disputed" },
+    { value: escrow.heldKobo, color: "#006491", label: "Held in escrow" },
+    { value: escrow.releaseDueKobo, color: "#38a8e8", label: "Release due" },
+    { value: escrow.disputedKobo, color: "#ba1a1a", label: "Disputed" },
   ];
+
+  const escrowSeries = [
+    { label: "Held", valueKobo: escrow.heldKobo },
+    { label: "Due", valueKobo: escrow.releaseDueKobo },
+    { label: "Released", valueKobo: escrow.releasedKobo },
+    { label: "Disputed", valueKobo: escrow.disputedKobo },
+  ];
+
+  const nowIso = new Date().toISOString();
+
+  const attention: {
+    id: string;
+    href: string;
+    icon: IconName;
+    tone: "danger" | "warning" | "info";
+    meta: string;
+    title: string;
+    detail: string;
+  }[] = [];
+
+  if (disputes.overdue > 0) {
+    attention.push({
+      id: "disputes-overdue",
+      href: "/admin/disputes",
+      icon: "gavel",
+      tone: "danger",
+      meta: "Disputes",
+      title: `${disputes.overdue} ${pluralUnit(disputes.overdue, "case")} past the response SLA`,
+      detail: "Open the queue and record a determination.",
+    });
+  }
+  if (disputes.urgent > 0) {
+    attention.push({
+      id: "disputes-urgent",
+      href: "/admin/disputes",
+      icon: "alert",
+      tone: "warning",
+      meta: "Disputes",
+      title: `${disputes.urgent} urgent ${pluralUnit(disputes.urgent, "case")} waiting`,
+      detail: "Urgent priority is set on these cases.",
+    });
+  }
+  if (escrow.dueNow > 0) {
+    attention.push({
+      id: "escrow-due",
+      href: "/admin/escrow",
+      icon: "banknote",
+      tone: "info",
+      meta: "Payouts",
+      title: `${escrow.dueNow} ${pluralUnit(escrow.dueNow, "milestone")} inside a release window`,
+      detail: "Signed-off milestones are ready to be recorded.",
+    });
+  }
+  if (counts.pending > 0) {
+    attention.push({
+      id: "verification-pending",
+      href: "/admin/verification",
+      icon: "shield",
+      tone: "warning",
+      meta: "Vetting",
+      title: `${counts.pending} ${pluralUnit(counts.pending, "dossier")} awaiting verification`,
+      detail: "Review identity and trade evidence.",
+    });
+  }
+  if (data?.desk.unclaimed) {
+    attention.push({
+      id: "desk-unclaimed",
+      href: "/admin/audit",
+      icon: "headset",
+      tone: "info",
+      meta: "Desk",
+      title: `${data.desk.unclaimed} new ${pluralUnit(data.desk.unclaimed, "ticket")} unclaimed`,
+      detail: "Claim and reply from the support inbox.",
+    });
+  }
 
   return (
     <div className="ad-page">
@@ -191,8 +284,8 @@ export function AdminOverviewScreen() {
       ) : null}
 
       <SampleNotice>
-        Vetting and request counts load from the Neon admin API. Settlement, escrow, and dispute figures are
-        fictional samples used to design the ledger views — no payment provider is connected.
+        Every figure on this page is aggregated from the Neon admin API. Parties behind the records are
+        fictional, and no payment provider is connected, so settlement values are record-only.
       </SampleNotice>
 
       <section className="ad-kpi-grid" aria-label="Key operational metrics">
@@ -216,42 +309,42 @@ export function AdminOverviewScreen() {
         />
         <KpiCard
           label="Escrow held"
-          value={formatNairaCompact(sampleLedger.escrowHeldKobo)}
+          value={formatNairaCompact(escrow.heldKobo + escrow.releaseDueKobo)}
           icon="banknote"
           tone="info"
-          chip={<StatusPill tone="info" dot={false}>Sample ledger</StatusPill>}
-          footnote={`As of ${formatWat(sampleLedger.asOfIso)} WAT`}
+          chip={<StatusPill tone="info" dot={false}>{escrow.dueNow} due</StatusPill>}
+          footnote="Held + release due, live from Neon"
         />
         <KpiCard
           label="Open disputes"
-          value={String(openDisputes)}
-          unit={pluralUnit(openDisputes, "case")}
+          value={loading ? "—" : String(disputes.open)}
+          unit={pluralUnit(disputes.open, "case")}
           icon="gavel"
           tone="danger"
-          chip={<StatusPill tone="danger">{urgentDisputes} urgent</StatusPill>}
-          footnote="Sample cases"
+          chip={<StatusPill tone="danger">{disputes.urgent} urgent</StatusPill>}
+          footnote="Excludes resolved cases"
         />
       </section>
 
       <div className="ad-grid-2">
         <SectionCard
-          title="Settlement volume"
-          description="Sample gross value moving through escrow, last seven days."
-          actions={<StatusPill tone="info" dot={false}>{formatNaira(sampleLedger.grossVolumeKobo)}</StatusPill>}
+          title="Escrow by state"
+          description="Recorded milestones grouped by where they sit in the payout pipeline."
+          actions={<StatusPill tone="info" dot={false}>Live from Neon</StatusPill>}
         >
-          <BarsChart data={sampleVolumeSeries} />
+          <BarsChart data={escrowSeries} />
           <div className="ad-summary-strip">
             <div>
               <span>Released to artisans</span>
-              <strong>{formatNaira(sampleLedger.releasedKobo)}</strong>
+              <strong>{formatNaira(escrow.releasedKobo)}</strong>
             </div>
             <div>
-              <span>Platform commission</span>
-              <strong>{formatNaira(sampleLedger.commissionKobo)}</strong>
+              <span>Released last 7 days</span>
+              <strong>{formatNaira(escrow.releasedLast7DaysKobo)}</strong>
             </div>
             <div>
-              <span>Release due today</span>
-              <strong>{formatNaira(sampleLedger.releaseDueKobo)}</strong>
+              <span>Release due now</span>
+              <strong>{formatNaira(escrow.releaseDueKobo)}</strong>
             </div>
           </div>
         </SectionCard>
@@ -259,13 +352,13 @@ export function AdminOverviewScreen() {
         <SectionCard
           title="Escrow position"
           description="How held funds split across the release pipeline."
-          actions={<StatusPill tone="neutral" dot={false}>Sample</StatusPill>}
+          actions={<StatusPill tone="neutral" dot={false}>Live from Neon</StatusPill>}
         >
           <div className="ad-donut-wrap">
             <Donut
               segments={escrowSegments}
               centerLabel="Total held"
-              centerValue={formatNairaCompact(sampleLedger.escrowHeldKobo + sampleLedger.releaseDueKobo + sampleLedger.disputedKobo)}
+              centerValue={formatNairaCompact(escrow.heldKobo + escrow.releaseDueKobo + escrow.disputedKobo)}
             />
             <ul className="ad-legend">
               {escrowSegments.map((segment) => (
@@ -277,7 +370,10 @@ export function AdminOverviewScreen() {
               ))}
             </ul>
           </div>
-          <p className="ad-card-note">{SAMPLE_LEDGER_NOTE}</p>
+          <p className="ad-card-note">
+            Released milestones drop out of this split. No payment provider is connected, so a recorded release
+            does not move money.
+          </p>
         </SectionCard>
       </div>
 
@@ -287,40 +383,61 @@ export function AdminOverviewScreen() {
           description="Items closest to breaching an operational target."
           actions={<Link className="ad-link" href="/admin/audit">View audit trail <Icon name="arrowUpRight" size={15} /></Link>}
         >
-          <ul className="ad-attention-list">
-            {sampleAttentionQueue.map((item) => (
-              <li key={item.id}>
-                <Link href={item.href} className="ad-attention-item">
-                  <span className={`ad-attention-icon ${attentionTone[item.tone]}`}>
-                    <Icon name={item.icon} size={18} />
-                  </span>
-                  <span className="ad-attention-body">
-                    <span className="ad-attention-meta">{item.meta}</span>
-                    <strong>{item.title}</strong>
-                    <span>{item.detail}</span>
-                  </span>
-                  <Icon name="next" size={16} />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {attention.length === 0 ? (
+            <EmptyState
+              icon="checkCircle"
+              title="Nothing is breaching a target"
+              message="Disputes, releases, vetting, and the desk are all inside their operational windows."
+            />
+          ) : (
+            <ul className="ad-attention-list">
+              {attention.map((item) => (
+                <li key={item.id}>
+                  <Link href={item.href} className="ad-attention-item">
+                    <span className={`ad-attention-icon ${attentionTone[item.tone]}`}>
+                      <Icon name={item.icon} size={18} />
+                    </span>
+                    <span className="ad-attention-body">
+                      <span className="ad-attention-meta">{item.meta}</span>
+                      <strong>{item.title}</strong>
+                      <span>{item.detail}</span>
+                    </span>
+                    <Icon name="next" size={16} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </SectionCard>
 
-        <SectionCard title="Recent activity" description="Latest administrative events (sample).">
-          <ol className="ad-timeline">
-            {sampleActivity.map((item) => (
-              <li key={item.id}>
-                <span className={`ad-timeline-dot ${item.tone}`} aria-hidden="true" />
-                <div>
-                  <div className="ad-timeline-head">
-                    <strong>{item.title}</strong>
-                    <span title={formatWat(item.atIso)}>{relativeWat(item.atIso)}</span>
+        <SectionCard
+          title="Recent activity"
+          description="Latest administrative events from the audit trail."
+          actions={<Link className="ad-link" href="/admin/audit">Open log <Icon name="arrowUpRight" size={15} /></Link>}
+        >
+          {data?.activity.length ? (
+            <ol className="ad-timeline">
+              {data.activity.map((item) => (
+                <li key={item.id}>
+                  <span
+                    className={`ad-timeline-dot ${item.severity === "critical" ? "danger" : item.severity === "warning" ? "warning" : "info"}`}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <div className="ad-timeline-head">
+                      <strong>{item.action}</strong>
+                      <span title={formatWat(item.atIso)}>{relativeWat(item.atIso, nowIso)}</span>
+                    </div>
+                    <p>
+                      {item.actor} · {item.actorRole} → {item.target}
+                    </p>
                   </div>
-                  <p>{item.detail}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <EmptyState icon="scroll" title="No audit events yet" message="Administrative actions will appear here as they happen." />
+          )}
         </SectionCard>
       </div>
 

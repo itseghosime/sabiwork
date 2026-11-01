@@ -1,5 +1,6 @@
 import "./accounts.css";
 import "./account-redesign.css";
+import "./auth-editorial.css";
 export default function AccountLayout({
   children,
 }: {

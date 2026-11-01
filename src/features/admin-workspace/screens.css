@@ -7,6 +7,16 @@
 
 .admin-shell {
   --admin-sidebar-w: 272px;
+
+  /* Single brand hue. Every non-status colour in this file derives from
+     --primary (#006491); status green/amber/red stay semantic. */
+  --admin-brand-ink: #0b4a6f;
+  --admin-brand-tint-05: #f2f8fa;
+  --admin-brand-tint-08: #ebf3f6;
+  --admin-brand-tint-12: #e0ecf2;
+  --admin-brand-tint-16: #d1e3eb;
+  --admin-brand-border: #c9dfea;
+
   display: grid;
   grid-template-columns: var(--admin-sidebar-w) minmax(0, 1fr);
   min-height: 100vh;
@@ -91,7 +101,7 @@
 
 .admin-collapse-btn:hover,
 .admin-drawer-close:hover {
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   border-color: var(--accent-border);
   color: var(--primary);
 }
@@ -143,7 +153,7 @@
 }
 
 .admin-nav-link:hover {
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   color: var(--text);
 }
 
@@ -174,7 +184,7 @@
   flex: none;
   padding: 2px 6px;
   border-radius: 999px;
-  background: #e9edff;
+  background: var(--admin-brand-tint-12);
   color: #3f4850;
   font-size: 10px;
   font-weight: 700;
@@ -189,7 +199,7 @@
   flex: none;
   padding: 12px;
   border-top: 1px solid var(--border);
-  background: #fbfcff;
+  background: var(--admin-brand-tint-05);
 }
 
 .admin-hub-card {
@@ -198,7 +208,7 @@
   gap: 10px;
   padding: 10px;
   border-radius: 12px;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
 }
 
 .admin-hub-icon {
@@ -325,7 +335,7 @@
 }
 
 .admin-menu-btn:hover {
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
 }
 
 .admin-hub-pill {
@@ -334,7 +344,7 @@
   gap: 6px;
   padding: 6px 11px;
   border-radius: 999px;
-  background: #e9edff;
+  background: var(--admin-brand-tint-12);
   color: #3f4850;
   font-size: 11.5px;
   font-weight: 600;
@@ -342,40 +352,6 @@
 
 .admin-hub-pill svg {
   color: var(--primary);
-}
-
-.admin-test-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  border-radius: 7px;
-  background: #dce2f7;
-  color: var(--on-sky);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.admin-test-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--sky);
-  animation: adminPulse 2.2s ease-in-out infinite;
-}
-
-@keyframes adminPulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.45;
-    transform: scale(1.25);
-  }
 }
 
 .admin-icon-btn {
@@ -391,7 +367,7 @@
 }
 
 .admin-icon-btn:hover {
-  background: #e9edff;
+  background: var(--admin-brand-tint-12);
   color: var(--text);
 }
 
@@ -681,7 +657,7 @@
 }
 
 .ad-btn-ghost:hover:not(:disabled) {
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   border-color: var(--accent-border);
   color: var(--primary);
 }
@@ -756,8 +732,8 @@
 .ad-review-icon.is-info,
 .ad-health-icon.is-info,
 .ad-evidence-icon.is-info {
-  background: #e9f4ff;
-  color: #0b4a6f;
+  background: var(--admin-brand-tint-08);
+  color: var(--admin-brand-ink);
 }
 
 .ad-status-pill.is-success,
@@ -851,8 +827,8 @@
   align-items: flex-start;
   gap: 12px;
   padding: 14px 16px;
-  background: #f1f3ff;
-  border: 1px solid #dce2f7;
+  background: var(--admin-brand-tint-08);
+  border: 1px solid var(--admin-brand-border);
   border-radius: 14px;
 }
 
@@ -920,7 +896,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   color: var(--primary);
 }
 
@@ -1101,7 +1077,7 @@
   flex: 1 1 240px;
   min-width: 180px;
   padding: 0 12px;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   border: 1px solid transparent;
   border-radius: 10px;
   color: var(--muted);
@@ -1146,7 +1122,7 @@
   max-width: 100%;
   padding: 3px;
   overflow-x: auto;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   border-radius: 11px;
 }
 
@@ -1171,7 +1147,7 @@
 .ad-filter-tabs button span {
   padding: 1px 6px;
   border-radius: 999px;
-  background: #e1e8fd;
+  background: var(--admin-brand-tint-16);
   color: #3f4850;
   font-size: 11px;
   font-weight: 700;
@@ -1222,10 +1198,10 @@
   gap: 8px;
   margin: 0;
   padding: 10px 12px;
-  background: #f1f8ff;
-  border: 1px solid #cfe7fb;
+  background: var(--admin-brand-tint-05);
+  border: 1px solid var(--admin-brand-border);
   border-radius: 10px;
-  color: #0b4a6f;
+  color: var(--admin-brand-ink);
   font-size: 12px;
   line-height: 1.5;
 }
@@ -1264,7 +1240,7 @@
 
 .ad-table th {
   padding: 12px 16px;
-  background: #f8faff;
+  background: var(--admin-brand-tint-05);
   border-bottom: 1px solid var(--border);
   text-align: left;
   font-size: 11px;
@@ -1277,7 +1253,7 @@
 
 .ad-table td {
   padding: 14px 16px;
-  border-bottom: 1px solid #eef1f8;
+  border-bottom: 1px solid var(--admin-brand-tint-05);
   vertical-align: middle;
 }
 
@@ -1286,7 +1262,7 @@
 }
 
 .ad-table tbody tr:hover {
-  background: #fbfcff;
+  background: var(--admin-brand-tint-05);
 }
 
 .ad-table-audit {
@@ -1334,7 +1310,7 @@ a.ad-cell-strong:hover {
   width: fit-content;
   padding: 2px 6px;
   border-radius: 6px;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   color: #475569;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 11.5px;
@@ -1513,8 +1489,8 @@ a.ad-cell-strong:hover {
   display: grid;
   gap: 2px;
   padding: 12px;
-  background: #f8faff;
-  border: 1px solid #eef1f8;
+  background: var(--admin-brand-tint-05);
+  border: 1px solid var(--admin-brand-tint-05);
   border-radius: 12px;
   min-width: 0;
 }
@@ -1564,7 +1540,7 @@ a.ad-cell-strong:hover {
 }
 
 .ad-quick-link:hover {
-  background: #f7fbff;
+  background: var(--admin-brand-tint-05);
   border-color: var(--accent-border);
   color: var(--primary);
 }
@@ -1600,7 +1576,7 @@ a.ad-cell-strong:hover {
   overflow: hidden;
   height: 8px;
   border-radius: 999px;
-  background: #e9edff;
+  background: var(--admin-brand-tint-12);
 }
 
 .ad-progress > span {
@@ -1662,7 +1638,7 @@ a.ad-cell-strong:hover {
 }
 
 .ad-attention-item:hover {
-  background: #f7fbff;
+  background: var(--admin-brand-tint-05);
   border-color: var(--accent-border);
 }
 
@@ -1853,7 +1829,7 @@ a.ad-cell-strong:hover {
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: #fbfcff;
+  background: var(--admin-brand-tint-05);
   border: 1px solid var(--border);
   border-radius: 12px;
 }
@@ -1865,7 +1841,7 @@ a.ad-cell-strong:hover {
   height: 34px;
   flex: none;
   border-radius: 10px;
-  background: #e9edff;
+  background: var(--admin-brand-tint-12);
   color: var(--primary);
 }
 
@@ -1908,7 +1884,7 @@ a.ad-cell-strong:hover {
   flex: none;
   padding: 6px 9px;
   border-radius: 8px;
-  background: #eef7ff;
+  background: var(--admin-brand-tint-05);
   color: var(--primary);
   font-size: 11.5px;
   font-weight: 600;
@@ -1986,7 +1962,7 @@ a.ad-cell-strong:hover {
   align-items: center;
   gap: 12px;
   padding: 10px 0;
-  border-bottom: 1px solid #eef1f8;
+  border-bottom: 1px solid var(--admin-brand-tint-05);
 }
 
 .ad-review-list li:first-child {
@@ -2033,7 +2009,7 @@ a.ad-cell-strong:hover {
   height: 28px;
   flex: none;
   border-radius: 8px;
-  background: #e9f4ff;
+  background: var(--admin-brand-tint-08);
   color: var(--primary);
 }
 
@@ -2048,8 +2024,8 @@ a.ad-cell-strong:hover {
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  background: #f1f3ff;
-  border: 1px solid #dce2f7;
+  background: var(--admin-brand-tint-08);
+  border: 1px solid var(--admin-brand-border);
   border-radius: 999px;
   color: #3f4850;
   font-size: 12px;
@@ -2122,7 +2098,7 @@ a.ad-cell-strong:hover {
   align-items: flex-start;
   gap: 10px;
   padding: 10px 12px;
-  background: #fbfcff;
+  background: var(--admin-brand-tint-05);
   border: 1px solid var(--border);
   border-radius: 11px;
   font-size: 12.5px;
@@ -2132,7 +2108,7 @@ a.ad-cell-strong:hover {
 }
 
 .ad-checklist label:hover {
-  background: #f7fbff;
+  background: var(--admin-brand-tint-05);
   border-color: var(--accent-border);
 }
 
@@ -2207,7 +2183,7 @@ a.ad-cell-strong:hover {
   flex: none;
   padding: 8px 10px;
   border-radius: 8px;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   color: var(--muted);
   font-size: 11.5px;
   font-weight: 600;
@@ -2292,12 +2268,12 @@ a.ad-cell-strong:hover {
   flex: none;
   border: 0;
   border-radius: 9px;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
   color: #475569;
 }
 
 .ad-modal-close:hover {
-  background: #e1e8fd;
+  background: var(--admin-brand-tint-16);
   color: var(--text);
 }
 
@@ -2369,12 +2345,12 @@ a.ad-cell-strong:hover {
 }
 
 .ad-ticket:hover {
-  background: #f7fbff;
+  background: var(--admin-brand-tint-05);
   border-color: var(--accent-border);
 }
 
 .ad-ticket.active {
-  background: #f1f8ff;
+  background: var(--admin-brand-tint-05);
   border-color: var(--sky);
   box-shadow: inset 3px 0 0 var(--primary);
 }
@@ -2413,8 +2389,8 @@ a.ad-cell-strong:hover {
 }
 
 .ad-channel.is-email {
-  background: #eef7ff;
-  color: #0b4a6f;
+  background: var(--admin-brand-tint-05);
+  color: var(--admin-brand-ink);
 }
 
 .ad-channel.is-chat {
@@ -2444,8 +2420,8 @@ a.ad-cell-strong:hover {
   gap: 2px;
   min-width: 0;
   padding: 10px;
-  background: #f8faff;
-  border: 1px solid #eef1f8;
+  background: var(--admin-brand-tint-05);
+  border: 1px solid var(--admin-brand-tint-05);
   border-radius: 10px;
 }
 
@@ -2463,6 +2439,47 @@ a.ad-cell-strong:hover {
   color: var(--text);
 }
 
+.ad-thread {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ad-thread li {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  background: var(--admin-brand-tint-05);
+  border: 1px solid var(--admin-brand-tint-05);
+  border-radius: 10px;
+}
+
+.ad-thread-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ad-thread-head strong {
+  font-size: 12.5px;
+  color: var(--text);
+}
+
+.ad-thread-head span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.ad-thread p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
 /* ------------------------------ Trade tiers ------------------------------ */
 
 .ad-tier-grid {
@@ -2476,7 +2493,7 @@ a.ad-cell-strong:hover {
   gap: 12px;
   align-content: start;
   padding: 16px;
-  background: #fbfcff;
+  background: var(--admin-brand-tint-05);
   border: 1px solid var(--border);
   border-radius: 14px;
 }
@@ -2502,7 +2519,7 @@ a.ad-cell-strong:hover {
   margin-top: 4px;
   padding: 2px 8px;
   border-radius: 999px;
-  background: #e9f4ff;
+  background: var(--admin-brand-tint-08);
   color: var(--primary);
   font-size: 10.5px;
   font-weight: 700;
@@ -2529,15 +2546,15 @@ a.ad-cell-strong:hover {
 .ad-tier-min span {
   padding: 3px 8px;
   border-radius: 999px;
-  background: #f1f3ff;
+  background: var(--admin-brand-tint-08);
 }
 
 .ad-calc {
   display: grid;
   gap: 10px;
   padding: 14px;
-  background: #f8faff;
-  border: 1px solid #eef1f8;
+  background: var(--admin-brand-tint-05);
+  border: 1px solid var(--admin-brand-tint-05);
   border-radius: 12px;
 }
 

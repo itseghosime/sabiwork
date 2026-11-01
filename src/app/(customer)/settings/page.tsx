@@ -1,5 +1,7 @@
-import { AccountSettingsScreen } from "@/features/hire-workspace/screens";
+import { SettingsScreen } from "@/features/customer-workspace/settings-screen";
+
+export const dynamic = "force-dynamic";
 
 export default function SettingsPage() {
-  return <AccountSettingsScreen />;
+  return <SettingsScreen />;
 }

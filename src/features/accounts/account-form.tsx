@@ -5,6 +5,7 @@ import { useId, useRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Icon } from "@/components/icon";
 import { workspaceRoutes, type AccountRole } from "./access";
+import { signupPaths, signupPathList, type SignupPath } from "./signup-paths";
 import { authClient } from "@/lib/auth/client";
 import {
   passwordChecks,
@@ -13,13 +14,24 @@ import {
   type AccountMode,
   type AccountValues,
 } from "./validation";
-const copy = {
-  signup: {
-    eyebrow: "CREATE YOUR ACCOUNT",
-    title: "Start with one SabiWork account",
-    text: "Use the same account to hire trusted artisans and, if you choose, add a work profile to be hired.",
-    action: "Create account",
+const signupCopy: Record<
+  SignupPath,
+  { eyebrow: string; title: string; text: string; action: string }
+> = {
+  customer: {
+    eyebrow: "CREATE A CUSTOMER ACCOUNT",
+    title: "Start hiring local artisans",
+    text: "Post the job, compare itemised quotes, and track the work through to sign-off.",
+    action: "Create customer account",
   },
+  artisan: {
+    eyebrow: "CREATE AN ARTISAN ACCOUNT",
+    title: "Start getting hired for your craft",
+    text: "Create your account, then build the work profile customers see when they quote you.",
+    action: "Create artisan account",
+  },
+};
+const copy = {
   login: {
     eyebrow: "WELCOME BACK",
     title: "Welcome back.",
@@ -56,11 +68,11 @@ function errorMessage(error: unknown) {
     : "The request could not be completed. Try again.";
 }
 
-async function setAccountRole() {
+async function setAccountRole(role: SignupPath) {
   const response = await fetch("/api/account/profile", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({}),
+    body: JSON.stringify({ role }),
   });
   if (!response.ok) {
     throw new Error(
@@ -148,10 +160,13 @@ function PasswordInput({
 export function AccountForm({
   mode,
   token = "",
+  path = "customer",
 }: {
   mode: AccountMode;
   token?: string;
+  path?: SignupPath;
 }) {
+  const selectedPath = signupPaths[path];
   const router = useRouter();
   const id = useId();
   const form = useRef<HTMLFormElement>(null);
@@ -193,8 +208,8 @@ export function AccountForm({
           password: values.password,
         });
         if (error) throw new Error(error.message || "Could not create account.");
-        await setAccountRole();
-        router.replace(workspaceRoutes.customer);
+        await setAccountRole(selectedPath.role);
+        router.replace(selectedPath.workspace);
         router.refresh();
         return;
       }
@@ -244,7 +259,7 @@ export function AccountForm({
       setPending(false);
     }
   }
-  const heading = copy[mode];
+  const heading = mode === "signup" ? signupCopy[path] : copy[mode];
   if (mode === "reset" && !token)
     return (
       <div className="auth-card auth-state">
@@ -304,14 +319,39 @@ export function AccountForm({
       <h1>{heading.title}</h1>
       <p className="auth-intro">{heading.text}</p>
       {mode === "signup" && (
-        <div className="auth-role-choice">
-          <span>
-            <Icon name="home" size={18} /> One account supports both customer and artisan activity
-          </span>
-          <p>
-            You can post requests immediately. Add or update your optional work profile later
-            from your account workspace.
-          </p>
+        <div
+          className="auth-path-picker"
+          role="group"
+          aria-label="Choose how you will use SabiWork"
+        >
+          <span className="auth-path-picker-label">Joining as</span>
+          <div className="auth-path-options">
+            {signupPathList.map((option) => {
+              const active = option.role === path;
+              return (
+                <Link
+                  key={option.role}
+                  href={option.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`auth-path-option ${
+                    active ? "is-active" : ""
+                  }`}
+                >
+                  <Icon name={option.icon} size={18} />
+                  <span className="auth-path-option-text">
+                    <strong>{option.switchLabel}</strong>
+                    <small>{option.roleNote}</small>
+                  </span>
+                  {active && (
+                    <span className="auth-path-check">
+                      <Icon name="check" size={13} />
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+          <p className="auth-path-note">{selectedPath.aside}</p>
         </div>
       )}
       <form ref={form} onSubmit={submit} noValidate aria-busy={pending}>

@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { Icon } from "./icon";
 
-export function Brand() {
+export function Brand({ href = "/" }: { href?: string } = {}) {
   return (
-    <Link href="/" className="brand" aria-label="SabiWork home">
+    <Link href={href} className="brand" aria-label="SabiWork home">
       <span className="brand-mark">
         <Image
           src="/images/sabiwork-icon.png"
@@ -80,7 +80,7 @@ function PublicShellContent({
               Log in
             </Link>
             <Link href="/signup/customer" className="button button-outline">
-              Post a job
+              Hire an artisan
             </Link>
             <Link href="/signup/artisan" className="button button-subtle">
               Join as an artisan <Icon name="arrow" size={17} />
@@ -124,16 +124,22 @@ function PublicShellContent({
               Log in
               <Icon name="next" size={17} />
             </Link>
-            <Link href="/signup/customer" onClick={() => setOpen(false)}>
-              Post a job
-              <Icon name="next" size={17} />
+            <p className="mobile-nav-label">Choose your path</p>
+            <Link
+              className="button button-outline mobile-path"
+              href="/signup/customer"
+              onClick={() => setOpen(false)}
+            >
+              Hire an artisan
+              <Icon name="arrow" size={17} />
             </Link>
             <Link
-              className="button button-primary"
+              className="button button-primary mobile-path"
               href="/signup/artisan"
               onClick={() => setOpen(false)}
             >
-              Join as an artisan <Icon name="arrow" size={17} />
+              Join as an artisan
+              <Icon name="arrow" size={17} />
             </Link>
           </nav>
         )}

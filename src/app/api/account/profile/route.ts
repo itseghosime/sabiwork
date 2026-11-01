@@ -26,7 +26,10 @@ export async function GET() {
       .limit(1);
 
     return profile
-      ? Response.json({ data: profile }, { headers: { "Cache-Control": "no-store" } })
+      ? Response.json(
+          { data: { ...profile, email: session.user.email ?? null } },
+          { headers: { "Cache-Control": "no-store" } },
+        )
       : jsonError(404, "PROFILE_REQUIRED", "Complete your account profile to continue.");
   } catch (error) {
     console.error("[account] Profile lookup failed", error);
@@ -44,11 +47,18 @@ export async function POST(request: Request) {
   }
 
   let displayName = session.user.name;
+  // Only the two self-service paths are selectable; admin is assigned server-side only.
+  let role: "customer" | "artisan" = "customer";
   try {
     const body = await request.json();
-    if (typeof body === "object" && body && "display_name" in body && typeof body.display_name === "string") {
-      const trimmed = body.display_name.trim();
-      if (trimmed.length >= 2 && trimmed.length <= 100) displayName = trimmed;
+    if (typeof body === "object" && body) {
+      if ("display_name" in body && typeof body.display_name === "string") {
+        const trimmed = body.display_name.trim();
+        if (trimmed.length >= 2 && trimmed.length <= 100) displayName = trimmed;
+      }
+      if ("role" in body && (body.role === "artisan" || body.role === "customer")) {
+        role = body.role;
+      }
     }
   } catch {
     // allow empty body for compatibility with existing signup calls
@@ -59,7 +69,7 @@ export async function POST(request: Request) {
       .insert(userProfiles)
       .values({
         user_id: session.user.id,
-        role: "customer",
+        role,
         display_name: displayName,
       })
       .onConflictDoUpdate({

@@ -155,10 +155,6 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               <span>Benin City hub · Admin desk</span>
             </span>
 
-            <span className="admin-test-pill" title="Payments are not connected in this build">
-              <span className="admin-test-dot" aria-hidden="true" />
-              Paystack TEST mode
-            </span>
           </div>
 
           <div className="admin-topbar-right">

@@ -111,10 +111,12 @@ describe("account validation", () => {
 });
 
 describe("Neon Auth account flows", () => {
-  it("creates a customer auth account, saves the role, and opens the workspace", async () => {
-    render(<AccountForm mode="signup" />);
+  it("creates a customer auth account, saves the customer role, and opens the jobs workspace", async () => {
+    render(<AccountForm mode="signup" path="customer" />);
     fillAccountForm("signup");
-    fireEvent.click(screen.getByRole("button", { name: "Create account" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Create customer account" }),
+    );
 
     await waitFor(() =>
       expect(routerMocks.replace).toHaveBeenCalledWith("/jobs"),
@@ -128,9 +130,41 @@ describe("Neon Auth account flows", () => {
       "/api/account/profile",
       expect.objectContaining({
         method: "POST",
-        body: JSON.stringify({}),
+        body: JSON.stringify({ role: "customer" }),
       }),
     );
+  });
+
+  it("saves the artisan role and sends a new artisan to their work profile", async () => {
+    render(<AccountForm mode="signup" path="artisan" />);
+    fillAccountForm("signup");
+    fireEvent.click(
+      screen.getByRole("button", { name: "Create artisan account" }),
+    );
+
+    await waitFor(() =>
+      expect(routerMocks.replace).toHaveBeenCalledWith("/artisan/profile"),
+    );
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/account/profile",
+      expect.objectContaining({
+        method: "POST",
+        body: JSON.stringify({ role: "artisan" }),
+      }),
+    );
+  });
+
+  it("marks the active join path and links to the other one", () => {
+    render(<AccountForm mode="signup" path="artisan" />);
+
+    expect(
+      screen.getByRole("link", { name: /I'm offering a trade/i }).getAttribute(
+        "aria-current",
+      ),
+    ).toBe("page");
+    expect(
+      screen.getByRole("link", { name: /I'm hiring/i }).getAttribute("href"),
+    ).toBe("/signup/customer");
   });
 
   it("preserves input and reports provider errors on login", async () => {

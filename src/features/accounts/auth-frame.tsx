@@ -1,79 +1,78 @@
-import { Icon } from "@/components/icon";
 import { Brand } from "@/components/public-shell";
+import { type SignupPath } from "./signup-paths";
+
+type Story = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  foot: string;
+};
+
+const stories: Record<SignupPath, Story> = {
+  customer: {
+    eyebrow: "Joining as a customer",
+    title: "Post the job. Compare the quotes.",
+    body: "Describe the work once and let artisans come to you with itemised pricing.",
+    foot: "One account also lets you add a work profile later.",
+  },
+  artisan: {
+    eyebrow: "Joining as an artisan",
+    title: "Put your craft where it gets found.",
+    body: "Add your trade, the areas you cover and pricing guidance, then answer the requests that fit.",
+    foot: "One account also lets you post your own requests later.",
+  },
+};
+
+const accountStory: Story = {
+  eyebrow: "One account, two possibilities",
+  title: "Hire local help. Or offer your own skills.",
+  body: "SabiWork uses one account for customers and artisans.",
+  foot: "Clear requests, quotes and job tracking in Benin City.",
+};
+
+const recoveryStory: Story = {
+  eyebrow: "Account recovery",
+  title: "Let’s get you back in.",
+  body: "Reset your password with the email address on your account.",
+  foot: "We never reveal whether an address has an account.",
+};
+
 export function AuthFrame({
   children,
   recovery = false,
+  path = null,
 }: {
   children: React.ReactNode;
   recovery?: boolean;
+  path?: SignupPath | null;
 }) {
+  const story = recovery ? recoveryStory : path ? stories[path] : accountStory;
+
   return (
-    <section className={`auth-page ${recovery ? "auth-recovery-page" : ""}`}>
+    <section className={`auth-page ${path ? `auth-path-${path}` : ""}`}>
       <div className="container auth-grid">
         <aside className="auth-story">
           <Brand />
-          <p className="eyebrow">ONE ACCOUNT · TWO POSSIBILITIES</p>
-          <h2>
-            {recovery
-              ? "Let’s get you back into your account."
-              : "Hire local help and optionally offer your own skills."}
-          </h2>
-          <p>
-            SabiWork uses one account for customers and artisans. Post requests,
-            track work, and add a work profile whenever you are ready to be hired.
-          </p>
-          <ul>
-            <li>
-              <span>
-                <Icon name="search" />
-              </span>
-              <div>
-                <strong>Post and manage service requests</strong>
-                <p>Track updates and keep your job details in one place.</p>
-              </div>
-            </li>
-            <li>
-              <span>
-                <Icon name="wrench" />
-              </span>
-              <div>
-                <strong>Add your optional work profile</strong>
-                <p>Show your trade, service areas, and pricing guidance.</p>
-              </div>
-            </li>
-            <li>
-              <span>
-                <Icon name="shield" />
-              </span>
-              <div>
-                <strong>Secure account access</strong>
-                <p>Email/password login is live. OTP verification is currently off.</p>
-              </div>
-            </li>
-          </ul>
-          <div className="auth-craft-art" aria-hidden="true">
-            <span className="craft-circle" />
-            <span className="craft-tile tile-one">
-              <Icon name="wrench" size={34} />
-            </span>
-            <span className="craft-tile tile-two">
-              <Icon name="scissors" size={34} />
-            </span>
-            <span className="craft-tile tile-three">
-              <Icon name="hammer" size={34} />
-            </span>
+          <div className="auth-story-body">
+            <p className="eyebrow">{story.eyebrow}</p>
+            <h2>{story.title}</h2>
+            <p>{story.body}</p>
           </div>
-          <p className="auth-story-foot">Built for clear requests, quotes, and job tracking in Benin City.</p>
+          <p className="auth-story-foot">{story.foot}</p>
         </aside>
         <div className="auth-form-column">
-          <div className="auth-mobile-brand"><Brand /></div>
-          <div className="auth-availability-notice">
-            <Icon name="help" size={18} />
-            <p>
-              <strong>Account access is live</strong> · Neon Auth signup, login, and password reset are active. Payments, dispute handling, and verification decisions are still rolling out.
+          <div className="auth-form-inner">
+            <div className="auth-mobile-brand">
+              <Brand />
+            </div>
+            <p className="auth-availability-notice">
+              <span>
+                <strong>Account access is live</strong> · Payments and disputes
+                are still rolling out.
+              </span>
             </p>
+            {children}
           </div>
-          {children}
         </div>
       </div>
     </section>

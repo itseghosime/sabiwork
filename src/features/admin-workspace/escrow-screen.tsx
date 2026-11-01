@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/icon";
 import {
   EmptyState,
@@ -13,15 +14,35 @@ import {
   type Tone,
 } from "./admin-ui";
 import {
-  SAMPLE_LEDGER_NOTE,
   escrowStatusLabel,
   formatNaira,
   formatWat,
   pluralUnit,
-  sampleEscrowHolds,
   type EscrowHold,
   type EscrowStatus,
 } from "./admin-data";
+
+type ApiError = { error?: { code?: string; message?: string } };
+
+type EscrowHoldRecord = EscrowHold & { releasedAtIso: string | null };
+
+type EscrowTotals = {
+  held: number;
+  releaseDue: number;
+  released: number;
+  disputed: number;
+  dueToday: number;
+};
+
+async function readJson<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
+  const response = await fetch(input, { cache: "no-store", ...init });
+  if (!response.ok) {
+    const body = (await response.json().catch(() => ({}))) as ApiError;
+    throw new Error(body.error?.message ?? "Request failed.");
+  }
+  const body = (await response.json()) as { data: T };
+  return body.data;
+}
 
 const statusTone: Record<EscrowStatus, Tone> = {
   held: "info",
@@ -35,25 +56,52 @@ type StatusFilter = EscrowStatus | "all";
 export function AdminEscrowScreen() {
   const [status, setStatus] = useState<StatusFilter>("all");
   const [query, setQuery] = useState("");
-  const [queued, setQueued] = useState<ReadonlySet<string>>(new Set());
-  const [pendingRelease, setPendingRelease] = useState<EscrowHold | null>(null);
+  const [holds, setHolds] = useState<EscrowHoldRecord[]>([]);
+  const [totals, setTotals] = useState<EscrowTotals | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [pendingRelease, setPendingRelease] = useState<EscrowHoldRecord | null>(null);
+  const [releasing, setReleasing] = useState(false);
 
-  const totals = useMemo(() => {
-    const sum = (predicate: (hold: EscrowHold) => boolean) =>
-      sampleEscrowHolds.filter(predicate).reduce((total, hold) => total + hold.amountKobo, 0);
-    return {
-      held: sum((hold) => hold.status === "held" || hold.status === "release_due"),
-      releaseDue: sum((hold) => hold.status === "release_due"),
-      released: sum((hold) => hold.status === "released"),
-      disputed: sum((hold) => hold.status === "disputed"),
-      dueToday: sampleEscrowHolds.filter((hold) => hold.status === "release_due").length,
+  const load = useCallback(async (isRefresh = false) => {
+    if (isRefresh) setRefreshing(true);
+    try {
+      const next = await readJson<{ holds: EscrowHoldRecord[]; totals: EscrowTotals }>("/api/admin/escrow");
+      setHolds(next.holds);
+      setTotals(next.totals);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not load the escrow ledger.");
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    readJson<{ holds: EscrowHoldRecord[]; totals: EscrowTotals }>("/api/admin/escrow")
+      .then((next) => {
+        if (!active) return;
+        setHolds(next.holds);
+        setTotals(next.totals);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (!active) return;
+        setError(err instanceof Error ? err.message : "Could not load the escrow ledger.");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
     };
   }, []);
 
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    return sampleEscrowHolds.filter((hold) => {
+    return holds.filter((hold) => {
       if (status !== "all" && hold.status !== status) return false;
       if (!needle) return true;
       return [hold.id, hold.title, hold.customerName, hold.artisanName, hold.trade, hold.jobRef]
@@ -61,20 +109,40 @@ export function AdminEscrowScreen() {
         .toLowerCase()
         .includes(needle);
     });
-  }, [status, query]);
+  }, [holds, status, query]);
 
-  const dueSchedule = sampleEscrowHolds
-    .filter((hold) => hold.status === "release_due")
-    .slice()
-    .sort((a, b) => new Date(a.releaseDueIso).getTime() - new Date(b.releaseDueIso).getTime());
+  const dueSchedule = useMemo(
+    () =>
+      holds
+        .filter((hold) => hold.status === "release_due")
+        .slice()
+        .sort((a, b) => new Date(a.releaseDueIso).getTime() - new Date(b.releaseDueIso).getTime()),
+    [holds],
+  );
 
-  function confirmRelease() {
+  const readyToRelease = holds.filter((hold) => hold.status === "release_due" && hold.signedOff).length;
+
+  async function confirmRelease() {
     if (!pendingRelease) return;
-    setQueued(new Set(queued).add(pendingRelease.id));
-    setNotice(
-      `Release for ${pendingRelease.id} (${formatNaira(pendingRelease.amountKobo)}) was queued in this preview only — no funds were moved and no provider was called.`,
-    );
-    setPendingRelease(null);
+    setReleasing(true);
+    setError(null);
+    setNotice(null);
+    try {
+      const next = await readJson<{ hold: EscrowHoldRecord }>(`/api/admin/escrow/${pendingRelease.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "released" }),
+      });
+      setNotice(
+        `Release for ${next.hold.id} (${formatNaira(next.hold.amountKobo)}) recorded in Neon. No payment provider is connected, so no funds moved.`,
+      );
+      setPendingRelease(null);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not record the release.");
+    } finally {
+      setReleasing(false);
+    }
   }
 
   return (
@@ -85,36 +153,58 @@ export function AdminEscrowScreen() {
         description="Track held milestones, release windows, and payout readiness across active jobs."
         actions={
           <>
-            <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setStatus("release_due")}>
-              <Icon name="clock" size={16} />
-              <span>Release due ({totals.dueToday})</span>
-            </button>
             <button
               type="button"
-              className="ad-btn ad-btn-primary"
-              onClick={() => setNotice("Ledger export is a preview. The signed provider statement is not connected in this build.")}
+              className="ad-btn ad-btn-ghost"
+              onClick={() => load(true)}
+              disabled={refreshing}
             >
-              <Icon name="download" size={16} />
-              <span>Export ledger</span>
+              <Icon name="refresh" size={16} />
+              <span>{refreshing ? "Refreshing…" : "Refresh"}</span>
             </button>
+            <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setStatus("release_due")}>
+              <Icon name="clock" size={16} />
+              <span>Release due ({totals?.dueToday ?? 0})</span>
+            </button>
+            <Link className="ad-btn ad-btn-primary" href="/admin/audit">
+              <Icon name="scroll" size={16} />
+              <span>Audit trail</span>
+            </Link>
           </>
         }
         meta={
           <>
-            <StatusPill tone="warning">{totals.dueToday} releases due</StatusPill>
-            <StatusPill tone="danger" dot={false}>1 disputed hold</StatusPill>
-            <StatusPill tone="neutral" dot={false}>Sample ledger</StatusPill>
+            <StatusPill tone="warning">{totals?.dueToday ?? 0} releases due</StatusPill>
+            <StatusPill tone="danger" dot={false}>
+              {holds.filter((hold) => hold.status === "disputed").length} disputed
+            </StatusPill>
+            <StatusPill tone="neutral" dot={false}>Neon records</StatusPill>
           </>
         }
       />
 
-      <SampleNotice>{SAMPLE_LEDGER_NOTE} Release actions on this page are previews and never move money.</SampleNotice>
+      <SampleNotice>
+        Holds below are stored in the Neon database and describe fictional parties. A recorded release is
+        persisted here; no payment provider is connected, so no funds move.
+      </SampleNotice>
+
+      {error ? (
+        <p className="ad-inline-notice is-danger" role="alert">
+          <Icon name="alert" size={16} /> {error}
+        </p>
+      ) : null}
 
       <section className="ad-kpi-grid" aria-label="Escrow metrics">
-        <KpiCard label="Held in escrow" value={formatNaira(totals.held)} icon="banknote" tone="info" chip={<StatusPill tone="info" dot={false}>Sample</StatusPill>} footnote="Held + release due" />
-        <KpiCard label="Release due" value={formatNaira(totals.releaseDue)} icon="clock" tone="warning" footnote={`${totals.dueToday} ${pluralUnit(totals.dueToday, "milestone")}`} />
-        <KpiCard label="Released" value={formatNaira(totals.released)} icon="checkCircle" tone="success" footnote="Signed off jobs" />
-        <KpiCard label="In dispute" value={formatNaira(totals.disputed)} icon="gavel" tone="danger" footnote="Frozen pending review" />
+        <KpiCard label="Held in escrow" value={formatNaira(totals?.held ?? 0)} icon="banknote" tone="info" footnote="Held + release due" />
+        <KpiCard
+          label="Release due"
+          value={formatNaira(totals?.releaseDue ?? 0)}
+          icon="clock"
+          tone="warning"
+          footnote={`${totals?.dueToday ?? 0} ${pluralUnit(totals?.dueToday ?? 0, "milestone")}`}
+        />
+        <KpiCard label="Released" value={formatNaira(totals?.released ?? 0)} icon="checkCircle" tone="success" footnote="Recorded releases" />
+        <KpiCard label="In dispute" value={formatNaira(totals?.disputed ?? 0)} icon="gavel" tone="danger" footnote="Frozen pending review" />
       </section>
 
       <div className="ad-toolbar">
@@ -133,7 +223,7 @@ export function AdminEscrowScreen() {
           value={status}
           onChange={setStatus}
           options={[
-            { value: "all", label: "All", count: sampleEscrowHolds.length },
+            { value: "all", label: "All", count: holds.length },
             { value: "held", label: "Held" },
             { value: "release_due", label: "Release due" },
             { value: "released", label: "Released" },
@@ -144,11 +234,15 @@ export function AdminEscrowScreen() {
 
       {notice ? (
         <p className="ad-inline-notice ad-inline-notice-wide" role="status">
-          <Icon name="alert" size={16} /> {notice}
+          <Icon name="checkCircle" size={16} /> {notice}
         </p>
       ) : null}
 
-      {filtered.length === 0 ? (
+      {loading ? (
+        <p className="ad-loading" role="status">
+          Retrieving escrow holds from Neon…
+        </p>
+      ) : filtered.length === 0 ? (
         <EmptyState
           icon="banknote"
           title="No escrow holds match this view"
@@ -174,61 +268,64 @@ export function AdminEscrowScreen() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((hold) => {
-                const isQueued = queued.has(hold.id);
-                return (
-                  <tr key={hold.id}>
-                    <td>
-                      <div className="ad-cell-stack">
-                        <span className="ad-cell-strong ad-cell-nowrap">{hold.id}</span>
-                        <span className="ad-cell-muted">{hold.title}</span>
-                        <span className="ad-cell-muted">{hold.trade} · {hold.area}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="ad-cell-stack">
-                        <span className="ad-cell-strong">{hold.customerName}</span>
-                        <span className="ad-cell-muted">→ {hold.artisanName}</span>
-                        <span className="ad-cell-muted">{hold.payoutBank}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <StatusPill tone="neutral" dot={false}>{hold.milestone}</StatusPill>
-                    </td>
-                    <td>
-                      <span className="ad-cell-strong">{formatNaira(hold.amountKobo)}</span>
-                    </td>
-                    <td>
-                      <div className="ad-cell-stack">
-                        <span className="ad-cell-strong">{formatWat(hold.releaseDueIso)}</span>
-                        <span className="ad-cell-muted">{hold.signedOff ? "Signed off" : "Awaiting sign-off"}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <StatusPill tone={isQueued ? "info" : statusTone[hold.status]}>
-                        {isQueued ? "Queued preview" : escrowStatusLabel[hold.status]}
-                      </StatusPill>
-                    </td>
-                    <td className="ad-cell-right">
-                      <button
-                        type="button"
-                        className="ad-btn ad-btn-ghost ad-btn-sm"
-                        disabled={hold.status !== "release_due" || isQueued}
-                        onClick={() => setPendingRelease(hold)}
-                        title={
-                          hold.status !== "release_due"
+              {filtered.map((hold) => (
+                <tr key={hold.id}>
+                  <td>
+                    <div className="ad-cell-stack">
+                      <span className="ad-cell-strong ad-cell-nowrap">{hold.id}</span>
+                      <span className="ad-cell-muted">{hold.title}</span>
+                      <span className="ad-cell-muted">{hold.trade} · {hold.area}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="ad-cell-stack">
+                      <span className="ad-cell-strong">{hold.customerName}</span>
+                      <span className="ad-cell-muted">→ {hold.artisanName}</span>
+                      <span className="ad-cell-muted">{hold.payoutBank}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <StatusPill tone="neutral" dot={false}>{hold.milestone}</StatusPill>
+                  </td>
+                  <td>
+                    <span className="ad-cell-strong">{formatNaira(hold.amountKobo)}</span>
+                  </td>
+                  <td>
+                    <div className="ad-cell-stack">
+                      <span className="ad-cell-strong">{formatWat(hold.releaseDueIso)}</span>
+                      <span className="ad-cell-muted">
+                        {hold.status === "released" && hold.releasedAtIso
+                          ? `Released ${formatWat(hold.releasedAtIso)}`
+                          : hold.signedOff
+                            ? "Signed off"
+                            : "Awaiting sign-off"}
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <StatusPill tone={statusTone[hold.status]}>{escrowStatusLabel[hold.status]}</StatusPill>
+                  </td>
+                  <td className="ad-cell-right">
+                    <button
+                      type="button"
+                      className="ad-btn ad-btn-ghost ad-btn-sm"
+                      disabled={hold.status !== "release_due" || !hold.signedOff}
+                      onClick={() => setPendingRelease(hold)}
+                      title={
+                        hold.status === "released"
+                          ? "This milestone has already been released"
+                          : hold.status !== "release_due"
                             ? "Only milestones due for release can be actioned"
-                            : isQueued
-                              ? "Already queued in this preview"
-                              : "Preview a release"
-                        }
-                      >
-                        {isQueued ? "Queued" : "Release"} <Icon name="next" size={14} />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+                            : !hold.signedOff
+                              ? "The customer has not signed this milestone off"
+                              : "Record this release"
+                      }
+                    >
+                      View <Icon name="next" size={14} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -257,38 +354,40 @@ export function AdminEscrowScreen() {
           )}
         </SectionCard>
 
-        <SectionCard title="Payout health" description="Sample ledger controls before live payments.">
+        <SectionCard title="Payout health" description="What is ready to move and what is blocked.">
           <ul className="ad-health-list">
             <li>
               <span className="ad-health-icon is-success"><Icon name="checkCircle" size={17} /></span>
               <div>
-                <strong>Bank name matching</strong>
-                <p>All sample payslips match the verified artisan identity.</p>
+                <strong>Ready to release</strong>
+                <p>{readyToRelease} signed-off {pluralUnit(readyToRelease, "milestone")} inside a release window.</p>
               </div>
-              <StatusPill tone="success">Ready</StatusPill>
+              <StatusPill tone={readyToRelease ? "success" : "neutral"}>{readyToRelease ? "Ready" : "None"}</StatusPill>
             </li>
             <li>
               <span className="ad-health-icon is-warning"><Icon name="shieldAlert" size={17} /></span>
               <div>
                 <strong>Disputed holds</strong>
-                <p>One hold is frozen while dispute DSP-2026-0138 is open.</p>
+                <p>Frozen while the linked dispute case is open in the disputes queue.</p>
               </div>
-              <StatusPill tone="warning">Review</StatusPill>
+              <StatusPill tone="warning">
+                {holds.filter((hold) => hold.status === "disputed").length} held
+              </StatusPill>
             </li>
             <li>
               <span className="ad-health-icon is-danger"><Icon name="alert" size={17} /></span>
               <div>
                 <strong>Provider connection</strong>
-                <p>Paystack is not connected. No release can settle in this build.</p>
+                <p>No payment provider is connected, so a recorded release does not settle funds.</p>
               </div>
-              <StatusPill tone="danger">Blocked</StatusPill>
+              <StatusPill tone="danger">Records only</StatusPill>
             </li>
           </ul>
         </SectionCard>
       </div>
 
       {pendingRelease ? (
-        <div className="ad-modal-overlay" role="presentation" onClick={() => setPendingRelease(null)}>
+        <div className="ad-modal-overlay" role="presentation" onClick={() => (releasing ? undefined : setPendingRelease(null))}>
           <div
             className="ad-modal"
             role="dialog"
@@ -298,10 +397,16 @@ export function AdminEscrowScreen() {
           >
             <div className="ad-modal-head">
               <div>
-                <span className="ad-modal-eyebrow">Preview release</span>
+                <span className="ad-modal-eyebrow">Record release</span>
                 <h2 id="release-modal-title">{formatNaira(pendingRelease.amountKobo)}</h2>
               </div>
-              <button type="button" className="ad-modal-close" onClick={() => setPendingRelease(null)} aria-label="Close dialog">
+              <button
+                type="button"
+                className="ad-modal-close"
+                onClick={() => setPendingRelease(null)}
+                aria-label="Close dialog"
+                disabled={releasing}
+              >
                 <Icon name="x" size={18} />
               </button>
             </div>
@@ -316,15 +421,20 @@ export function AdminEscrowScreen() {
             </dl>
 
             <p className="ad-modal-note">
-              <Icon name="alert" size={16} /> This action is a preview. No money moves, no provider call is made, and no
-              record is persisted.
+              <Icon name="alert" size={16} /> The release is written to Neon and audited. No money moves and no
+              provider call is made.
             </p>
 
             <div className="ad-modal-actions">
-              <button type="button" className="ad-btn ad-btn-primary" onClick={confirmRelease} disabled={!pendingRelease.signedOff}>
-                <Icon name="send" size={16} /> Queue release (preview)
+              <button
+                type="button"
+                className="ad-btn ad-btn-primary"
+                onClick={confirmRelease}
+                disabled={!pendingRelease.signedOff || releasing}
+              >
+                <Icon name="send" size={16} /> {releasing ? "Recording…" : "Record release"}
               </button>
-              <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setPendingRelease(null)}>
+              <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setPendingRelease(null)} disabled={releasing}>
                 Cancel
               </button>
             </div>

@@ -11,7 +11,7 @@ import type { IconName } from "@/components/icon";
 export const SAMPLE_NOW_ISO = "2026-11-01T12:00:00Z";
 
 export const SAMPLE_LEDGER_NOTE =
-  "Financial records are fictional samples. No Paystack, escrow, payout, or provider connection is active in this build.";
+  "Financial records describe fictional parties. No payment provider is connected in this build.";
 
 const naira = new Intl.NumberFormat("en-NG", {
   style: "currency",
@@ -447,10 +447,6 @@ export const disputeStatusLabel: Record<DisputeStatus, string> = {
   escalated: "Escalated",
   resolved: "Resolved",
 };
-
-export function findDispute(id: string): DisputeCase | null {
-  return sampleDisputes.find((dispute) => dispute.id === id) ?? null;
-}
 
 /* --------------------------------- Escrow -------------------------------- */
 
