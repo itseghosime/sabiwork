@@ -18,6 +18,13 @@ export function RoleNavigator() {
   // Keep the demo switcher out of the way until someone asks for it.
   const [collapsed, setCollapsed] = useState(true);
 
+  const isAccountPage =
+    pathname === "/login" ||
+    pathname.startsWith("/signup/") ||
+    pathname === "/verify-email" ||
+    pathname === "/forgot-password" ||
+    pathname === "/reset-password";
+
   // Determine current active role from pathname
   const isCustomer =
     pathname.startsWith("/jobs") ||
@@ -28,6 +35,8 @@ export function RoleNavigator() {
     pathname.startsWith("/artisan") || pathname.startsWith("/training");
   const isAdmin = pathname.startsWith("/admin");
   const isPublic = !isCustomer && !isArtisan && !isAdmin;
+
+  if (isAccountPage) return null;
 
   if (collapsed) {
     return (

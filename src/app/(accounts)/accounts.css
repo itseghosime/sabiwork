@@ -1,9 +1,17 @@
 /* Route-scoped account styles: the approved public homepage is unchanged. */
+.account-main {
+  min-height: 100vh;
+  min-height: 100svh;
+}
 .auth-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
   background:
     radial-gradient(ellipse at 82% 3%, rgb(56 168 232 / 10%), transparent 32%),
     #f7faff;
-  padding: 40px 0 64px;
+  padding: clamp(24px, 4vh, 48px) 0;
 }
 .auth-grid {
   display: grid;
@@ -481,12 +489,12 @@
     max-width: none;
   }
   .auth-page {
-    padding-top: 32px;
+    padding-block: 28px;
   }
 }
 @media (max-width: 639px) {
   .auth-page {
-    padding: 22px 0 40px;
+    padding-block: 20px;
   }
   .auth-grid {
     gap: 24px;
