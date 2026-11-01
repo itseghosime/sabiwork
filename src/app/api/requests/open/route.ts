@@ -1,7 +1,7 @@
 import { and, desc, eq, ne, sql } from "drizzle-orm";
-import { getSessionUser } from "@/lib/server/authorization";
+import { authorizeMarketplaceUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
-import { artisanProfiles, jobRequests, quotes } from "@/lib/server/schema";
+import { jobRequests, quotes } from "@/lib/server/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -10,21 +10,17 @@ function jsonError(status: number, code: string, message: string) {
 }
 
 export async function GET() {
-  const session = await getSessionUser();
+  const session = await authorizeMarketplaceUser();
   if (session.kind === "unavailable") return jsonError(503, "AUTH_UNAVAILABLE", "Authentication is unavailable.");
   if (session.kind === "unauthenticated") return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
+  if (session.kind === "profile-required") {
+    return jsonError(403, "PROFILE_REQUIRED", "Complete your account profile to continue.");
+  }
+  if (session.kind === "forbidden") {
+    return jsonError(403, "FORBIDDEN", "Admins cannot access hiring opportunities.");
+  }
 
   try {
-    const [profile] = await getDb()
-      .select({ user_id: artisanProfiles.user_id })
-      .from(artisanProfiles)
-      .where(eq(artisanProfiles.user_id, session.user.id))
-      .limit(1);
-
-    if (!profile) {
-      return jsonError(403, "WORK_PROFILE_REQUIRED", "Create your work profile to view open requests.");
-    }
-
     const rows = await getDb()
       .select({
         id: jobRequests.id,

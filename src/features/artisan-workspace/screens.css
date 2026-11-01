@@ -1,0 +1,175 @@
+.artisan-page {
+  display: grid;
+  gap: 16px;
+}
+
+.artisan-header h1 {
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+
+.artisan-header p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.artisan-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.artisan-metric-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px;
+  display: grid;
+  gap: 4px;
+}
+
+.artisan-metric-card .metric-label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.artisan-metric-card .metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.artisan-list {
+  display: grid;
+  gap: 12px;
+}
+
+.artisan-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.artisan-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.artisan-form {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.artisan-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.artisan-form label small {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.artisan-form input,
+.artisan-form textarea,
+.artisan-form select {
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 15px;
+}
+
+.artisan-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.artisan-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.artisan-form-checkbox input {
+  min-height: auto;
+  width: 18px;
+  height: 18px;
+}
+
+.artisan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.artisan-status-pill {
+  border: 1px solid var(--accent-border);
+  background: var(--pale);
+  color: var(--navy);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  text-transform: capitalize;
+}
+
+.artisan-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.artisan-success {
+  color: #065f46;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.artisan-empty {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.artisan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.artisan-badge.verified {
+  color: #059669;
+}
+
+.artisan-badge.unsubmitted,
+.artisan-badge.pending {
+  color: #d97706;
+}
+
+.artisan-badge.rejected {
+  color: #dc2626;
+}

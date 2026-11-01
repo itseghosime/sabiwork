@@ -1,5 +1,5 @@
 import { WorkspaceShell } from "@/components/workspace-shell";
-import { requirePageRole } from "@/lib/server/authorization";
+import { requireMarketplacePage } from "@/lib/server/authorization";
 
 export const dynamic = "force-dynamic";
 
@@ -8,6 +8,6 @@ export default async function ArtisanWorkspaceLayout({
 }: {
   children: React.ReactNode;
 }) {
-  await requirePageRole("artisan");
+  await requireMarketplacePage();
   return <WorkspaceShell role="artisan">{children}</WorkspaceShell>;
 }

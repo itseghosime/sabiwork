@@ -1,8 +1,5 @@
-import { ArtisanVerificationStatusScreen } from "@/features/profiles/screens";
-import { profilesDemoService } from "@/features/profiles/service";
+import { ArtisanVerificationStatusScreen } from "@/features/artisan-workspace/screens";
 
-export default async function ArtisanVerificationStatusPage() {
-  const application = await profilesDemoService.getVerificationStatus("art-001");
-  return <ArtisanVerificationStatusScreen initialApplication={application} />;
+export default function ArtisanVerificationStatusPage() {
+  return <ArtisanVerificationStatusScreen />;
 }
-

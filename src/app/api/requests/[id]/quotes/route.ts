@@ -1,5 +1,5 @@
 import { and, asc, eq } from "drizzle-orm";
-import { getSessionUser } from "@/lib/server/authorization";
+import { authorizeMarketplaceUser, getSessionUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
 import { artisanProfiles, jobRequests, quotes, userProfiles } from "@/lib/server/schema";
 
@@ -69,9 +69,15 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 }
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const session = await getSessionUser();
+  const session = await authorizeMarketplaceUser();
   if (session.kind === "unavailable") return jsonError(503, "AUTH_UNAVAILABLE", "Authentication is unavailable.");
   if (session.kind === "unauthenticated") return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
+  if (session.kind === "profile-required") {
+    return jsonError(403, "PROFILE_REQUIRED", "Complete your account profile to continue.");
+  }
+  if (session.kind === "forbidden") {
+    return jsonError(403, "FORBIDDEN", "Admin accounts cannot send quotes.");
+  }
 
   const { id } = await params;
 
@@ -118,13 +124,24 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     }
 
     const [profile] = await getDb()
-      .select({ user_id: artisanProfiles.user_id })
+      .select({
+        user_id: artisanProfiles.user_id,
+        is_listed: artisanProfiles.is_listed,
+        verification_status: artisanProfiles.verification_status,
+      })
       .from(artisanProfiles)
       .where(eq(artisanProfiles.user_id, session.user.id))
       .limit(1);
 
     if (!profile) {
       return jsonError(403, "WORK_PROFILE_REQUIRED", "Create your work profile before sending quotes.");
+    }
+    if (!profile.is_listed || profile.verification_status === "rejected") {
+      return jsonError(
+        403,
+        "WORK_PROFILE_INVALID",
+        "Only listed work profiles in good standing can send quotes.",
+      );
     }
 
     const [created] = await getDb()
