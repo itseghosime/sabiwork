@@ -25,6 +25,7 @@ import {
   Filter,
 } from "lucide-react";
 import { WorkspaceShell } from "@/components/workspace-shell";
+import { Brand } from "@/components/public-shell";
 import {
   type VerificationDossier,
   getVerificationDossiers,
@@ -93,7 +94,7 @@ export function ArtisanSignupScreen() {
       return false;
     }
     if (!phone.trim() || phone.trim().length < 10) {
-      setFormError("Please enter a valid Nigerian telephone number (e.g., +234 803 123 4567).");
+      setFormError("Please enter a valid Nigerian telephone number. Use sample details only in this prototype.");
       return false;
     }
     if (!email.includes("@")) {
@@ -169,13 +170,14 @@ export function ArtisanSignupScreen() {
         <div className="sabi-wizard-card">
           {/* Header */}
           <div className="sabi-wizard-header">
+            <Brand />
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                   Screen S08 • Artisan Registration
                 </span>
                 <h1 className="text-xl font-bold text-on-surface">
-                  Join SabiWork as a Verified Artisan
+                  Create an artisan account
                 </h1>
               </div>
               <span className="text-sm font-medium text-secondary">
@@ -221,7 +223,7 @@ export function ArtisanSignupScreen() {
                     <input
                       id="artisan-name"
                       type="text"
-                      placeholder="e.g. Osahon Victor Ighodaro"
+                      placeholder="e.g. Example Artisan"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                     />
@@ -232,7 +234,7 @@ export function ArtisanSignupScreen() {
                     <input
                       id="artisan-phone"
                       type="tel"
-                      placeholder="+234 803 123 4567"
+                      placeholder="+234 800 000 0000"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                     />
@@ -352,7 +354,7 @@ export function ArtisanSignupScreen() {
                 <div>
                   <h2 className="text-lg font-bold text-on-surface">Step 3: Identity & Trade Verification Evidence</h2>
                   <p className="text-sm text-secondary">
-                    Submit your government-issued identity and workshop evidence for Edo desk officer vetting.
+                    Use placeholder identity and workshop details only. This prototype does not verify or store credentials.
                   </p>
                 </div>
 
@@ -362,7 +364,7 @@ export function ArtisanSignupScreen() {
                     <input
                       id="artisan-nin"
                       type="text"
-                      placeholder="11-digit NIN (e.g. 67219840231)"
+                      placeholder="Sample ID number only"
                       value={ninNumber}
                       onChange={(e) => setNinNumber(e.target.value)}
                     />
@@ -553,6 +555,7 @@ export function ArtisanSignupScreen() {
 export function AdminVerificationQueueScreen() {
   const [filter, setFilter] = useState<string>("all");
   const [search, setSearch] = useState("");
+  const [exportNotice, setExportNotice] = useState("");
   const metrics = getDossierMetrics();
   const dossiers = getVerificationDossiers(filter);
 
@@ -577,36 +580,48 @@ export function AdminVerificationQueueScreen() {
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                 Screen S42 • Desk Operations
               </span>
-              <span className="sabi-status-pill approved">Edo State Desk Active</span>
+              <span className="sabi-status-pill pending">Prototype queue</span>
             </div>
             <h1 className="text-2xl font-bold text-on-surface mt-1">Artisan Verification Queue</h1>
             <p className="text-sm text-secondary">
-              Review incoming identity proofs, NABTEB credentials, and workshop evidence for Benin City artisans.
+              Review sample artisan details and submitted documents. Decisions stay in this browser demo.
             </p>
           </div>
 
           <button
             type="button"
             onClick={() => {
-              alert("Audit log exported in CSV format for Edo Ministry records.");
+              const rows = [
+                ["Reference", "Applicant", "Trade", "Area", "Status"],
+                ...filteredDossiers.map((dossier) => [dossier.id, dossier.fullName, dossier.trade, dossier.location, dossier.status]),
+              ];
+              const csv = rows.map((row) => row.map((value) => `"${value.replaceAll('"', '""')}"`).join(",")).join("\n");
+              const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = "sabiwork-demo-review-queue.csv";
+              link.click();
+              URL.revokeObjectURL(url);
+              setExportNotice(`Exported ${filteredDossiers.length} sample rows. This file is a local demo export.`);
             }}
             className="sabi-btn-secondary"
           >
-            <Download className="w-4 h-4" /> Export Audit Log (CSV)
+            <Download className="w-4 h-4" /> Export sample CSV
           </button>
         </div>
+        {exportNotice && <p className="text-sm text-secondary" role="status">{exportNotice}</p>}
 
         {/* Metrics Grid */}
         <div className="sabi-metrics-grid">
           <div className="sabi-metric-card">
             <span className="text-xs font-semibold text-secondary uppercase">Pending Reviews</span>
             <div className="sabi-metric-val text-amber-600">{metrics.pending}</div>
-            <div className="sabi-metric-sub">Requires desk officer examination</div>
+            <div className="sabi-metric-sub">Sample requests awaiting review</div>
           </div>
           <div className="sabi-metric-card">
-            <span className="text-xs font-semibold text-secondary uppercase">Pro Badges Issued</span>
+            <span className="text-xs font-semibold text-secondary uppercase">Sample approvals</span>
             <div className="sabi-metric-val text-emerald-600">{metrics.approved}</div>
-            <div className="sabi-metric-sub">Active verified artisans in Benin City</div>
+            <div className="sabi-metric-sub">Approvals in this browser demo</div>
           </div>
           <div className="sabi-metric-card">
             <span className="text-xs font-semibold text-secondary uppercase">Determinations Rejected</span>
@@ -616,7 +631,7 @@ export function AdminVerificationQueueScreen() {
           <div className="sabi-metric-card">
             <span className="text-xs font-semibold text-secondary uppercase">Average SLA Turnaround</span>
             <div className="sabi-metric-val text-primary">{metrics.averageTurnaroundHours} hrs</div>
-            <div className="sabi-metric-sub">Within Edo State 24h compliance target</div>
+            <div className="sabi-metric-sub">Illustrative demo turnaround</div>
           </div>
         </div>
 
@@ -714,7 +729,7 @@ export function AdminVerificationQueueScreen() {
                   <td>
                     <div className="flex items-center gap-1 text-xs text-secondary">
                       <FileText className="w-3.5 h-3.5" />
-                      <span>{dossier.documents.length} verified items</span>
+                      <span>{dossier.documents.length} submitted items</span>
                     </div>
                   </td>
                   <td className="text-xs text-secondary whitespace-nowrap">
@@ -797,24 +812,24 @@ export function AdminDossierReviewScreen({ id }: { id: string }) {
   };
 
   const handleApprove = () => {
-    const res = approveDossier(dossier.id, officerNote || "Verified all credentials against Edo State database.");
+    const res = approveDossier(dossier.id, officerNote || "Reviewed sample documents in the prototype.");
     if (res.success && res.dossier) {
       setDossier(res.dossier);
       setIsApproveOpen(false);
-      setMessage({ type: "success", text: `SabiWork Pro Badge successfully issued to ${dossier.fullName}!` });
+      setMessage({ type: "success", text: `${dossier.fullName} marked approved in this demo.` });
     }
   };
 
   const handleReject = () => {
     if (rejectionChecklist.length === 0) {
-      alert("Please select at least one adverse determination reason.");
+      setMessage({ type: "error", text: "Choose at least one reason before requesting a revision." });
       return;
     }
     const res = rejectDossier(dossier.id, rejectionChecklist, officerNote);
     if (res.success && res.dossier) {
       setDossier(res.dossier);
       setIsRejectOpen(false);
-      setMessage({ type: "error", text: `Dossier ${dossier.id} has been rejected and applicant notified.` });
+      setMessage({ type: "error", text: `Dossier ${dossier.id} marked for revision in this demo.` });
     }
   };
 
@@ -1030,14 +1045,14 @@ export function AdminDossierReviewScreen({ id }: { id: string }) {
               </div>
               <div className="py-4 space-y-3 text-sm text-secondary">
                 <p>
-                  You are about to issue the official SabiWork Pro Badge to <strong className="text-on-surface">{dossier.fullName}</strong>.
+                You are about to mark <strong className="text-on-surface">{dossier.fullName}</strong> as approved in this prototype.
                 </p>
                 <div className="sabi-input-group">
-                  <label htmlFor="officer-notes">Officer Inspection Notes (Saved to Audit Log)</label>
+                  <label htmlFor="officer-notes">Review note (demo only)</label>
                   <textarea
                     id="officer-notes"
                     rows={3}
-                    placeholder="e.g. NIMC slip validated via portal. Workshop at Boundary Road verified."
+                    placeholder="Add a sample note about the documents reviewed."
                     value={officerNote}
                     onChange={(e) => setOfficerNote(e.target.value)}
                   />

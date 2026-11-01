@@ -19,10 +19,10 @@ describe("Artisan Dashboard, Orders, Earnings & Schedule (S36, S37, S38, S39)", 
   it("renders S36 Artisan Dashboard with active KPIs and metrics", () => {
     render(<ArtisanDashboardScreen initialData={defaultArtisanDashboard} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Welcome, Osaze Ighodaro/i }),
+      screen.getByRole("heading", { level: 1, name: /Welcome, Sample artisan/i }),
     ).toBeDefined();
     expect(screen.getByText(/Active Work Orders/i)).toBeDefined();
-    expect(screen.getByText(/Pending Escrow Funds/i)).toBeDefined();
+    expect(screen.getByText(/Pending payment previews/i)).toBeDefined();
   });
 
   it("renders S37 Artisan Work Orders with active milestone badges", () => {
@@ -45,12 +45,12 @@ describe("Artisan Dashboard, Orders, Earnings & Schedule (S36, S37, S38, S39)", 
     expect(screen.getByText(/₦30,000.00/i)).toBeDefined();
 
     const payoutBtn = screen.getByRole("button", {
-      name: /Request ₦30,000 Test Payout/i,
+      name: /Preview ₦30,000 payout/i,
     });
     fireEvent.click(payoutBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/credited to simulated Edo State bank account/i)).toBeDefined();
+      expect(screen.getByText(/No money was transferred/i)).toBeDefined();
     });
   });
 

@@ -35,7 +35,7 @@ export function PaymentHistoryScreen({
       <div className="lc-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
-        <strong>Payment History & Escrow Ledger (S26)</strong>
+        <strong>Payment History · Demo Ledger (S26)</strong>
       </div>
 
       <header>
@@ -50,7 +50,7 @@ export function PaymentHistoryScreen({
           Payment History & Transaction Details
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Itemized milestone escrow deposits and releases under SabiWork SafeTrade.
+          Sample milestone amounts for review. No funds are held or released in this prototype.
         </p>
       </header>
 
@@ -77,7 +77,7 @@ export function PaymentHistoryScreen({
                     fontWeight: 700,
                   }}
                 >
-                  {t.status === "LOCKED" ? "🔒 Escrow Locked" : "✓ Released to Artisan"}
+                  {t.status === "LOCKED" ? "Payment preview" : "Completed preview"}
                 </span>
                 <h2 style={{ margin: "6px 0 2px 0", fontSize: "16px", color: "var(--text-dark, #0e294b)" }}>
                   #{t.id} · {t.jobTitle}
@@ -208,7 +208,7 @@ export function MyJobsListScreen({
                   ₦{(j.totalKobo / 100).toLocaleString()}
                 </strong>
                 <div style={{ fontSize: "11.5px", color: "#64748b", marginTop: "2px" }}>
-                  ₦{(j.depositPaidKobo / 100).toLocaleString()} in Escrow
+                  ₦{(j.depositPaidKobo / 100).toLocaleString()} · demo amount
                 </div>
               </div>
             </div>
@@ -313,15 +313,14 @@ export function JobProgressDetailScreen({
         </div>
       </header>
 
-      {/* Escrow Health Card */}
+      {/* Payment preview card */}
       <div className="lc-alert lc-alert-info">
         <ShieldCheck size={24} />
         <div>
-          <strong>SabiWork Escrow Protected: Milestone {job.currentMilestone} Active</strong>
+          <strong>Milestone {job.currentMilestone} · payment preview</strong>
           <p>
-            Deposit of ₦{(job.depositPaidKobo / 100).toLocaleString()} is held in escrow. Final
-            balance of ₦{(job.balanceKobo / 100).toLocaleString()} will be funded upon customer
-            inspection sign-off.
+            Sample deposit: ₦{(job.depositPaidKobo / 100).toLocaleString()}. Sample balance:
+            ₦{(job.balanceKobo / 100).toLocaleString()}. No payment has been made or held.
           </p>
         </div>
       </div>
@@ -503,7 +502,7 @@ export function CustomerSignoffScreen({
   const router = useRouter();
   const [rating, setRating] = useState(5);
   const [feedback, setFeedback] = useState(
-    "Excellent work by Osaze. Fixed the high pressure pipe burst swiftly without damaging the surrounding floor tiles.",
+    "Excellent work by the artisan. Fixed the high pressure pipe burst swiftly without damaging the surrounding floor tiles.",
   );
   const [signingOff, setSigningOff] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
@@ -554,7 +553,7 @@ export function CustomerSignoffScreen({
           Customer Review & Completion Sign-off
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Authorize final escrow milestone balance release to {job.artisanName} for Job #{job.id}.
+          Review completion for {job.artisanName} on Job #{job.id}. This demo does not release funds.
         </p>
       </header>
 
@@ -623,7 +622,7 @@ export function CustomerSignoffScreen({
             className="button button-primary"
             disabled={signingOff}
           >
-            {signingOff ? "Signing off..." : "Authorize Escrow Release & Review →"}
+            {signingOff ? "Signing off..." : "Confirm completion & review →"}
           </button>
         </div>
       </form>

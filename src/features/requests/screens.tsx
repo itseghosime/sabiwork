@@ -241,7 +241,7 @@ export function AccountSettingsScreen({
                 onChange={(e) => setEmailReceipts(e.target.checked)}
               />
               <span style={{ fontSize: "13.5px" }}>
-                Email milestone transaction receipts and escrow release notifications.
+                Email job updates and sample payment receipts.
               </span>
             </label>
           </div>
@@ -677,7 +677,7 @@ export function JobRequestReviewScreen({
         </section>
 
         <section className="rq-card">
-          <h2 className="rq-card-title">3. Budget Guidance & Escrow Protection</h2>
+          <h2 className="rq-card-title">3. Budget Guidance & Payment Preview</h2>
           <div
             style={{
               display: "flex",
@@ -707,8 +707,8 @@ export function JobRequestReviewScreen({
             </div>
             <div style={{ maxWidth: "420px", fontSize: "12.5px", color: "#64748b" }}>
               <ShieldCheck size={20} style={{ color: "#075e46", marginBottom: "4px" }} />
-              <strong>Paystack TEST Mode SafeTrade:</strong> Funds are only deposited into escrow
-              once you accept an artisan quote in S16.
+              <strong>Prototype payment preview:</strong> Amounts are examples. No payment or
+              escrow service is connected.
             </div>
           </div>
         </section>
@@ -990,7 +990,7 @@ export function ArtisanMatchingScreen({
                   className="button button-primary"
                   style={{ minHeight: "38px", fontSize: "13px" }}
                 >
-                  Accept Quote & Fund Escrow →
+                  Review quote →
                 </Link>
               </div>
             </article>

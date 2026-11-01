@@ -24,28 +24,28 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
   it("renders S22 Payment Verification and handles webhook simulator states", () => {
     render(<PaymentVerificationScreen initialReceipt={defaultReceipt} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Payment Verification & Escrow Audit/i }),
+      screen.getByRole("heading", { level: 1, name: /Payment Status Preview/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Paystack TEST Mode Payment Verified/i)).toBeDefined();
+    expect(screen.getByText(/Payment preview complete/i)).toBeDefined();
 
     // Switch to pending webhook
     const pendingBtn = screen.getByRole("button", { name: "PENDING_WEBHOOK" });
     fireEvent.click(pendingBtn);
-    expect(screen.getByText(/Awaiting Paystack Webhook Confirmation/i)).toBeDefined();
+    expect(screen.getByText(/Simulated pending state/i)).toBeDefined();
 
     // Switch to failed
     const failedBtn = screen.getByRole("button", { name: "FAILED" });
     fireEvent.click(failedBtn);
-    expect(screen.getByText(/Payment Authorization Failed or Declined/i)).toBeDefined();
+    expect(screen.getByText(/Simulated payment failure/i)).toBeDefined();
   });
 
-  it("renders S23 Payment Receipt with escrow status and printable layout", () => {
+  it("renders an explicitly labelled sample receipt with printable layout", () => {
     render(<PaymentReceiptScreen receipt={defaultReceipt} />);
     expect(
       screen.getByRole("heading", { level: 1, name: /SabiWork Payment Receipt/i }),
     ).toBeDefined();
     expect(screen.getByText("PAY-BN-2026-8819")).toBeDefined();
-    expect(screen.getByText(/Escrow Protected/i)).toBeDefined();
+    expect(screen.getByText(/Sample only/i)).toBeDefined();
     expect(screen.getByText("Print Receipt")).toBeDefined();
   });
 
@@ -56,12 +56,12 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
     ).toBeDefined();
 
     const payBtn = screen.getByRole("button", {
-      name: /Pay ₦11,000 via bank_transfer/i,
+      name: /Preview ₦11,000 via bank_transfer/i,
     });
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/successfully processed via bank_transfer/i)).toBeDefined();
+      expect(screen.getByText(/No payment was made/i)).toBeDefined();
     });
   });
 
@@ -70,17 +70,17 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Fund Milestone 2 Completion Balance/i,
+        name: /Review final balance preview/i,
       }),
     ).toBeDefined();
 
     const payBtn = screen.getByRole("button", {
-      name: /Approve & Pay ₦11,000 via TEST Mode/i,
+      name: /Confirm completion & review/i,
     });
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Milestone 2 final balance/i)).toBeDefined();
+      expect(screen.getByText(/No charge or release occurred/i)).toBeDefined();
     });
   });
 });

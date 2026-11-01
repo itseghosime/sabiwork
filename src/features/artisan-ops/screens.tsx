@@ -62,7 +62,7 @@ export function ArtisanDashboardScreen({
             Welcome, {data.artisanName}
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            {data.artisanTrade} · Benin City Operations Hub (Paystack TEST Mode)
+            {data.artisanTrade} · Sample artisan workspace
           </p>
         </div>
 
@@ -91,11 +91,11 @@ export function ArtisanDashboardScreen({
         </div>
 
         <div className="ao-metric-card">
-          <span className="ao-metric-label">Pending Escrow Funds</span>
+          <span className="ao-metric-label">Pending payment previews</span>
           <span className="ao-metric-value" style={{ color: "var(--primary)" }}>
-            ₦{(data.pendingEscrowKobo / 100).toLocaleString()}
+            ₦{(data.pendingPaymentsKobo / 100).toLocaleString()}
           </span>
-          <span className="ao-metric-sub">Held in safe milestone deposits</span>
+          <span className="ao-metric-sub">Demo amounts only · no funds are held</span>
         </div>
 
         <div className="ao-metric-card">
@@ -126,7 +126,7 @@ export function ArtisanDashboardScreen({
             <TrendingUp size={20} /> Earnings Ledger (S38)
           </h2>
           <p style={{ margin: 0, fontSize: "13.5px", color: "#475569" }}>
-            Review released milestone payments and initiate test bank account payouts.
+            Review sample earnings and payout previews. No bank transfer is connected.
           </p>
           <Link href="/artisan/earnings" className="button button-primary">
             View Earnings (S38) →
@@ -222,8 +222,8 @@ export function ArtisanWorkOrdersScreen({
                   }}
                 >
                   {ord.status === "ACTIVE_MILESTONE_1"
-                    ? "Milestone 1 Active (Deposit Released)"
-                    : "Milestone 2 In Progress"}
+                    ? "Milestone 1 active · sample"
+                    : "Milestone 2 in progress · sample"}
                 </span>
                 <h2 style={{ margin: "6px 0 2px 0", fontSize: "18px", color: "var(--text-dark, #0e294b)" }}>
                   #{ord.id} · {ord.title}
@@ -318,7 +318,7 @@ export function ArtisanEarningsLedgerScreen({
       <div className="ao-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
-        <strong>Earnings & Paystack TEST Ledger (S38)</strong>
+        <strong>Earnings & demo ledger (S38)</strong>
       </div>
 
       <header
@@ -342,7 +342,7 @@ export function ArtisanEarningsLedgerScreen({
             Artisan Earnings Ledger
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            Track released milestone payouts and test settlements in Edo State.
+            Review sample earnings and payout states. No bank transfers are connected.
           </p>
         </div>
 
@@ -361,7 +361,7 @@ export function ArtisanEarningsLedgerScreen({
             onClick={() => handleTestPayout(false)}
             disabled={requestingPayout}
           >
-            {requestingPayout ? "Transferring..." : "Request ₦30,000 Test Payout"}
+            {requestingPayout ? "Saving preview..." : "Preview ₦30,000 payout"}
           </button>
         </div>
       </header>
@@ -383,14 +383,14 @@ export function ArtisanEarningsLedgerScreen({
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
           <div>
             <span style={{ fontSize: "12px", color: "#166534", fontWeight: 700, textTransform: "uppercase" }}>
-              Settled Test Balance Ready for Payout
+              Sample balance · not available for payout
             </span>
             <div style={{ fontSize: "28px", fontWeight: 800, color: "var(--primary)" }}>
               ₦30,000.00
             </div>
           </div>
           <span style={{ fontSize: "12.5px", color: "#166534" }}>
-            Paystack TEST Node · Bank Account: First Bank (•••• 9102)
+            Sample ledger only · no account connected
           </span>
         </div>
       </div>

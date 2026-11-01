@@ -49,7 +49,7 @@ export const defaultOpenRequests: readonly OpenRequest[] = [
     urgency: "standard",
     budgetGuidanceKobo: 2500000, // ₦25,000
     district: "GRA / Boundary Rd",
-    address: "12A Ihama Way, Off Boundary Rd, GRA, Benin City",
+    address: "GRA district, Benin City (sample location)",
     postedTime: "25 minutes ago",
     description:
       "Water leakage discovered under the master bathroom floor tiles. Need pressure leak tracing, PPR pipe replacement, and bypass valve pressure check before 5 PM tomorrow.",
@@ -64,7 +64,7 @@ export const defaultOpenRequests: readonly OpenRequest[] = [
     urgency: "emergency",
     budgetGuidanceKobo: 3500000, // ₦35,000
     district: "Airport Road",
-    address: "42 Airport Road, Opposite St. Paul, Benin City",
+    address: "Airport Road district, Benin City (sample location)",
     postedTime: "1 hour ago",
     description:
       "Main breaker trips repeatedly whenever AC units turn on. Suspected short circuit in ceiling conduit run.",
@@ -93,7 +93,7 @@ export const defaultDetailedQuotes: readonly QuoteItem[] = [
     id: "quote-01",
     requestId: "BEN-78401",
     artisanId: "00000000-0000-4000-8000-000000000001",
-    artisanName: "Osaze Ighodaro",
+    artisanName: "Sample artisan",
     artisanHeadline: "Master Plumber & Pipe Fitter · Vetted GRA Pro",
     artisanInitials: "OI",
     artisanRating: 4.9,
@@ -214,8 +214,8 @@ export const quotesDemoService = {
     }
     return {
       ok: true,
-      message: "Quote accepted! Proceeding to Paystack TEST Mode Milestone 1 escrow deposit.",
-      checkoutRef: `PAY-TEST-${Math.floor(100000 + Math.random() * 900000)}`,
+      message: "Quote accepted in this local preview. No payment or job contract was created.",
+      checkoutRef: `DEMO-${Math.floor(100000 + Math.random() * 900000)}`,
     };
   },
 
@@ -228,13 +228,13 @@ export const quotesDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Paystack TEST mode transaction declined or connection timeout.",
+        message: "Preview error state. No payment gateway is connected and no transaction was attempted.",
       };
     }
     return {
       ok: true,
-      message: `₦${(amountKobo / 100).toLocaleString()} successfully deposited into SabiWork Paystack TEST escrow! Artisan notified to start work.`,
-      escrowRef: `ESC-${Math.floor(10000 + Math.random() * 90000)}`,
+      message: `Payment preview complete for ₦${(amountKobo / 100).toLocaleString()}. No payment was made, held, or sent to the artisan.`,
+      escrowRef: `DEMO-${Math.floor(10000 + Math.random() * 90000)}`,
       jobId: "BEN-78401",
     };
   },

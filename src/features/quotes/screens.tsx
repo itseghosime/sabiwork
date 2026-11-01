@@ -415,8 +415,8 @@ export function QuoteComparisonScreen({
           Compare Artisan Quotes
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Review competing offers side-by-side for Job #{request.id}. All deposits are protected
-          under SabiWork SafeTrade.
+          Review sample offers side-by-side for Job #{request.id}. Amounts shown are for this
+          prototype only; no payment is processed or held.
         </p>
       </header>
 
@@ -551,7 +551,7 @@ export function QuoteDetailsAcceptanceScreen({
             onClick={() => handleAccept(false)}
             disabled={accepting}
           >
-            {accepting ? "Locking Quote..." : "Accept Quote & Proceed to Escrow (S21) →"}
+            {accepting ? "Saving preview..." : "Review payment preview (S21) →"}
           </button>
         </div>
       </header>
@@ -570,7 +570,7 @@ export function QuoteDetailsAcceptanceScreen({
 
       {/* Two-Milestone Escrow Ledger */}
       <section className="qt-card">
-        <h2 className="qt-card-title">Milestone Payment Breakdown (Paystack TEST Mode)</h2>
+        <h2 className="qt-card-title">Sample milestone breakdown</h2>
         <div
           style={{
             display: "grid",
@@ -611,7 +611,7 @@ export function QuoteDetailsAcceptanceScreen({
               {quote.milestone1Title}
             </p>
             <span style={{ fontSize: "11.5px", color: "var(--muted)", display: "block", marginTop: "8px" }}>
-              Deposited into escrow upon acceptance. Held securely until artisan arrives and starts.
+              Sample amount only. Accepting this quote does not charge or hold funds.
             </span>
           </div>
 
@@ -719,10 +719,10 @@ export function MilestoneDepositCheckoutScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Fund Milestone 1 Escrow Deposit
+          Review milestone payment preview
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Paystack TEST Mode · Escrow deposit of {depositFormatted} for Job #{quote.requestId}
+          Sample deposit amount: {depositFormatted} for Job #{quote.requestId}. No payment will be made.
         </p>
       </header>
 
@@ -746,9 +746,9 @@ export function MilestoneDepositCheckoutScreen({
             <div className="qt-payment-method-card">
               <CreditCard size={28} style={{ color: "#075e46" }} />
               <div>
-                <strong>Paystack TEST Mode Card / Bank Transfer</strong>
+                <strong>Payment integration preview</strong>
                 <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-                  Zero live bank charges. Test tokens automatically verified.
+                  Payment provider integration is not connected. No charge will be made.
                 </p>
               </div>
             </div>
@@ -758,10 +758,10 @@ export function MilestoneDepositCheckoutScreen({
           <div className="qt-alert qt-alert-info">
             <ShieldCheck size={24} />
             <div>
-              <strong>Funds Held in Neutral SabiWork Escrow</strong>
+              <strong>Prototype payment screen</strong>
               <p>
-                The artisan does not receive these funds directly until work milestone 1 has been
-                validated. You can raise a dispute at any point under SabiWork SafeTrade.
+                This is a visual flow using sample amounts. No funds are held, transferred, or
+                protected by escrow in this prototype.
               </p>
             </div>
           </div>
@@ -818,7 +818,7 @@ export function MilestoneDepositCheckoutScreen({
             onClick={() => handleDeposit(false)}
             disabled={processing}
           >
-            {processing ? "Authorizing Paystack..." : `Pay ${depositFormatted} via TEST Mode`}
+            {processing ? "Preparing preview..." : `Preview ${depositFormatted} payment`}
           </button>
         </aside>
       </div>

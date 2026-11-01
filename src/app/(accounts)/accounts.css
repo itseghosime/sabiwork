@@ -8,6 +8,7 @@
   min-height: 100svh;
   display: grid;
   align-items: center;
+  overflow-x: clip;
   background:
     radial-gradient(ellipse at 82% 3%, rgb(56 168 232 / 10%), transparent 32%),
     #f7faff;
@@ -17,17 +18,26 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(28px, 4vw, 64px);
-  align-items: center;
-  max-width: 1120px;
+  align-items: stretch;
+  max-width: 1180px;
+  width: min(100% - 48px, 1180px);
 }
 .auth-story {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 620px;
   padding: clamp(28px, 4vw, 48px);
   background: linear-gradient(145deg, #eaf6ff 0%, #f6fbff 72%, #fff 100%);
   border: 1px solid #d7eafa;
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 0 18px 48px rgb(14 41 75 / 6%);
+}
+.auth-story > .brand {
+  align-self: flex-start;
+  margin-bottom: 32px;
 }
 .auth-story h2 {
   max-width: 460px;
@@ -128,7 +138,9 @@
   max-width: 490px;
   width: 100%;
   justify-self: center;
+  align-self: center;
 }
+.auth-mobile-brand { display: none; }
 .auth-demo-notice {
   display: flex;
   align-items: flex-start;
@@ -156,6 +168,9 @@
   background: white;
   box-shadow: 0 18px 48px rgb(14 41 75 / 7%);
   animation: auth-enter 0.35s ease-out both;
+}
+.auth-card form {
+  min-width: 0;
 }
 .auth-card h1 {
   font-size: clamp(28px, 2.6vw, 34px);
@@ -290,13 +305,14 @@
 }
 .auth-card .auth-submit {
   width: 100%;
+  flex-shrink: 0;
   min-height: 54px;
   margin-top: 24px;
   font-size: 15px;
   padding: 12px 14px;
   gap: 8px;
-  white-space: normal;
-  flex-shrink: 0;
+  white-space: nowrap;
+  word-break: normal;
 }
 .auth-submit:disabled {
   cursor: wait;
@@ -472,6 +488,10 @@
   }
   .auth-story {
     padding: 28px;
+    min-height: auto;
+  }
+  .auth-story > .brand {
+    margin-bottom: 18px;
   }
   .auth-story ul,
   .auth-craft-art,
@@ -498,6 +518,13 @@
   }
   .auth-grid {
     gap: 24px;
+    width: min(100% - 32px, 620px);
+  }
+  .auth-story { display: none; }
+  .auth-mobile-brand {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
   }
   .auth-story {
     padding: 22px;
@@ -530,6 +557,13 @@
   .auth-link-preview .text-link {
     font-size: 12px;
   }
+}
+
+@media (max-width: 380px) {
+  .auth-page { padding-block: 12px; }
+  .auth-grid { width: calc(100% - 24px); gap: 16px; }
+  .auth-story { padding: 18px; }
+  .auth-card { padding: 20px 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .auth-card,

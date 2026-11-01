@@ -1,7 +1,13 @@
 .sabi-verif-container {
-  max-width: 1200px;
+  width: min(100% - 32px, 1000px);
+  min-height: 100svh;
   margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: clamp(16px, 4vh, 40px) 0;
+  display: grid;
+  align-content: center;
+  background:
+    radial-gradient(ellipse at 88% 12%, rgb(56 168 232 / 10%), transparent 35%),
+    #f7faff;
 }
 
 @media (min-width: 768px) {
@@ -23,6 +29,9 @@
   background: linear-gradient(135deg, #edf7ff, #fff);
   border-bottom: 1px solid #dce7f2;
   padding: clamp(1.25rem, 3vw, 2rem);
+}
+.sabi-wizard-header > .brand {
+  margin-bottom: 24px;
 }
 
 .sabi-wizard-stepper {

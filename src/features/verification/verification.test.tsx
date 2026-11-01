@@ -59,14 +59,14 @@ describe("Verification Service", () => {
   it("registers a new artisan draft into the queue", () => {
     const res = registerArtisan({
       fullName: "Test Artisan",
-      phone: "+234 801 234 5678",
-      email: "test.artisan@sabiwork.ng",
+      phone: "+234 800 000 0000",
+      email: "artisan@example.test",
       trade: "Carpentry",
       experienceYears: 4,
       coverageAreas: ["GRA"],
-      workshopAddress: "10 Mission Rd",
+      workshopAddress: "GRA district (sample location)",
       bio: "Skilled carpenter",
-      ninNumber: "12345678901",
+      ninNumber: "00000000000",
     });
     expect(res.success).toBe(true);
     expect(res.dossierId).toContain("VET-BEN-");
@@ -79,7 +79,7 @@ describe("Verification Service", () => {
 describe("Verification Screens UI", () => {
   it("renders S08 Artisan Signup and validates required step fields", () => {
     render(<ArtisanSignupScreen />);
-    expect(screen.getByText(/Join SabiWork as a Verified Artisan/i)).toBeDefined();
+    expect(screen.getByText(/Create an artisan account/i)).toBeDefined();
     expect(screen.getByText(/Step 1 of 5/i)).toBeDefined();
 
     // Click continue with empty inputs to trigger validation error
@@ -93,9 +93,9 @@ describe("Verification Screens UI", () => {
     const emailInput = screen.getByLabelText(/Email Address/i);
     const passwordInput = screen.getByLabelText(/Secure Password/i);
 
-    fireEvent.change(nameInput, { target: { value: "Osagie Daniel" } });
-    fireEvent.change(phoneInput, { target: { value: "+234 803 999 8888" } });
-    fireEvent.change(emailInput, { target: { value: "osagie@sabiwork.ng" } });
+    fireEvent.change(nameInput, { target: { value: "Sample Artisan" } });
+    fireEvent.change(phoneInput, { target: { value: "+234 800 000 0000" } });
+    fireEvent.change(emailInput, { target: { value: "artisan@example.test" } });
     fireEvent.change(passwordInput, { target: { value: "password123" } });
 
     fireEvent.click(continueBtn);
@@ -105,8 +105,8 @@ describe("Verification Screens UI", () => {
   it("renders S42 Admin Verification Queue and filters list", () => {
     render(<AdminVerificationQueueScreen />);
     expect(screen.getByText(/Artisan Verification Queue/i)).toBeDefined();
-    expect(screen.getByText(/Edo State Desk Active/i)).toBeDefined();
-    expect(screen.getByText(/Export Audit Log/i)).toBeDefined();
+    expect(screen.getByText(/Prototype queue/i)).toBeDefined();
+    expect(screen.getByText(/Export sample CSV/i)).toBeDefined();
 
     // Click Pending filter tab
     const pendingTab = screen.getByRole("button", { name: /Pending \(/i });

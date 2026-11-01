@@ -24,18 +24,18 @@ export interface PaymentReceiptData {
 
 export const defaultReceipt: PaymentReceiptData = {
   paymentRef: "PAY-BN-2026-8819",
-  paystackTestRef: "pstk_test_992140129",
+  paystackTestRef: "DEMO-PROVIDER-REF",
   jobId: "BEN-78401",
   jobTitle: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
-  artisanName: "Osaze Ighodaro",
-  customerName: "Osamudiamen Osazuwa",
+  artisanName: "Sample artisan",
+  customerName: "Sample customer",
   milestoneNumber: 1,
   milestoneTitle: "Mobilization & Acoustic Leak Tracing (50% Deposit)",
   amountKobo: 1100000, // ₦11,000
   totalContractKobo: 2200000, // ₦22,000
   dateWat: "31 Oct 2026 · 15:45 WAT",
   status: "ESCROW_LOCKED",
-  channel: "Paystack TEST Mode (Mastercard •••• 4081)",
+  channel: "Sample payment method — no charge",
 };
 
 function waitBriefly(ms = 20) {
@@ -77,13 +77,13 @@ export const paymentsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Alternative payment gateway timeout. Please retry with virtual account transfer.",
+        message: "Preview error state. No payment gateway is connected and no transaction was attempted.",
       };
     }
     return {
       ok: true,
-      message: `₦${(amountKobo / 100).toLocaleString()} successfully processed via ${method} (TEST mode).`,
-      newPaymentRef: `PAY-ALT-${Math.floor(10000 + Math.random() * 90000)}`,
+      message: `Payment preview complete for ₦${(amountKobo / 100).toLocaleString()} via ${method}. No payment was made.`,
+      newPaymentRef: `DEMO-ALT-${Math.floor(10000 + Math.random() * 90000)}`,
     };
   },
 
@@ -96,13 +96,13 @@ export const paymentsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Payment declined by Paystack test provider. Check simulated card limit.",
+        message: "Preview error state. No payment gateway is connected and no transaction was attempted.",
       };
     }
     return {
       ok: true,
-      message: `Milestone 2 final balance (₦${(amountKobo / 100).toLocaleString()}) funded! Work signed off and release approved.`,
-      receiptRef: `PAY-BAL-${Math.floor(10000 + Math.random() * 90000)}`,
+      message: `Final balance preview: ₦${(amountKobo / 100).toLocaleString()}. No charge or release occurred.`,
+      receiptRef: `DEMO-BAL-${Math.floor(10000 + Math.random() * 90000)}`,
     };
   },
 };

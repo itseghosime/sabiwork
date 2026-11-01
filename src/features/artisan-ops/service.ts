@@ -1,6 +1,6 @@
 /**
  * Fictional demonstration data and typed browser-only service adapter
- * for Artisan Dashboard Overview, Work Orders, Paystack TEST Earnings Ledger,
+ * for Artisan Dashboard Overview, Work Orders, and sample earnings,
  * and Weekly Availability Schedule (S36, S37, S38, S39).
  * Follows Clear Trade Modern specification and integer-kobo money calculations.
  */
@@ -12,7 +12,7 @@ export interface ArtisanDashboardData {
   activeJobsCount: number;
   openRequestsInDistrict: number;
   totalEarningsKobo: number;
-  pendingEscrowKobo: number;
+  pendingPaymentsKobo: number;
   availableBalanceKobo: number;
   ratingAverage: number;
   totalReviews: number;
@@ -48,13 +48,13 @@ export interface DayAvailability {
 }
 
 export const defaultArtisanDashboard: ArtisanDashboardData = {
-  artisanName: "Osaze Ighodaro",
+  artisanName: "Sample artisan",
   artisanTrade: "Plumbing & High Pressure Fusion",
   verifiedBadge: true,
   activeJobsCount: 2,
   openRequestsInDistrict: 5,
   totalEarningsKobo: 4100000, // ₦41,000
-  pendingEscrowKobo: 1100000, // ₦11,000
+  pendingPaymentsKobo: 1100000, // ₦11,000 simulated in the demo
   availableBalanceKobo: 3000000, // ₦30,000
   ratingAverage: 4.9,
   totalReviews: 38,
@@ -64,9 +64,9 @@ export const defaultArtisanOrders: readonly ArtisanWorkOrder[] = [
   {
     id: "BEN-78401",
     title: "PPR Water Pipe Burst & Overhead Tank Balancing",
-    customerName: "Osamudiamen Osazuwa",
+    customerName: "Sample customer",
     district: "GRA Axis",
-    address: "12A Ihama Way, Off Boundary Rd, GRA, Benin City",
+    address: "GRA district, Benin City (sample location)",
     status: "ACTIVE_MILESTONE_1",
     payoutKobo: 2200000,
     dueDate: "01 Nov 2026",
@@ -75,9 +75,9 @@ export const defaultArtisanOrders: readonly ArtisanWorkOrder[] = [
   {
     id: "BEN-78390",
     title: "Concealed Conduit Rewiring in Airport Rd",
-    customerName: "Blessing Igbinovia",
+    customerName: "Sample customer two",
     district: "Airport Road",
-    address: "42 Airport Road, Opposite St. Paul, Benin City",
+    address: "Airport Road district, Benin City (sample location)",
     status: "ACTIVE_MILESTONE_2",
     payoutKobo: 1800000,
     dueDate: "02 Nov 2026",
@@ -148,14 +148,14 @@ export const artisanOperationsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Paystack TEST mode transfer node timed out. Please retry in 10 minutes.",
+        message: "Demo payout error state. No transfer was attempted.",
       };
     }
     dashboardStore.availableBalanceKobo = Math.max(0, dashboardStore.availableBalanceKobo - amountKobo);
     const newEntry: EarningsLedgerEntry = {
       id: `LED-${Date.now()}`,
       jobId: "PAYOUT",
-      jobTitle: "Direct Settlement to FirstBank Edo Account",
+      jobTitle: "Sample payout preview",
       type: "TEST_PAYOUT",
       amountKobo,
       dateWat: "Just now",
@@ -164,8 +164,8 @@ export const artisanOperationsDemoService = {
     ledgerEntriesStore.unshift(newEntry);
     return {
       ok: true,
-      message: `Test payout of ₦${(amountKobo / 100).toLocaleString()} credited to simulated Edo State bank account!`,
-      payoutRef: `PO-TEST-${Math.floor(10000 + Math.random() * 90000)}`,
+      message: `Payout preview saved for ₦${(amountKobo / 100).toLocaleString()}. No money was transferred.`,
+      payoutRef: `DEMO-${Math.floor(10000 + Math.random() * 90000)}`,
     };
   },
 

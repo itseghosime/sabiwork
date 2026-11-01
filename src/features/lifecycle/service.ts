@@ -45,8 +45,8 @@ export const defaultActiveJobs: readonly ActiveJob[] = [
     id: "BEN-78401",
     title: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
     category: "Plumbing",
-    customerName: "Osamudiamen Osazuwa",
-    artisanName: "Osaze Ighodaro",
+    customerName: "Sample customer",
+    artisanName: "Sample artisan",
     district: "GRA Axis",
     status: "IN_PROGRESS",
     currentMilestone: 1,
@@ -60,14 +60,14 @@ export const defaultActiveJobs: readonly ActiveJob[] = [
         title: "Acoustic Leak Tracing Complete",
         note: "Pinpointed hairline crack behind master bath concealed riser. Commencing PPR pipe cut and sleeve replacement.",
         timeWat: "31 Oct, 16:30 WAT",
-        artisanName: "Osaze Ighodaro",
+        artisanName: "Sample artisan",
       },
       {
         id: "upd-2",
         title: "PPR High-Pressure Fusion Joint Installed",
         note: "Welded 25mm high-pressure joint. Undergoing 30-minute static pressure test.",
         timeWat: "31 Oct, 17:15 WAT",
-        artisanName: "Osaze Ighodaro",
+        artisanName: "Sample artisan",
       },
     ],
   },
@@ -75,8 +75,8 @@ export const defaultActiveJobs: readonly ActiveJob[] = [
     id: "BEN-78390",
     title: "Concealed Conduit Rewiring in Airport Rd",
     category: "Electrical",
-    customerName: "Blessing Igbinovia",
-    artisanName: "Osaze Ighodaro",
+    customerName: "Sample customer two",
+    artisanName: "Sample artisan",
     district: "Airport Road",
     status: "AWAITING_SIGNOFF",
     currentMilestone: 2,
@@ -90,7 +90,7 @@ export const defaultActiveJobs: readonly ActiveJob[] = [
         title: "All Breakers Replaced & Grounded",
         note: "Work concluded and load tested across 3 AC zones. Waiting for customer sign-off.",
         timeWat: "30 Oct, 14:00 WAT",
-        artisanName: "Osaze Ighodaro",
+        artisanName: "Sample artisan",
       },
     ],
   },
@@ -105,7 +105,7 @@ export const defaultTransactions: readonly PaymentTransactionRecord[] = [
     amountKobo: 1100000,
     status: "LOCKED",
     dateWat: "31 Oct 2026 · 15:45 WAT",
-    channel: "Paystack TEST Mode Card",
+    channel: "Sample payment method",
   },
   {
     id: "TXN-8740",
@@ -115,7 +115,7 @@ export const defaultTransactions: readonly PaymentTransactionRecord[] = [
     amountKobo: 900000,
     status: "RELEASED",
     dateWat: "29 Oct 2026 · 11:20 WAT",
-    channel: "Paystack TEST Bank Transfer",
+    channel: "Sample bank transfer preview",
   },
 ];
 
@@ -158,7 +158,7 @@ export const lifecycleDemoService = {
       title: input.title,
       note: input.note,
       timeWat: "Just now",
-      artisanName: "Osaze Ighodaro",
+      artisanName: "Sample artisan",
     };
     const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
     if (target) {
@@ -181,7 +181,7 @@ export const lifecycleDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Sign-off timeout. Could not finalize escrow release ledger.",
+        message: "Demo sign-off could not be saved. No funds were involved.",
       };
     }
     const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
@@ -201,7 +201,7 @@ export const lifecycleDemoService = {
     });
     return {
       ok: true,
-      message: `Job #${jobId} signed off successfully! Milestone balance released and rating (${rating}★) published to artisan profile.`,
+      message: `Job #${jobId} completion preview saved with a ${rating}★ rating. No funds were released and the public profile was not updated.`,
     };
   },
 

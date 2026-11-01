@@ -57,7 +57,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Academy & Edo Artisan Board",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "The First 3 Minutes: Arrival & Professional Greeting",
       "Translating Technical Terms to Homeowner Plain Language",
@@ -68,14 +68,14 @@ const mockModules: TrainingModule[] = [
       "Always call or send an SMS 45 minutes prior to arriving at the jobsite in Benin City traffic.",
       "Wear your SabiWork lanyard and protective shoe covers when entering furnished living rooms.",
       "Explain the exact issue and show photos before uncoupling or disassembling concealed pipes or cables.",
-      "Never pressure a homeowner into off-platform cash deposits outside the SabiWork escrow protocol.",
+      "Agree on payment terms directly with the customer until an integrated payment flow is available.",
     ],
     sections: [
       {
         sectionTitle: "The First 3 Minutes: Setting the Tone on Arrival",
         paragraphs: [
           "In Edo State households, respect and first impressions determine whether a client becomes a repeat patron or lodges an immediate dispute. When you ring the bell or knock at the gate, take two steps backward so the occupant can view your full profile and credentials through the peephole.",
-          "Introduce yourself clearly by name and mention the SabiWork request code (e.g., 'Good morning ma, I am Osaze from SabiWork regarding your solar inverter callout'). Avoid rushing straight to the fuse box or plumbing fixture without an invited escort.",
+          "Introduce yourself clearly by name and mention the SabiWork request code (e.g., 'Good morning ma, I am the artisan from SabiWork regarding your solar inverter callout'). Avoid rushing straight to the fuse box or plumbing fixture without an invited escort.",
         ],
         proTip: "Benin City Pro Tip: In gated estates along Boundary Road and Airport Road, estate security gates often demand resident clearance. Confirm with the homeowner 30 minutes ahead to prevent standing at the security gatehouse.",
       },
@@ -91,7 +91,7 @@ const mockModules: TrainingModule[] = [
         sectionTitle: "Handling Unforeseen Complications Without Drama",
         paragraphs: [
           "Occasionally, opening a ceiling plasterboard reveals decayed timber or severed conduits not captured in the initial quote. Stop work immediately. Call the customer to the site, take high-resolution before-photos for your SabiWork record, and explain the supplementary repair required.",
-          "Submit an official milestone add-on quote through the app rather than verbally estimating an arbitrary cash sum.",
+          "Document proposed scope and price changes in writing before continuing the work.",
         ],
       },
     ],
@@ -99,26 +99,26 @@ const mockModules: TrainingModule[] = [
       id: "CERT-SABI-2026-781",
       moduleId: "BEN-MOD-01",
       moduleTitle: "Mastering Client Communication & In-Home Etiquette in Benin City",
-      holderName: "Osaze Victor Ighodaro",
+      holderName: "Sample learner",
       trade: "Electrical Installation & Solar Inverters",
       serialNumber: "EDO-SABI-COM-2026-0941",
       issuedAt: "2026-10-24T14:30:00Z",
-      verificationHash: "sha256-e91b4028fa77610b2c140",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      verificationHash: "demo-only",
+      accreditationBody: "Prototype sample — not an accredited certificate",
     },
   },
   {
     id: "BEN-MOD-02",
     title: "Documenting Jobsite Proofs: Clear Photos That Pass Admin Review",
     summary:
-      "Learn how to capture geotagged before, during, and after photos that protect you against false disputes and guarantee rapid milestone payout releases from the escrow vault.",
+      "Learn to capture clear before, during, and after photos for a useful work record. This prototype does not verify photos or guarantee payment.",
     category: "proofs",
     durationMinutes: 20,
     level: "Foundational",
     status: "in_progress",
     progress: 65,
     coverImage: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Quality & Dispute Desk",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "Lighting & Angle: Eliminating Blurry Lens Artifacts",
       "Before-Photo Requirements: Wide Room View vs Component Detail",
@@ -134,7 +134,7 @@ const mockModules: TrainingModule[] = [
       {
         sectionTitle: "Why Evidence Photos Protect Your Paystack Payout",
         paragraphs: [
-          "In the event of a customer dispute claiming work was incomplete, the SabiWork Admin Dispute Desk (S34/S35) inspects the evidence vault. High quality photographic proof with clear before and after states guarantees your milestone deposit release.",
+          "Clear before-and-after photographs can help both parties discuss the work. This prototype has no evidence vault or dispute review service.",
         ],
       },
     ],
@@ -150,7 +150,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Commercial Estimating Panel",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "Why Lump-Sum Quotes Get Rejected by Discerning Customers",
       "Benin City Price Indexes: Oba Market & Uselu Electrical Markets",
@@ -173,12 +173,12 @@ const mockModules: TrainingModule[] = [
       id: "CERT-SABI-2026-782",
       moduleId: "BEN-MOD-03",
       moduleTitle: "Building Transparent Itemized Quotes (Labour vs Materials)",
-      holderName: "Osaze Victor Ighodaro",
+      holderName: "Sample learner",
       trade: "Electrical Installation & Solar Inverters",
       serialNumber: "EDO-SABI-QTE-2026-0428",
       issuedAt: "2026-10-25T11:00:00Z",
-      verificationHash: "sha256-88a4c0101f33789b1420",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      verificationHash: "demo-only",
+      accreditationBody: "Prototype sample — not accredited",
     },
   },
   {
@@ -192,7 +192,7 @@ const mockModules: TrainingModule[] = [
     status: "in_progress",
     progress: 30,
     coverImage: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80",
-    author: "Edo State Fire Service & Safety Guild",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "Verifying Zero Voltage: Multimeter Verification Steps",
       "Compound Main Water Gate Isolation & Pressure Depressurization",
@@ -214,30 +214,30 @@ const mockModules: TrainingModule[] = [
   },
   {
     id: "BEN-MOD-05",
-    title: "Managing 2-Stage Milestone Escrow: Deposit to Completion Release",
+    title: "Planning staged payments and completion",
     summary:
-      "Understand how SabiWork 2-stage escrow safeguards your payment: Milestone 1 deposit locks client funds before you buy materials; Milestone 2 unlocks upon customer or admin signoff.",
+      "A staged payment plan can help both parties agree on timing. SabiWork payments are not connected in this prototype; agree on terms before work begins.",
     category: "escrow",
     durationMinutes: 20,
     level: "Foundational",
     status: "not_started",
     progress: 0,
     coverImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Escrow Compliance Desk",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "Milestone 1 (70%) Material & Mobilization Advance",
-      "Milestone 2 (30%) Completion & Workmanship Guarantee",
+      "Milestone 2: completion balance example",
       "Resolving Late Signoff With Automated 72-Hour Release",
     ],
     keyTakeaways: [
-      "Never buy materials out of your personal pocket until Milestone 1 deposit status shows 'Deposited in Escrow'.",
+      "Confirm the customer’s agreed deposit and materials plan before making purchases.",
       "If a customer fails to sign off within 72 hours of submitted completion proof, SabiWork desk initiates automatic release.",
     ],
     sections: [
       {
-        sectionTitle: "How Milestone Escrow Protects Artisans",
+        sectionTitle: "Plan staged payments with the customer",
         paragraphs: [
-          "In traditional informal engagements, artisans routinely encounter clients who refuse to settle final balances after work is finished. SabiWork eliminates this risk by requiring full milestone commitment upfront into test escrow.",
+          "Write down what each stage covers, when payment is due, and how changes are approved. This is general guidance, not a payment guarantee.",
         ],
       },
     ],
@@ -253,7 +253,7 @@ const mockModules: TrainingModule[] = [
     status: "not_started",
     progress: 0,
     coverImage: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80",
-    author: "Edo Environmental & Public Health Committee",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "Why Sulfuric Acid Melts Thin-Wall PVC Drain Pipes",
       "Mechanical Snake Operation: Safety Gloves and Eye Goggles",
@@ -283,7 +283,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
-    author: "Nigerian Institute of Building Technologists (Edo Chapter)",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "Executive Problem Definition: Cause vs Symptom",
       "Material Take-Off Quantity Calculations with 5% Wastage Buffer",
@@ -305,12 +305,12 @@ const mockModules: TrainingModule[] = [
       id: "CERT-SABI-2026-783",
       moduleId: "BEN-MOD-07",
       moduleTitle: "Writing Accurate Defect Summaries & Material Take-Offs",
-      holderName: "Osaze Victor Ighodaro",
+      holderName: "Sample learner",
       trade: "Electrical Installation & Solar Inverters",
       serialNumber: "EDO-SABI-RPT-2026-0819",
       issuedAt: "2026-10-27T16:00:00Z",
-      verificationHash: "sha256-42bb9001ee74312da58",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      verificationHash: "demo-only",
+      accreditationBody: "Prototype sample — not accredited",
     },
   },
   {
@@ -324,7 +324,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Customer Experience Guild",
+    author: "Sample SabiWork guide",
     topicsCovered: [
       "The 'Friendly Boundary' Script for Unexpected Extras",
       "Creating Add-On Milestones Directly in the SabiWork Mobile App",
@@ -332,7 +332,7 @@ const mockModules: TrainingModule[] = [
     ],
     keyTakeaways: [
       "Never agree to extra electrical work without recording a milestone amendment.",
-      "Frame policy as customer protection: 'Ma, to ensure your warranty covers this new ceiling fan, let me add it to our official job ticket.'",
+      "Explain the proposed change clearly and record the customer’s agreement before continuing.",
     ],
     sections: [
       {
@@ -346,12 +346,12 @@ const mockModules: TrainingModule[] = [
       id: "CERT-SABI-2026-784",
       moduleId: "BEN-MOD-08",
       moduleTitle: "De-escalating Scope Creep & Requesting Milestone Add-ons",
-      holderName: "Osaze Victor Ighodaro",
+      holderName: "Sample learner",
       trade: "Electrical Installation & Solar Inverters",
       serialNumber: "EDO-SABI-SCP-2026-0312",
       issuedAt: "2026-10-28T09:15:00Z",
-      verificationHash: "sha256-11da8839cb4012fe77",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      verificationHash: "demo-only",
+      accreditationBody: "Prototype sample — not accredited",
     },
   },
 ];
@@ -397,12 +397,12 @@ export function completeModule(id: string): { success: boolean; module?: Trainin
       id: `CERT-SABI-2026-${Math.floor(100 + Math.random() * 900)}`,
       moduleId: target.id,
       moduleTitle: target.title,
-      holderName: "Osaze Victor Ighodaro",
+      holderName: "Sample learner",
       trade: "Electrical Installation & Solar Inverters",
       serialNumber: `EDO-SABI-${target.category.toUpperCase()}-2026-${Math.floor(1000 + Math.random() * 9000)}`,
       issuedAt: new Date().toISOString(),
       verificationHash: `sha256-${Math.random().toString(36).substring(2, 15)}`,
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      accreditationBody: "Prototype sample — not accredited",
     };
   }
   return { success: true, module: { ...target } };

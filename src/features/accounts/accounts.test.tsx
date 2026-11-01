@@ -87,13 +87,13 @@ describe("review regressions", () => {
     );
     expect(reset).toEqual({ ok: true, mode: "demo", kind: "reset-preview" });
   });
-  it("does not send customer signup visitors to an unimplemented artisan page", () => {
+  it("offers the implemented artisan signup path from customer signup", () => {
     mount(<AccountForm mode="signup" />);
     expect(
       screen.queryByRole("link", { name: /Offer your skills/ }),
     ).toBeNull();
     expect(
-      screen.getByText("Artisan registration will be available soon."),
+      screen.getByRole("link", { name: /Join as an artisan/i }),
     ).toBeTruthy();
   });
 });

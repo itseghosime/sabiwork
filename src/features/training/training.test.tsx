@@ -54,7 +54,7 @@ describe("Training Service", () => {
   it("fetches certificate for completed module", () => {
     const cert = getModuleCertificate("BEN-MOD-01");
     expect(cert).toBeDefined();
-    expect(cert?.holderName).toBe("Osaze Victor Ighodaro");
+    expect(cert?.holderName).toBe("Sample learner");
   });
 });
 
@@ -62,7 +62,7 @@ describe("Training Screens UI", () => {
   it("renders S44 Training Directory with filter pills and modules", () => {
     render(<TrainingDirectoryScreen />);
     expect(screen.getByText(/Artisan Training & Master Guides/i)).toBeDefined();
-    expect(screen.getByText(/Edo State Accredited/i)).toBeDefined();
+    expect(screen.getByText(/Sample learning content/i)).toBeDefined();
     expect(screen.getByText(/Site Safety/i)).toBeDefined();
 
     // Click filter pill
@@ -81,7 +81,7 @@ describe("Training Screens UI", () => {
   it("renders S46 Certificate of Course Completion", () => {
     render(<CertificateScreen id="BEN-MOD-01" />);
     expect(screen.getByText(/Certificate of Course Completion/i)).toBeDefined();
-    expect(screen.getByText(/Osaze Victor Ighodaro/i)).toBeDefined();
+    expect(screen.getByText(/Sample learner/i)).toBeDefined();
     expect(screen.getByRole("button", { name: /Print \/ Export Certificate/i })).toBeDefined();
     expect(screen.getByRole("link", { name: /View on Profile/i })).toBeDefined();
   });

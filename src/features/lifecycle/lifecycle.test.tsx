@@ -31,7 +31,7 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
       }),
     ).toBeDefined();
     expect(screen.getByText(/TXN-8819/i)).toBeDefined();
-    expect(screen.getByText(/Escrow Locked/i)).toBeDefined();
+    expect(screen.getByText(/Payment preview/i)).toBeDefined();
   });
 
   it("renders S27 My Jobs list with active jobs and milestones", () => {
@@ -81,12 +81,12 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     ).toBeDefined();
 
     const signoffBtn = screen.getByRole("button", {
-      name: /Authorize Escrow Release & Review/i,
+      name: /Confirm completion & review/i,
     });
     fireEvent.click(signoffBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/signed off successfully/i)).toBeDefined();
+      expect(screen.getByText(/No funds were released/i)).toBeDefined();
     });
   });
 });

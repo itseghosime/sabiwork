@@ -48,10 +48,10 @@ export interface MatchingQuote {
 }
 
 export const defaultSettings: CustomerSettings = {
-  fullName: "Osamudiamen Osazuwa",
-  email: "o.osazuwa@example.com",
-  phone: "+234 803 555 0192",
-  primaryDistrict: "GRA / Ihama Road",
+  fullName: "Sample customer",
+  email: "customer@example.test",
+  phone: "+234 800 000 0000",
+  primaryDistrict: "GRA district (sample location)",
   language: "English (Nigeria)",
   currency: "NGN (₦)",
   smsNotifications: true,
@@ -66,7 +66,7 @@ export const defaultJobDraft: JobRequestDraft = {
   urgency: "standard",
   budgetGuidanceKobo: 2500000, // ₦25,000
   district: "GRA / Boundary Rd",
-  address: "12A Ihama Way, Off Boundary Rd, GRA, Benin City",
+  address: "GRA district, Benin City (sample location)",
   description:
     "Water leakage discovered under the master bathroom floor tiles. Need pressure leak tracing, PPR pipe replacement, and bypass valve pressure check before 5 PM tomorrow.",
   photoCount: 3,
@@ -78,7 +78,7 @@ export const defaultQuotes: readonly MatchingQuote[] = [
   {
     id: "quote-01",
     artisanId: "00000000-0000-4000-8000-000000000001",
-    artisanName: "Osaze Ighodaro",
+    artisanName: "Sample artisan",
     artisanHeadline: "Master Plumber & Pipe Fitter · Vetted GRA Pro",
     artisanInitials: "OI",
     rating: 4.9,

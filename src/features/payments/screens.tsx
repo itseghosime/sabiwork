@@ -71,10 +71,10 @@ export function PaymentVerificationScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Payment Verification & Escrow Audit
+          Payment Status Preview
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Reference #{receipt.paymentRef} · Paystack TEST Transaction #{receipt.paystackTestRef}
+          Sample reference #{receipt.paymentRef} · no provider transaction
         </p>
       </header>
 
@@ -82,17 +82,17 @@ export function PaymentVerificationScreen({
         <div className="py-alert py-alert-success" role="status">
           <CheckCircle2 size={24} />
           <div>
-            <strong>Paystack TEST Mode Payment Verified!</strong>
+            <strong>Payment preview complete</strong>
             <p>
-              ₦{(receipt.amountKobo / 100).toLocaleString()} is held securely in SabiWork escrow.
-              Artisan {receipt.artisanName} has been notified to commence Milestone {receipt.milestoneNumber}.
+              ₦{(receipt.amountKobo / 100).toLocaleString()} is a sample amount only. No payment was made or held.
+              No notification was sent to {receipt.artisanName}.
             </p>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
               <Link
                 href={`/payments/${receipt.paymentRef}/receipt`}
                 className="button button-primary"
               >
-                View Official Receipt (S23) →
+                View Sample Receipt (S23) →
               </Link>
               <Link href="/jobs" className="button button-outline">
                 Back to My Jobs
@@ -106,10 +106,10 @@ export function PaymentVerificationScreen({
         <div className="py-alert py-alert-warning" role="status">
           <Clock size={24} />
           <div>
-            <strong>Awaiting Paystack Webhook Confirmation</strong>
+            <strong>Simulated pending state</strong>
             <p>
-              Your payment authorization is being confirmed by the banking switch. This page updates
-              automatically once the webhook signal arrives.
+              This interaction demonstrates a pending state only. No provider request or webhook is
+              active.
             </p>
             <button
               type="button"
@@ -127,10 +127,9 @@ export function PaymentVerificationScreen({
         <div className="py-alert py-alert-error" role="alert">
           <AlertCircle size={24} />
           <div>
-            <strong>Payment Authorization Failed or Declined</strong>
+            <strong>Simulated payment failure</strong>
             <p>
-              The transaction could not be completed by your test card provider. You can retry or
-              select an alternate payment method.
+              This interaction demonstrates an error state only. No transaction was attempted.
             </p>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
               <Link
@@ -202,7 +201,7 @@ export function PaymentReceiptScreen({
         <span aria-hidden="true">/</span>
         <Link href="/payments">Payment History</Link>
         <span aria-hidden="true">/</span>
-        <strong>Official Receipt (S23)</strong>
+            <strong>Sample Receipt (S23)</strong>
       </div>
 
       <div className="py-receipt-paper">
@@ -210,7 +209,7 @@ export function PaymentReceiptScreen({
           <div>
             <h1 className="py-receipt-title">SabiWork Payment Receipt</h1>
             <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-              Clear Trade Modern SafeTrade Escrow Vetting
+              Frontend demo · no payment processed
             </span>
           </div>
           <div style={{ textAlign: "right" }}>
@@ -225,7 +224,7 @@ export function PaymentReceiptScreen({
                 borderRadius: "999px",
               }}
             >
-              ✓ Escrow Protected
+              Sample only
             </span>
             <div style={{ fontSize: "12px", color: "var(--muted)", marginTop: "4px" }}>
               {receipt.dateWat}
@@ -239,7 +238,7 @@ export function PaymentReceiptScreen({
             <span className="py-receipt-value">{receipt.paymentRef}</span>
           </div>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Paystack TEST Token:</span>
+            <span className="py-receipt-label">Sample payment reference:</span>
             <span className="py-receipt-value">{receipt.paystackTestRef}</span>
           </div>
           <div className="py-receipt-row">
@@ -372,7 +371,7 @@ export function PaymentRecoveryScreen({
           Alternate Payment Method
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Resolve failed transaction for Job #{receipt.jobId} (₦{(receipt.amountKobo / 100).toLocaleString()})
+          Review payment options for Job #{receipt.jobId} (sample amount ₦{(receipt.amountKobo / 100).toLocaleString()})
         </p>
       </header>
 
@@ -396,9 +395,9 @@ export function PaymentRecoveryScreen({
         >
           <Building2 size={24} style={{ color: "#075e46" }} />
           <div>
-            <strong>Paystack Virtual Bank Transfer</strong>
+            <strong>Bank transfer preview</strong>
             <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-              Instant transfer to temporary dedicated bank account.
+              A future payment step would appear here. No account or transfer is created.
             </p>
           </div>
         </button>
@@ -412,7 +411,7 @@ export function PaymentRecoveryScreen({
           <div>
             <strong>Retry with Alternate Debit Card</strong>
             <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-              Visa, Mastercard, or Verve cards in Paystack TEST Mode.
+              Card payments are not connected in this prototype.
             </p>
           </div>
         </button>
@@ -448,7 +447,7 @@ export function PaymentRecoveryScreen({
           onClick={() => handleRetry(false)}
           disabled={recovering}
         >
-          {recovering ? "Authorizing..." : `Pay ₦${(receipt.amountKobo / 100).toLocaleString()} via ${selectedMethod}`}
+            {recovering ? "Preparing preview..." : `Preview ₦${(receipt.amountKobo / 100).toLocaleString()} via ${selectedMethod}`}
         </button>
       </div>
     </div>
@@ -512,7 +511,7 @@ export function MilestoneBalanceCheckoutScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Fund Milestone 2 Completion Balance
+          Review final balance preview
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
           Final payment of {balanceFormatted} for #{receipt.jobId} completed by {receipt.artisanName}
@@ -534,9 +533,8 @@ export function MilestoneBalanceCheckoutScreen({
       <section className="py-card">
         <h2 className="py-card-title">Completion Sign-off & Release Authorization</h2>
         <p style={{ margin: 0, color: "#334155", lineHeight: 1.5 }}>
-          By funding this final milestone balance, you confirm that you have physically inspected
-          the repair works completed by {receipt.artisanName} and authorize full escrow release to
-          the artisan.
+          This screen previews the final milestone balance for {receipt.artisanName}. No charge or
+          release occurs here; use the completion review to record a demo sign-off.
         </p>
         <div
           style={{
@@ -554,7 +552,7 @@ export function MilestoneBalanceCheckoutScreen({
               Milestone 2 Balance (50%)
             </span>
             <div style={{ fontSize: "11px", color: "#166534" }}>
-              Milestone 1 Deposit (₦{(receipt.amountKobo / 100).toLocaleString()}) already fulfilled.
+          Sample deposit amount (₦{(receipt.amountKobo / 100).toLocaleString()}). No payment was made.
             </div>
           </div>
           <div
@@ -584,7 +582,7 @@ export function MilestoneBalanceCheckoutScreen({
             onClick={() => handlePayBalance(false)}
             disabled={submitting}
           >
-            {submitting ? "Processing..." : `Approve & Pay ${balanceFormatted} via TEST Mode`}
+            {submitting ? "Saving preview..." : `Confirm completion & review (${balanceFormatted})`}
           </button>
         </div>
       </section>

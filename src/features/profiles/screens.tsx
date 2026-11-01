@@ -176,7 +176,7 @@ export function ArtisanProfileScreen({
             <strong>Verification Under Review</strong>
             <p>
               This artisan profile is currently undergoing credentials review by the Benin City Hub
-              desk. Direct escrow quote submission is temporarily in preview mode.
+              desk. Profile review and quote submission are prototype interactions.
             </p>
           </div>
         </div>
@@ -199,7 +199,7 @@ export function ArtisanProfileScreen({
                   ) : (
                     <span className="pf-badge-reviewed">Admin-Reviewed Profile</span>
                   )}
-                  <span className="pf-badge-testmode">Paystack TEST Mode</span>
+                  <span className="pf-badge-testmode">Sample profile</span>
                 </div>
               </div>
               <p style={{ margin: "4px 0 8px 0", color: "#475569", fontWeight: 500 }}>
@@ -223,7 +223,7 @@ export function ArtisanProfileScreen({
             <span className="pf-price-label">Starting Labor Benchmark</span>
             <span className="pf-price-value">{formattedStartingPrice}</span>
             <span style={{ fontSize: "11px", color: "#64748b" }}>
-              Paystack TEST Mode Escrow Protected
+              Sample profile · payments not connected
             </span>
           </div>
         </div>
@@ -396,8 +396,7 @@ export function ArtisanProfileScreen({
               <FileText size={20} /> Request a Quote
             </h2>
             <p style={{ fontSize: "13px", color: "var(--muted)", margin: 0 }}>
-              Direct inquiry to {artisan.name}. All payments held in Paystack TEST Mode escrow until
-              job completion.
+              Send a sample inquiry to {artisan.name}. This prototype does not process or hold payments.
             </p>
 
             {quoteSubmitted ? (
@@ -478,7 +477,7 @@ export function ArtisanProfileScreen({
           {/* Safety & Compliance Card */}
           <div className="pf-card" style={{ background: "#f8fafc" }}>
             <h3 style={{ fontSize: "14px", fontWeight: 700, margin: 0, color: "#0e294b" }}>
-              SabiWork SafeTrade Guarantee
+              Prototype preview
             </h3>
             <ul
               style={{
@@ -490,9 +489,9 @@ export function ArtisanProfileScreen({
                 gap: "8px",
               }}
             >
-              <li>Physical workshop vetted in Benin City</li>
-              <li>Two-milestone Paystack TEST escrow release</li>
-              <li>Official dispute resolution protocol (S33)</li>
+              <li>Artisan profiles use sample data</li>
+              <li>Payment and dispute services are not connected</li>
+              <li>Verification decisions require backend support</li>
             </ul>
           </div>
         </div>
@@ -850,7 +849,7 @@ export function ArtisanProfileEditorScreen({
             <label htmlFor="artisan-name">Full Legal Trade Name</label>
             <input id="artisan-name" type="text" value={profile.name} disabled readOnly />
             <span style={{ fontSize: "11.5px", color: "var(--muted)" }}>
-              Locked via NIN/BVN Identity Verification. Contact Admin Desk to update legal name.
+              Sample identity details only. Do not enter real NIN or BVN data in this prototype.
             </span>
           </div>
 
@@ -985,8 +984,8 @@ export function ArtisanProfileEditorScreen({
             >
               <strong style={{ color: "var(--text-dark, #0e294b)" }}>Pricing Integrity Note:</strong>
               <p style={{ margin: "4px 0 0 0" }}>
-                Starting prices are transparently displayed on discovery cards (S01, S03). All
-                contracts require 2-milestone escrow deposits in Paystack TEST mode.
+                Starting prices are sample guidance. This prototype does not create contracts or
+                accept milestone payments.
               </p>
             </div>
           </div>
@@ -1002,11 +1001,11 @@ export function ArtisanProfileEditorScreen({
 
 export function ArtisanVerificationScreen() {
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
-  const [ninNumber, setNinNumber] = useState("29481029381");
+  const [ninNumber, setNinNumber] = useState("");
   const [tradeGuild, setTradeGuild] = useState("Benin Plumbing Guild (Edo State Chapter)");
-  const [certificateRef, setCertificateRef] = useState("CERT-BN-2018-992");
-  const [masterCraftsman, setMasterCraftsman] = useState("Chief P. O. Osagie");
-  const [workshopAddress, setWorkshopAddress] = useState("14 Airport Rd, Boundary, Benin City");
+  const [certificateRef, setCertificateRef] = useState("");
+  const [masterCraftsman, setMasterCraftsman] = useState("");
+  const [workshopAddress, setWorkshopAddress] = useState("");
   const [declarationChecked, setDeclarationChecked] = useState(false);
 
   const [submitting, setSubmitting] = useState(false);
@@ -1052,8 +1051,8 @@ export function ArtisanVerificationScreen() {
           Artisan Verification & Credentials Submission
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Submit your official qualifications, NIN, and photographic work proof for Benin City Hub
-          vetting.
+          Add sample profile details and work photos. Verification is a prototype flow; do not
+          submit real identity documents here.
         </p>
       </header>
 

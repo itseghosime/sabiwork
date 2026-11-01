@@ -122,9 +122,9 @@ function PageTitle({
         )}
         <div className="rw-badge-cluster">
           {badge}
-          <div className="rw-test-mode-pill" title="Paystack sandbox integration active">
+          <div className="rw-test-mode-pill" title="Sample amounts only">
             <span className="rw-pulse-dot" aria-hidden="true" />
-            <span>Paystack TEST Mode Active</span>
+            <span>Demo data only</span>
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@ function JobCard({
         </div>
         <div className="rw-job-name">
           <div className="rw-job-header-row">
-            <span className="rw-kicker">COMPLETED SERVICE · #{job.reference}</span>
+            <span className="rw-kicker">SAMPLE SERVICE · #{job.reference}</span>
             <span className="rw-trade-tag">{job.artisanTrade}</span>
           </div>
           <h2>{job.artisan}</h2>
@@ -188,7 +188,7 @@ function JobCard({
         )}
       </div>
       <div className="rw-job-amount">
-        <span className="rw-label">Total paid (escrow released)</span>
+        <span className="rw-label">Sample job amount</span>
         <strong>{formatNaira(job.totalKobo)}</strong>
         <span>Completed {job.completedOn} · 2:30 PM WAT</span>
       </div>
@@ -777,7 +777,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
               <strong>{formatNaira(job.totalKobo)}</strong>
             </div>
             <div className="rw-text-right">
-              <span className="rw-label rw-highlight-label">Milestone 1 Held</span>
+              <span className="rw-label rw-highlight-label">Sample milestone 1</span>
               <strong className="rw-highlight-strong">{formatNaira(job.depositKobo)}</strong>
             </div>
           </div>
@@ -788,10 +788,10 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
             <span>
               Milestone 2 Balance Due: <strong>{formatNaira(job.balanceKobo)}</strong>
             </span>
-            <span>33% Escrowed</span>
+            <span>Demo progress · 33%</span>
           </div>
           <p className="rw-escrow-notice">
-            <Shield size={14} /> Funds held securely in mock TEST escrow pending dispute assessment.
+            <Shield size={14} /> Sample amounts only. No payment has been made or held.
           </p>
         </div>
       </section>
@@ -944,7 +944,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
               >
                 <option>Ask the artisan to review and correct the issue</option>
                 <option>Agree on a mutual completion deadline</option>
-                <option>Request formal SabiWork mediation & escrow review</option>
+                <option>Request a SabiWork support review (prototype)</option>
               </select>
               <ChevronDown size={17} aria-hidden="true" />
             </div>
@@ -998,18 +998,17 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
             </button>
           </div>
           <p className="rw-fineprint">
-            Official disputes follow SabiWork Trade Mediation rules. Server authorization
-            and automated escrow holding will be enforced on backend integration.
+            Prototype report only. This does not submit a real dispute or place a payment hold.
           </p>
         </form>
 
         <aside className="rw-side-stack">
           <section className="rw-card rw-money-card">
-            <p className="rw-eyebrow">ESCROW BALANCE · BENIN HUB</p>
+            <p className="rw-eyebrow">SAMPLE JOB AMOUNTS</p>
             <h2>{formatNaira(job.totalKobo)}</h2>
             <dl>
               <div>
-                <dt>Deposit (Held in Escrow)</dt>
+                <dt>Sample deposit</dt>
                 <dd>{formatNaira(job.depositKobo)}</dd>
               </div>
               <div>
@@ -1018,7 +1017,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
               </div>
             </dl>
             <p className="rw-caution">
-              <Info size={16} /> Fictional demonstration amounts. No real card charge or escrow freeze has occurred.
+              <Info size={16} /> Sample amounts only. No payment or escrow service is connected.
             </p>
           </section>
 
@@ -1046,7 +1045,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
                 <span>3</span>
                 <div>
                   <strong>Impartial Determination</strong>
-                  <p>Escrow is disbursed or refunded according to documented project milestones.</p>
+                  <p>A future support team could review the submitted information. No mediation service is connected.</p>
                 </div>
               </li>
             </ol>
@@ -1173,8 +1172,8 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
         }
       />
       <DemoNotice>
-        This dispute tracker is a prototype demonstration. No real legal mediation or escrow
-        freeze is active.
+        This dispute tracker is a prototype demonstration. No real legal mediation, payment hold,
+        or dispute filing is active.
       </DemoNotice>
 
       <div className="rw-status-controls" aria-label="Preview status states">
@@ -1206,10 +1205,10 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
           </p>
         </div>
         <div className="rw-case-amount">
-          <span className="rw-label">Contested escrow ({data.milestone})</span>
+          <span className="rw-label">Sample amount · {data.milestone}</span>
           <strong>{formatNaira(relatedAmountKobo)}</strong>
           <small>
-            <Lock size={12} /> Held safely in Paystack mock escrow
+            <Lock size={12} /> No funds are held in this prototype
           </small>
         </div>
       </section>
@@ -1398,14 +1397,12 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
             </div>
             <h2>Neutral Mediation Protocol</h2>
             <p>
-              SabiWork mediators uphold strict procedural neutrality between property
-              owners and guild artisans.
+              Sample guidance only. No mediation team or official case process is connected.
             </p>
             <div className="rw-policy-line">
               <Info size={16} />
               <span>
-                Escrow funds remain frozen until an agreed settlement or formal
-                determination is entered.
+                This prototype does not freeze funds or record a formal determination.
               </span>
             </div>
           </section>
@@ -1501,18 +1498,18 @@ export function AdminDisputeQueueScreen() {
       </div>
 
       <PageTitle
-        eyebrow="S34 · BENIN HUB DESK • ESCROW DISPUTE OPERATIONS"
+        eyebrow="S34 · ADMIN PROTOTYPE • DISPUTE QUEUE"
         title="Dispute Resolution & Mediation Queue"
-        description="Review active trade disputes lodged across Benin City. Impartially examine linked contracts, frozen Paystack TEST milestone escrow, and lodged evidence."
+        description="Review sample dispute records in the admin prototype. Case state, evidence privacy, and payment actions require a secured backend."
         badge={
           <span className="rw-service-pill">
-            <Gavel size={14} /> Dual Sign-off Active
+            <Gavel size={14} /> Demo workspace
           </span>
         }
       />
       <DemoNotice>
         The current admin shell is a presentation scaffold. Server-side admin authentication,
-        case privacy, and escrow release execution are pending backend connection.
+        case privacy, and payment actions require backend connection.
       </DemoNotice>
 
       <div className="rw-queue-metrics">
@@ -1527,9 +1524,9 @@ export function AdminDisputeQueueScreen() {
           <small>&gt; 48h SLA deadline</small>
         </div>
         <div>
-          <span>Contested Escrow</span>
+          <span>Sample Amounts</span>
           <strong>₦145,000</strong>
-          <small>Held in Paystack TEST</small>
+          <small>No funds held</small>
         </div>
         <div>
           <span>Resolved (This Week)</span>
@@ -1710,7 +1707,7 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
       />
       <DemoNotice>
         These admin controls are prototype interaction previews. They do not alter database
-        case state or trigger automated Paystack escrow transfers.
+        case state or trigger payment transfers.
       </DemoNotice>
 
       <section className="rw-case-hero rw-admin-case-hero">
@@ -1874,11 +1871,11 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
           </section>
 
           <section className="rw-card rw-money-card">
-            <p className="rw-eyebrow">CONTESTED ESCROW BREAKDOWN</p>
+            <p className="rw-eyebrow">SAMPLE AMOUNT BREAKDOWN</p>
             <h2>{formatNaira(dispute.job.totalKobo)}</h2>
             <dl>
               <div>
-                <dt>Deposit (Held in Escrow)</dt>
+                <dt>Sample deposit</dt>
                 <dd>{formatNaira(dispute.job.depositKobo)}</dd>
               </div>
               <div>
@@ -1887,7 +1884,7 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
               </div>
             </dl>
             <p className="rw-caution">
-              <Info size={16} /> Escrow freeze active on Paystack mock gateway.
+              <Info size={16} /> Demonstration amounts only. No payment or freeze is active.
             </p>
           </section>
 

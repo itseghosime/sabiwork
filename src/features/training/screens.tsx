@@ -58,12 +58,12 @@ export function TrainingDirectoryScreen() {
                 Screen S44 • Master Craftsman Academy
               </span>
               <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                <ShieldCheck className="w-3.5 h-3.5" /> Edo State Accredited
+                <ShieldCheck className="w-3.5 h-3.5" /> Sample learning content
               </span>
             </div>
             <h1 className="text-2xl font-bold text-on-surface mt-1">Artisan Training & Master Guides</h1>
             <p className="text-sm text-secondary">
-              Elevate your trade standards in Benin City: client communications, photographic proofs, safety protocols, and 2-stage escrow management.
+              Sample guidance for client communication, work photos, safety, and future payment flows. No accreditation is issued by this prototype.
             </p>
           </div>
 
@@ -77,7 +77,7 @@ export function TrainingDirectoryScreen() {
           <div className="sabi-training-stat-card">
             <span className="text-xs font-semibold text-secondary uppercase">Guides Completed</span>
             <div className="sabi-training-stat-val text-emerald-600">{stats.completedCount}</div>
-            <div className="text-xs text-secondary mt-1">Accredited certifications issued</div>
+            <div className="text-xs text-secondary mt-1">Sample certificates previewed</div>
           </div>
           <div className="sabi-training-stat-card">
             <span className="text-xs font-semibold text-secondary uppercase">In Progress</span>
@@ -360,7 +360,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
                   </h3>
                 </div>
                 <p className="text-xs text-secondary">
-                  Check each core protocol to confirm understanding before requesting your accredited completion certificate.
+                Check each topic to preview a sample completion certificate.
                 </p>
 
                 <div className="space-y-2">
@@ -431,7 +431,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
 
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 text-xs text-blue-900 space-y-2">
               <div className="font-bold flex items-center gap-1.5">
-                <FileCheck className="w-4 h-4 text-primary" /> Certificate Guarantee
+                <FileCheck className="w-4 h-4 text-primary" /> Certificate preview
               </div>
               <p>
                 Finishing this guide awards the verified course endorsement on your public artisan profile (S04) and unlocks higher matching priority.
@@ -451,7 +451,7 @@ export function CertificateScreen({ id }: { id: string }) {
     id: "CERT-SABI-2026-781",
     moduleId: mod.id,
     moduleTitle: mod.title,
-    holderName: "Osaze Victor Ighodaro",
+    holderName: "Sample learner",
     trade: "Electrical Installation & Solar Inverters",
     serialNumber: "EDO-SABI-COM-2026-0941",
     issuedAt: "2026-10-31T14:30:00Z",
