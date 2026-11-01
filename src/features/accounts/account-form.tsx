@@ -283,7 +283,10 @@ export function AccountForm({
           <span>
             <Icon name="home" size={18} /> I’m looking for an artisan
           </span>
-          <p>Artisan registration will be available soon.</p>
+          <p>Choose the artisan path if you want to offer your skills.</p>
+          <Link href="/signup/artisan" className="auth-role-link">
+            Join as an artisan <Icon name="arrow" size={16} />
+          </Link>
         </div>
       )}
       <form ref={form} onSubmit={submit} noValidate aria-busy={pending}>
@@ -404,68 +407,4 @@ export function AccountForm({
             {pending ? (
               <>
                 <span className="auth-spinner" aria-hidden="true" />
-                Checking sample details…
-              </>
-            ) : (
-              <>
-                {heading.action}
-                <Icon name="arrow" size={18} />
-              </>
-            )}
-          </button>
-          <p className="auth-fineprint">
-            This is a local frontend preview. No account, session, email or
-            password change is created.
-          </p>
-        </fieldset>
-      </form>
-      {mode === "login" && (
-        <details className="auth-demo-help">
-          <summary>Sample details for this preview</summary>
-          <p>
-            Email: <code>{demoCredentials.email}</code>
-            <br />
-            Password: <code>{demoCredentials.password}</code>
-          </p>
-          <button
-            type="button"
-            className="text-link auth-text-button"
-            disabled={pending}
-            onClick={() => {
-              setValues((previous) => ({
-                ...previous,
-                email: demoCredentials.email,
-                password: demoCredentials.password,
-              }));
-              setErrors({});
-              setResult(null);
-            }}
-          >
-            Fill sample details
-          </button>
-        </details>
-      )}
-      <div className="auth-switch">
-        {mode === "signup" ? (
-          <>
-            Already have an account?{" "}
-            <Link className="text-link" href="/login">
-              Log in
-            </Link>
-          </>
-        ) : mode === "login" ? (
-          <>
-            New to SabiWork?{" "}
-            <Link className="text-link" href="/signup/customer">
-              Create a customer account
-            </Link>
-          </>
-        ) : (
-          <Link className="text-link" href="/login">
-            <Icon name="back" size={16} /> Back to login
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-}
+                Che

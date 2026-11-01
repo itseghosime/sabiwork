@@ -13,16 +13,16 @@
 /* Wizard Styles for S08 */
 .sabi-wizard-card {
   background: var(--surface, #ffffff);
-  border: 1px solid var(--outline-variant, #dce2f7);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(20, 27, 43, 0.05);
+  border: 1px solid #dce7f2;
+  border-radius: 22px;
+  box-shadow: 0 18px 48px rgb(14 41 75 / 7%);
   overflow: hidden;
 }
 
 .sabi-wizard-header {
-  background: #f1f5fa;
-  border-bottom: 1px solid var(--outline-variant, #dce2f7);
-  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, #edf7ff, #fff);
+  border-bottom: 1px solid #dce7f2;
+  padding: clamp(1.25rem, 3vw, 2rem);
 }
 
 .sabi-wizard-stepper {
@@ -48,7 +48,7 @@
 }
 
 .sabi-wizard-body {
-  padding: 1.5rem;
+  padding: clamp(1.25rem, 3.5vw, 2.75rem);
 }
 
 @media (min-width: 768px) {
@@ -86,11 +86,11 @@
 .sabi-input-group textarea {
   min-height: 44px;
   padding: 0.625rem 0.875rem;
-  border-radius: 8px;
-  border: 1px solid var(--outline-variant, #bec8d1);
+  border-radius: 12px;
+  border: 1px solid #d5e0eb;
   background: #ffffff;
   color: #141b2b;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -115,7 +115,7 @@
   gap: 0.5rem;
   padding: 0.625rem 0.875rem;
   border: 1px solid var(--outline-variant, #bec8d1);
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   background: #ffffff;
   font-size: 0.875rem;
