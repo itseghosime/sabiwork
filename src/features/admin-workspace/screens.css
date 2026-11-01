@@ -10,6 +10,7 @@
 
   /* Single brand hue. Every non-status colour in this file derives from
      --primary (#006491); status green/amber/red stay semantic. */
+  --admin-brand-shade: #00557e;
   --admin-brand-ink: #0b4a6f;
   --admin-brand-tint-05: #f2f8fa;
   --admin-brand-tint-08: #ebf3f6;
@@ -646,7 +647,7 @@
 }
 
 .ad-btn-primary:hover:not(:disabled) {
-  background: #00557e;
+  background: var(--admin-brand-shade);
 }
 
 .ad-btn-ghost {

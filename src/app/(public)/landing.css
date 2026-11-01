@@ -488,14 +488,6 @@
     padding: 10px 9px 9px;
   }
 
-  .landing-hero .fan-caption strong {
-    font-size: 12px;
-  }
-
-  .landing-hero .fan-caption > span {
-    font-size: 10px;
-  }
-
   .landing-hero .fan-badge {
     display: inline-flex;
     font-size: 8px;

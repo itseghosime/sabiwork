@@ -1,96 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Top Ribbon Arc: Electric Cyan -> Sky Blue -> Cerulean Deep -->
-    <linearGradient id="swTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00D2FF"/>
-      <stop offset="42%" stop-color="#38A8E8"/>
-      <stop offset="100%" stop-color="#006BB3"/>
+    <!-- Cyan to Sky Gradient for Upper Segment -->
+    <linearGradient id="opt1CyanSky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="50%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
     </linearGradient>
 
-    <!-- Bottom Ribbon Arc: Vibrant Cobalt -> Edo Guild Navy Deep -->
-    <linearGradient id="swBottomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1478B5"/>
-      <stop offset="55%" stop-color="#0E3A66"/>
-      <stop offset="100%" stop-color="#0A1E36"/>
+    <!-- Deep Navy to Cobalt Gradient for Lower Foundation -->
+    <linearGradient id="opt1NavyCobalt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E40AF"/>
+      <stop offset="60%" stop-color="#0E294B"/>
+      <stop offset="100%" stop-color="#08172E"/>
     </linearGradient>
 
-    <!-- 3D Overlap Fold Shading -->
-    <linearGradient id="swFoldShadow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#051324" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#051324" stop-opacity="0"/>
+    <!-- Mid Connector Gradient -->
+    <linearGradient id="opt1MidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#1E40AF"/>
     </linearGradient>
 
-    <!-- Gloss Highlight Arch -->
-    <linearGradient id="swGloss" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- High-Precision Ambient Drop Shadow -->
-    <filter id="swShadow" x="-15%" y="-15%" width="130%" height="130%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0A1E36" flood-opacity="0.22"/>
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#38A8E8" flood-opacity="0.25"/>
+    <!-- Subtle Ambient Drop Shadow -->
+    <filter id="opt1DropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#08172E" flood-opacity="0.25"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0284C7" flood-opacity="0.2"/>
     </filter>
   </defs>
 
-  <g filter="url(#swShadow)">
-    <!-- 1. BOTTOM RIBBON (Navy to Cobalt) -->
-    <path d="M 238 230
-             C 290 250, 385 290, 385 365
-             C 385 435, 325 465, 256 465
-             C 175 465, 127 420, 127 365
-             C 127 335, 150 312, 180 312
-             C 208 312, 226 333, 230 355
-             C 236 385, 245 405, 256 405
-             C 285 405, 315 385, 315 352
-             C 315 305, 250 270, 198 240
-             L 238 230 Z" 
-          fill="url(#swBottomGrad)"/>
+  <g filter="url(#opt1DropShadow)">
+    <!-- OUTER SHIELD ACCENT / BACKGROUND BADGE (Hexagonal Guild Contour) -->
+    <rect x="36" y="36" width="440" height="440" rx="96" fill="#FFFFFF" fill-opacity="0.04" stroke="rgba(2, 132, 199, 0.15)" stroke-width="2"/>
 
-    <!-- 2. TOP RIBBON (Electric Cyan to Sky Blue) -->
-    <path d="M 274 282
-             C 222 262, 127 222, 127 147
-             C 127 77, 187 47, 256 47
-             C 337 47, 385 92, 385 147
-             C 385 177, 362 200, 332 200
-             C 304 200, 286 179, 282 157
-             C 276 127, 267 107, 256 107
-             C 227 107, 197 127, 197 160
-             C 197 207, 262 242, 314 272
-             L 274 282 Z"
-          fill="url(#swTopGrad)"/>
-
-    <!-- 3. DIAGONAL INTERLOCK CONNECTOR -->
-    <path d="M 198 240
-             C 250 270, 315 305, 315 352
-             L 314 272
-             C 262 242, 197 207, 197 160
+    <!-- SEGMENT A: LOWER FOUNDATION HOOK (Navy / Cobalt) -->
+    <!-- Geometric interlocking architectural block forming bottom loop of S -->
+    <path d="M 120 330
+             L 120 400
+             C 120 424, 140 444, 164 444
+             L 348 444
+             C 372 444, 392 424, 392 400
+             L 392 276
+             C 392 252, 372 232, 348 232
+             L 240 232
+             L 240 300
+             L 316 300
+             C 324 300, 330 306, 330 314
+             L 330 366
+             C 330 374, 324 380, 316 380
+             L 196 380
+             C 188 380, 182 374, 182 366
+             L 182 330
              Z"
-          fill="url(#swTopGrad)"/>
+          fill="url(#opt1NavyCobalt)"/>
 
-    <!-- 4. 3D FOLD OVERLAY SHADOW -->
-    <path d="M 238 230
-             L 274 282
-             C 255 272, 230 256, 210 240
+    <!-- SEGMENT B: UPPER SKY HOOK (Electric Cyan / Sky Blue) -->
+    <!-- Interlocking top block of S -->
+    <path d="M 392 182
+             L 392 112
+             C 392 88, 372 68, 348 68
+             L 164 68
+             C 140 68, 120 88, 120 112
+             L 120 236
+             C 120 260, 140 280, 164 280
+             L 272 280
+             L 272 212
+             L 196 212
+             C 188 212, 182 206, 182 198
+             L 182 146
+             C 182 138, 188 132, 196 132
+             L 316 132
+             C 324 132, 330 138, 330 146
+             L 330 182
              Z"
-          fill="url(#swFoldShadow)"/>
+          fill="url(#opt1CyanSky)"/>
 
-    <!-- 5. GLOSS HIGHLIGHT ON UPPER ARCH -->
-    <path d="M 185 125
-             C 205 90, 235 75, 270 75
-             C 310 75, 345 92, 360 120
-             C 345 102, 315 88, 275 88
-             C 240 88, 205 102, 190 120
+    <!-- SEGMENT C: CENTRAL INTERLOCKING BRIDGE (45-degree Joint) -->
+    <path d="M 240 232
+             L 272 212
+             L 272 280
+             L 240 300
              Z"
-          fill="url(#swGloss)"/>
+          fill="url(#opt1MidGrad)"/>
 
-    <!-- 6. CRAFTSMAN GUILD STAR (Central Verified Spark) -->
-    <g transform="translate(256, 256)">
-      <path d="M 0 -22 L 6 -6 L 22 0 L 6 6 L 0 22 L -6 6 L -22 0 L -6 -6 Z" 
-            fill="#FFFFFF" 
-            opacity="0.96"/>
-      <circle cx="0" cy="0" r="3.5" fill="#00D2FF"/>
+    <!-- GUILD SPARK (Precision Star in Negative Space) -->
+    <g transform="translate(356, 156)">
+      <polygon points="0,-16 4.5,-4.5 16,0 4.5,4.5 0,16 -4.5,4.5 -16,0 -4.5,-4.5" fill="#00E5FF"/>
+      <circle cx="0" cy="0" r="2.5" fill="#FFFFFF"/>
+    </g>
+
+    <g transform="translate(156, 356)">
+      <polygon points="0,-12 3.5,-3.5 12,0 3.5,3.5 0,12 -3.5,3.5 -12,0 -3.5,-3.5" fill="#38A8E8" opacity="0.85"/>
     </g>
   </g>
 </svg>

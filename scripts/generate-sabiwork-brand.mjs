@@ -52,7 +52,7 @@ export const sabiworkIconSvg = `<?xml version="1.0" encoding="UTF-8"?>
              C 236 385, 245 405, 256 405
              C 285 405, 315 385, 315 352
              C 315 305, 250 270, 198 240
-             L 238 230 Z" 
+             L 238 230 Z"
           fill="url(#swBottomGrad)"/>
 
     <!-- 2. TOP RIBBON (Electric Cyan to Sky Blue) -->
@@ -94,8 +94,8 @@ export const sabiworkIconSvg = `<?xml version="1.0" encoding="UTF-8"?>
 
     <!-- 6. CRAFTSMAN GUILD STAR (Central Verified Spark) -->
     <g transform="translate(256, 256)">
-      <path d="M 0 -22 L 6 -6 L 22 0 L 6 6 L 0 22 L -6 6 L -22 0 L -6 -6 Z" 
-            fill="#FFFFFF" 
+      <path d="M 0 -22 L 6 -6 L 22 0 L 6 6 L 0 22 L -6 6 L -22 0 L -6 -6 Z"
+            fill="#FFFFFF"
             opacity="0.96"/>
       <circle cx="0" cy="0" r="3.5" fill="#00D2FF"/>
     </g>

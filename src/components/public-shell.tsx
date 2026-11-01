@@ -127,18 +127,18 @@ function PublicShellContent({
             <p className="mobile-nav-label">Choose your path</p>
             <Link
               className="button button-outline mobile-path"
-              href="/signup/customer"
-              onClick={() => setOpen(false)}
-            >
-              Hire an artisan
-              <Icon name="arrow" size={17} />
-            </Link>
-            <Link
-              className="button button-primary mobile-path"
               href="/signup/artisan"
               onClick={() => setOpen(false)}
             >
               Join as an artisan
+              <Icon name="arrow" size={17} />
+            </Link>
+            <Link
+              className="button button-primary mobile-path"
+              href="/signup/customer"
+              onClick={() => setOpen(false)}
+            >
+              Hire an artisan
               <Icon name="arrow" size={17} />
             </Link>
           </nav>
@@ -149,7 +149,7 @@ function PublicShellContent({
       </main>
       <footer className="site-footer public-shell-footer">
         <div className="container footer-top">
-          <div>
+          <div className="footer-brand">
             <Brand />
             <p>
               Good work starts with the right person.
@@ -157,13 +157,23 @@ function PublicShellContent({
               Discover skilled hands around Benin City.
             </p>
           </div>
-          <nav aria-label="Footer navigation">
+          <nav aria-label="Explore" className="footer-column">
+            <p className="footer-heading">Explore</p>
             <Link href="/categories">Explore services</Link>
             <Link href="/artisans">Find an artisan</Link>
             <Link href="/#how-it-works">How it works</Link>
           </nav>
+          <nav aria-label="Account" className="footer-column">
+            <p className="footer-heading">Account</p>
+            <Link href="/login">Log in</Link>
+            <Link href="/signup/customer">Hire an artisan</Link>
+            <Link href="/signup/artisan">Join as an artisan</Link>
+          </nav>
           <div className="footer-location">
-            <Icon name="pin" size={18} /> Benin City, Nigeria
+            <p className="footer-heading">Where we work</p>
+            <span className="footer-place">
+              <Icon name="pin" size={16} /> Benin City, Nigeria
+            </span>
             <span className="demo-tag">Neighbourhood services marketplace</span>
           </div>
         </div>
