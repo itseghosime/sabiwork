@@ -140,6 +140,7 @@
   justify-self: center;
   align-self: center;
 }
+.auth-mobile-brand { display: none; }
 .auth-demo-notice {
   display: flex;
   align-items: flex-start;
@@ -518,6 +519,12 @@
   .auth-grid {
     gap: 24px;
     width: min(100% - 32px, 620px);
+  }
+  .auth-story { display: none; }
+  .auth-mobile-brand {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
   }
   .auth-story {
     padding: 22px;

@@ -66,6 +66,7 @@ export function AuthFrame({
           <p className="auth-story-foot">A clear path from first request to finished work.</p>
         </aside>
         <div className="auth-form-column">
+          <div className="auth-mobile-brand"><Brand /></div>
           <div className="auth-demo-notice">
             <Icon name="help" size={18} />
             <p>
