@@ -1,6 +1,7 @@
 import "server-only";
 
 import { eq } from "drizzle-orm";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { AccountRole } from "@/features/accounts/access";
 import { getAuth } from "./auth";
@@ -10,6 +11,14 @@ import { userProfiles } from "./schema";
 type ProfileRow = { role: AccountRole };
 
 export async function getSessionUser() {
+  const cookieStore = await cookies();
+  const hasSessionCookie =
+    cookieStore.has("__Secure-neon-auth.session_token") ||
+    cookieStore.has("__Secure-neon-auth.local.session_data");
+  if (!hasSessionCookie) {
+    return { kind: "unauthenticated" as const };
+  }
+
   const { data, error } = await getAuth().getSession();
   if (error) {
     console.error("[auth] Session lookup failed", error.code);
