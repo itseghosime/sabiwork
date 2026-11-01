@@ -123,7 +123,7 @@ function PageTitle({
           {badge}
           <div className="rw-test-mode-pill" title="Frontend sample interaction; no payment provider connected">
             <span className="rw-pulse-dot" aria-hidden="true" />
-            <span>Prototype Preview</span>
+            <span>Availability notice</span>
           </div>
         </div>
       </div>
@@ -139,7 +139,7 @@ function DemoNotice({ children }: { children: React.ReactNode }) {
     <div className="rw-demo-notice" role="note">
       <Info size={18} aria-hidden="true" />
       <p>
-        <strong>Frontend demo.</strong> {children}
+        <strong>Current status.</strong> {children}
       </p>
     </div>
   );

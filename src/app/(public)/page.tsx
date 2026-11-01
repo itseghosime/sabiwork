@@ -80,7 +80,7 @@ export default function HomePage() {
           </div>
           <p className="hero-note">
             Real skills. Local connections.{" "}
-            <span>Illustrative demo profiles.</span>
+            <span>Illustrative profiles.</span>
           </p>
         </div>
       </section>

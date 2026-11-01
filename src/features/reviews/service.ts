@@ -114,6 +114,8 @@ export const reviewsDemoService = {
       return error("VALIDATION", "Add at least 10 characters of feedback.");
     if (!input.jobId && !isTestEnv)
       return error("VALIDATION", "A job id is required to save this review.");
+    if (input.simulateUnavailable)
+      return error("UNAVAILABLE", "Service temporarily unavailable. Your review text is still here; try again.");
 
     if (isTestEnv) {
       return { ok: true, mode: "demo", kind: "review-preview", message: "Review saved." };
@@ -184,7 +186,7 @@ export const reviewsDemoService = {
       ok: true as const,
       mode: "demo" as const,
       kind: action,
-      message: "Admin action endpoints are coming soon.",
+      message: "Admin action endpoints are coming soon. This case has not changed.",
     };
   },
 };

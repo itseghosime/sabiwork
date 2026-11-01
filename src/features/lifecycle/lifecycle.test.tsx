@@ -30,7 +30,7 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
         name: /Sample Payment History/i,
       }),
     ).toBeDefined();
-    expect(screen.getByText(/SAMPLE-TRANSACTION-001/i)).toBeDefined();
+    expect(screen.getByText(new RegExp(defaultTransactions[0]!.id, "i"))).toBeDefined();
     expect(screen.getAllByText(/Sample payment preview · not paid/i)).toHaveLength(
       defaultTransactions.length,
     );
@@ -41,7 +41,7 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: /My Jobs & Active Engagements/i }),
     ).toBeDefined();
-    expect(screen.getByText(/PPR Water Pipe Burst/i)).toBeDefined();
+    expect(screen.getByText(defaultActiveJobs[0]!.title)).toBeDefined();
     expect(screen.getByText(/Sample in-progress state/i)).toBeDefined();
   });
 
@@ -50,11 +50,11 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /PPR Water Pipe Burst & Overhead Tank Balancing in GRA/i,
+        name: new RegExp(defaultActiveJobs[0]!.title, "i"),
       }),
     ).toBeDefined();
     expect(screen.getByText(/Sample Work Progress Log/i)).toBeDefined();
-    expect(screen.getByText(/Acoustic Leak Tracing Complete/i)).toBeDefined();
+    expect(screen.getByText(/Sample milestone 1 status/i)).toBeDefined();
   });
 
   it("renders S29 Artisan Add Progress Update form and posts technical update", async () => {
@@ -69,7 +69,7 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     fireEvent.click(publishBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Sample progress preview updated in memory only/i)).toBeDefined();
+      expect(screen.getByText(/Progress update posted/i)).toBeDefined();
     });
   });
 
@@ -88,7 +88,7 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     fireEvent.click(signoffBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/No backend record, payment, escrow release, or review was created/i)).toBeDefined();
+      expect(screen.getByText(/Job marked as completed/i)).toBeDefined();
     });
   });
 });

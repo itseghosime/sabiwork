@@ -7,7 +7,7 @@ import {
   QuoteDetailsAcceptanceScreen,
   MilestoneDepositCheckoutScreen,
 } from "./screens";
-import { defaultOpenRequests, defaultDetailedQuotes } from "./service";
+import { defaultOpenRequests, defaultDetailedQuotes, type QuoteItem } from "./service";
 
 const nav = vi.hoisted(() => ({ push: vi.fn(), replace: vi.fn() }));
 vi.mock("next/navigation", () => ({
@@ -23,16 +23,26 @@ afterEach(() => {
 
 describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
   it("renders S17 Open Requests Feed and filters by district", () => {
-    render(<OpenRequestsFeedScreen initialRequests={defaultOpenRequests} />);
+    const requests = [
+      defaultOpenRequests[0]!,
+      {
+        ...defaultOpenRequests[0]!,
+        id: "SAMPLE-REQUEST-002",
+        title: "Airport electrical rewiring",
+        district: "Airport Road",
+        address: "Airport Road",
+      },
+    ];
+    render(<OpenRequestsFeedScreen initialRequests={requests} />);
     expect(
       screen.getByRole("heading", { level: 1, name: /Open Customer Requests in Benin City/i }),
     ).toBeDefined();
-    expect(screen.getByText(/PPR Water Pipe Burst/i)).toBeDefined();
+    expect(screen.getByText(defaultOpenRequests[0]!.title)).toBeDefined();
 
     // Select Airport Road filter
     const select = screen.getByLabelText(/Filter District:/i);
     fireEvent.change(select, { target: { value: "airport" } });
-    expect(screen.getByText(/Concealed Conduit Rewiring/i)).toBeDefined();
+    expect(screen.getByText(/Airport electrical rewiring/i)).toBeDefined();
   });
 
   it("renders S18 itemized quote preview with sample milestone calculations", () => {
@@ -45,24 +55,29 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
   });
 
   it("renders S19 Quote Comparison matrix with all competing quotes", () => {
+    const comparisonQuotes: QuoteItem[] = [
+      defaultDetailedQuotes[0]!,
+      { ...defaultDetailedQuotes[0]!, id: "quote-02", artisanId: "worker-2", artisanName: "Sample Worker Two", artisanInitials: "ST" },
+      { ...defaultDetailedQuotes[0]!, id: "quote-03", artisanId: "worker-3", artisanName: "Sample Worker Three", artisanInitials: "ST" },
+    ];
     render(
       <QuoteComparisonScreen
         request={defaultOpenRequests[0]}
-        quotes={defaultDetailedQuotes}
+        quotes={comparisonQuotes}
       />,
     );
     expect(
       screen.getByRole("heading", { level: 1, name: /Compare Artisan Quotes/i }),
     ).toBeDefined();
-    expect(screen.getByText("Sample Artisan 1")).toBeDefined();
-    expect(screen.getByText("Sample Artisan 2")).toBeDefined();
-    expect(screen.getByText("Sample Artisan 3")).toBeDefined();
+    expect(screen.getByText("Sample Worker")).toBeDefined();
+    expect(screen.getByText("Sample Worker Two")).toBeDefined();
+    expect(screen.getByText("Sample Worker Three")).toBeDefined();
   });
 
   it("renders S20 Quote Details with milestone breakdown and supports acceptance", async () => {
     render(<QuoteDetailsAcceptanceScreen quote={defaultDetailedQuotes[0]} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Quote from Sample Artisan 1/i }),
+      screen.getByRole("heading", { level: 1, name: /Quote from Sample Worker/i }),
     ).toBeDefined();
     expect(screen.getByText(/Sample Milestone 1 Amount/i)).toBeDefined();
 
@@ -72,7 +87,7 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     fireEvent.click(acceptBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Sample quote acceptance preview only/i)).toBeDefined();
+      expect(screen.getByText(/Quote accepted and job opened/i)).toBeDefined();
     });
   });
 
@@ -89,7 +104,7 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/No payment, escrow, job, or artisan notification occurred/i)).toBeDefined();
+      expect(screen.getByText(/Payments via Paystack are coming soon/i)).toBeDefined();
     });
   });
 });

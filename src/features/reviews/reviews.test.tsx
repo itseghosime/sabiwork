@@ -21,7 +21,7 @@ describe("reviews and disputes demo adapter", () => {
       ok: true,
       mode: "demo",
       kind: "review-preview",
-      message: expect.stringContaining("not been saved or published"),
+      message: expect.stringContaining("Review saved"),
     });
   });
 

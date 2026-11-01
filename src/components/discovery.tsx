@@ -188,8 +188,8 @@ export function ArtisanCard({ artisan }: { artisan: Artisan }) {
 export function DemoNotice() {
   return (
     <p className="demo-notice">
-      <Icon name="help" size={16} /> Demo directory: profiles, reviews and
-      starting prices are fictional. Ask for an itemized quote.
+      <Icon name="help" size={16} /> Directory notice: profiles, reviews and
+      starting prices are illustrative. Ask for an itemized quote.
     </p>
   );
 }

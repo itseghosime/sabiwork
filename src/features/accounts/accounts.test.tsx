@@ -128,7 +128,7 @@ describe("Neon Auth account flows", () => {
       "/api/account/profile",
       expect.objectContaining({
         method: "POST",
-        body: JSON.stringify({ role: "customer" }),
+        body: JSON.stringify({}),
       }),
     );
   });
@@ -193,18 +193,20 @@ describe("Neon Auth account flows", () => {
     });
   });
 
-  it("saves only a customer or artisan account type through the profile API", async () => {
+  it("completes profile setup through the profile API", async () => {
     render(<CompleteProfileForm />);
-    fireEvent.click(screen.getByRole("radio", { name: /Artisan/ }));
+    fireEvent.change(screen.getByLabelText("Display name"), {
+      target: { value: "Example Artisan" },
+    });
     fireEvent.click(screen.getByRole("button", { name: "Continue" }));
 
     await waitFor(() =>
-      expect(routerMocks.replace).toHaveBeenCalledWith("/artisan"),
+      expect(routerMocks.replace).toHaveBeenCalledWith("/jobs"),
     );
     expect(fetchMock).toHaveBeenCalledWith(
       "/api/account/profile",
       expect.objectContaining({
-        body: JSON.stringify({ role: "artisan" }),
+        body: JSON.stringify({ display_name: "Example Artisan" }),
       }),
     );
   });
