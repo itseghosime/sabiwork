@@ -442,6 +442,32 @@
     min-width: 0;
     max-width: 100%;
   }
+
+  .workspace-main > main {
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  .workspace-main > main :where(div, section, article, header, aside, form, fieldset) {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .workspace-main > main :where(.flex, [style*="display: flex"], [style*="display:flex"]) {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  .workspace-main > main :where(h1, h2, h3, p, a, span, strong, label) {
+    overflow-wrap: anywhere;
+  }
+
+  .workspace-main > main :where(button, .button) {
+    max-width: 100%;
+    min-height: 44px;
+    white-space: nowrap;
+    word-break: normal;
+  }
 }
 
 @media (max-width: 640px) {
