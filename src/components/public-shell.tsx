@@ -79,11 +79,11 @@ function PublicShellContent({
             <Link href="/login" className="text-link">
               Log in
             </Link>
-            <Link href="/signup/customer" className="button button-outline">
-              Hire an artisan
+            <Link href="/signup/artisan" className="button button-outline">
+              Join as an artisan
             </Link>
-            <Link href="/signup/artisan" className="button button-subtle">
-              Join as an artisan <Icon name="arrow" size={17} />
+            <Link href="/signup/customer" className="button button-primary">
+              Hire an artisan <Icon name="arrow" size={17} />
             </Link>
           </div>
           <button
