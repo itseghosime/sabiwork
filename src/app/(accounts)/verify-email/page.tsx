@@ -12,9 +12,9 @@ export default function Page() {
     <AuthFrame recovery>
       <div className="auth-card auth-state">
         <p className="eyebrow">EMAIL VERIFICATION</p>
-        <h1>Email verification is currently turned off</h1>
+        <h1>Email OTP is currently turned off</h1>
         <p>
-          You can continue using your account without an OTP step. We will announce if this changes.
+          You can continue using your account with email and password only. We will announce if OTP verification is enabled later.
         </p>
         <Link className="button button-primary auth-submit" href="/login">
           Go to login

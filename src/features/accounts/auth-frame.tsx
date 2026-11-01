@@ -12,15 +12,15 @@ export function AuthFrame({
       <div className="container auth-grid">
         <aside className="auth-story">
           <Brand />
-          <p className="eyebrow">SKILLED HANDS. TRUSTED WORK.</p>
+          <p className="eyebrow">ONE ACCOUNT · TWO POSSIBILITIES</p>
           <h2>
             {recovery
-              ? "A little help getting back in."
-              : "Good things start with the right connection."}
+              ? "Let’s get you back into your account."
+              : "Hire local help and optionally offer your own skills."}
           </h2>
           <p>
-            Find local skills for the jobs that matter. Your next helping hand
-            could be just around the corner.
+            SabiWork uses one account for customers and artisans. Post requests,
+            track work, and add a work profile whenever you are ready to be hired.
           </p>
           <ul>
             <li>
@@ -28,8 +28,8 @@ export function AuthFrame({
                 <Icon name="search" />
               </span>
               <div>
-                <strong>Find your kind of help</strong>
-                <p>Explore local trades around Benin City.</p>
+                <strong>Post and manage service requests</strong>
+                <p>Track updates and keep your job details in one place.</p>
               </div>
             </li>
             <li>
@@ -37,8 +37,8 @@ export function AuthFrame({
                 <Icon name="wrench" />
               </span>
               <div>
-                <strong>Know the work before it starts</strong>
-                <p>Agree on an itemized scope and quote.</p>
+                <strong>Add your optional work profile</strong>
+                <p>Show your trade, service areas, and pricing guidance.</p>
               </div>
             </li>
             <li>
@@ -46,8 +46,8 @@ export function AuthFrame({
                 <Icon name="shield" />
               </span>
               <div>
-                <strong>Keep your account yours</strong>
-                <p>Keep requests, quotes and updates together.</p>
+                <strong>Secure account access</strong>
+                <p>Email/password login is live. OTP verification is currently off.</p>
               </div>
             </li>
           </ul>
@@ -63,14 +63,14 @@ export function AuthFrame({
               <Icon name="hammer" size={34} />
             </span>
           </div>
-          <p className="auth-story-foot">A clear path from first request to finished work.</p>
+          <p className="auth-story-foot">Built for clear requests, quotes, and job tracking in Benin City.</p>
         </aside>
         <div className="auth-form-column">
           <div className="auth-mobile-brand"><Brand /></div>
-          <div className="auth-demo-notice">
+          <div className="auth-availability-notice">
             <Icon name="help" size={18} />
             <p>
-              <strong>Neon Auth connected</strong> · Account credentials are live. Payments via Paystack, verification checks, and disputes are rolling out soon.
+              <strong>Account access is live</strong> · Neon Auth signup, login, and password reset are active. Payments, dispute handling, and verification decisions are still rolling out.
             </p>
           </div>
           {children}

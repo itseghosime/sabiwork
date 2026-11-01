@@ -1,4 +1,5 @@
 import "./accounts.css";
+import "./account-redesign.css";
 export default function AccountLayout({
   children,
 }: {

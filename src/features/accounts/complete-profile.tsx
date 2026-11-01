@@ -44,7 +44,7 @@ export function CompleteProfileForm() {
       <p className="eyebrow">ONE LAST STEP</p>
       <h1>Complete your account</h1>
       <p className="auth-intro">
-        Your SabiWork account can both post requests and create an optional work profile.
+        Add your display name to finish setup. This single account can both post requests and maintain an optional work profile.
       </p>
       <form onSubmit={submit}>
         <div className="auth-field">

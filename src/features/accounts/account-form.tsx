@@ -15,15 +15,15 @@ import {
 } from "./validation";
 const copy = {
   signup: {
-    eyebrow: "YOUR NEXT PROJECT STARTS HERE",
-    title: "Create your SabiWork account",
-    text: "Post requests now and optionally add a work profile when you're ready to be hired.",
+    eyebrow: "CREATE YOUR ACCOUNT",
+    title: "Start with one SabiWork account",
+    text: "Use the same account to hire trusted artisans and, if you choose, add a work profile to be hired.",
     action: "Create account",
   },
   login: {
-    eyebrow: "GOOD TO SEE YOU AGAIN",
+    eyebrow: "WELCOME BACK",
     title: "Welcome back.",
-    text: "Pick up where your next project left off.",
+    text: "Sign in to continue your requests, quotes, and optional work profile.",
     action: "Log in",
   },
   forgot: {
@@ -306,12 +306,12 @@ export function AccountForm({
       {mode === "signup" && (
         <div className="auth-role-choice">
           <span>
-            <Icon name="home" size={18} /> One account for hiring and working
+            <Icon name="home" size={18} /> One account supports both customer and artisan activity
           </span>
-          <p>After signup, create your optional work profile from your workspace.</p>
-          <Link href="/artisan/profile" className="auth-role-link">
-            Create work profile <Icon name="arrow" size={16} />
-          </Link>
+          <p>
+            You can post requests immediately. Add or update your optional work profile later
+            from your account workspace.
+          </p>
         </div>
       )}
       <form ref={form} onSubmit={submit} noValidate aria-busy={pending}>
@@ -448,8 +448,7 @@ export function AccountForm({
             )}
           </button>
           <p className="auth-fineprint">
-            Authentication is provided by Neon. Marketplace actions and
-            payments are not enabled by this account form.
+            Authentication is provided by Neon. Payments and dispute handling are not available from this account form.
           </p>
         </fieldset>
       </form>
