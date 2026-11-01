@@ -44,10 +44,10 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
     expect(screen.getByText(/Demo failed state/i)).toBeDefined();
   });
 
-  it("renders S23 Payment Receipt with escrow status and printable layout", () => {
+  it("renders S23 demo receipt with no escrow claim", () => {
     render(<PaymentReceiptScreen receipt={defaultReceipt} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /SabiWork Payment Receipt/i }),
+      screen.getByRole("heading", { level: 1, name: /SabiWork Demo Payment Receipt/i }),
     ).toBeDefined();
     expect(screen.getByText("PAY-BN-2026-8819")).toBeDefined();
     expect(screen.getByText(/Demo only · no escrow/i)).toBeDefined();

@@ -104,7 +104,7 @@ describe("Verification Screens UI", () => {
   it("renders S42 Admin Verification Queue and filters list", () => {
     render(<AdminVerificationQueueScreen />);
     expect(screen.getByText(/Artisan Verification Queue/i)).toBeDefined();
-    expect(screen.getByText(/Demo queue/i)).toBeDefined();
+    expect(screen.getByText("Demo queue")).toBeDefined();
     expect(screen.getByText(/Download demo queue CSV/i)).toBeDefined();
 
     // Click Pending filter tab
