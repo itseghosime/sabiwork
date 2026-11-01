@@ -1,14 +1,18 @@
+/* ==========================================================================
+   Admin Workspace Modern SaaS Styles (Stitch S42 & S43 Clear Trade Modern)
+   ========================================================================== */
+
 .admin-page {
   display: grid;
-  gap: 20px;
-  max-width: 1200px;
+  gap: 24px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
 .admin-header {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .admin-breadcrumbs {
@@ -17,84 +21,303 @@
   gap: 8px;
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 2px;
 }
 
 .admin-breadcrumbs a:hover {
   color: var(--primary);
 }
 
-.admin-header h1 {
-  font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin: 0;
+.admin-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.admin-header p {
+@media (min-width: 960px) {
+  .admin-header-row {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.admin-header-title h1 {
+  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 6px 0;
+}
+
+.admin-header-title p {
   color: var(--muted);
   font-size: 15px;
   margin: 0;
-  max-width: 800px;
+  max-width: 820px;
+  line-height: 1.6;
 }
 
-/* 4-Column KPI Grid */
+/* Administrative Action Bar (Stitch S42) */
+.admin-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.admin-badge-dual {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-badge-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.5;
+  }
+}
+
+.admin-btn-action {
+  min-height: 42px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.18s ease;
+}
+
+.admin-btn-action:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.admin-btn-action.export {
+  background: #0f172a;
+  color: #fff;
+  border-color: #0f172a;
+}
+
+.admin-btn-action.export:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+}
+
+.admin-spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   4-Column Bento Display KPI Metrics (Stitch S42)
+   ========================================================================== */
 .admin-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
 }
 
 .admin-metric-card {
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 20px;
   background: #fff;
-  padding: 18px 20px;
+  padding: 22px 24px;
   display: grid;
-  gap: 6px;
-  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 8px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.admin-metric-card::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 100, 145, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  transition: transform 0.3s ease;
 }
 
 .admin-metric-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(14, 41, 75, 0.06);
+  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+.admin-metric-card:hover::after {
+  transform: scale(1.2);
+}
+
+.admin-metric-card .metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .admin-metric-card .metric-label {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--muted);
 }
 
 .admin-metric-card .metric-value {
-  font-size: 1.75rem;
+  font-size: clamp(1.8rem, 1.5rem + 0.8vw, 2.3rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--navy);
+  letter-spacing: -0.025em;
+  color: #0f172a;
 }
 
-.admin-metric-card .metric-subtext {
+.admin-metric-card .metric-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
-  color: var(--muted);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  width: fit-content;
 }
 
-/* Control Filter Bar */
+.admin-metric-card .metric-tag.urgent {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.admin-metric-card .metric-tag.approved {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.admin-metric-card .metric-tag.neutral {
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* ==========================================================================
+   Filter & Search Shelf (Stitch S42)
+   ========================================================================== */
 .admin-control-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+}
+
+@media (min-width: 860px) {
+  .admin-control-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.admin-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-search-box input {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 8px 14px 8px 38px;
+  font-size: 14px;
+  background: var(--surface);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.admin-search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 100, 145, 0.12);
+}
+
+.admin-search-box svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.admin-filter-pills {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  padding: 12px 16px;
-  border-radius: 14px;
-  background: #fff;
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 .admin-filter-pill {
-  min-height: 36px;
+  min-height: 38px;
   padding: 6px 14px;
   border-radius: 999px;
   font-size: 13px;
@@ -102,12 +325,14 @@
   border: 1px solid transparent;
   background: var(--surface);
   color: var(--muted);
-  transition: all 0.15s ease;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .admin-filter-pill:hover {
   background: #e2e8f0;
   color: var(--text);
+  transform: translateY(-1px);
 }
 
 .admin-filter-pill.active {
@@ -116,13 +341,15 @@
   box-shadow: 0 2px 6px rgba(0, 100, 145, 0.25);
 }
 
-/* Table Container (Stitch S42) */
+/* ==========================================================================
+   Table Container (Stitch S42)
+   ========================================================================== */
 .admin-table-container {
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 20px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
 }
 
 .admin-table {
@@ -133,19 +360,21 @@
 }
 
 .admin-table th {
-  padding: 14px 18px;
-  background: var(--surface);
-  font-weight: 600;
+  padding: 16px 20px;
+  background: #f8fafc;
+  font-weight: 700;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
 
 .admin-table td {
-  padding: 14px 18px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--border);
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 .admin-table tr:hover td {
@@ -156,44 +385,71 @@
   border-bottom: none;
 }
 
-/* Split Layout for Dossier Review (Stitch S43) */
-.admin-dossier-split {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-@media (min-width: 1024px) {
-  .admin-dossier-split {
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
-.admin-card {
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: #fff;
-  padding: 22px 24px;
-  display: grid;
-  gap: 14px;
-  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
-}
-
-.admin-inline {
+/* Table Avatar & Priority Tags */
+.admin-avatar-sm {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #0f172a;
+  color: #fff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
 }
 
-.admin-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.admin-dossier-ref {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.admin-priority-badge {
+  display: inline-flex;
   align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  width: fit-content;
 }
 
+.admin-priority-ping {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pulseGlow 1.5s infinite;
+}
+
+.admin-completeness-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 130px;
+}
+
+.admin-progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.admin-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #10b981;
+}
+
+/* Status Pills */
 .admin-status-pill {
   display: inline-flex;
   align-items: center;
@@ -225,15 +481,251 @@
 }
 
 .admin-status-pill.unsubmitted {
-  background: var(--surface);
-  color: var(--muted);
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+/* ==========================================================================
+   Split Layout for Dossier Review (Stitch S43)
+   ========================================================================== */
+.admin-dossier-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .admin-dossier-split {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.admin-card {
   border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  padding: 24px 28px;
+  display: grid;
+  gap: 18px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-card:hover {
+  box-shadow: 0 10px 24px rgba(14, 41, 75, 0.06);
+}
+
+/* S43 Candidate Hero Header Card */
+.admin-candidate-hero {
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+}
+
+.admin-candidate-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.admin-candidate-avatar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.admin-candidate-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0284c7 0%, #0f172a 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+  border: 3px solid #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  flex-shrink: 0;
+}
+
+.admin-meta-bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.admin-meta-cell {
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.admin-meta-cell .meta-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.admin-meta-cell .meta-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.admin-meta-cell .meta-sub {
+  font-size: 11px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* S43 Specimen Cards Grid */
+.admin-specimen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.admin-specimen-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-specimen-card:hover {
+  background: #fff;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(14, 41, 75, 0.08);
+}
+
+.admin-specimen-thumb {
+  width: 100%;
+  height: 110px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-specimen-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.admin-specimen-status {
+  font-size: 11px;
+  color: #047857;
+  font-weight: 600;
+}
+
+/* Modal Lightbox */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  animation: modalFadeIn 0.2s ease;
+}
+
+.admin-modal-box {
+  background: #fff;
+  border-radius: 20px;
+  max-width: 620px;
+  width: 100%;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  display: grid;
+  gap: 18px;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.admin-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Protocol Callout Card */
+.admin-protocol-card {
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0e294b 0%, #102f54 100%);
+  color: #fff;
+  padding: 26px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(14, 41, 75, 0.12);
+}
+
+.admin-protocol-card h3 {
+  font-size: 1.15rem;
+  color: #fff;
+  margin: 0;
+}
+
+.admin-protocol-card p {
+  font-size: 14px;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.6;
 }
 
 .admin-empty {
   border: 2px dashed var(--border);
-  border-radius: 16px;
-  padding: 40px 24px;
+  border-radius: 20px;
+  padding: 44px 24px;
   text-align: center;
   background: #fff;
   display: flex;
@@ -242,12 +734,25 @@
   gap: 12px;
 }
 
+.admin-empty h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.admin-empty p {
+  color: var(--muted);
+  max-width: 440px;
+  margin: 0;
+  font-size: 14px;
+}
+
 .admin-error {
   color: #b91c1c;
   background: #fef2f2;
   border: 1px solid #fecaca;
-  border-radius: 10px;
-  padding: 12px 16px;
+  border-radius: 12px;
+  padding: 14px 18px;
   font-size: 14px;
 }
 
@@ -255,7 +760,7 @@
   color: #047857;
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
-  border-radius: 10px;
-  padding: 12px 16px;
+  border-radius: 12px;
+  padding: 14px 18px;
   font-size: 14px;
 }

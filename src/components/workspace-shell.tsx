@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { Brand } from "./public-shell";
 import { Icon, type IconName } from "./icon";
 import type { AccountRole } from "@/features/accounts/access";
@@ -42,19 +43,25 @@ export function WorkspaceShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <div className="workspace-shell" data-role={role}>
+    <div className="workspace-shell" data-role={role} data-collapsed={isCollapsed ? "true" : "false"}>
       <a href="#workspace-content" className="skip-link">
         Skip to workspace
       </a>
-      <aside className="workspace-sidebar">
+      <aside className="workspace-sidebar" data-collapsed={isCollapsed ? "true" : "false"}>
         <div className="workspace-sidebar-brand">
           <Brand />
-          <details className="workspace-sidebar-collapse" open>
-            <summary aria-label="Toggle workspace sidebar" title="Collapse or expand sidebar">
-              <Icon name="chevron" size={18} />
-            </summary>
-          </details>
+          <button
+            type="button"
+            className="workspace-sidebar-toggle-btn"
+            onClick={() => setIsCollapsed((prev) => !prev)}
+            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            <Icon name="chevron" size={18} />
+          </button>
         </div>
         <p className="eyebrow workspace-sidebar-label">{role} workspace</p>
         <nav aria-label={`${role} workspace`}>

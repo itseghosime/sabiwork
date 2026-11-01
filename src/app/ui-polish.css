@@ -221,6 +221,35 @@
   transition: transform 180ms ease;
 }
 
+.workspace-sidebar-toggle-btn {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 10px;
+  color: #f3f8ff;
+  background: rgb(255 255 255 / 8%);
+  cursor: pointer;
+  transition: all 200ms ease;
+  flex-shrink: 0;
+}
+
+.workspace-sidebar-toggle-btn:hover {
+  background: rgb(56 168 232 / 24%);
+  border-color: #38a8e8;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.workspace-sidebar-toggle-btn svg {
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workspace-shell[data-collapsed="true"] .workspace-sidebar-toggle-btn svg {
+  transform: rotate(180deg);
+}
+
 .workspace-sidebar nav a {
   min-height: 48px;
   display: grid;
@@ -271,39 +300,51 @@
   color: #dce9f5;
 }
 
-.workspace-shell:has(.workspace-sidebar-collapse:not([open])) {
+.workspace-shell:has(.workspace-sidebar-collapse:not([open])),
+.workspace-shell[data-collapsed="true"] {
   grid-template-columns: 88px minmax(0, 1fr);
 }
 
-.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) {
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])),
+.workspace-sidebar[data-collapsed="true"] {
   align-items: center;
   padding-inline: 12px;
 }
 
-.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-sidebar-brand {
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-sidebar-brand,
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-brand {
   flex-direction: column;
 }
 
 .workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-sidebar-brand .brand > span:last-child,
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-brand .brand > span:last-child,
 .workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-sidebar-label,
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-label,
 .workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) nav a span,
-.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link span {
+.workspace-sidebar[data-collapsed="true"] nav a span,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link span,
+.workspace-sidebar[data-collapsed="true"] .workspace-public-link span {
   display: none;
 }
 
 .workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) nav,
-.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link {
+.workspace-sidebar[data-collapsed="true"] nav,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link,
+.workspace-sidebar[data-collapsed="true"] .workspace-public-link {
   width: 100%;
 }
 
 .workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) nav a,
-.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link {
+.workspace-sidebar[data-collapsed="true"] nav a,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link,
+.workspace-sidebar[data-collapsed="true"] .workspace-public-link {
   display: flex;
   justify-content: center;
   padding-inline: 0;
 }
 
-.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-nav-arrow {
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-nav-arrow,
+.workspace-sidebar[data-collapsed="true"] .workspace-nav-arrow {
   display: none;
 }
 
