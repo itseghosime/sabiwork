@@ -1,0 +1,181 @@
+# SabiWork — Clear Trade Modern (Canonical Design System Specification)
+
+**System Name:** SabiWork — Clear Trade Modern  
+**Product:** SabiWork — Verified Nigerian Artisan Marketplace (Benin City, Edo State)  
+**Tagline:** *Skilled hands. Trusted work.*  
+**Status:** Canonical Source of Truth  
+
+---
+
+## 1. Executive Summary & Brand Identity
+
+SabiWork connects homeowners and local businesses in Benin City with vetted tradespeople (plumbing, electrical, tailoring, carpentry, painting, masonry). The visual identity conveys credibility, clarity, and precision:
+- **Primary Brand Accent:** Light Sky Blue (`#38A8E8`)
+- **Accessible Action Primary:** Deeper Sky Blue (`#1478B5`) for WCAG AA compliance on buttons and active interactive elements
+- **Structural Deep Navy:** (`#0E294B` / `#141B2B`) for headings, strong borders, and authoritative accents
+- **Surfaces:** Pale Blue base (`#EFF8FF` / `#F9F9FF`) with crisp pure white card surfaces (`#FFFFFF`)
+- **Semantic Green:** Reserved strictly for success, completed milestones, and positive status—**never** used as a primary brand identity color.
+
+---
+
+## 2. Design Tokens & Palette
+
+### Exact Color Roles
+```yaml
+brand:
+  sky-blue: "#38A8E8"
+  sky-blue-action: "#1478B5" # Accessible button / interactive CTA
+  navy-deep: "#0E294B"
+  pale-blue-tint: "#EFF8FF"
+  white: "#FFFFFF"
+
+surface:
+  surface: "#F9F9FF"
+  surface-dim: "#D3DAEF"
+  surface-bright: "#F9F9FF"
+  surface-container-lowest: "#FFFFFF"
+  surface-container-low: "#F1F3FF"
+  surface-container: "#E9EDFF"
+  surface-container-high: "#E1E8FD"
+  surface-container-highest: "#DCE2F7"
+
+typography-colors:
+  on-surface: "#141B2B"          # Headings and primary values
+  on-surface-variant: "#3F4850"  # Subtitles and section descriptions
+  body-text: "#111827"           # Standard copy
+  subhead-text: "#1F2937"        # Sub-headlines
+  metadata-text: "#64748B"       # Timestamps, helper notes, IDs
+  inverse-surface: "#293040"
+  inverse-on-surface: "#EDF0FF"
+
+borders:
+  outline: "#6F7881"
+  outline-variant: "#BEC8D1"
+  border-subtle: "#E2E8F0"
+  border-accent: "#BAE6FD"
+
+interactive:
+  primary: "#1478B5"             # Accessible action tint (Contrast >= 4.5:1)
+  on-primary: "#FFFFFF"
+  primary-container: "#38A8E8"
+  on-primary-container: "#003A56"
+  secondary: "#485F84"
+  on-secondary: "#FFFFFF"
+  secondary-container: "#BBD3FE"
+  on-secondary-container: "#435A7F"
+
+semantic-feedback:
+  success: "#10B981"
+  success-surface: "#ECFDF5"
+  success-border: "#A7F3D0"
+  success-on: "#065F46"
+
+  warning: "#F59E0B"
+  warning-surface: "#FFFBEB"
+  warning-border: "#FDE68A"
+  warning-on: "#92400E"
+
+  error: "#EF4444"
+  error-surface: "#FEF2F2"
+  error-border: "#FECACA"
+  error-on: "#991B1B"
+```
+
+---
+
+## 3. Typography Scale
+
+- **Headings Font Family:** `Plus Jakarta Sans`, sans-serif (weights 600, 700, 800)
+- **Body, UI & Data Font Family:** `Inter`, -apple-system, sans-serif (weights 400, 500, 600)
+
+| Level | Size / Line-Height (Desktop) | Mobile Equivalent | Weight | Tracking | Intended Usage |
+|---|---|---|---|---|---|
+| **Headline XL** | 36px / 44px | 28px / 36px | 700 | -0.02em | Hero titles, key page titles |
+| **Headline LG** | 28px / 36px | 24px / 32px | 700 | -0.015em | Major section headers, modal headers |
+| **Headline MD** | 22px / 28px | 20px / 26px | 600 | -0.01em | Card headers, panel titles |
+| **Headline SM** | 18px / 24px | 18px / 24px | 600 | 0.0em | Subsections, item names |
+| **Body LG** | 16px / 24px | 15px / 22px | 400 / 500 | 0.0em | Lead paragraphs, intro descriptions |
+| **Body MD** | 14px / 20px | 14px / 20px | 400 / 500 | 0.0em | General body copy, table cells |
+| **Body SM** | 12px / 16px | 12px / 16px | 400 / 500 | +0.01em | Captions, metadata, disclaimer tags |
+| **Label LG** | 14px / 20px | 14px / 20px | 600 | +0.01em | Primary button labels, tabs |
+| **Label MD** | 13px / 18px | 13px / 18px | 500 | +0.01em | Form field labels, badges |
+| **Label SM** | 11px / 14px | 11px / 14px | 600 | +0.02em | Micro tags, status chips, counts |
+
+---
+
+## 4. Spacing, Radii & Depth
+
+- **Spacing Scale:** `4px`, `8px`, `10px`, `12px`, `16px`, `20px`, `24px`, `32px`, `48px`, `64px`
+- **Icon-to-Label Gap:** Exactly `8px` non-collapsing
+- **Corner Radii:**
+  - Base micro-elements / badges: `6px` – `8px`
+  - Form controls & Buttons: `8px` – `10px`
+  - Cards & Panels: `12px` – `16px`
+  - Modals & Floating Dialogs: `16px`
+  - Mobile bottom sheets: Top `20px` radius
+  - Chips / Pills: `9999px` (Full pill)
+- **Shadows:**
+  - Card Subtle: `0 1px 3px rgba(14, 41, 75, 0.06), 0 1px 2px rgba(14, 41, 75, 0.04)`
+  - Elevated / Dropdown: `0 4px 12px rgba(14, 41, 75, 0.08), 0 2px 4px rgba(14, 41, 75, 0.04)`
+  - Modal / Overlay: `0 12px 32px rgba(14, 41, 75, 0.16)`
+
+---
+
+## 5. Strict Button & Touch Target Specifications
+
+1. **Touch Target Dimensions:** Minimum `height: 44px` across all devices.
+2. **Width & Wrapping:**
+   - Content-aware width with `flex-shrink: 0`.
+   - `white-space: nowrap` and `word-break: normal`.
+   - Labels must **never** be clipped, truncated with ellipses mid-word, or squeezed into two broken lines.
+3. **Internal Padding:** `horizontal: 20px`, `vertical: 10px` (or `12px` for large CTAs).
+4. **Icons:** Fixed-size (`16px` – `20px`) with `flex-shrink: 0` and exact `8px` gap from text.
+5. **Narrow Screens & Stacking:** When horizontal space is tight (mobile < 390px, narrow columns), buttons stack vertically or expand to `width: 100%`. They **never** compress side-by-side into illegible states.
+6. **Loading State Stability:** Loading buttons preserve their exact pixel dimensions via an internal spinner replacement; they never collapse or expand when triggered.
+
+---
+
+## 6. Master Brand Asset Specification
+
+- **Uploaded Asset Structure:** The uploaded brand asset is an **ICON ONLY** (standalone graphic mark).
+- **Brand Name Text:** The word **SabiWork** must always be rendered as **separate, editable HTML/vector typography** immediately adjacent to the icon.
+  - `Sabi` rendered in Deep Navy (`#0E294B`)
+  - `Work` rendered in Sky Blue (`#38A8E8`)
+- **Prohibited:** Never bake or flatten the brand name text into the image asset.
+- **Clearspace:** Minimum `12px` clearspace on all sides.
+
+---
+
+## 7. Reusable Component Catalog
+
+| Component | Key Roles & Variants | States Covered |
+|---|---|---|
+| **Buttons** | Primary (`#1478B5`), Secondary (`#EFF8FF` background with `#1478B5` text), Outline (`1px #E2E8F0`), Ghost, Destructive (`#EF4444`) | Default, Hover, Active, Focus-visible, Loading (stable width), Disabled |
+| **Form Controls** | Single-line Text, Select with chevron, Textarea, File/Photo upload box | Empty, Filled, Active Focus (sky-blue ring), Invalid/Error with helper text, Disabled |
+| **Selection Controls** | Checkbox (20px box, 44px touch container), Radio button (20px), Toggle Switch | Unchecked, Checked, Indeterminate, Hover, Disabled |
+| **Badges & Chips** | Status Chip, Trade Category Tag, Filter Pill | Default, Selected (Sky Blue fill), Removable (with 'x' icon) |
+| **Cards** | Artisan Card, Trade Category Card, Job Request Card, Proof Viewer Card | Default white, Hover lift, Bordered 1px `#E2E8F0` |
+| **Milestone Tracker** | 2-Stage Escrow Ledger (Deposit vs Balance Due), Progress Stepper | Pending, Funded, In-Progress, Approved / Released |
+| **Feedback & Dialogs** | Paystack TEST Mode banner, Alert banner, Confirmation Modal, Bottom Sheet | Info, Warning, Success, Error |
+
+---
+
+## 8. Multi-Device Layout Rules
+
+- **Desktop (1440px):** 12-column grid, max-width 1280px, 32px outer margins, 20px gutters. Top bar navigation for public/customer; persistent 240px left sidebar for artisan/admin workspaces.
+- **Tablet (768px):** 8-column grid, 24px margins, 16px gutters. Collapsible icon sidebar or adaptive top header. Touch targets verified at 44px minimum.
+- **Mobile (390px / 320px):** Single or 2-column stacked grid, 16px outer margins, 12px gutters. Mobile sticky bottom nav or action bar for high-priority tasks; drawer for secondary navigation. Full-width stacked buttons.
+
+---
+
+## 9. Conflict Resolutions Documented
+
+1. **Button CTA Color vs Brand Accent:**
+   - *Conflict:* The brand primary accent is light sky-blue (`#38A8E8`), which achieves inadequate contrast (~2.4:1) with white text.
+   - *Resolution:* Primary action buttons use accessible deep sky-blue (`#1478B5`), providing WCAG AA compliant contrast (> 4.5:1) against `#FFFFFF`. Light sky-blue (`#38A8E8`) is used for highlights, badges, borders, and brand accents.
+2. **Escrow Terminology vs Platform Compliance:**
+   - *Conflict:* Early specifications referenced government certifications, NIN/BVN APIs, and production bank escrow.
+   - *Resolution:* All financial flows are labeled strictly as **"Paystack TEST Mode"** demo milestone transactions, and verification is framed as **"Admin-Reviewed Profile"**. Fictional sample data in Benin City is explicitly maintained.
+3. **Green Color Hierarchy:**
+   - *Conflict:* Older design system versions used green as the core theme.
+   - *Resolution:* Green is strictly relegated to semantic success indicators (`#10B981`, `#ECFDF5`). Blue (`#38A8E8` / `#1478B5` / `#0E294B`) is the exclusive brand foundation.

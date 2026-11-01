@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#435a7f", "primary-container": "#38a8e8", "on-tertiary-fixed-variant": "#3f484e", "primary-fixed": "#c9e6ff", "surface-container": "#e9edff", "on-error": "#ffffff", "on-tertiary": "#ffffff", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#8aceff", "tertiary-fixed": "#dbe4eb", "on-primary-fixed-variant": "#004b6f", "on-secondary-fixed": "#001b3c", "secondary-fixed-dim": "#b0c8f2", "surface-container-highest": "#dce2f7", "on-tertiary-fixed": "#141d22", "error": "#ba1a1a", "error-container": "#ffdad6", "on-primary": "#ffffff", "on-secondary": "#ffffff", "on-primary-fixed": "#001e2f", "on-background": "#141b2b", "inverse-primary": "#8aceff", "inverse-on-surface": "#edf0ff", "surface-container-low": "#f1f3ff", "secondary": "#485f84", "on-surface": "#141b2b", "outline-variant": "#bec8d1", "surface-dim": "#d3daef", "tertiary-fixed-dim": "#bfc8ce", "primary": "#006491", "on-error-container": "#93000a", "surface-bright": "#f9f9ff", "background": "#f9f9ff", "surface-tint": "#006491", "surface-variant": "#dce2f7", "on-primary-container": "#003a56", "secondary-container": "#bbd3fe", "secondary-fixed": "#d5e3ff", "tertiary": "#576065", "on-tertiary-container": "#2e373d", "outline": "#6f7881", "surface-container-lowest": "#ffffff", "on-surface-variant": "#3f4850", "inverse-surface": "#293040", "tertiary-container": "#97a0a7", "surface": "#f9f9ff", "on-secondary-fixed-variant": "#30476b" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.625rem", "space-md": "1rem", "space-2xl": "2rem", "gutter": "1.25rem", "space-lg": "1.25rem", "space-xs": "0.5rem", "space-2xs": "0.25rem", "gutter-mobile": "0.75rem", "space-xl": "1.5rem", "space-3xl": "3rem", "margin": "2rem", "margin-mobile": "1rem" }, "fontFamily": { "body-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "body-lg": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "label-lg": ["Inter"] }, "fontSize": { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center gap-space-xs bg-surface-container-lowest"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex items-center tracking-tight leading-none pl-space-2xs"><span class="font-headline-sm text-headline-sm text-on-secondary-fixed">Sabi</span><span class="font-headline-sm text-headline-sm text-primary-container">Work</span></div></div><div class="px-space-md py-space-xs"><div class="flex items-center justify-between px-space-sm py-space-xs rounded-lg bg-surface-container-low"><div class="flex items-center gap-space-2xs"><span class="material-symbols-outlined text-primary text-[18px]">storefront</span><span class="font-label-sm text-label-sm text-on-surface">Benin City Hub Desk</span></div><span class="h-2 w-2 rounded-full bg-primary-container"></span></div></div><nav class="flex-1 px-space-md py-space-xs space-y-1 overflow-y-auto" data-active-classes="bg-secondary-fixed text-on-secondary-fixed font-label-lg text-label-lg rounded-xl"><div class="px-space-sm pt-space-xs pb-space-2xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Workspace</span></div><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">dashboard</span><span class="font-label-lg text-label-lg">Overview</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="requests-and-quotes" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">request_quote</span><span class="font-label-lg text-label-lg">Requests &amp; quotes</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="my-jobs" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">construction</span><span class="font-label-lg text-label-lg">My jobs</span></a><a aria-current="page" class="flex items-center gap-space-xs px-space-md py-2.5 transition-colors bg-secondary-fixed text-on-secondary-fixed font-label-lg text-label-lg rounded-xl" data-path="earnings" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">payments</span><span class="font-label-lg text-label-lg">Earnings</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="availability" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">calendar_today</span><span class="font-label-lg text-label-lg">Availability</span></a><div class="px-space-sm pt-space-md pb-space-2xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Artisan Desk</span></div><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="my-profile" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">badge</span><span class="font-label-lg text-label-lg">My profile</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="verification" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">verified_user</span><span class="font-label-lg text-label-lg">Verification</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="training" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">school</span><span class="font-label-lg text-label-lg">Training</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">settings</span><span class="font-label-lg text-label-lg">Settings</span></a></nav><div class="p-space-md bg-surface-container-low mx-space-md mb-space-md rounded-xl flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline">Status Mode</span><span class="font-label-md text-label-md text-on-surface">Available for Dispatch</span></div><span class="h-3 w-3 rounded-full bg-primary-container ring-4 ring-secondary-container"></span></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex items-center tracking-tight leading-none"><span class="font-headline-sm text-headline-sm text-on-secondary-fixed">Sabi</span><span class="font-headline-sm text-headline-sm text-primary-container">Work</span></div><span class="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full bg-inverse-surface text-surface-container-lowest font-label-sm text-label-sm font-semibold tracking-wide">Paystack TEST Mode</span></div><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-2xs px-space-md py-1.5 rounded-full bg-surface-container-low"><span class="material-symbols-outlined text-primary text-[18px]">location_on</span><span class="font-label-md text-label-md text-on-surface">Benin City Hub</span></div><button aria-label="Notifications" class="relative p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-primary-container"></span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="hidden lg:flex flex-col text-right"><span class="font-label-md text-label-lg text-on-surface leading-tight">Osaze Ighodaro</span><span class="font-body-sm text-body-sm text-on-surface-variant">Master Plumber · #BN-8820</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive Prototype States Controller -->
+<div class="px-margin py-space-sm bg-surface-container-low flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">science</span>
+<span class="font-semibold uppercase tracking-wider text-outline">Interactive Prototype State:</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-2xs" id="stateSelectorPills">
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all bg-primary-container text-surface-container-lowest shadow-sm" id="pill-active" onclick="switchPrototypeState('active')" type="button">
+        Default Active Ledger (Selected)
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container-highest text-on-surface-variant hover:text-on-surface" id="pill-no-results" onclick="switchPrototypeState('no-results')" type="button">
+        No Filtered Results
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container-highest text-on-surface-variant hover:text-on-surface" id="pill-empty" onclick="switchPrototypeState('empty')" type="button">
+        No Earnings (Empty)
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container-highest text-on-surface-variant hover:text-on-surface" id="pill-loading" onclick="switchPrototypeState('loading')" type="button">
+        Loading Skeleton
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container-highest text-on-surface-variant hover:text-on-surface" id="pill-network-error" onclick="switchPrototypeState('network-error')" type="button">
+        Network Error State
+      </button>
+</div>
+</div>
+<div class="p-margin max-w-[1440px] mx-auto w-full flex flex-col gap-space-xl">
+<!-- Top Paystack Test Disclosure Banner -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+<div class="flex items-start gap-space-sm pl-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-secondary-fixed">Paystack TEST Sandbox Demonstration Ledger</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+              Live Sandbox Simulator
+            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mt-1">
+            Balances and entries reflect simulated milestone payouts executed under Paystack TEST Mode. SabiWork does not operate a wallet, escrow holding pool, or balance withdrawal system. All verified funds settle directly via bank webhook simulation into registered Nigerian accounts.
+          </p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-space-xs pl-2 md:pl-0">
+<a class="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-xl font-label-lg text-label-lg bg-surface-container-low text-primary hover:bg-surface-container transition-colors whitespace-nowrap" href="#audit-info" onclick="toggleAuditDrawer(true)">
+<span class="material-symbols-outlined text-[18px] mr-2">receipt_long</span>
+          Ledger Specs
+        </a>
+</div>
+</div>
+<!-- Page Title & Quick Actions Row -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span>Artisan Desk</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Financial Operations</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Earnings &amp; Settlement Ledger</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-secondary-fixed mt-1 tracking-tight">
+          Earnings &amp; Direct Settlement Ledger
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+          Osaze Ighodaro · Master Plumber <span class="font-semibold text-on-surface">#BN-8820</span> (Benin City Hub Desk)
+        </p>
+</div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<button class="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-xl font-label-lg text-label-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap" onclick="refreshLedgerMock()" type="button">
+<span class="material-symbols-outlined text-[18px] mr-2 text-primary" id="refresh-icon">sync</span>
+          Refresh Ledger
+        </button>
+<button class="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-xl font-label-lg text-label-lg bg-primary text-on-primary hover:bg-[#1478B5] transition-colors shadow-sm whitespace-nowrap" onclick="exportLedgerCsv()" type="button">
+<span class="material-symbols-outlined text-[18px] mr-2">download</span>
+          Export CSV (Audit Copy)
+        </button>
+</div>
+</div>
+<!-- KPI Summary Section (Consistent Financial Metrics) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md" id="kpi-container">
+<!-- Card 1: MTD Cleared Earnings -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">MTD Cleared TEST Earnings</span>
+<div class="flex items-baseline gap-space-2xs mt-2">
+<span class="font-headline-xl text-headline-xl text-on-secondary-fixed font-bold">₦145,000.00</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1 font-medium text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+            7 milestone releases
+          </span>
+<span>Benin City Hub</span>
+</div>
+</div>
+<!-- Card 2: Disbursed This Week -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Disbursed This Week</span>
+<div class="flex items-baseline gap-space-2xs mt-2">
+<span class="font-headline-xl text-headline-xl text-on-secondary-fixed font-bold">₦62,400.00</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">account_balance</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="truncate">Access Bank •••• 4019</span>
+<span class="font-medium text-primary">Mon &amp; Wed Payout</span>
+</div>
+</div>
+<!-- Card 3: Pending Milestone Escrow -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Pending Milestone Escrow</span>
+<div class="flex items-baseline gap-space-2xs mt-2">
+<span class="font-headline-xl text-headline-xl text-on-secondary-fixed font-bold">₦45,000.00</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">lock_clock</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="truncate">Ada O. + Victor E.</span>
+<span class="font-medium text-on-secondary-container">2 Escrow Stages</span>
+</div>
+</div>
+<!-- Card 4: Total Lifetime Cleared -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Total Lifetime Cleared</span>
+<div class="flex items-baseline gap-space-2xs mt-2">
+<span class="font-headline-xl text-headline-xl text-on-secondary-fixed font-bold">₦438,000.00</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="truncate">38 Completed Orders</span>
+<span class="font-medium text-on-surface">GRA, Airport &amp; Ugbowo</span>
+</div>
+</div>
+</div>
+<!-- Main Content Layout (12-column Grid) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Ledger Master Column (XL: 8.5 Columns) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Filter and Search Shelf -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-sm items-center">
+<!-- Search bar -->
+<div class="md:col-span-6 relative">
+<span class="material-symbols-outlined text-outline absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px]">search</span>
+<input class="w-full min-h-[44px] pl-10 pr-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container transition-all" id="ledgerSearchInput" onkeyup="handleFilterChange()" placeholder="Search by Job #, Client, or PSTK_TST_..." type="text"/>
+</div>
+<!-- Date Range Selector -->
+<div class="md:col-span-3">
+<div class="relative">
+<select class="w-full min-h-[44px] px-3 pr-8 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container cursor-pointer" id="dateRangeFilter" onchange="handleFilterChange()">
+<option value="month">This Month (Oct 2024)</option>
+<option value="30days">Past 30 Days</option>
+<option value="90days">Past 90 Days</option>
+<option value="custom">Custom Range...</option>
+</select>
+<span class="material-symbols-outlined text-outline absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Quick Counter indicator -->
+<div class="md:col-span-3 flex justify-end">
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant self-center">
+                Showing <strong class="text-on-surface" id="recordCounter">10</strong> test events
+              </span>
+</div>
+</div>
+<!-- Status Filter Tabs -->
+<div class="flex items-center gap-space-2xs overflow-x-auto pb-1 border-b border-surface-container">
+<button class="status-tab min-h-[38px] px-3.5 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-secondary-fixed text-on-secondary-fixed font-semibold whitespace-nowrap" id="filter-tab-ALL" onclick="setStatusFilter('ALL')" type="button">
+              All (10)
+            </button>
+<button class="status-tab min-h-[38px] px-3.5 py-1.5 rounded-lg font-label-md text-label-md transition-colors text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap" id="filter-tab-CONFIRMED" onclick="setStatusFilter('CONFIRMED')" type="button">
+              Confirmed Cleared (7)
+            </button>
+<button class="status-tab min-h-[38px] px-3.5 py-1.5 rounded-lg font-label-md text-label-md transition-colors text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap" id="filter-tab-PENDING" onclick="setStatusFilter('PENDING')" type="button">
+              Pending Escrow (2)
+            </button>
+<button class="status-tab min-h-[38px] px-3.5 py-1.5 rounded-lg font-label-md text-label-md transition-colors text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap" id="filter-tab-FAILED" onclick="setStatusFilter('FAILED')" type="button">
+              Failed / Retried (1)
+            </button>
+</div>
+</div>
+<!-- Ledger Container Wrapper for View Switching -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden min-h-[460px] flex flex-col justify-between" id="ledgerStateContainer">
+<!-- STATE: TABLE (Active view) -->
+<div class="w-full overflow-x-auto" id="view-active-table">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/70 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 font-semibold">Date &amp; Time</th>
+<th class="py-3 px-4 font-semibold">Paystack Channel</th>
+<th class="py-3 px-4 font-semibold">Job Order &amp; Client</th>
+<th class="py-3 px-4 font-semibold">Milestone Stage</th>
+<th class="py-3 px-4 font-semibold text-right">Amount</th>
+<th class="py-3 px-4 font-semibold text-center">Status</th>
+<th class="py-3 px-4 font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface" id="ledgerTableBody">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Ada O." data-job="#JOB-BN-2026-092" data-ref="PSTK_TST_849202_DS" data-status="CONFIRMED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 24, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">11:30 AM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_849202_DS</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Access Bank Sandbox</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Under-sink kitchen drain pipe replacement">#JOB-BN-2026-092 · Under-sink pipe</div>
+<div class="font-body-sm text-body-sm text-outline">Ada O. · GRA Axis</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                      Milestone 1 Deposit (50%)
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦10,000.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openReceiptModal('PSTK_TST_849202_DS', '₦10,000.00', 'Ada O. - GRA Axis', '#JOB-BN-2026-092', 'Milestone 1 Deposit', 'Confirmed Cleared')" type="button">
+                      Receipt (S23)
+                    </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Victor E." data-job="#JOB-BN-2026-088" data-ref="PSTK_TST_848911_RV" data-status="CONFIRMED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 23, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">04:15 PM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_848911_RV</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Access Bank Sandbox</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Booster pump pressure switch installation">#JOB-BN-2026-088 · Booster pump</div>
+<div class="font-body-sm text-body-sm text-outline">Victor E. · Airport Rd</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                      Milestone 1 Deposit (45%)
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦20,000.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openReceiptModal('PSTK_TST_848911_RV', '₦20,000.00', 'Victor E. - Airport Rd', '#JOB-BN-2026-088', 'Milestone 1 Deposit', 'Confirmed Cleared')" type="button">
+                      Receipt (S23)
+                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Chief Obaseki" data-job="#JOB-BN-2026-071" data-ref="PSTK_TST_847119_CB" data-status="CONFIRMED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 21, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">02:00 PM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_847119_CB</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Access Bank Sandbox</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Concealed shower mixer calibration">#JOB-BN-2026-071 · Concealed mixer</div>
+<div class="font-body-sm text-body-sm text-outline">Chief Obaseki · GRA Axis</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">
+                      Milestone 2 Balance Sign-off
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦16,000.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openReceiptModal('PSTK_TST_847119_CB', '₦16,000.00', 'Chief Obaseki - GRA', '#JOB-BN-2026-071', 'Milestone 2 Balance Sign-off', 'Confirmed Cleared')" type="button">
+                      Receipt (S23)
+                    </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Chief Obaseki" data-job="#JOB-BN-2026-071" data-ref="PSTK_TST_847055_CB" data-status="CONFIRMED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 21, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">09:30 AM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_847055_CB</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Access Bank Sandbox</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Concealed shower mixer calibration">#JOB-BN-2026-071 · Concealed mixer</div>
+<div class="font-body-sm text-body-sm text-outline">Chief Obaseki · GRA Axis</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                      Milestone 1 Deposit (50%)
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦16,000.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openReceiptModal('PSTK_TST_847055_CB', '₦16,000.00', 'Chief Obaseki - GRA', '#JOB-BN-2026-071', 'Milestone 1 Deposit', 'Confirmed Cleared')" type="button">
+                      Receipt (S23)
+                    </button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Dr. Kenneth N." data-job="#JOB-BN-2026-064" data-ref="PSTK_TST_846200_RT" data-status="CONFIRMED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 19, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">05:40 PM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_846200_RT</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Access Bank Sandbox</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Borehole non-return valve servicing">#JOB-BN-2026-064 · Borehole valve</div>
+<div class="font-body-sm text-body-sm text-outline">Dr. Kenneth N. · Ugbowo</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">
+                      Milestone 2 Balance Sign-off
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦18,500.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openReceiptModal('PSTK_TST_846200_RT', '₦18,500.00', 'Dr. Kenneth N. - Ugbowo', '#JOB-BN-2026-064', 'Milestone 2 Balance Sign-off', 'Confirmed Cleared')" type="button">
+                      Receipt (S23)
+                    </button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Dr. Kenneth N." data-job="#JOB-BN-2026-064" data-ref="PSTK_TST_845902_RT" data-status="CONFIRMED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 18, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">01:10 PM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_845902_RT</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Access Bank Sandbox</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Borehole non-return valve servicing">#JOB-BN-2026-064 · Borehole valve</div>
+<div class="font-body-sm text-body-sm text-outline">Dr. Kenneth N. · Ugbowo</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                      Milestone 1 Deposit (50%)
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦18,500.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openReceiptModal('PSTK_TST_845902_RT', '₦18,500.00', 'Dr. Kenneth N. - Ugbowo', '#JOB-BN-2026-064', 'Milestone 1 Deposit', 'Confirmed Cleared')" type="button">
+                      Receipt (S23)
+                    </button>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Madam Eki" data-job="#JOB-BN-2026-052" data-ref="PSTK_TST_844310_OT" data-status="CONFIRMED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 15, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">11:20 AM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_844310_OT</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Access Bank Sandbox</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Overhead tank float valve &amp; manifold overhaul">#JOB-BN-2026-052 · Tank float overhaul</div>
+<div class="font-body-sm text-body-sm text-outline">Madam Eki · Sapele Rd</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">
+                      Full Settlement Release
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦45,900.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openReceiptModal('PSTK_TST_844310_OT', '₦45,900.00', 'Madam Eki - Sapele Rd', '#JOB-BN-2026-052', 'Full Settlement Release', 'Confirmed Cleared')" type="button">
+                      Receipt (S23)
+                    </button>
+</td>
+</tr>
+<!-- Row 8 (Pending Escrow 1) -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row bg-surface-container-low/20" data-client="Ada O." data-job="#JOB-BN-2026-092" data-ref="PSTK_TST_849301_PN" data-status="PENDING">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 24, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">01:45 PM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_849301_PN</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Locked in TEST Escrow</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Under-sink kitchen drain pipe replacement">#JOB-BN-2026-092 · Under-sink pipe</div>
+<div class="font-body-sm text-body-sm text-outline">Ada O. · GRA Axis</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
+                      Milestone 2 Balance (50%)
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦20,000.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Pending Escrow
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openMilestoneInspection('PSTK_TST_849301_PN', '₦20,000.00', 'Ada O.', 'Work in progress - Under-sink drainage pipes. Awaiting final leak test customer OTP.')" type="button">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 9 (Pending Escrow 2) -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row bg-surface-container-low/20" data-client="Victor E." data-job="#JOB-BN-2026-088" data-ref="PSTK_TST_848990_PN" data-status="PENDING">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 23, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">06:10 PM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-primary block">PSTK_TST_848990_PN</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Locked in TEST Escrow</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Booster pump pressure switch installation">#JOB-BN-2026-088 · Booster pump</div>
+<div class="font-body-sm text-body-sm text-outline">Victor E. · Airport Rd</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
+                      Milestone 2 Balance (55%)
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦25,000.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Pending Escrow
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openMilestoneInspection('PSTK_TST_848990_PN', '₦25,000.00', 'Victor E.', 'Pressure switch calibration complete. Client requested sign-off scheduled for 25 Oct.')" type="button">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 10 (Failed / Resolved) -->
+<tr class="hover:bg-surface-container-low/40 transition-colors ledger-row" data-client="Efe Omoruyi" data-job="#JOB-BN-2026-069" data-ref="PSTK_TST_846881_FL" data-status="FAILED">
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-on-secondary-fixed">Oct 20, 2024</div>
+<div class="font-body-sm text-body-sm text-outline">10:15 AM WAT</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="font-label-sm text-label-sm font-semibold text-error block">PSTK_TST_846881_FL</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Webhook Timeout</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface truncate max-w-[210px]" title="Ariston water heater electrical element replace">#JOB-BN-2026-069 · Water heater</div>
+<div class="font-body-sm text-body-sm text-outline">Efe Omoruyi · Ugbowo</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-medium">
+                      Simulated Timeout Retry
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-bold text-on-secondary-fixed text-[15px]">
+                    ₦14,000.00
+                  </td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                      Failed (Resolved)
+                    </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="min-h-[40px] px-3.5 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold" onclick="openAuditTrailModal('PSTK_TST_846881_FL', 'Network Timeout Retry', 'Auto-resolved via webhook replay 12 mins later. Disbursed under reference #PSTK_TST_846890_OK.')" type="button">
+                      Audit Trail
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- STATE: NO FILTERED RESULTS (Hidden by default) -->
+<div class="hidden flex-1 p-space-3xl flex flex-col items-center justify-center text-center" id="view-no-results">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-outline mb-space-md">
+<span class="material-symbols-outlined text-[32px]">filter_list_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-secondary-fixed">No Matching Paystack TEST Records</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-1 mb-space-lg">
+              We couldn't find any transaction matching your query or active status filters. Adjust your search keywords or clear current filters.
+            </p>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-[#1478B5] transition-colors font-label-lg text-label-lg font-semibold" onclick="resetAllFilters()" type="button">
+              Reset Filters &amp; View All
+            </button>
+</div>
+<!-- STATE: EMPTY LEDGER (No earnings ever) -->
+<div class="hidden flex-1 p-space-3xl flex flex-col items-center justify-center text-center" id="view-empty">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-[32px]">receipt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-secondary-fixed">No Earnings or Milestone Payouts Yet</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-1 mb-space-lg">
+              You haven't completed any milestone payments under your Artisan Desk. Once a customer approves a job milestone in Benin City, simulated payouts will register here immediately.
+            </p>
+<div class="flex items-center gap-space-xs">
+<a class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-[#1478B5] transition-colors font-label-lg text-label-lg font-semibold inline-flex items-center" data-path="requests-and-quotes" href="#">
+<span class="material-symbols-outlined text-[18px] mr-2">search</span>
+                Browse Hub Requests
+              </a>
+</div>
+</div>
+<!-- STATE: LOADING SKELETON -->
+<div class="hidden flex-1 p-space-lg flex flex-col gap-space-md animate-pulse" id="view-loading">
+<div class="h-10 bg-surface-container-low rounded-lg w-full"></div>
+<div class="space-y-3">
+<div class="h-12 bg-surface-container-low rounded-lg w-full"></div>
+<div class="h-12 bg-surface-container-low rounded-lg w-full"></div>
+<div class="h-12 bg-surface-container-low rounded-lg w-full"></div>
+<div class="h-12 bg-surface-container-low rounded-lg w-full"></div>
+<div class="h-12 bg-surface-container-low rounded-lg w-full"></div>
+</div>
+</div>
+<!-- STATE: NETWORK ERROR -->
+<div class="hidden flex-1 p-space-3xl flex flex-col items-center justify-center text-center" id="view-network-error">
+<div class="w-16 h-16 rounded-full bg-error-container flex items-center justify-center text-error mb-space-md">
+<span class="material-symbols-outlined text-[32px]">cloud_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-secondary-fixed">Unable to Fetch Paystack Sandbox Ledger</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-1 mb-space-lg">
+              A temporary network timeout occurred while simulating the Nigerian banking webhook feed. Your account integrity is safe.
+            </p>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-[#1478B5] transition-colors font-label-lg text-label-lg font-semibold inline-flex items-center" onclick="switchPrototypeState('active')" type="button">
+<span class="material-symbols-outlined text-[18px] mr-2">refresh</span>
+              Retry Ledger Connection
+            </button>
+</div>
+<!-- Ledger Table Footer Pagination / Summary -->
+<div class="p-space-md bg-surface-container-low/50 border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-sm text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Direct Bank Settlement · Automated Webhook Synced (WAT)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span>Page 1 of 1</span>
+<div class="flex items-center">
+<button class="p-1 rounded text-outline opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="p-1 rounded text-outline opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right-hand Contextual Sidebar (XL: 3.5 Columns) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Payout Bank Destination Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Direct Bank Destination</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1"></span>
+              Active
+            </span>
+</div>
+<div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shadow-xs">
+<span class="material-symbols-outlined text-[28px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-secondary-fixed">Access Bank PLC</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Osaze Ighodaro</span>
+<span class="font-body-sm text-body-sm text-outline tracking-wider">•••• •••• 4019</span>
+</div>
+</div>
+<div class="space-y-2 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex justify-between items-center py-1 border-b border-surface-container-low">
+<span>Paystack Recipient ID</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">RCP_882910_TEST</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-surface-container-low">
+<span>Account Validation</span>
+<span class="text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> NUBAN Verified
+              </span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span>Platform Custody</span>
+<span class="font-medium text-on-surface">Zero Escrow Pool</span>
+</div>
+</div>
+<a class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container-high transition-colors font-label-lg text-label-lg font-semibold flex items-center justify-center" data-path="settings" href="#">
+<span class="material-symbols-outlined text-[18px] mr-2">edit</span>
+            Update Payout Account (S13)
+          </a>
+</div>
+<!-- Weekly Settlement Rhythm Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">event_repeat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-secondary-fixed">Settlement Rhythm</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Simulated sandbox batch runs automatically every <strong>Monday &amp; Wednesday at 08:00 WAT</strong>.
+              </p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low mt-2 text-body-sm font-body-sm text-on-surface-variant">
+<p><strong>Next Simulated Run:</strong> Wednesday, Oct 30, 2024 at 08:00 WAT for all newly verified milestones.</p>
+</div>
+</div>
+<!-- Artisan Compliance & Support Sandbox Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Ledger Transparency Notice</span>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Under SabiWork's open artisan policy, milestone funds are triggered solely by customer job sign-offs with direct dual-signature validation. SabiWork does not withhold convenience deductions or maintenance levies.
+          </p>
+<div class="pt-2 flex items-center gap-space-xs text-body-sm font-body-sm text-primary font-medium">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Benin City Hub Compliance Verified</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL / DRAWER: View Receipt (S23) -->
+<div class="fixed inset-0 z-50 hidden bg-inverse-surface/50 backdrop-blur-xs flex items-center justify-center p-space-md" id="receiptModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-xl shadow-xl flex flex-col gap-space-md relative max-h-[921px] overflow-y-auto">
+<!-- Close Button -->
+<button aria-label="Close modal" class="absolute top-4 right-4 p-2 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-low transition-colors" onclick="closeReceiptModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">receipt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-secondary-fixed">Paystack TEST Payment Receipt (S23)</span>
+<span class="font-body-sm text-body-sm text-outline" id="modalRefDisplay">PSTK_TST_...</span>
+</div>
+</div>
+<div class="bg-surface-container-low/60 p-space-md rounded-xl flex flex-col items-center justify-center text-center my-1">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Settled Amount</span>
+<span class="font-headline-xl text-headline-xl text-on-secondary-fixed font-bold my-1" id="modalAmountDisplay">₦0.00</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold" id="modalStatusDisplay">
+          Confirmed Cleared
+        </span>
+</div>
+<div class="space-y-2.5 text-body-md font-body-md">
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span class="text-on-surface-variant">Linked Job Order</span>
+<span class="font-medium text-on-secondary-fixed text-right" id="modalJobDisplay">#JOB-BN-...</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span class="text-on-surface-variant">Client Name &amp; District</span>
+<span class="font-medium text-on-secondary-fixed text-right" id="modalClientDisplay">Client Name</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span class="text-on-surface-variant">Milestone Description</span>
+<span class="font-medium text-on-secondary-fixed text-right" id="modalMilestoneDisplay">Milestone</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span class="text-on-surface-variant">Paystack Processing Fee</span>
+<span class="font-medium text-on-surface text-right">₦0.00 (Test Mode Waived)</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span class="text-on-surface-variant">Bank Destination</span>
+<span class="font-medium text-on-secondary-fixed text-right">Access Bank •••• 4019</span>
+</div>
+<div class="flex justify-between py-1">
+<span class="text-on-surface-variant">Settlement Channel</span>
+<span class="font-medium text-primary text-right">NIP Sandbox Simulation</span>
+</div>
+</div>
+<div class="pt-space-sm flex items-center justify-end gap-space-xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label-lg text-label-lg font-semibold" onclick="closeReceiptModal()" type="button">
+          Dismiss
+        </button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-[#1478B5] transition-colors font-label-lg text-label-lg font-semibold inline-flex items-center" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[18px] mr-2">print</span>
+          Print Receipt Copy
+        </button>
+</div>
+</div>
+</div>
+<!-- MODAL / DRAWER: Milestone Inspection & Audit Modal -->
+<div class="fixed inset-0 z-50 hidden bg-inverse-surface/50 backdrop-blur-xs flex items-center justify-center p-space-md" id="auditDrawer">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-xl shadow-xl flex flex-col gap-space-md relative max-h-[921px] overflow-y-auto">
+<!-- Close Button -->
+<button aria-label="Close drawer" class="absolute top-4 right-4 p-2 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-low transition-colors" onclick="toggleAuditDrawer(false)" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">policy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-secondary-fixed" id="drawerTitle">Milestone Audit &amp; OTP Status</span>
+<span class="font-body-sm text-body-sm text-outline" id="drawerSubtitle">PSTK_TST_849301_PN</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">State Overview</span>
+<p class="font-body-md text-body-md text-on-surface" id="drawerNotes">
+          Work in progress - Under-sink drainage pipes. Awaiting final leak test customer OTP.
+        </p>
+</div>
+<div class="space-y-2 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span>Sandbox Escrow Lock</span>
+<span class="font-medium text-on-surface font-mono">ENCRYPTED_SHA256</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span>Artisan Verification</span>
+<span class="text-primary font-medium">Osaze Ighodaro (#BN-8820)</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container-low">
+<span>Escrow Release Condition</span>
+<span class="font-medium text-on-surface">Customer Completion OTP Verification</span>
+</div>
+<div class="flex justify-between py-1">
+<span>Disbursement SLA</span>
+<span class="font-medium text-on-secondary-fixed">Next batch window (&lt; 24h)</span>
+</div>
+</div>
+<div class="pt-space-sm flex justify-end">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-[#1478B5] transition-colors font-label-lg text-label-lg font-semibold" onclick="toggleAuditDrawer(false)" type="button">
+          Acknowledge &amp; Return
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentStatus = 'ALL';
+
+  function switchPrototypeState(state) {
+    // Reset all pill styles
+    const pills = ['active', 'no-results', 'empty', 'loading', 'network-error'];
+    pills.forEach(p => {
+      const el = document.getElementById('pill-' + p);
+      if (el) {
+        el.className = "px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container-highest text-on-surface-variant hover:text-on-surface";
+      }
+    });
+
+    const activePill = document.getElementById('pill-' + state);
+    if (activePill) {
+      activePill.className = "px-3 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-all bg-primary-container text-surface-container-lowest shadow-sm";
+    }
+
+    // Hide all view panels
+    document.getElementById('view-active-table').classList.add('hidden');
+    document.getElementById('view-no-results').classList.add('hidden');
+    document.getElementById('view-empty').classList.add('hidden');
+    document.getElementById('view-loading').classList.add('hidden');
+    document.getElementById('view-network-error').classList.add('hidden');
+
+    // Show selected panel
+    if (state === 'active') {
+      document.getElementById('view-active-table').classList.remove('hidden');
+      resetAllFilters();
+    } else if (state === 'no-results') {
+      document.getElementById('view-no-results').classList.remove('hidden');
+      document.getElementById('recordCounter').innerText = '0';
+    } else if (state === 'empty') {
+      document.getElementById('view-empty').classList.remove('hidden');
+      document.getElementById('recordCounter').innerText = '0';
+    } else if (state === 'loading') {
+      document.getElementById('view-loading').classList.remove('hidden');
+    } else if (state === 'network-error') {
+      document.getElementById('view-network-error').classList.remove('hidden');
+    }
+  }
+
+  function setStatusFilter(status) {
+    currentStatus = status;
+    const tabs = ['ALL', 'CONFIRMED', 'PENDING', 'FAILED'];
+    tabs.forEach(t => {
+      const el = document.getElementById('filter-tab-' + t);
+      if (el) {
+        if (t === status) {
+          el.className = "status-tab min-h-[38px] px-3.5 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-secondary-fixed text-on-secondary-fixed font-semibold whitespace-nowrap";
+        } else {
+          el.className = "status-tab min-h-[38px] px-3.5 py-1.5 rounded-lg font-label-md text-label-md transition-colors text-on-surface-variant hover:bg-surface-container-low whitespace-nowrap";
+        }
+      }
+    });
+    handleFilterChange();
+  }
+
+  function handleFilterChange() {
+    const searchVal = document.getElementById('ledgerSearchInput').value.toLowerCase().trim();
+    const rows = document.querySelectorAll('.ledger-row');
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+      const status = row.getAttribute('data-status');
+      const ref = (row.getAttribute('data-ref') || '').toLowerCase();
+      const job = (row.getAttribute('data-job') || '').toLowerCase();
+      const client = (row.getAttribute('data-client') || '').toLowerCase();
+
+      const matchesStatus = (currentStatus === 'ALL' || status === currentStatus);
+      const matchesSearch = (!searchVal || ref.includes(searchVal) || job.includes(searchVal) || client.includes(searchVal));
+
+      if (matchesStatus && matchesSearch) {
+        row.style.display = '';
+        visibleCount++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    document.getElementById('recordCounter').innerText = visibleCount.toString();
+
+    // Toggle no results view if 0 records match in active mode
+    if (visibleCount === 0 && !document.getElementById('view-loading').offsetParent && !document.getElementById('view-empty').offsetParent) {
+      document.getElementById('view-active-table').classList.add('hidden');
+      document.getElementById('view-no-results').classList.remove('hidden');
+    } else if (visibleCount > 0) {
+      document.getElementById('view-active-table').classList.remove('hidden');
+      document.getElementById('view-no-results').classList.add('hidden');
+    }
+  }
+
+  function resetAllFilters() {
+    document.getElementById('ledgerSearchInput').value = '';
+    setStatusFilter('ALL');
+    const rows = document.querySelectorAll('.ledger-row');
+    rows.forEach(r => r.style.display = '');
+    document.getElementById('recordCounter').innerText = rows.length.toString();
+    document.getElementById('view-active-table').classList.remove('hidden');
+    document.getElementById('view-no-results').classList.add('hidden');
+  }
+
+  function refreshLedgerMock() {
+    const icon = document.getElementById('refresh-icon');
+    if (icon) {
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+      }, 700);
+    }
+  }
+
+  function exportLedgerCsv() {
+    const csvContent = "data:text/csv;charset=utf-8," 
+      + "Date,Paystack_Ref,Channel,Job_Order,Client,Milestone,Amount_NGN,Status\n"
+      + "2024-10-24 11:30,PSTK_TST_849202_DS,Access Bank Sandbox,#JOB-BN-2026-092,Ada O. (GRA),Milestone 1 Deposit,10000.00,Confirmed\n"
+      + "2024-10-23 16:15,PSTK_TST_848911_RV,Access Bank Sandbox,#JOB-BN-2026-088,Victor E. (Airport Rd),Milestone 1 Deposit,20000.00,Confirmed\n"
+      + "2024-10-21 14:00,PSTK_TST_847119_CB,Access Bank Sandbox,#JOB-BN-2026-071,Chief Obaseki (GRA),Milestone 2 Balance,16000.00,Confirmed\n"
+      + "2024-10-21 09:30,PSTK_TST_847055_CB,Access Bank Sandbox,#JOB-BN-2026-071,Chief Obaseki (GRA),Milestone 1 Deposit,16000.00,Confirmed\n"
+      + "2024-10-19 17:40,PSTK_TST_846200_RT,Access Bank Sandbox,#JOB-BN-2026-064,Dr. Kenneth N. (Ugbowo),Milestone 2 Balance,18500.00,Confirmed\n"
+      + "2024-10-18 13:10,PSTK_TST_845902_RT,Access Bank Sandbox,#JOB-BN-2026-064,Dr. Kenneth N. (Ugbowo),Milestone 1 Deposit,18500.00,Confirmed\n"
+      + "2024-10-15 11:20,PSTK_TST_844310_OT,Access Bank Sandbox,#JOB-BN-2026-052,Madam Eki (Sapele Rd),Full Settlement Release,45900.00,Confirmed\n"
+      + "2024-10-24 13:45,PSTK_TST_849301_PN,Locked Sandbox,#JOB-BN-2026-092,Ada O. (GRA),Milestone 2 Balance,20000.00,Pending Escrow\n"
+      + "2024-10-23 18:10,PSTK_TST_848990_PN,Locked Sandbox,#JOB-BN-2026-088,Victor E. (Airport Rd),Milestone 2 Balance,25000.00,Pending Escrow\n"
+      + "2024-10-20 10:15,PSTK_TST_846881_FL,Network Timeout Retry,#JOB-BN-2026-069,Efe Omoruyi (Ugbowo),Element Replace,14000.00,Failed Resolved";
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "SabiWork_Ledger_BN8820_Oct2024.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function openReceiptModal(ref, amount, client, job, milestone, status) {
+    document.getElementById('modalRefDisplay').innerText = ref;
+    document.getElementById('modalAmountDisplay').innerText = amount;
+    document.getElementById('modalJobDisplay').innerText = job;
+    document.getElementById('modalClientDisplay').innerText = client;
+    document.getElementById('modalMilestoneDisplay').innerText = milestone;
+    document.getElementById('modalStatusDisplay').innerText = status;
+    document.getElementById('receiptModal').classList.remove('hidden');
+  }
+
+  function closeReceiptModal() {
+    document.getElementById('receiptModal').classList.add('hidden');
+  }
+
+  function openMilestoneInspection(ref, amount, client, notes) {
+    document.getElementById('drawerTitle').innerText = "Milestone Inspection: " + amount;
+    document.getElementById('drawerSubtitle').innerText = ref + " · " + client;
+    document.getElementById('drawerNotes').innerText = notes;
+    document.getElementById('auditDrawer').classList.remove('hidden');
+  }
+
+  function openAuditTrailModal(ref, title, notes) {
+    document.getElementById('drawerTitle').innerText = "Audit Trail: " + title;
+    document.getElementById('drawerSubtitle').innerText = ref;
+    document.getElementById('drawerNotes').innerText = notes;
+    document.getElementById('auditDrawer').classList.remove('hidden');
+  }
+
+  function toggleAuditDrawer(show) {
+    const el = document.getElementById('auditDrawer');
+    if (show) {
+      document.getElementById('drawerTitle').innerText = "Paystack TEST Settlement Ledger Protocol";
+      document.getElementById('drawerSubtitle').innerText = "Benin City Artisan Desk · Engine Specs";
+      document.getElementById('drawerNotes').innerText = "All Paystack webhooks are simulated with HMAC verification. Milestone payments auto-disburse directly to the artisan's linked Nigerian NUBAN account with zero platform escrow retention.";
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  }
+</script></main></div></body></html>

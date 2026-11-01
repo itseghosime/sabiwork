@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-on-surface":"#edf0ff","on-error-container":"#93000a","primary-fixed":"#c9e6ff","inverse-primary":"#8aceff","tertiary":"#576065","on-surface":"#141b2b","secondary-fixed":"#d5e3ff","outline-variant":"#bec8d1","on-surface-variant":"#3f4850","on-primary-container":"#003a56","on-primary-fixed-variant":"#004b6f","on-tertiary":"#ffffff","surface":"#f9f9ff","surface-container-highest":"#dce2f7","surface-dim":"#d3daef","on-tertiary-fixed-variant":"#3f484e","surface-container-low":"#f1f3ff","tertiary-fixed":"#dbe4eb","tertiary-container":"#97a0a7","surface-container-high":"#e1e8fd","on-secondary-fixed":"#001b3c","primary":"#006491","on-error":"#ffffff","error-container":"#ffdad6","secondary":"#485f84","surface-container-lowest":"#ffffff","primary-fixed-dim":"#8aceff","on-primary":"#ffffff","outline":"#6f7881","background":"#f9f9ff","on-tertiary-fixed":"#141d22","error":"#ba1a1a","surface-tint":"#006491","on-secondary-container":"#435a7f","surface-container":"#e9edff","on-background":"#141b2b","primary-container":"#38a8e8","secondary-fixed-dim":"#b0c8f2","tertiary-fixed-dim":"#bfc8ce","inverse-surface":"#293040","on-primary-fixed":"#001e2f","on-secondary-fixed-variant":"#30476b","on-secondary":"#ffffff","on-tertiary-container":"#2e373d","secondary-container":"#bbd3fe","surface-bright":"#f9f9ff","surface-variant":"#dce2f7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"2rem","space-2xl":"2rem","space-2xs":"0.25rem","space-lg":"1.25rem","space-xs":"0.5rem","margin-mobile":"1rem","space-sm":"0.625rem","space-xl":"1.5rem","gutter-mobile":"0.75rem","space-md":"1rem","gutter":"1.25rem","space-3xl":"3rem"},"fontFamily":{"headline-xl-mobile":["Plus Jakarta Sans"],"label-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-sm":["Inter"],"label-sm":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-md":["Inter"],"body-lg":["Inter"],"body-md":["Inter"]},"fontSize":{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1280px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-xs" data-path="explore-artisans" href="#"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">Sabi<span class="text-primary-container">Work</span></span></a><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-secondary-container text-on-secondary-container font-semibold rounded-lg"><a class="px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="explore-artisans" href="#">Explore Artisans</a><a class="px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="categories" href="#">Categories</a><a aria-current="page" class="px-3 py-2 transition-colors bg-secondary-container text-on-secondary-container font-semibold rounded-lg" data-path="quote-comparison" href="#">My Requests</a><a class="px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="messages" href="#">Messages</a></nav></div><div class="flex items-center gap-space-sm sm:gap-space-md"><div class="inline-flex items-center px-2.5 py-1 rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm"><span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>Paystack TEST Mode</div><button class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden sm:inline-block font-label-md text-label-md text-on-surface">Ada O.</span></div></div></div></header><main class="w-full pt-16 bg-surface flex-1"><div class="bg-surface-container-low py-3"><div class="max-w-[1280px] mx-auto px-margin-mobile lg:px-margin flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" data-path="my-requests" href="#">My Requests</a><span class="material-symbols-outlined text-[14px]">chevron_right</span><a class="hover:text-on-surface transition-colors" data-path="request-details" href="#">REQ-2024-0891</a><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="text-on-surface font-medium">Quote Comparison</span></div></div><div class="max-w-[1280px] mx-auto px-margin-mobile lg:px-margin py-space-xl"><div class="flex flex-col w-full">
+<!-- Interactive Prototype State Switcher Toolbar -->
+<div class="mb-space-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] text-primary">science</span>
+<span>Prototype States:</span>
+</div>
+<div class="flex items-center flex-wrap gap-space-2xs" id="state-switcher">
+<button class="state-btn active-state px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" data-state="default" type="button">
+<span class="material-symbols-outlined text-[15px]">grid_view</span>
+<span>Default (3 Quotes)</span>
+</button>
+<button class="state-btn px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all flex items-center gap-1.5" data-state="single" type="button">
+<span class="material-symbols-outlined text-[15px]">person</span>
+<span>1 Quote View</span>
+</button>
+<button class="state-btn px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all flex items-center gap-1.5" data-state="loading" type="button">
+<span class="material-symbols-outlined text-[15px]">sync</span>
+<span>Loading State</span>
+</button>
+<button class="state-btn px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all flex items-center gap-1.5" data-state="error" type="button">
+<span class="material-symbols-outlined text-[15px]">error_outline</span>
+<span>Network Error</span>
+</button>
+</div>
+</div>
+<!-- Top Navigation & Context Back -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<a class="inline-flex items-center gap-space-xs text-primary hover:text-on-primary-container font-label-lg text-label-lg transition-colors group" data-path="request-details" href="#">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
+<span>Back to Job Request (S16)</span>
+</a>
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>3 Quotes Received
+      </span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">Status: Reviewing</span>
+</div>
+</div>
+<!-- Job Request Summary Banner Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[28px]">plumbing</span>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center flex-wrap gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wide bg-surface-container-low px-2 py-0.5 rounded">Job #BN-REQ-8421</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Client: Ada O.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">location_on</span> GRA Axis, Benin City
+            </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Kitchen drain pipe leak repair</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Under-sink PVC P-trap fracture with persistent wastewater dripping into bottom cabinet cabinetry.</p>
+</div>
+</div>
+<div class="flex sm:flex-row md:flex-col items-start md:items-end justify-between sm:justify-start gap-space-xs pt-space-xs md:pt-0 border-t md:border-t-0 border-surface-container">
+<div class="flex flex-col md:items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Benchmark Target</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">₦18,000</span>
+</div>
+<div class="inline-flex items-center px-2 py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span>Range: ₦18k - ₦35k</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Sandbox Status Reminder Strip -->
+<div class="flex items-center justify-between gap-space-sm bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl mb-space-xl">
+<div class="flex items-center gap-space-xs font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary-container text-[20px]">format_image_left</span>
+<span>Safe Escrow Hold: Quotes split into milestone stages. Funds held in Paystack TEST Mode until inspection confirmation.</span>
+</div>
+<span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase">Simulated Hub</span>
+</div>
+<!-- VIEW STATE: LOADING -->
+<div class="hidden flex-col items-center justify-center py-20 bg-surface-container-lowest rounded-xl" id="state-loading-view">
+<div class="w-12 h-12 rounded-full border-4 border-surface-container-highest border-t-primary animate-spin mb-space-md"></div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Fetching quote breakdown...</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Retrieving latest trade submissions from Benin City artisans</p>
+</div>
+<!-- VIEW STATE: ERROR -->
+<div class="hidden flex-col items-center justify-center p-space-2xl bg-surface-container-lowest rounded-xl text-center" id="state-error-view">
+<div class="w-16 h-16 rounded-full bg-error-container text-on-error-container flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[32px]">wifi_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Unable to retrieve live quotes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-1 mb-space-lg">Network connectivity interrupted while communicating with Edo Innovation Cluster dispatch relay.</p>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center gap-space-xs shadow-sm hover:bg-on-primary-fixed-variant transition-colors" onclick="document.querySelector('[data-state=default]').click()" type="button">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+<span>Retry Synchronization</span>
+</button>
+</div>
+<!-- MAIN QUOTES CONTAINER (Default & Single State Controlled) -->
+<div class="flex flex-col gap-space-2xl" id="quotes-wrapper">
+<!-- Section Headline & Sort/Filter Controls -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Artisan Quotes Breakdown</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Compare verified rates, material guarantees, and guaranteed arrival timelines</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="sort-select">Sort by:</label>
+<select class="min-h-[40px] px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm outline-none" id="sort-select">
+<option value="recommended">Best Overall Match</option>
+<option value="price-low">Price: Low to High</option>
+<option value="speed">Earliest Arrival</option>
+<option value="rating">Highest Rated</option>
+</select>
+</div>
+</div>
+<!-- COMPARISON CARDS (Optimized for Tablet 768px Viewport: balanced 2-col or stacked rhythm) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg items-stretch" id="quotes-cards-grid">
+<!-- CARD 1: OSAZE IGHODARO (TOP MATCH) -->
+<div class="quote-card flex flex-col justify-between bg-surface-container-lowest rounded-xl p-space-lg shadow-md transition-all duration-200 relative group" data-card-id="osaze">
+<!-- Top Match Badge -->
+<div class="absolute -top-3 left-4 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>Top Match</span>
+</div>
+<div class="flex flex-col gap-space-md pt-space-xs">
+<!-- Artisan Identity Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close up professional portrait of Osaze Ighodaro, a middle-aged Nigerian master plumber wearing clean navy blue work attire with a warm confident smile, studio daylight, Edo State Benin City craftsman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz2GE1hjus4LyiUH33EJ4vePCU4EffqfzY28pVfzVIyZebeMyaLKIWXjYpaTz9A_GXachvSo90W-0R20YPv2MxNxWa0_hqrcabn1nr7E3gAfGq4uCiiEibWTGVByCN67xWUPVYxF9ljF4UE1zfAsHq23Y2j9ak099YCbvrB6ZjZVjG7uq_Kg8zXL5od65fAWDfHyo-LcIjvN-TJ19oavgbgugQhvezX5A_yb0AuXg"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Osaze Ighodaro</h3>
+</div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">4.9</span>
+<span>(38 jobs)</span>
+</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>GRA Axis (1.2 km away)</span>
+</div>
+</div>
+</div>
+<!-- Total Price Display -->
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Quote</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">₦30,000</span>
+</div>
+</div>
+<!-- Price & Labour Breakdown Strip -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">engineering</span> Labour
+              </span>
+<span class="font-semibold text-on-surface">₦17,000</span>
+</div>
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span> High-Grade PVC &amp; Seal
+              </span>
+<span class="font-semibold text-on-surface">₦13,000</span>
+</div>
+</div>
+<!-- Milestones Visual Bar -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant font-medium">Safe Milestone Staging</span>
+<span class="text-primary font-semibold">₦10,000 Deposit (33%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
+<div class="h-full bg-primary-container" style="width: 33.3%"></div>
+<div class="h-full bg-primary" style="width: 66.7%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-0.5">
+<span>Stage 1: Prep &amp; Material buy</span>
+<span>Stage 2: ₦20,000 upon water test</span>
+</div>
+</div>
+<!-- Key Highlights Matrix -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-lowest p-space-xs rounded-lg">
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+<span>Thu, 9:30 AM</span>
+</div>
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">timelapse</span>
+<span>Est. 2-3 hours</span>
+</div>
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface col-span-2">
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+<span>30-Day workmanship warranty included</span>
+</div>
+</div>
+</div>
+<!-- Action Stack -->
+<div class="flex flex-col gap-space-xs pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-on-primary-fixed-variant transition-all font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow-sm active:scale-[0.99]" type="button">
+<span>Accept Osaze's Quote (₦30,000)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<a class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" data-path="quote-details-s20" href="#">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>View Details (S20)</span>
+</a>
+<button class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Chat Direct</span>
+</button>
+</div>
+</div>
+</div>
+<!-- CARD 2: VICTOR E. EDOSA -->
+<div class="quote-card flex flex-col justify-between bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 relative group" data-card-id="victor">
+<div class="flex flex-col gap-space-md">
+<!-- Artisan Identity Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Portrait of Victor E. Edosa, seasoned plumbing professional in his early forties, friendly professional posture, natural ambient light in Edo State Nigeria workshop background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk4cxCPHuT1z0HxsdMUVXsMFf815k5-T7E0jUwq2S3TLV--7HSvJoqaZ7Aw93PrqftbZitXjbapcTGOExGOZ8QYIzGIbX6qzrRd66mXHEmwm-VNtwsjuH4MR_LgNrRdWuvF5MnX_fkYqTxu61EBxN6GKJdz7NMdd2yPLOuNqb_Rbgr-osfZEsA1pGpeNFV7PTSEVVQxb3-YmVSgHym2H7c4xvukhyNVnLpdGhWEA4"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Victor E. Edosa</h3>
+</div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">4.85</span>
+<span>(29 jobs)</span>
+</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Airport Rd Axis (2.8 km away)</span>
+</div>
+</div>
+</div>
+<!-- Total Price Display -->
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Quote</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">₦32,500</span>
+</div>
+</div>
+<!-- Price & Labour Breakdown Strip -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">engineering</span> Labour
+              </span>
+<span class="font-semibold text-on-surface">₦18,500</span>
+</div>
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span> Pressure Valves + Parts
+              </span>
+<span class="font-semibold text-on-surface">₦14,000</span>
+</div>
+</div>
+<!-- Milestones Visual Bar -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant font-medium">Safe Milestone Staging</span>
+<span class="text-primary font-semibold">₦12,500 Deposit (38%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
+<div class="h-full bg-primary-container" style="width: 38%"></div>
+<div class="h-full bg-primary" style="width: 62%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-0.5">
+<span>Stage 1: Sourcing certified valves</span>
+<span>Stage 2: ₦20,000 on final signoff</span>
+</div>
+</div>
+<!-- Key Highlights Matrix -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-lowest p-space-xs rounded-lg">
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+<span>Thu, 11:00 AM</span>
+</div>
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">timelapse</span>
+<span>Est. 2.5 hours</span>
+</div>
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface col-span-2">
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+<span>45-Day joint replacement guarantee</span>
+</div>
+</div>
+</div>
+<!-- Action Stack -->
+<div class="flex flex-col gap-space-xs pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-all font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow-sm active:scale-[0.99]" type="button">
+<span>Accept Victor's Quote (₦32,500)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<a class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" data-path="quote-details-s20" href="#">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>View Details (S20)</span>
+</a>
+<button class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Chat Direct</span>
+</button>
+</div>
+</div>
+</div>
+<!-- CARD 3: MONDAY AGHO (BUDGET PICK) -->
+<div class="quote-card flex flex-col justify-between bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 relative group" data-card-id="monday">
+<!-- Budget Tag -->
+<div class="absolute -top-3 left-4 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-[14px]">savings</span>
+<span>Budget Pick</span>
+</div>
+<div class="flex flex-col gap-space-md pt-space-xs">
+<!-- Artisan Identity Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Warm documentary portrait of Monday Agho, a dependable Nigerian maintenance technician and plumber in Benin City, smiling calmly, clean industrial background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5XsdT4arHS3rzNcUPidYz7uATI-rWFf2RypRzc8VKCub6X-yuQdGUzDEvZ1oG53t00lE88j06WF1tRzjluVFWXsIwShLPzTzMGl9EeY5G_zbjvqfzAp-g6qZTLm0it2ZmfGn1-weyQqM1kDV9cw-lLbPcIGO6GX9xaw_k7OhIDqbd8PcvfRXn56kYBM_EEd0ieQdQig2UNzFaCXUlDieo46ZvL7d2ys5X_osshck"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Monday Agho</h3>
+</div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">4.8</span>
+<span>(19 jobs)</span>
+</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Sapele Rd Axis (3.5 km away)</span>
+</div>
+</div>
+</div>
+<!-- Total Price Display -->
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Quote</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">₦28,000</span>
+</div>
+</div>
+<!-- Price & Labour Breakdown Strip -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">engineering</span> Labour
+              </span>
+<span class="font-semibold text-on-surface">₦16,000</span>
+</div>
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span> Standard PVC Couplings
+              </span>
+<span class="font-semibold text-on-surface">₦12,000</span>
+</div>
+</div>
+<!-- Milestones Visual Bar -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant font-medium">Safe Milestone Staging</span>
+<span class="text-primary font-semibold">₦10,000 Deposit (35%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
+<div class="h-full bg-primary-container" style="width: 35.7%"></div>
+<div class="h-full bg-primary" style="width: 64.3%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-0.5">
+<span>Stage 1: Pipe inspection &amp; fitting</span>
+<span>Stage 2: ₦18,000 after flow test</span>
+</div>
+</div>
+<!-- Key Highlights Matrix -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-lowest p-space-xs rounded-lg">
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+<span>Thu, 10:00 AM</span>
+</div>
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">timelapse</span>
+<span>Est. 2 hours</span>
+</div>
+<div class="flex items-center gap-space-2xs font-body-sm text-body-sm text-on-surface col-span-2">
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+<span>14-Day seal integrity warranty</span>
+</div>
+</div>
+</div>
+<!-- Action Stack -->
+<div class="flex flex-col gap-space-xs pt-space-md mt-space-md border-t border-surface-container">
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-all font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow-sm active:scale-[0.99]" type="button">
+<span>Accept Monday's Quote (₦28,000)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<a class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" data-path="quote-details-s20" href="#">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>View Details (S20)</span>
+</a>
+<button class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Chat Direct</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SIDE-BY-SIDE COMPARISON MATRIX (Responsive Accordion / Table for Tablet Screen Widths) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mt-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">compare_arrows</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Side-by-Side Scope Matrix</h3>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Detailed specification for Job #BN-REQ-8421</span>
+</div>
+<div class="overflow-x-auto -mx-space-lg px-space-lg pb-space-xs">
+<table class="w-full text-left border-collapse min-w-[620px]">
+<thead>
+<tr class="border-b border-surface-container">
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider w-1/4">Evaluation Factor</th>
+<th class="py-3 px-4 font-headline-sm text-headline-sm text-primary w-1/4">
+                Osaze Ighodaro
+                <span class="block font-label-sm text-label-sm text-on-surface-variant font-normal">Top Match</span>
+</th>
+<th class="py-3 px-4 font-headline-sm text-headline-sm text-on-surface w-1/4">
+                Victor E. Edosa
+                <span class="block font-label-sm text-label-sm text-on-surface-variant font-normal">Airport Rd</span>
+</th>
+<th class="py-3 px-4 font-headline-sm text-headline-sm text-on-surface w-1/4">
+                Monday Agho
+                <span class="block font-label-sm text-label-sm text-on-surface-variant font-normal">Budget Pick</span>
+</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<!-- Row: Total Fee -->
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Total Cost</td>
+<td class="py-3 px-4 font-bold text-primary">₦30,000</td>
+<td class="py-3 px-4 font-semibold">₦32,500</td>
+<td class="py-3 px-4 font-semibold text-secondary">₦28,000</td>
+</tr>
+<!-- Row: Labour vs Parts -->
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Labour / Parts Split</td>
+<td class="py-3 px-4">₦17,000 / ₦13,000</td>
+<td class="py-3 px-4">₦18,500 / ₦14,000</td>
+<td class="py-3 px-4">₦16,000 / ₦12,000</td>
+</tr>
+<!-- Row: Material Grade -->
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Materials Grade</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 font-semibold text-primary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Heavy Duty PVC + Rubber O-Rings
+                </span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Brass compression + PVC
+                </span>
+</td>
+<td class="py-3 px-4">Standard PVC Couplings</td>
+</tr>
+<!-- Row: Earliest Arrival -->
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Earliest Arrival</td>
+<td class="py-3 px-4 font-semibold text-primary">Thursday, 9:30 AM</td>
+<td class="py-3 px-4">Thursday, 11:00 AM</td>
+<td class="py-3 px-4">Thursday, 10:00 AM</td>
+</tr>
+<!-- Row: Estimated Duration -->
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Est. Repair Time</td>
+<td class="py-3 px-4">2 – 3 Hours</td>
+<td class="py-3 px-4">2.5 Hours</td>
+<td class="py-3 px-4">~2 Hours</td>
+</tr>
+<!-- Row: Deposit Required -->
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Initial Escrow Lock</td>
+<td class="py-3 px-4 font-semibold">₦10,000</td>
+<td class="py-3 px-4 font-semibold">₦12,500</td>
+<td class="py-3 px-4 font-semibold">₦10,000</td>
+</tr>
+<!-- Row: Warranty -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Warranty Period</td>
+<td class="py-3 px-4 font-semibold text-primary">30 Days Guaranteed</td>
+<td class="py-3 px-4">45 Days Limited</td>
+<td class="py-3 px-4">14 Days</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Artisan Work Sample Gallery & Visual Assurance Strip -->
+<div class="bg-surface-container-low rounded-xl p-space-lg">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Similar Completed Drainage Repairs</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Recent verified work performed across Edo State GRA &amp; Airport Rd</p>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary">Demonstration portfolio records</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm group">
+<div class="h-36 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Crisp close-up photo of neat PVC pipe replacement and tight brass connection beneath a polished modern kitchen sink counter in a contemporary Benin City apartment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLHrV_MfZkNY-c9lOstJxJsObN3GjXxCCEwpLmkjfVgEcZjy4XH1TReu8rhLO7QeMIk2Pk_c77yWeN2TkhDe8DiARuzEEGTk0DdLweq1yLGuo44P0S__tFrV0JRKh2ij8SwNhsFjaF8Z_w6roIG-AdXYl-u4Zof6ddihAv9Bb0wtHjLQ5N6oozmts-sun2PLwVg7iQ-PYL5wbAaLfMGAkO7J0PemIY6u3T6SZRWQg"/>
+</div>
+<div class="p-space-sm flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-primary font-semibold">GRA Axis • Osaze I.</span>
+<span class="font-body-sm text-body-sm text-on-surface">P-trap gasket replacement &amp; drain test</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm group">
+<div class="h-36 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Under-sink plumbing setup with white PVC tubing and tight seal joints freshly installed in a residential kitchen cabinetry in Edo State Nigeria" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlc52SSXmvpK7Qsdv0BkunhLAcRrYqFhOT9wVJycjzzWx6WbueNzs81n92qwKz4CL5BlfmNkbll5jpSKRfpijYIcXdOzNa14S_WQLsMzEep_JTX8PCV47A4UiCHFdimiNtPtGmt6BkYCAf3m6a8zUS214MaEFbQMNMN8E1WBib7_OsQFG1odMotwoXWSSG3H455j3fbr_Y4S_pEKgUhnNR4F5QUHO1oyTKndlQCJw"/>
+</div>
+<div class="p-space-sm flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Airport Rd • Victor E.</span>
+<span class="font-body-sm text-body-sm text-on-surface">Double sink connector realignment</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm group">
+<div class="h-36 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Professional plumber tools and neat solvent weld PVC pipe joints laid out during a kitchen water drainage repair in Benin City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5xHZOnhLEjcJeRmyx9WQDwop5ZhMex3QKr0CN2vSY6MnWi1tC34diris-zyJrjp_HAI2nMoDQx5GPkRgSfSICwAXK51JUIM5AUieKaHiJolAGAbqm6Key_GkSxIcLEN8LkliVNrPCHBCeazcmYXF6MDCzNyfRvt_fwDaZ03z7sA0yVRMZw9jjTCBOqZ8v5L6oM8p_NF9XEOAQZmQQBcovHXlho62JsbnO6zTLv8c"/>
+</div>
+<div class="p-space-sm flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Sapele Rd • Monday A.</span>
+<span class="font-body-sm text-body-sm text-on-surface">Cleanout cap resealing &amp; leak stop</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Safety & Process Guidance FAQ Bar -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Need clarification before choosing?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">You can send direct inquiries to any plumber above without committing funds.</span>
+</div>
+</div>
+<button class="min-h-[44px] px-5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-medium whitespace-nowrap transition-colors" type="button">
+        Plumbing Work Guide
+      </button>
+</div>
+</div>
+<script>
+    // State switcher prototype interactive controller
+    document.querySelectorAll('#state-switcher .state-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset button active classes
+        document.querySelectorAll('#state-switcher .state-btn').forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          b.classList.add('bg-surface-container', 'text-on-surface-variant');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+
+        const state = btn.dataset.state;
+        const quotesWrapper = document.getElementById('quotes-wrapper');
+        const loadingView = document.getElementById('state-loading-view');
+        const errorView = document.getElementById('state-error-view');
+        const cards = document.querySelectorAll('.quote-card');
+
+        // Reset visibility
+        loadingView.classList.add('hidden');
+        loadingView.classList.remove('flex');
+        errorView.classList.add('hidden');
+        errorView.classList.remove('flex');
+        quotesWrapper.classList.remove('hidden');
+
+        if (state === 'default') {
+          cards.forEach(card => card.classList.remove('hidden'));
+        } else if (state === 'single') {
+          // Show only top match
+          cards.forEach(card => {
+            if (card.dataset.cardId === 'osaze') {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        } else if (state === 'loading') {
+          quotesWrapper.classList.add('hidden');
+          loadingView.classList.remove('hidden');
+          loadingView.classList.add('flex');
+        } else if (state === 'error') {
+          quotesWrapper.classList.add('hidden');
+          errorView.classList.remove('hidden');
+          errorView.classList.add('flex');
+        }
+      });
+    });
+
+    // Client-side Sort Selector logic for demo interactivity
+    const sortSelect = document.getElementById('sort-select');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', (e) => {
+        const grid = document.getElementById('quotes-cards-grid');
+        const cardsArr = Array.from(grid.children);
+        
+        if (e.target.value === 'price-low') {
+          // Monday (28k), Osaze (30k), Victor (32.5k)
+          const monday = cardsArr.find(c => c.dataset.cardId === 'monday');
+          const osaze = cardsArr.find(c => c.dataset.cardId === 'osaze');
+          const victor = cardsArr.find(c => c.dataset.cardId === 'victor');
+          if (monday && osaze && victor) {
+            grid.appendChild(monday);
+            grid.appendChild(osaze);
+            grid.appendChild(victor);
+          }
+        } else {
+          // Reset to default (Osaze top)
+          const osaze = cardsArr.find(c => c.dataset.cardId === 'osaze');
+          const victor = cardsArr.find(c => c.dataset.cardId === 'victor');
+          const monday = cardsArr.find(c => c.dataset.cardId === 'monday');
+          if (osaze && victor && monday) {
+            grid.appendChild(osaze);
+            grid.appendChild(victor);
+            grid.appendChild(monday);
+          }
+        }
+      });
+    }
+  </script>
+</div></div></main><footer class="w-full bg-surface-container-low py-space-3xl mt-space-3xl"><div class="max-w-[1280px] mx-auto px-margin-mobile lg:px-margin flex flex-col gap-space-2xl"><div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-space-lg"><div class="flex flex-col gap-space-2xs"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">Sabi<span class="text-primary-container">Work</span></span></div><p class="font-body-md text-body-md text-on-surface-variant">Skilled hands. Trusted work.</p></div><div class="flex flex-wrap items-center gap-space-lg font-label-md text-label-md text-on-surface-variant"><a class="hover:text-on-surface transition-colors" data-path="explore-artisans" href="#">Explore Artisans</a><a class="hover:text-on-surface transition-colors" data-path="categories" href="#">Categories</a><a class="hover:text-on-surface transition-colors" data-path="quote-comparison" href="#">My Requests</a><a class="hover:text-on-surface transition-colors" data-path="messages" href="#">Support Desk</a></div></div><div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-md pt-space-lg"><div class="flex flex-col gap-space-2xs font-body-sm text-body-sm text-on-surface-variant"><span>Edo State Hub • Benin City Tech Innovation Cluster</span><span>Sandbox operational demonstration • Paystack TEST mode demo notice</span></div><div class="font-body-sm text-body-sm text-on-surface-variant">© 2024 SabiWork Exchange. All rights reserved.</div></div></div></footer></body></html>

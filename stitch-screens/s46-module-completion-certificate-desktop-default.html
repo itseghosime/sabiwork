@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"error":"#ba1a1a","primary-fixed":"#c9e6ff","on-primary-fixed-variant":"#004b6f","outline-variant":"#bec8d1","on-secondary-fixed-variant":"#30476b","on-tertiary-fixed-variant":"#3f484e","surface-container-lowest":"#ffffff","tertiary":"#576065","surface-dim":"#d3daef","on-error-container":"#93000a","secondary-fixed-dim":"#b0c8f2","on-surface-variant":"#3f4850","surface-container":"#e9edff","on-tertiary-container":"#2e373d","on-primary":"#ffffff","inverse-on-surface":"#edf0ff","inverse-surface":"#293040","on-surface":"#141b2b","primary-container":"#38a8e8","on-tertiary-fixed":"#141d22","secondary-container":"#bbd3fe","outline":"#6f7881","on-background":"#141b2b","on-primary-fixed":"#001e2f","surface-container-low":"#f1f3ff","on-secondary-fixed":"#001b3c","surface-container-high":"#e1e8fd","error-container":"#ffdad6","tertiary-fixed-dim":"#bfc8ce","on-secondary-container":"#435a7f","primary-fixed-dim":"#8aceff","background":"#f9f9ff","on-tertiary":"#ffffff","primary":"#006491","inverse-primary":"#8aceff","surface-container-highest":"#dce2f7","tertiary-container":"#97a0a7","on-secondary":"#ffffff","surface-variant":"#dce2f7","on-error":"#ffffff","surface":"#f9f9ff","on-primary-container":"#003a56","surface-tint":"#006491","tertiary-fixed":"#dbe4eb","secondary-fixed":"#d5e3ff","secondary":"#485f84","surface-bright":"#f9f9ff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-sm":"0.625rem","space-md":"1rem","gutter":"1.25rem","space-2xl":"2rem","space-3xl":"3rem","gutter-mobile":"0.75rem","space-2xs":"0.25rem","space-xs":"0.5rem","margin-mobile":"1rem","space-xl":"1.5rem","margin":"2rem","space-lg":"1.25rem"},"fontFamily":{"label-sm":["Inter"],"label-lg":["Inter"],"headline-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-sm":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-lg":["Inter"],"body-md":["Inter"]},"fontSize":{"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center gap-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex items-baseline gap-1"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Sabi<span class="text-primary-container">Work</span></span><span class="font-label-sm text-label-sm uppercase px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">Artisan</span></div></div><div class="flex-1 overflow-y-auto px-space-xs py-space-sm"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg shadow-sm"><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">dashboard</span><span>Overview</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="requests-and-quotes" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">request_quote</span><span>Requests &amp; quotes</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="my-jobs" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">handyman</span><span>My jobs</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="earnings" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">payments</span><span>Earnings</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="availability" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">calendar_today</span><span>Availability</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="my-profile" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">badge</span><span>My profile</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="verification" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">verified_user</span><span>Verification</span></a><a aria-current="page" class="flex items-center gap-space-xs px-space-sm py-2.5 transition-colors bg-primary-container text-on-primary font-label-md rounded-lg shadow-sm" data-path="training" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">school</span><span>Training</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-sm m-space-xs rounded-lg bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold">Duty Status</span></div><span class="font-label-sm text-label-sm text-primary font-semibold">Available</span></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-space-md flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface"><span class="material-symbols-outlined text-[18px] text-primary">location_on</span><span class="font-label-md text-label-md font-semibold">Edo Central Cluster</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span><span class="font-label-sm text-label-sm font-semibold tracking-wide">Paystack TEST Mode</span></div></div><div class="flex items-center gap-space-md"><button aria-label="Notifications" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-space-xs pl-space-xs border-l border-outline-variant/30"><div class="text-right hidden sm:block"><div class="font-label-lg text-label-lg font-semibold text-on-surface leading-tight">Osaze Ighodaro</div><div class="font-body-sm text-body-sm text-tertiary leading-tight">Master Plumber</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 px-space-lg pb-space-2xl min-h-screen"><div class="flex flex-col w-full">
+<!-- Prototype State Controller Strip -->
+<div class="bg-surface-container-high px-space-md py-space-xs rounded-xl flex flex-wrap items-center justify-between gap-space-sm mb-space-lg shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">science</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Prototype State Switcher:</span>
+</div>
+<div class="flex items-center gap-2 flex-wrap" id="state-buttons">
+<button class="state-btn active-state px-3 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-primary text-on-primary font-semibold shadow-sm" id="btn-ready" onclick="switchState('ready')" type="button">
+        Certificate Ready (Default)
+      </button>
+<button class="state-btn px-3 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest" id="btn-ineligible" onclick="switchState('ineligible')" type="button">
+        Not Eligible Yet
+      </button>
+<button class="state-btn px-3 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest" id="btn-generating" onclick="switchState('generating')" type="button">
+        Generating PDF
+      </button>
+<button class="state-btn px-3 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest" id="btn-error" onclick="switchState('error')" type="button">
+        Network Error
+      </button>
+</div>
+</div>
+<!-- Breadcrumb Navigation Bar -->
+<nav aria-label="Breadcrumbs" class="flex flex-wrap items-center gap-2 mb-space-md text-on-surface-variant font-body-sm text-body-sm">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+<span>Artisan Desk</span>
+</a>
+<span class="text-outline-variant font-body-sm text-body-sm">/</span>
+<a class="hover:text-primary transition-colors" href="#">Training (S44)</a>
+<span class="text-outline-variant font-body-sm text-body-sm">/</span>
+<a class="hover:text-primary transition-colors" href="#">Mastering Client Communication</a>
+<span class="text-outline-variant font-body-sm text-body-sm">/</span>
+<span class="text-on-surface font-semibold">Certificate of Completion</span>
+</nav>
+<!-- Context Header & Action Toolbar -->
+<header class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md pb-space-lg mb-space-lg">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[28px]">workspace_premium</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">Course Completion &amp; Endorsement</span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold uppercase">Verified</span>
+</div>
+<p class="font-body-md text-body-md text-tertiary">
+          Artisan: <strong class="text-on-surface font-semibold">Osaze Victor Ighodaro</strong> (#BN-8820) • Master Plumber • Benin City Hub Desk
+        </p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-xs flex-wrap shrink-0">
+<a class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-2 transition-colors whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back to Training Directory (S44)</span>
+</a>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md flex items-center gap-2 shadow-sm transition-all whitespace-nowrap" onclick="triggerExportFlow()" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Print / Export Certificate (PDF)</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-secondary hover:bg-on-secondary-container text-on-primary font-label-md text-label-md flex items-center gap-2 transition-colors whitespace-nowrap" id="btn-endorse" onclick="handleProfileEndorse()" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span id="endorse-text">Add Endorsement to Profile (S04)</span>
+</button>
+</div>
+</header>
+<!-- ================= STATE CONTAINERS ================= -->
+<!-- STATE: GENERATING PDF OVERLAY / NOTIFICATION -->
+<div class="hidden bg-surface-container-lowest p-space-2xl rounded-2xl shadow-md text-center max-w-xl mx-auto my-space-2xl" id="state-generating-view">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mx-auto mb-space-md animate-pulse">
+<span class="material-symbols-outlined text-primary text-[32px] animate-spin">sync</span>
+</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mb-2">Composing High-Resolution PDF...</div>
+<p class="font-body-md text-body-md text-tertiary mb-space-lg">
+      Generating cryptographic verification watermarks, SHA-256 docket seals, and Benin Hub accreditation details for Osaze Victor Ighodaro.
+    </p>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden mb-space-md">
+<div class="bg-primary h-full w-2/3 transition-all duration-700"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Estimated time: 2-3 seconds • ISO A4 Specification</span>
+</div>
+<!-- STATE: NETWORK ERROR -->
+<div class="hidden bg-surface-container-lowest p-space-2xl rounded-2xl shadow-md max-w-xl mx-auto my-space-2xl text-center" id="state-error-view">
+<div class="w-16 h-16 rounded-full bg-error-container text-on-error-container flex items-center justify-center mx-auto mb-space-md">
+<span class="material-symbols-outlined text-[32px]">cloud_off</span>
+</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mb-2">Unable to Verify Hub Docket</div>
+<p class="font-body-md text-body-md text-tertiary mb-space-lg">
+      A network timeout occurred while attempting to contact Benin Central Cluster Registry (Docket: SW-TRN-2026-8820-CC). Your course progress remains saved.
+    </p>
+<div class="flex items-center justify-center gap-space-sm">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-2" onclick="switchState('ready')" type="button">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+<span>Retry Verification</span>
+</button>
+<a class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-2" href="#">
+<span>Artisan Support Desk</span>
+</a>
+</div>
+</div>
+<!-- STATE: NOT ELIGIBLE YET -->
+<div class="hidden bg-surface-container-lowest p-space-2xl rounded-2xl shadow-md max-w-2xl mx-auto my-space-2xl" id="state-ineligible-view">
+<div class="flex items-start gap-space-md mb-space-lg">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[28px]">lock_clock</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">Course Requirements Incomplete</div>
+<p class="font-body-md text-body-md text-tertiary">
+          To unlock your Certificate of Completion and the Client Relations Endorsement badge, all 5 core modules and the final quiz must be completed.
+        </p>
+</div>
+</div>
+<div class="space-y-3 mb-space-xl">
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Module 1: Compound Gate Protocol</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Completed</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Module 2: Plain-English Diagnostic Explanations</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Completed</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Module 3: Scope Creep Prevention</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Completed</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[20px]">radio_button_unchecked</span>
+<span class="font-body-md text-body-md text-on-surface">Module 4: In-App Escrow Guidance</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">Pending (8 mins remaining)</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[20px]">lock</span>
+<span class="font-body-md text-body-md text-on-surface">Final Comprehension Assessment</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">Locked</span>
+</div>
+</div>
+<div class="flex justify-end gap-space-sm">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-2" onclick="switchState('ready')" type="button">
+<span>Resume Module 4</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- STATE: CERTIFICATE READY (DEFAULT TWO-COLUMN MAIN VIEW) -->
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start" id="state-ready-view">
+<!-- LEFT / CENTER COLUMN: Certificate Presentation Canvas -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Certificate Sheet -->
+<article class="relative bg-surface-container-lowest rounded-2xl shadow-md p-space-md sm:p-space-2xl overflow-hidden">
+<!-- Subtle nested inner background wrapper with soft pale tint -->
+<div class="relative bg-background rounded-xl p-space-lg sm:p-space-2xl flex flex-col justify-between min-h-[780px]">
+<!-- Top Background Graphic Glow (contained) -->
+<div class="absolute -top-24 -right-24 w-80 h-80 bg-primary-fixed/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-80 h-80 bg-secondary-fixed/25 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Certificate Header -->
+<div class="relative z-10 text-center pb-space-lg">
+<!-- Brand Mark & Lockup -->
+<div class="flex flex-col items-center justify-center gap-1.5 mb-space-sm">
+<div class="flex items-center justify-center gap-space-xs">
+<img alt="SabiWork Symbol" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDehG4sj2nsMyhBf6QHCnzS9vKuGxCgOivQC-bLCm0oTsD_iHFe1keG7l7AlItg9cZBpQAN-8_pAF8C9vB2fOrHxk4De_wqTB1mlFNDP6DxAlP22GTmmy__dhgPQTUG0pjnjVPmncSAtuq3JSpxFukxoj24GnxKwmHFVtqwoKqvoqfNkFTxGfGKGXta8XwNATFsZKybMPA6N0pmsO1Fk-OWFIxiPTBufgsHc2XQ1x5c3GBbPA9ggnXD"/>
+<div class="font-headline-lg text-headline-lg font-extrabold tracking-tight">
+<span class="text-on-surface">Sabi</span><span class="text-primary-container">Work</span>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-tertiary tracking-wide uppercase font-medium">Skilled hands. Trusted work.</span>
+</div>
+<!-- Hub Identification -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-on-surface mb-space-md">
+<span class="material-symbols-outlined text-[14px] text-primary">location_city</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Benin City Central Hub • Artisan Development Desk</span>
+</div>
+<!-- Title Header -->
+<div class="space-y-1">
+<div class="font-label-sm text-label-sm uppercase text-primary font-bold tracking-widest">Internal Platform Training Record</div>
+<h1 class="font-headline-xl text-headline-xl font-extrabold text-on-surface tracking-tight">Certificate of Course Completion</h1>
+</div>
+</div>
+<!-- Certificate Body / Content -->
+<div class="relative z-10 my-auto py-space-md text-center max-w-2xl mx-auto space-y-space-md">
+<p class="font-body-md text-body-md text-tertiary italic">
+              This verification confirms that registered artisan
+            </p>
+<!-- Learner Name -->
+<div class="py-2">
+<div class="font-headline-lg text-headline-lg sm:text-[32px] sm:leading-[38px] font-extrabold text-on-surface tracking-tight">
+                Osaze Victor Ighodaro
+              </div>
+<div class="font-label-md text-label-md text-primary font-semibold mt-1">
+                Artisan ID: #BN-8820 • Trade: Master Plumbing &amp; Pipe Fitting
+              </div>
+</div>
+<p class="font-body-md text-body-md text-tertiary">
+              has satisfactorily accomplished all instructional, procedural, and compliance modules for:
+            </p>
+<!-- Course Title Box -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">
+                Mastering Client Communication &amp; In-Home Etiquette in Benin City
+              </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 leading-relaxed">
+                Completed all 5 core modules including Compound Gate Protocol, Plain-English Diagnostic Explanations, Scope Creep Prevention, and In-App Escrow Guidance.
+              </p>
+</div>
+<!-- Completion Metadata Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm pt-space-xs text-left">
+<div class="bg-surface-container/60 p-space-sm rounded-lg">
+<span class="block font-label-sm text-label-sm text-tertiary">Date Completed</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">October 25, 2026</span>
+</div>
+<div class="bg-surface-container/60 p-space-sm rounded-lg">
+<span class="block font-label-sm text-label-sm text-tertiary">Desk Location</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Benin City Hub, Edo State</span>
+</div>
+<div class="bg-surface-container/60 p-space-sm rounded-lg col-span-2 sm:col-span-1">
+<span class="block font-label-sm text-label-sm text-tertiary">Platform Status</span>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                  Active on Profile
+                </span>
+</div>
+</div>
+</div>
+<!-- Certificate Footer & Sign-offs -->
+<div class="relative z-10 pt-space-lg space-y-space-md">
+<!-- Sign-offs and QR row -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pb-space-sm">
+<!-- Sign off 1 -->
+<div class="text-center sm:text-left">
+<div class="h-9 flex items-end justify-center sm:justify-start">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tighter italic font-semibold">T. Balogun</span>
+</div>
+<div class="h-0.5 w-36 bg-outline-variant/60 my-1"></div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Tunde Balogun</div>
+<div class="font-body-sm text-body-sm text-tertiary">Training Lead (Benin Hub Desk)</div>
+</div>
+<!-- Verification QR & Link Block -->
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px- space-sm py-2 rounded-xl shadow-sm">
+<!-- Inline SVG QR Code Placeholder -->
+<div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-lg shrink-0 p-1">
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewbox="0 0 24 24">
+<path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm-2 10h8v8H2v-8zm2 2v4h4v-4H4zm10-14h8v8h-8V2zm2 2v4h4V4h-4zm3 8h3v2h-3v-2zm-3 2h2v2h-2v-2zm-2 2h2v4h-2v-4zm6 2h2v2h-2v-2zm0-4h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 2h2v2h-2v-2z"></path>
+</svg>
+</div>
+<div class="min-w-0 text-left">
+<span class="block font-label-sm text-label-sm text-tertiary uppercase">Verify Online</span>
+<a class="font-label-sm text-label-sm text-primary font-semibold hover:underline truncate block" href="#">sabiwork.ng/verify/SW-TRN-8820</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[10px]">Internal Registry Logged</span>
+</div>
+</div>
+<!-- Sign off 2 -->
+<div class="text-center sm:text-right">
+<div class="h-9 flex items-end justify-center sm:justify-end">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">Hub Verified</span>
+</div>
+</div>
+<div class="h-0.5 w-36 bg-outline-variant/60 my-1 ml-auto"></div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Artisan Registry Ops</div>
+<div class="font-body-sm text-body-sm text-tertiary">Benin Central Cluster</div>
+</div>
+</div>
+<!-- SHA-256 Checksum String -->
+<div class="bg-surface-container/50 px-3 py-1.5 rounded-lg flex items-center justify-between text-tertiary font-body-sm text-body-sm text-[11px]">
+<span class="truncate">Docket: SW-TRN-2026-8820-CC</span>
+<span class="font-mono text-[10px] hidden md:inline truncate ml-2">SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
+<span class="shrink-0 flex items-center gap-1 font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">lock</span>Tamper-Evident
+              </span>
+</div>
+<!-- Factual Statutory Disclaimer -->
+<footer class="pt-1">
+<p class="font-body-sm text-body-sm text-[11px] leading-tight text-on-surface-variant text-center max-w-xl mx-auto">
+<strong>Notice of Scope:</strong> This document attests exclusively to the internal completion of SabiWork platform client engagement and service guidelines. It does not constitute a statutory trade license, government guild accreditation, or regulatory qualification under Edo State or Nigerian law.
+              </p>
+</footer>
+</div>
+</div>
+</article>
+<!-- Print Canvas Auxiliary Toolbar (Download / Direct actions) -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">picture_as_pdf</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Print Specification:</span>
+<span class="font-label-sm text-label-sm text-tertiary">A4 Landscape • 300 DPI Vector Ready</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerExportFlow()" type="button">
+<span class="material-symbols-outlined text-[16px]">print</span>
+<span>Send to Printer</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md transition-colors flex items-center gap-1 shadow-sm" onclick="triggerExportFlow()" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Save PDF Document</span>
+</button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Achievement Summary & Profile Impact -->
+<aside class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Card 1: Accreditation Status & Profile Impact -->
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">badge</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Accreditation Status</h2>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">done_all</span> Verified
+          </span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl mb-space-md">
+<div class="flex items-center gap-space-xs text-primary font-label-lg text-label-lg font-bold">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+<span>Client Relations Endorsement</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Successfully appended to your public artisan credential record in the Edo Central Cluster database.
+          </p>
+</div>
+<div class="space-y-space-sm mb-space-md">
+<div class="font-label-sm text-label-sm uppercase font-bold text-tertiary">Where this appears for customers:</div>
+<div class="flex items-start gap-space-xs p-2.5 rounded-xl bg-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">search</span>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">S03 • Client Search Directory</div>
+<p class="font-body-sm text-body-sm text-tertiary">Special verified etiquette checkmark displayed in search result lists.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-xs p-2.5 rounded-xl bg-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">account_circle</span>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">S04 • Public Artisan Profile</div>
+<p class="font-body-sm text-body-sm text-tertiary">Prominently positioned in the 'Verified Badges &amp; Credentials' section.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-xs p-2.5 rounded-xl bg-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">request_quote</span>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">S19 • Quote Comparisons</div>
+<p class="font-body-sm text-body-sm text-tertiary">Boosts trust rating when clients review competitive plumber bids.</p>
+</div>
+</div>
+</div>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition-colors" onclick="handleProfileEndorse()" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Preview S04 Public Profile Appearance</span>
+</button>
+</section>
+<!-- Card 2: Share & Verification Details -->
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center gap-2 mb-space-md">
+<span class="material-symbols-outlined text-primary text-[22px]">share</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Share &amp; Verification</h2>
+</div>
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-tertiary mb-1 font-semibold uppercase">Public Verification Link</label>
+<div class="flex items-center gap-2">
+<input class="w-full min-h-[44px] px-3 py-2 bg-surface-container rounded-lg font-mono font-body-sm text-body-sm text-on-surface focus:outline-none" id="share-link-input" readonly="" type="text" value="sabiwork.ng/cert/BN-8820-ETIQ"/>
+<button class="min-h-[44px] px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center shrink-0" onclick="copyShareLink()" type="button">
+<span class="material-symbols-outlined text-[18px]" id="copy-icon">content_copy</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold mt-1 hidden" id="copy-feedback">Copied to clipboard!</span>
+</div>
+<div class="pt-space-xs space-y-2">
+<span class="block font-label-sm text-label-sm text-tertiary uppercase font-semibold">Download Formats</span>
+<a class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group" href="javascript:void(0)" onclick="triggerExportFlow()">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">description</span>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">High-Resolution PDF (A4)</span>
+<span class="font-body-sm text-body-sm text-tertiary">Suitable for printing &amp; framed display (1.2 MB)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">download</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors group" href="javascript:void(0)" onclick="alert('PNG optimized for WhatsApp status and portfolio dispatched!')">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">image</span>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">PNG Image for WhatsApp Portfolio</span>
+<span class="font-body-sm text-body-sm text-tertiary">Optimized social trade card (480 KB)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">download</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Card 3: Next Recommended Modules -->
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">school</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Next Recommended Module</h2>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary">Step 2 of 4</span>
+</div>
+<div class="p-space-md rounded-xl bg-primary-fixed/20 mb-space-md">
+<div class="flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase font-bold mb-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>5 mins • Next Step</span>
+</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">
+            Building Transparent Itemized Quotes (Labour vs Materials)
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Learn the exact Benin cluster guidelines for separating pipe fittings costs from diagnostic labour to avoid customer disputes on quotation delivery.
+          </p>
+</div>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 transition-colors shadow-sm" type="button">
+<span>Start Guide (S45)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</section>
+<!-- Artisan Cluster Note Card -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center gap-space-sm text-tertiary">
+<span class="material-symbols-outlined text-primary text-[24px] shrink-0">info</span>
+<p class="font-body-sm text-body-sm leading-tight">
+          Training updates sync instantly with your Benin City Desk field coordinator. Questions? Contact Benin Hub Dispatch.
+        </p>
+</div>
+</aside>
+</main>
+</div>
+<script>
+  function switchState(stateName) {
+    const readyView = document.getElementById('state-ready-view');
+    const ineligibleView = document.getElementById('state-ineligible-view');
+    const generatingView = document.getElementById('state-generating-view');
+    const errorView = document.getElementById('state-error-view');
+
+    readyView.classList.add('hidden');
+    ineligibleView.classList.add('hidden');
+    generatingView.classList.add('hidden');
+    errorView.classList.add('hidden');
+
+    // Reset button styles
+    document.querySelectorAll('.state-btn').forEach(btn => {
+      btn.className = 'state-btn px-3 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest';
+    });
+
+    const activeBtn = document.getElementById('btn-' + stateName);
+    if (activeBtn) {
+      activeBtn.className = 'state-btn active-state px-3 py-1.5 rounded-lg font-label-md text-label-md transition-colors bg-primary text-on-primary font-semibold shadow-sm';
+    }
+
+    if (stateName === 'ready') readyView.classList.remove('hidden');
+    if (stateName === 'ineligible') ineligibleView.classList.remove('hidden');
+    if (stateName === 'generating') generatingView.classList.remove('hidden');
+    if (stateName === 'error') errorView.classList.remove('hidden');
+  }
+
+  function triggerExportFlow() {
+    switchState('generating');
+    setTimeout(() => {
+      switchState('ready');
+      window.print();
+    }, 1800);
+  }
+
+  function copyShareLink() {
+    const copyInput = document.getElementById('share-link-input');
+    copyInput.select();
+    navigator.clipboard.writeText(copyInput.value);
+    
+    const feedback = document.getElementById('copy-feedback');
+    const copyIcon = document.getElementById('copy-icon');
+    
+    feedback.classList.remove('hidden');
+    copyIcon.textContent = 'check';
+    
+    setTimeout(() => {
+      feedback.classList.add('hidden');
+      copyIcon.textContent = 'content_copy';
+    }, 2500);
+  }
+
+  function handleProfileEndorse() {
+    const btn = document.getElementById('btn-endorse');
+    const text = document.getElementById('endorse-text');
+    if (text.textContent.includes('Added')) {
+      alert('This endorsement is already active and visible on your public artisan profile (S04).');
+      return;
+    }
+    text.textContent = 'Endorsement Active (S04) ✓';
+    btn.classList.remove('bg-secondary');
+    btn.classList.add('bg-primary-container', 'text-on-primary-container');
+    alert('Endorsement successfully appended to your public profile (S04) and search cards (S03)!');
+  }
+</script></main></div></body></html>

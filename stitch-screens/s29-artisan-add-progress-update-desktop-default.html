@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode": "class", "theme": {"extend": {"colors": {"on-secondary-fixed": "#001b3c", "surface-tint": "#006491", "on-primary": "#ffffff", "on-primary-container": "#003a56", "surface": "#f9f9ff", "background": "#f9f9ff", "primary-fixed": "#c9e6ff", "secondary-fixed": "#d5e3ff", "tertiary-fixed": "#dbe4eb", "on-surface-variant": "#3f4850", "secondary-fixed-dim": "#b0c8f2", "outline": "#6f7881", "tertiary": "#576065", "outline-variant": "#bec8d1", "on-tertiary-fixed": "#141d22", "error": "#ba1a1a", "on-secondary-fixed-variant": "#30476b", "surface-variant": "#dce2f7", "secondary": "#485f84", "surface-container-lowest": "#ffffff", "on-error": "#ffffff", "primary": "#006491", "on-error-container": "#93000a", "surface-container": "#e9edff", "surface-container-highest": "#dce2f7", "on-tertiary-container": "#2e373d", "on-primary-fixed-variant": "#004b6f", "on-secondary-container": "#435a7f", "surface-container-high": "#e1e8fd", "surface-dim": "#d3daef", "secondary-container": "#bbd3fe", "inverse-primary": "#8aceff", "on-primary-fixed": "#001e2f", "surface-container-low": "#f1f3ff", "on-surface": "#141b2b", "tertiary-container": "#97a0a7", "error-container": "#ffdad6", "primary-fixed-dim": "#8aceff", "inverse-surface": "#293040", "on-tertiary": "#ffffff", "on-background": "#141b2b", "inverse-on-surface": "#edf0ff", "surface-bright": "#f9f9ff"}, "borderRadius": {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"}, "spacing": {"space-sm": "0.625rem", "margin-mobile": "1rem", "space-xl": "1.5rem", "space-lg": "1.25rem", "space-3xl": "3rem", "space-2xl": "2rem", "space-md": "1rem", "gutter-mobile": "0.75rem", "gutter": "1.25rem", "space-xs": "0.5rem", "margin": "2rem", "space-2xs": "0.25rem"}, "fontFamily": {"body-sm": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "label-lg": ["Inter"], "label-md": ["Inter"]}, "fontSize": {"body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}], "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}], "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}], "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}], "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700"}], "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}], "label-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}]}}}};</script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-6 pb-8"><div class="px-8 mb-10 flex items-center gap-2"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-sm">S</div><span class="text-headline-sm font-headline-sm text-primary tracking-tight">SabiWork</span></div><nav class="flex-1 px-4 flex flex-col gap-2" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="artisan-dashboard" href="#"><span class="material-symbols-outlined mr-3">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="active-gigs" href="#"><span class="material-symbols-outlined mr-3">work</span>Active Gigs</a><a aria-current="page" class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl" data-path="progress-update" href="#"><span class="material-symbols-outlined mr-3">update</span>Progress Update</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="earnings" href="#"><span class="material-symbols-outlined mr-3">payments</span>Earnings</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined mr-3">settings</span>Settings</a></nav><div class="px-6 pt-4"><div class="p-3 bg-surface-container rounded-xl flex items-center justify-between"><span class="text-label-sm text-on-surface-variant">Paystack TEST</span><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-8"><div class="flex items-center gap-3"><span class="text-label-md text-on-surface-variant">Artisan Workspace</span></div><div class="flex items-center gap-4"><button class="w-10 h-10 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant transition-colors"><span class="material-symbols-outlined">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full pb-24">
+<!-- Top Banner / Linked Job Header -->
+<div class="bg-surface-container-low px-8 py-6 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">plumbing</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<span class="text-label-sm px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed">Job #BN-REQ-8421</span>
+<span class="text-label-sm px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed">Milestone 1 In-Progress</span>
+</div>
+<h1 class="text-headline-lg text-on-surface font-headline-lg tracking-tight">Under-sink kitchen drain pipe replacement & leak repair</h1>
+<p class="text-body-md text-on-surface-variant mt-1">Ada O.’s Residence • Lekki Phase 1 / Benin City Hub</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-4 py-2 bg-surface rounded-xl flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-label-md text-on-surface font-medium">Paystack TEST Mode</span>
+</div>
+</div>
+</div>
+<!-- Main Content Layout (Asymmetric Bento/Grid) -->
+<div class="px-8 max-w-[1280px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Form & Inputs (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- State Switcher Bar (Interactive Demo Utility) -->
+<div class="bg-surface-container-highest p-4 rounded-xl flex items-center justify-between flex-wrap gap-4 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<span class="text-label-md text-on-surface font-semibold">Simulate UI State:</span>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<button class="px-3 py-1.5 rounded-lg text-label-sm bg-primary text-on-primary transition-all" id="btn-state-default" onclick="setState('default')">Default</button>
+<button class="px-3 py-1.5 rounded-lg text-label-sm bg-surface text-on-surface-variant hover:bg-surface-container transition-all" id="btn-state-error" onclick="setState('error')">Validation Error</button>
+<button class="px-3 py-1.5 rounded-lg text-label-sm bg-surface text-on-surface-variant hover:bg-surface-container transition-all" id="btn-state-uploading" onclick="setState('uploading')">Upload Progress</button>
+<button class="px-3 py-1.5 rounded-lg text-label-sm bg-surface text-on-surface-variant hover:bg-surface-container transition-all" id="btn-state-saving" onclick="setState('saving')">Saving State</button>
+<button class="px-3 py-1.5 rounded-lg text-label-sm bg-surface text-on-surface-variant hover:bg-surface-container transition-all" id="btn-state-network-error" onclick="setState('network-error')">Network Error</button>
+</div>
+</div>
+<!-- Main Form Card -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm flex flex-col gap-6 relative overflow-hidden">
+<!-- Network Error Banner (Conditional) -->
+<div class="hidden p-4 rounded-xl bg-error-container text-on-error-container flex items-center justify-between gap-4" id="network-error-banner">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">wifi_off</span>
+<div>
+<p class="text-label-lg font-semibold">Recoverable Network Error</p>
+<p class="text-body-sm opacity-90">Could not sync progress update with the S28 timeline. Your local draft is saved.</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-error text-on-error rounded-lg text-label-sm font-semibold flex-shrink-0" onclick="setState('saving')">Retry Sync</button>
+</div>
+<!-- Progress Status Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="text-label-lg text-on-surface font-semibold flex items-center justify-between" for="status-select">
+<span>Permitted Status Update</span>
+<span class="text-body-sm text-on-surface-variant font-normal">Strictly excludes final customer sign-off</span>
+</label>
+<div class="relative">
+<select class="w-full h-[44px] px-4 rounded-lg bg-surface border border-outline-variant text-on-surface text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 appearance-none" id="status-select">
+<option selected="" value="milestone-1">Milestone 1 In-Progress (Current)</option>
+<option value="component-sourcing">Component Sourcing Complete</option>
+<option value="rough-in">Rough-in Inspection Ready</option>
+<option value="leak-test">Pressure & Leak Test Passed</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<p class="text-body-sm text-tertiary">Note: Artisan tier permissions do not permit closing the job ticket. Customer Ada O. must authorize final completion.</p>
+</div>
+<!-- Progress Description Textarea -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="text-label-lg text-on-surface font-semibold" for="work-notes">Work Notes & Details</label>
+<span class="text-body-sm text-on-surface-variant" id="char-counter">142 / 500 chars</span>
+</div>
+<div class="relative">
+<textarea class="w-full p-4 rounded-lg bg-surface border border-outline-variant text-on-surface text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none" id="work-notes" oninput="updateCounter(this)" placeholder="Describe the work performed, materials used, or challenges encountered during this phase..." rows="4">Removed corroded PVC trap and old tailpiece assembly. Inspected thread integrity on main waste line; clean and sound. Fitted new PVC replacement kit with compression washers.</textarea>
+</div>
+<p class="hidden text-body-sm text-error flex items-center gap-1 mt-1" id="validation-error-msg">
+<span class="material-symbols-outlined text-[16px]">error</span>
+            Please enter at least 20 characters describing the progress update.
+          </p>
+</div>
+<!-- Photo Upload Dropzone -->
+<div class="flex flex-col gap-3">
+<label class="text-label-lg text-on-surface font-semibold">Progress Photos</label>
+<!-- Dropzone Box -->
+<div class="border-2 border-dashed border-outline-variant hover:border-primary rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer bg-surface/50 hover:bg-surface transition-all" id="dropzone">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined">add_a_photo</span>
+</div>
+<p class="text-body-lg font-semibold text-on-surface">Drag and drop progress photos here</p>
+<p class="text-body-sm text-on-surface-variant mt-1">Supports PNG, JPG, or HEIC up to 15MB each</p>
+<button class="mt-4 px-4 py-2 bg-surface border border-outline-variant rounded-lg text-label-md text-on-surface hover:bg-surface-container transition-all" type="button">Browse Files</button>
+</div>
+<!-- Upload Progress Overlay / Bar (Conditional) -->
+<div class="hidden p-4 rounded-xl bg-surface-container flex flex-col gap-2" id="upload-progress-box">
+<div class="flex items-center justify-between text-body-sm">
+<span class="font-medium text-on-surface">Uploading 1 file (IMG_9482.jpg)...</span>
+<span class="text-primary font-bold">68%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-outline-variant overflow-hidden">
+<div class="h-full bg-primary w-[68%] transition-all duration-300"></div>
+</div>
+</div>
+<!-- Photo Preview Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2" id="photo-grid">
+<!-- Photo Card 1 -->
+<div class="bg-surface rounded-xl p-3 border border-outline-variant flex gap-4 items-start relative group">
+<div class="w-20 h-20 rounded-lg bg-cover bg-center flex-shrink-0 relative overflow-hidden" data-alt="Close up photograph of a replaced PVC kitchen sink drain trap under cabinet, showing clean white plastic pipes and fresh rubber compression washers installed securely." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZ3xzpZFK0e-G63y-AOov-MheifzsMYtGt0tiHaZHYWm0etHhSCl2UFgwFiK3vlFxa0s4J_Iymx98VHgSnqyyxkKiltMs-FSRoSDBORGV0t1IR-OXCA04tza-H4ngaV5Ab7qj-zBzZpTTnAOD6RiNDeDR0eM49vNU67jRqeEbZZEgDe4YNCt40Hu8J6Po__2CpKpKieYaInJ-8NsWlaZ2c21ffNIUZemJVX9r6sGw')">
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]">zoom_in</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant truncate">IMG_8421_drain.jpg</span>
+<button class="text-error hover:opacity-75 transition-opacity p-1">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<input class="w-full h-[32px] px-3 rounded bg-surface-container-lowest border border-outline-variant text-body-sm text-on-surface focus:outline-none focus:border-primary" placeholder="Add caption..." type="text" value="New PVC trap fitted & aligned"/>
+</div>
+</div>
+<!-- Photo Card 2 -->
+<div class="bg-surface rounded-xl p-3 border border-outline-variant flex gap-4 items-start relative group">
+<div class="w-20 h-20 rounded-lg bg-cover bg-center flex-shrink-0 relative overflow-hidden" data-alt="Wide angle view under kitchen sink cabinet showing plumbing tools, flashlight, and the cleared workspace after old corroded pipes were removed." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAipmXLovuY3vgEee18GufQBOjJxL15ng2TXb0wJIDTmxhYFMsjihtqwiic8jB-gYmKoY6H3gBmqur1KonElraDn_1Ck3i1wo4WAK97MHKXPNVb1g168RlAcWlT5pS6MHZmoq_7ZfUpV0T8C7fo9GGH0oYw_Dv24t-F87HGXUmdj_xCofbav60AnuWfElVH34f1y9Lie3vDvRrnqZfwPPDu7206IIm8hlG8-Gy3EHg')">
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]">zoom_in</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant truncate">IMG_8422_prep.jpg</span>
+<button class="text-error hover:opacity-75 transition-opacity p-1">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<input class="w-full h-[32px] px-3 rounded bg-surface-container-lowest border border-outline-variant text-body-sm text-on-surface focus:outline-none focus:border-primary" placeholder="Add caption..." type="text" value="Workspace cleared & old pipe removed"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Action Buttons -->
+<div class="flex items-center justify-end gap-4 pt-6 border-t border-outline-variant/40 mt-2">
+<button class="px-5 py-2.5 rounded-xl border border-outline-variant text-on-surface hover:bg-surface transition-all text-label-md flex-shrink-0 whitespace-nowrap" type="button">Cancel</button>
+<button class="px-6 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-primary/90 transition-all text-label-md font-semibold flex items-center gap-2 flex-shrink-0 whitespace-nowrap shadow-sm" id="save-btn" onclick="handleSave()" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span id="save-btn-text">Save & Publish Progress Update</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Context & Explanatory Panel (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Explanatory Helper Note Card -->
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-primary flex flex-col gap-4 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Customer Notification</h3>
+<p class="text-body-sm text-on-surface-variant">Instant push delivery</p>
+</div>
+</div>
+<p class="text-body-md text-on-surface leading-relaxed">
+          Customer <strong class="text-primary font-semibold">Ada O.</strong> will receive an instant push notification and view these progress photos and notes directly in their S28 job timeline.
+        </p>
+<div class="p-3 bg-surface rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="text-body-sm text-on-surface font-medium">Synced instantly with S28 client portal</span>
+</div>
+</div>
+<!-- Job Timeline Summary Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col gap-4">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Job Milestone Tracker</h3>
+<div class="flex flex-col gap-3 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-outline-variant/60">
+<!-- Step 1: Completed -->
+<div class="flex items-start gap-3 relative">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0 z-10 text-[14px] font-bold">✓</div>
+<div class="pt-0.5">
+<p class="text-label-md font-semibold text-on-surface">Booking Confirmed & Deposit Escrowed</p>
+<p class="text-body-sm text-on-surface-variant">Paystack TEST transaction #TX-9481</p>
+</div>
+</div>
+<!-- Step 2: Current -->
+<div class="flex items-start gap-3 relative">
+<div class="w-7 h-7 rounded-full bg-primary-fixed text-primary flex items-center justify-center flex-shrink-0 z-10 text-[14px] font-bold ring-4 ring-surface">2</div>
+<div class="pt-0.5">
+<p class="text-label-md font-semibold text-primary">Milestone 1 In-Progress</p>
+<p class="text-body-sm text-on-surface-variant">Under-sink pipe replacement underway</p>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex items-start gap-3 relative">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center flex-shrink-0 z-10 text-[14px]">3</div>
+<div class="pt-0.5">
+<p class="text-label-md text-on-surface-variant">Milestone 2: Leak & Pressure Test</p>
+<p class="text-body-sm text-on-surface-variant">Pending completion of rough-in</p>
+</div>
+</div>
+<!-- Step 4: Pending Final -->
+<div class="flex items-start gap-3 relative">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center flex-shrink-0 z-10 text-[14px]">4</div>
+<div class="pt-0.5">
+<p class="text-label-md text-on-surface-variant">Customer Sign-off & Closure</p>
+<p class="text-body-sm text-on-surface-variant">Requires Ada O. authorization</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive State Script -->
+<script>
+    function setState(state) {
+      // Reset button styles
+      ['default', 'error', 'uploading', 'saving', 'network-error'].forEach(s => {
+        const btn = document.getElementById('btn-state-' + s);
+        if (btn) {
+          btn.className = 'px-3 py-1.5 rounded-lg text-label-sm bg-surface text-on-surface-variant hover:bg-surface-container transition-all';
+        }
+      });
+      
+      // Highlight active demo button
+      const activeBtn = document.getElementById('btn-state-' + state);
+      if (activeBtn) {
+        activeBtn.className = 'px-3 py-1.5 rounded-lg text-label-sm bg-primary text-on-primary transition-all';
+      }
+
+      // Elements
+      const errorMsg = document.getElementById('validation-error-msg');
+      const workNotes = document.getElementById('work-notes');
+      const uploadBox = document.getElementById('upload-progress-box');
+      const networkBanner = document.getElementById('network-error-banner');
+      const saveBtnText = document.getElementById('save-btn-text');
+      const saveBtn = document.getElementById('save-btn');
+
+      // Hide all conditional elements first
+      errorMsg.classList.add('hidden');
+      uploadBox.classList.add('hidden');
+      networkBanner.classList.add('hidden');
+      saveBtn.disabled = false;
+      saveBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+      if (state === 'default') {
+        saveBtnText.innerText = 'Save & Publish Progress Update';
+      } else if (state === 'error') {
+        errorMsg.classList.remove('hidden');
+        workNotes.value = '';
+        updateCounter(workNotes);
+      } else if (state === 'uploading') {
+        uploadBox.classList.remove('hidden');
+        saveBtnText.innerText = 'Uploading Photos...';
+        saveBtn.disabled = true;
+        saveBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      } else if (state === 'saving') {
+        saveBtnText.innerText = 'Saving to S28 Timeline...';
+        saveBtn.disabled = true;
+        saveBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      } else if (state === 'network-error') {
+        networkBanner.classList.remove('hidden');
+        saveBtnText.innerText = 'Save & Publish Progress Update';
+      }
+    }
+
+    function updateCounter(el) {
+      const len = el.value.length;
+      document.getElementById('char-counter').innerText = len + ' / 500 chars';
+    }
+
+    function handleSave() {
+      setState('saving');
+      setTimeout(() => {
+        alert('Progress update successfully published to S28 timeline and push notification sent to Ada O.!');
+        setState('default');
+      }, 1500);
+    }
+  </script>
+</div></main></div></body></html>

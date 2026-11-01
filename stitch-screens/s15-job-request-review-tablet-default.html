@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline": "#6f7881", "inverse-surface": "#293040", "background": "#f9f9ff", "surface": "#f9f9ff", "tertiary-container": "#97a0a7", "secondary-fixed": "#d5e3ff", "surface-variant": "#dce2f7", "surface-container-high": "#e1e8fd", "error-container": "#ffdad6", "tertiary-fixed-dim": "#bfc8ce", "on-secondary-fixed-variant": "#30476b", "secondary-fixed-dim": "#b0c8f2", "outline-variant": "#bec8d1", "surface-bright": "#f9f9ff", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "on-secondary-fixed": "#001b3c", "inverse-primary": "#8aceff", "on-surface": "#141b2b", "secondary": "#485f84", "on-error-container": "#93000a", "surface-dim": "#d3daef", "primary": "#006491", "surface-container-low": "#f1f3ff", "surface-tint": "#006491", "on-tertiary-fixed-variant": "#3f484e", "tertiary": "#576065", "secondary-container": "#bbd3fe", "on-primary-fixed": "#001e2f", "inverse-on-surface": "#edf0ff", "surface-container": "#e9edff", "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "tertiary-fixed": "#dbe4eb", "primary-fixed": "#c9e6ff", "on-tertiary-fixed": "#141d22", "on-primary-container": "#003a56", "primary-fixed-dim": "#8aceff", "on-error": "#ffffff", "on-secondary-container": "#435a7f", "on-background": "#141b2b", "on-primary-fixed-variant": "#004b6f", "on-surface-variant": "#3f4850", "error": "#ba1a1a", "on-primary": "#ffffff", "primary-container": "#38a8e8", "on-tertiary-container": "#2e373d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-2xl": "2rem", "space-lg": "1.25rem", "margin": "2rem", "space-3xl": "3rem", "space-sm": "0.625rem", "space-xs": "0.5rem", "margin-mobile": "1rem", "space-2xs": "0.25rem", "gutter-mobile": "0.75rem", "space-xl": "1.5rem", "gutter": "1.25rem" }, "fontFamily": { "label-lg": [ "Inter" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "headline-md": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "headline-sm": [ "Plus Jakarta Sans" ], "label-sm": [ "Inter" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ] }, "fontSize": { "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "headline-lg": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-sm": [ "18px", { "lineHeight": "24px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "headline-lg-mobile": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-xl": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "13px", { "lineHeight": "18px", "fontWeight": "500" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[1280px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><div class="font-headline-md text-headline-md tracking-tight flex items-center select-none"><span class="text-[#0E294B]">Sabi</span><span class="text-primary-container">Work</span></div></div><div class="hidden sm:flex items-center gap-space-xs px-space-xs py-space-2xs rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px] text-secondary">location_on</span><span>Benin City, ED</span></div><div class="hidden xl:flex items-center px-space-xs py-space-2xs rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm tracking-wider uppercase font-semibold"><span>Paystack TEST Mode</span></div></div><nav class="hidden lg:flex items-center gap-space-xl" data-active-classes="text-primary font-semibold border-b-2 border-primary-container pb-space-2xs"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors pb-space-2xs" data-path="explore-artisans" href="#">Explore Artisans</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors pb-space-2xs" data-path="categories" href="#">Categories</a><a aria-current="page" class="transition-colors text-primary font-semibold border-b-2 border-primary-container pb-space-2xs" data-path="my-requests" href="#">My Requests</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors pb-space-2xs" data-path="messages" href="#">Messages</a></nav><div class="flex items-center gap-space-md"><a class="min-h-[44px] px-5 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all flex items-center justify-center shrink-0 whitespace-nowrap shadow-[0_1px_3px_rgba(14,41,75,0.05)]" data-path="post-a-request" href="#">Post a Request</a><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Osas I.</span><span class="font-body-sm text-body-sm text-on-surface-variant leading-tight">Customer</span></div></div></div></div></header><main class="w-full pt-20 bg-background min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- Interactive Prototype Controller -->
+<aside aria-label="Prototype View Switcher" class="w-full bg-inverse-surface text-inverse-on-surface py-2.5 px-margin-mobile md:px-margin shadow-sm transition-all duration-200">
+<div class="max-w-[1280px] mx-auto flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm tracking-wider uppercase text-secondary-fixed">
+<span class="material-symbols-outlined text-[15px] text-primary-fixed">tune</span>
+<span>Interactive Sandbox Mode Switcher (Tablet 768px Focus)</span>
+</div>
+<div class="flex items-center gap-1.5 flex-wrap" role="tablist">
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm shadow-sm transition-all flex items-center gap-1" id="btn-state-default" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+<span>Default Review</span>
+</button>
+<button class="px-3 py-1 rounded bg-secondary-fixed/20 hover:bg-secondary-fixed/30 text-inverse-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" id="btn-state-submitting" type="button">
+<span class="material-symbols-outlined text-[13px]">hourglass_top</span>
+<span>Submitting...</span>
+</button>
+<button class="px-3 py-1 rounded bg-secondary-fixed/20 hover:bg-secondary-fixed/30 text-inverse-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" id="btn-state-error" type="button">
+<span class="material-symbols-outlined text-[13px] text-error-container">error</span>
+<span>Error State</span>
+</button>
+<button class="px-3 py-1 rounded bg-secondary-fixed/20 hover:bg-secondary-fixed/30 text-inverse-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" id="btn-state-success" type="button">
+<span class="material-symbols-outlined text-[13px] text-primary-fixed">check_circle</span>
+<span>Success (S16 Match)</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Error Notification Shelf (Hidden by default, triggered in prototype) -->
+<div class="hidden w-full bg-error-container text-on-error-container py-space-sm px-margin-mobile md:px-margin transition-all" id="state-error-banner">
+<div class="max-w-[960px] mx-auto flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-error shrink-0 mt-0.5">warning</span>
+<div class="flex flex-col">
+<p class="font-label-lg text-label-lg text-on-error-container">Submission Dispatch Interrupted</p>
+<p class="font-body-sm text-body-sm text-on-error-container/80">Payload transmission timed out while communicating with Benin City trade dispatch queue. Your drafted job request data is securely preserved.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<button class="min-h-[36px] px-3.5 py-1.5 rounded-lg bg-on-error-container text-error-container font-label-md text-label-md hover:opacity-90 flex items-center gap-1.5 shadow-sm" id="btn-retry-action" type="button">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+<span>Retry Now</span>
+</button>
+<button class="p-1 rounded text-on-error-container hover:bg-error/10" id="btn-dismiss-error" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Tablet Stage (8-Column Container) -->
+<main class="w-full max-w-[960px] mx-auto px-margin-mobile md:px-margin py-space-xl flex flex-col gap-space-xl pb-36">
+<!-- Breadcrumb Hierarchy -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant flex-wrap">
+<a class="hover:text-primary transition-colors" href="#">Customer</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Requests</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold bg-surface-container px-2 py-0.5 rounded text-label-sm font-label-sm">S15 Review Job Request</span>
+</nav>
+<!-- Context Header & Live Stepper (8-col layout) -->
+<section class="grid grid-cols-1 md:grid-cols-8 gap-space-lg items-center">
+<div class="md:col-span-5 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Plumbing Ticket #BN-4821</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Created Just Now</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Review Job Request: Kitchen Sink Repair</h1>
+<div class="flex items-center gap-space-xs font-body-md text-body-md text-on-surface-variant">
+<span class="font-semibold text-on-surface">Ada O.</span>
+<span>•</span>
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">pin_drop</span>
+<span>GRA Axis, Benin City</span>
+</span>
+</div>
+</div>
+<!-- Linear Stepper Component -->
+<div class="md:col-span-3 bg-surface-container-low p-space-sm rounded-xl shadow-sm">
+<div class="flex items-center justify-between gap-1">
+<!-- Step 1 Done -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface text-center font-medium">Details</span>
+</div>
+<div class="h-0.5 flex-1 bg-primary rounded-full -mt-4"></div>
+<!-- Step 2 Current -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm ring-4 ring-primary-fixed/40 shadow-sm">
+<span>2</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold text-center">Itemized</span>
+</div>
+<div class="h-0.5 flex-1 bg-outline-variant/60 rounded-full -mt-4"></div>
+<!-- Step 3 Next -->
+<div class="flex flex-col items-center gap-1 flex-1 opacity-70">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm">
+<span>3</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Match (S16)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Success Feedback Overlay/Replacement State (Shown in Success Mode) -->
+<section class="hidden w-full bg-surface-container-lowest p-space-xl rounded-xl shadow-md border-0" id="state-success-card">
+<div class="flex flex-col items-center text-center max-w-lg mx-auto py-space-lg gap-space-md">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[36px] text-primary">verified</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Request Logged • Pipeline Active</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Ticket Transmitted to Benin Hub</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Plumbing specialists matching GRA Axis proximity are reviewing your defect diagnostics. Proceed directly to Artisan Dispatch Match.</p>
+</div>
+<div class="w-full bg-surface-container-low p-space-md rounded-lg flex items-center justify-between text-left gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">engineering</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Auto-Match Protocol Initiated</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 local plumbers with 95%+ completion nearby</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-primary-fixed/60 text-on-primary-fixed px-2 py-1 rounded">Stage S16 Ready</span>
+</div>
+<a class="w-full min-h-[48px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg hover:bg-on-primary-container transition-all flex items-center justify-center gap-2 shadow-md" href="#s16-match">
+<span>Explore Matched Artisans (S16)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Main Review Content Grid (Default Review Mode) -->
+<div class="flex flex-col gap-space-lg transition-all" id="state-review-content">
+<!-- Banner: Verified Non-binding notice pill -->
+<div class="bg-secondary-fixed/30 p-space-md rounded-xl flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs text-on-secondary-fixed">
+<span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+<span class="font-body-md text-body-md">Please inspect all trade specifications and address pins prior to dispatch. Changes can be made before artisan acceptance.</span>
+</div>
+<span class="hidden sm:inline-block font-label-sm text-label-sm bg-surface-container-lowest text-on-secondary-fixed px-2.5 py-1 rounded-full shrink-0 shadow-sm font-semibold">Stage: Pre-Commit</span>
+</div>
+<!-- Card 1: Scope & Defect Details -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md transition-all hover:shadow-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">build_circle</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Card 1: Scope &amp; Defect Details</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Core problem description &amp; material classification</p>
+</div>
+</div>
+<button aria-label="Edit Scope and Defect Details" class="min-h-[44px] px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1.5 transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span>Edit (S14)</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Job Title</span>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Under-sink kitchen drain pipe replacement &amp; leak repair</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Categorized Trade</span>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Plumbing &amp; Sanitary</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(Residential Fitting)</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Detailed Problem Description</span>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+            PVC wastewater pipe cracked at P-trap joint directly underneath the dual-basin stainless steel sink. Water pools inside the lower cabinetry whenever the faucet runs continuously for 20 seconds. Standard 1.5-inch PVC replacement fittings and sealant mastic required. Access hatch is unobstructed.
+          </p>
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant">P-Trap Leak</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant">1.5" PVC Fitting</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant">Indoor Cabinet Access</span>
+</div>
+</div>
+</section>
+<!-- Card 2: Worksite Location & Preferred Timing -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md transition-all hover:shadow-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">fmd_good</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Card 2: Worksite Location &amp; Preferred Timing</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Service dispatch destination and customer availability</p>
+</div>
+</div>
+<button aria-label="Edit Location and Timing" class="min-h-[44px] px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1.5 transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span>Edit</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-8 gap-space-md">
+<!-- Textual breakdown -->
+<div class="md:col-span-4 flex flex-col gap-space-sm justify-between">
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Physical Worksite Address</span>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Boundary Rd, near Zenith Bank Junction</p>
+<p class="font-body-md text-body-md text-on-surface-variant">GRA Axis, Benin City, Edo State</p>
+<div class="flex items-center gap-1.5 text-primary pt-1 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">my_location</span>
+<span>Pin coordinates verified (Lat 6.3156, Lon 5.6122)</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Preferred Window &amp; Urgency</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">event_available</span>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Thursday 24 Oct (Morning 9am - 1pm)</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Arrival flexible within 48 hours window. Security clearance provided at street barrier gate.</p>
+</div>
+</div>
+<!-- Static Location Visual Container -->
+<div class="md:col-span-4 rounded-xl overflow-hidden shadow-sm relative min-h-[180px] bg-surface-container">
+<div class="w-full h-full min-h-[190px] bg-cover bg-center" data-location="Boundary Road, GRA, Benin City, Edo State, Nigeria" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuR5BTLWxxK5JMvmV3TCK9_nIC-0qx2bULmUwoqZO1lx1uuR_kApiOZqFZWstAlZfMGfNTM5ErnVugBq3QWRWT2oThCiAddiaXKjB2jd-dZCdwr6CW6QIHTEoRWsq5f4oMWHCgtTJgZ7FoqoN2BPRU5lGDax79PWrrWpuHJn7jSDDPVNJsrZHM9u-RAa4YxpTAu8hKvzGRWlH30RBgEUwMjqcdk15W1BAf3X7c338')"></div>
+<div class="absolute bottom-2 left-2 right-2 bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-lg flex items-center justify-between text-on-surface font-label-sm text-label-sm shadow-sm">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>GRA Benin Dispatch Zone</span>
+</span>
+<span class="text-on-surface-variant">Local Artisan Cluster</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 3: Photo Evidence Gallery -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md transition-all hover:shadow-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">photo_library</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Card 3: Photo Evidence Gallery</h2>
+<span class="px-2 py-0.2 rounded-full bg-secondary-fixed/50 font-label-sm text-label-sm text-on-secondary-fixed">3 Attached</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Visual evidence provided to help artisans prepare fittings in advance</p>
+</div>
+</div>
+<button aria-label="Edit attached photos" class="min-h-[44px] px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1.5 transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>
+<span>Edit Photos</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<!-- Photo Card 1 -->
+<div class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-md">
+<div class="relative h-44 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Close up photograph of a damaged white plastic PVC kitchen sink drain pipe with visible crack and moisture droplets underneath a modern domestic kitchen cabinet in Benin City. High visual clarity, realistic daylight illumination with sky blue reflection accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCkAYM_VxPTPNl_xghJz9AFH7RUrUf1DTBVPDXrpo_k4WeoLe5G-L973sdRkYvYSbbmHgWHr_zKM-xpF5iZe31iAQre1yYeNNJbfga_WlEMXH2YWsxv1bbTULvxWAgAx_zGW4y3TfgJvRBk8FK4-B7SnvPH9tAvn7vRhcMsXxfoEPnEyBy6waKCJXKHHJs2v5fk01QWIQD_SW45w55wycwfRlBiTVQ6POGM9wl6GI"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm">Photo 1 • P-Trap Joint</span>
+</div>
+<div class="p-space-xs flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Main crack location</span>
+<span class="font-label-sm text-label-sm text-primary">2.4 MB</span>
+</div>
+</div>
+<!-- Photo Card 2 -->
+<div class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-md">
+<div class="relative h-44 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Interior view of a dual-basin stainless steel kitchen sink cabinet showing plumbing connections, drain outlet pipe, and clear working space inside the wooden housing. Neutral clean light, crisp focus, architectural interior clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATkFANOdGFT34FRrC28t1B-O8Uh4JQgMX9gaXtWU65ieqj5ZYb_QGqFIAwa5uXqqTtqpHgLRhQyi4XpMgqsukp2mbKaFtb7BOPoqgx0eLQUvVOxyuqjqiLbORXmk_mYUj0tMCNixddtavu8QPuw5f6-qjOFpQAOK_M3eHW7CD3-hly0Dv2vxZSNFBRSbhJixgAVj_0FFBmHMRGg3EU3rlULoyEqunsZFGqtUFT-mg"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm">Photo 2 • Full Cabinet Span</span>
+</div>
+<div class="p-space-xs flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Under-sink clearance</span>
+<span class="font-label-sm text-label-sm text-primary">1.9 MB</span>
+</div>
+</div>
+<!-- Photo Card 3 -->
+<div class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-md">
+<div class="relative h-44 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Macro photo of cracked PVC coupling thread connection displaying water droplet seeping out, demonstrating exact failure point on standard plumbing hardware. Sharp macro focus, natural daylight balance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtUhJsK55FIu1-AOWrgGZ_ry-QkIWH2x3DihDzufCUDKa5xbl437-v9sY3kDaq8sVoKG4-BJkgf1mZCQ3c8imGmobsXRLQkUEssBZ3WqCM28fKFO8rXpOye-A3cLALglSiXBRf_HtkL76YRRFKmc3oaPrKwJwQvwpKcntobYIHjH6YrVlp2pWNfv9kMqr-YQxOjyKY6CPniOtf8udCjnKScbtPTJvTDygwEGlP8Dk"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm">Photo 3 • Thread Detail</span>
+</div>
+<div class="p-space-xs flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Wastewater coupling</span>
+<span class="font-label-sm text-label-sm text-primary">3.1 MB</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 4: Budget Guidance & Non-Binding Notice -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md transition-all hover:shadow-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Card 4: Budget Guidance &amp; Transparent Terms</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Fair market benchmark &amp; artisan quote expectations</p>
+</div>
+</div>
+<button aria-label="Edit Budget" class="min-h-[44px] px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1.5 transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span>Edit</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-8 gap-space-md items-center">
+<!-- Target Display -->
+<div class="md:col-span-4 bg-primary-fixed/30 p-space-lg rounded-xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant uppercase tracking-wider font-semibold">Customer Target Budget</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm">Guidance Only</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-on-primary-fixed font-bold tracking-tight">₦ 18,000</span>
+<span class="font-body-md text-body-md text-on-primary-fixed-variant">Labor + PVC Parts Est.</span>
+</div>
+<div class="flex items-center gap-2 pt-1 font-body-sm text-body-sm text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[16px]">analytics</span>
+<span>Average Benin GRA plumbing ticket: ₦15,000 – ₦22,000</span>
+</div>
+</div>
+<!-- Non-Binding Notice Box -->
+<div class="md:col-span-4 bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2">
+<div class="flex items-center gap-1.5 text-on-surface font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[18px] text-tertiary">shield</span>
+<span>Non-Binding Financial Notice</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              This optional figure is for artisan guidance only and does <span class="font-semibold text-on-surface">NOT</span> constitute an agreed quote, contract, or final charge. Each responding tradesperson submits their own independent estimate after reviewing the photos and scope.
+            </p>
+<div class="flex items-center gap-2 pt-1 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">credit_card</span>
+<span>Payments processed via simulated Paystack TEST checkout upon completion.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Pre-submission Verification Checklist -->
+<section class="bg-surface-container-low p-space-md rounded-xl flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Ready to notify available artisans?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Qualified plumbers within 6km of Boundary Rd will receive push broadcasts immediately.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary shrink-0">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+<span>Avg response time: 7 mins</span>
+</div>
+</section>
+</div>
+</main>
+<!-- Sticky Fixed Action Bar / Bottom Shelf -->
+<nav aria-label="Review Actions" class="fixed bottom-0 left-0 right-0 w-full bg-surface/95 backdrop-blur-xl shadow-[0_-4px_16px_rgba(14,41,75,0.08)] z-40">
+<div class="max-w-[960px] mx-auto px-margin-mobile md:px-margin py-3.5 flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Left info/back link -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-between sm:justify-start">
+<a class="min-h-[48px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition-all shrink-0" href="#back-to-s14">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back to Edit (S14)</span>
+</a>
+<div class="hidden md:flex flex-col text-left">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Step 2 of 3</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Review before dispatch</span>
+</div>
+</div>
+<!-- Right primary CTAs -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="w-full sm:w-auto min-h-[48px] px-6 py-2.5 rounded-xl bg-[#1478B5] hover:bg-primary active:bg-on-primary-container text-white font-label-lg text-label-lg transition-all flex items-center justify-center gap-2.5 shadow-md shrink-0" id="btn-submit-main" type="button">
+<span id="btn-submit-label">Submit Request (Go to S16)</span>
+<span class="material-symbols-outlined text-[20px]" id="btn-submit-icon">arrow_forward</span>
+<span class="hidden animate-spin material-symbols-outlined text-[20px]" id="btn-submit-spinner">progress_activity</span>
+</button>
+</div>
+</div>
+</nav>
+</div>
+<script>
+  (function initPrototypeControls() {
+    const btnDefault = document.getElementById('btn-state-default');
+    const btnSubmitting = document.getElementById('btn-state-submitting');
+    const btnError = document.getElementById('btn-state-error');
+    const btnSuccess = document.getElementById('btn-state-success');
+    
+    const errorBanner = document.getElementById('state-error-banner');
+    const successCard = document.getElementById('state-success-card');
+    const reviewContent = document.getElementById('state-review-content');
+    
+    const submitBtn = document.getElementById('btn-submit-main');
+    const submitLabel = document.getElementById('btn-submit-label');
+    const submitIcon = document.getElementById('btn-submit-icon');
+    const submitSpinner = document.getElementById('btn-submit-spinner');
+    
+    const btnRetry = document.getElementById('btn-retry-action');
+    const btnDismissError = document.getElementById('btn-dismiss-error');
+
+    function resetTabs() {
+      [btnDefault, btnSubmitting, btnError, btnSuccess].forEach(btn => {
+        btn.className = 'px-3 py-1 rounded bg-secondary-fixed/20 hover:bg-secondary-fixed/30 text-inverse-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1';
+      });
+    }
+
+    function setActiveTab(button) {
+      resetTabs();
+      button.className = 'px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm shadow-sm transition-all flex items-center gap-1 font-semibold';
+    }
+
+    function showDefaultState() {
+      setActiveTab(btnDefault);
+      errorBanner.classList.add('hidden');
+      successCard.classList.add('hidden');
+      reviewContent.classList.remove('hidden', 'opacity-50', 'pointer-events-none');
+      
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('opacity-75', 'cursor-wait');
+      submitLabel.textContent = 'Submit Request (Go to S16)';
+      submitIcon.classList.remove('hidden');
+      submitSpinner.classList.add('hidden');
+    }
+
+    function showSubmittingState() {
+      setActiveTab(btnSubmitting);
+      errorBanner.classList.add('hidden');
+      successCard.classList.add('hidden');
+      reviewContent.classList.remove('hidden');
+      reviewContent.classList.add('opacity-50', 'pointer-events-none');
+      
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-75', 'cursor-wait');
+      submitLabel.textContent = 'Submitting to Dispatch Queue...';
+      submitIcon.classList.add('hidden');
+      submitSpinner.classList.remove('hidden');
+    }
+
+    function showErrorState() {
+      setActiveTab(btnError);
+      errorBanner.classList.remove('hidden');
+      successCard.classList.add('hidden');
+      reviewContent.classList.remove('hidden', 'opacity-50', 'pointer-events-none');
+      
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('opacity-75', 'cursor-wait');
+      submitLabel.textContent = 'Retry Submission (Go to S16)';
+      submitIcon.classList.remove('hidden');
+      submitSpinner.classList.add('hidden');
+    }
+
+    function showSuccessState() {
+      setActiveTab(btnSuccess);
+      errorBanner.classList.add('hidden');
+      reviewContent.classList.add('hidden');
+      successCard.classList.remove('hidden');
+      
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Submitted to S16 Pipeline';
+      submitIcon.classList.remove('hidden');
+      submitSpinner.classList.add('hidden');
+      
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    // Attach listeners
+    btnDefault.addEventListener('click', showDefaultState);
+    btnSubmitting.addEventListener('click', showSubmittingState);
+    btnError.addEventListener('click', showErrorState);
+    btnSuccess.addEventListener('click', showSuccessState);
+
+    // Primary action submit button acts as a live flow simulator
+    submitBtn.addEventListener('click', () => {
+      showSubmittingState();
+      setTimeout(() => {
+        showSuccessState();
+      }, 1400);
+    });
+
+    if (btnRetry) {
+      btnRetry.addEventListener('click', () => {
+        showSubmittingState();
+        setTimeout(() => {
+          showSuccessState();
+        }, 1200);
+      });
+    }
+
+    if (btnDismissError) {
+      btnDismissError.addEventListener('click', () => {
+        errorBanner.classList.add('hidden');
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-[1280px] mx-auto px-margin-mobile lg:px-margin py-space-2xl"><div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-xl pb-space-xl"><div class="flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs"><div class="font-headline-sm text-headline-sm tracking-tight flex items-center select-none"><span class="text-[#0E294B]">Sabi</span><span class="text-primary-container">Work</span></div><span class="px-space-xs py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Benin City Hub</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">On-demand trade and skilled service exchange platform for Edo State residents and verified local artisans.</p></div><div class="flex flex-wrap items-center gap-space-lg"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="explore-artisans" href="#">Artisans</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="categories" href="#">Categories</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="my-requests" href="#">Requests</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="sandbox-status" href="#">Sandbox Guide</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="terms-and-privacy" href="#">Terms &amp; Privacy</a></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-tertiary">shield_lock</span><span>Demo sandbox environment with active Paystack TEST Mode. Strictly simulated transaction state.</span></div><div>© 2025 SabiWork Benin Hub. All rights reserved.</div></div></div></footer></body></html>

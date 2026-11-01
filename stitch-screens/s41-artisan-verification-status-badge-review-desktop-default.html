@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-secondary":"#ffffff","on-secondary-fixed":"#001b3c","on-primary":"#ffffff","secondary":"#485f84","on-error-container":"#93000a","tertiary":"#576065","on-primary-fixed-variant":"#004b6f","surface-container-low":"#f1f3ff","tertiary-fixed":"#dbe4eb","surface-container-highest":"#dce2f7","primary-container":"#38a8e8","primary-fixed":"#c9e6ff","surface-tint":"#006491","on-tertiary-fixed":"#141d22","on-surface-variant":"#3f4850","surface-container-high":"#e1e8fd","secondary-container":"#bbd3fe","on-secondary-container":"#435a7f","on-secondary-fixed-variant":"#30476b","secondary-fixed":"#d5e3ff","inverse-surface":"#293040","outline":"#6f7881","inverse-on-surface":"#edf0ff","surface-variant":"#dce2f7","background":"#f9f9ff","surface-container":"#e9edff","on-primary-fixed":"#001e2f","error":"#ba1a1a","on-tertiary":"#ffffff","on-tertiary-container":"#2e373d","on-surface":"#141b2b","surface":"#f9f9ff","on-error":"#ffffff","on-background":"#141b2b","error-container":"#ffdad6","primary":"#006491","surface-bright":"#f9f9ff","on-primary-container":"#003a56","tertiary-fixed-dim":"#bfc8ce","outline-variant":"#bec8d1","secondary-fixed-dim":"#b0c8f2","tertiary-container":"#97a0a7","surface-container-lowest":"#ffffff","inverse-primary":"#8aceff","primary-fixed-dim":"#8aceff","surface-dim":"#d3daef","on-tertiary-fixed-variant":"#3f484e"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-sm":"0.625rem","space-xs":"0.5rem","gutter":"1.25rem","space-2xl":"2rem","space-lg":"1.25rem","gutter-mobile":"0.75rem","space-md":"1rem","space-xl":"1.5rem","margin":"2rem","space-2xs":"0.25rem","margin-mobile":"1rem","space-3xl":"3rem"},"fontFamily":{"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"],"body-lg":["Inter"],"body-md":["Inter"],"label-md":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-sm":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"label-lg":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"]},"fontSize":{"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-xs bg-surface-container-lowest"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Sabi<span class="text-primary-container">Work</span></span></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-2xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Workspace</div><nav class="flex flex-col gap-1 mt-space-2xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-lg"><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="overview" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview</span></div></a><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="requests-and-quotes" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">inbox</span><span>Requests &amp; quotes</span></div><span class="h-5 min-w-[20px] px-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center justify-center">3</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="my-jobs" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">handyman</span><span>My jobs</span></div></a><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="earnings" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">payments</span><span>Earnings</span></div></a><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="availability" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">schedule</span><span>Availability</span></div></a></nav></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-2xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Artisan Desk</div><nav class="flex flex-col gap-1 mt-space-2xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-lg"><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="my-profile" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">badge</span><span>My profile</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-xs transition-colors bg-primary-container text-on-primary font-label-lg rounded-lg" data-path="verification" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">verified</span><span>Verification</span></div></a><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="training" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">school</span><span>Training</span></div></a><a class="flex items-center justify-between px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-md text-label-md" data-path="settings" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></div></a></nav></div></div><div class="p-space-md flex flex-col gap-space-sm bg-surface-container-low m-space-md rounded-xl"><div class="flex items-center justify-between"><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface">Gig Availability</span><span class="font-body-sm text-body-sm text-on-surface-variant">Online / Active</span></div><div class="w-11 h-6 bg-primary-container rounded-full p-1 flex items-center justify-end cursor-pointer"><div class="w-4 h-4 bg-on-primary rounded-full shadow-sm"></div></div></div><a class="flex items-center gap-space-xs text-error font-label-md text-label-md hover:text-on-error-container transition-colors pt-space-xs" data-path="logout" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Log out</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[20px]">location_city</span><div class="flex flex-col"><span class="font-label-lg text-label-lg text-on-surface">Benin City Hub Desk</span><span class="font-body-sm text-body-sm text-on-surface-variant">Edo Central Cluster</span></div></div><div class="flex items-center gap-space-md"><div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-inverse-surface text-surface-container-lowest font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary-container"></span><span>Paystack TEST Mode</span></div><button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 bg-error rounded-full"></span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="flex flex-col text-right"><span class="font-label-lg text-label-lg text-on-surface">Osaze Ighodaro</span><span class="font-body-sm text-body-sm text-on-surface-variant">Master Plumber #BN-8820</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-background w-full px-space-lg"><div class="flex flex-col w-full pb-16">
+<!-- Interactive Demo Prototype Switcher Bar -->
+<section class="w-full bg-surface-container-low rounded-2xl p-space-sm mb-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">science</span>
+<span class="font-label-lg text-label-lg text-on-surface">Interactive Prototype State Switcher:</span>
+</div>
+<div class="flex flex-wrap items-center gap-1.5" id="state-tabs">
+<button class="state-tab-btn min-h-[44px] px-4 py-2 rounded-xl text-on-primary bg-primary font-label-md text-label-md flex items-center gap-2 whitespace-nowrap shadow-sm transition-all" id="tab-pending" onclick="switchState('pending')" type="button">
+<span class="w-2 h-2 rounded-full bg-surface-container-lowest animate-pulse"></span>
+          Pending Review (Default)
+        </button>
+<button class="state-tab-btn min-h-[44px] px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-2 whitespace-nowrap transition-all" id="tab-approved" onclick="switchState('approved')" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+          Approved &amp; Badge Granted
+        </button>
+<button class="state-tab-btn min-h-[44px] px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-2 whitespace-nowrap transition-all" id="tab-rejected" onclick="switchState('rejected')" type="button">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+          Changes Requested
+        </button>
+<button class="state-tab-btn min-h-[44px] px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-2 whitespace-nowrap transition-all" id="tab-loading" onclick="switchState('loading')" type="button">
+<span class="material-symbols-outlined text-[18px]">progress_activity</span>
+          Loading State
+        </button>
+<button class="state-tab-btn min-h-[44px] px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-2 whitespace-nowrap transition-all" id="tab-error" onclick="switchState('error')" type="button">
+<span class="material-symbols-outlined text-[18px]">error</span>
+          Review System Error
+        </button>
+</div>
+</div>
+</section>
+<!-- Breadcrumbs & Header Section -->
+<header class="w-full mb-space-xl">
+<div class="flex flex-col gap-space-2xs mb-space-sm">
+<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors" href="#">Artisan Desk</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Verification &amp; Badging</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-label-md text-label-md">Application #VER-BN-2026-104 Status</span>
+</nav>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pt-space-xs">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Artisan Verification Status &amp; Badge Review</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Track your SabiWork administrative review progress, case officer notes, and verified pro trust badge status.</p>
+</div>
+<div class="flex items-center gap-space-xs flex-shrink-0">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-low transition-colors font-label-lg text-label-lg flex items-center gap-2 whitespace-nowrap shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px] text-secondary">folder_open</span>
+<span>View Submitted Dossier (S40)</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-surface-tint active:bg-primary transition-colors font-label-lg text-label-lg flex items-center gap-2 whitespace-nowrap shadow-sm" onclick="triggerRefresh()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="refresh-icon">sync</span>
+<span>Refresh Status</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN DYNAMIC CONTENT CONTAINER -->
+<div class="w-full">
+<!-- 1. PENDING REVIEW VIEW (DEFAULT ACTIVE) -->
+<div class="state-view flex flex-col xl:flex-row gap-space-lg w-full" id="state-pending">
+<!-- Left Column / Primary Review Dossier Track -->
+<div class="flex-1 flex flex-col gap-space-lg">
+<!-- Status Hero Banner -->
+<article class="bg-surface-container-low rounded-2xl p-space-lg shadow-sm relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-primary-fixed/40 blur-2xl pointer-events-none"></div>
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md relative z-10">
+<div class="flex items-start gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[32px] animate-spin" style="animation-duration: 9s;">hourglass_top</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    Under Administrative Review
+                  </span>
+<span class="font-label-md text-label-md text-on-surface-variant">ID: #VER-BN-2026-104</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1">Review in progress by Benin City Hub Desk</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                  Typical Hub Case Officer queue review is 24–48 business hours (WAT). Does not constitute statutory government certification.
+                </p>
+</div>
+</div>
+<div class="flex flex-col md:items-end justify-between self-stretch pt-1">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-lowest font-label-sm text-label-sm text-on-surface-variant shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span>Submitted Oct 24, 14:15 WAT</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary mt-2">Officer Queue #BN-CASE-412</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-md flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm bg-surface-container-lowest/80 rounded-xl p-space-sm backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">lock</span>
+<span>Your submitted proof photos, identity verification slip, and trade qualifications are strictly private and accessible only by authorized Benin City Hub officers.</span>
+</div>
+</article>
+<!-- Stepped Review Progress Timeline Card -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-lg">
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Administrative Verification Workflow</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4-stage trade compliance assessment protocol</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">Stage 3 of 4 Active</span>
+</div>
+<!-- Stepper Graphic Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md relative">
+<!-- Step 1 -->
+<div class="flex flex-col gap-2 p-space-sm rounded-xl bg-surface-container-low transition-all">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-on-secondary-fixed text-on-primary flex items-center justify-center font-label-md text-label-md flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Step 01</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Dossier Received</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Intake logged with 4 asset attachments.</p>
+<span class="font-label-sm text-label-sm text-tertiary mt-auto">Oct 24, 14:15 WAT</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col gap-2 p-space-sm rounded-xl bg-surface-container-low transition-all">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-on-secondary-fixed text-on-primary flex items-center justify-center font-label-md text-label-md flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Step 02</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Trade Tagging Check</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Competencies cross-referenced with Master Plumbing.</p>
+<span class="font-label-sm text-label-sm text-tertiary mt-auto">Oct 24, 16:30 WAT</span>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col gap-2 p-space-sm rounded-xl bg-surface-container-high shadow-md relative overflow-hidden transition-all">
+<div class="absolute top-0 right-0 w-2 h-full bg-primary-container"></div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-md text-label-md flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">Step 03 • Active</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Portfolio &amp; Proof Assessment</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Verifying 4 photographic work samples &amp; government ID slip.</p>
+<span class="font-label-sm text-label-sm text-primary font-medium mt-auto">Assigned: Officer O. Osagie</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col gap-2 p-space-sm rounded-xl bg-surface-container-low/60 opacity-80 transition-all">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-tertiary flex items-center justify-center font-label-md text-label-md flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Step 04</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-tertiary">Badge Determination</h4>
+<p class="font-body-sm text-body-sm text-tertiary">Issuance of Admin-Reviewed Verified Pro badge on SabiWork registry.</p>
+<span class="font-label-sm text-label-sm text-outline mt-auto">Pending Stage 3</span>
+</div>
+</div>
+<!-- Review Progress Bar -->
+<div class="mt-space-lg pt-space-md">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Overall Review Completion</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">65% Completed</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+</article>
+<!-- Submitted Information & Dossier Summary Card -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">assignment_turned_in</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Submitted Dossier Snapshot</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-full">Encrypted &amp; Read-Only</span>
+</div>
+<!-- Artisan Details Matrix -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-lg">
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Artisan Profile</span>
+<span class="font-label-lg text-label-lg text-on-surface">Osaze Victor Ighodaro</span>
+<span class="font-body-sm text-body-sm text-tertiary">Registration #BN-8820</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Primary Craft</span>
+<span class="font-label-lg text-label-lg text-on-surface">Master Plumber &amp; Pipe Fitter</span>
+<span class="font-body-sm text-body-sm text-primary font-medium">Tier-1 Field Category</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Hub Operational Territory</span>
+<span class="font-label-lg text-label-lg text-on-surface">Benin City Hub Zone 1</span>
+<span class="font-body-sm text-body-sm text-tertiary">GRA Axis, Airport Rd, Ugbowo</span>
+</div>
+</div>
+<!-- Tagged Trade Competencies -->
+<div class="mb-space-lg">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block mb-2">Claimed Trade Competencies (4 Tagged)</label>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">plumbing</span>
+                PPR Pipe Fusion &amp; Pressure Lines
+              </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">water_drop</span>
+                Overhead Tank Setup &amp; Float Systems
+              </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">valve</span>
+                Concealed Bath Mixers &amp; Diverters
+              </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">waves</span>
+                Underground Sewer &amp; Drainage Loops
+              </span>
+</div>
+</div>
+<!-- Submitted Proof Files Grid -->
+<div class="mb-space-lg">
+<div class="flex items-center justify-between mb-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Uploaded Visual Evidence (4 Files)</label>
+<span class="font-body-sm text-body-sm text-tertiary">All files SHA-256 verified</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm">
+<!-- Evidence 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-2 group hover:bg-surface-container transition-colors">
+<div class="w-full h-24 rounded-lg overflow-hidden relative bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="Close-up photograph of professionally installed blue and green PPR water supply pipes and heavy-duty brass valves mounted cleanly on a reinforced concrete wall in a residential Benin City home with natural tropical daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNQapWsXLLDV9V0-ajcFbfu_sqYMJwm4JuYKQT9bPsiZhnpnj37aVUeHRaF6BmwUjRyKCd-wGz2b_SpHPjoRuPMn6SgNtvZ02c54pU4ldhGtRx04lVgAbeS8eSi_5xf2TMf__ZvKHA7CBtqcbXkUT2qDcigwu7PaxcIzqpD4DrN9TxHVC21XdQ2hh43S5a9GWGSChptLoSAg2aZCB6iTz5GgyVleQeQqphzwJFjFc"/>
+<span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-inverse-surface/80 text-surface-container-lowest font-label-sm text-[10px]">2.4 MB</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface truncate font-semibold">overhead_tank_loop_gra.jpg</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Overhead Manifold Loop</span>
+</div>
+</div>
+<!-- Evidence 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-2 group hover:bg-surface-container transition-colors">
+<div class="w-full h-24 rounded-lg overflow-hidden relative bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="Detailed photograph of an artisan plumber testing a newly assembled P-trap compression sink assembly with high precision tools in a modern tiled bathroom setting with crisp clean lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxyB-MkyQ86kpPEltThbheT0Y4zTfm5pJtPXJzeqQVsyxRPqG-Gbopqr8uLROmAmeKEDLQeWGxqVh12WzXBYO3Khf6MwOejhgkhwv5zh8h_hdVpmBiKyvGMtR4_Ni_svnL6v36iyuqpXEpuQvMSoiVIzMotLEgPqkUYHr4vSVDNx4D_6QmlCpPuzQH45ThAjbO-M2eq27pr2JQi-1GSdiZw-oIALTyVlMsDKXl678"/>
+<span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-inverse-surface/80 text-surface-container-lowest font-label-sm text-[10px]">1.8 MB</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface truncate font-semibold">ptrap_compression_demo.jpg</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Drainage Compression Demo</span>
+</div>
+</div>
+<!-- Evidence 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-2 group hover:bg-surface-container transition-colors">
+<div class="w-full h-24 rounded-lg overflow-hidden relative bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="Organized work vehicle interior showing heavy duty pipe threaders, hydraulic press tool, spirit levels, and neatly compartmentalized plumbing fixtures inside a utility van in West Africa." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB_7djavJpLbT9yCXSkeq7fEj8F5CeyZXX0RBygjApp-bI7Cij3J3aedC1onlK1dpGfjkJRv5lQFtK1ym1_MX4Ms4B4H9ap5_ixsgj5YHiTvlxtlXBylf6IvLGzdt7Vsfx3381oQ67UJYMX0oudd_zTs5MMMkC2c7w5bCbo0TTQj_raI6TE_naX2RGVAOdBSaqsDkpGARRWzDJ-F91v1Dam4ky_BGpeANKylaIous"/>
+<span class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-inverse-surface/80 text-surface-container-lowest font-label-sm text-[10px]">3.1 MB</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface truncate font-semibold">plumbing_tooling_van.jpg</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Mobile Field Tooling</span>
+</div>
+</div>
+<!-- Evidence 4 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-2 group hover:bg-surface-container transition-colors">
+<div class="w-full h-24 rounded-lg bg-surface-container-highest flex items-center justify-center flex-col text-on-surface-variant gap-1">
+<span class="material-symbols-outlined text-[28px] text-secondary">badge</span>
+<span class="font-label-sm text-[11px] uppercase tracking-wide">ID Document</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">Redacted</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface truncate font-semibold">redacted_id_card_sample.png</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">1.2 MB • Protected</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Actions inside Card -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-md">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+<span>Solemn Trade Declaration confirmed on Oct 24, 2026.</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" type="button">
+                Add Supporting Note
+              </button>
+<button class="min-h-[44px] px-4 py-2 rounded-xl text-error hover:bg-error-container transition-colors font-label-md text-label-md" type="button">
+                Withdraw Application
+              </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Right Column / Desk Context Widgets -->
+<aside class="w-full xl:w-96 flex flex-col gap-space-lg flex-shrink-0">
+<!-- Hub Case Officer Desk Card -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center gap-space-xs mb-space-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Assigned Desk</span>
+<h3 class="font-label-lg text-label-lg text-on-surface">Benin City Hub Desk</h3>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs p-space-sm rounded-xl bg-surface-container-low mb-space-md">
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Review Officer:</span>
+<span class="text-on-surface font-label-md">Officer O. Osagie</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Queue Reference:</span>
+<span class="text-on-surface font-mono text-[12px]">BN-CASE-412</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Estimated Resolution:</span>
+<span class="text-primary font-label-md">Oct 26, 14:00 WAT</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Officers perform trade specimen checks and telephone confirmation to ensure transparent local marketplace quality.
+          </p>
+<a class="w-full min-h-[44px] px-4 py-2.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center justify-center gap-2" href="https://wa.me/2348034567890" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-primary">chat</span>
+<span>WhatsApp Hub Support (+234 803...)</span>
+</a>
+</article>
+<!-- Compliance & Scope Notice -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center gap-2 mb-space-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">policy</span>
+<h3 class="font-label-lg text-label-lg">What does “Admin-Reviewed” mean?</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            It confirms manual trade sample review and identity verification by Benin City Hub officers. SabiWork does not issue government statutory licenses or guild charters.
+          </p>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Physical Walk-in Assistance:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Benin City Hub, 14 Ring Road Complex, 2nd Floor, Benin City, Edo State.</span>
+</div>
+</article>
+<!-- Live Activity Log -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<h3 class="font-label-lg text-label-lg text-on-surface mb-space-md flex items-center justify-between">
+<span>Activity Log</span>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+</h3>
+<div class="flex flex-col gap-space-md relative">
+<div class="flex items-start gap-space-xs text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary mt-0.5 flex-shrink-0">flag</span>
+<div class="flex flex-col">
+<span class="text-on-surface font-label-md">Stage 3 portfolio assessment started</span>
+<span class="text-on-surface-variant text-[11px]">Today, 10:15 WAT • Officer O. Osagie</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col">
+<span class="text-on-surface font-label-md">Competency checklist validated</span>
+<span class="text-on-surface-variant text-[11px]">Oct 24, 16:30 WAT • Automation Queue</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5 flex-shrink-0">upload_file</span>
+<div class="flex flex-col">
+<span class="text-on-surface font-label-md">Application #VER-BN-2026-104 submitted</span>
+<span class="text-on-surface-variant text-[11px]">Oct 24, 14:15 WAT • Osaze Ighodaro</span>
+</div>
+</div>
+</div>
+</article>
+</aside>
+</div>
+<!-- 2. APPROVED STATUS VIEW -->
+<div class="state-view hidden flex-col xl:flex-row gap-space-lg w-full" id="state-approved">
+<div class="flex-1 flex flex-col gap-space-lg">
+<!-- Approved Hero Trust Badge Showcase -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-2xl shadow-sm relative overflow-hidden">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-secondary-fixed/50 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div class="flex items-start sm:items-center gap-space-lg">
+<!-- Big Visual Trust Badge Ribbon Lockup -->
+<div class="relative flex-shrink-0">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-inverse-surface text-surface-container-lowest flex flex-col items-center justify-center shadow-lg relative p-2 text-center">
+<div class="w-12 h-12 rounded-2xl bg-primary-container text-on-primary-container flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[32px]">verified</span>
+</div>
+<span class="font-headline-sm text-[12px] tracking-tight text-surface-container-lowest uppercase font-bold">VERIFIED</span>
+<span class="text-[9px] text-secondary-fixed font-semibold tracking-wider">SABIWORK PRO</span>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-[10px] whitespace-nowrap shadow-sm">
+                  BENIN HUB
+                </div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                    Approved &amp; Active on SabiWork Registry
+                  </span>
+<span class="font-mono text-body-sm text-tertiary">#VER-BN-2026-104</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Admin-Reviewed Verified Pro</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                  Congratulations Osaze! Your submitted trade dossier, ID credentials, and plumbing work samples have been approved by the Benin Central Hub Verification Desk.
+                </p>
+<div class="flex items-center gap-space-md text-body-sm text-tertiary pt-1">
+<span>Decision Date: <strong class="text-on-surface">Oct 25, 2026, 11:20 WAT</strong></span>
+<span>•</span>
+<span>Authorized Desk: <strong class="text-on-surface">Benin Central Hub Desk</strong></span>
+</div>
+</div>
+</div>
+<!-- Header CTAs for Approved -->
+<div class="flex flex-col gap-space-xs self-stretch sm:self-auto flex-shrink-0">
+<a class="min-h-[44px] px-6 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-surface-tint transition-all font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm whitespace-nowrap" href="#">
+<span>View Public Verified Profile (S04)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<button class="min-h-[44px] px-6 py-2.5 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label-lg text-label-lg flex items-center justify-center gap-2 whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">share</span>
+<span>Share Verification Link</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Badge Impact & New Privileges Bento Grid -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Live Platform Perks &amp; Profile Visibility</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-lg rounded-2xl bg-surface-container-low flex flex-col gap-space-sm relative overflow-hidden">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[26px]">search_check</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Priority Customer Search (S03)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Your profile now displays the prominent verified badge on customer trade lookups across GRA, Airport Rd, and Ugbowo clusters.
+              </p>
+<div class="mt-auto pt-2 flex items-center text-primary font-label-sm text-label-sm gap-1">
+<span>Active in customer search</span>
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+<div class="p-space-lg rounded-2xl bg-surface-container-low flex flex-col gap-space-sm relative overflow-hidden">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[26px]">electric_bolt</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Direct Hub Dispatch Access</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Eligible to receive priority automated gig dispatches for emergency pipe leaks and scheduled commercial installations.
+              </p>
+<div class="mt-auto pt-2 flex items-center text-primary font-label-sm text-label-sm gap-1">
+<span>Dispatch priority enabled</span>
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+<div class="p-space-lg rounded-2xl bg-surface-container-low flex flex-col gap-space-sm relative overflow-hidden">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[26px]">query_stats</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Higher Quote Win Probability (S19)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Verified Pro artisans win up to 3.2× more quote comparisons against unreviewed trade bids in Edo State.
+              </p>
+<div class="mt-auto pt-2 flex items-center text-primary font-label-sm text-label-sm gap-1">
+<span>Trust seal visible to clients</span>
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Official Registry Certificate Excerpt -->
+<article class="bg-surface-container-low rounded-2xl p-space-lg shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-lowest text-secondary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[28px]">download_for_offline</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Download Digital Badge Certificate</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Digital PDF stamped by Benin Hub Desk for physical workshops &amp; client trust folders.</p>
+</div>
+</div>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md flex items-center gap-2 shadow-sm whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Download PDF (480 KB)</span>
+</button>
+</article>
+</div>
+<!-- Right Column Widgets (Approved) -->
+<aside class="w-full xl:w-96 flex flex-col gap-space-lg flex-shrink-0">
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Annual Badge Validity</h3>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-2 mb-space-md">
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Validity Period:</span>
+<span class="font-label-md text-on-surface">365 Days</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Renewal Date:</span>
+<span class="font-label-md text-on-surface">Oct 25, 2027</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Registry Key:</span>
+<span class="font-mono text-[11px] text-primary truncate max-w-[150px]">SW-EDO-BN-8820-PR</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Maintenance of your Verified status requires adhering to SabiWork fair pricing standards and customer safety guidelines.
+          </p>
+</article>
+<!-- Hub Desk Rating & Officer Note -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center gap-2 mb-space-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">recommend</span>
+<h3 class="font-label-lg text-label-lg">Officer Review Summary</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic p-space-sm rounded-xl bg-surface-container-low mb-space-md">
+            “Exceptional tooling display and clean PPR fusion photo specimens. Registered and certified for heavy residential installations in Edo Central.”
+          </p>
+<div class="flex items-center justify-between text-body-sm text-tertiary">
+<span>Reviewed by: Officer O. Osagie</span>
+<span>Benin Hub Desk</span>
+</div>
+</article>
+</aside>
+</div>
+<!-- 3. CHANGES REQUESTED / REJECTED VIEW -->
+<div class="state-view hidden flex-col xl:flex-row gap-space-lg w-full" id="state-rejected">
+<div class="flex-1 flex flex-col gap-space-lg">
+<!-- Rejected Alert Banner -->
+<article class="bg-surface-container-low rounded-2xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-error-container text-on-error-container flex items-center justify-center shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[32px]">report</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                    Verification Revision Requested
+                  </span>
+<span class="font-label-md text-label-md text-on-surface-variant">#VER-BN-2026-104</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1">Updates needed before your Pro Badge can be issued</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                  Determination Date: Oct 25, 2026, 09:45 WAT • Benin Hub Desk Case Officer review notes attached below.
+                </p>
+</div>
+</div>
+<a class="min-h-[44px] px-6 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-surface-tint transition-all font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm whitespace-nowrap self-stretch md:self-auto" href="#">
+<span>Edit &amp; Resubmit Dossier (S40)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Case Officer Official Feedback Card -->
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[22px]">rate_review</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Officer Feedback &amp; Actionable Revisions</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Officer O. Osagie (Benin City Hub)</span>
+</div>
+<!-- Official Quote Box -->
+<blockquote class="p-space-md rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md leading-relaxed mb-space-lg italic">
+            “Work sample #1 and #2 demonstrate high trade quality and verify your pipe fusion competency. However, the submitted photographic proof for your tooling van was blurry, and the government ID slip document had edge glare obscuring the identification number. Please provide a clear, flat photograph of your ID and a clear tooling layout.”
+          </blockquote>
+<!-- Checklist of Required Corrections -->
+<h4 class="font-label-lg text-label-lg text-on-surface mb-space-sm">Required Corrections Checklist</h4>
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[22px] text-primary">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface line-through text-on-surface-variant">Trade skills and plumbing competencies validated</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold">Passed</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-error-container/30">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[22px] text-error">cancel</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Re-upload clear ID verification document</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Must eliminate glare over national ID number / date of birth</span>
+</div>
+</div>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm transition-colors shadow-sm" href="#">
+                Upload New ID
+              </a>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-error-container/30">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[22px] text-error">cancel</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Re-upload high-resolution tooling setup photo</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Provide clear lighting showing your pipe threading and fusion machine</span>
+</div>
+</div>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm transition-colors shadow-sm" href="#">
+                Upload Tooling
+              </a>
+</div>
+</div>
+<!-- Bottom Action Buttons -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Re-review takes typically under 12 hours once revised assets are uploaded.</span>
+<div class="flex items-center gap-space-xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md" type="button">
+                Contact Desk #BN-DESK
+              </button>
+<a class="min-h-[44px] px-6 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-surface-tint transition-all font-label-lg text-label-lg flex items-center gap-2 shadow-sm" href="#">
+<span>Open Dossier Editor (S40)</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+</div>
+<!-- Right Column Widgets (Rejected) -->
+<aside class="w-full xl:w-96 flex flex-col gap-space-lg flex-shrink-0">
+<article class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
+<div class="flex items-center gap-2 mb-space-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">help</span>
+<h3 class="font-label-lg text-label-lg">Photo Verification Guide</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Follow these tips to ensure your resubmission is approved on the first attempt:
+          </p>
+<ul class="flex flex-col gap-space-xs text-body-sm text-on-surface-variant mb-space-md">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary mt-0.5">wb_sunny</span>
+<span>Turn off indoor flash to eliminate glare on plastic identity cards.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary mt-0.5">crop</span>
+<span>Keep all 4 edges of the identity slip inside the camera frame.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary mt-0.5">build</span>
+<span>Spread your plumbing tools on a clean ground surface or shelf.</span>
+</li>
+</ul>
+<div class="p-space-sm rounded-xl bg-surface-container-low text-body-sm text-on-surface-variant">
+            Still experiencing difficulty? Visit the Benin City Ring Road Hub for free photo capture assistance.
+          </div>
+</article>
+</aside>
+</div>
+<!-- 4. LOADING STATE VIEW -->
+<div class="state-view hidden flex-col items-center justify-center p-space-3xl bg-surface-container-lowest rounded-2xl shadow-sm min-h-[460px] text-center" id="state-loading">
+<div class="relative w-20 h-20 mb-space-lg flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-4 border-surface-container border-t-primary animate-spin"></div>
+<span class="material-symbols-outlined text-primary text-[32px]">sync</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Retrieving Benin Hub Registry Records...</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-space-lg">
+        Synchronizing verification status with SabiWork decentralized registry nodes and Edo Central Desk officer queue.
+      </p>
+<div class="w-64 h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full animate-pulse" style="width: 70%;"></div>
+</div>
+</div>
+<!-- 5. SYSTEM ERROR VIEW -->
+<div class="state-view hidden flex-col items-center justify-center p-space-3xl bg-surface-container-lowest rounded-2xl shadow-sm min-h-[460px] text-center" id="state-error">
+<div class="w-20 h-20 rounded-full bg-error-container text-on-error-container flex items-center justify-center mb-space-lg shadow-sm">
+<span class="material-symbols-outlined text-[40px]">cloud_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Review Registry Connection Timeout</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mb-space-lg">
+        Unable to load live case officer dispatch notes for application #VER-BN-2026-104. SabiWork Hub microservice returned code 504 (Gateway Timeout).
+      </p>
+<div class="flex items-center gap-space-sm">
+<button class="min-h-[44px] px-6 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-surface-tint transition-all font-label-lg text-label-lg flex items-center gap-2 shadow-sm" onclick="switchState('pending')" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+<span>Retry Connection</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" type="button">
+          Hub Status Page
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- State Switcher Micro-Interaction Script -->
+<script>
+  function switchState(stateName) {
+    // Hide all state views
+    const views = document.querySelectorAll('.state-view');
+    views.forEach(view => {
+      view.classList.add('hidden');
+      view.classList.remove('flex');
+    });
+
+    // Reset tab button styles
+    const tabButtons = document.querySelectorAll('.state-tab-btn');
+    tabButtons.forEach(btn => {
+      btn.className = "state-tab-btn min-h-[44px] px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-2 whitespace-nowrap transition-all";
+    });
+
+    // Show selected state view
+    const targetView = document.getElementById('state-' + stateName);
+    if (targetView) {
+      targetView.classList.remove('hidden');
+      targetView.classList.add('flex');
+    }
+
+    // Set active tab styling
+    const activeTab = document.getElementById('tab-' + stateName);
+    if (activeTab) {
+      activeTab.className = "state-tab-btn min-h-[44px] px-4 py-2 rounded-xl text-on-primary bg-primary font-label-md text-label-md flex items-center gap-2 whitespace-nowrap shadow-sm transition-all";
+    }
+  }
+
+  function triggerRefresh() {
+    const icon = document.getElementById('refresh-icon');
+    if (icon) {
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+      }, 900);
+    }
+  }
+</script></main></div></body></html>

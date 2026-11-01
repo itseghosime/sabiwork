@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary-container": "#97a0a7", "outline-variant": "#bec8d1", "secondary-fixed-dim": "#b0c8f2", "background": "#f9f9ff", "surface": "#f9f9ff", "on-primary-container": "#003a56", "on-primary": "#ffffff", "inverse-surface": "#293040", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#3f484e", "on-secondary-fixed-variant": "#30476b", "error": "#ba1a1a", "on-background": "#141b2b", "on-secondary": "#ffffff", "primary": "#006491", "secondary-container": "#bbd3fe", "surface-bright": "#f9f9ff", "surface-container": "#e9edff", "on-tertiary": "#ffffff", "surface-variant": "#dce2f7", "tertiary-fixed": "#dbe4eb", "on-primary-fixed": "#001e2f", "surface-dim": "#d3daef", "on-tertiary-fixed": "#141d22", "inverse-primary": "#8aceff", "surface-container-low": "#f1f3ff", "primary-container": "#38a8e8", "on-error": "#ffffff", "on-surface": "#141b2b", "surface-tint": "#006491", "on-tertiary-container": "#2e373d", "primary-fixed-dim": "#8aceff", "secondary-fixed": "#d5e3ff", "primary-fixed": "#c9e6ff", "on-surface-variant": "#3f4850", "secondary": "#485f84", "surface-container-high": "#e1e8fd", "on-secondary-container": "#435a7f", "outline": "#6f7881", "surface-container-highest": "#dce2f7", "on-primary-fixed-variant": "#004b6f", "on-error-container": "#93000a", "inverse-on-surface": "#edf0ff", "tertiary": "#576065", "on-secondary-fixed": "#001b3c", "error-container": "#ffdad6", "tertiary-fixed-dim": "#bfc8ce" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-2xs": "0.25rem", "gutter": "1.25rem", "space-xs": "0.5rem", "space-xl": "1.5rem", "gutter-mobile": "0.75rem", "space-md": "1rem", "margin": "2rem", "margin-mobile": "1rem", "space-lg": "1.25rem", "space-sm": "0.625rem", "space-2xl": "2rem", "space-3xl": "3rem" }, fontFamily: { "headline-lg": ["Plus Jakarta Sans"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs shrink-0"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><div class="flex flex-col"><div class="flex items-center text-on-secondary-fixed leading-none font-headline-sm text-headline-sm font-bold tracking-tight"><span class="text-on-secondary-fixed">Sabi</span><span class="text-primary-container">Work</span></div><span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider font-semibold">Artisan Hub</span></div></div><div class="flex-1 text-center truncate px-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">My Profile Editor</span></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Account and Logout Menu" class="w-11 h-11 flex items-center justify-center rounded-lg text-secondary hover:text-on-surface active:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[24px]">logout</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-surface"><div class="flex flex-col w-full pb-36">
+<!-- Top State Demonstrator Chips (Quick preview for testing UX micro-states) -->
+<div class="px-space-md pt-space-xs pb-space-2xs overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-space-2xs min-w-max">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider pr-1">Demo States:</span>
+<button class="h-7 px-3 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform" id="btn-state-default" onclick="setUiState('default')">Default Edit</button>
+<button class="h-7 px-3 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm active:scale-95 transition-transform" id="btn-state-saving" onclick="setUiState('saving')">Saving</button>
+<button class="h-7 px-3 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm active:scale-95 transition-transform" onclick="triggerToast('saved')">Saved Toast</button>
+<button class="h-7 px-3 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm active:scale-95 transition-transform" onclick="triggerToast('error')">Upload Error</button>
+<button class="h-7 px-3 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm active:scale-95 transition-transform" onclick="openDiscardSheet()">Unsaved Sheet</button>
+</div>
+</div>
+<div class="px-margin-mobile flex flex-col gap-space-md">
+<!-- 1. Admin Verification Badge Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Admin-Reviewed Profile</h2>
+<div class="flex items-center gap-1">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Verified Field Status</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">lock</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Artisan credentials and workshop audits are administered by SabiWork Benin City field team. Tier badges cannot be self-edited.
+      </p>
+<div class="pt-1">
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-semibold hover:underline" type="button">
+<span>Learn about verification criteria</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- 2. Avatar & Public Face Section -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col items-center text-center gap-space-sm">
+<div class="relative">
+<img alt="Osaze Ighodaro portrait" class="w-24 h-24 rounded-full object-cover shadow-sm bg-surface-container" data-alt="Professional portrait headshot of Osaze Ighodaro, a confident 35-year-old Nigerian artisan plumber wearing a clean navy-blue collared work shirt, warm friendly smile, natural soft daylight, crisp focus against clean workshop background, vibrant natural skin tones." id="avatar-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWZfjRUErwLve8M4F59gDemrJ0tqYJGktjoZ-IsUK_BakpTN8v12ewIAbKBIEQTFnRpz2w1oNYHoHLpmqvsL9NU6hxFQG6cRpSN7LfV0QU-wSlmKhWd9IdquzJR7fjL0mwkoi-f5CpWOilU3hdxBl4Y6stZfEadWYAoSPdQODH88KepRwkmCXZD-7uZBEV4cV8fHNXMR_duXr91mwei9SIOZkFlX196IX7DRfr2VU"/>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Osaze Ighodaro</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Master Plumber &amp; Pipe Fitter</span>
+</div>
+<div class="flex items-center gap-space-xs w-full pt-1">
+<button class="flex-1 min-h-[44px] px-4 rounded-lg bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-2 active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+<span>Change Photo</span>
+</button>
+<button class="min-h-[44px] px-4 rounded-lg bg-surface-container-low text-error font-label-md text-label-md font-medium flex items-center justify-center gap-1 active:bg-error-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_outline</span>
+<span>Remove</span>
+</button>
+</div>
+</div>
+<!-- 3. Form: Personal & Trade Details -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Trade Details</h3>
+<!-- Full Name -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="field-fullname">Full Name</label>
+<div class="relative flex items-center">
+<input class="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="field-fullname" type="text" value="Osaze Ighodaro"/>
+<span class="material-symbols-outlined text-on-surface-variant absolute right-3 pointer-events-none text-[20px]">badge</span>
+</div>
+</div>
+<!-- Trade Specialty -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="field-specialty">Trade Specialty</label>
+<div class="relative flex items-center">
+<select class="w-full min-h-[44px] px-3.5 py-2.5 pr-10 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/40 appearance-none transition-all" id="field-specialty">
+<option selected="" value="plumbing">Plumbing &amp; Pipe Fitting</option>
+<option value="electrical">Electrical Installation &amp; Inverters</option>
+<option value="masonry">Tiling &amp; Masonry Structural</option>
+<option value="carpentry">Cabinetry &amp; Roofing Carpentry</option>
+<option value="hvac">Refrigeration &amp; AC Servicing</option>
+</select>
+<span class="material-symbols-outlined text-on-surface-variant absolute right-3 pointer-events-none text-[22px]">arrow_drop_down</span>
+</div>
+</div>
+<!-- Years of Experience -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="field-exp">Years of Experience</label>
+<div class="relative flex items-center">
+<input class="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="field-exp" type="text" value="9+ Years Active"/>
+<span class="material-symbols-outlined text-on-surface-variant absolute right-3 pointer-events-none text-[20px]">history_edu</span>
+</div>
+</div>
+<!-- Bio / Intro -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="field-bio">Artisan Introduction &amp; Scope</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="bio-char-count">248 / 500</span>
+</div>
+<textarea class="w-full p-3.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all resize-none leading-relaxed" id="field-bio" maxlength="500" oninput="updateCharCount(this)" rows="4">Certified master plumber focusing on high-pressure domestic PPR installations, bore-hole submersible pump automation, and leak troubleshooting across residential estates in Benin City. Fast emergency response and clean work guarantee.</textarea>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Include your primary equipment strengths and types of structures handled.</span>
+</div>
+</div>
+<!-- 4. Operating Districts in Benin City -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Service Coverage</h3>
+<span class="font-label-sm text-label-sm text-primary font-medium">Benin City Hub</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Select districts where you guarantee same-day dispatch and zero call-out friction.</p>
+<div class="flex flex-col gap-2 pt-1">
+<!-- GRA Axis (Checked) -->
+<label class="min-h-[44px] flex items-center justify-between p-3 rounded-lg bg-surface-container-low cursor-pointer active:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[22px]">location_on</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">GRA Axis (Boundary Rd, Ihama, Golf Course)</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+</label>
+<!-- Airport Rd (Checked) -->
+<label class="min-h-[44px] flex items-center justify-between p-3 rounded-lg bg-surface-container-low cursor-pointer active:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[22px]">location_on</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Airport Road &amp; Oko Central</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+</label>
+<!-- Ugbowo -->
+<label class="min-h-[44px] flex items-center justify-between p-3 rounded-lg bg-surface-container-low cursor-pointer active:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[22px]">location_on</span>
+<span class="font-body-md text-body-md text-on-surface">Ugbowo &amp; UNIBEN Campus Corridors</span>
+</div>
+<input class="w-5 h-5 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+</label>
+<!-- Ikpoba Hill -->
+<label class="min-h-[44px] flex items-center justify-between p-3 rounded-lg bg-surface-container-low cursor-pointer active:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[22px]">location_on</span>
+<span class="font-body-md text-body-md text-on-surface">Ikpoba Hill &amp; Upper Mission Extension</span>
+</div>
+<input class="w-5 h-5 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+</label>
+<!-- Aduwawa -->
+<label class="min-h-[44px] flex items-center justify-between p-3 rounded-lg bg-surface-container-low cursor-pointer active:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[22px]">location_on</span>
+<span class="font-body-md text-body-md text-on-surface">Aduwawa &amp; Benin-Auchi Bypass</span>
+</div>
+<input class="w-5 h-5 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- 5. Sub-Skills Tags -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Verified Sub-Skills</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tap skill tags to edit or delete</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">4 Active</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-1" id="skills-container">
+<!-- Tag 1 -->
+<div class="h-9 px-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-2 shadow-xs">
+<span>Pipe Burst Repairs</span>
+<button aria-label="Remove skill Pipe Burst Repairs" class="w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Tag 2 -->
+<div class="h-9 px-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-2 shadow-xs">
+<span>PPR &amp; Copper Soldering</span>
+<button aria-label="Remove skill PPR &amp; Copper Soldering" class="w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Tag 3 -->
+<div class="h-9 px-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-2 shadow-xs">
+<span>Sumo &amp; Borehole Pumps</span>
+<button aria-label="Remove skill Sumo &amp; Borehole Pumps" class="w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Tag 4 -->
+<div class="h-9 px-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-2 shadow-xs">
+<span>Water Heater Setup</span>
+<button aria-label="Remove skill Water Heater Setup" class="w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Add Skill CTA -->
+<button class="h-9 min-w-[44px] px-3.5 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 active:bg-secondary-container transition-colors" onclick="promptAddSkill()" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Add Skill</span>
+</button>
+</div>
+</div>
+<!-- 6. Portfolio Works (Stacked Mobile Cards) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Project Works</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">4 of 8 portfolio slots filled</span>
+</div>
+<button class="min-h-[44px] px-3.5 rounded-lg bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center gap-1 active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">add_photo_alternate</span>
+<span>+ Upload</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-sm" id="portfolio-list">
+<!-- Work 1 -->
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2.5">
+<div class="flex gap-3">
+<img alt="Villa Re-piping Work" class="w-20 h-20 rounded-md object-cover bg-surface-container shrink-0" data-alt="Close-up professional plumbing work showcase showing neat industrial green PPR pipes fusion joints and brass pressure valves installed along a clean painted brick utility wall inside a modern Nigerian villa, natural high-key lighting, technical craftsmanship details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARDhySjuEsfzWXU07GcZpCGu2OjOfA8siR7CItGYQGIHVZiM2c0EnNPuS0tONEqF6SEQe567MXPwhwOVLhSGPewJXXknkt7B6kBwSICzOH6qkFFLfSc9FZnf2GQyYbPkLnJlwYtFORkaGGH4GoOn4QJMd47r1RM7kEgQ9OPwrr-bHU_qaa_A-m06WxMWWR_IYTspp1AcLj1ykDyYzRIZmIAiUROrvU7jbTxA8zbg4"/>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold truncate block">Full Villa Re-piping &amp; PPR Fusion</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-0.5">Dual high-pressure lines in GRA luxury duplex with automatic bypass.</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">Completed Feb 2025</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-surface-container-high" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span>Edit Caption</span>
+</button>
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-error font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-error-container" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Remove</span>
+</button>
+</div>
+</div>
+<!-- Work 2 -->
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2.5">
+<div class="flex gap-3">
+<img alt="Overhead Tank Stand Installation" class="w-20 h-20 rounded-md object-cover bg-surface-container shrink-0" data-alt="Durable galvanized metal elevated water tank staging frame supporting a large black 2000-liter overhead storage tank, blue African sky background with crisp sunlight, modern residential compound setting with neat plumbing risers and overflow lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyT9iK1MAtIUCzwiFkr7vGgcQC2SupvtsGC_7Kdm5VaYRItD_5rQh8kHS53tIjLgm3Eo7bDw7lm-EyKjr6hfxUbfVuLuTB_iu0yfooqxJiKIeB54htcrsBMa-lDkBgi6bTkm9nzn7CWWDvzxstfXgBeD7tbyNNMa5l-Gms0WOKKlqVgPdkDyreLZ5xuW6KnCVf90S7JWTZg0zaVEMb9Wq4HAOLCMC7YAHDIH6sp1Q"/>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold truncate block">2000L Overhead Tank Stand</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-0.5">Automated float switch setup and heavy steel platform mount.</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">Completed Jan 2025</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-surface-container-high" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span>Edit Caption</span>
+</button>
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-error font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-error-container" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Remove</span>
+</button>
+</div>
+</div>
+<!-- Work 3 -->
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2.5">
+<div class="flex gap-3">
+<img alt="Sumo Borehole Pump Setup" class="w-20 h-20 rounded-md object-cover bg-surface-container shrink-0" data-alt="High quality installation photo of a stainless steel domestic borehole sumo pump control box with digital phase monitor and pressure gauge attached neatly to a cement pump house wall, pristine electrical conduits and copper ground rod visible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG-HXBmXUBu11L6SV5yDudUiD-g2EP76flMXD1niFvt745xsFGWM-eCmNub3Uu6a8bu-Uxnw596j-6S0jkV2xqK7ahSn3Ii4HPjVIWpHozPgNbXLJTjeJ3a45iXeNFBi1cPmjbBpZXAu35YG13igKCOS5W5UkVfe8M-ax4ElMreAZGyh6alr82h181RXKcP8sINAbrRTwlQXfegdGuFl4HOFVhfXS5TyGvB4W6ywg"/>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold truncate block">1.5HP Sumo Submersible Setup</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-0.5">Motorized borehole pump wiring, dry-run protection sensor.</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">Completed Dec 2024</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-surface-container-high" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span>Edit Caption</span>
+</button>
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-error font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-error-container" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Remove</span>
+</button>
+</div>
+</div>
+<!-- Work 4 -->
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2.5">
+<div class="flex gap-3">
+<img alt="Master Bathroom Concealed Plumbing" class="w-20 h-20 rounded-md object-cover bg-surface-container shrink-0" data-alt="Luxury bathroom vanity plumbing renovation showcasing recessed hot and cold water mixer valves, brass P-trap under marble countertop, clean white subway tiles with precision silicone beading, professional architectural photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_wIAImLjzAiwdxbe6SxSb6c1qHZa8lzRaIzaGcOT5sgJprbRHMpAGV1phgsrbv9Xzxb3fgTJ8GvXeb1sGUamqVQTfI9RSeLZSK7kNoVuoNbfAd2kLAEq2hU1qIzH_QWntOwTaJ-WRYczW0mu10kELhiF8X_EjfeizHnRSbFjMg-cWN8st0E1je9zBAWzhFiPQYjVyRv1qqxeRYTjq1G6V7NKwpZ65wDGkvDGQS3U"/>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold truncate block">Concealed Mixer &amp; Waste Lines</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-0.5">Dual vanity sink plumbing with non-leak chrome fittings.</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">Completed Nov 2024</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-surface-container-high" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span>Edit Caption</span>
+</button>
+<button class="min-h-[44px] px-3 rounded bg-surface-container text-error font-label-sm text-label-sm font-semibold flex items-center gap-1 active:bg-error-container" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 7. Labor Rate Benchmark & Platform Assurance -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Labor Rate Benchmark</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Recommended labor rates guide client expectations and prevent quote disputes.</p>
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Base Diagnostic</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">₦4,500</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">On-site assessment</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Project Benchmark</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">₦15k – ₦45k</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Average job quote</span>
+</div>
+</div>
+<!-- Sandbox Paystack Test Mode Signifier -->
+<div class="mt-2 bg-on-secondary-fixed text-surface p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">science</span>
+<span class="font-label-sm text-label-sm text-primary-fixed tracking-wide uppercase font-semibold">Paystack TEST Mode</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary-fixed">Simulated Escrow Active</span>
+</div>
+</div>
+</div>
+<!-- 8. Sticky Bottom Action Bar (Fixed right above the tab navigation) -->
+<div class="fixed bottom-16 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-margin-mobile py-2.5">
+<div class="flex flex-col gap-2 max-w-md mx-auto w-full">
+<!-- Primary Save CTA -->
+<button class="w-full min-h-[48px] rounded-lg bg-primary text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-sm active:opacity-90 transition-opacity" id="btn-save-main" onclick="triggerSaveSequence()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="save-spinner" style="display: none;">progress_activity</span>
+<span id="save-button-text">Save Changes</span>
+</button>
+<!-- Secondary Cancel CTA -->
+<button class="w-full min-h-[44px] rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold flex items-center justify-center active:bg-surface-container transition-colors" onclick="openDiscardSheet()" type="button">
+<span>Cancel</span>
+</button>
+</div>
+</div>
+<!-- Toast Notification Overlay -->
+<div class="fixed top-20 left-4 right-4 z-50 pointer-events-none flex flex-col gap-2 transition-all duration-300 opacity-0 -translate-y-2" id="toast-container">
+<!-- Content injected dynamically -->
+</div>
+<!-- 9. Unsaved Changes Bottom Sheet Modal -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex flex-col justify-end hidden" id="discard-sheet">
+<div class="bg-surface-container-lowest rounded-t-2xl p-space-md flex flex-col gap-space-sm shadow-xl max-w-md mx-auto w-full animate-in slide-in-from-bottom duration-200">
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full mx-auto mb-1"></div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Discard changes?</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+            Unsaved edits to your bio, coverage areas, and portfolio works will be lost if you leave without saving.
+          </p>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full min-h-[48px] rounded-lg bg-primary text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center active:opacity-90" onclick="closeDiscardSheet()" type="button">
+          Continue Editing
+        </button>
+<button class="w-full min-h-[44px] rounded-lg bg-surface-container-low text-error font-label-md text-label-md font-semibold flex items-center justify-center active:bg-error-container" onclick="confirmDiscard()" type="button">
+          Discard Edits
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function updateCharCount(textarea) {
+    const counter = document.getElementById('bio-char-count');
+    if (counter) {
+      counter.innerText = `${textarea.value.length} / 500`;
+    }
+  }
+
+  function promptAddSkill() {
+    const skill = prompt("Enter new verified trade skill:", "Solar Inverter Integration");
+    if (skill && skill.trim()) {
+      const container = document.getElementById('skills-container');
+      const addBtn = container.querySelector('button');
+      
+      const newTag = document.createElement('div');
+      newTag.className = "h-9 px-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-2 shadow-xs";
+      newTag.innerHTML = `
+        <span>${skill.trim()}</span>
+        <button type="button" aria-label="Remove skill ${skill.trim()}" onclick="this.parentElement.remove()" class="w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-error">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+        </button>
+      `;
+      container.insertBefore(newTag, addBtn);
+    }
+  }
+
+  function setUiState(state) {
+    const saveBtn = document.getElementById('btn-save-main');
+    const textSpan = document.getElementById('save-button-text');
+    const spinner = document.getElementById('save-spinner');
+
+    if (state === 'saving') {
+      textSpan.innerText = 'Saving Edits...';
+      spinner.style.display = 'inline-block';
+      spinner.classList.add('animate-spin');
+      saveBtn.classList.add('opacity-80', 'pointer-events-none');
+    } else {
+      textSpan.innerText = 'Save Changes';
+      spinner.style.display = 'none';
+      spinner.classList.remove('animate-spin');
+      saveBtn.classList.remove('opacity-80', 'pointer-events-none');
+    }
+  }
+
+  function triggerSaveSequence() {
+    setUiState('saving');
+    setTimeout(() => {
+      setUiState('default');
+      triggerToast('saved');
+    }, 1200);
+  }
+
+  function triggerToast(type) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    if (type === 'saved') {
+      container.innerHTML = `
+        <div class="pointer-events-auto bg-surface-container-lowest text-on-surface p-3.5 rounded-xl shadow-lg flex items-center justify-between gap-3 mx-auto w-full max-w-sm">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-primary text-[22px]">check_circle</span>
+            <span class="font-label-md text-label-md font-semibold">Profile updated successfully!</span>
+          </div>
+          <button onclick="dismissToast()" class="text-on-surface-variant hover:text-on-surface">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+      `;
+    } else if (type === 'error') {
+      container.innerHTML = `
+        <div class="pointer-events-auto bg-error-container text-on-error-container p-3.5 rounded-xl shadow-lg flex items-center justify-between gap-3 mx-auto w-full max-w-sm">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-error text-[22px]">error</span>
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md font-bold">Image upload failed</span>
+              <span class="font-body-sm text-body-sm">Network timed out. Form data preserved.</span>
+            </div>
+          </div>
+          <button onclick="dismissToast()" class="text-on-error-container hover:opacity-80">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+      `;
+    }
+
+    container.classList.remove('opacity-0', '-translate-y-2');
+    container.classList.add('opacity-100', 'translate-y-0');
+
+    setTimeout(() => {
+      dismissToast();
+    }, 4000);
+  }
+
+  function dismissToast() {
+    const container = document.getElementById('toast-container');
+    if (container) {
+      container.classList.add('opacity-0', '-translate-y-2');
+      container.classList.remove('opacity-100', 'translate-y-0');
+    }
+  }
+
+  function openDiscardSheet() {
+    const sheet = document.getElementById('discard-sheet');
+    if (sheet) {
+      sheet.classList.remove('hidden');
+    }
+  }
+
+  function closeDiscardSheet() {
+    const sheet = document.getElementById('discard-sheet');
+    if (sheet) {
+      sheet.classList.add('hidden');
+    }
+  }
+
+  function confirmDiscard() {
+    closeDiscardSheet();
+    triggerToast('error');
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="jobs" href="#"><span class="material-symbols-outlined text-[24px]">handyman</span><span class="font-label-sm text-label-sm">Jobs</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="quotes" href="#"><span class="material-symbols-outlined text-[24px]">request_quote</span><span class="font-label-sm text-label-sm">Quotes</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="earnings" href="#"><span class="material-symbols-outlined text-[24px]">payments</span><span class="font-label-sm text-label-sm">Earnings</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] transition-colors py-1 text-primary font-semibold" data-path="my-profile-editor" href="#"><span class="material-symbols-outlined text-[24px]">badge</span><span class="font-label-sm text-label-sm">Profile</span></a></div></nav></body></html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "surface-container": "#e9edff", "inverse-primary": "#8aceff", "on-tertiary-fixed": "#141d22", "surface-container-high": "#e1e8fd", "on-primary-container": "#003a56", "on-secondary-fixed-variant": "#30476b", "surface": "#f9f9ff", "on-secondary-fixed": "#001b3c", "secondary-fixed-dim": "#b0c8f2", "tertiary": "#576065", "on-background": "#141b2b", "surface-tint": "#006491", "error": "#ba1a1a", "on-tertiary-container": "#2e373d", "on-tertiary": "#ffffff", "tertiary-fixed-dim": "#bfc8ce", "tertiary-container": "#97a0a7", "on-primary": "#ffffff", "tertiary-fixed": "#dbe4eb", "surface-bright": "#f9f9ff", "primary-fixed": "#c9e6ff", "secondary-container": "#bbd3fe", "on-error-container": "#93000a", "outline-variant": "bec8d1", "on-tertiary-fixed-variant": "#3f484e", "primary-container": "#38a8e8", "on-error": "#ffffff", "background": "#f9f9ff", "surface-variant": "#dce2f7", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-fixed": "#001e2f", "secondary": "#485f84", "outline": "#6f7881", "error-container": "#ffdad6", "surface-container-highest": "#dce2f7", "secondary-fixed": "#d5e3ff", "on-surface-variant": "#3f4850", "inverse-on-surface": "#edf0ff", "primary-fixed-dim": "#8aceff", "on-secondary-container": "#435a7f", "on-primary-fixed-variant": "#004b6f", "on-surface": "#141b2b", "inverse-surface": "#293040", "primary": "#006491" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.625rem", "space-3xl": "3rem", "gutter": "1.25rem", "space-2xs": "0.25rem", "space-xs": "0.5rem", "space-2xl": "2rem", "space-lg": "1.25rem", "gutter-mobile": "0.75rem", "space-xl": "1.5rem", "margin": "2rem", "margin-mobile": "1rem", "space-md": "1rem" }, fontFamily: { "body-lg": ["Inter"], "body-sm": ["Inter"], "label-sm": ["Inter"], "label-lg": ["Inter"], "body-md": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-md": ["Inter"] }, fontSize: { "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }], "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "700" }], "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }], "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "700" }], "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }] } } } }</script><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; } body { overscroll-behavior: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-2xs"><span class="font-headline-sm text-headline-sm text-on-surface truncate">SabiWork</span><span class="px-space-2xs py-0.5 rounded-full bg-surface-container-high text-on-secondary-fixed-variant text-[10px] font-semibold uppercase tracking-wider flex-shrink-0">TEST Mode</span></div><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Explore Requests</span></div></div><div class="flex items-center gap-space-2xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface-variant relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-20 bg-surface flex-grow"><div class="flex flex-col w-full px-margin-mobile pb-space-2xl">
+<!-- Interactive State Switcher Bench -->
+<section aria-label="Interactive Demo States" class="w-full mb-space-md">
+<div class="flex items-center gap-space-2xs overflow-x-auto no-scrollbar py-1">
+<button class="state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-primary text-on-primary shadow-sm flex items-center gap-1" id="btn-details" onclick="switchState('details')" type="button">
+<span class="material-symbols-outlined text-[14px]">visibility</span>
+<span>Details (#BN-8421)</span>
+</button>
+<button class="state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-surface-container-high text-on-surface-variant flex items-center gap-1" id="btn-feed" onclick="switchState('feed')" type="button">
+<span class="material-symbols-outlined text-[14px]">view_agenda</span>
+<span>Requests Feed</span>
+</button>
+<button class="state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-surface-container-high text-on-surface-variant flex items-center gap-1" id="btn-shimmer" onclick="switchState('shimmer')" type="button">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+<span>Loading Shimmer</span>
+</button>
+<button class="state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-surface-container-high text-on-surface-variant flex items-center gap-1" id="btn-empty" onclick="switchState('empty')" type="button">
+<span class="material-symbols-outlined text-[14px]">filter_alt_off</span>
+<span>Empty Filter</span>
+</button>
+<button class="state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-surface-container-high text-on-surface-variant flex items-center gap-1" id="btn-closed" onclick="switchState('closed')" type="button">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span>
+<span>Request Closed</span>
+</button>
+<button class="state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-surface-container-high text-on-surface-variant flex items-center gap-1" id="btn-error" onclick="switchState('error')" type="button">
+<span class="material-symbols-outlined text-[14px]">signal_disconnected</span>
+<span>Network Error</span>
+</button>
+</div>
+</section>
+<!-- ================= VIEW A: REQUEST DETAILS (DEFAULT) ================= -->
+<div class="flex flex-col gap-space-md w-full" id="view-details">
+<!-- Sub-header bar -->
+<div class="flex items-center justify-between py-1">
+<button class="flex items-center gap-space-2xs text-primary font-label-lg text-label-lg py-1 px-1 rounded-lg hover:bg-surface-container-low transition-colors" onclick="switchState('feed')" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="truncate">Back to Open Requests (12)</span>
+</button>
+<div class="flex items-center gap-space-2xs">
+<span class="px-space-2xs py-0.5 rounded-full bg-surface-container-high text-on-secondary-fixed-variant font-label-sm text-label-sm">#BN-REQ-8421</span>
+</div>
+</div>
+<!-- Job Header Card -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Plumbing &amp; Sanitary</span>
+<span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span>Urgent • Within 48h</span>
+</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-1 leading-snug">
+        Under-sink kitchen drain pipe replacement &amp; leak repair
+      </h1>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm pt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary">schedule</span>
+<span>25m ago</span>
+</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary">near_me</span>
+<span>GRA Axis (1.2 km away)</span>
+</span>
+</div>
+</article>
+<!-- Privacy & Escrow Transparency Notice -->
+<section class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface">Ada O.</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Verified Client in GRA Axis</div>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Paystack TEST Mode</span>
+</div>
+<div class="flex items-start gap-space-xs p-space-xs bg-surface-container-lowest rounded-lg text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-[18px] text-primary flex-shrink-0 mt-0.5">lock</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          Worksite street number and direct WhatsApp call/chat are securely unlocked immediately after client accepts your itemized estimate and deposits funds to test escrow.
+        </p>
+</div>
+</section>
+<!-- Location & Schedule Overview -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<span>Appointment &amp; Worksite Zone</span>
+</h2>
+<div class="flex flex-col gap-space-xs">
+<div class="p-space-xs bg-surface-container-low rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px] flex-shrink-0">pin_drop</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md text-on-surface">Boundary Rd / Zenith Bank Junction</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">GRA Axis, Benin City (Exact gate pin revealed on quote win)</div>
+</div>
+</div>
+<div class="p-space-xs bg-surface-container-low rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px] flex-shrink-0">calendar_clock</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md text-on-surface">Thursday Morning Window</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Preferred slot: 8:30 AM - 1:00 PM (Flexible upon quote chat)</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Scope, Symptoms & Parts Required -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">plumbing</span>
+<span>Problem Symptoms &amp; Scope</span>
+</h2>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed mt-1">
+        PVC pipe is cracked directly below the kitchen sink P-trap connection. Dirty dishwater is leaking down and pooling inside the cabinet floor whenever the tap runs. Requires replacement with standard 1.5-inch PVC drainage pipe and heavy-duty silicone seal ring.
+      </p>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="px-2.5 py-1 bg-surface-container rounded-md font-label-sm text-label-sm text-on-surface">1.5" PVC Pipe</span>
+<span class="px-2.5 py-1 bg-surface-container rounded-md font-label-sm text-label-sm text-on-surface">P-Trap Reconnection</span>
+<span class="px-2.5 py-1 bg-surface-container rounded-md font-label-sm text-label-sm text-on-surface">Water Proof Gasket</span>
+<span class="px-2.5 py-1 bg-surface-container rounded-md font-label-sm text-label-sm text-on-surface">Leak Pressure Test</span>
+</div>
+</section>
+<!-- Photo Evidence Carousel / Interactive Grid -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">photo_library</span>
+<span>Customer Evidence (3)</span>
+</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tap to inspect</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs mt-1">
+<div class="relative group cursor-pointer rounded-lg overflow-hidden bg-surface-container-high aspect-square flex flex-col justify-end p-1.5" onclick="expandImage('P-trap crack view')">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Close up photography of cracked grey PVC under sink drainage pipe showing fine fracture near the threaded ring joint with visible moisture drops, natural light indoors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHYBI8cryYVyr5XAlwvDvcrrI8NK5-uv_7jDDO_sVVXMmQhcUNgpgarpp6WiozMz75BvxsibwXfFWIxjrAYuCX-QohcCVs_eJBz6kfAo-9XacO0gWXguj8kD_kDbtYwrPhYahd3Ax-pZZ-xRf0xMXQPMZWZjt0MTqt0SJ2hQTj5VVpUqYrf1ZpSX2HitHoIeha4RIH2hKg48fESfFu61d4FmUhRTY5FSlcprWqF_M"/>
+<div class="relative z-10 bg-inverse-surface/75 backdrop-blur-sm rounded px-1 py-0.5 text-inverse-on-surface font-label-sm text-[10px] text-center truncate">
+            P-trap (2.4MB)
+          </div>
+</div>
+<div class="relative group cursor-pointer rounded-lg overflow-hidden bg-surface-container-high aspect-square flex flex-col justify-end p-1.5" onclick="expandImage('Water pooling view')">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Under kitchen sink cabinet floor with dark wet plywood stains and shallow pooled greywater collected under drainage fittings, bright flash photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhhXgkTKILOcdvfr8VkuzqMb3z8Gh_fqCyfiC3iv7UWkIY6RadcgEPIGzmqNvL24_4r5mSxP8Cn29z0PuhKdlOsyFK9DyWtyqB2l4JhNv7Y0UbLeGaUTXKJHYfqKNGbTNpxU5LdX_MOoB6h6WBruj4tpVYLJUiQaBpaZOMlPmjhc3_ewNMqydPR9qd70RBDtmQ9y4be4Z-HsKF8DC3Tgow3oQbvNS_7Sw0eHjL_us"/>
+<div class="relative z-10 bg-inverse-surface/75 backdrop-blur-sm rounded px-1 py-0.5 text-inverse-on-surface font-label-sm text-[10px] text-center truncate">
+            Pooling (1.9MB)
+          </div>
+</div>
+<div class="relative group cursor-pointer rounded-lg overflow-hidden bg-surface-container-high aspect-square flex flex-col justify-end p-1.5" onclick="expandImage('Wide cabinet overview')">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Wide angle shot inside double door kitchen wooden cupboard showing plumbing trap, dual supply hoses and water shut off valves in bright modern kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBu5v3VxE9_2ku0Xc1i3QUrHCwinVaypFp4BcCDndZs-N6kwxoWByy_tpWy8W-GgW_CMapmGuQ4nAJ5-l_f4ObJX84Mziel9iUyoVuPvUmyM5IV6Rb0VA5q9e7hEcbFLIEk_AIOrRTIoKXTLdasGxndrhhs80jEHOCukO7LtA_sw0u_C0jp6oOg0UN_nf45TbFZw-tfo2qcPY8fIAhSSm2JquypW0Hatlzg0NE4_o"/>
+<div class="relative z-10 bg-inverse-surface/75 backdrop-blur-sm rounded px-1 py-0.5 text-inverse-on-surface font-label-sm text-[10px] text-center truncate">
+            Overview (3.1MB)
+          </div>
+</div>
+</div>
+</section>
+<!-- Budget Guidance Card -->
+<section class="bg-surface-container-low rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Customer Budget Target</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">₦18,000</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">info</span>
+<span>Non-binding client estimate guidance</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mt-0.5">
+        Artisans independently define final quotes. Itemize labor, authentic replacement pipe, transport logistics, and warranty.
+      </p>
+</section>
+<!-- Sticky Bottom Mobile Action Shelf -->
+<div class="sticky bottom-16 -mx-margin-mobile px-margin-mobile py-space-xs bg-surface/95 backdrop-blur-md shadow-lg z-30 flex items-center gap-space-xs">
+<button aria-label="Save for later" class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">bookmark_border</span>
+</button>
+<button aria-label="Share with workshop apprentice" class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">share</span>
+</button>
+<button class="flex-grow h-12 px-space-md rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-md hover:bg-on-primary-fixed-variant transition-colors whitespace-nowrap" onclick="alert('Proceeding to Step 18: Itemized Quotation Builder')" type="button">
+<span>Send Itemized Quote (S18)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- ================= VIEW B: OPEN REQUESTS FEED ================= -->
+<div class="hidden flex-col gap-space-md w-full" id="view-feed">
+<!-- Search & Location Filter Bar -->
+<div class="flex flex-col gap-space-xs bg-surface-container-lowest p-space-sm rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-[20px]">search</span>
+<input class="bg-transparent border-0 outline-none w-full font-body-md text-body-md text-on-surface placeholder:text-outline" placeholder="Search pipes, wiring, generators..." type="text"/>
+<button aria-label="Clear or voice search" class="text-tertiary" type="button">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-[18px]">my_location</span>
+<span class="font-semibold">GRA Axis &amp; Environs (5km)</span>
+</div>
+<button class="text-primary font-label-sm text-label-sm flex items-center gap-0.5" type="button">
+<span>Change</span>
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<!-- Trade Categories -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1">
+<button class="px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm whitespace-nowrap" type="button">All (12)</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm whitespace-nowrap" type="button">Plumbing (4)</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm whitespace-nowrap" type="button">Electrical (5)</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm whitespace-nowrap" type="button">Carpentry (2)</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm whitespace-nowrap" type="button">Masonry (1)</button>
+</div>
+</div>
+<!-- Active Feed List -->
+<div class="flex flex-col gap-space-sm">
+<!-- Card 1 (Active Request) -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs transition-shadow hover:shadow-md cursor-pointer" onclick="switchState('details')">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Plumbing</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">Urgent</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">
+          Under-sink kitchen drain pipe replacement &amp; leak repair
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+          PVC cracked at P-trap, water pooling in cabinet. Standard 1.5-inch PVC replacement required.
+        </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-tertiary">Target Guidance</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">₦18,000</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-tertiary font-body-sm text-body-sm">1.2 km • 25m ago</span>
+<button class="h-9 px-3 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1" type="button">
+<span>Inspect</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs transition-shadow hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Electrical</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Standard • 3 Days</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">
+          Changeover switch spark &amp; distribution box checkout
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+          63A manual changeover produces sound whenever generator is hooked up. Needs safe replacement and circuit balance.
+        </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-tertiary">Target Guidance</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">₦25,000</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-tertiary font-body-sm text-body-sm">2.8 km • 1h ago</span>
+<button class="h-9 px-3 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1" onclick="switchState('details')" type="button">
+<span>Inspect</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs transition-shadow hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Carpentry</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Flexible</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">
+          Reinforce master bedroom solid core door lock &amp; hinge
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+          Hinges sagging on heavy mahogany frame causing scraping against tiles. Mortise latch misalignment.
+        </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-tertiary">Target Guidance</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">₦14,500</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-tertiary font-body-sm text-body-sm">3.4 km • 3h ago</span>
+<button class="h-9 px-3 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1" onclick="switchState('details')" type="button">
+<span>Inspect</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- ================= VIEW C: LOADING SHIMMER SKELETON ================= -->
+<div class="hidden flex-col gap-space-md w-full animate-pulse" id="view-shimmer">
+<div class="h-6 w-48 bg-surface-container-high rounded-md"></div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md flex flex-col gap-space-sm shadow-sm">
+<div class="flex justify-between items-center">
+<div class="h-6 w-28 bg-surface-container-high rounded-full"></div>
+<div class="h-6 w-24 bg-surface-container-high rounded-full"></div>
+</div>
+<div class="h-8 w-3/4 bg-surface-container-high rounded-lg mt-2"></div>
+<div class="h-4 w-1/2 bg-surface-container-high rounded-md mt-1"></div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="h-10 w-full bg-surface-container-high rounded-lg"></div>
+<div class="h-16 w-full bg-surface-container-high rounded-lg"></div>
+</div>
+<div class="grid grid-cols-3 gap-space-xs">
+<div class="aspect-square bg-surface-container-high rounded-lg"></div>
+<div class="aspect-square bg-surface-container-high rounded-lg"></div>
+<div class="aspect-square bg-surface-container-high rounded-lg"></div>
+</div>
+<div class="h-12 w-full bg-surface-container-high rounded-xl"></div>
+</div>
+<!-- ================= VIEW D: EMPTY FILTER STATE ================= -->
+<div class="hidden flex-col items-center justify-center text-center p-space-xl bg-surface-container-lowest rounded-xl shadow-sm mt-4" id="view-empty">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-space-sm">
+<span class="material-symbols-outlined text-[36px]">filter_alt_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No Requests in this Radius</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-1">
+      No plumbing requests currently match your 1.2km radius filter in GRA Axis. Try expanding to 5km or clear filters.
+    </p>
+<div class="flex items-center gap-space-xs mt-space-md">
+<button class="h-11 px-space-md rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 shadow-sm" onclick="switchState('feed')" type="button">
+<span class="material-symbols-outlined text-[18px]">travel_explore</span>
+<span>Expand to 10km</span>
+</button>
+<button class="h-11 px-space-md rounded-xl bg-surface-container-high text-on-surface font-label-md text-label-md" onclick="switchState('feed')" type="button">
+        Reset Filter
+      </button>
+</div>
+</div>
+<!-- ================= VIEW E: REQUEST CLOSED NOTIFICATION ================= -->
+<div class="hidden flex-col items-center justify-center text-center p-space-xl bg-surface-container-lowest rounded-xl shadow-sm mt-4" id="view-closed">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-tertiary mb-space-sm">
+<span class="material-symbols-outlined text-[36px]">lock_person</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm mb-1">
+      Request Closed • #BN-REQ-8421
+    </span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Quotation Window Completed</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-1">
+      Ada O. has reviewed received quotes and selected a verified plumbing specialist. Thank you for checking promptly!
+    </p>
+<button class="mt-space-md h-11 px-space-md rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-2 shadow-sm" onclick="switchState('feed')" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Browse Other Open Gigs</span>
+</button>
+</div>
+<!-- ================= VIEW F: NETWORK DISCONNECTED / ERROR ================= -->
+<div class="hidden flex-col items-center justify-center text-center p-space-xl bg-surface-container-lowest rounded-xl shadow-sm mt-4" id="view-error">
+<div class="w-16 h-16 rounded-full bg-error-container flex items-center justify-center text-error mb-space-sm">
+<span class="material-symbols-outlined text-[36px]">wifi_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Connection Interrupted</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-1">
+      Unable to reach SabiWork cloud feed. Check your cellular data or tap below to reconnect.
+    </p>
+<button class="mt-space-md h-11 px-space-lg rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center gap-2 shadow-sm" onclick="retryConnection()" type="button">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+<span>Retry Sync</span>
+</button>
+</div>
+</div>
+<script>
+  function switchState(stateName) {
+    const states = ['details', 'feed', 'shimmer', 'empty', 'closed', 'error'];
+    states.forEach(st => {
+      const el = document.getElementById('view-' + st);
+      const btn = document.getElementById('btn-' + st);
+      if (el) {
+        if (st === stateName) {
+          el.classList.remove('hidden');
+          el.classList.add('flex');
+        } else {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        }
+      }
+      if (btn) {
+        if (st === stateName) {
+          btn.className = 'state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-primary text-on-primary shadow-sm flex items-center gap-1';
+        } else {
+          btn.className = 'state-pill px-space-sm py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap transition-all duration-200 bg-surface-container-high text-on-surface-variant flex items-center gap-1';
+        }
+      }
+    });
+  }
+
+  function expandImage(title) {
+    alert('Zooming evidence asset: ' + title + ' (High-res inspection mode)');
+  }
+
+  function retryConnection() {
+    switchState('shimmer');
+    setTimeout(() => {
+      switchState('details');
+    }, 700);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] px-space-2xs py-1 rounded-lg transition-colors text-primary font-semibold" data-path="explore-requests" href="#"><span class="material-symbols-outlined text-[24px]">handyman</span><span class="font-label-sm text-label-sm mt-0.5">Requests</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] px-space-2xs py-1 rounded-lg text-on-surface-variant transition-colors hover:text-on-surface" data-path="my-gigs" href="#"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="font-label-sm text-label-sm mt-0.5">My Gigs</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] px-space-2xs py-1 rounded-lg text-on-surface-variant transition-colors hover:text-on-surface" data-path="messages" href="#"><span class="material-symbols-outlined text-[24px]">chat_bubble</span><span class="font-label-sm text-label-sm mt-0.5">Messages</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] px-space-2xs py-1 rounded-lg text-on-surface-variant transition-colors hover:text-on-surface" data-path="account" href="#"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="font-label-sm text-label-sm mt-0.5">Account</span></a></div></nav></body></html>

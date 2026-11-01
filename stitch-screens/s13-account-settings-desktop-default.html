@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-surface":"#293040","surface":"#f9f9ff","secondary-fixed":"#d5e3ff","outline-variant":"#bec8d1","outline":"#6f7881","on-primary-container":"#003a56","secondary-container":"#bbd3fe","surface-container-highest":"#dce2f7","inverse-primary":"#8aceff","surface-bright":"#f9f9ff","on-tertiary-fixed":"#141d22","tertiary-container":"#97a0a7","tertiary-fixed-dim":"#bfc8ce","on-primary":"#ffffff","on-secondary":"#ffffff","surface-container-high":"#e1e8fd","primary-container":"#38a8e8","surface-tint":"#006491","on-primary-fixed-variant":"#004b6f","on-tertiary-fixed-variant":"#3f484e","on-secondary-fixed":"#001b3c","surface-container-low":"#f1f3ff","background":"#f9f9ff","surface-variant":"#dce2f7","primary-fixed-dim":"#8aceff","primary-fixed":"#c9e6ff","on-error":"#ffffff","on-tertiary-container":"#2e373d","on-secondary-fixed-variant":"#30476b","on-background":"#141b2b","tertiary-fixed":"#dbe4eb","error":"#ba1a1a","tertiary":"#576065","surface-dim":"#d3daef","on-secondary-container":"#435a7f","surface-container-lowest":"#ffffff","inverse-on-surface":"#edf0ff","error-container":"#ffdad6","on-primary-fixed":"#001e2f","secondary":"#485f84","primary":"#006491","on-surface-variant":"#3f4850","secondary-fixed-dim":"#b0c8f2","on-surface":"#141b2b","on-error-container":"#93000a","surface-container":"#e9edff","on-tertiary":"#ffffff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-lg":"1.25rem","space-2xl":"2rem","space-md":"1rem","gutter-mobile":"0.75rem","space-xs":"0.5rem","space-3xl":"3rem","space-sm":"0.625rem","margin":"2rem","margin-mobile":"1rem","space-2xs":"0.25rem","space-xl":"1.5rem","gutter":"1.25rem"},"fontFamily":{"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"headline-xl":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-lg":["Inter"],"headline-lg":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-sm":["Inter"],"body-md":["Inter"]},"fontSize":{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between py-space-xl px-space-md"><div class="flex flex-col gap-space-xl"><div class="flex items-center gap-space-xs px-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><span class="font-headline-sm text-headline-sm tracking-tight"><span class="text-on-background">Sabi</span><span class="text-primary-container">Work</span></span></div><div class="flex flex-col gap-space-2xs"><span class="px-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Workspace Settings</span><nav class="flex flex-col gap-space-2xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a aria-current="page" class="flex items-center gap-space-xs px-space-sm py-space-xs transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="account-settings" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">tune</span><span class="font-label-lg text-label-lg">General Settings</span></a><a class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="profile-settings" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">badge</span><span class="font-label-lg text-label-lg">Profile &amp; Trade</span></a><a class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="security-notifications" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">security</span><span class="font-label-lg text-label-lg">Security &amp; Alerts</span></a><a class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="billing-payouts" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">account_balance_wallet</span><span class="font-label-lg text-label-lg">Billing &amp; Payouts</span></a></nav></div></div><div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary-container text-[18px]">verified</span><span class="font-label-sm text-label-sm text-on-surface">Test Environment</span></div><span class="font-body-sm text-body-sm text-on-surface-variant">Paystack TEST Mode active. Sandbox trades operational.</span></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><nav class="flex items-center gap-space-lg" data-active-classes="text-primary-container font-semibold"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="requests" href="#">Requests</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="artisans" href="#">Artisans</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="messages" href="#">Messages</a></nav><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-surface-container-high text-on-secondary-fixed"><span class="w-2 h-2 rounded-full bg-primary-container"></span><span class="font-label-sm text-label-sm">TEST MODE</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-16 bg-surface min-h-screen px-space-xl py-space-xl"><div class="flex flex-col w-full">
+<!-- Prototype State Controller Toolbar -->
+<div class="w-full bg-surface-container-high rounded-xl p-space-sm mb-space-xl shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Prototype Sandbox State</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs" id="state-toolbar">
+<button class="proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-primary-container text-on-primary-container shadow-sm transition-all" data-state="default" onclick="setPrototypeState('default')" type="button">
+          Default (Clean)
+        </button>
+<button class="proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-all" data-state="saving" onclick="setPrototypeState('saving')" type="button">
+          Saving...
+        </button>
+<button class="proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-all" data-state="saved" onclick="setPrototypeState('saved')" type="button">
+          Changes Saved
+        </button>
+<button class="proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-all" data-state="validation-error" onclick="setPrototypeState('validation-error')" type="button">
+          Validation Error
+        </button>
+<button class="proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-all" onclick="openModal('unsaved-modal')" type="button">
+          Unsaved Modal
+        </button>
+<button class="proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-all" onclick="openModal('logout-modal')" type="button">
+          Logout Dialog
+        </button>
+<button class="proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-all" data-state="signed-out" onclick="setPrototypeState('signed-out')" type="button">
+          Signed Out View
+        </button>
+</div>
+</div>
+</div>
+<!-- Signed Out Empty State Container (Hidden by default) -->
+<div class="hidden w-full bg-surface-container-lowest rounded-xl p-space-3xl shadow-sm text-center flex flex-col items-center justify-center my-space-xl" id="signed-out-screen">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-[32px]">logout</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-space-xs">You Have Been Signed Out</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-space-xl">Your active session on the SabiWork Benin City Hub was safely terminated. Test tokens cleared.</p>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-sm hover:opacity-90 transition-all flex items-center gap-space-xs" onclick="setPrototypeState('default')" type="button">
+<span class="material-symbols-outlined text-[20px]">login</span>
+<span>Log In Again (Simulate Return)</span>
+</button>
+</div>
+<!-- Main Settings Workspace -->
+<div class="flex flex-col w-full gap-space-xl" id="main-settings-content">
+<!-- Header Breadcrumb & Notice -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+<span>Settings Workspace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Account &amp; Personal Credentials</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Account Settings</h1>
+</div>
+<!-- Info Notice Box -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-sm flex items-start gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-primary-container/20 text-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</div>
+<div class="flex flex-col gap-space-2xs min-w-0">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-lg text-label-lg text-on-surface">Personal User Credentials &amp; Contact Notice</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Workspace Scope</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          This manages your personal SabiWork login credentials, notification channels, and direct security alerts. To update your trade portfolio, workshop rates, and guild credentials, visit the 
+          <a class="text-primary hover:underline font-medium inline-flex items-center gap-0.5" href="#">Artisan Profile Editor (S06) <span class="material-symbols-outlined text-[14px]">open_in_new</span></a>.
+        </p>
+</div>
+</div>
+<!-- Two-Column Settings Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Sub-navigation Column (4 cols) -->
+<aside class="lg:col-span-4 flex flex-col gap-space-md">
+<nav class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col gap-1">
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg transition-all" href="#profile-identity">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span>Profile &amp; Identity</span>
+</div>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" href="#login-security">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+<span>Login &amp; Security</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Active 2FA</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" href="#notification-channels">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span>Notification Preferences</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" href="#regional-hub">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span>Regional &amp; Benin City Hub</span>
+</div>
+<span class="text-primary font-label-sm text-label-sm">GRA Hub</span>
+</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" href="#connected-sessions">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+<span>Connected Sessions</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-error hover:bg-error-container/40 font-label-lg text-label-lg transition-all" href="#danger-zone">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span>Danger Zone</span>
+</div>
+</a>
+</nav>
+<!-- Quick Hub Status Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Operative Node</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Sandbox ID #BEN-884</span>
+</div>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Benin City Central Exchange</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Primary trade dispatch node for Ring Road, GRA, &amp; Airport Road axis. Sync frequency: Real-time.</p>
+</div>
+</aside>
+<!-- Main Content Panel (8 cols) -->
+<main class="lg:col-span-8 flex flex-col gap-space-xl">
+<!-- SECTION 1: Avatar & Identity -->
+<section class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-xl" id="profile-identity">
+<div class="flex flex-col gap-space-2xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">Profile &amp; Personal Identity</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Your direct identity for dispatch communication, SMS authentication, and Benin City regional logs.</p>
+</div>
+<!-- Avatar Section -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-lg p-space-md rounded-xl bg-surface-container-low">
+<div class="relative shrink-0 w-24 h-24">
+<img class="w-24 h-24 rounded-full object-cover shadow-sm" data-alt="Close up professional portrait of a skilled Nigerian tradesman in Benin City wearing a neat collar work shirt with natural soft studio lighting against a clean pale background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3ofuvikVuYI1Gnary7IKTnfftslnGz0VdDjQOqooLmo8xS2GMUl4KWPgehV6SPXm2Czvc9LqvSyFyUAbtas_UAo8LEf7HCj1c4BnsUR_MMAbGG5yNxepOy2U8XYEi2dCZxbrOs78Hgg7ZZIJoo7BuiXsTIof3cZTC6g5aqAtLcw_CIR3OkbOh2MUNSW8tfRX9sAWBKaMvqIF-uAvhmDZcRASQQfIxImdPhIeu-jw"/>
+<div class="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs flex-1">
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-all flex items-center gap-space-xs whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+<span>Change Photo</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg text-outline hover:text-error hover:bg-error-container/30 font-label-lg text-label-lg transition-all flex items-center gap-space-xs whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span>Remove</span>
+</button>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Supported formats: JPG or PNG. Maximum file size: 2MB. Optimized for 400×400 resolution.</span>
+</div>
+</div>
+<!-- Identity Fields Form -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Full Name -->
+<div class="flex flex-col gap-space-2xs md:col-span-2">
+<label class="font-label-lg text-label-lg text-on-surface" for="field-fullname">Full Name (Government &amp; Payout Name)</label>
+<input class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="field-fullname" oninput="markUnsaved()" type="text" value="Osagie Andrew Eghosa"/>
+</div>
+<!-- Email Address with Verified Badge -->
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface" for="field-email">Email Address</label>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>Verified Oct 2024</span>
+</span>
+</div>
+<input class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="field-email" oninput="markUnsaved()" type="email" value="osagie.trades@sabiwork.ng"/>
+<span class="hidden font-body-sm text-body-sm text-error flex items-center gap-1" id="email-error-msg">
+<span class="material-symbols-outlined text-[14px]">error</span>
+<span>Please enter a valid business email address.</span>
+</span>
+</div>
+<!-- Phone Number with SMS Verification -->
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface" for="field-phone">Nigerian Mobile Phone</label>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">sms</span>
+<span>SMS Active</span>
+</span>
+</div>
+<input class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="field-phone" oninput="markUnsaved()" type="tel" value="+234 803 456 7890"/>
+</div>
+<!-- Read-Only Account Role -->
+<div class="flex flex-col gap-space-2xs md:col-span-2 p-space-md rounded-xl bg-surface-container-low">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">lock</span>
+<span>Assigned Account Role</span>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Verified Artisan (Osagie Trades)</span>
+</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">
+                Assigned by Benin City Administrator. Role tier controls your dispatch priority and test payout channels. Role changes require administrative guild vetting and cannot be altered from this panel.
+              </p>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Account & Regional Preferences -->
+<section class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-xl" id="regional-hub">
+<div class="flex flex-col gap-space-2xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">Regional &amp; Localization Preferences</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Default dispatch zones and localized currency conventions for daily operations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Language -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-lg text-label-lg text-on-surface" for="sel-language">System Dialect &amp; Language</label>
+<select class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="sel-language" onchange="markUnsaved()">
+<option selected="">English (Edo Localized)</option>
+<option>English (West Africa Standard)</option>
+<option>Pidgin English (Naija)</option>
+</select>
+</div>
+<!-- Timezone -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-lg text-label-lg text-on-surface" for="sel-tz">Operational Timezone</label>
+<select class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="sel-tz" onchange="markUnsaved()">
+<option selected="">WAT (West Africa Time, UTC+1)</option>
+<option>GMT (UTC+0)</option>
+</select>
+</div>
+<!-- Benin City Primary District -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-lg text-label-lg text-on-surface" for="sel-district">Benin City Primary District</label>
+<select class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="sel-district" onchange="markUnsaved()">
+<option selected="">GRA Axis / Ring Road Core</option>
+<option>Airport Road / Oko Central</option>
+<option>Uselu / Ugbowo University Corridor</option>
+<option>Ikpoba Hill / Ramat Park Junction</option>
+<option>Sapele Road / Limit Axis</option>
+</select>
+</div>
+</div>
+<!-- Communication Channels -->
+<div class="flex flex-col gap-space-md pt-space-xs" id="notification-channels">
+<span class="font-label-lg text-label-lg text-on-surface">Direct Operational Communication Channels</span>
+<div class="space-y-space-sm">
+<!-- WhatsApp -->
+<label class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">WhatsApp Instant Alerts</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Immediate job requests, schedule updates, and client check-in pings.</span>
+</div>
+</div>
+<input checked="" class="w-5 h-5 accent-primary-container rounded cursor-pointer" onchange="markUnsaved()" type="checkbox"/>
+</label>
+<!-- Email Summaries -->
+<label class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Email Job Summaries</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Weekly performance reports and test ledger summaries sent on Mondays.</span>
+</div>
+</div>
+<input checked="" class="w-5 h-5 accent-primary-container rounded cursor-pointer" onchange="markUnsaved()" type="checkbox"/>
+</label>
+<!-- Paystack TEST Escrow SMS Alerts -->
+<label class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Paystack TEST Escrow SMS Alerts</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Instant text verification for milestone fund locks and sandbox payouts.</span>
+</div>
+</div>
+<input checked="" class="w-5 h-5 accent-primary-container rounded cursor-pointer" onchange="markUnsaved()" type="checkbox"/>
+</label>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Login & Security Entry Point -->
+<section class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-lg" id="login-security">
+<div class="flex flex-col gap-space-2xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">Security &amp; Password Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Maintain your account credentials, multi-factor keys, and login safeguards.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Password Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Account Password</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Strong</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Last updated 42 days ago from Benin City Chrome Session.</p>
+</div>
+<a class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-all inline-flex items-center justify-between whitespace-nowrap" href="#">
+<span>Change Password (S12)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- Two Factor Auth Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Two-Factor Authentication</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Secured via registered Nigerian SMS gateway (+234 803 *** 7890).</p>
+</div>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-all inline-flex items-center justify-between whitespace-nowrap" type="button">
+<span>Manage 2FA Methods</span>
+<span class="material-symbols-outlined text-[18px]">key</span>
+</button>
+</div>
+</div>
+<!-- Connected Sessions Sub-box -->
+<div class="flex flex-col gap-space-xs pt-space-xs" id="connected-sessions">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Active Workstation Sessions</span>
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">laptop_mac</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Chrome on macOS • Benin City, NG</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active now • IP 102.89.44.12 (MTN Nigeria)</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Current Session</span>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Danger Zone -->
+<section class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-lg" id="danger-zone">
+<div class="flex items-center gap-space-xs text-error">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Danger Zone</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Actions here immediately terminate active sessions or schedule your Benin City artisan record for formal decommissioning.</p>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-space-md rounded-xl bg-error-container/30">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Sign Out of SabiWork</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Terminates access on this browser and flushes local sandbox credentials.</span>
+</div>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-error text-on-error font-label-lg text-label-lg hover:opacity-90 transition-all flex items-center justify-center gap-space-xs whitespace-nowrap shadow-sm shrink-0" onclick="openModal('logout-modal')" type="button">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span>Log Out of SabiWork</span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Deactivate Personal SabiWork Account</span>
+<span class="font-body-sm text-body-sm text-outline">Suspends your customer credentials and withdraws active job applications.</span>
+</div>
+<a class="font-label-sm text-label-sm text-error hover:underline shrink-0" href="#">Request Deactivation</a>
+</div>
+</section>
+<!-- Paystack Sandbox Footer Notice -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+<span class="font-body-sm text-body-sm">Paystack TEST Mode • Benin City Central Node Sandbox Operational</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">v2.4.0-test</span>
+</div>
+</main>
+</div>
+</div>
+<!-- Bottom Floating / Sticky Actions Bar -->
+<div class="sticky bottom-6 left-0 right-0 mt-space-xl bg-surface-container-lowest rounded-xl p-space-md shadow-xl z-30 transition-all" id="sticky-actions-bar">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Unsaved Edits Status Text -->
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-outline shrink-0" id="save-status-dot"></span>
+<span class="font-label-md text-label-md text-on-surface truncate" id="save-status-text">
+          All changes saved to Benin City sandbox repository.
+        </span>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-sm shrink-0 w-full sm:w-auto justify-end">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-all whitespace-nowrap" onclick="openModal('unsaved-modal')" type="button">
+          Cancel / Revert
+        </button>
+<button class="min-h-[44px] px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:opacity-90 transition-all flex items-center justify-center gap-space-xs shadow-sm whitespace-nowrap" id="save-primary-btn" onclick="triggerSaveSequence()" type="button">
+<span class="material-symbols-outlined text-[18px]" id="save-btn-icon">check</span>
+<span id="save-btn-label">Save Changes</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-24 right-8 z-50 transform translate-y-16 opacity-0 pointer-events-none transition-all duration-300" id="toast-notification">
+<div class="bg-inverse-surface text-inverse-on-surface px-space-lg py-space-sm rounded-xl shadow-xl flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]">check_circle</span>
+<span class="font-label-md text-label-md">Account settings successfully updated.</span>
+<button class="text-inverse-on-surface/70 hover:text-inverse-on-surface ml-2" onclick="hideToast()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- MODAL 1: Unsaved Changes Alert Modal -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="unsaved-modal">
+<div class="bg-surface-container-lowest rounded-xl max-w-md w-full p-space-xl shadow-xl flex flex-col gap-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">pending_actions</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Discard unsaved changes?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">You have unsaved edits in contact preferences and regional settings. Leaving without saving will reset them.</p>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-all whitespace-nowrap" onclick="closeModal('unsaved-modal')" type="button">
+          Keep Editing
+        </button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-error text-on-error font-label-lg text-label-lg hover:opacity-90 transition-all whitespace-nowrap" onclick="discardChanges()" type="button">
+          Discard &amp; Exit
+        </button>
+</div>
+</div>
+</div>
+<!-- MODAL 2: Logout Confirmation Dialog -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="logout-modal">
+<div class="bg-surface-container-lowest rounded-xl max-w-md w-full p-space-xl shadow-xl flex flex-col gap-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-error-container text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">logout</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Are you sure you want to log out?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">You will be logged out of SabiWork Benin City Hub on this device. Any unsaved edits will be discarded.</p>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-all whitespace-nowrap" onclick="closeModal('logout-modal')" type="button">
+          Cancel
+        </button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-error text-on-error font-label-lg text-label-lg hover:opacity-90 transition-all whitespace-nowrap" onclick="confirmLogout()" type="button">
+          Confirm Log Out
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Prototype State Controller Logic
+  function setPrototypeState(state) {
+    const mainContent = document.getElementById('main-settings-content');
+    const signedOutScreen = document.getElementById('signed-out-screen');
+    const stickyBar = document.getElementById('sticky-actions-bar');
+    const emailField = document.getElementById('field-email');
+    const emailErrorMsg = document.getElementById('email-error-msg');
+    const statusDot = document.getElementById('save-status-dot');
+    const statusText = document.getElementById('save-status-text');
+    const saveBtn = document.getElementById('save-primary-btn');
+    const saveLabel = document.getElementById('save-btn-label');
+    const saveIcon = document.getElementById('save-btn-icon');
+
+    // Update toolbar active styles
+    document.querySelectorAll('.proto-btn').forEach(btn => {
+      if (btn.getAttribute('data-state') === state) {
+        btn.className = "proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-primary-container text-on-primary-container shadow-sm transition-all";
+      } else {
+        btn.className = "proto-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-all";
+      }
+    });
+
+    // Reset common UI
+    emailErrorMsg.classList.add('hidden');
+    emailField.classList.remove('ring-2', 'ring-error');
+
+    if (state === 'signed-out') {
+      mainContent.classList.add('hidden');
+      stickyBar.classList.add('hidden');
+      signedOutScreen.classList.remove('hidden');
+      return;
+    } else {
+      mainContent.classList.remove('hidden');
+      stickyBar.classList.remove('hidden');
+      signedOutScreen.classList.add('hidden');
+    }
+
+    if (state === 'default') {
+      statusDot.className = "w-2.5 h-2.5 rounded-full bg-outline shrink-0";
+      statusText.textContent = "All changes saved to Benin City sandbox repository.";
+      saveLabel.textContent = "Save Changes";
+      saveIcon.textContent = "check";
+      saveBtn.disabled = false;
+      saveBtn.className = "min-h-[44px] px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:opacity-90 transition-all flex items-center justify-center gap-space-xs shadow-sm whitespace-nowrap";
+    } else if (state === 'saving') {
+      statusDot.className = "w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse shrink-0";
+      statusText.textContent = "Saving updates to Paystack TEST cloud sync...";
+      saveLabel.textContent = "Saving...";
+      saveIcon.textContent = "sync";
+      saveIcon.classList.add('animate-spin');
+      saveBtn.disabled = true;
+      saveBtn.className = "min-h-[44px] px-6 py-2.5 rounded-lg bg-primary/70 text-on-primary font-label-lg text-label-lg cursor-not-allowed flex items-center justify-center gap-space-xs shadow-sm whitespace-nowrap";
+    } else if (state === 'saved') {
+      saveIcon.classList.remove('animate-spin');
+      statusDot.className = "w-2.5 h-2.5 rounded-full bg-primary-container shrink-0";
+      statusText.textContent = "All changes synced and confirmed.";
+      saveLabel.textContent = "Saved";
+      saveIcon.textContent = "done_all";
+      saveBtn.disabled = false;
+      saveBtn.className = "min-h-[44px] px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:opacity-90 transition-all flex items-center justify-center gap-space-xs shadow-sm whitespace-nowrap";
+      showToast();
+    } else if (state === 'validation-error') {
+      emailErrorMsg.classList.remove('hidden');
+      emailField.classList.add('ring-2', 'ring-error');
+      statusDot.className = "w-2.5 h-2.5 rounded-full bg-error shrink-0";
+      statusText.textContent = "Validation error: Check email format before saving.";
+      saveLabel.textContent = "Resolve Errors";
+      saveIcon.textContent = "warning";
+      saveBtn.disabled = false;
+      saveBtn.className = "min-h-[44px] px-6 py-2.5 rounded-lg bg-error text-on-error font-label-lg text-label-lg hover:opacity-90 transition-all flex items-center justify-center gap-space-xs shadow-sm whitespace-nowrap";
+    }
+  }
+
+  function markUnsaved() {
+    const statusDot = document.getElementById('save-status-dot');
+    const statusText = document.getElementById('save-status-text');
+    statusDot.className = "w-2.5 h-2.5 rounded-full bg-primary shrink-0 animate-ping";
+    statusText.textContent = "You have unsaved edits in contact preferences";
+  }
+
+  function triggerSaveSequence() {
+    setPrototypeState('saving');
+    setTimeout(() => {
+      setPrototypeState('saved');
+    }, 900);
+  }
+
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function discardChanges() {
+    closeModal('unsaved-modal');
+    setPrototypeState('default');
+    const emailField = document.getElementById('field-email');
+    if (emailField) emailField.value = "osagie.trades@sabiwork.ng";
+  }
+
+  function confirmLogout() {
+    closeModal('logout-modal');
+    setPrototypeState('signed-out');
+  }
+
+  function showToast() {
+    const toast = document.getElementById('toast-notification');
+    toast.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+    setTimeout(() => {
+      hideToast();
+    }, 3500);
+  }
+
+  function hideToast() {
+    const toast = document.getElementById('toast-notification');
+    toast.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+    toast.classList.remove('translate-y-0', 'opacity-100');
+  }
+</script></main></div></body></html>

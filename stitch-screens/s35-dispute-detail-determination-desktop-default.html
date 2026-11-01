@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-fixed-dim":"#8aceff","on-secondary-fixed":"#001b3c","on-tertiary-fixed":"#141d22","on-primary-container":"#003a56","secondary-fixed":"#d5e3ff","surface-container-high":"#e1e8fd","primary-fixed":"#c9e6ff","error-container":"#ffdad6","tertiary-fixed-dim":"#bfc8ce","on-tertiary-container":"#2e373d","on-error":"#ffffff","on-error-container":"#93000a","background":"#f9f9ff","secondary":"#485f84","on-background":"#141b2b","tertiary-fixed":"#dbe4eb","secondary-fixed-dim":"#b0c8f2","on-surface":"#141b2b","surface-dim":"#d3daef","surface-variant":"#dce2f7","tertiary":"#576065","inverse-primary":"#8aceff","inverse-on-surface":"#edf0ff","surface-tint":"#006491","outline-variant":"#bec8d1","on-secondary-container":"#435a7f","on-tertiary-fixed-variant":"#3f484e","tertiary-container":"#97a0a7","error":"#ba1a1a","on-primary-fixed":"#001e2f","on-tertiary":"#ffffff","on-secondary":"#ffffff","surface-container-low":"#f1f3ff","surface":"#f9f9ff","surface-container-highest":"#dce2f7","primary-container":"#38a8e8","outline":"#6f7881","on-secondary-fixed-variant":"#30476b","surface-container":"#e9edff","surface-bright":"#f9f9ff","surface-container-lowest":"#ffffff","inverse-surface":"#293040","on-primary":"#ffffff","on-surface-variant":"#3f4850","secondary-container":"#bbd3fe","primary":"#006491","on-primary-fixed-variant":"#004b6f"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter":"1.25rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-lg":"1.25rem","space-xl":"1.5rem","space-3xl":"3rem","space-xs":"0.5rem","space-2xl":"2rem","space-sm":"0.625rem","space-2xs":"0.25rem","margin":"2rem","space-md":"1rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Inter"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"],"label-lg":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"]},fontSize:{"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-16 px-space-md flex items-center gap-space-xs bg-surface-container-lowest"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex items-center tracking-tight font-headline-sm text-headline-sm font-bold"><span class="text-on-secondary-fixed">Sabi</span><span class="text-primary-container">Work</span></div><span class="ml-space-2xs px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider">Admin Portal</span></div><div class="px-space-md py-space-sm"><div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-space-xs px-space-xs">Hub Operations</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]"><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="overview-metrics" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview / Metrics</span></div></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="artisan-verification-queue" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">verified_user</span><span>Artisan Verification Queue</span></div><span class="px-space-2xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">S42</span></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]" data-path="dispute-resolution" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">gavel</span><span>Dispute Resolution</span></div><span class="px-space-2xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">S34-S35</span></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="escrow-payout-releases" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Escrow &amp; Payout Releases</span></div><span class="px-space-2xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">S26</span></a></nav></div><div class="px-space-md py-space-sm"><div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-space-xs px-space-xs">Configuration</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]"><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="trade-categories-rates" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">tune</span><span>Trade Categories &amp; Rates</span></div></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="audit-logs-settings" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">history</span><span>Audit Logs &amp; Settings</span></div></a></nav></div></div><div class="p-space-md bg-surface-container-low mx-space-md mb-space-md rounded-xl"><div class="flex items-center gap-space-xs text-on-secondary-fixed"><span class="material-symbols-outlined text-[16px] text-primary">dns</span><span class="font-label-sm text-label-sm font-semibold">Edo State Territory</span></div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Session Gateway #BN-04</div></div></aside><div class="pl-72 min-h-screen flex flex-col"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs text-on-surface"><span class="material-symbols-outlined text-primary text-[20px]">location_city</span><span class="font-label-lg text-label-lg text-on-surface">Benin City Hub Admin Desk</span></div><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-on-secondary-fixed text-surface-container-low font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span>Paystack TEST Mode</span></div></div><div class="flex items-center gap-space-md"><div class="text-right hidden sm:block"><div class="font-label-lg text-label-lg text-on-surface leading-tight">Tunde Balogun</div><div class="font-body-sm text-body-sm text-on-surface-variant">Case Officer • Level 2</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-16 bg-surface flex-1 px-space-xl py-space-xl"><div class="flex flex-col w-full">
+<!-- Interactive Prototype States Controller (Demonstration Toolbar) -->
+<div class="mb-space-xl p-space-sm bg-surface-container-low rounded-xl flex flex-wrap items-center justify-between gap-space-sm shadow-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">tune</span>
+<span class="font-semibold uppercase tracking-wider">Prototype State Switcher:</span>
+</div>
+<div class="flex flex-wrap gap-1.5" id="prototype-state-bar">
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all flex items-center gap-1.5" id="btn-state-default" onclick="setSimState('default')">
+<span class="w-2 h-2 rounded-full bg-primary-fixed"></span>Default Active Review
+      </button>
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5" id="btn-state-awaiting" onclick="setSimState('awaiting')">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>Awaiting Info State
+      </button>
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5" id="btn-state-submitting" onclick="setSimState('submitting')">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>Submitting Determination
+      </button>
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5" id="btn-state-resolved" onclick="setSimState('resolved')">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>Resolved (Audit Locked)
+      </button>
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5" id="btn-state-validation-error" onclick="setSimState('validation-error')">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>Validation Error State
+      </button>
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5" id="btn-state-network-error" onclick="setSimState('network-error')">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>Network Error (Recoverable)
+      </button>
+</div>
+</div>
+<!-- Global Alert Notice Area for Prototype States -->
+<div class="hidden mb-space-lg p-space-md rounded-xl shadow-sm transition-all duration-300" id="sim-alert-banner"></div>
+<!-- Breadcrumbs & Nav Context -->
+<div class="flex items-center gap-2 mb-space-sm text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">dashboard</span>Admin Portal
+    </a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Dispute Queue (S34)</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-semibold">#DISP-REQ-8421</span>
+</div>
+<!-- Case Header Block -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm mb-space-xl relative overflow-hidden">
+<div class="absolute right-0 top-0 w-96 h-full bg-gradient-to-l from-primary/5 via-primary-container/5 to-transparent pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-space-lg relative z-10">
+<div class="space-y-2 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>Dispute Determination: Case #DISP-REQ-8421
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold" id="header-status-badge">
+            Under Review (Officer Assigned: Tunde Balogun)
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-secondary-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">schedule</span>Decision Due: Today, 4:00 PM (2h 15m remaining)
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
+          Under-sink kitchen drain pipe replacement &amp; leak repair
+        </h1>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 text-on-surface-variant font-body-md text-body-md">
+<span class="flex items-center gap-1 font-semibold text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]">plumbing</span>Plumbing
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">location_on</span>GRA Axis, Benin City
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="font-mono text-body-sm text-tertiary">Linked Ref: Job #BN-REQ-8421</span>
+</div>
+</div>
+<!-- Financial / Sandbox Escrow Badge -->
+<div class="flex-shrink-0 bg-surface-container-low p-space-md rounded-xl max-w-sm w-full lg:w-auto shadow-sm">
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm text-on-secondary-fixed font-semibold uppercase tracking-wider">Escrow Ledger Hold</span>
+<span class="px-2 py-0.5 rounded-full bg-on-secondary-fixed text-surface-container-low font-label-sm text-label-sm font-medium">TEST Mode</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary font-bold">₦10,000.00</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Held in Paystack TEST Sandbox Escrow (Milestone 1/2) • Agreed Job Total: <span class="font-semibold text-on-surface">₦30,000.00</span>
+</p>
+</div>
+</div>
+</div>
+<!-- 12-Column Grid Layout: 7 cols Left / 5 cols Right -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- LEFT MAIN COLUMN: 7 cols -->
+<div class="lg:col-span-7 flex flex-col gap-space-xl">
+<!-- 1. Case Summary & Parties Comparison Card -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">balance</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Parties &amp; Stated Positions</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bilateral statements and platform verification records</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-low text-tertiary">Dispute ID: #DISP-8421</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Complainant Box -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">Complainant (Customer)</span>
+<span class="font-body-sm text-body-sm text-tertiary">Lodged 11:42 AM</span>
+</div>
+<div class="flex items-center gap-2 mb-space-xs">
+<div class="w-9 h-9 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center font-bold text-label-lg">AO</div>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">Ada O.</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">0803 234 5678 • GRA Axis</div>
+</div>
+</div>
+<div class="mb-space-xs text-on-secondary-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">history</span>3 completed platform bookings
+              </div>
+<div class="mt-space-sm p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="font-label-sm text-label-sm text-error font-semibold mb-1">Stated Issue: Incomplete Work / Scope Deviation</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+                  “Water drips from upper slip joint after 3 min running tap. Scrap rusted pipes uncleaned in cabinet.”
+                </p>
+</div>
+</div>
+<div class="mt-space-md pt-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">verified</span>Identity Phone-Verified</span>
+<span class="font-mono text-tertiary">Client #C-3382</span>
+</div>
+</div>
+<!-- Respondent Box -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Respondent (Artisan)</span>
+<span class="font-body-sm text-body-sm text-tertiary">Lodged 1:30 PM</span>
+</div>
+<div class="flex items-center gap-2 mb-space-xs">
+<div class="w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-label-lg">OI</div>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">Osaze Ighodaro</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Master Plumber • #ED-PLM-084</div>
+</div>
+</div>
+<div class="mb-space-xs text-on-secondary-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-amber-500">star</span>4.9 ★ rating • 114 jobs completed
+              </div>
+<div class="mt-space-sm p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="font-label-sm text-label-sm text-primary font-semibold mb-1">Rebuttal &amp; Remedial Offer</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+                  “Installed heavy-duty Schedule 40 PVC trap. Leak caused by misaligned basin ring washer. Offered immediate rework today at 4:00 PM without additional fee.”
+                </p>
+</div>
+</div>
+<div class="mt-space-md pt-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>Verified Pro Tier</span>
+<span class="font-mono text-tertiary">Edo Hub #ED-PLM-084</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Photographic Evidence & Inspection Grid -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">photo_library</span>
+              Submitted Evidence &amp; Field Telemetry
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 high-resolution files uploaded with EXIF timestamp and metadata</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">3 Attachments Verified</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Evidence Item 1 -->
+<div class="group bg-surface-container-low rounded-xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+<div class="relative h-44 overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Close up photographic macro shot of a white PVC P-trap pipe beneath a kitchen sink in a modern residential apartment. A small clear water bead is visible at the upper slip joint union under daylight illumination. Authentic field inspection capture with precise focal depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmgY9YGPMC9_g08reSzAcH2n3okCBDgHs0jac0DkpptkinRV3XZuojBaK5HBSVsKgu8a4MPke2ilZmQjgpnFKpxM2XQpnvmMpbQhdZ4l7A0vHm6ptXMSQVOrz4WyWGXZzZoDP5nO90REJZgu8o_bGQHbtrhJEYxr8jMrjYLYTrd7Ft3ihjs5MmluQnfCzAqnu57XE4vhqGxdLlziQeFuNF4OwiNDISVgaIN10ojRU"/>
+<div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-error/90 text-on-error font-label-sm text-label-sm font-semibold backdrop-blur-sm">
+                Customer Item #1
+              </div>
+<button class="absolute bottom-2 right-2 px-2.5 py-1 rounded-lg bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-sm hover:bg-inverse-surface transition-colors" onclick="inspectEvidence('joint_leak_close.jpg', 'Customer Annotation: Joint seepage under pressure (10:15 AM capture, 1.8 MB)')">
+<span class="material-symbols-outlined text-[14px]">zoom_in</span>Inspect High-Res View
+              </button>
+</div>
+<div class="p-space-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">joint_leak_close.jpg</span>
+<span class="font-body-sm text-body-sm text-tertiary">1.8 MB</span>
+</div>
+<p class="font-body-sm text-body-sm text-error-container-variant text-on-surface-variant line-clamp-2">
+                Customer annotation: <span class="text-on-surface font-medium">“Joint seepage under pressure”</span>
+</p>
+<div class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span>Captured 10:15 AM
+              </div>
+</div>
+</div>
+<!-- Evidence Item 2 -->
+<div class="group bg-surface-container-low rounded-xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+<div class="relative h-44 overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Under sink cabinet interior showing discarded cut pieces of rusted cast iron pipes and old rubber gaskets left on cabinet wooden floor. Realistic handyman plumbing work environment with authentic details in Benin City." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQnSbqcNIO2R_M7W2rTNDjdsQHglbV8umlLgWATacz5udp9SmpjL2lMsWgny9sLHjHjAWdPYTwJzUXedDQl5iHywYUXoRQBCFI-_0iatmB7MFgXsEHug-fXMkQV4bd7uun2kHOjpWRGiQCdjXwenqJ2NAp7S2kqXmhgoAY3IpY2nG0_kePV8sSQKaBu8Y0-J_VIGUJF0rOvqBIPiTrVZpwMQ93eX99kxBu3EUgFaA"/>
+<div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-error/90 text-on-error font-label-sm text-label-sm font-semibold backdrop-blur-sm">
+                Customer Item #2
+              </div>
+<button class="absolute bottom-2 right-2 px-2.5 py-1 rounded-lg bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-sm hover:bg-inverse-surface transition-colors" onclick="inspectEvidence('floor_scraps_raw.jpg', 'Customer Annotation: Discarded pipes left uncleaned in cabinet base (10:22 AM capture, 2.1 MB)')">
+<span class="material-symbols-outlined text-[14px]">zoom_in</span>Inspect High-Res View
+              </button>
+</div>
+<div class="p-space-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">floor_scraps_raw.jpg</span>
+<span class="font-body-sm text-body-sm text-tertiary">2.1 MB</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Customer annotation: <span class="text-on-surface font-medium">“Discarded pipes left uncleaned”</span>
+</p>
+<div class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span>Captured 10:22 AM
+              </div>
+</div>
+</div>
+<!-- Evidence Item 3 (Artisan) -->
+<div class="group bg-surface-container-low rounded-xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+<div class="relative h-44 overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Artisan holding a brand new black heavy duty rubber O-ring gasket and a Teflon thread seal tape roll near an open toolbox. Professional plumbing diagnostic photograph highlighting technical replacement components." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV-iz6d5fTFMij8R8BoJeCJTGsdpBYKURRrvpqu4UMXQ2ZaoUbV4i0Oj8F_HBbUEkvy34Gn4SqhUnU64VozJ3L0E5R7MRs0jV_FZR25gg_eRUMuutzMPvKXCGRx-kkJMpPtwwVvpeXuHt5vh5rHhNlmCWItJDpDlszkUt4T20xhVKx4ayWiC_fpaAY8P_HC8Sw7nRAuKOvrboV1-UeBRqxBjteTjaI6VbitY_5Q44"/>
+<div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-primary/90 text-on-primary font-label-sm text-label-sm font-semibold backdrop-blur-sm">
+                Artisan Item #1
+              </div>
+<button class="absolute bottom-2 right-2 px-2.5 py-1 rounded-lg bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-sm hover:bg-inverse-surface transition-colors" onclick="inspectEvidence('rework_fitting_alignment.jpg', 'Artisan Submission: Showing replacement O-ring gasket and Schedule 40 union component prepared for immediate remedial reseating (1:15 PM capture, 1.4 MB)')">
+<span class="material-symbols-outlined text-[14px]">zoom_in</span>Inspect High-Res View
+              </button>
+</div>
+<div class="p-space-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">rework_fitting_alignment.jpg</span>
+<span class="font-body-sm text-body-sm text-tertiary">1.4 MB</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Artisan submission: <span class="text-on-surface font-medium">“Replacement O-ring gasket ready”</span>
+</p>
+<div class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span>Captured 1:15 PM
+              </div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Chronological Audit & Event Log -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">history</span>
+              Chronological Audit &amp; Event Log
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Immutable administrative event stream for Case #DISP-REQ-8421</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">5 System Events</span>
+</div>
+<div class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+<!-- Event 1 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-error flex items-center justify-center ring-4 ring-surface-container-lowest"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Dispute lodged by Ada O. (Customer)</span>
+<span class="font-mono text-body-sm text-tertiary">11:42 AM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Claim category flagged as “Incomplete Work / Scope Deviation”. Customer deposited photo evidence of slip joint leakage.
+            </p>
+</div>
+<!-- Event 2 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-lowest"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Escrow Milestone 1 (₦10,000) Automatically Frozen</span>
+<span class="font-mono text-body-sm text-tertiary">12:05 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Paystack TEST Sandbox Escrow lock engaged. Auto-assigned to Hub Case Officer <span class="font-semibold text-on-surface">Tunde Balogun (#ED-OFF-019)</span>.
+            </p>
+</div>
+<!-- Event 3 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center ring-4 ring-surface-container-lowest"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Notification Dispatched to Artisan Osaze Ighodaro</span>
+<span class="font-mono text-body-sm text-tertiary">12:45 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Delivered via automated Push Notification and SMS gateway (+234 802 *** 4912). 2-hour response window started.
+            </p>
+</div>
+<!-- Event 4 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-primary-container flex items-center justify-center ring-4 ring-surface-container-lowest"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Artisan Submitted Rebuttal &amp; Remedial Schedule</span>
+<span class="font-mono text-body-sm text-tertiary">01:30 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Artisan Osaze acknowledged slip washer issue, uploaded replacement gasket photo, and committed to complete remedial rework today at 4:00 PM without additional fee.
+            </p>
+</div>
+<!-- Event 5 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-surface-tint flex items-center justify-center ring-4 ring-surface-container-lowest"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Hub Mediator Phone Check Completed</span>
+<span class="font-mono text-body-sm text-tertiary">02:00 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Officer Tunde Balogun spoke with both Ada O. and Osaze Ighodaro. Customer accepted 4:00 PM return window on the condition that debris is fully cleared and zero fee is assessed.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: 5 cols (Decision & Determination Workspace) -->
+<div class="lg:col-span-5 flex flex-col gap-space-xl">
+<!-- 1. Operational Notice Banner -->
+<div class="p-space-md bg-secondary-fixed text-on-secondary-fixed rounded-xl shadow-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px] flex-shrink-0 mt-0.5">info</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold uppercase tracking-wider mb-1">Operational Notice</h3>
+<p class="font-body-sm text-body-sm leading-relaxed">
+              Recording a mediation resolution enters an audited determination into the case ledger. It does <strong class="font-semibold">NOT</strong> automatically trigger bank transfers or immediate refunds. Payouts and refunds must be verified and executed separately via <a class="underline font-semibold hover:text-primary transition-colors" href="#">Escrow Payout Releases (S26)</a>.
+            </p>
+</div>
+</div>
+</div>
+<!-- 2. Action Module 1: Request Additional Information (Collapsible) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden" id="info-request-panel">
+<button class="w-full p-space-md flex items-center justify-between text-left hover:bg-surface-container-low transition-colors" onclick="toggleInfoRequestAccordion()" type="button">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold block">Request Additional Information</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pause timer and solicit clarifying evidence</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="accordion-arrow">expand_more</span>
+</button>
+<div class="hidden p-space-md pt-0 bg-surface-container-lowest" id="accordion-content">
+<div class="pt-space-sm space-y-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Target Recipient</label>
+<div class="grid grid-cols-3 gap-2">
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="w-4 h-4 accent-primary" name="info_recipient" type="radio" value="both"/>
+<span class="font-label-sm text-label-sm text-on-surface">Both</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="w-4 h-4 accent-primary" name="info_recipient" type="radio" value="customer"/>
+<span class="font-label-sm text-label-sm text-on-surface">Customer</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="w-4 h-4 accent-primary" name="info_recipient" type="radio" value="artisan"/>
+<span class="font-label-sm text-label-sm text-on-surface">Artisan</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Information Needed</label>
+<textarea class="w-full p-2.5 rounded-lg bg-surface text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" placeholder="Specify exact technical measurements or additional photos required..." rows="3"></textarea>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Deadline for Response</label>
+<select class="w-full p-2.5 rounded-lg bg-surface text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-inner">
+<option value="4h">4 Hours (Urgent In-Progress)</option>
+<option selected="" value="12h">12 Hours (Standard)</option>
+<option value="24h">24 Hours (Extended Inspection)</option>
+</select>
+</div>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2 shadow-sm" onclick="handleSendInfoRequest()" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Information Request</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 3. Action Module 2: Record Formal Resolution (Primary Determination Form) -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-md relative" id="determination-card">
+<!-- Disabled Overlay when in Resolved State -->
+<div class="hidden absolute inset-0 bg-surface/85 backdrop-blur-[2px] rounded-xl z-20 flex flex-col items-center justify-center p-space-xl text-center" id="locked-overlay">
+<div class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center mb-space-sm shadow-md">
+<span class="material-symbols-outlined text-[32px]">lock</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Audit Record Locked</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-1">
+            Determination #DET-8421 has been registered in the immutable Benin City Hub Ledger. Refer to Escrow S26 for release execution.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg font-mono text-body-sm text-tertiary">
+            Hash: 0x8f4d92a01ceb8421 • Timestamp: Today, 2:15 PM
+          </div>
+<button class="mt-space-md px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:bg-primary-container transition-colors" onclick="setSimState('default')">
+            Re-open for Review Simulation
+          </button>
+</div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Record Formal Resolution</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hub Mediation Binding Ruling</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">Step 2 of 2</span>
+</div>
+<form class="space-y-space-lg" id="determination-form" onsubmit="handleDeterminationSubmit(event)">
+<!-- Determination Outcome Selection -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-xs">
+              Determination Outcome Selection <span class="text-error">*</span>
+</label>
+<div class="space-y-2">
+<!-- Option 1: Remedial Rework (Recommended) -->
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed/30 cursor-pointer transition-colors has-[:checked]:bg-primary-fixed/30 shadow-sm">
+<input checked="" class="mt-1 w-4 h-4 accent-primary" name="outcome" type="radio" value="rework"/>
+<div class="text-left">
+<div class="font-label-lg text-label-lg text-on-surface font-semibold flex items-center gap-1.5">
+<span>Authorize Remedial Rework</span>
+<span class="px-1.5 py-0.2 rounded bg-primary-container text-on-primary font-label-sm text-label-sm text-[10px]">Agreed Route</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Artisan rectification scheduled within 24h at zero additional customer fee.
+                  </div>
+</div>
+</label>
+<!-- Option 2: Partial Split -->
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed/30 cursor-pointer transition-colors has-[:checked]:bg-primary-fixed/30 shadow-sm">
+<input class="mt-1 w-4 h-4 accent-primary" name="outcome" type="radio" value="split"/>
+<div class="text-left">
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">Authorize Partial Split</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Release ₦6,000 to Artisan for materials; refund ₦4,000 to Customer.
+                  </div>
+</div>
+</label>
+<!-- Option 3: Full Refund -->
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed/30 cursor-pointer transition-colors has-[:checked]:bg-primary-fixed/30 shadow-sm">
+<input class="mt-1 w-4 h-4 accent-primary" name="outcome" type="radio" value="refund"/>
+<div class="text-left">
+<div class="font-label-lg text-label-lg text-on-surface font-semibold text-error">Authorize Full Escrow Refund to Customer</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Cancel job contract due to gross defect or abandoned remedial window.
+                  </div>
+</div>
+</label>
+<!-- Option 4: Full Release -->
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed/30 cursor-pointer transition-colors has-[:checked]:bg-primary-fixed/30 shadow-sm">
+<input class="mt-1 w-4 h-4 accent-primary" name="outcome" type="radio" value="release"/>
+<div class="text-left">
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">Authorize Full Escrow Release to Artisan</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Dismiss customer claim following verification that work conforms to spec.
+                  </div>
+</div>
+</label>
+</div>
+<p class="hidden text-error font-body-sm text-body-sm mt-1" id="outcome-error">Please select a valid determination outcome.</p>
+</div>
+<!-- Required Justification & Technical Basis -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="justification-input">
+                Required Technical Justification <span class="text-error">*</span>
+</label>
+<span class="font-body-sm text-body-sm text-tertiary">Min. 50 characters</span>
+</div>
+<textarea class="w-full p-3 rounded-lg bg-surface text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-inner leading-relaxed" id="justification-input" placeholder="Provide factual justification citing submitted evidence, inspection findings, and SabiWork Trade Standards..." rows="4">Artisan acknowledges washer misalignment and agrees in writing to return at 4:00 PM today for zero-cost reseating and scrap clearance. Remedial rework authorized with 24h inspection window.</textarea>
+<p class="hidden text-error font-body-sm text-body-sm mt-1" id="justification-error">Justification must be at least 50 characters long with technical specifics.</p>
+</div>
+<!-- Case Officer Sign-off & Audit Stamp -->
+<div class="p-space-sm bg-surface-container-low rounded-xl">
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">badge</span>
+<span class="font-semibold">Logged by:</span>
+<span>Tunde Balogun (#ED-OFF-019)</span>
+</div>
+<span class="text-tertiary font-mono">Timestamp: Auto-generated</span>
+</div>
+<div class="mt-1 text-on-surface-variant font-body-sm text-body-sm">
+              Terminal: Benin City Admin Node • Session Gateway: #BN-04
+            </div>
+</div>
+<!-- Confirmation Checkbox -->
+<div>
+<label class="flex items-start gap-2.5 cursor-pointer">
+<input checked="" class="mt-1 w-5 h-5 accent-primary cursor-pointer" id="sop-checkbox" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface leading-tight select-none">
+                I confirm this determination is based on objective evidence and adheres strictly to the <span class="font-semibold text-primary">Benin City Hub Trade Mediation SOP</span>.
+              </span>
+</label>
+<p class="hidden text-error font-body-sm text-body-sm mt-1" id="checkbox-error">You must affirm SOP compliance before recording the determination.</p>
+</div>
+<!-- Primary CTA Button -->
+<div class="pt-2">
+<button class="w-full min-h-[46px] px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-all shadow-md flex items-center justify-center gap-2 flex-shrink-0 whitespace-nowrap" id="btn-submit-determination" type="submit">
+<span class="material-symbols-outlined text-[20px]" id="submit-icon">gavel</span>
+<span id="submit-text">Record Formal Determination →</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Evidence Inspection Modal (Inline Simulated) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-space-md" id="evidence-modal">
+<div class="bg-surface-container-lowest max-w-2xl w-full rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+<div class="p-space-md bg-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">loupe</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold" id="modal-filename">Evidence Viewer</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors" onclick="closeEvidenceModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-space-md">
+<div class="h-80 bg-surface-dim rounded-xl overflow-hidden flex items-center justify-center relative">
+<img class="w-full h-full object-contain" data-alt="High resolution detailed macro view of kitchen drainage plumbing joint under diagnostic inspection." id="modal-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABCq2OcnS98AXoGe0ZeNFjBvR5N2vqUrKEyiGz5Yu87MqHK14cvGoTgi4g5T-zpwiuUtJzEZRQy5aPZkzyn-lMX7EfRWoUg68UBo4bG7AfctVrOrGu3XEmrQ0zhz_XhxFqumXJ_BPnNZCKykzlNAzmrj4ohpLVaak7e1RSDfC_6UOte7wJ5LlWT7mXoesvVzSbAUmO59Q38faWC8StkU_NIrJcXa-wjhbaB6G-AOw"/>
+<div class="absolute bottom-2 left-2 px-2 py-1 rounded bg-inverse-surface/80 text-inverse-on-surface font-mono text-body-sm">
+            Zoom: 100% • EXIF Verified
+          </div>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-space-md" id="modal-caption"></p>
+</div>
+<div class="p-space-md bg-surface-container-low flex justify-end gap-space-sm">
+<button class="px-5 py-2.5 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors" onclick="closeEvidenceModal()">
+          Close Preview
+        </button>
+</div>
+</div>
+</div>
+<!-- Page Footer -->
+<footer class="mt-space-3xl pt-space-xl pb-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">shield</span>
+<span>SabiWork Hub Operations Protocol S35 • Edo State Case Registry</span>
+</div>
+<div class="flex items-center gap-space-md">
+<a class="hover:text-primary transition-colors flex items-center gap-1 font-semibold text-on-surface" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>Return to S34 Dispute Queue
+      </a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors" href="#">Escrow Releases (S26)</a>
+<span class="text-outline-variant">•</span>
+<span class="font-mono text-tertiary">v2.4.12-rc</span>
+</div>
+</footer>
+</div>
+<script>
+  function toggleInfoRequestAccordion() {
+    const content = document.getElementById('accordion-content');
+    const arrow = document.getElementById('accordion-arrow');
+    if (content.classList.contains('hidden')) {
+      content.classList.remove('hidden');
+      arrow.style.transform = 'rotate(180deg)';
+    } else {
+      content.classList.add('hidden');
+      arrow.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  function inspectEvidence(filename, caption) {
+    const modal = document.getElementById('evidence-modal');
+    document.getElementById('modal-filename').textContent = filename;
+    document.getElementById('modal-caption').textContent = caption;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeEvidenceModal() {
+    const modal = document.getElementById('evidence-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  function handleSendInfoRequest() {
+    const banner = document.getElementById('sim-alert-banner');
+    banner.className = 'mb-space-lg p-space-md rounded-xl shadow-sm transition-all duration-300 bg-secondary-fixed text-on-secondary-fixed flex items-center justify-between';
+    banner.innerHTML = `
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[20px] text-primary">mark_email_read</span>
+        <span class="font-label-lg text-label-lg">Information Request Sent: 12-hour response clock initiated for Ada O. & Osaze Ighodaro.</span>
+      </div>
+      <button onclick="dismissBanner()" class="text-on-secondary-fixed hover:opacity-75"><span class="material-symbols-outlined text-[18px]">close</span></button>
+    `;
+    banner.classList.remove('hidden');
+    toggleInfoRequestAccordion();
+  }
+
+  function dismissBanner() {
+    const banner = document.getElementById('sim-alert-banner');
+    banner.classList.add('hidden');
+  }
+
+  function handleDeterminationSubmit(event) {
+    event.preventDefault();
+    const justification = document.getElementById('justification-input').value.trim();
+    const checkbox = document.getElementById('sop-checkbox').checked;
+    const justificationErr = document.getElementById('justification-error');
+    const checkboxErr = document.getElementById('checkbox-error');
+
+    let isValid = true;
+
+    if (justification.length < 50) {
+      justificationErr.classList.remove('hidden');
+      isValid = false;
+    } else {
+      justificationErr.classList.add('hidden');
+    }
+
+    if (!checkbox) {
+      checkboxErr.classList.remove('hidden');
+      isValid = false;
+    } else {
+      checkboxErr.classList.add('hidden');
+    }
+
+    if (!isValid) return;
+
+    // Simulate Submitting
+    setSimState('submitting');
+    setTimeout(() => {
+      setSimState('resolved');
+    }, 1200);
+  }
+
+  function setSimState(state) {
+    const banner = document.getElementById('sim-alert-banner');
+    const lockedOverlay = document.getElementById('locked-overlay');
+    const submitBtn = document.getElementById('btn-submit-determination');
+    const submitIcon = document.getElementById('submit-icon');
+    const submitText = document.getElementById('submit-text');
+    const statusBadge = document.getElementById('header-status-badge');
+
+    // Reset button states styling
+    document.querySelectorAll('#prototype-state-bar button').forEach(btn => {
+      btn.className = 'px-3 py-1.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-1.5';
+      const dot = btn.querySelector('span');
+      if (dot) dot.className = 'w-2 h-2 rounded-full bg-outline-variant';
+    });
+
+    const activeBtn = document.getElementById(`btn-state-${state}`);
+    if (activeBtn) {
+      activeBtn.className = 'px-3 py-1.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all flex items-center gap-1.5';
+      const dot = activeBtn.querySelector('span');
+      if (dot) dot.className = 'w-2 h-2 rounded-full bg-primary-fixed';
+    }
+
+    lockedOverlay.classList.add('hidden');
+    submitBtn.disabled = false;
+    submitIcon.textContent = 'gavel';
+    submitText.textContent = 'Record Formal Determination →';
+
+    if (state === 'default') {
+      banner.classList.add('hidden');
+      statusBadge.textContent = 'Under Review (Officer Assigned: Tunde Balogun)';
+      statusBadge.className = 'px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold';
+    } else if (state === 'awaiting') {
+      banner.className = 'mb-space-lg p-space-md rounded-xl shadow-sm bg-surface-container-high text-on-secondary-container flex items-center justify-between';
+      banner.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-primary">hourglass_top</span>
+          <span class="font-label-lg text-label-lg">Awaiting Information: Case clock paused. Pending technical photos from Respondent Osaze Ighodaro (Due: 8:00 PM).</span>
+        </div>
+        <button onclick="dismissBanner()" class="text-on-secondary-container"><span class="material-symbols-outlined text-[18px]">close</span></button>
+      `;
+      banner.classList.remove('hidden');
+      statusBadge.textContent = 'Awaiting Information (Timer Paused)';
+      statusBadge.className = 'px-2.5 py-1 rounded-full bg-surface-container-highest text-on-secondary-container font-label-sm text-label-sm font-semibold';
+    } else if (state === 'submitting') {
+      submitBtn.disabled = true;
+      submitIcon.textContent = 'progress_activity';
+      submitIcon.classList.add('animate-spin');
+      submitText.textContent = 'Registering Determination in Ledger...';
+      banner.className = 'mb-space-lg p-space-md rounded-xl shadow-sm bg-primary-fixed text-on-primary-fixed flex items-center gap-2';
+      banner.innerHTML = `
+        <span class="material-symbols-outlined text-[20px] animate-spin">sync</span>
+        <span class="font-label-lg text-label-lg">Broadcasting cryptographic determination to Benin City Hub S26 Payout Gateways...</span>
+      `;
+      banner.classList.remove('hidden');
+    } else if (state === 'resolved') {
+      lockedOverlay.classList.remove('hidden');
+      statusBadge.textContent = 'Resolved • Remedial Rework Authorized';
+      statusBadge.className = 'px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold';
+      banner.className = 'mb-space-lg p-space-md rounded-xl shadow-sm bg-surface-container-high text-on-surface flex items-center justify-between';
+      banner.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-primary">check_circle</span>
+          <span class="font-label-lg text-label-lg">Determination #DET-8421 Recorded. 24h remediation window active for Artisan Osaze. Milestone payout frozen until inspection.</span>
+        </div>
+        <button onclick="dismissBanner()" class="text-on-surface"><span class="material-symbols-outlined text-[18px]">close</span></button>
+      `;
+      banner.classList.remove('hidden');
+    } else if (state === 'validation-error') {
+      document.getElementById('justification-input').value = 'Too short.';
+      document.getElementById('sop-checkbox').checked = false;
+      document.getElementById('justification-error').classList.remove('hidden');
+      document.getElementById('checkbox-error').classList.remove('hidden');
+      banner.className = 'mb-space-lg p-space-md rounded-xl shadow-sm bg-error-container text-on-error-container flex items-center justify-between';
+      banner.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-error">error</span>
+          <span class="font-label-lg text-label-lg">Validation Failed: Please provide substantive technical justification (min 50 chars) and affirm SOP compliance.</span>
+        </div>
+        <button onclick="dismissBanner()" class="text-on-error-container"><span class="material-symbols-outlined text-[18px]">close</span></button>
+      `;
+      banner.classList.remove('hidden');
+    } else if (state === 'network-error') {
+      banner.className = 'mb-space-lg p-space-md rounded-xl shadow-sm bg-error-container text-on-error-container flex items-center justify-between';
+      banner.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-error">cloud_off</span>
+          <div>
+            <span class="font-label-lg text-label-lg block">Network Error: Hub Gateway #BN-04 Unreachable</span>
+            <span class="font-body-sm text-body-sm">Audit transaction could not be written to SabiWork ledger. Your entered text has been preserved locally.</span>
+          </div>
+        </div>
+        <button onclick="setSimState('default')" class="px-3 py-1.5 rounded bg-error text-on-error font-label-sm text-label-sm font-semibold hover:opacity-90">Retry Connection</button>
+      `;
+      banner.classList.remove('hidden');
+    }
+  }
+</script></main></div></body></html>

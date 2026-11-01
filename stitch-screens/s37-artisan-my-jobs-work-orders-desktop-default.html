@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed-variant": "#3f484e", "secondary-fixed": "#d5e3ff", "error-container": "#ffdad6", "on-secondary-container": "#435a7f", "inverse-on-surface": "#edf0ff", "on-primary": "#ffffff", "secondary-container": "#bbd3fe", "tertiary-fixed": "#dbe4eb", "surface-dim": "#d3daef", "on-background": "#141b2b", "on-secondary": "#ffffff", "on-tertiary-container": "#2e373d", "on-primary-fixed-variant": "#004b6f", "surface-variant": "#dce2f7", "surface-container-highest": "#dce2f7", "on-secondary-fixed": "#001b3c", "on-tertiary-fixed": "#141d22", "surface-container-lowest": "#ffffff", "surface": "#f9f9ff", "primary-fixed-dim": "#8aceff", "outline": "#6f7881", "tertiary-fixed-dim": "#bfc8ce", "inverse-primary": "#8aceff", "primary": "#006491", "primary-fixed": "#c9e6ff", "on-error-container": "#93000a", "outline-variant": "#bec8d1", "surface-container": "#e9edff", "on-secondary-fixed-variant": "#30476b", "on-surface": "#141b2b", "surface-container-high": "#e1e8fd", "surface-tint": "#006491", "primary-container": "#38a8e8", "on-tertiary": "#ffffff", "on-error": "#ffffff", "on-surface-variant": "#3f4850", "on-primary-container": "#003a56", "tertiary-container": "#97a0a7", "error": "#ba1a1a", "surface-bright": "#f9f9ff", "inverse-surface": "#293040", "surface-container-low": "#f1f3ff", "tertiary": "#576065", "background": "#f9f9ff", "on-primary-fixed": "#001e2f", "secondary-fixed-dim": "#b0c8f2", "secondary": "#485f84" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "2rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "space-md": "1rem", "space-2xs": "0.25rem", "space-sm": "0.625rem", "space-2xl": "2rem", "space-3xl": "3rem", "space-xl": "1.5rem", "space-xs": "0.5rem", "gutter": "1.25rem", "space-lg": "1.25rem" }, fontFamily: { "body-md": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"], "label-lg": ["Inter"] }, fontSize: { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-16 px-space-lg flex items-center gap-space-xs bg-surface-container-lowest"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Sabi<span class="text-primary-container">Work</span></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-0.5">Artisan Workspace</span></div></div><div class="px-space-md py-space-xs"><div class="px-space-sm py-space-xs rounded-lg bg-surface-container-low"><div class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Operational Hub</div><div class="font-label-md text-label-md text-on-surface font-semibold truncate">Benin City Hub Desk</div></div></div><nav class="flex-1 px-space-md py-space-xs space-y-1 flex flex-col" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-sm"><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">grid_view</span><span class="font-label-md text-label-md flex-1">Overview</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="requests-and-quotes" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">request_quote</span><span class="font-label-md text-label-md flex-1">Requests &amp; quotes</span></a><a aria-current="page" class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg transition-all bg-primary-container text-on-primary-container font-semibold shadow-sm" data-path="my-jobs" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">construction</span><span class="font-label-md text-label-md flex-1">My jobs</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="earnings" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">account_balance_wallet</span><span class="font-label-md text-label-md flex-1">Earnings</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="availability" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">event_available</span><span class="font-label-md text-label-md flex-1">Availability</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-profile" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">person</span><span class="font-label-md text-label-md flex-1">My profile</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="verification" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">verified_user</span><span class="font-label-md text-label-md flex-1">Verification</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="training" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">school</span><span class="font-label-md text-label-md flex-1">Training</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">settings</span><span class="font-label-md text-label-md flex-1">Settings</span></a></nav></div><div class="p-space-md bg-surface-container-low/60"><div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] mb-space-sm"><div class="flex items-center justify-between gap-space-xs"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant">Gig Availability</span><span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>Active</span></div><div class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors"><span class="translate-x-5 inline-block h-5 w-5 rounded-full bg-surface-container-lowest shadow-sm transition-transform"></span></div></div></div><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-error-container hover:text-on-error-container transition-all" data-path="logout" href="#"><span class="material-symbols-outlined shrink-0 text-[20px]">logout</span><span class="font-label-md text-label-md font-semibold">Log out</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-tight">Sabi<span class="text-primary-container">Work</span></span><span class="font-label-sm text-label-sm text-on-surface-variant">Benin City Hub Desk / Artisan Workspace</span></div></div><div class="flex items-center gap-space-md"><div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>Paystack TEST Mode</div><button class="relative p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-container"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Osaze Ighodaro</span><span class="font-label-sm text-label-sm text-secondary leading-tight">Master Plumber</span></div><span class="material-symbols-outlined text-on-surface-variant text-[20px]">unfold_more</span></div></div></header><main class="w-full pt-16 bg-background px-space-xl pb-space-3xl"><div class="flex flex-col w-full">
+<!-- Interactive State Switcher Container (Demo Tooling) -->
+<div class="mb-space-lg p-space-sm bg-surface-container-low rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Prototype Pipeline View:</span>
+</div>
+<div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto" id="state-toggle-group">
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-primary-container text-on-primary-container font-semibold shadow-sm" id="btn-state-active" onclick="switchState('active')" type="button">
+        Default Active Pipeline
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container" id="btn-state-deposit" onclick="switchState('deposit')" type="button">
+        Awaiting Deposit View
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container" id="btn-state-empty" onclick="switchState('empty')" type="button">
+        Empty State
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container" id="btn-state-filtered" onclick="switchState('filtered')" type="button">
+        No Filter Results
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container" id="btn-state-loading" onclick="switchState('loading')" type="button">
+        Loading Skeleton
+      </button>
+<button class="px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container" id="btn-state-error" onclick="switchState('error')" type="button">
+        Network Error
+      </button>
+</div>
+</div>
+<!-- Header Section with Breadcrumb Context and Direct Actions -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary mb-1">
+<span>Artisan Hub</span>
+<span>/</span>
+<span>Benin City GRA Axis</span>
+<span>/</span>
+<span class="text-primary font-semibold">Osaze Ighodaro (#BN-8820)</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+        My Jobs &amp; Work Orders
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+        Manage your active plumbing pipeline, track milestone verification stages, post completion proofs, and monitor verified Paystack TEST payouts across Benin City.
+      </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs shrink-0">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container flex items-center justify-center gap-2 shadow-sm font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Refresh Queue</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-inverse-surface text-inverse-on-surface hover:bg-on-surface flex items-center justify-center gap-2 shadow-sm font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Direct Work Order Intake</span>
+</button>
+<a class="min-h-[44px] px-4 py-2.5 rounded-lg text-primary hover:bg-surface-container-low flex items-center gap-1.5 font-label-md text-label-md font-semibold transition-all shrink-0" href="#">
+<span>View Completed Archive (8 jobs)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Pipeline KPI Summary Grid (4 Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Awaiting Deposit</span>
+<span class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[16px]">hourglass_empty</span>
+</span>
+</div>
+<div class="my-space-2xs">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">1</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Job in intake</span>
+</div>
+<div class="font-label-lg text-label-lg text-secondary mt-1">₦18,500 Quote Value</div>
+</div>
+<div class="pt-space-xs flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Escrow funding pending client checkout</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-primary-container uppercase tracking-wider font-semibold">In Progress</span>
+<span class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">engineering</span>
+</span>
+</div>
+<div class="my-space-2xs">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">2</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active sites</span>
+</div>
+<div class="font-label-lg text-label-lg text-primary mt-1">₦65,000 Committed</div>
+</div>
+<div class="pt-space-xs flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>Milestones active on GRA axis</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-secondary-fixed uppercase tracking-wider font-semibold">Awaiting Sign-off</span>
+<span class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[16px]">fact_check</span>
+</span>
+</div>
+<div class="my-space-2xs">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">1</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pending release</span>
+</div>
+<div class="font-label-lg text-label-lg text-on-secondary-container mt-1">₦20,000 Milestone 2</div>
+</div>
+<div class="pt-space-xs flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"></span>
+<span>Proof submitted; customer OTP pending</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">Completed This Month</span>
+<span class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</span>
+</div>
+<div class="my-space-2xs">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">4</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Jobs cleared</span>
+</div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold mt-1">₦112,000 Cleared</div>
+</div>
+<div class="pt-space-xs flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>Verified in Paystack TEST ledger</span>
+</div>
+</div>
+</div>
+<!-- Filter & Search Controls Bar -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm mb-space-xl flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full min-h-[44px] pl-11 pr-4 py-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest transition-all" id="job-search-input" placeholder="Search by Job ID (#JOB-BN-...), Customer, or Address..." type="text"/>
+</div>
+<!-- Dropdown Selectors -->
+<div class="flex flex-wrap items-center gap-space-xs shrink-0">
+<div class="relative">
+<select class="min-h-[44px] appearance-none pl-3.5 pr-8 py-2.5 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none cursor-pointer">
+<option>All Areas: GRA, Airport Rd, Ugbowo, Sapele Rd</option>
+<option>GRA Axis Only</option>
+<option>Airport Road Bypass</option>
+<option>Ugbowo Corridor</option>
+<option>Sapele Road Hub</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<select class="min-h-[44px] appearance-none pl-3.5 pr-8 py-2.5 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none cursor-pointer">
+<option>Schedule: All Time / Upcoming</option>
+<option>Due Today (GRA sites)</option>
+<option>Tomorrow</option>
+<option>This Week</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">calendar_month</span>
+</div>
+<div class="relative">
+<select class="min-h-[44px] appearance-none pl-3.5 pr-8 py-2.5 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none cursor-pointer">
+<option>Sort: Next Action Needed (SLA)</option>
+<option>Sort: Newest First</option>
+<option>Sort: Contract Value (High to Low)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">sort</span>
+</div>
+</div>
+</div>
+<!-- Status Filter Tabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 text-on-surface">
+<button class="min-h-[36px] px-3.5 py-1.5 rounded-full bg-on-surface text-surface font-label-md text-label-md font-semibold shrink-0" type="button">
+        All (4 active)
+      </button>
+<button class="min-h-[36px] px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">
+        In Progress (2)
+      </button>
+<button class="min-h-[36px] px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">
+        Awaiting Deposit (1)
+      </button>
+<button class="min-h-[36px] px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">
+        Awaiting Sign-off (1)
+      </button>
+<button class="min-h-[36px] px-3.5 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">
+        Completed (4)
+      </button>
+</div>
+</div>
+<!-- Main Body Layout: Split View (Job List Cards + Artisan Sidebar Widgets) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- LEFT / MAIN COLUMN: Dynamic Job Cards Pipeline (Col 1 to 8) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg" id="pipeline-jobs-container">
+<!-- ==================== JOB 1: IN PROGRESS (URGENT ACTION) ==================== -->
+<div class="job-item p-space-lg rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col gap-space-md" data-category="progress">
+<!-- Accent line indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+<!-- Top Header Info -->
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-xs pl-space-xs">
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-primary px-2.5 py-0.5 rounded-md bg-surface-container-low">#JOB-BN-2026-092</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+                In Progress • Stage 5 of 6 (83%)
+              </span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-2 py-0.5 rounded-md">Urgent SLA</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">
+              Under-sink kitchen drain pipe replacement &amp; leak repair
+            </h2>
+</div>
+<div class="text-right shrink-0">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">₦30,000</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Milestone Quote</span>
+</div>
+</div>
+<!-- Customer & Site Context -->
+<div class="pl-space-xs grid grid-cols-1 sm:grid-cols-2 gap-space-sm bg-surface-container-low/70 p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 font-label-md text-label-md font-bold">
+              AO
+            </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Ada O. (0803 234 ****)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 truncate">
+<span class="material-symbols-outlined text-[14px]">pin_drop</span>
+                Plot 14 Boundary Rd, GRA Axis (~1.8 km)
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs sm:justify-end">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">Today, 2:00 PM – 4:30 PM</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Site inspection &amp; re-seating</span>
+</div>
+</div>
+</div>
+<!-- Step / Milestone Progress Tracker Visual -->
+<div class="pl-space-xs flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">play_circle</span>
+              Current Step: Post-repair joint pressure test &amp; scrap pipe clearance
+            </span>
+<span class="text-primary font-bold">83% Done</span>
+</div>
+<!-- Visual bar -->
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
+<div class="h-full bg-primary-container rounded-full" style="width: 83%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span>Milestone 1: <strong class="text-on-surface">₦10,000 Deposit</strong> (Released to Wallet)</span>
+<span>Milestone 2: <strong class="text-on-surface">₦20,000 Balance</strong> (Held in Escrow)</span>
+</div>
+</div>
+<!-- Action Tooling -->
+<div class="pl-space-xs flex flex-wrap items-center gap-space-xs pt-space-2xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-primary-container text-on-primary-container hover:brightness-105 active:brightness-95 flex items-center gap-2 font-label-lg text-label-lg font-semibold shadow-sm transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+<span>Add Progress (S29) →</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">article</span>
+<span>Job Details (S28)</span>
+</button>
+<button class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Message Ada</span>
+</button>
+<a class="min-h-[44px] px-4 py-2.5 rounded-lg text-secondary hover:text-on-surface flex items-center gap-1 font-label-md text-label-md font-medium transition-all ml-auto shrink-0" href="#">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>View Escrow (S26)</span>
+</a>
+</div>
+</div>
+<!-- ==================== JOB 2: AWAITING CUSTOMER SIGN-OFF ==================== -->
+<div class="job-item p-space-lg rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col gap-space-md" data-category="sign-off">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary-fixed-dim"></div>
+<!-- Header Info -->
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-xs pl-space-xs">
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-primary px-2.5 py-0.5 rounded-md bg-surface-container-low">#JOB-BN-2026-088</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+                Awaiting Sign-off
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-md">Handover Completed</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">
+              Overhead PVC tank float valve overhaul &amp; booster pump check
+            </h2>
+</div>
+<div class="text-right shrink-0">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">₦45,000</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">₦25,000 Pending Release</span>
+</div>
+</div>
+<!-- Customer & Site Context -->
+<div class="pl-space-xs grid grid-cols-1 sm:grid-cols-2 gap-space-sm bg-surface-container-low/70 p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-full bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center shrink-0 font-label-md text-label-md font-bold">
+              VE
+            </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Victor E. (0802 881 ****)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 truncate">
+<span class="material-symbols-outlined text-[14px]">pin_drop</span>
+                42 Airport Rd Bypass, Benin City
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs sm:justify-end">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">Handover completed today 11:30 AM</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Inspection photo proof uploaded</span>
+</div>
+</div>
+</div>
+<!-- Progress Description Box -->
+<div class="pl-space-xs p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">mark_email_read</span>
+              Current Step: Completion photos &amp; warranty notes submitted; awaiting client OTP release
+            </span>
+<span class="text-secondary font-semibold">Stage 4 of 4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Milestone 1 (₦20,000) released to Osaze's Paystack TEST ledger. Milestone 2 (₦25,000) will auto-clear upon client confirmation or 24hr hub window.
+          </p>
+</div>
+<!-- Action Tooling -->
+<div class="pl-space-xs flex flex-wrap items-center gap-space-xs pt-space-2xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-inverse-surface text-inverse-on-surface hover:bg-on-surface flex items-center gap-2 font-label-lg text-label-lg font-semibold shadow-sm transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Remind Client to Sign Off →</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span>Job Details (S28)</span>
+</button>
+<button class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">image</span>
+<span>View Sign-off Proof</span>
+</button>
+<a class="min-h-[44px] px-4 py-2.5 rounded-lg text-secondary hover:text-on-surface flex items-center gap-1 font-label-md text-label-md font-medium transition-all ml-auto shrink-0" href="#">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Payment History (S26)</span>
+</a>
+</div>
+</div>
+<!-- ==================== JOB 3: IN PROGRESS (STAGE 2) ==================== -->
+<div class="job-item p-space-lg rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col gap-space-md" data-category="progress">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+<!-- Header Info -->
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-xs pl-space-xs">
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-primary px-2.5 py-0.5 rounded-md bg-surface-container-low">#JOB-BN-2026-079</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+                In Progress • Stage 2 of 4 (50%)
+              </span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-2 py-0.5 rounded-md">Scheduled Site Visit</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">
+              Bathroom concealed hot/cold water mixer cartridge replacement
+            </h2>
+</div>
+<div class="text-right shrink-0">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">₦32,000</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Milestone Quote</span>
+</div>
+</div>
+<!-- Customer & Site Context -->
+<div class="pl-space-xs grid grid-cols-1 sm:grid-cols-2 gap-space-sm bg-surface-container-low/70 p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0 font-label-md text-label-md font-bold">
+              EO
+            </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Chief E. Obaseki</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 truncate">
+<span class="material-symbols-outlined text-[14px]">pin_drop</span>
+                Ihama Rd, GRA Axis
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs sm:justify-end">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">Tomorrow, 9:00 AM – 12:00 PM</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Confirmed arrival window</span>
+</div>
+</div>
+</div>
+<!-- Step / Milestone Progress Tracker Visual -->
+<div class="pl-space-xs flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">build</span>
+              Current Step: Cartridge model unboxed; rough-in isolation valve test scheduled
+            </span>
+<span class="text-primary font-bold">50% Done</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
+<div class="h-full bg-primary-container rounded-full" style="width: 50%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span>Deposit: <strong class="text-on-surface">₦16,000 Funded in Escrow</strong></span>
+<span>Balance: <strong class="text-on-surface">₦16,000 On Completion</strong></span>
+</div>
+</div>
+<!-- Action Tooling -->
+<div class="pl-space-xs flex flex-wrap items-center gap-space-xs pt-space-2xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-primary-container text-on-primary-container hover:brightness-105 active:brightness-95 flex items-center gap-2 font-label-lg text-label-lg font-semibold shadow-sm transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+<span>Add Progress (S29) →</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>Job Details (S28)</span>
+</button>
+<button class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call Customer</span>
+</button>
+</div>
+</div>
+<!-- ==================== JOB 4: AWAITING DEPOSIT ==================== -->
+<div class="job-item p-space-lg rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col gap-space-md" data-category="deposit">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-outline-variant"></div>
+<!-- Header Info -->
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-xs pl-space-xs">
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-primary px-2.5 py-0.5 rounded-md bg-surface-container-low">#JOB-BN-2026-075</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Awaiting Deposit
+              </span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded-md">Slot Reserved</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">
+              Borehole submersible pump non-return valve installation
+            </h2>
+</div>
+<div class="text-right shrink-0">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">₦18,500</div>
+<span class="font-label-sm text-label-sm text-secondary">₦10,000 Required Deposit</span>
+</div>
+</div>
+<!-- Customer & Site Context -->
+<div class="pl-space-xs grid grid-cols-1 sm:grid-cols-2 gap-space-sm bg-surface-container-low/70 p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed flex items-center justify-center shrink-0 font-label-md text-label-md font-bold">
+              BA
+            </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Blessing A.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 truncate">
+<span class="material-symbols-outlined text-[14px]">pin_drop</span>
+                Ugbowo Corridor, near UNIBEN main gate
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs sm:justify-end">
+<span class="material-symbols-outlined text-secondary text-[20px]">event_seat</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">Thursday slot reserved</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pending payment clearing</span>
+</div>
+</div>
+</div>
+<!-- Step info -->
+<div class="pl-space-xs p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">pending_actions</span>
+              Current Step: Itemized quote accepted by Blessing; waiting for Paystack TEST checkout deposit
+            </span>
+<span class="text-secondary font-semibold">0% Funded</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary w-0"></div>
+</div>
+</div>
+<!-- Action Tooling -->
+<div class="pl-space-xs flex flex-wrap items-center gap-space-xs pt-space-2xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg font-semibold transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>View Accepted Quote</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>Job Details (S28)</span>
+</button>
+<button class="min-h-[44px] px-4 py-2.5 rounded-lg bg-surface-container-lowest text-primary hover:bg-surface-container-low flex items-center gap-2 font-label-lg text-label-lg transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+<span>Ping Customer Reminder</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ALTERNATIVE STATES CONTAINERS (Hidden by default, switched via Prototype controls) -->
+<!-- Empty State -->
+<div class="hidden lg:col-span-8 p-space-3xl rounded-xl bg-surface-container-lowest shadow-sm flex-col items-center justify-center text-center" id="state-empty-container">
+<div class="w-20 h-20 rounded-full bg-surface-container-low flex items-center justify-center text-secondary mb-space-md">
+<span class="material-symbols-outlined text-[40px]">work_outline</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mb-1">No Active Work Orders</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-space-lg">
+        You do not have any active or pending plumbing jobs in your dispatch queue at the moment. Keep your availability toggle on to receive requests in Benin City.
+      </p>
+<div class="flex items-center gap-space-xs">
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg font-semibold shadow-sm" type="button">
+          Browse Nearby Requests
+        </button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-low text-on-surface font-label-lg text-label-lg" type="button">
+          Update Availability
+        </button>
+</div>
+</div>
+<!-- Filtered Empty State -->
+<div class="hidden lg:col-span-8 p-space-3xl rounded-xl bg-surface-container-lowest shadow-sm flex-col items-center justify-center text-center" id="state-filtered-container">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-secondary mb-space-md">
+<span class="material-symbols-outlined text-[32px]">filter_alt_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-1">No Jobs Match This Filter</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-space-lg">
+        No assigned work orders matched your selected status or location filter. Reset filters to view all active items.
+      </p>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg font-semibold" onclick="switchState('active')" type="button">
+        Reset All Filters
+      </button>
+</div>
+<!-- Loading Skeleton State -->
+<div class="hidden lg:col-span-8 flex flex-col gap-space-md animate-pulse" id="state-loading-container">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="h-6 w-1/3 bg-surface-container rounded"></div>
+<div class="h-4 w-2/3 bg-surface-container-low rounded"></div>
+<div class="h-16 w-full bg-surface-container-low rounded-lg mt-2"></div>
+<div class="h-10 w-1/2 bg-surface-container-low rounded mt-2"></div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="h-6 w-1/4 bg-surface-container rounded"></div>
+<div class="h-4 w-1/2 bg-surface-container-low rounded"></div>
+<div class="h-16 w-full bg-surface-container-low rounded-lg mt-2"></div>
+<div class="h-10 w-1/3 bg-surface-container-low rounded mt-2"></div>
+</div>
+</div>
+<!-- Network Error State -->
+<div class="hidden lg:col-span-8 p-space-3xl rounded-xl bg-error-container text-on-error-container shadow-sm flex-col items-center justify-center text-center" id="state-error-container">
+<div class="w-16 h-16 rounded-full bg-on-error-container/10 flex items-center justify-center text-on-error-container mb-space-md">
+<span class="material-symbols-outlined text-[32px]">wifi_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-semibold mb-1">Queue Synchronization Paused</h3>
+<p class="font-body-md text-body-md max-w-sm mb-space-lg opacity-90">
+        Unable to communicate with the Benin City hub dispatch node. Please check your data connection or retry.
+      </p>
+<button class="min-h-[44px] px-5 py-2.5 rounded-lg bg-on-error-container text-on-error font-label-lg text-label-lg font-semibold" onclick="switchState('active')" type="button">
+        Retry Handshake
+      </button>
+</div>
+<!-- RIGHT / SIDE COLUMN: Schedule, Earnings & Hub Policies (Col 9 to 12) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Artisan Schedule Today Widget -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">calendar_today</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Artisan Schedule Today</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded-md">Benin Hub</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Item 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-xs">
+<div class="px-2 py-1 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold shrink-0">
+              02:00 PM
+            </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Ada O. (GRA Boundary Rd)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Under-sink pipe pressure test &amp; seal</span>
+<span class="font-label-sm text-label-sm text-primary font-medium mt-0.5">Site Visit • Active</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-xs">
+<div class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold shrink-0">
+              05:00 PM
+            </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Victor E. (Airport Rd)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Follow-up check &amp; OTP sign-off verification</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium mt-0.5">Phone Call / Remote</span>
+</div>
+</div>
+</div>
+<button class="w-full min-h-[44px] px-4 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md font-semibold transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_calendar</span>
+<span>Adjust Daily Windows</span>
+</button>
+</div>
+<!-- Weekly TEST Earnings Widget -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">payments</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Weekly TEST Earnings</h3>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+            TEST MODE
+          </span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Disbursed This Week</span>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold">₦62,400</div>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-primary mt-1">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+<span>Next settlement demo cycle: <strong>Friday</strong></span>
+</div>
+</div>
+<!-- Inline Visual Mini Bar Chart for Week Days -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Activity Breakdown</span>
+<span>Mon - Sat</span>
+</div>
+<div class="grid grid-cols-6 gap-1.5 items-end h-16 pt-2">
+<div class="flex flex-col items-center gap-1 h-full justify-end">
+<div class="w-full bg-surface-container-high rounded-t" style="height: 40%"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">M</span>
+</div>
+<div class="flex flex-col items-center gap-1 h-full justify-end">
+<div class="w-full bg-surface-container-high rounded-t" style="height: 65%"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">T</span>
+</div>
+<div class="flex flex-col items-center gap-1 h-full justify-end">
+<div class="w-full bg-primary-container rounded-t" style="height: 90%"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-bold">W</span>
+</div>
+<div class="flex flex-col items-center gap-1 h-full justify-end">
+<div class="w-full bg-surface-container rounded-t" style="height: 25%"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">T</span>
+</div>
+<div class="flex flex-col items-center gap-1 h-full justify-end">
+<div class="w-full bg-surface-container rounded-t" style="height: 50%"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">F</span>
+</div>
+<div class="flex flex-col items-center gap-1 h-full justify-end">
+<div class="w-full bg-surface-container rounded-t" style="height: 15%"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">S</span>
+</div>
+</div>
+</div>
+<a class="w-full min-h-[44px] px-4 py-2 rounded-lg bg-surface-container-lowest text-primary hover:bg-surface-container-low font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-all" href="#">
+<span>Go to Wallet &amp; Payouts (S26)</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</div>
+<!-- Operational Guidelines & Hub Mediation Callout -->
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-center gap-space-xs text-on-surface font-semibold">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+<h4 class="font-headline-sm text-headline-sm">Operational Guidelines</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          Milestone funds release automatically to your Paystack TEST settlement upon customer digital OTP confirmation. In case of customer unavailability after 24 hours of photo proof submission, request a hub desk audit for expedited clearance.
+        </p>
+<div class="pt-space-xs flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary">Hub Contact: 0800-BENIN-HUB</span>
+<span class="text-primary font-semibold">Desk #4 Open</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Simulation Script for View Switching -->
+<script>
+    function switchState(state) {
+      const pipelineContainer = document.getElementById('pipeline-jobs-container');
+      const emptyContainer = document.getElementById('state-empty-container');
+      const filteredContainer = document.getElementById('state-filtered-container');
+      const loadingContainer = document.getElementById('state-loading-container');
+      const errorContainer = document.getElementById('state-error-container');
+
+      // Reset all views to hidden
+      pipelineContainer.classList.add('hidden');
+      emptyContainer.classList.add('hidden');
+      filteredContainer.classList.add('hidden');
+      loadingContainer.classList.add('hidden');
+      errorContainer.classList.add('hidden');
+
+      // Update button styling
+      const buttons = document.querySelectorAll('#state-toggle-group button');
+      buttons.forEach(btn => {
+        btn.className = 'px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container';
+      });
+
+      const activeBtn = document.getElementById('btn-state-' + state);
+      if (activeBtn) {
+        activeBtn.className = 'px-3 py-1.5 rounded-full font-label-sm text-label-sm transition-all bg-primary-container text-on-primary-container font-semibold shadow-sm';
+      }
+
+      // Show selected state
+      if (state === 'active') {
+        pipelineContainer.classList.remove('hidden');
+        // Unhide all job items
+        const jobItems = pipelineContainer.querySelectorAll('.job-item');
+        jobItems.forEach(item => item.classList.remove('hidden'));
+      } else if (state === 'deposit') {
+        pipelineContainer.classList.remove('hidden');
+        // Filter down to only deposit job
+        const jobItems = pipelineContainer.querySelectorAll('.job-item');
+        jobItems.forEach(item => {
+          if (item.getAttribute('data-category') === 'deposit') {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      } else if (state === 'empty') {
+        emptyContainer.classList.remove('hidden');
+        emptyContainer.classList.add('flex');
+      } else if (state === 'filtered') {
+        filteredContainer.classList.remove('hidden');
+        filteredContainer.classList.add('flex');
+      } else if (state === 'loading') {
+        loadingContainer.classList.remove('hidden');
+      } else if (state === 'error') {
+        errorContainer.classList.remove('hidden');
+        errorContainer.classList.add('flex');
+      }
+    }
+  </script>
+</div></main></div></body></html>
