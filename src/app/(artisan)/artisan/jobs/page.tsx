@@ -5,3 +5,4 @@ export default async function ArtisanJobsPage() {
   const orders = await artisanOperationsDemoService.getWorkOrders();
   return <ArtisanWorkOrdersScreen initialOrders={orders} />;
 }
+

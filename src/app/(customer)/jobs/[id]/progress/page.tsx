@@ -16,3 +16,4 @@ export default async function JobProgressPage({
 
   return <JobProgressDetailScreen initialJob={job} />;
 }
+

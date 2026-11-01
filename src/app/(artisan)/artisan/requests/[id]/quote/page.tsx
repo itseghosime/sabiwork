@@ -16,3 +16,4 @@ export default async function SendQuotePage({
 
   return <SendItemizedQuoteScreen request={request} />;
 }
+

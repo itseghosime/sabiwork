@@ -16,3 +16,4 @@ export default async function PortfolioPage({
 
   return <PortfolioViewerScreen artisan={artisan} initialPhotoId={photoId} />;
 }
+

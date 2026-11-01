@@ -5,3 +5,4 @@ export default async function ArtisanAvailabilityPage() {
   const schedule = await artisanOperationsDemoService.getSchedule();
   return <ArtisanAvailabilityScreen initialSchedule={schedule} />;
 }
+

@@ -7,3 +7,4 @@ export default function ArtisanWorkspaceLayout({
 }) {
   return <WorkspaceShell role="artisan">{children}</WorkspaceShell>;
 }
+

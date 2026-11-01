@@ -16,3 +16,4 @@ export default async function AddProgressPage({
 
   return <ArtisanAddProgressScreen job={job} />;
 }
+

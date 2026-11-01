@@ -8,3 +8,4 @@ export default async function CertificatePage({
   const { id } = await params;
   return <CertificateScreen id={id} />;
 }
+

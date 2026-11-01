@@ -17,3 +17,4 @@ export default async function CompareQuotesPage({
 
   return <QuoteComparisonScreen request={request} quotes={quotes} />;
 }
+

@@ -16,3 +16,4 @@ export default async function QuoteDetailsPage({
 
   return <QuoteDetailsAcceptanceScreen quote={quote} />;
 }
+

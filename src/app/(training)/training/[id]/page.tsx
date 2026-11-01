@@ -8,3 +8,4 @@ export default async function GuideReaderPage({
   const { id } = await params;
   return <GuideReaderScreen id={id} />;
 }
+

@@ -10,3 +10,4 @@ export default async function RequestReviewPage({
   const draft = (await requestsDemoService.getJobDraft(id))!;
   return <JobRequestReviewScreen initialDraft={draft} />;
 }
+

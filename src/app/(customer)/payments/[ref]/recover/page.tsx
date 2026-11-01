@@ -10,3 +10,4 @@ export default async function PaymentRecoverPage({
   const receipt = await paymentsDemoService.getReceipt(ref);
   return <PaymentRecoveryScreen receipt={receipt} />;
 }
+

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { RoleNavigator } from "@/components/role-navigator";
 import "./globals.css";
 const inter = localFont({
   src: [
@@ -55,7 +56,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${jakarta.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <RoleNavigator />
+      </body>
     </html>
   );
 }

@@ -10,3 +10,4 @@ export default async function BalanceCheckoutPage({
   const receipt = await paymentsDemoService.getReceipt(id);
   return <MilestoneBalanceCheckoutScreen receipt={receipt} />;
 }
+

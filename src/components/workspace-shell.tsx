@@ -59,10 +59,15 @@ export function WorkspaceShell({
       </aside>
       <div className="workspace-main">
         <header>
-          <span>{role[0].toUpperCase() + role.slice(1)} workspace</span>
-          <span className="demo-tag">
-            UI scaffold · auth integration pending
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span className="sabi-pulse-dot online" />
+            <span style={{ fontWeight: 600 }}>{role[0].toUpperCase() + role.slice(1)} workspace</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span className="demo-tag">
+              UI scaffold · auth integration pending
+            </span>
+          </div>
         </header>
         <details className="workspace-mobile-nav">
           <summary>Workspace navigation</summary>

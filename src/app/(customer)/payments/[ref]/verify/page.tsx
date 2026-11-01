@@ -10,3 +10,4 @@ export default async function PaymentVerifyPage({
   const receipt = await paymentsDemoService.getReceipt(ref);
   return <PaymentVerificationScreen initialReceipt={receipt} />;
 }
+
