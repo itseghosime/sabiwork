@@ -1,7 +1,7 @@
 /* ==========================================================================
    Clear Trade Modern — Artisan Profiles & Verification (S04, S05, S06, S40, S41)
-   Tokens from DESIGN.md: Canvas #F7F6F2, Card #FFFFFF, Border #E2E0D8,
-   Primary #075E46, Accent #0E294B. Touch targets min 44px.
+   Tokens from DESIGN.md: white and pale-blue surfaces, sky-blue primary, navy headings.
+   Touch targets min 44px.
    ========================================================================== */
 
 .pf-page {
@@ -82,7 +82,7 @@
 }
 
 .pf-sim-btn:hover {
-  background: #f7f6f2;
+  background: var(--surface);
   border-color: var(--primary);
 }
 
@@ -121,9 +121,9 @@
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  background: #e8f5ed;
-  border: 3px solid #075e46;
-  color: #075e46;
+  background: #eff8ff;
+  border: 3px solid var(--primary);
+  color: var(--primary);
   font-family: var(--font-serif);
   font-size: 32px;
   font-weight: 700;
@@ -187,13 +187,13 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: #e8f5ed;
-  color: #075e46;
+  background: #eff8ff;
+  color: var(--primary);
   font-size: 11px;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid #a7f3d0;
+  border: 1px solid #bae6fd;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -353,9 +353,9 @@
 }
 
 .pf-skill-pill.vetted {
-  background: #e8f5ed;
-  border-color: #a7f3d0;
-  color: #075e46;
+  background: #eff8ff;
+  border-color: #bae6fd;
+  color: var(--primary);
 }
 
 /* Portfolio Showcase Cards */
@@ -698,7 +698,7 @@
 
 .pf-step-tab.active {
   border-color: var(--primary);
-  background: #e8f5ed;
+  background: #eff8ff;
   font-weight: 700;
   color: var(--primary);
 }

@@ -1,0 +1,428 @@
+/*
+ * Shared finishing pass for SabiWork's non-home screens.
+ * Keep the approved landing page composition unchanged.
+ */
+
+:root {
+  --surface: #f9f9ff;
+  --surface-raised: #ffffff;
+  --surface-tint: #eff8ff;
+  --primary: #006491;
+  --sky: #38a8e8;
+  --navy: #0e294b;
+  --border: #dce7f2;
+  --accent-border: #bae6fd;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+  --font-sans: var(--body);
+  --font-serif: var(--heading);
+}
+
+/* More readable discovery pages without changing the homepage's shared cards. */
+.directory-section .category-card {
+  min-height: 250px;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px rgb(14 41 75 / 4%);
+}
+
+.directory-section,
+.results-section {
+  animation: sabiPageEnter 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.directory-section .category-card:hover {
+  transform: translateY(-3px);
+  border-color: #8bd5ff;
+  box-shadow: 0 14px 30px rgb(14 41 75 / 9%);
+}
+
+.directory-section .category-card h3 {
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.directory-section .category-card > p {
+  max-width: 38ch;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.directory-section .category-action {
+  min-height: 44px;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.page-intro {
+  background:
+    radial-gradient(ellipse at 84% 16%, rgb(56 168 232 / 14%), transparent 36%),
+    linear-gradient(180deg, #f1f9ff 0%, #f9f9ff 100%);
+}
+
+.page-intro h1,
+.results-title h1 {
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+}
+
+.page-intro > .container > p:last-child,
+.results-title p:not(.eyebrow) {
+  max-width: 62ch;
+  color: #526176;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.results-section {
+  padding-top: 32px;
+}
+
+.results-search,
+.results-toolbar .button {
+  min-height: 54px;
+}
+
+.artisan-grid {
+  gap: 22px;
+}
+
+.artisan-card {
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgb(14 41 75 / 5%);
+}
+
+.artisan-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgb(14 41 75 / 11%);
+}
+
+.artisan-image {
+  height: clamp(190px, 19vw, 250px);
+  overflow: hidden;
+  background: var(--surface-tint);
+}
+
+.artisan-image .portrait {
+  transition: transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.artisan-card:hover .artisan-image .portrait {
+  transform: scale(1.035);
+}
+
+.artisan-body {
+  padding: 20px;
+}
+
+.artisan-name h3 {
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.artisan-title {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.artisan-bio,
+.artisan-card .metadata,
+.artisan-rating,
+.artisan-bottom p > span {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.artisan-bottom .button {
+  min-height: 48px;
+}
+
+/* Shared workspace framing for customer, artisan, and admin routes. */
+.workspace-shell {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgb(56 168 232 / 7%), transparent 36%),
+    var(--surface);
+  transition: grid-template-columns 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.workspace-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  gap: 22px;
+  padding: 20px 16px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 4px 0 24px rgb(14 41 75 / 3%);
+}
+
+.workspace-sidebar-brand {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.workspace-sidebar-brand .brand {
+  min-width: 0;
+}
+
+.workspace-sidebar-collapse {
+  flex: 0 0 40px;
+}
+
+.workspace-sidebar-collapse summary {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  list-style: none;
+  border: 1px solid #dce7f2;
+  border-radius: 12px;
+  color: #45617e;
+  background: #fff;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.workspace-sidebar-collapse summary::-webkit-details-marker {
+  display: none;
+}
+
+.workspace-sidebar-collapse summary:hover {
+  color: var(--primary);
+  background: #eff8ff;
+  border-color: #bae6fd;
+}
+
+.workspace-sidebar-collapse[open] summary svg {
+  transform: rotate(90deg);
+}
+
+.workspace-sidebar-collapse summary svg {
+  transition: transform 180ms ease;
+}
+
+.workspace-sidebar nav a {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) 16px;
+  justify-content: initial;
+  gap: 11px;
+  color: #344c68;
+  font-size: 14px;
+  font-weight: 550;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.workspace-sidebar nav a > svg:first-child,
+.workspace-public-link > svg:first-child {
+  color: #68819c;
+}
+
+.workspace-sidebar nav a:hover {
+  transform: translateX(2px);
+  background: #edf8ff;
+}
+
+.workspace-sidebar nav a[aria-current="page"] {
+  color: var(--primary);
+  background: #e9f6ff;
+  font-weight: 650;
+}
+
+.workspace-sidebar nav a[aria-current="page"] > svg:first-child {
+  color: var(--primary);
+}
+
+.workspace-nav-arrow {
+  color: #91a2b4;
+  justify-self: end;
+}
+
+.workspace-public-link {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) 16px;
+  gap: 11px;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #eaf0f6;
+  font-size: 14px;
+}
+
+.workspace-shell:has(.workspace-sidebar-collapse:not([open])) {
+  grid-template-columns: 88px minmax(0, 1fr);
+}
+
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) {
+  align-items: center;
+  padding-inline: 12px;
+}
+
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-sidebar-brand {
+  flex-direction: column;
+}
+
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-sidebar-brand .brand > span:last-child,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-sidebar-label,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) nav a span,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link span {
+  display: none;
+}
+
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) nav,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link {
+  width: 100%;
+}
+
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) nav a,
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-public-link {
+  display: flex;
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.workspace-sidebar:has(.workspace-sidebar-collapse:not([open])) .workspace-nav-arrow {
+  display: none;
+}
+
+.workspace-main > header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  min-height: 72px;
+  background: rgb(255 255 255 / 92%);
+  backdrop-filter: blur(14px);
+}
+
+.workspace-main > main {
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.workspace-main > main h1,
+.workspace-main > main h2 {
+  letter-spacing: -0.035em;
+}
+
+.workspace-main > main h1 {
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.15;
+}
+
+.workspace-main > main h2 {
+  font-size: clamp(20px, 2vw, 25px);
+  line-height: 1.25;
+}
+
+.workspace-main .demo-tag {
+  border: 1px solid #c9eaff;
+  border-radius: 999px;
+  background: #eff8ff;
+  color: #245777;
+  padding: 7px 12px;
+}
+
+/* Feature pages share a calm canvas, consistent rhythm, and quiet entrance motion. */
+:is(.pf-page, .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page, .sabi-training-container, .sabi-verif-container) {
+  animation: sabiPageEnter 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+:is(.pf-page, .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+    .sabi-training-container, .sabi-verif-container) :is(.pf-card, .pf-hero-card, .pf-portfolio-card, .pf-form-card,
+    .ao-metric-card, .ao-card, .lc-card, .py-card, .py-method-card,
+    .qt-card, .qt-payment-method-card, .rq-card, .rq-quote-card,
+    .rw-card, .rw-job-card, .sabi-training-stat-card, .sabi-module-card,
+    .sabi-wizard-card, .sabi-metric-card, .sabi-evidence-card) {
+  border-radius: 16px;
+  border-color: #dce7f2;
+  box-shadow: 0 5px 20px rgb(14 41 75 / 5%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+:is(.pf-page, .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+    .sabi-training-container, .sabi-verif-container) :is(.pf-portfolio-card, .ao-metric-card, .sabi-module-card, .rq-quote-card):hover {
+  border-color: #a9dcf7;
+  box-shadow: 0 12px 28px rgb(14 41 75 / 10%);
+  transform: translateY(-2px);
+}
+
+:is(.pf-page, .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+    .sabi-training-container, .sabi-verif-container) :is(p, li, label, input, select, textarea, button) {
+  line-height: 1.55;
+}
+
+:is(.pf-page, .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+    .sabi-training-container, .sabi-verif-container) :is(input, select, textarea) {
+  font-size: 15px;
+}
+
+:is(.pf-page, .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+    .sabi-training-container, .sabi-verif-container) :is(button, .button) {
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+@keyframes sabiPageEnter {
+  from { opacity: 0; translate: 0 8px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (max-width: 900px) {
+  .workspace-shell:has(.workspace-sidebar-collapse:not([open])) {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-sidebar {
+    height: auto;
+  }
+
+  .workspace-main > header {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .directory-section .category-card {
+    min-height: 220px;
+  }
+
+  .artisan-body {
+    padding: 16px;
+  }
+
+  .artisan-name h3 {
+    font-size: 17px;
+  }
+
+  .workspace-main > main {
+    padding: 20px 16px 32px;
+  }
+
+  .workspace-main > header {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.directory-section, .results-section, .pf-page, .ao-page, .lc-page,
+      .py-page, .qt-page, .rq-page, .rw-page, .sabi-training-container,
+      .sabi-verif-container) {
+    animation: none;
+  }
+
+  :is(.directory-section, .results-section, .workspace-shell, .pf-page,
+      .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+      .sabi-training-container, .sabi-verif-container) *,
+  :is(.directory-section, .results-section, .workspace-shell, .pf-page,
+      .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+      .sabi-training-container, .sabi-verif-container) *::before,
+  :is(.directory-section, .results-section, .workspace-shell, .pf-page,
+      .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page,
+      .sabi-training-container, .sabi-verif-container) *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

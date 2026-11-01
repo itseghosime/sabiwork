@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { RoleNavigator } from "@/components/role-navigator";
 import "./globals.css";
+import "./ui-polish.css";
 const inter = localFont({
   src: [
     {
