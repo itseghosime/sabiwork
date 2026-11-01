@@ -2966,8 +2966,8 @@ button:not(:disabled):hover .lucide-arrow-right,
 }
 
 .sabi-pulse-dot.online {
-  background: #107c41;
-  box-shadow: 0 0 0 3px rgba(16, 124, 65, 0.2);
+  background: #38a8e8;
+  box-shadow: 0 0 0 3px rgba(56, 168, 232, 0.2);
   animation: sabiPulseDot 2s infinite ease-in-out;
 }
 
