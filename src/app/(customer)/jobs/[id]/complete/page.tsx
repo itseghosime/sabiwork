@@ -1,6 +1,4 @@
-import { notFound } from "next/navigation";
-import { CustomerSignoffScreen } from "@/features/lifecycle/screens";
-import { lifecycleDemoService } from "@/features/lifecycle/service";
+import { JobCompleteScreen } from "@/features/hire-workspace/screens";
 
 export default async function JobCompletionPage({
   params,
@@ -8,8 +6,5 @@ export default async function JobCompletionPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const job = await lifecycleDemoService.getJobById(id);
-
-  if (!job) notFound();
-  return <CustomerSignoffScreen job={job} />;
+  return <JobCompleteScreen jobId={id} />;
 }

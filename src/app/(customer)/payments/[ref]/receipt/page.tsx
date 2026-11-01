@@ -1,5 +1,4 @@
-import { PaymentReceiptScreen } from "@/features/payments/screens";
-import { paymentsDemoService } from "@/features/payments/service";
+import { PaymentUnavailableScreen } from "@/features/hire-workspace/screens";
 
 export default async function PaymentReceiptPage({
   params,
@@ -7,7 +6,5 @@ export default async function PaymentReceiptPage({
   params: Promise<{ ref: string }>;
 }) {
   const { ref } = await params;
-  const receipt = await paymentsDemoService.getReceipt(ref);
-  return <PaymentReceiptScreen receipt={receipt} />;
+  return <PaymentUnavailableScreen reference={ref} title="Payment receipt" />;
 }
-

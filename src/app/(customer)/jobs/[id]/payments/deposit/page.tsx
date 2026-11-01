@@ -1,6 +1,4 @@
-import { notFound } from "next/navigation";
-import { MilestoneDepositCheckoutScreen } from "@/features/quotes/screens";
-import { quotesDemoService } from "@/features/quotes/service";
+import { PaymentUnavailableScreen } from "@/features/hire-workspace/screens";
 
 export default async function DepositCheckoutPage({
   params,
@@ -8,9 +6,5 @@ export default async function DepositCheckoutPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const quotes = await quotesDemoService.getQuotesForRequest(id);
-  const quote = quotes[0];
-
-  if (!quote) notFound();
-  return <MilestoneDepositCheckoutScreen quote={quote} />;
+  return <PaymentUnavailableScreen reference={id} title="Deposit checkout" />;
 }

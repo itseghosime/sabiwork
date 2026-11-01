@@ -63,8 +63,37 @@ export async function authorizeRole(role: AccountRole) {
   return { kind: "authorized" as const, user: session.user, role: profile.role };
 }
 
+export async function authorizeMarketplaceUser() {
+  const session = await getSessionUser();
+  if (session.kind !== "authenticated") return session;
+
+  let profile: ProfileRow | null;
+  try {
+    profile = await getUserRole(session.user.id);
+  } catch (databaseError) {
+    console.error("[auth] Marketplace profile lookup failed", databaseError);
+    return { kind: "unavailable" as const };
+  }
+
+  if (!profile) return { kind: "profile-required" as const, user: session.user };
+  if (profile.role === "admin") return { kind: "forbidden" as const, user: session.user };
+
+  return { kind: "authorized" as const, user: session.user, role: profile.role };
+}
+
 export async function requirePageRole(role: AccountRole) {
   const result = await authorizeRole(role);
+  if (result.kind === "unavailable") {
+    throw new Error("Authentication is temporarily unavailable.");
+  }
+  if (result.kind === "unauthenticated") redirect("/login");
+  if (result.kind === "profile-required") redirect("/complete-profile");
+  if (result.kind === "forbidden") redirect("/forbidden");
+  return result.user;
+}
+
+export async function requireMarketplacePage() {
+  const result = await authorizeMarketplaceUser();
   if (result.kind === "unavailable") {
     throw new Error("Authentication is temporarily unavailable.");
   }

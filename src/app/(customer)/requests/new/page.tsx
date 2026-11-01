@@ -1,6 +1,5 @@
-import { NewJobRequestScreen } from "@/features/requests/screens";
+import { RequestComposerScreen } from "@/features/hire-workspace/screens";
 
 export default function NewRequestPage() {
-  return <NewJobRequestScreen />;
+  return <RequestComposerScreen />;
 }
-

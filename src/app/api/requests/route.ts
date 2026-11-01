@@ -1,5 +1,5 @@
 import { desc, eq } from "drizzle-orm";
-import { getSessionUser } from "@/lib/server/authorization";
+import { authorizeMarketplaceUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
 import { jobRequests, userProfiles } from "@/lib/server/schema";
 
@@ -14,12 +14,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 export async function GET() {
-  const session = await getSessionUser();
+  const session = await authorizeMarketplaceUser();
   if (session.kind === "unavailable") {
     return jsonError(503, "AUTH_UNAVAILABLE", "Authentication is unavailable.");
   }
   if (session.kind === "unauthenticated") {
     return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
+  }
+  if (session.kind === "profile-required") {
+    return jsonError(403, "PROFILE_REQUIRED", "Complete your profile to continue.");
+  }
+  if (session.kind === "forbidden") {
+    return jsonError(403, "FORBIDDEN", "Admins cannot create or list hire requests.");
   }
 
   try {
@@ -51,12 +57,18 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const session = await getSessionUser();
+  const session = await authorizeMarketplaceUser();
   if (session.kind === "unavailable") {
     return jsonError(503, "AUTH_UNAVAILABLE", "Authentication is unavailable.");
   }
   if (session.kind === "unauthenticated") {
     return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
+  }
+  if (session.kind === "profile-required") {
+    return jsonError(403, "PROFILE_REQUIRED", "Complete your profile to continue.");
+  }
+  if (session.kind === "forbidden") {
+    return jsonError(403, "FORBIDDEN", "Admins cannot create or list hire requests.");
   }
 
   let body: unknown;

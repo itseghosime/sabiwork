@@ -61,7 +61,7 @@ Implemented and verified in this branch:
 - Customer-owned request drafts: authenticated list/create API, integer-kobo storage, and a user-scoped sealed Realtime query.
 - A transactional, advisory-locked SQL migration runner and an isolated-branch Postgres/Realtime smoke test.
 
-The migration currently defines `user_profiles`, `artisan_profiles`, and `job_requests`. The browser request flow saves private drafts only; it does not dispatch requests, notify artisans, create quotes/jobs, or initiate payment. The artisan profile editor, identity document storage/review, admin provisioning, production Realtime origins, and marketplace APIs remain unimplemented. Role-protected pages and APIs require a signed-in session and the matching role; email addresses are not verified.
+The migration currently defines `user_profiles`, `artisan_profiles`, and `job_requests`. Request, quote, and job APIs are implemented for signed-in marketplace accounts (`customer` or `artisan`), while admin users remain separated from hire flows. Any signed-in non-admin account can create/list requests; a work profile is still required before an account can send quotes. Payment processing, identity document storage/review, admin provisioning, and production Realtime origin setup remain pending. Email addresses are not verified in this prototype.
 
 Local-only environment variables are listed in `.env.example`; never commit `.env.local` or `.env.backend-test.local`. `npm run db:migrate` targets the configured application database, so verify the branch before running it. For the isolated validation branch, these commands were used:
 

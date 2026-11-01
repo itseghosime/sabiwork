@@ -1,15 +1,10 @@
-import { notFound } from "next/navigation";
-import { JobProgressDetailScreen } from "@/features/lifecycle/screens";
-import { lifecycleDemoService } from "@/features/lifecycle/service";
+import { JobDetailScreen } from "@/features/hire-workspace/screens";
 
-export default async function SharedJobDetailPage({
+export default async function JobDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const job = await lifecycleDemoService.getJobById(id);
-
-  if (!job) notFound();
-  return <JobProgressDetailScreen initialJob={job} />;
+  return <JobDetailScreen jobId={id} />;
 }
