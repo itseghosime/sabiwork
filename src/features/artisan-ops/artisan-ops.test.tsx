@@ -16,41 +16,41 @@ import {
 afterEach(cleanup);
 
 describe("Artisan Dashboard, Orders, Earnings & Schedule (S36, S37, S38, S39)", () => {
-  it("renders S36 Artisan Dashboard with active KPIs and metrics", () => {
+  it("renders S36 Artisan Dashboard with sample KPIs and metrics", () => {
     render(<ArtisanDashboardScreen initialData={defaultArtisanDashboard} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Welcome, Osaze Ighodaro/i }),
+      screen.getByRole("heading", { level: 1, name: /Welcome, Sample Artisan 1/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Active Work Orders/i)).toBeDefined();
+    expect(screen.getByText(/Sample Work Order Previews/i)).toBeDefined();
     expect(screen.getByText(/Pending payment previews/i)).toBeDefined();
   });
 
-  it("renders S37 Artisan Work Orders with active milestone badges", () => {
+  it("renders S37 Artisan Work Orders with sample milestone states", () => {
     render(<ArtisanWorkOrdersScreen initialOrders={defaultArtisanOrders} />);
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /My Work Orders & Field Jobs/i,
+        name: /Sample Work Order Previews/i,
       }),
     ).toBeDefined();
     expect(screen.getByText(/PPR Water Pipe Burst/i)).toBeDefined();
-    expect(screen.getByText(/Milestone 1 Active/i)).toBeDefined();
+    expect(screen.getByText(/Sample Milestone 1 State/i)).toBeDefined();
   });
 
   it("renders S38 Artisan Earnings Ledger and handles test payout request", async () => {
     render(<ArtisanEarningsLedgerScreen initialLedger={defaultLedgerEntries} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Artisan Earnings Ledger/i }),
+      screen.getByRole("heading", { level: 1, name: /Sample Artisan Earnings Ledger/i }),
     ).toBeDefined();
     expect(screen.getByText(/₦30,000.00/i)).toBeDefined();
 
     const payoutBtn = screen.getByRole("button", {
-      name: /Request ₦30,000 Test Payout/i,
+      name: /Preview ₦30,000 payout/i,
     });
     fireEvent.click(payoutBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/credited to simulated Edo State bank account/i)).toBeDefined();
+      expect(screen.getByText(/No funds moved and no payout record was saved/i)).toBeDefined();
     });
   });
 
@@ -70,8 +70,7 @@ describe("Artisan Dashboard, Orders, Earnings & Schedule (S36, S37, S38, S39)", 
     fireEvent.click(saveBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Weekly dispatch availability schedule updated/i)).toBeDefined();
+      expect(screen.getByText(/Availability preview updated locally only; no schedule was saved or broadcast/i)).toBeDefined();
     });
   });
 });
-

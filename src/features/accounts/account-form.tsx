@@ -301,7 +301,7 @@ export function AccountForm({
                 onChange={(event) => update("name", event.target.value)}
                 autoComplete="name"
                 maxLength={100}
-                placeholder="Ada Okafor"
+                placeholder="Sample Customer"
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? `${id}-name-error` : undefined}
               />
@@ -323,7 +323,7 @@ export function AccountForm({
                 onChange={(event) => update("email", event.target.value)}
                 autoComplete="email"
                 maxLength={254}
-                placeholder="ada@example.test"
+                placeholder="sample.user@example.test"
                 aria-invalid={!!errors.email}
                 aria-describedby={
                   errors.email ? `${id}-email-error` : undefined

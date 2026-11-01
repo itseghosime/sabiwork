@@ -2,7 +2,7 @@ export type TrainingCategory = "all" | "customer" | "safety" | "escrow" | "proof
 export type ModuleLevel = "Foundational" | "Intermediate" | "Mastery";
 export type ModuleStatus = "not_started" | "in_progress" | "completed";
 
-export interface TrainingCertificate {
+export interface TrainingCertificatePreview {
   id: string;
   moduleId: string;
   moduleTitle: string;
@@ -34,7 +34,7 @@ export interface TrainingModule {
   topicsCovered: string[];
   keyTakeaways: string[];
   sections: TrainingSection[];
-  certificate?: TrainingCertificate;
+  certificatePreview?: TrainingCertificatePreview;
 }
 
 export interface TrainingStats {
@@ -42,12 +42,12 @@ export interface TrainingStats {
   inProgressCount: number;
   availableCount: number;
   totalHoursLearned: number;
-  certificatesEarned: number;
+  sampleCertificatePreviews: number;
 }
 
 const mockModules: TrainingModule[] = [
   {
-    id: "BEN-MOD-01",
+    id: "SAMPLE-MODULE-01",
     title: "Mastering Client Communication & In-Home Etiquette in Benin City",
     summary:
       "Essential practices for entering residential homes across GRA, Airport Road, and Ugbowo. Covers punctuality call-ahead protocols, language, quote disclosures, and clean exit handshakes.",
@@ -57,7 +57,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Academy & Edo Artisan Board",
+    author: "Sample content team",
     topicsCovered: [
       "The First 3 Minutes: Arrival & Professional Greeting",
       "Translating Technical Terms to Homeowner Plain Language",
@@ -66,18 +66,18 @@ const mockModules: TrainingModule[] = [
     ],
     keyTakeaways: [
       "Always call or send an SMS 45 minutes prior to arriving at the jobsite in Benin City traffic.",
-      "Wear your SabiWork lanyard and protective shoe covers when entering furnished living rooms.",
+      "Use only fictional names and references in this preview; no SabiWork account or booking is active.",
       "Explain the exact issue and show photos before uncoupling or disassembling concealed pipes or cables.",
-      "Never pressure a homeowner into off-platform cash deposits outside the SabiWork escrow protocol.",
+      "No payment provider or escrow service is connected; all payment examples are previews only.",
     ],
     sections: [
       {
         sectionTitle: "The First 3 Minutes: Setting the Tone on Arrival",
         paragraphs: [
-          "In Edo State households, respect and first impressions determine whether a client becomes a repeat patron or lodges an immediate dispute. When you ring the bell or knock at the gate, take two steps backward so the occupant can view your full profile and credentials through the peephole.",
-          "Introduce yourself clearly by name and mention the SabiWork request code (e.g., 'Good morning ma, I am Osaze from SabiWork regarding your solar inverter callout'). Avoid rushing straight to the fuse box or plumbing fixture without an invited escort.",
+          "In sample scenarios, respect and clear communication help set expectations. When you arrive, wait for an invitation before entering a home or work area.",
+          "Use a fictional name and request reference when rehearsing an introduction. Do not treat this sample as a real booking or identity check.",
         ],
-        proTip: "Benin City Pro Tip: In gated estates along Boundary Road and Airport Road, estate security gates often demand resident clearance. Confirm with the homeowner 30 minutes ahead to prevent standing at the security gatehouse.",
+        proTip: "Use a general sample meeting area. This prototype does not store or verify residential addresses.",
       },
       {
         sectionTitle: "Translating Technical Jargon to Plain Terms",
@@ -95,30 +95,30 @@ const mockModules: TrainingModule[] = [
         ],
       },
     ],
-    certificate: {
-      id: "CERT-SABI-2026-781",
-      moduleId: "BEN-MOD-01",
+    certificatePreview: {
+      id: "SAMPLE-CERTIFICATE-PREVIEW-01",
+      moduleId: "SAMPLE-MODULE-01",
       moduleTitle: "Mastering Client Communication & In-Home Etiquette in Benin City",
-      holderName: "Osaze Victor Ighodaro",
-      trade: "Electrical Installation & Solar Inverters",
-      serialNumber: "EDO-SABI-COM-2026-0941",
-      issuedAt: "2026-10-24T14:30:00Z",
-      verificationHash: "sha256-e91b4028fa77610b2c140",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      holderName: "Sample Artisan",
+      trade: "Sample trade",
+      serialNumber: "NOT ISSUED - SAMPLE",
+      issuedAt: "",
+      verificationHash: "NOT VERIFIABLE - SAMPLE",
+      accreditationBody: "None; no accreditation or credential is issued",
     },
   },
   {
-    id: "BEN-MOD-02",
-    title: "Documenting Jobsite Proofs: Clear Photos That Pass Admin Review",
+    id: "SAMPLE-MODULE-02",
+    title: "Documenting Sample Job Photos: Clear Layouts",
     summary:
-      "Learn how to capture geotagged before, during, and after photos that protect you against false disputes and guarantee rapid milestone payout releases from the escrow vault.",
+      "Preview sample before, during, and after photo practices. This prototype does not adjudicate disputes or release payouts.",
     category: "proofs",
     durationMinutes: 20,
     level: "Foundational",
     status: "in_progress",
     progress: 65,
     coverImage: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Quality & Dispute Desk",
+    author: "Sample content team",
     topicsCovered: [
       "Lighting & Angle: Eliminating Blurry Lens Artifacts",
       "Before-Photo Requirements: Wide Room View vs Component Detail",
@@ -132,15 +132,15 @@ const mockModules: TrainingModule[] = [
     ],
     sections: [
       {
-        sectionTitle: "Why Evidence Photos Protect Your Paystack Payout",
+        sectionTitle: "Sample Photo Review and Evidence",
         paragraphs: [
-          "In the event of a customer dispute claiming work was incomplete, the SabiWork Admin Dispute Desk (S34/S35) inspects the evidence vault. High quality photographic proof with clear before and after states guarantees your milestone deposit release.",
+          "A future review process requires backend policies, secure evidence storage, and authorized reviewers. This prototype does not inspect photos, adjudicate disputes, or release funds.",
         ],
       },
     ],
   },
   {
-    id: "BEN-MOD-03",
+    id: "SAMPLE-MODULE-03",
     title: "Building Transparent Itemized Quotes (Labour vs Materials)",
     summary:
       "How to separate material market costs from professional craftsmanship fees to win higher customer trust and eliminate fee haggling across Edo State markets.",
@@ -150,7 +150,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Commercial Estimating Panel",
+    author: "Sample content team",
     topicsCovered: [
       "Why Lump-Sum Quotes Get Rejected by Discerning Customers",
       "Benin City Price Indexes: Oba Market & Uselu Electrical Markets",
@@ -169,20 +169,20 @@ const mockModules: TrainingModule[] = [
         ],
       },
     ],
-    certificate: {
-      id: "CERT-SABI-2026-782",
-      moduleId: "BEN-MOD-03",
+    certificatePreview: {
+      id: "SAMPLE-CERTIFICATE-PREVIEW-02",
+      moduleId: "SAMPLE-MODULE-03",
       moduleTitle: "Building Transparent Itemized Quotes (Labour vs Materials)",
-      holderName: "Osaze Victor Ighodaro",
-      trade: "Electrical Installation & Solar Inverters",
-      serialNumber: "EDO-SABI-QTE-2026-0428",
-      issuedAt: "2026-10-25T11:00:00Z",
-      verificationHash: "sha256-88a4c0101f33789b1420",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      holderName: "Sample Artisan",
+      trade: "Sample trade",
+      serialNumber: "NOT ISSUED - SAMPLE",
+      issuedAt: "",
+      verificationHash: "NOT VERIFIABLE - SAMPLE",
+      accreditationBody: "None; no accreditation or credential is issued",
     },
   },
   {
-    id: "BEN-MOD-04",
+    id: "SAMPLE-MODULE-04",
     title: "Essential Electrical & Water Isolation Safety Protocols",
     summary:
       "Life-saving lockout/tagout procedures before commencing rewiring or high-pressure plumbing repairs in Edo State residential and commercial compounds.",
@@ -192,7 +192,7 @@ const mockModules: TrainingModule[] = [
     status: "in_progress",
     progress: 30,
     coverImage: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80",
-    author: "Edo State Fire Service & Safety Guild",
+    author: "Sample safety content team",
     topicsCovered: [
       "Verifying Zero Voltage: Multimeter Verification Steps",
       "Compound Main Water Gate Isolation & Pressure Depressurization",
@@ -213,37 +213,37 @@ const mockModules: TrainingModule[] = [
     ],
   },
   {
-    id: "BEN-MOD-05",
+    id: "SAMPLE-MODULE-05",
     title: "Managing 2-Stage Milestone Escrow: Deposit to Completion Release",
     summary:
-      "Understand how SabiWork 2-stage escrow safeguards your payment: Milestone 1 deposit locks client funds before you buy materials; Milestone 2 unlocks upon customer or admin signoff.",
+      "The prototype does not hold funds or provide escrow. Payment milestone examples are not a guarantee or instruction to transact.",
     category: "escrow",
     durationMinutes: 20,
     level: "Foundational",
     status: "not_started",
     progress: 0,
     coverImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Escrow Compliance Desk",
+    author: "Sample content team",
     topicsCovered: [
       "Milestone 1 (70%) Material & Mobilization Advance",
       "Milestone 2 (30%) Completion & Workmanship Guarantee",
-      "Resolving Late Signoff With Automated 72-Hour Release",
+      "Sample sign-off status concepts (no automatic release)",
     ],
     keyTakeaways: [
-      "Never buy materials out of your personal pocket until Milestone 1 deposit status shows 'Deposited in Escrow'.",
-      "If a customer fails to sign off within 72 hours of submitted completion proof, SabiWork desk initiates automatic release.",
+      "Sample milestone labels are not evidence that a customer has paid or funds are held.",
+      "No automatic payment release or dispute process exists in this prototype.",
     ],
     sections: [
       {
         sectionTitle: "How Milestone Escrow Protects Artisans",
         paragraphs: [
-          "In traditional informal engagements, artisans routinely encounter clients who refuse to settle final balances after work is finished. SabiWork eliminates this risk by requiring full milestone commitment upfront into test escrow.",
+          "Milestone concepts can help explain a sample quote. This interface does not collect, hold, release, or guarantee any funds.",
         ],
       },
     ],
   },
   {
-    id: "BEN-MOD-06",
+    id: "SAMPLE-MODULE-06",
     title: "Safe Chemical Handling & Drain Snaking Hazards",
     summary:
       "Prevent chemical burns, toxic fumes, and pipe bursts when using caustic acid cleaners and motorized rooters in domestic PVC sewage pipes.",
@@ -253,7 +253,7 @@ const mockModules: TrainingModule[] = [
     status: "not_started",
     progress: 0,
     coverImage: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80",
-    author: "Edo Environmental & Public Health Committee",
+    author: "Sample safety content team",
     topicsCovered: [
       "Why Sulfuric Acid Melts Thin-Wall PVC Drain Pipes",
       "Mechanical Snake Operation: Safety Gloves and Eye Goggles",
@@ -273,7 +273,7 @@ const mockModules: TrainingModule[] = [
     ],
   },
   {
-    id: "BEN-MOD-07",
+    id: "SAMPLE-MODULE-07",
     title: "Writing Accurate Defect Summaries & Material Take-Offs",
     summary:
       "Transform verbal diagnostic findings into crisp, structured service reports that win commercial corporate clients and facility manager contracts.",
@@ -283,7 +283,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
-    author: "Nigerian Institute of Building Technologists (Edo Chapter)",
+    author: "Sample building-maintenance content team",
     topicsCovered: [
       "Executive Problem Definition: Cause vs Symptom",
       "Material Take-Off Quantity Calculations with 5% Wastage Buffer",
@@ -301,20 +301,20 @@ const mockModules: TrainingModule[] = [
         ],
       },
     ],
-    certificate: {
-      id: "CERT-SABI-2026-783",
-      moduleId: "BEN-MOD-07",
+    certificatePreview: {
+      id: "SAMPLE-CERTIFICATE-PREVIEW-03",
+      moduleId: "SAMPLE-MODULE-07",
       moduleTitle: "Writing Accurate Defect Summaries & Material Take-Offs",
-      holderName: "Osaze Victor Ighodaro",
-      trade: "Electrical Installation & Solar Inverters",
-      serialNumber: "EDO-SABI-RPT-2026-0819",
-      issuedAt: "2026-10-27T16:00:00Z",
-      verificationHash: "sha256-42bb9001ee74312da58",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      holderName: "Sample Artisan",
+      trade: "Sample trade",
+      serialNumber: "NOT ISSUED - SAMPLE",
+      issuedAt: "",
+      verificationHash: "NOT VERIFIABLE - SAMPLE",
+      accreditationBody: "None; no accreditation or credential is issued",
     },
   },
   {
-    id: "BEN-MOD-08",
+    id: "SAMPLE-MODULE-08",
     title: "De-escalating Scope Creep & Requesting Milestone Add-ons",
     summary:
       "Professional techniques for handling client requests for 'small small extra work' politely without losing income or delaying existing appointments.",
@@ -324,7 +324,7 @@ const mockModules: TrainingModule[] = [
     status: "completed",
     progress: 100,
     coverImage: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80",
-    author: "SabiWork Customer Experience Guild",
+    author: "Sample content team",
     topicsCovered: [
       "The 'Friendly Boundary' Script for Unexpected Extras",
       "Creating Add-On Milestones Directly in the SabiWork Mobile App",
@@ -342,16 +342,16 @@ const mockModules: TrainingModule[] = [
         ],
       },
     ],
-    certificate: {
-      id: "CERT-SABI-2026-784",
-      moduleId: "BEN-MOD-08",
+    certificatePreview: {
+      id: "SAMPLE-CERTIFICATE-PREVIEW-04",
+      moduleId: "SAMPLE-MODULE-08",
       moduleTitle: "De-escalating Scope Creep & Requesting Milestone Add-ons",
-      holderName: "Osaze Victor Ighodaro",
-      trade: "Electrical Installation & Solar Inverters",
-      serialNumber: "EDO-SABI-SCP-2026-0312",
-      issuedAt: "2026-10-28T09:15:00Z",
-      verificationHash: "sha256-11da8839cb4012fe77",
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      holderName: "Sample Artisan",
+      trade: "Sample trade",
+      serialNumber: "NOT ISSUED - SAMPLE",
+      issuedAt: "",
+      verificationHash: "NOT VERIFIABLE - SAMPLE",
+      accreditationBody: "None; no accreditation or credential is issued",
     },
   },
 ];
@@ -365,7 +365,7 @@ export function getTrainingStats(): TrainingStats {
     inProgressCount: inProgress,
     availableCount: available,
     totalHoursLearned: 8.5,
-    certificatesEarned: completed,
+    sampleCertificatePreviews: completed,
   };
 }
 
@@ -385,31 +385,30 @@ export function getTrainingModule(id: string): TrainingModule | undefined {
   return mockModules.find((m) => m.id === id);
 }
 
-export function completeModule(id: string): { success: boolean; module?: TrainingModule; error?: string } {
+export function previewModuleCompletion(id: string): { previewed: boolean; module?: TrainingModule; error?: string } {
   const target = mockModules.find((m) => m.id === id);
   if (!target) {
-    return { success: false, error: "Module not found" };
+    return { previewed: false, error: "Sample module not found" };
   }
   target.status = "completed";
   target.progress = 100;
-  if (!target.certificate) {
-    target.certificate = {
-      id: `CERT-SABI-2026-${Math.floor(100 + Math.random() * 900)}`,
+  if (!target.certificatePreview) {
+    target.certificatePreview = {
+      id: `SAMPLE-CERTIFICATE-PREVIEW-${target.id}`,
       moduleId: target.id,
       moduleTitle: target.title,
-      holderName: "Osaze Victor Ighodaro",
-      trade: "Electrical Installation & Solar Inverters",
-      serialNumber: `EDO-SABI-${target.category.toUpperCase()}-2026-${Math.floor(1000 + Math.random() * 9000)}`,
-      issuedAt: new Date().toISOString(),
-      verificationHash: `sha256-${Math.random().toString(36).substring(2, 15)}`,
-      accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+      holderName: "Sample Artisan",
+      trade: "Sample trade",
+      serialNumber: "NOT ISSUED - SAMPLE",
+      issuedAt: "",
+      verificationHash: "NOT VERIFIABLE - SAMPLE",
+      accreditationBody: "None; no accreditation or credential is issued",
     };
   }
-  return { success: true, module: { ...target } };
+  return { previewed: true, module: { ...target } };
 }
 
-export function getModuleCertificate(id: string): TrainingCertificate | undefined {
+export function getSampleCertificatePreview(id: string): TrainingCertificatePreview | undefined {
   const mod = mockModules.find((m) => m.id === id);
-  return mod?.certificate;
+  return mod?.certificatePreview;
 }
-

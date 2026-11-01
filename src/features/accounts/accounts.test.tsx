@@ -18,7 +18,7 @@ afterEach(() => {
   vi.useRealTimers();
 });
 const valid: AccountValues = {
-  name: "Ada Okafor",
+  name: "Sample Customer",
   email: demoCredentials.email,
   password: demoCredentials.password,
   confirmation: demoCredentials.password,

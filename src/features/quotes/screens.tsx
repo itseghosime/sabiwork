@@ -10,6 +10,7 @@ import {
   MapPin,
   ShieldCheck,
 } from "lucide-react";
+import { PrototypeNotice } from "@/components/prototype-notice";
 import {
   type OpenRequest,
   type QuoteItem,
@@ -18,6 +19,14 @@ import {
   quotesDemoService,
 } from "./service";
 import "./quotes.css";
+
+function QuotePrototypeNotice() {
+  return (
+    <PrototypeNotice>
+      Requests, quotes, and amounts are fictional previews. No quote is sent or accepted, no job is booked, and no payment or escrow is created.
+    </PrototypeNotice>
+  );
+}
 
 /* ==========================================================================
    S17: Open Requests Feed & Details Screen (Artisan Workspace)
@@ -38,6 +47,7 @@ export function OpenRequestsFeedScreen({
 
   return (
     <div className="qt-page" data-testid="open-requests-feed-screen">
+      <QuotePrototypeNotice />
       <div className="qt-breadcrumbs">
         <Link href="/artisan">Artisan Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -65,7 +75,7 @@ export function OpenRequestsFeedScreen({
             Open Customer Requests in Benin City
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            Direct broadcast jobs waiting for verified artisan milestone quotes.
+            Fictional request records for previewing artisan quote layouts.
           </p>
         </div>
 
@@ -233,6 +243,7 @@ export function SendItemizedQuoteScreen({
 
   return (
     <div className="qt-page" data-testid="send-itemized-quote-screen">
+      <QuotePrototypeNotice />
       <div className="qt-breadcrumbs">
         <Link href="/artisan">Artisan Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -250,7 +261,7 @@ export function SendItemizedQuoteScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Send Itemized Quote
+          Preview Itemized Quote
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
           Responding to #{request.id}: {request.title}
@@ -272,7 +283,7 @@ export function SendItemizedQuoteScreen({
       <form onSubmit={(e) => handleSubmit(e, false)} style={{ display: "grid", gap: "20px" }}>
         {/* Quote Pricing Card */}
         <section className="qt-card">
-          <h2 className="qt-card-title">1. Total Labor & Material Pricing</h2>
+          <h2 className="qt-card-title">1. Sample Labor & Material Amounts</h2>
           <div
             style={{
               display: "grid",
@@ -317,7 +328,7 @@ export function SendItemizedQuoteScreen({
           >
             <div>
               <span style={{ fontSize: "12px", color: "var(--muted)", display: "block" }}>
-                Milestone 1 (50% Deposit upon start):
+                Sample Milestone 1 Amount (50%):
               </span>
               <strong style={{ fontSize: "16px", color: "var(--primary)" }}>
                 ₦{(depositKobo / 100).toLocaleString()}
@@ -325,7 +336,7 @@ export function SendItemizedQuoteScreen({
             </div>
             <div>
               <span style={{ fontSize: "12px", color: "var(--muted)", display: "block" }}>
-                Milestone 2 (50% Balance on completion):
+                Sample Milestone 2 Amount (50%):
               </span>
               <strong style={{ fontSize: "16px", color: "var(--text-dark, #0e294b)" }}>
                 ₦{(balanceKobo / 100).toLocaleString()}
@@ -349,7 +360,7 @@ export function SendItemizedQuoteScreen({
         <section className="qt-card">
           <h2 className="qt-card-title">2. Scope & Execution Plan</h2>
           <div className="qt-field-group">
-            <label htmlFor="quote-notes">Work Methodology & Guarantees</label>
+            <label htmlFor="quote-notes">Sample Scope Notes (not contractual)</label>
             <textarea
               id="quote-notes"
               rows={4}
@@ -374,7 +385,7 @@ export function SendItemizedQuoteScreen({
             className="button button-primary"
             disabled={saving}
           >
-            {saving ? "Submitting Quote..." : "Submit Binding Quote →"}
+            {saving ? "Preparing preview..." : "Preview Quote →"}
           </button>
         </div>
       </form>
@@ -395,6 +406,7 @@ export function QuoteComparisonScreen({
 }) {
   return (
     <div className="qt-page" data-testid="quote-comparison-screen">
+      <QuotePrototypeNotice />
       <div className="qt-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -415,8 +427,8 @@ export function QuoteComparisonScreen({
           Compare Artisan Quotes
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Review competing offers side-by-side for Job #{request.id}. All deposits are protected
-          under SabiWork SafeTrade.
+          Compare fictional offers for Job #{request.id}. Amounts are illustrative; no deposit,
+          payment, or escrow protection is connected.
         </p>
       </header>
 
@@ -503,6 +515,7 @@ export function QuoteDetailsAcceptanceScreen({
 
   return (
     <div className="qt-page" data-testid="quote-details-screen">
+      <QuotePrototypeNotice />
       <div className="qt-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -551,7 +564,7 @@ export function QuoteDetailsAcceptanceScreen({
             onClick={() => handleAccept(false)}
             disabled={accepting}
           >
-            {accepting ? "Locking Quote..." : "Accept Quote & Proceed to Escrow (S21) →"}
+            {accepting ? "Preparing preview..." : "Preview Quote Acceptance →"}
           </button>
         </div>
       </header>
@@ -570,7 +583,7 @@ export function QuoteDetailsAcceptanceScreen({
 
       {/* Two-Milestone Escrow Ledger */}
       <section className="qt-card">
-        <h2 className="qt-card-title">Milestone Payment Breakdown (Paystack TEST Mode)</h2>
+        <h2 className="qt-card-title">Sample Milestone Amount Breakdown</h2>
         <div
           style={{
             display: "grid",
@@ -595,7 +608,7 @@ export function QuoteDetailsAcceptanceScreen({
                 letterSpacing: "0.04em",
               }}
             >
-              Milestone 1 · Mobilization Deposit (50%)
+              Sample Milestone 1 Amount (50%)
             </span>
             <div
               style={{
@@ -611,7 +624,7 @@ export function QuoteDetailsAcceptanceScreen({
               {quote.milestone1Title}
             </p>
             <span style={{ fontSize: "11.5px", color: "var(--muted)", display: "block", marginTop: "8px" }}>
-              Deposited into escrow upon acceptance. Held securely until artisan arrives and starts.
+              Example amount only. No deposit, payment, job, or escrow is created.
             </span>
           </div>
 
@@ -632,7 +645,7 @@ export function QuoteDetailsAcceptanceScreen({
                 letterSpacing: "0.04em",
               }}
             >
-              Milestone 2 · Completion Balance (50%)
+              Sample Milestone 2 Amount (50%)
             </span>
             <div
               style={{
@@ -648,7 +661,7 @@ export function QuoteDetailsAcceptanceScreen({
               {quote.milestone2Title}
             </p>
             <span style={{ fontSize: "11.5px", color: "var(--muted)", display: "block", marginTop: "8px" }}>
-              Released only after you inspect and sign off on completed work.
+              Example amount only. No release, sign-off, or completion is recorded.
             </span>
           </div>
         </div>
@@ -656,7 +669,7 @@ export function QuoteDetailsAcceptanceScreen({
 
       {/* Scope Details */}
       <section className="qt-card">
-        <h2 className="qt-card-title">Artisan Guarantee & Methodology</h2>
+        <h2 className="qt-card-title">Sample Scope Notes (not a guarantee)</h2>
         <p style={{ lineHeight: 1.6, color: "#334155", margin: 0 }}>{quote.notes}</p>
       </section>
     </div>
@@ -672,7 +685,6 @@ export function MilestoneDepositCheckoutScreen({
 }: {
   quote?: QuoteItem;
 }) {
-  const router = useRouter();
   const [processing, setProcessing] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
     type: "success" | "error";
@@ -694,7 +706,6 @@ export function MilestoneDepositCheckoutScreen({
 
     if (res.ok) {
       setStatusMessage({ type: "success", text: res.message });
-      router.push("/jobs");
     } else {
       setStatusMessage({ type: "error", text: res.message });
     }
@@ -702,6 +713,7 @@ export function MilestoneDepositCheckoutScreen({
 
   return (
     <div className="qt-page" data-testid="milestone-checkout-screen">
+      <QuotePrototypeNotice />
       <div className="qt-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -719,10 +731,10 @@ export function MilestoneDepositCheckoutScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Fund Milestone 1 Escrow Deposit
+          Preview Milestone 1 Amount
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Paystack TEST Mode · Escrow deposit of {depositFormatted} for Job #{quote.requestId}
+          Sample amount {depositFormatted} for request {quote.requestId} · no provider connected
         </p>
       </header>
 
@@ -746,9 +758,9 @@ export function MilestoneDepositCheckoutScreen({
             <div className="qt-payment-method-card">
               <CreditCard size={28} style={{ color: "#075e46" }} />
               <div>
-                <strong>Paystack TEST Mode Card / Bank Transfer</strong>
+                <strong>Sample payment channel (not connected)</strong>
                 <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-                  Zero live bank charges. Test tokens automatically verified.
+                  No card, bank, token, or provider interaction occurs.
                 </p>
               </div>
             </div>
@@ -758,10 +770,9 @@ export function MilestoneDepositCheckoutScreen({
           <div className="qt-alert qt-alert-info">
             <ShieldCheck size={24} />
             <div>
-              <strong>Funds Held in Neutral SabiWork Escrow</strong>
+              <strong>No escrow service is connected</strong>
               <p>
-                The artisan does not receive these funds directly until work milestone 1 has been
-                validated. You can raise a dispute at any point under SabiWork SafeTrade.
+                Amounts are layout examples only. This preview does not accept payment, hold funds, validate milestones, or create a dispute.
               </p>
             </div>
           </div>
@@ -789,7 +800,7 @@ export function MilestoneDepositCheckoutScreen({
               alignItems: "center",
             }}
           >
-            <span style={{ fontWeight: 700 }}>Due Today (50% Deposit):</span>
+            <span style={{ fontWeight: 700 }}>Sample amount (50%):</span>
             <span
               style={{
                 fontSize: "22px",
@@ -818,7 +829,7 @@ export function MilestoneDepositCheckoutScreen({
             onClick={() => handleDeposit(false)}
             disabled={processing}
           >
-            {processing ? "Authorizing Paystack..." : `Pay ${depositFormatted} via TEST Mode`}
+            {processing ? "Preparing preview..." : `Preview ${depositFormatted} Amount`}
           </button>
         </aside>
       </div>

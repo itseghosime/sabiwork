@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   AlertCircle,
   Building2,
@@ -13,6 +12,7 @@ import {
   PhoneCall,
   SlidersHorizontal,
 } from "lucide-react";
+import { PrototypeNotice } from "@/components/prototype-notice";
 import {
   type PaymentReceiptData,
   type PaymentVerificationState,
@@ -31,10 +31,13 @@ export function PaymentVerificationScreen({
   initialReceipt?: PaymentReceiptData;
 }) {
   const [receipt] = useState<PaymentReceiptData>(initialReceipt);
-  const [verifyState, setVerifyState] = useState<PaymentVerificationState>("VERIFIED");
+  const [verifyState, setVerifyState] = useState<PaymentVerificationState>("SAMPLE_SUCCESS");
 
   return (
     <div className="py-page" data-testid="payment-verification-screen">
+      <PrototypeNotice>
+        Payment states are interactive samples only. No provider, webhook, transaction, escrow, or artisan notification is connected.
+      </PrototypeNotice>
       <div className="py-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -46,10 +49,10 @@ export function PaymentVerificationScreen({
       {/* Simulator Bar */}
       <div className="py-simulator-bar">
         <span className="py-simulator-label">
-          <SlidersHorizontal size={16} /> Webhook Verification Simulator:
+          <SlidersHorizontal size={16} /> Sample State:
         </span>
         <div className="py-simulator-buttons">
-          {(["VERIFIED", "PENDING_WEBHOOK", "FAILED"] as const).map((st) => (
+          {(["SAMPLE_SUCCESS", "SAMPLE_PENDING", "SAMPLE_FAILED"] as const).map((st) => (
             <button
               key={st}
               type="button"
@@ -71,28 +74,28 @@ export function PaymentVerificationScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Payment Verification & Escrow Audit
+          Payment Status Preview
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Reference #{receipt.paymentRef} · Paystack TEST Transaction #{receipt.paystackTestRef}
+          Sample reference {receipt.paymentRef} · No payment provider connected
         </p>
       </header>
 
-      {verifyState === "VERIFIED" && (
+      {verifyState === "SAMPLE_SUCCESS" && (
         <div className="py-alert py-alert-success" role="status">
           <CheckCircle2 size={24} />
           <div>
-            <strong>Paystack TEST Mode Payment Verified!</strong>
+            <strong>Sample payment preview</strong>
             <p>
-              ₦{(receipt.amountKobo / 100).toLocaleString()} is held securely in SabiWork escrow.
-              Artisan {receipt.artisanName} has been notified to commence Milestone {receipt.milestoneNumber}.
+              ₦{(receipt.amountKobo / 100).toLocaleString()} is illustrative only. No money was paid,
+              no escrow was created, and no artisan was notified.
             </p>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
               <Link
                 href={`/payments/${receipt.paymentRef}/receipt`}
                 className="button button-primary"
               >
-                View Official Receipt (S23) →
+                View Sample Receipt (S23) →
               </Link>
               <Link href="/jobs" className="button button-outline">
                 Back to My Jobs
@@ -102,49 +105,47 @@ export function PaymentVerificationScreen({
         </div>
       )}
 
-      {verifyState === "PENDING_WEBHOOK" && (
+      {verifyState === "SAMPLE_PENDING" && (
         <div className="py-alert py-alert-warning" role="status">
           <Clock size={24} />
           <div>
-            <strong>Awaiting Paystack Webhook Confirmation</strong>
+            <strong>Sample pending state</strong>
             <p>
-              Your payment authorization is being confirmed by the banking switch. This page updates
-              automatically once the webhook signal arrives.
+              This is a preview state only. No payment authorization or webhook exists.
             </p>
             <button
               type="button"
               className="button button-outline"
               style={{ marginTop: "12px" }}
-              onClick={() => setVerifyState("VERIFIED")}
+              onClick={() => setVerifyState("SAMPLE_SUCCESS")}
             >
-              Simulate Webhook Delivery
+              Preview success state
             </button>
           </div>
         </div>
       )}
 
-      {verifyState === "FAILED" && (
+      {verifyState === "SAMPLE_FAILED" && (
         <div className="py-alert py-alert-error" role="alert">
           <AlertCircle size={24} />
           <div>
-            <strong>Payment Authorization Failed or Declined</strong>
+            <strong>Sample failure state</strong>
             <p>
-              The transaction could not be completed by your test card provider. You can retry or
-              select an alternate payment method.
+              No transaction was attempted. You can preview another local payment state.
             </p>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
               <Link
                 href={`/payments/${receipt.paymentRef}/recover`}
                 className="button button-primary"
               >
-                Switch Payment Channel (S24) →
+                View Payment Method Preview (S24) →
               </Link>
               <button
                 type="button"
                 className="button button-outline"
-                onClick={() => setVerifyState("VERIFIED")}
+                onClick={() => setVerifyState("SAMPLE_SUCCESS")}
               >
-                Retry Verification
+                Preview success
               </button>
             </div>
           </div>
@@ -175,7 +176,7 @@ export function PaymentVerificationScreen({
             <strong>Milestone {receipt.milestoneNumber}</strong> ({receipt.milestoneTitle})
           </div>
           <div>
-            <span style={{ color: "var(--muted)", display: "block" }}>Amount Paid:</span>
+            <span style={{ color: "var(--muted)", display: "block" }}>Sample amount:</span>
             <strong style={{ color: "var(--primary)", fontSize: "16px" }}>
               ₦{(receipt.amountKobo / 100).toLocaleString()}
             </strong>
@@ -197,20 +198,23 @@ export function PaymentReceiptScreen({
 }) {
   return (
     <div className="py-page" data-testid="payment-receipt-screen">
+      <PrototypeNotice>
+        This sample receipt is not evidence of payment. No transaction, provider reference, escrow, or payout exists.
+      </PrototypeNotice>
       <div className="py-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
         <Link href="/payments">Payment History</Link>
         <span aria-hidden="true">/</span>
-        <strong>Official Receipt (S23)</strong>
+        <strong>Sample Receipt Preview (S23)</strong>
       </div>
 
       <div className="py-receipt-paper">
         <header className="py-receipt-header">
           <div>
-            <h1 className="py-receipt-title">SabiWork Payment Receipt</h1>
+            <h1 className="py-receipt-title">Sample Payment Receipt Preview</h1>
             <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-              Clear Trade Modern SafeTrade Escrow Vetting
+              No payment provider connected
             </span>
           </div>
           <div style={{ textAlign: "right" }}>
@@ -225,7 +229,7 @@ export function PaymentReceiptScreen({
                 borderRadius: "999px",
               }}
             >
-              ✓ Escrow Protected
+              SAMPLE ONLY · NOT PAID
             </span>
             <div style={{ fontSize: "12px", color: "var(--muted)", marginTop: "4px" }}>
               {receipt.dateWat}
@@ -235,23 +239,23 @@ export function PaymentReceiptScreen({
 
         <div style={{ display: "grid", gap: "6px" }}>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Receipt / Payment Ref:</span>
+            <span className="py-receipt-label">Sample reference:</span>
             <span className="py-receipt-value">{receipt.paymentRef}</span>
           </div>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Paystack TEST Token:</span>
+            <span className="py-receipt-label">Provider reference:</span>
             <span className="py-receipt-value">{receipt.paystackTestRef}</span>
           </div>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Customer Account:</span>
+            <span className="py-receipt-label">Sample customer:</span>
             <span className="py-receipt-value">{receipt.customerName}</span>
           </div>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Verified Artisan:</span>
+            <span className="py-receipt-label">Sample artisan:</span>
             <span className="py-receipt-value">{receipt.artisanName}</span>
           </div>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Job Assignment:</span>
+            <span className="py-receipt-label">Sample request:</span>
             <span className="py-receipt-value">#{receipt.jobId} · {receipt.jobTitle}</span>
           </div>
           <div className="py-receipt-row">
@@ -261,7 +265,7 @@ export function PaymentReceiptScreen({
             </span>
           </div>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Payment Channel:</span>
+            <span className="py-receipt-label">Sample payment method:</span>
             <span className="py-receipt-value">{receipt.channel}</span>
           </div>
         </div>
@@ -269,10 +273,10 @@ export function PaymentReceiptScreen({
         <div className="py-receipt-amount-box">
           <div>
             <span style={{ fontSize: "12px", color: "#166534", textTransform: "uppercase", fontWeight: 700 }}>
-              Milestone 1 Deposit Amount
+              Sample milestone amount
             </span>
             <div style={{ fontSize: "11px", color: "#166534" }}>
-              Total Job Value: ₦{(receipt.totalContractKobo / 100).toLocaleString()} (50% remaining on signoff)
+              Sample request value: ₦{(receipt.totalContractKobo / 100).toLocaleString()} (illustrative)
             </div>
           </div>
           <div className="py-receipt-big-amount">
@@ -292,7 +296,7 @@ export function PaymentReceiptScreen({
           }}
         >
           <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-            SabiWork Technologies · Benin City Operations Hub
+            SabiWork UI prototype · sample receipt only
           </span>
           <div style={{ display: "flex", gap: "8px" }}>
             <button
@@ -300,7 +304,7 @@ export function PaymentReceiptScreen({
               className="button button-outline"
               onClick={() => window.print()}
             >
-              Print Receipt
+              Print Sample Preview
             </button>
             <Link href="/jobs" className="button button-primary">
               Return to Workspace
@@ -321,7 +325,6 @@ export function PaymentRecoveryScreen({
 }: {
   receipt?: PaymentReceiptData;
 }) {
-  const router = useRouter();
   const [selectedMethod, setSelectedMethod] = useState<"bank_transfer" | "ussd" | "card">(
     "bank_transfer",
   );
@@ -344,7 +347,6 @@ export function PaymentRecoveryScreen({
 
     if (res.ok) {
       setStatusMessage({ type: "success", text: res.message });
-      router.push(`/payments/${receipt.paymentRef}/receipt`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
     }
@@ -352,12 +354,15 @@ export function PaymentRecoveryScreen({
 
   return (
     <div className="py-page" data-testid="payment-recovery-screen">
+      <PrototypeNotice>
+        Alternate methods are display samples only. No bank, card network, USSD service, or payment provider is contacted.
+      </PrototypeNotice>
       <div className="py-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
         <Link href="/payments">Payment History</Link>
         <span aria-hidden="true">/</span>
-        <strong>Payment Recovery (S24)</strong>
+        <strong>        Payment Method Preview (S24)</strong>
       </div>
 
       <header>
@@ -369,10 +374,10 @@ export function PaymentRecoveryScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Alternate Payment Method
+          Alternate Payment Method Preview
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Resolve failed transaction for Job #{receipt.jobId} (₦{(receipt.amountKobo / 100).toLocaleString()})
+          Preview methods for sample request {receipt.jobId} (₦{(receipt.amountKobo / 100).toLocaleString()})
         </p>
       </header>
 
@@ -396,9 +401,9 @@ export function PaymentRecoveryScreen({
         >
           <Building2 size={24} style={{ color: "#075e46" }} />
           <div>
-            <strong>Paystack Virtual Bank Transfer</strong>
+            <strong>Sample bank transfer option</strong>
             <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-              Instant transfer to temporary dedicated bank account.
+              No bank account is created or contacted.
             </p>
           </div>
         </button>
@@ -410,9 +415,9 @@ export function PaymentRecoveryScreen({
         >
           <CreditCard size={24} style={{ color: "#075e46" }} />
           <div>
-            <strong>Retry with Alternate Debit Card</strong>
+            <strong>Sample card option</strong>
             <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-              Visa, Mastercard, or Verve cards in Paystack TEST Mode.
+              Card payments are not connected in this prototype.
             </p>
           </div>
         </button>
@@ -424,9 +429,9 @@ export function PaymentRecoveryScreen({
         >
           <PhoneCall size={24} style={{ color: "#075e46" }} />
           <div>
-            <strong>USSD Bank Code</strong>
+            <strong>Sample USSD option</strong>
             <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-              GTBank (*737#), Zenith (*966#), Access (*901#).
+              No bank code or USSD service is contacted.
             </p>
           </div>
         </button>
@@ -439,7 +444,7 @@ export function PaymentRecoveryScreen({
           onClick={() => handleRetry(true)}
           disabled={recovering}
         >
-          Simulate Alternative Gateway Timeout
+          Preview a sample error
         </button>
 
         <button
@@ -448,7 +453,7 @@ export function PaymentRecoveryScreen({
           onClick={() => handleRetry(false)}
           disabled={recovering}
         >
-          {recovering ? "Authorizing..." : `Pay ₦${(receipt.amountKobo / 100).toLocaleString()} via ${selectedMethod}`}
+          {recovering ? "Preparing preview..." : `Preview ₦${(receipt.amountKobo / 100).toLocaleString()} via ${selectedMethod}`}
         </button>
       </div>
     </div>
@@ -464,7 +469,6 @@ export function MilestoneBalanceCheckoutScreen({
 }: {
   receipt?: PaymentReceiptData;
 }) {
-  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
     type: "success" | "error";
@@ -487,7 +491,6 @@ export function MilestoneBalanceCheckoutScreen({
 
     if (res.ok) {
       setStatusMessage({ type: "success", text: res.message });
-      router.push(`/jobs/${receipt.jobId}/review`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
     }
@@ -495,12 +498,15 @@ export function MilestoneBalanceCheckoutScreen({
 
   return (
     <div className="py-page" data-testid="balance-checkout-screen">
+      <PrototypeNotice>
+        This checkout is a sample interaction only. No payment, inspection, sign-off, escrow, or release occurs.
+      </PrototypeNotice>
       <div className="py-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
         <Link href={`/jobs/${receipt.jobId}`}>Job #{receipt.jobId}</Link>
         <span aria-hidden="true">/</span>
-        <strong>Milestone 2 Balance Checkout (S25)</strong>
+        <strong>Sample Balance Checkout (S25)</strong>
       </div>
 
       <header>
@@ -512,10 +518,10 @@ export function MilestoneBalanceCheckoutScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Fund Milestone 2 Completion Balance
+          Preview Milestone 2 Balance Checkout
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Final payment of {balanceFormatted} for #{receipt.jobId} completed by {receipt.artisanName}
+          Illustrative amount {balanceFormatted} for sample request {receipt.jobId}
         </p>
       </header>
 
@@ -532,11 +538,10 @@ export function MilestoneBalanceCheckoutScreen({
       )}
 
       <section className="py-card">
-        <h2 className="py-card-title">Completion Sign-off & Release Authorization</h2>
+        <h2 className="py-card-title">Sample Completion Preview</h2>
         <p style={{ margin: 0, color: "#334155", lineHeight: 1.5 }}>
-          By funding this final milestone balance, you confirm that you have physically inspected
-          the repair works completed by {receipt.artisanName} and authorize full escrow release to
-          the artisan.
+          This button only previews a local result. It does not confirm work, record sign-off, process
+          a payment, or release funds to an artisan.
         </p>
         <div
           style={{
@@ -551,10 +556,10 @@ export function MilestoneBalanceCheckoutScreen({
         >
           <div>
             <span style={{ fontSize: "12px", color: "#166534", fontWeight: 700 }}>
-              Milestone 2 Balance (50%)
+              Sample Balance Amount
             </span>
             <div style={{ fontSize: "11px", color: "#166534" }}>
-              Milestone 1 Deposit (₦{(receipt.amountKobo / 100).toLocaleString()}) already fulfilled.
+              Sample milestone amount: ₦{(receipt.amountKobo / 100).toLocaleString()} (not paid).
             </div>
           </div>
           <div
@@ -576,7 +581,7 @@ export function MilestoneBalanceCheckoutScreen({
             onClick={() => handlePayBalance(true)}
             disabled={submitting}
           >
-            Simulate Provider Decline
+            Preview sample decline
           </button>
           <button
             type="button"
@@ -584,7 +589,7 @@ export function MilestoneBalanceCheckoutScreen({
             onClick={() => handlePayBalance(false)}
             disabled={submitting}
           >
-            {submitting ? "Processing..." : `Approve & Pay ${balanceFormatted} via TEST Mode`}
+            {submitting ? "Preparing preview..." : `Preview ${balanceFormatted} checkout`}
           </button>
         </div>
       </section>

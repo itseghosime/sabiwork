@@ -523,3 +523,26 @@
     animation-iteration-count: 1 !important;
   }
 }
+.prototype-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #fcd34d;
+  border-radius: 0.75rem;
+  background: #fffbeb;
+  color: #78350f;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.prototype-notice strong {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.prototype-notice span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

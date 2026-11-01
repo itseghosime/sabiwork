@@ -35,10 +35,10 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     expect(screen.getByText(/Concealed Conduit Rewiring/i)).toBeDefined();
   });
 
-  it("renders S18 Send Itemized Quote form with milestone calculations", () => {
+  it("renders S18 itemized quote preview with sample milestone calculations", () => {
     render(<SendItemizedQuoteScreen request={defaultOpenRequests[0]} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Send Itemized Quote/i }),
+      screen.getByRole("heading", { level: 1, name: /Preview Itemized Quote/i }),
     ).toBeDefined();
     expect(screen.getByLabelText(/Total Quote Amount/i)).toBeDefined();
     expect(screen.getByText(/Milestone 1/i)).toBeDefined();
@@ -54,43 +54,42 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: /Compare Artisan Quotes/i }),
     ).toBeDefined();
-    expect(screen.getByText("Osaze Ighodaro")).toBeDefined();
-    expect(screen.getByText("Victor E. Edosa")).toBeDefined();
-    expect(screen.getByText("Monday Agho")).toBeDefined();
+    expect(screen.getByText("Sample Artisan 1")).toBeDefined();
+    expect(screen.getByText("Sample Artisan 2")).toBeDefined();
+    expect(screen.getByText("Sample Artisan 3")).toBeDefined();
   });
 
   it("renders S20 Quote Details with milestone breakdown and supports acceptance", async () => {
     render(<QuoteDetailsAcceptanceScreen quote={defaultDetailedQuotes[0]} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Quote from Osaze Ighodaro/i }),
+      screen.getByRole("heading", { level: 1, name: /Quote from Sample Artisan 1/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Mobilization Deposit/i)).toBeDefined();
+    expect(screen.getByText(/Sample Milestone 1 Amount/i)).toBeDefined();
 
     const acceptBtn = screen.getByRole("button", {
-      name: /Accept Quote & Proceed to Escrow/i,
+      name: /Preview Quote Acceptance/i,
     });
     fireEvent.click(acceptBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Quote accepted/i)).toBeDefined();
+      expect(screen.getByText(/Sample quote acceptance preview only/i)).toBeDefined();
     });
   });
 
-  it("renders S21 Milestone Deposit Checkout with Paystack TEST Mode and processes payment", async () => {
+  it("renders S21 Milestone Deposit Checkout and previews a payment interaction", async () => {
     render(<MilestoneDepositCheckoutScreen quote={defaultDetailedQuotes[0]} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Fund Milestone 1 Escrow Deposit/i }),
+      screen.getByRole("heading", { level: 1, name: /Preview Milestone 1 Amount/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Paystack TEST Mode Card/i)).toBeDefined();
+    expect(screen.getByText(/Sample payment channel/i)).toBeDefined();
 
     const payBtn = screen.getByRole("button", {
-      name: /Pay ₦11,000 via TEST Mode/i,
+      name: /Preview ₦11,000 Amount/i,
     });
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/successfully deposited into SabiWork Paystack TEST escrow/i)).toBeDefined();
+      expect(screen.getByText(/No payment, escrow, job, or artisan notification occurred/i)).toBeDefined();
     });
   });
 });
-

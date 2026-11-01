@@ -9,6 +9,7 @@ import {
   TrendingUp,
   Wrench,
 } from "lucide-react";
+import { PrototypeNotice } from "@/components/prototype-notice";
 import {
   type ArtisanDashboardData,
   type ArtisanWorkOrder,
@@ -35,6 +36,9 @@ export function ArtisanDashboardScreen({
 
   return (
     <div className="ao-page" data-testid="artisan-dashboard-screen">
+      <PrototypeNotice>
+        Dashboard totals, requests, jobs, and reviews are fictional samples. No work or payment activity is recorded.
+      </PrototypeNotice>
       <div className="ao-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -62,7 +66,7 @@ export function ArtisanDashboardScreen({
             Welcome, {data.artisanName}
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            {data.artisanTrade} · Benin City Operations Hub (Paystack TEST Mode)
+            {data.artisanTrade} · Sample operations preview
           </p>
         </div>
 
@@ -79,15 +83,15 @@ export function ArtisanDashboardScreen({
       {/* KPI Metrics Grid */}
       <div className="ao-metrics-grid">
         <div className="ao-metric-card">
-          <span className="ao-metric-label">Active Work Orders</span>
+          <span className="ao-metric-label">Sample Work Order Previews</span>
           <span className="ao-metric-value">{data.activeJobsCount}</span>
-          <span className="ao-metric-sub">Milestone repair jobs in Benin City</span>
+          <span className="ao-metric-sub">Illustrative count only · no job is assigned</span>
         </div>
 
         <div className="ao-metric-card">
-          <span className="ao-metric-label">Open District Requests</span>
+          <span className="ao-metric-label">Sample Open Requests</span>
           <span className="ao-metric-value">{data.openRequestsInDistrict}</span>
-          <span className="ao-metric-sub">Customers waiting for quotes</span>
+          <span className="ao-metric-sub">No customers are waiting or contacted</span>
         </div>
 
         <div className="ao-metric-card">
@@ -99,11 +103,11 @@ export function ArtisanDashboardScreen({
         </div>
 
         <div className="ao-metric-card">
-          <span className="ao-metric-label">Client Rating</span>
+          <span className="ao-metric-label">Sample Client Rating</span>
           <span className="ao-metric-value" style={{ color: "#b45309" }}>
             ★ {data.ratingAverage}
           </span>
-          <span className="ao-metric-sub">Across {data.totalReviews} verified reviews</span>
+          <span className="ao-metric-sub">Across {data.totalReviews} sample reviews</span>
         </div>
       </div>
 
@@ -111,10 +115,10 @@ export function ArtisanDashboardScreen({
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px" }}>
         <section className="ao-card">
           <h2 className="ao-card-title">
-            <Wrench size={20} /> Work Orders (S37)
+            <Wrench size={20} /> Sample Work Orders (S37)
           </h2>
           <p style={{ margin: 0, fontSize: "13.5px", color: "#475569" }}>
-            View your active and upcoming milestone repair jobs in Edo State.
+            Preview fictional work-order and milestone states; no jobs are assigned.
           </p>
           <Link href="/artisan/jobs" className="button button-primary">
             View Work Orders (S37) →
@@ -126,7 +130,7 @@ export function ArtisanDashboardScreen({
             <TrendingUp size={20} /> Earnings Ledger (S38)
           </h2>
           <p style={{ margin: 0, fontSize: "13.5px", color: "#475569" }}>
-            Review released milestone payments and initiate test bank account payouts.
+            Review sample ledger entries and preview a payout interaction.
           </p>
           <Link href="/artisan/earnings" className="button button-primary">
             View Earnings (S38) →
@@ -162,10 +166,13 @@ export function ArtisanWorkOrdersScreen({
 
   return (
     <div className="ao-page" data-testid="artisan-work-orders-screen">
+      <PrototypeNotice>
+        Work orders, locations, and amounts are fictional. No job is assigned, active, or saved.
+      </PrototypeNotice>
       <div className="ao-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
-        <strong>My Work Orders (S37)</strong>
+        <strong>Sample Work Order Previews (S37)</strong>
       </div>
 
       <header
@@ -186,10 +193,10 @@ export function ArtisanWorkOrdersScreen({
               color: "var(--text-dark, #0e294b)",
             }}
           >
-            My Work Orders & Field Jobs
+            Sample Work Order Previews
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            {orders.length} active customer jobs currently allocated in Benin City.
+            {orders.length} fictional records; no customer jobs are allocated.
           </p>
         </div>
 
@@ -222,20 +229,20 @@ export function ArtisanWorkOrdersScreen({
                   }}
                 >
                   {ord.status === "ACTIVE_MILESTONE_1"
-                    ? "Milestone 1 Active (Deposit Released)"
-                    : "Milestone 2 In Progress"}
+                    ? "Sample Milestone 1 State · not paid"
+                    : "Sample Milestone 2 State · not paid"}
                 </span>
                 <h2 style={{ margin: "6px 0 2px 0", fontSize: "18px", color: "var(--text-dark, #0e294b)" }}>
                   #{ord.id} · {ord.title}
                 </h2>
                 <div style={{ fontSize: "13px", color: "var(--muted)" }}>
-                  Customer: <strong>{ord.customerName}</strong> · Address: {ord.address}
+                  Sample customer: <strong>{ord.customerName}</strong> · Service area: {ord.address}
                 </div>
               </div>
 
               <div style={{ textAlign: "right" }}>
                 <span style={{ fontSize: "11px", color: "var(--muted)", textTransform: "uppercase" }}>
-                  Contract Value
+                  Sample contract amount
                 </span>
                 <div
                   style={{
@@ -247,7 +254,7 @@ export function ArtisanWorkOrdersScreen({
                 >
                   ₦{(ord.payoutKobo / 100).toLocaleString()}
                 </div>
-                <span style={{ fontSize: "12px", color: "#64748b" }}>Due: {ord.dueDate}</span>
+                <span style={{ fontSize: "12px", color: "#64748b" }}>Sample date: {ord.dueDate}</span>
               </div>
             </div>
 
@@ -284,7 +291,7 @@ export function ArtisanWorkOrdersScreen({
 }
 
 /* ==========================================================================
-   S38: Artisan Earnings & Paystack TEST Ledger Screen
+   S38: Sample Artisan Earnings Ledger
    ========================================================================== */
 
 export function ArtisanEarningsLedgerScreen({
@@ -315,10 +322,13 @@ export function ArtisanEarningsLedgerScreen({
 
   return (
     <div className="ao-page" data-testid="artisan-earnings-screen">
+      <PrototypeNotice>
+        Earnings and payout actions are previews only. No bank details are stored and no funds move.
+      </PrototypeNotice>
       <div className="ao-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
-        <strong>Earnings & Paystack TEST Ledger (S38)</strong>
+        <strong>Sample Earnings Ledger (S38)</strong>
       </div>
 
       <header
@@ -339,10 +349,10 @@ export function ArtisanEarningsLedgerScreen({
               color: "var(--text-dark, #0e294b)",
             }}
           >
-            Artisan Earnings Ledger
+            Sample Artisan Earnings Ledger
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            Track released milestone payouts and test settlements in Edo State.
+            Preview fictional ledger entries and payout feedback states.
           </p>
         </div>
 
@@ -353,7 +363,7 @@ export function ArtisanEarningsLedgerScreen({
             onClick={() => handleTestPayout(true)}
             disabled={requestingPayout}
           >
-            Simulate Payout Error
+            Preview payout error
           </button>
           <button
             type="button"
@@ -361,7 +371,7 @@ export function ArtisanEarningsLedgerScreen({
             onClick={() => handleTestPayout(false)}
             disabled={requestingPayout}
           >
-            {requestingPayout ? "Transferring..." : "Request ₦30,000 Test Payout"}
+            {requestingPayout ? "Preparing preview..." : "Preview ₦30,000 payout"}
           </button>
         </div>
       </header>
@@ -383,21 +393,21 @@ export function ArtisanEarningsLedgerScreen({
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
           <div>
             <span style={{ fontSize: "12px", color: "#166534", fontWeight: 700, textTransform: "uppercase" }}>
-              Settled Test Balance Ready for Payout
+              Sample Balance Preview
             </span>
             <div style={{ fontSize: "28px", fontWeight: 800, color: "var(--primary)" }}>
               ₦30,000.00
             </div>
           </div>
           <span style={{ fontSize: "12.5px", color: "#166534" }}>
-            Paystack TEST Node · Bank Account: First Bank (•••• 9102)
+            No payment provider or bank account is connected.
           </span>
         </div>
       </div>
 
       {/* Ledger list */}
       <section className="ao-card">
-        <h2 className="ao-card-title">Settlement Transactions</h2>
+        <h2 className="ao-card-title">Sample Ledger Entries</h2>
         <div style={{ display: "grid", gap: "10px" }}>
           {ledger.map((entry) => (
             <div
@@ -420,7 +430,7 @@ export function ArtisanEarningsLedgerScreen({
                 </div>
               </div>
               <strong style={{ color: "var(--primary)", fontSize: "16px" }}>
-                +₦{(entry.amountKobo / 100).toLocaleString()}
+                Sample amount · ₦{(entry.amountKobo / 100).toLocaleString()}
               </strong>
             </div>
           ))}
@@ -470,6 +480,9 @@ export function ArtisanAvailabilityScreen({
 
   return (
     <div className="ao-page" data-testid="artisan-availability-screen">
+      <PrototypeNotice>
+        Availability changes stay in local page state only; no schedule is saved or broadcast.
+      </PrototypeNotice>
       <div className="ao-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
