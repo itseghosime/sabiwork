@@ -10,11 +10,13 @@ import {
   ShieldAlert,
   ChevronDown,
   Layers,
+  ChevronUp,
 } from "lucide-react";
 
 export function RoleNavigator() {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
+  // Keep the demo switcher out of the way until someone asks for it.
+  const [collapsed, setCollapsed] = useState(true);
 
   // Determine current active role from pathname
   const isCustomer =
@@ -29,22 +31,22 @@ export function RoleNavigator() {
 
   if (collapsed) {
     return (
-      <div className="sabi-role-dock" aria-label="Demo Role Switcher">
+      <div className="sabi-role-dock" aria-label="Demo role switcher">
         <button
           type="button"
           onClick={() => setCollapsed(false)}
           className="sabi-role-dock-collapsed-btn"
           aria-label="Expand demo role switcher"
         >
-          <Layers className="w-4 h-4 text-sky-400" />
-          <span>Switch Role / Portal</span>
+          <Layers className="w-5 h-5" aria-hidden="true" />
+          <span className="sr-only">Open demo role switcher</span>
         </button>
       </div>
     );
   }
 
   return (
-    <div className="sabi-role-dock" aria-label="Demo Role Switcher">
+    <div className="sabi-role-dock" aria-label="Demo role switcher">
       <div className="sabi-role-dock-panel" role="region" aria-label="Interactive Portal Switcher">
         <div className="sabi-role-dock-title">
           <Layers className="w-3.5 h-3.5 text-sky-400" />
@@ -94,7 +96,7 @@ export function RoleNavigator() {
           title="Minimize switcher"
           aria-label="Minimize switcher"
         >
-          <ChevronDown className="w-4 h-4" />
+          <ChevronUp className="w-4 h-4" />
         </button>
       </div>
     </div>

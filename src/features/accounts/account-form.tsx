@@ -283,7 +283,10 @@ export function AccountForm({
           <span>
             <Icon name="home" size={18} /> I’m looking for an artisan
           </span>
-          <p>Artisan registration will be available soon.</p>
+          <p>Choose the artisan path if you want to offer your skills.</p>
+          <Link href="/signup/artisan" className="auth-role-link">
+            Join as an artisan <Icon name="arrow" size={16} />
+          </Link>
         </div>
       )}
       <form ref={form} onSubmit={submit} noValidate aria-busy={pending}>

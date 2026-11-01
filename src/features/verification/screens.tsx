@@ -25,7 +25,6 @@ import {
   Filter,
 } from "lucide-react";
 import { WorkspaceShell } from "@/components/workspace-shell";
-import { PublicShell } from "@/components/public-shell";
 import {
   type VerificationDossier,
   getVerificationDossiers,
@@ -166,7 +165,6 @@ export function ArtisanSignupScreen() {
   };
 
   return (
-    <PublicShell>
       <div className="sabi-verif-container">
         <div className="sabi-wizard-card">
           {/* Header */}
@@ -548,7 +546,6 @@ export function ArtisanSignupScreen() {
           </div>
         </div>
       </div>
-    </PublicShell>
   );
 }
 
