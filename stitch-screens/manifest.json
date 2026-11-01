@@ -1,0 +1,1452 @@
+[
+  {
+    "screenId": "9871ff073c244aefb13c8722120863c3",
+    "title": "S01 / Public Home / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s01-public-home-desktop-default.html",
+    "width": "2560",
+    "height": "6266",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9871ff073c244aefb13c8722120863c3:download",
+    "sizeBytes": 42919
+  },
+  {
+    "screenId": "9f673528fe4e499799a360b94db55e6d",
+    "title": "S01 / Public Home / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s01-public-home-mobile-default.html",
+    "width": "800",
+    "height": "4854",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9f673528fe4e499799a360b94db55e6d:download",
+    "sizeBytes": 37928
+  },
+  {
+    "screenId": "1a51a56413124171a8a6dda8cf24b2cc",
+    "title": "S01 / Public Home / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s01-public-home-tablet-default.html",
+    "width": "2560",
+    "height": "5556",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1a51a56413124171a8a6dda8cf24b2cc:download",
+    "sizeBytes": 37603
+  },
+  {
+    "screenId": "68aa7476d3f342778c8f1c5c203f2282",
+    "title": "S02 / Category Directory / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s02-category-directory-desktop-default.html",
+    "width": "2560",
+    "height": "4992",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/68aa7476d3f342778c8f1c5c203f2282:download",
+    "sizeBytes": 54511
+  },
+  {
+    "screenId": "caea4b502ab84afd9034b18452f03931",
+    "title": "S02 / Category Directory / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s02-category-directory-mobile-default.html",
+    "width": "800",
+    "height": "4414",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/caea4b502ab84afd9034b18452f03931:download",
+    "sizeBytes": 32478
+  },
+  {
+    "screenId": "8aa36a58f42940bdb019fc3f18553661",
+    "title": "S02 / Category Directory / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s02-category-directory-tablet-default.html",
+    "width": "2560",
+    "height": "5050",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/8aa36a58f42940bdb019fc3f18553661:download",
+    "sizeBytes": 41473
+  },
+  {
+    "screenId": "99200494719b45f5bdaba04eec478664",
+    "title": "S03 / Artisan Search Results / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s03-artisan-search-results-desktop-default.html",
+    "width": "2560",
+    "height": "3894",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/4915756510538582527:download",
+    "sizeBytes": 61453
+  },
+  {
+    "screenId": "fa6d905076484c9d97a1e98ecc2bab3f",
+    "title": "S03 / Artisan Search Results / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s03-artisan-search-results-mobile-default.html",
+    "width": "780",
+    "height": "3294",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/fa6d905076484c9d97a1e98ecc2bab3f:download",
+    "sizeBytes": 38551
+  },
+  {
+    "screenId": "3cf0c3eb21ae4d3b9c061501f7a0c8ab",
+    "title": "S03 / Artisan Search Results / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s03-artisan-search-results-tablet-default.html",
+    "width": "2560",
+    "height": "3506",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9760145577579023647:download",
+    "sizeBytes": 43182
+  },
+  {
+    "screenId": "bccbd7a2bba1456f8b9c5ec4a8daf89a",
+    "title": "S04 / Artisan Profile / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s04-artisan-profile-desktop-default.html",
+    "width": "2560",
+    "height": "6828",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9126518661051385653:download",
+    "sizeBytes": 59896
+  },
+  {
+    "screenId": "3c91f8f881434d489bd88a9f49a8c7df",
+    "title": "S04 / Artisan Profile / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s04-artisan-profile-mobile-default.html",
+    "width": "826",
+    "height": "4622",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/8668572955132509114:download",
+    "sizeBytes": 36844
+  },
+  {
+    "screenId": "7d2ffe790292471982ec54d0cffadb4e",
+    "title": "S04 / Artisan Profile / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s04-artisan-profile-tablet-default.html",
+    "width": "2560",
+    "height": "4514",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/14123316223579211440:download",
+    "sizeBytes": 37513
+  },
+  {
+    "screenId": "8a8a7cbbff154fca8d93d3071f9e50a6",
+    "title": "S05 / Portfolio Photo Viewer / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s05-portfolio-photo-viewer-desktop-default.html",
+    "width": "2560",
+    "height": "2048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/6507475237824294884:download",
+    "sizeBytes": 43403
+  },
+  {
+    "screenId": "a3be53e0f97b4be58d272d8ca1da7ee8",
+    "title": "S05 / Portfolio Photo Viewer / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s05-portfolio-photo-viewer-mobile-default.html",
+    "width": "826",
+    "height": "2934",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/16740521140968493594:download",
+    "sizeBytes": 29274
+  },
+  {
+    "screenId": "cd0a4be6a63a4e6aae9a30cba72ffdd2",
+    "title": "S05 / Portfolio Photo Viewer / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s05-portfolio-photo-viewer-tablet-default.html",
+    "width": "2560",
+    "height": "2048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/8121324804960232366:download",
+    "sizeBytes": 34214
+  },
+  {
+    "screenId": "baa14b24839f4616bde4ef764d59e7b0",
+    "title": "S06 / Artisan Profile Editor / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s06-artisan-profile-editor-desktop-default.html",
+    "width": "2560",
+    "height": "3694",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/baa14b24839f4616bde4ef764d59e7b0:download",
+    "sizeBytes": 52667
+  },
+  {
+    "screenId": "6bc5a1199c4542b296e66d31c7719672",
+    "title": "S06 / Artisan Profile Editor / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s06-artisan-profile-editor-mobile-default.html",
+    "width": "898",
+    "height": "6036",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/6bc5a1199c4542b296e66d31c7719672:download",
+    "sizeBytes": 40111
+  },
+  {
+    "screenId": "678b996186174531a52b371630eacb47",
+    "title": "S06 / Artisan Profile Editor / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s06-artisan-profile-editor-tablet-default.html",
+    "width": "2560",
+    "height": "4722",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/678b996186174531a52b371630eacb47:download",
+    "sizeBytes": 44415
+  },
+  {
+    "screenId": "002a8c1bffcd467488940db304a58603",
+    "title": "S07 / Customer Signup / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s07-customer-signup-desktop-default.html",
+    "width": "2560",
+    "height": "2654",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/002a8c1bffcd467488940db304a58603:download",
+    "sizeBytes": 28268
+  },
+  {
+    "screenId": "a2735ffbb1d841c480a75c25c58981b3",
+    "title": "S07 / Customer Signup / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s07-customer-signup-mobile-default.html",
+    "width": "780",
+    "height": "2362",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/a2735ffbb1d841c480a75c25c58981b3:download",
+    "sizeBytes": 32904
+  },
+  {
+    "screenId": "156e6604958a4c0885fc3843985b146e",
+    "title": "S07 / Customer Signup / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s07-customer-signup-tablet-default.html",
+    "width": "2560",
+    "height": "2496",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/156e6604958a4c0885fc3843985b146e:download",
+    "sizeBytes": 31497
+  },
+  {
+    "screenId": "0b064cb0d4d84ab999d4f579022b078d",
+    "title": "S08 / Artisan Signup and Onboarding / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s08-artisan-signup-and-onboarding-desktop-default.html",
+    "width": "2880",
+    "height": "2048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9861938137283394348:download",
+    "sizeBytes": 40881
+  },
+  {
+    "screenId": "6875064a5e0e48feaab10600da724176",
+    "title": "S08 / Artisan Signup and Onboarding / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s08-artisan-signup-and-onboarding-mobile-default.html",
+    "width": "780",
+    "height": "1768",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/6875064a5e0e48feaab10600da724176:download",
+    "sizeBytes": 41887
+  },
+  {
+    "screenId": "71cd81abcc0d45a8bec1b7cc98c96c78",
+    "title": "S08 / Artisan Signup and Onboarding / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s08-artisan-signup-and-onboarding-tablet-default.html",
+    "width": "2560",
+    "height": "2334",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/71cd81abcc0d45a8bec1b7cc98c96c78:download",
+    "sizeBytes": 54847
+  },
+  {
+    "screenId": "1620ad209a6d4fd29e96f95338b703f7",
+    "title": "S09 / Login / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s09-login-desktop-default.html",
+    "width": "2560",
+    "height": "2048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1620ad209a6d4fd29e96f95338b703f7:download",
+    "sizeBytes": 28646
+  },
+  {
+    "screenId": "9ee8337e74734d949d438074165a8dd8",
+    "title": "S09 / Login / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s09-login-mobile-default.html",
+    "width": "780",
+    "height": "1926",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9ee8337e74734d949d438074165a8dd8:download",
+    "sizeBytes": 20815
+  },
+  {
+    "screenId": "e5e17320e7f24c4096398ada00cabf6c",
+    "title": "S09 / Login / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s09-login-tablet-default.html",
+    "width": "2560",
+    "height": "2190",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/e5e17320e7f24c4096398ada00cabf6c:download",
+    "sizeBytes": 27985
+  },
+  {
+    "screenId": "b2922530d3c746678a38ee5d98b1aeae",
+    "title": "S10 / Email Verification / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s10-email-verification-desktop-default.html",
+    "width": "2560",
+    "height": "2670",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/b2922530d3c746678a38ee5d98b1aeae:download",
+    "sizeBytes": 36104
+  },
+  {
+    "screenId": "279a4dfc20f04932bbb2aa83e60caf0f",
+    "title": "S10 / Email Verification / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s10-email-verification-mobile-default.html",
+    "width": "780",
+    "height": "1872",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/279a4dfc20f04932bbb2aa83e60caf0f:download",
+    "sizeBytes": 29876
+  },
+  {
+    "screenId": "64a1471e119347f99ca88ca50be51f08",
+    "title": "S10 / Email Verification / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s10-email-verification-tablet-default.html",
+    "width": "2560",
+    "height": "2272",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/64a1471e119347f99ca88ca50be51f08:download",
+    "sizeBytes": 26696
+  },
+  {
+    "screenId": "7dfa100d8f4e430da18c3ba9aa545826",
+    "title": "S11 / Password Reset / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s11-password-reset-desktop-default.html",
+    "width": "2560",
+    "height": "2048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/7dfa100d8f4e430da18c3ba9aa545826:download",
+    "sizeBytes": 23987
+  },
+  {
+    "screenId": "82620876e65e48ef8e5e3b6ac7ee6fe9",
+    "title": "S11 / Password Reset / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s11-password-reset-mobile-default.html",
+    "width": "780",
+    "height": "1768",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/82620876e65e48ef8e5e3b6ac7ee6fe9:download",
+    "sizeBytes": 23987
+  },
+  {
+    "screenId": "511ab7f1e28c4b33915ba69f2d6cba49",
+    "title": "S11 / Password Reset / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s11-password-reset-tablet-default.html",
+    "width": "2560",
+    "height": "2048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/511ab7f1e28c4b33915ba69f2d6cba49:download",
+    "sizeBytes": 24560
+  },
+  {
+    "screenId": "58fd2746b7a94b8884571bda43ca4762",
+    "title": "S12 / Set New Password / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s12-set-new-password-desktop-default.html",
+    "width": "2560",
+    "height": "2272",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/58fd2746b7a94b8884571bda43ca4762:download",
+    "sizeBytes": 28538
+  },
+  {
+    "screenId": "2a37ff9eaf644c3db93043d73b4aa614",
+    "title": "S12 / Set New Password / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s12-set-new-password-mobile-default.html",
+    "width": "780",
+    "height": "1768",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/2a37ff9eaf644c3db93043d73b4aa614:download",
+    "sizeBytes": 23079
+  },
+  {
+    "screenId": "3dd3ca23b3344352995935704be72bad",
+    "title": "S12 / Set New Password / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s12-set-new-password-tablet-default.html",
+    "width": "2560",
+    "height": "2102",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/3dd3ca23b3344352995935704be72bad:download",
+    "sizeBytes": 25622
+  },
+  {
+    "screenId": "5eb3ef9fc3444a1aa57afabbc89bf517",
+    "title": "S13 / Account Settings / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s13-account-settings-desktop-default.html",
+    "width": "2560",
+    "height": "4756",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/5eb3ef9fc3444a1aa57afabbc89bf517:download",
+    "sizeBytes": 44721
+  },
+  {
+    "screenId": "2b9bad0963d04007a9547a154906fb7f",
+    "title": "S13 / Account Settings / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s13-account-settings-mobile-default.html",
+    "width": "780",
+    "height": "4048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/2b9bad0963d04007a9547a154906fb7f:download",
+    "sizeBytes": 34707
+  },
+  {
+    "screenId": "e792497af5f74a979eabef33d50e872a",
+    "title": "S13 / Account Settings / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s13-account-settings-tablet-default.html",
+    "width": "2560",
+    "height": "2898",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/e792497af5f74a979eabef33d50e872a:download",
+    "sizeBytes": 32939
+  },
+  {
+    "screenId": "a32e419efd334fedbb20c65fb8adc2a0",
+    "title": "S14 / New Job Request / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s14-new-job-request-desktop-default.html",
+    "width": "2560",
+    "height": "4808",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/a32e419efd334fedbb20c65fb8adc2a0:download",
+    "sizeBytes": 48509
+  },
+  {
+    "screenId": "7245106f712e4ef7bff26ef1abbcf65e",
+    "title": "S14 / New Job Request / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s14-new-job-request-mobile-default.html",
+    "width": "780",
+    "height": "3582",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/7245106f712e4ef7bff26ef1abbcf65e:download",
+    "sizeBytes": 33009
+  },
+  {
+    "screenId": "4323fc32968e476e8ec6a5a58e7b7cd9",
+    "title": "S14 / New Job Request / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s14-new-job-request-tablet-default.html",
+    "width": "2560",
+    "height": "3264",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/4323fc32968e476e8ec6a5a58e7b7cd9:download",
+    "sizeBytes": 36433
+  },
+  {
+    "screenId": "66a53ea5a9e347b9aeea0f8c8942bdcb",
+    "title": "S15 / Job Request Review / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s15-job-request-review-desktop-default.html",
+    "width": "2560",
+    "height": "4606",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/66a53ea5a9e347b9aeea0f8c8942bdcb:download",
+    "sizeBytes": 37423
+  },
+  {
+    "screenId": "0bb8b4dbc0494471aebb3dfc779a19f0",
+    "title": "S15 / Job Request Review / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s15-job-request-review-mobile-default.html",
+    "width": "780",
+    "height": "3528",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/0bb8b4dbc0494471aebb3dfc779a19f0:download",
+    "sizeBytes": 30327
+  },
+  {
+    "screenId": "1ca0c2dce6f54964b03beb7de0d3305b",
+    "title": "S15 / Job Request Review / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s15-job-request-review-tablet-default.html",
+    "width": "2560",
+    "height": "4444",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1ca0c2dce6f54964b03beb7de0d3305b:download",
+    "sizeBytes": 40970
+  },
+  {
+    "screenId": "d55a08ee5b4142f8b8d3f1969f205fe1",
+    "title": "S16 / Artisan Matching & Quotes / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s16-artisan-matching-quotes-desktop-default.html",
+    "width": "2560",
+    "height": "3124",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/d55a08ee5b4142f8b8d3f1969f205fe1:download",
+    "sizeBytes": 44989
+  },
+  {
+    "screenId": "3059a6e3b50a45d798fcc9a94c779905",
+    "title": "S16 / Artisan Matching & Quotes / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s16-artisan-matching-quotes-mobile-default.html",
+    "width": "780",
+    "height": "2508",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/3059a6e3b50a45d798fcc9a94c779905:download",
+    "sizeBytes": 30515
+  },
+  {
+    "screenId": "c8f89ddc01e844cc8bfb452ebbadd271",
+    "title": "S16 / Artisan Matching & Quotes / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s16-artisan-matching-quotes-tablet-default.html",
+    "width": "2560",
+    "height": "3112",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/c8f89ddc01e844cc8bfb452ebbadd271:download",
+    "sizeBytes": 45191
+  },
+  {
+    "screenId": "0ea4eeac9f864790a7d9fb4732510018",
+    "title": "S17 / Open Requests Feed & Details / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s17-open-requests-feed-details-desktop-default.html",
+    "width": "2560",
+    "height": "2974",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/0ea4eeac9f864790a7d9fb4732510018:download",
+    "sizeBytes": 53962
+  },
+  {
+    "screenId": "94df6741737f4f6cb421292e64aa0bf6",
+    "title": "S17 / Open Requests Feed & Details / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s17-open-requests-feed-details-mobile-default.html",
+    "width": "780",
+    "height": "3242",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/94df6741737f4f6cb421292e64aa0bf6:download",
+    "sizeBytes": 34836
+  },
+  {
+    "screenId": "223675c77edf4656a64a5ca568836e76",
+    "title": "S17 / Open Requests Feed & Details / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s17-open-requests-feed-details-tablet-default.html",
+    "width": "2560",
+    "height": "2630",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/223675c77edf4656a64a5ca568836e76:download",
+    "sizeBytes": 41205
+  },
+  {
+    "screenId": "2427987d1f1b4101b4b94b1605595c16",
+    "title": "S18 / Send Itemized Quote / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s18-send-itemized-quote-desktop-default.html",
+    "width": "2560",
+    "height": "3982",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/2427987d1f1b4101b4b94b1605595c16:download",
+    "sizeBytes": 58987
+  },
+  {
+    "screenId": "0e90fa77a0b847078780fd1e7806371f",
+    "title": "S18 / Send Itemized Quote / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s18-send-itemized-quote-mobile-default.html",
+    "width": "886",
+    "height": "3628",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/0e90fa77a0b847078780fd1e7806371f:download",
+    "sizeBytes": 33924
+  },
+  {
+    "screenId": "c3f929613f0948259480a5aab020d3f8",
+    "title": "S18 / Send Itemized Quote / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s18-send-itemized-quote-tablet-default.html",
+    "width": "2560",
+    "height": "3424",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/c3f929613f0948259480a5aab020d3f8:download",
+    "sizeBytes": 52993
+  },
+  {
+    "screenId": "1bb57cefb3ce4bedbbd30b80e42f9a03",
+    "title": "S19 / Quote Comparison / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s19-quote-comparison-desktop-default.html",
+    "width": "2560",
+    "height": "4020",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1bb57cefb3ce4bedbbd30b80e42f9a03:download",
+    "sizeBytes": 45877
+  },
+  {
+    "screenId": "13093fd3639c40fe92064350b7afa153",
+    "title": "S19 / Quote Comparison / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s19-quote-comparison-mobile-default.html",
+    "width": "780",
+    "height": "3908",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/13093fd3639c40fe92064350b7afa153:download",
+    "sizeBytes": 28792
+  },
+  {
+    "screenId": "3e6fa42735694b0ebfafa0c1c0620866",
+    "title": "S19 / Quote Comparison / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s19-quote-comparison-tablet-default.html",
+    "width": "2560",
+    "height": "4534",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/3e6fa42735694b0ebfafa0c1c0620866:download",
+    "sizeBytes": 47234
+  },
+  {
+    "screenId": "18558bf7c7e94b29a0f0758586269bdb",
+    "title": "S20 / Quote Details & Acceptance / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s20-quote-details-acceptance-desktop-default.html",
+    "width": "2560",
+    "height": "5426",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/18558bf7c7e94b29a0f0758586269bdb:download",
+    "sizeBytes": 51519
+  },
+  {
+    "screenId": "40e401d2f7144a209244826e6898208a",
+    "title": "S20 / Quote Details & Acceptance / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s20-quote-details-acceptance-mobile-default.html",
+    "width": "780",
+    "height": "4012",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/40e401d2f7144a209244826e6898208a:download",
+    "sizeBytes": 38595
+  },
+  {
+    "screenId": "2d775da2f961421994229befeeb12097",
+    "title": "S20 / Quote Details & Acceptance / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s20-quote-details-acceptance-tablet-default.html",
+    "width": "2560",
+    "height": "6468",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/2d775da2f961421994229befeeb12097:download",
+    "sizeBytes": 45152
+  },
+  {
+    "screenId": "5cf2a7e4e579469382fd0c888f10864d",
+    "title": "S21 / Milestone Deposit Checkout / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s21-milestone-deposit-checkout-desktop-default.html",
+    "width": "2560",
+    "height": "3946",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/5cf2a7e4e579469382fd0c888f10864d:download",
+    "sizeBytes": 43106
+  },
+  {
+    "screenId": "6488fdc3cd90482eb96f0e853077de25",
+    "title": "S21 / Milestone Deposit Checkout / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s21-milestone-deposit-checkout-mobile-default.html",
+    "width": "780",
+    "height": "2190",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/6488fdc3cd90482eb96f0e853077de25:download",
+    "sizeBytes": 29421
+  },
+  {
+    "screenId": "003b77431a214dc48acf7d295788a59d",
+    "title": "S21 / Milestone Deposit Checkout / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s21-milestone-deposit-checkout-tablet-default.html",
+    "width": "2560",
+    "height": "3282",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/003b77431a214dc48acf7d295788a59d:download",
+    "sizeBytes": 40505
+  },
+  {
+    "screenId": "70b0ff8a92384a8a9be97d4140fc5e53",
+    "title": "S22 / Payment Verification & Status Check / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s22-payment-verification-status-check-desktop-default.html",
+    "width": "2560",
+    "height": "2982",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/70b0ff8a92384a8a9be97d4140fc5e53:download",
+    "sizeBytes": 42363
+  },
+  {
+    "screenId": "9487ac78459c404b983983b7c0db2fcb",
+    "title": "S22 / Payment Verification & Status Check / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s22-payment-verification-status-check-mobile-default.html",
+    "width": "852",
+    "height": "2668",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9487ac78459c404b983983b7c0db2fcb:download",
+    "sizeBytes": 27861
+  },
+  {
+    "screenId": "4e167c1a13114de8989551bc309dde14",
+    "title": "S22 / Payment Verification & Status Check / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s22-payment-verification-status-check-tablet-default.html",
+    "width": "2560",
+    "height": "3144",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/4e167c1a13114de8989551bc309dde14:download",
+    "sizeBytes": 35883
+  },
+  {
+    "screenId": "c5cb0699de764d49b0099816d54ba861",
+    "title": "S23 / Payment Receipt / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s23-payment-receipt-desktop-default.html",
+    "width": "3786",
+    "height": "3108",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9139090062011132939:download",
+    "sizeBytes": 22391
+  },
+  {
+    "screenId": "884629ee4826458d964b45472a845ef4",
+    "title": "S23 / Payment Receipt / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s23-payment-receipt-mobile-default.html",
+    "width": "780",
+    "height": "2316",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/884629ee4826458d964b45472a845ef4:download",
+    "sizeBytes": 12237
+  },
+  {
+    "screenId": "4074746f316d463d87fa327eb6d16f94",
+    "title": "S23 / Payment Receipt / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s23-payment-receipt-tablet-default.html",
+    "width": "2560",
+    "height": "2108",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/4074746f316d463d87fa327eb6d16f94:download",
+    "sizeBytes": 17934
+  },
+  {
+    "screenId": "a7c3e17923424b9290a8f7e54cad7a8b",
+    "title": "S24 / Payment Recovery & Alternate Method / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s24-payment-recovery-alternate-method-desktop-default.html",
+    "width": "2560",
+    "height": "2192",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/a7c3e17923424b9290a8f7e54cad7a8b:download",
+    "sizeBytes": 25279
+  },
+  {
+    "screenId": "51113fa80e9b48c4be8c13bdad90fc53",
+    "title": "S24 / Payment Recovery & Alternate Method / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s24-payment-recovery-alternate-method-mobile-default.html",
+    "width": "852",
+    "height": "2132",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/51113fa80e9b48c4be8c13bdad90fc53:download",
+    "sizeBytes": 19372
+  },
+  {
+    "screenId": "e5bba5fd3448401db590a4a17582af26",
+    "title": "S24 / Payment Recovery & Alternate Method / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s24-payment-recovery-alternate-method-tablet-default.html",
+    "width": "2560",
+    "height": "2698",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/e5bba5fd3448401db590a4a17582af26:download",
+    "sizeBytes": 26555
+  },
+  {
+    "screenId": "b51222a805a2407293c20b837dd83cbf",
+    "title": "S25 / Milestone Balance Checkout / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s25-milestone-balance-checkout-desktop-default.html",
+    "width": "2560",
+    "height": "2220",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/b51222a805a2407293c20b837dd83cbf:download",
+    "sizeBytes": 24794
+  },
+  {
+    "screenId": "aae397232bd54e79bc461d84bb1d4ded",
+    "title": "S25 / Milestone Balance Checkout / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s25-milestone-balance-checkout-mobile-default.html",
+    "width": "852",
+    "height": "1858",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/aae397232bd54e79bc461d84bb1d4ded:download",
+    "sizeBytes": 19210
+  },
+  {
+    "screenId": "a508b961e6f7441ab035859d1d780713",
+    "title": "S25 / Milestone Balance Checkout / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s25-milestone-balance-checkout-tablet-default.html",
+    "width": "2560",
+    "height": "2240",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/a508b961e6f7441ab035859d1d780713:download",
+    "sizeBytes": 23385
+  },
+  {
+    "screenId": "3a6d5c070a1741a8891d1a899d67bc33",
+    "title": "S26 / Payment History & Transaction Details / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s26-payment-history-transaction-details-desktop-default.html",
+    "width": "2560",
+    "height": "2720",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/3a6d5c070a1741a8891d1a899d67bc33:download",
+    "sizeBytes": 27421
+  },
+  {
+    "screenId": "1387f2578e1c44c3b731b289c5311237",
+    "title": "S26 / Payment History & Transaction Details / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s26-payment-history-transaction-details-mobile-default.html",
+    "width": "852",
+    "height": "2246",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1387f2578e1c44c3b731b289c5311237:download",
+    "sizeBytes": 23391
+  },
+  {
+    "screenId": "f5ed1d19c7fc4503bdd0faa06b28150b",
+    "title": "S26 / Payment History & Transaction Details / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s26-payment-history-transaction-details-tablet-default.html",
+    "width": "2560",
+    "height": "3068",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/f5ed1d19c7fc4503bdd0faa06b28150b:download",
+    "sizeBytes": 29710
+  },
+  {
+    "screenId": "d89261f468bd4f199ebbed01af68db10",
+    "title": "S27 / My Jobs & Active Engagements / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s27-my-jobs-active-engagements-desktop-default.html",
+    "width": "2560",
+    "height": "3040",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/d89261f468bd4f199ebbed01af68db10:download",
+    "sizeBytes": 35634
+  },
+  {
+    "screenId": "666d4d7e397442e6b3cbf137e87a5e12",
+    "title": "S27 / My Jobs & Active Engagements / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s27-my-jobs-active-engagements-mobile-default.html",
+    "width": "852",
+    "height": "3204",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/666d4d7e397442e6b3cbf137e87a5e12:download",
+    "sizeBytes": 24656
+  },
+  {
+    "screenId": "3aa25b70ad654596862dfb6a005d2787",
+    "title": "S27 / My Jobs & Active Engagements / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s27-my-jobs-active-engagements-tablet-default.html",
+    "width": "2560",
+    "height": "2608",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/3aa25b70ad654596862dfb6a005d2787:download",
+    "sizeBytes": 28137
+  },
+  {
+    "screenId": "b372cf7e5d7b44568d403ae29edc8060",
+    "title": "S28 / Shared Job Detail & Progress / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s28-shared-job-detail-progress-desktop-default.html",
+    "width": "2560",
+    "height": "2664",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/b372cf7e5d7b44568d403ae29edc8060:download",
+    "sizeBytes": 25196
+  },
+  {
+    "screenId": "7abbfdb8710e4cda81d528125703ef69",
+    "title": "S28 / Shared Job Detail & Progress / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s28-shared-job-detail-progress-mobile-default.html",
+    "width": "852",
+    "height": "2182",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/7abbfdb8710e4cda81d528125703ef69:download",
+    "sizeBytes": 17587
+  },
+  {
+    "screenId": "31e5d89d0b3b48bcb022b6a6fae458a1",
+    "title": "S28 / Shared Job Detail & Progress / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s28-shared-job-detail-progress-tablet-default.html",
+    "width": "2560",
+    "height": "2728",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/31e5d89d0b3b48bcb022b6a6fae458a1:download",
+    "sizeBytes": 20936
+  },
+  {
+    "screenId": "708c274c5db240f18c2d5d196840f3f5",
+    "title": "S29 / Artisan Add Progress Update / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s29-artisan-add-progress-update-desktop-default.html",
+    "width": "2560",
+    "height": "2598",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/708c274c5db240f18c2d5d196840f3f5:download",
+    "sizeBytes": 24480
+  },
+  {
+    "screenId": "14c00f83a3db4a2aa8be9c9f03b237d8",
+    "title": "S29 / Artisan Add Progress Update / Mobile / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s29-artisan-add-progress-update-mobile-default.html",
+    "width": "2560",
+    "height": "2678",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/14c00f83a3db4a2aa8be9c9f03b237d8:download",
+    "sizeBytes": 15934
+  },
+  {
+    "screenId": "0c891cae8a3f4717a15feb2d01cff115",
+    "title": "S29 / Artisan Add Progress Update / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s29-artisan-add-progress-update-tablet-default.html",
+    "width": "2560",
+    "height": "2864",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/0c891cae8a3f4717a15feb2d01cff115:download",
+    "sizeBytes": 21049
+  },
+  {
+    "screenId": "42864192a5ef4e37b8cfcccaffcc725b",
+    "title": "S30 / Customer Review & Completion Sign-off / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s30-customer-review-completion-sign-off-desktop-default.html",
+    "width": "2560",
+    "height": "3464",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/42864192a5ef4e37b8cfcccaffcc725b:download",
+    "sizeBytes": 24178
+  },
+  {
+    "screenId": "9e9477238e38438585af317c0e033c2e",
+    "title": "S30 / Customer Review & Completion Sign-off / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s30-customer-review-completion-sign-off-mobile-default.html",
+    "width": "852",
+    "height": "2492",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9e9477238e38438585af317c0e033c2e:download",
+    "sizeBytes": 19677
+  },
+  {
+    "screenId": "38aa1e9edccb41efa3a83d7918a249cb",
+    "title": "S30 / Customer Review & Completion Sign-off / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s30-customer-review-completion-sign-off-tablet-default.html",
+    "width": "2560",
+    "height": "3082",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/38aa1e9edccb41efa3a83d7918a249cb:download",
+    "sizeBytes": 23261
+  },
+  {
+    "screenId": "58beac660a07405995046a7825ea62f1",
+    "title": "S31 / Customer Review & Rating / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s31-customer-review-rating-desktop-default.html",
+    "width": "2560",
+    "height": "2200",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/58beac660a07405995046a7825ea62f1:download",
+    "sizeBytes": 22914
+  },
+  {
+    "screenId": "56f9baf20a8342a2835ac306dd16b63d",
+    "title": "S31 / Customer Review & Rating / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s31-customer-review-rating-mobile-default.html",
+    "width": "780",
+    "height": "2032",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/56f9baf20a8342a2835ac306dd16b63d:download",
+    "sizeBytes": 16175
+  },
+  {
+    "screenId": "e46c5694bfd14d76ba5938c1c875e0b2",
+    "title": "S31 / Customer Review & Rating / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s31-customer-review-rating-tablet-default.html",
+    "width": "2560",
+    "height": "2048",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/e46c5694bfd14d76ba5938c1c875e0b2:download",
+    "sizeBytes": 20374
+  },
+  {
+    "screenId": "f1689176f7c547ee920ba9b545c70f5b",
+    "title": "S32 / Dispute Resolution & Issue Submission / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s32-dispute-resolution-issue-submission-desktop-default.html",
+    "width": "2560",
+    "height": "4604",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/f1689176f7c547ee920ba9b545c70f5b:download",
+    "sizeBytes": 45839
+  },
+  {
+    "screenId": "f108fc8a38fb404fac9419e51a9d3f71",
+    "title": "S32 / Dispute Resolution & Issue Submission / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s32-dispute-resolution-issue-submission-mobile-default.html",
+    "width": "780",
+    "height": "4042",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/f108fc8a38fb404fac9419e51a9d3f71:download",
+    "sizeBytes": 29705
+  },
+  {
+    "screenId": "4f5e6ade4f5a43aa8764d435dbc40997",
+    "title": "S32 / Dispute Resolution & Issue Submission / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s32-dispute-resolution-issue-submission-tablet-default.html",
+    "width": "2560",
+    "height": "4716",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/4f5e6ade4f5a43aa8764d435dbc40997:download",
+    "sizeBytes": 39559
+  },
+  {
+    "screenId": "1f624fc3ea0f4d13a7411e34e6218d97",
+    "title": "S33 / Dispute Status & Mediation Tracker / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s33-dispute-status-mediation-tracker-desktop-default.html",
+    "width": "2560",
+    "height": "4102",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1f624fc3ea0f4d13a7411e34e6218d97:download",
+    "sizeBytes": 44377
+  },
+  {
+    "screenId": "8ec8b4a8c79a4b20ad6d87b533a47a2e",
+    "title": "S33 / Dispute Status & Mediation Tracker / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s33-dispute-status-mediation-tracker-mobile-default.html",
+    "width": "780",
+    "height": "3320",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/8ec8b4a8c79a4b20ad6d87b533a47a2e:download",
+    "sizeBytes": 25309
+  },
+  {
+    "screenId": "631a2b2cb9e547be9b3c96b11f6e5459",
+    "title": "S33 / Dispute Status & Mediation Tracker / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s33-dispute-status-mediation-tracker-tablet-default.html",
+    "width": "2560",
+    "height": "4356",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/631a2b2cb9e547be9b3c96b11f6e5459:download",
+    "sizeBytes": 32242
+  },
+  {
+    "screenId": "f1ee2f20327a42a6b873871363ebd30c",
+    "title": "S34 / Admin Dispute Resolution Queue / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s34-admin-dispute-resolution-queue-desktop-default.html",
+    "width": "2560",
+    "height": "4546",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/f1ee2f20327a42a6b873871363ebd30c:download",
+    "sizeBytes": 65189
+  },
+  {
+    "screenId": "87d8d78c38314cca9068975ae848e005",
+    "title": "S34 / Admin Dispute Resolution Queue / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s34-admin-dispute-resolution-queue-mobile-default.html",
+    "width": "780",
+    "height": "3188",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/87d8d78c38314cca9068975ae848e005:download",
+    "sizeBytes": 30109
+  },
+  {
+    "screenId": "4dd3554353a64d23867b0737b7d2a93d",
+    "title": "S34 / Admin Dispute Resolution Queue / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s34-admin-dispute-resolution-queue-tablet-default.html",
+    "width": "2560",
+    "height": "3436",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/4dd3554353a64d23867b0737b7d2a93d:download",
+    "sizeBytes": 37191
+  },
+  {
+    "screenId": "656d809489d6475fa896e61e26f57f76",
+    "title": "S35 / Dispute Detail & Determination / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s35-dispute-detail-determination-desktop-default.html",
+    "width": "2560",
+    "height": "4448",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/656d809489d6475fa896e61e26f57f76:download",
+    "sizeBytes": 58628
+  },
+  {
+    "screenId": "00f1ce401b474d578bf506fd2340cfcf",
+    "title": "S35 / Dispute Detail & Determination / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s35-dispute-detail-determination-mobile-default.html",
+    "width": "780",
+    "height": "4888",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/00f1ce401b474d578bf506fd2340cfcf:download",
+    "sizeBytes": 39746
+  },
+  {
+    "screenId": "6fd0242b41a947d09bbc108a0c630c89",
+    "title": "S35 / Dispute Detail & Determination / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s35-dispute-detail-determination-tablet-default.html",
+    "width": "2560",
+    "height": "4436",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/6fd0242b41a947d09bbc108a0c630c89:download",
+    "sizeBytes": 43614
+  },
+  {
+    "screenId": "29802ce53be44a75b9fd0e7dcf15f6a8",
+    "title": "S36 / Artisan Dashboard Overview / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s36-artisan-dashboard-overview-desktop-default.html",
+    "width": "2560",
+    "height": "4974",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/29802ce53be44a75b9fd0e7dcf15f6a8:download",
+    "sizeBytes": 46883
+  },
+  {
+    "screenId": "1d5781b0773a415c8caaf6c0abc03100",
+    "title": "S36 / Artisan Dashboard Overview / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s36-artisan-dashboard-overview-mobile-default.html",
+    "width": "780",
+    "height": "3974",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1d5781b0773a415c8caaf6c0abc03100:download",
+    "sizeBytes": 30218
+  },
+  {
+    "screenId": "ffb39d58bfb74778a70eb7fad111e03b",
+    "title": "S36 / Artisan Dashboard Overview / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s36-artisan-dashboard-overview-tablet-default.html",
+    "width": "2560",
+    "height": "3706",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/ffb39d58bfb74778a70eb7fad111e03b:download",
+    "sizeBytes": 39741
+  },
+  {
+    "screenId": "220dac2abf174faa85dced1e87e4cc4b",
+    "title": "S37 / Artisan My Jobs & Work Orders / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s37-artisan-my-jobs-work-orders-desktop-default.html",
+    "width": "2560",
+    "height": "4992",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/220dac2abf174faa85dced1e87e4cc4b:download",
+    "sizeBytes": 58242
+  },
+  {
+    "screenId": "061af81718c248aba0781d5db9520327",
+    "title": "S37 / Artisan My Jobs & Work Orders / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s37-artisan-my-jobs-work-orders-mobile-default.html",
+    "width": "780",
+    "height": "4144",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/061af81718c248aba0781d5db9520327:download",
+    "sizeBytes": 37017
+  },
+  {
+    "screenId": "c611223ea2b54bee8df22d29ba7bde37",
+    "title": "S37 / Artisan My Jobs & Work Orders / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s37-artisan-my-jobs-work-orders-tablet-default.html",
+    "width": "2560",
+    "height": "2536",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/c611223ea2b54bee8df22d29ba7bde37:download",
+    "sizeBytes": 41273
+  },
+  {
+    "screenId": "f02092c7433e4b0c9eebe7c14ee97c55",
+    "title": "S38 / Artisan Earnings & Paystack TEST Ledger / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s38-artisan-earnings-paystack-test-ledger-desktop-default.html",
+    "width": "2560",
+    "height": "3236",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/f02092c7433e4b0c9eebe7c14ee97c55:download",
+    "sizeBytes": 72990
+  },
+  {
+    "screenId": "8306e0e9d1b94751af1d2015a5491ac2",
+    "title": "S38 / Artisan Earnings & Paystack TEST Ledger / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s38-artisan-earnings-paystack-test-ledger-mobile-default.html",
+    "width": "780",
+    "height": "3618",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/8306e0e9d1b94751af1d2015a5491ac2:download",
+    "sizeBytes": 42914
+  },
+  {
+    "screenId": "2b7861a851f8420b8afb32c3bc59018f",
+    "title": "S38 / Artisan Earnings & Paystack TEST Ledger / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s38-artisan-earnings-paystack-test-ledger-tablet-default.html",
+    "width": "2560",
+    "height": "2734",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/2b7861a851f8420b8afb32c3bc59018f:download",
+    "sizeBytes": 52308
+  },
+  {
+    "screenId": "08f63427e04047c181492283ec45b0e9",
+    "title": "S39 / Artisan Availability & Calendar Schedule / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s39-artisan-availability-calendar-schedule-desktop-default.html",
+    "width": "2560",
+    "height": "3424",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/08f63427e04047c181492283ec45b0e9:download",
+    "sizeBytes": 55179
+  },
+  {
+    "screenId": "d925a90728904886a030b6eb25ae141b",
+    "title": "S39 / Artisan Availability & Calendar Schedule / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s39-artisan-availability-calendar-schedule-mobile-default.html",
+    "width": "780",
+    "height": "4104",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/d925a90728904886a030b6eb25ae141b:download",
+    "sizeBytes": 39400
+  },
+  {
+    "screenId": "b4ad765ff182419288ea993127e69c14",
+    "title": "S39 / Artisan Availability & Calendar Schedule / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s39-artisan-availability-calendar-schedule-tablet-default.html",
+    "width": "2560",
+    "height": "3856",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/b4ad765ff182419288ea993127e69c14:download",
+    "sizeBytes": 59490
+  },
+  {
+    "screenId": "40f394d23d864086a7cd99ffe5ee7a2a",
+    "title": "S40 / Artisan Verification & Submission / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s40-artisan-verification-submission-desktop-default.html",
+    "width": "2560",
+    "height": "5184",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/40f394d23d864086a7cd99ffe5ee7a2a:download",
+    "sizeBytes": 50122
+  },
+  {
+    "screenId": "a7438ace38c3469ca901a7d03e18ebf5",
+    "title": "S40 / Artisan Verification & Submission / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s40-artisan-verification-submission-mobile-default.html",
+    "width": "780",
+    "height": "3102",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/a7438ace38c3469ca901a7d03e18ebf5:download",
+    "sizeBytes": 31258
+  },
+  {
+    "screenId": "3d88cc3a203c4f7fb7fffb2c841597f8",
+    "title": "S40 / Artisan Verification & Submission / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s40-artisan-verification-submission-tablet-default.html",
+    "width": "2560",
+    "height": "4466",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/3d88cc3a203c4f7fb7fffb2c841597f8:download",
+    "sizeBytes": 46973
+  },
+  {
+    "screenId": "0c79850506fb42aabdd8b425622bb969",
+    "title": "S41 / Artisan Verification Status & Badge Review / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s41-artisan-verification-status-badge-review-desktop-default.html",
+    "width": "2560",
+    "height": "3924",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/0c79850506fb42aabdd8b425622bb969:download",
+    "sizeBytes": 58140
+  },
+  {
+    "screenId": "fb157831b9614fdc8bfde0af78e2473e",
+    "title": "S41 / Artisan Verification Status & Badge Review / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s41-artisan-verification-status-badge-review-mobile-default.html",
+    "width": "780",
+    "height": "2700",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/fb157831b9614fdc8bfde0af78e2473e:download",
+    "sizeBytes": 31521
+  },
+  {
+    "screenId": "95deecb1db59406f946a6ccdf452ba96",
+    "title": "S41 / Artisan Verification Status & Badge Review / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s41-artisan-verification-status-badge-review-tablet-default.html",
+    "width": "2560",
+    "height": "3964",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/95deecb1db59406f946a6ccdf452ba96:download",
+    "sizeBytes": 53148
+  },
+  {
+    "screenId": "9914c6cd2274477ca11a44e151fe935a",
+    "title": "S42 / Admin Verification Queue / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s42-admin-verification-queue-desktop-default.html",
+    "width": "2560",
+    "height": "4680",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9914c6cd2274477ca11a44e151fe935a:download",
+    "sizeBytes": 60705
+  },
+  {
+    "screenId": "bf183415992d448f9739bbcabb5c6235",
+    "title": "S42 / Admin Verification Queue / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s42-admin-verification-queue-mobile-default.html",
+    "width": "780",
+    "height": "3684",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/bf183415992d448f9739bbcabb5c6235:download",
+    "sizeBytes": 35851
+  },
+  {
+    "screenId": "283d23a9844543ddb7031fe654bcc737",
+    "title": "S42 / Artisan Verification Queue / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s42-artisan-verification-queue-tablet-default.html",
+    "width": "2560",
+    "height": "3914",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/283d23a9844543ddb7031fe654bcc737:download",
+    "sizeBytes": 42563
+  },
+  {
+    "screenId": "17e80c4c9f4541d1b6491db9ffdc1910",
+    "title": "S43 / Admin Dossier Verification & Review / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s43-admin-dossier-verification-review-desktop-default.html",
+    "width": "2560",
+    "height": "4204",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/17e80c4c9f4541d1b6491db9ffdc1910:download",
+    "sizeBytes": 55139
+  },
+  {
+    "screenId": "b1640d9fb3a94e00a5aa305f31c073a1",
+    "title": "S43 / Admin Dossier Verification & Review / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s43-admin-dossier-verification-review-mobile-default.html",
+    "width": "780",
+    "height": "2996",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/b1640d9fb3a94e00a5aa305f31c073a1:download",
+    "sizeBytes": 37674
+  },
+  {
+    "screenId": "03cace3874bc4897a9a71a7e885c9269",
+    "title": "S43 / Admin Dossier Verification & Review / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s43-admin-dossier-verification-review-tablet-default.html",
+    "width": "2560",
+    "height": "4766",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/03cace3874bc4897a9a71a7e885c9269:download",
+    "sizeBytes": 51510
+  },
+  {
+    "screenId": "7eb01379174345aea95c223540e67811",
+    "title": "S44 / Training Directory / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s44-training-directory-desktop-default.html",
+    "width": "2560",
+    "height": "4226",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/7eb01379174345aea95c223540e67811:download",
+    "sizeBytes": 46276
+  },
+  {
+    "screenId": "d51db431cd7f4afcab2ff75c06604ee6",
+    "title": "S44 / Training Directory / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s44-training-directory-mobile-default.html",
+    "width": "780",
+    "height": "4148",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/d51db431cd7f4afcab2ff75c06604ee6:download",
+    "sizeBytes": 38183
+  },
+  {
+    "screenId": "107d83cb4fa44426a2b1af9c96e2092a",
+    "title": "S44 / Training Directory / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s44-training-directory-tablet-default.html",
+    "width": "2560",
+    "height": "3956",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/107d83cb4fa44426a2b1af9c96e2092a:download",
+    "sizeBytes": 44742
+  },
+  {
+    "screenId": "bfbbdacaf230488b9d8bb9a3de1b2642",
+    "title": "S45 / Artisan Guide Reader & Module Completion / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s45-artisan-guide-reader-module-completion-desktop-default.html",
+    "width": "2560",
+    "height": "6366",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/bfbbdacaf230488b9d8bb9a3de1b2642:download",
+    "sizeBytes": 46695
+  },
+  {
+    "screenId": "ab41d20c51784d27a910ff1fad2d1d09",
+    "title": "S45 / Artisan Guide Reader & Module Completion / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s45-artisan-guide-reader-module-completion-mobile-default.html",
+    "width": "780",
+    "height": "6994",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/ab41d20c51784d27a910ff1fad2d1d09:download",
+    "sizeBytes": 31996
+  },
+  {
+    "screenId": "9a98efafa10f43d1b9dc6cb81b10e456",
+    "title": "S45 / Artisan Guide Reader & Module Completion / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s45-artisan-guide-reader-module-completion-tablet-default.html",
+    "width": "2560",
+    "height": "4908",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/9a98efafa10f43d1b9dc6cb81b10e456:download",
+    "sizeBytes": 34009
+  },
+  {
+    "screenId": "0a5b073372e64ab1be38ec14547ad0bb",
+    "title": "S46 / Module Completion & Certificate / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s46-module-completion-certificate-desktop-default.html",
+    "width": "2560",
+    "height": "3710",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/0a5b073372e64ab1be38ec14547ad0bb:download",
+    "sizeBytes": 41129
+  },
+  {
+    "screenId": "8cf17e5097bf48e098272023d81f3e6a",
+    "title": "S46 / Module Completion & Certificate / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s46-module-completion-certificate-mobile-default.html",
+    "width": "780",
+    "height": "2666",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/8cf17e5097bf48e098272023d81f3e6a:download",
+    "sizeBytes": 27063
+  },
+  {
+    "screenId": "92757453345142759f31f2ed22b2b4a9",
+    "title": "S46 / Module Completion & Certificate / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s46-module-completion-certificate-tablet-default.html",
+    "width": "2560",
+    "height": "2582",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/92757453345142759f31f2ed22b2b4a9:download",
+    "sizeBytes": 32038
+  },
+  {
+    "screenId": "32b112670ab74f75914211364b4b8061",
+    "title": "S47 / Permission Denied & Access Restricted / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s47-permission-denied-access-restricted-desktop-default.html",
+    "width": "2560",
+    "height": "3028",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/32b112670ab74f75914211364b4b8061:download",
+    "sizeBytes": 29317
+  },
+  {
+    "screenId": "8a6d99a148f74c5b8927fcff9c93aec2",
+    "title": "S47 / Permission Denied & Access Restricted / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s47-permission-denied-access-restricted-mobile-default.html",
+    "width": "780",
+    "height": "2082",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/8a6d99a148f74c5b8927fcff9c93aec2:download",
+    "sizeBytes": 18944
+  },
+  {
+    "screenId": "abb781093ffa4bcdb44beac6e3a65e15",
+    "title": "S47 / Permission Denied & Access Restricted / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s47-permission-denied-access-restricted-tablet-default.html",
+    "width": "2560",
+    "height": "3068",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/abb781093ffa4bcdb44beac6e3a65e15:download",
+    "sizeBytes": 24346
+  },
+  {
+    "screenId": "e00de0ee30224291bec1246398cd5731",
+    "title": "S48 / Page Not Found / Desktop / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s48-page-not-found-desktop-default.html",
+    "width": "2560",
+    "height": "2998",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/e00de0ee30224291bec1246398cd5731:download",
+    "sizeBytes": 34034
+  },
+  {
+    "screenId": "1de017f15eac40dc90ad41a0d50a1d68",
+    "title": "S48 / Page Not Found / Mobile / Default",
+    "deviceType": "MOBILE",
+    "filename": "s48-page-not-found-mobile-default.html",
+    "width": "780",
+    "height": "1800",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/1de017f15eac40dc90ad41a0d50a1d68:download",
+    "sizeBytes": 18305
+  },
+  {
+    "screenId": "ab04b3ec141048f08b4cf1ef434bbb93",
+    "title": "S48 / Page Not Found / Tablet / Default",
+    "deviceType": "DESKTOP",
+    "filename": "s48-page-not-found-tablet-default.html",
+    "width": "2560",
+    "height": "2764",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/ab04b3ec141048f08b4cf1ef434bbb93:download",
+    "sizeBytes": 29133
+  },
+  {
+    "screenId": "7c75c3bac46a4b69b3e03e64f89ac7e5",
+    "title": "SabiWork — Clear Trade Modern DESIGN.md",
+    "deviceType": "DESKTOP",
+    "filename": "sabiwork-clear-trade-modern-design.md.html",
+    "width": "0",
+    "height": "0",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/6038732663245800013/files/7c75c3bac46a4b69b3e03e64f89ac7e5:download",
+    "sizeBytes": 9176
+  }
+]

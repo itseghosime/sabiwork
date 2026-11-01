@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary": "#576065", "on-background": "#141b2b", "on-tertiary": "#ffffff", "error": "#ba1a1a", "primary-container": "#38a8e8", "surface-variant": "#dce2f7", "surface-container": "#e9edff", "on-primary-fixed": "#001e2f", "secondary-fixed": "#d5e3ff", "on-surface-variant": "#3f4850", "primary-fixed-dim": "#8aceff", "on-primary": "#ffffff", "on-surface": "#141b2b", "surface-container-highest": "#dce2f7", "primary-fixed": "#c9e6ff", "inverse-primary": "#8aceff", "surface-container-lowest": "#ffffff", "on-primary-container": "#003a56", "surface-dim": "#d3daef", "tertiary-container": "#97a0a7", "on-secondary-container": "#435a7f", "secondary-fixed-dim": "#b0c8f2", "inverse-surface": "#293040", "surface-bright": "#f9f9ff", "primary": "#006491", "secondary-container": "#bbd3fe", "on-tertiary-fixed-variant": "#3f484e", "surface-container-low": "#f1f3ff", "outline": "#6f7881", "tertiary-fixed": "#dbe4eb", "error-container": "#ffdad6", "background": "#f9f9ff", "on-tertiary-fixed": "#141d22", "on-secondary": "#ffffff", "on-secondary-fixed": "#001b3c", "on-tertiary-container": "#2e373d", "surface-tint": "#006491", "inverse-on-surface": "#edf0ff", "on-error-container": "#93000a", "tertiary-fixed-dim": "#bfc8ce", "on-primary-fixed-variant": "#004b6f", "on-secondary-fixed-variant": "#30476b", "surface": "#f9f9ff", "outline-variant": "#bec8d1", "secondary": "#485f84", "on-error": "#ffffff", "surface-container-high": "#e1e8fd" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter-mobile": "0.75rem", "space-sm": "0.625rem", "space-2xs": "0.25rem", "space-xs": "0.5rem", "space-md": "1rem", "margin": "2rem", "space-3xl": "3rem", "space-lg": "1.25rem", "margin-mobile": "1rem", "gutter": "1.25rem", "space-2xl": "2rem", "space-xl": "1.5rem" }, fontFamily: { "headline-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "label-lg": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"], "body-sm": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col antialiased selection:bg-primary-fixed"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><a class="flex items-baseline select-none" data-path="explore" href="#"><span class="font-headline-sm text-headline-sm text-[#0E294B] tracking-tight">Sabi</span><span class="font-headline-sm text-headline-sm text-[#38A8E8] tracking-tight">Work</span></a></div><div class="flex items-center gap-space-xs"><a class="inline-flex items-center justify-center min-h-[44px] px-space-md py-space-xs rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg whitespace-nowrap shrink-0 transition-colors hover:bg-primary" data-path="post-job" href="#"><span class="material-symbols-outlined text-[18px] shrink-0 mr-space-xs">add_circle</span><span>Post Job</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-28 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Sticky Search & Filter Header (Sits immediately beneath fixed app bar) -->
+<div class="sticky top-16 z-30 bg-surface-container-lowest shadow-sm px-margin-mobile pt-space-xs pb-space-sm flex flex-col gap-space-xs">
+<!-- Search Query Bar -->
+<div class="relative flex items-center w-full">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[20px] pointer-events-none">search</span>
+<input class="w-full h-11 pl-10 pr-10 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest" type="text" value="Plumbing &amp; Sanitary"/>
+<button aria-label="Clear search" class="absolute right-2.5 w-7 h-7 flex items-center justify-center rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Location Selector & Control Row -->
+<div class="flex items-center justify-between gap-space-xs">
+<button class="inline-flex items-center gap-space-2xs min-h-[44px] px-3 py-2 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md shrink-0" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+<span class="truncate max-w-[130px]">Benin City (All)</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">expand_more</span>
+</button>
+<div class="flex items-center gap-space-xs shrink-0">
+<button class="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2 rounded-xl bg-surface-container-high text-on-surface font-label-md text-label-md active:bg-secondary-container" id="openFilterBtn" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">tune</span>
+<span>Filters</span>
+<span class="w-4 h-4 rounded-full bg-primary text-on-primary font-label-sm text-[10px] flex items-center justify-center leading-none">2</span>
+</button>
+<button class="inline-flex items-center justify-center gap-1 min-h-[44px] px-2.5 py-2 rounded-xl bg-surface-container-low text-on-surface-variant font-label-md text-label-md" type="button">
+<span class="text-on-surface">Top Rated</span>
+<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+<!-- Active Filter Chips -->
+<div class="flex items-center gap-space-2xs overflow-x-auto no-scrollbar py-0.5">
+<div class="inline-flex items-center gap-1 min-h-[28px] pl-2.5 pr-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm shrink-0">
+<span>Plumbing</span>
+<button aria-label="Remove Plumbing filter" class="w-4 h-4 flex items-center justify-center rounded-full hover:bg-primary/20" type="button">
+<span class="material-symbols-outlined text-[13px]">close</span>
+</button>
+</div>
+<div class="inline-flex items-center gap-1 min-h-[28px] pl-2.5 pr-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm shrink-0">
+<span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.5+</span>
+<button aria-label="Remove Rating filter" class="w-4 h-4 flex items-center justify-center rounded-full hover:bg-primary/20" type="button">
+<span class="material-symbols-outlined text-[13px]">close</span>
+</button>
+</div>
+<button class="font-label-sm text-label-sm text-primary underline underline-offset-2 shrink-0 px-1 py-1" type="button">
+        Clear all
+      </button>
+</div>
+</div>
+<!-- Interactive State Switcher Bar (Demo / Preview utility) -->
+<div class="px-margin-mobile py-2.5 bg-surface-container-high flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Preview Mode</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold" id="currentModeLabel">Active Pros</span>
+</div>
+<div class="grid grid-cols-4 gap-1 p-0.5 bg-surface-container rounded-lg">
+<button class="state-tab py-1.5 px-1 rounded-md text-center font-label-sm text-label-sm transition-all bg-surface-container-lowest text-primary shadow-sm font-semibold" id="tab-active" onclick="switchState('active')" type="button">Active (18)</button>
+<button class="state-tab py-1.5 px-1 rounded-md text-center font-label-sm text-label-sm transition-all text-on-surface-variant hover:text-on-surface" id="tab-skeleton" onclick="switchState('skeleton')" type="button">Loading</button>
+<button class="state-tab py-1.5 px-1 rounded-md text-center font-label-sm text-label-sm transition-all text-on-surface-variant hover:text-on-surface" id="tab-empty" onclick="switchState('empty')" type="button">Zero (0)</button>
+<button class="state-tab py-1.5 px-1 rounded-md text-center font-label-sm text-label-sm transition-all text-on-surface-variant hover:text-on-surface" id="tab-error" onclick="switchState('error')" type="button">Offline</button>
+</div>
+</div>
+<!-- Main Dynamic Results Container -->
+<div class="px-margin-mobile py-space-sm flex flex-col gap-space-md">
+<!-- Active State View -->
+<div class="flex flex-col gap-space-md" id="state-active">
+<!-- Result Sub-heading & Status Summary -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-lg text-label-lg text-on-surface">18 verified demo pros found</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Edo State Axis</span>
+</div>
+<!-- Artisan Card 1: Osaze Ighodaro -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-3.5">
+<!-- Top Profile Row -->
+<div class="flex items-start gap-3">
+<div class="relative shrink-0">
+<img class="w-16 h-16 rounded-xl object-cover" data-alt="Close-up professional portrait of Osaze Ighodaro, a skilled 36-year-old Nigerian master plumber in clean denim work shirt and safety lanyard, natural warm indoor workshop background, vibrant confident smile, crisp lighting, high quality editorial photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4xIcFLbCgO0cTHiQhn1fgxQe8xmYnbnjrP2abOLcyE-OHUWNqWpkkRfV44gH7IPsj82DKO_5R8vD0FTZFtafvCyKzXUQR-6HAZQOIi0PCtk6oF_5z2NqHkPY24HHHacU9CYL2rApY3QiI5IU170M1sBzY3ECRiay0dzECvB3vFbWuINRoqI3vv_-FrPk0vt21mjoIfYY6dBbwL-O_liyuX6vhPHDddUmLNYhGCJs"/>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow" title="Admin Reviewed Artisan">
+<span class="material-symbols-outlined text-[14px] text-on-primary">verified</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between gap-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Osaze Ighodaro</h2>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shrink-0">
+<span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                Ready
+              </span>
+</div>
+<p class="font-label-md text-label-md text-primary font-medium">Master Plumber &amp; Pipe Fitter</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-secondary">place</span>
+<span class="truncate">GRA Axis, Benin City</span>
+</div>
+</div>
+</div>
+<!-- Metric Badges Row -->
+<div class="flex items-center justify-between bg-surface-container-low rounded-lg p-2.5">
+<div class="flex items-center gap-1.5">
+<div class="flex items-center text-primary font-headline-sm text-[15px]">
+<span class="material-symbols-outlined text-[16px] mr-0.5" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(38 demo jobs)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-secondary block">Benchmark</span>
+<span class="font-headline-sm text-[14px] text-on-surface font-semibold">From ₦4,500</span>
+</div>
+</div>
+<!-- Sub-Skills Chips -->
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Borehole Submersible</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">PPR Fusion</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Booster Pump</span>
+</div>
+<!-- Stacked 44px Action Controls -->
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-primary/90 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span>Request Quote</span>
+</button>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>View Profile</span>
+</button>
+</div>
+</div>
+<!-- Artisan Card 2: Courage Idahosa -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-3.5">
+<div class="flex items-start gap-3">
+<div class="relative shrink-0">
+<img class="w-16 h-16 rounded-xl object-cover" data-alt="Portrait of Courage Idahosa, a 42-year-old Nigerian custom woodworker and finish carpenter wearing protective goggles around neck, standing proudly in an artisanal cabinetry workshop with timber grain, soft sunlight, authentic friendly demeanor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrhEeyyVNMeBNqUvz8NX_LtqNFVJfyr2HxMwZhOS7R8DhqY8jLRIEFz8MvM9kXB676WQGN4JOwhLuAztQEdkrDc34WGwjSX54199WSdCe-Ek4_dIatG3mZvOqjRgnPSPEwjar6TtA1L4iilIbh2wUk6xCrlNHzz9kdRGLBNDwh_N9DBDfB4vxpc9zJWF-LMQ48A9hSb8uYigmhYa5FuXPYg2PjOuFPrR0s5y2NU4I"/>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-[14px] text-on-primary">verified</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between gap-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Courage Idahosa</h2>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm shrink-0">
+                Top Rated
+              </span>
+</div>
+<p class="font-label-md text-label-md text-primary font-medium">Carpentry &amp; Cabinetry</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-secondary">place</span>
+<span class="truncate">Ekenwan Road, Benin City</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low rounded-lg p-2.5">
+<div class="flex items-center gap-1.5">
+<div class="flex items-center text-primary font-headline-sm text-[15px]">
+<span class="material-symbols-outlined text-[16px] mr-0.5" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(35 demo jobs)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-secondary block">Benchmark</span>
+<span class="font-headline-sm text-[14px] text-on-surface font-semibold">From ₦12,000</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Kitchen Cabinets</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Roof Framing</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Wardrobe Fit</span>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-primary/90 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span>Request Quote</span>
+</button>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>View Profile</span>
+</button>
+</div>
+</div>
+<!-- Artisan Card 3: Godwin Akenzua -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-3.5">
+<div class="flex items-start gap-3">
+<div class="relative shrink-0">
+<img class="w-16 h-16 rounded-xl object-cover" data-alt="Portrait of Godwin Akenzua, experienced Nigerian drainage technician and plumber, holding copper pipe fittings with calm professional expression, industrial clean apron, bright neutral workshop environment, warm cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCftdf1LtZpMydYnjv3h1SJ6UnbyqrBTNsRtg_dHYO5JEYOp0klBUcNjgwZJ2zEhNNRt-Z_aS2TtUXYEHL36STHI4WbynY1-v_qv917dwAHoAg7bw7p9u4d61k65w95rqeCON5UeNysCMHKFIX_s9xOa769RGG5LmTumYadQkAaiMeepWyUEbPLNKvh_ifygKLwzDBu1HhwR84EPwcmE_xSOSoiexQB8a6258Oe5f0"/>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-[14px] text-on-primary">verified</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between gap-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Godwin Akenzua</h2>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shrink-0">
+<span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                Ready
+              </span>
+</div>
+<p class="font-label-md text-label-md text-primary font-medium">Plumbing &amp; Drainage</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-secondary">place</span>
+<span class="truncate">Ikpoba Hill, Benin City</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low rounded-lg p-2.5">
+<div class="flex items-center gap-1.5">
+<div class="flex items-center text-primary font-headline-sm text-[15px]">
+<span class="material-symbols-outlined text-[16px] mr-0.5" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.8</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(29 demo jobs)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-secondary block">Benchmark</span>
+<span class="font-headline-sm text-[14px] text-on-surface font-semibold">From ₦5,500</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Drainage Clearance</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Toilet Cistern</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Septic Line</span>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-primary/90 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span>Request Quote</span>
+</button>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>View Profile</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Skeleton Loading View (Hidden by default) -->
+<div class="hidden flex-col gap-space-md animate-pulse" id="state-skeleton">
+<div class="h-4 w-48 bg-surface-container-high rounded-full"></div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-4">
+<div class="flex items-start gap-3">
+<div class="w-16 h-16 rounded-xl bg-surface-container-high shrink-0"></div>
+<div class="flex flex-col flex-1 gap-2">
+<div class="h-5 w-3/4 bg-surface-container-high rounded-md"></div>
+<div class="h-4 w-1/2 bg-surface-container-high rounded-md"></div>
+<div class="h-3 w-1/3 bg-surface-container rounded-md"></div>
+</div>
+</div>
+<div class="h-12 w-full bg-surface-container-low rounded-lg"></div>
+<div class="flex gap-2">
+<div class="h-6 w-24 bg-surface-container rounded-full"></div>
+<div class="h-6 w-20 bg-surface-container rounded-full"></div>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<div class="h-11 w-full bg-surface-container-high rounded-xl"></div>
+<div class="h-11 w-full bg-surface-container rounded-xl"></div>
+</div>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-4">
+<div class="flex items-start gap-3">
+<div class="w-16 h-16 rounded-xl bg-surface-container-high shrink-0"></div>
+<div class="flex flex-col flex-1 gap-2">
+<div class="h-5 w-2/3 bg-surface-container-high rounded-md"></div>
+<div class="h-4 w-1/2 bg-surface-container-high rounded-md"></div>
+<div class="h-3 w-1/3 bg-surface-container rounded-md"></div>
+</div>
+</div>
+<div class="h-12 w-full bg-surface-container-low rounded-lg"></div>
+<div class="flex flex-col gap-2 pt-1">
+<div class="h-11 w-full bg-surface-container-high rounded-xl"></div>
+<div class="h-11 w-full bg-surface-container rounded-xl"></div>
+</div>
+</div>
+</div>
+<!-- Zero Results State View -->
+<div class="hidden flex-col items-center text-center p-space-xl bg-surface-container-lowest rounded-2xl shadow-sm my-space-sm" id="state-empty">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center mb-space-md text-primary">
+<span class="material-symbols-outlined text-[40px]">person_search</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">No artisans found</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-space-lg">
+        We couldn't find matching verified pros for <span class="font-semibold text-on-surface">"Plumbing &amp; Sanitary"</span> in this specific district tier.
+      </p>
+<div class="w-full p-space-md bg-surface-container-low rounded-xl text-left mb-space-lg flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Try adjustments:</span>
+<div class="flex items-center gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+<span>Expand district to "All Benin City"</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+<span>Lower minimum rating threshold (★ 4.0+)</span>
+</div>
+</div>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-primary/90 transition-colors shadow-sm" onclick="switchState('active')" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span>Reset All Filters</span>
+</button>
+</div>
+<!-- Connection Error State View -->
+<div class="hidden flex-col items-center text-center p-space-xl bg-surface-container-lowest rounded-2xl shadow-sm my-space-sm" id="state-error">
+<div class="w-20 h-20 rounded-full bg-error-container flex items-center justify-center mb-space-md text-on-error-container">
+<span class="material-symbols-outlined text-[40px]">cloud_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Directory offline</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-space-lg">
+        Unable to reach the live artisan database. Please inspect your local mobile network or retry request.
+      </p>
+<div class="w-full flex flex-col gap-2">
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-primary/90 transition-colors shadow-sm" onclick="switchState('active')" type="button">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+<span>Retry Search</span>
+</button>
+<button class="w-full min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2" type="button">
+<span>Browse Offline Cache</span>
+</button>
+</div>
+</div>
+<!-- Paystack TEST Mode Platform Disclaimer Banner -->
+<div class="mt-space-md p-space-md bg-inverse-surface rounded-xl flex items-start gap-3 text-inverse-on-surface">
+<div class="p-1 rounded bg-primary-container text-on-primary shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">info</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary-fixed-dim">Paystack TEST Mode</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container/20 text-inverse-on-surface font-label-sm text-[10px]">Sandbox v2.4</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-container">
+          Transactions and trades in this directory demonstrate live workflow mechanics. Pro profiles, benchmarks, and ratings represent verified sandbox entities.
+        </p>
+</div>
+</div>
+</div>
+<!-- Mobile Filter Bottom Sheet Overlay -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden transition-opacity flex flex-col justify-end" id="filterSheetBackdrop">
+<!-- Click area to dismiss -->
+<div class="flex-1 w-full" id="sheetDismissArea"></div>
+<!-- Sheet Modal Content Box -->
+<div class="w-full max-h-[751px] bg-surface-container-lowest rounded-t-2xl flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-200">
+<!-- Grab Bar & Sheet Header -->
+<div class="pt-3 pb-space-sm px-margin-mobile flex flex-col gap-2 shrink-0 bg-surface-container-lowest">
+<div class="w-12 h-1.5 rounded-full bg-surface-variant mx-auto"></div>
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Filter Artisans</h2>
+<button class="font-label-md text-label-md text-primary font-medium px-2 py-1" type="button">Reset</button>
+</div>
+</div>
+<!-- Scrollable Filter Fields -->
+<div class="flex-1 overflow-y-auto px-margin-mobile py-2 flex flex-col gap-space-lg">
+<!-- Trade Specialization -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Trade Category</span>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2.5 p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<input checked="" class="w-5 h-5 accent-primary" name="trade" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface">Plumbing</span>
+</label>
+<label class="flex items-center gap-2.5 p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<input class="w-5 h-5 accent-primary" name="trade" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface">Carpentry</span>
+</label>
+<label class="flex items-center gap-2.5 p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<input class="w-5 h-5 accent-primary" name="trade" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface">Electrical</span>
+</label>
+<label class="flex items-center gap-2.5 p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<input class="w-5 h-5 accent-primary" name="trade" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface">Painting</span>
+</label>
+</div>
+</div>
+<!-- Benin City Districts -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Benin City Districts</span>
+<span class="font-body-sm text-body-sm text-secondary">Edo State</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">GRA Axis</span>
+<input checked="" class="w-5 h-5 accent-primary rounded" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">Ugbowo (Uniben Area)</span>
+<input checked="" class="w-5 h-5 accent-primary rounded" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">Ikpoba Hill</span>
+<input class="w-5 h-5 accent-primary rounded" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">Airport Road &amp; Oko</span>
+<input class="w-5 h-5 accent-primary rounded" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">Aduwawa / Bypass</span>
+<input class="w-5 h-5 accent-primary rounded" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Rating Filter -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Minimum Rating</span>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center justify-center gap-1.5 p-3 rounded-xl bg-primary-fixed text-on-primary-fixed cursor-pointer font-label-md text-label-md">
+<input checked="" class="w-4 h-4 accent-primary" name="rating" type="radio"/>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.5 &amp; Up</span>
+</label>
+<label class="flex items-center justify-center gap-1.5 p-3 rounded-xl bg-surface-container-low text-on-surface cursor-pointer font-label-md text-label-md">
+<input class="w-4 h-4 accent-primary" name="rating" type="radio"/>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.0 &amp; Up</span>
+</label>
+</div>
+</div>
+<!-- Admin Reviewed Verified Switch -->
+<div class="p-3.5 bg-surface-container-low rounded-xl flex items-center justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Admin-Reviewed Only</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Prioritize tested trade professionals</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Sticky Sheet Footer Action -->
+<div class="p-margin-mobile bg-surface-container-lowest shrink-0 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<button class="w-full min-h-[44px] px-5 py-3 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-primary/90 transition-colors shadow-sm" id="closeFilterBtn" type="button">
+<span>Show 18 Results</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Filter Bottom Sheet Toggles
+  const filterBtn = document.getElementById('openFilterBtn');
+  const closeFilterBtn = document.getElementById('closeFilterBtn');
+  const filterBackdrop = document.getElementById('filterSheetBackdrop');
+  const dismissArea = document.getElementById('sheetDismissArea');
+
+  function openSheet() {
+    filterBackdrop.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSheet() {
+    filterBackdrop.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  if (filterBtn) filterBtn.addEventListener('click', openSheet);
+  if (closeFilterBtn) closeFilterBtn.addEventListener('click', closeSheet);
+  if (dismissArea) dismissArea.addEventListener('click', closeSheet);
+
+  // Preview Mode State Switcher
+  function switchState(stateName) {
+    const states = ['active', 'skeleton', 'empty', 'error'];
+    const labelMap = {
+      'active': 'Active Pros (18)',
+      'skeleton': 'Simulated Loading',
+      'empty': 'Zero Results',
+      'error': 'Network Offline'
+    };
+
+    states.forEach(s => {
+      const el = document.getElementById(`state-${s}`);
+      const tab = document.getElementById(`tab-${s}`);
+      if (el) el.classList.add('hidden');
+      if (tab) {
+        tab.className = 'state-tab py-1.5 px-1 rounded-md text-center font-label-sm text-label-sm transition-all text-on-surface-variant hover:text-on-surface';
+      }
+    });
+
+    const activeEl = document.getElementById(`state-${stateName}`);
+    const activeTab = document.getElementById(`tab-${stateName}`);
+    const modeLabel = document.getElementById('currentModeLabel');
+
+    if (activeEl) activeEl.classList.remove('hidden');
+    if (activeTab) {
+      activeTab.className = 'state-tab py-1.5 px-1 rounded-md text-center font-label-sm text-label-sm transition-all bg-surface-container-lowest text-primary shadow-sm font-semibold';
+    }
+    if (modeLabel) modeLabel.textContent = labelMap[stateName];
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-label-md"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 transition-colors text-primary font-label-md" data-path="explore" href="#"><span class="material-symbols-outlined text-[24px]">explore</span><span class="font-label-sm text-label-sm mt-0.5">Explore</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 text-on-surface-variant transition-colors hover:text-on-surface" data-path="categories" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-sm text-label-sm mt-0.5">Categories</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 text-on-surface-variant transition-colors hover:text-on-surface" data-path="how-it-works" href="#"><span class="material-symbols-outlined text-[24px]">info</span><span class="font-label-sm text-label-sm mt-0.5">How It Works</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 text-on-surface-variant transition-colors hover:text-on-surface" data-path="account" href="#"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="font-label-sm text-label-sm mt-0.5">Account</span></a></div></nav></body></html>

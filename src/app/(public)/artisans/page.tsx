@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Form from "next/form";
-import { DemoNotice } from "@/components/discovery";
 import { ResultsCollection } from "@/features/search/results-collection";
 import { Icon } from "@/components/icon";
 import { areas, categories } from "@/features/search/data";
@@ -57,7 +56,7 @@ export default async function ArtisansPage({
               </h1>
               <p>
                 Explore skilled people around Benin City. Find the right fit for
-                your job.
+                your job, compare rates, and request a quote.
               </p>
             </div>
             <span className="location-label">
@@ -237,7 +236,10 @@ export default async function ArtisansPage({
                   </Link>
                 </div>
               )}
-              <DemoNotice />
+              <p className="demo-notice">
+                <Icon name="help" size={16} /> Profile details and ratings are
+                illustrative while payment and escrow services are not yet active.
+              </p>
             </div>
           </div>
         </Form>

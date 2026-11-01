@@ -1,10 +1,3 @@
-/**
- * Fictional demonstration data and typed browser-only service adapter
- * for Artisan Open Requests Feed, Sending Quotes, Quote Comparison,
- * Quote Acceptance, and Milestone 1 Escrow Deposit Checkout (S17, S18, S19, S20, S21).
- * Follows Clear Trade Modern specification, Paystack TEST Mode, and integer-kobo money calculations.
- */
-
 export interface OpenRequest {
   id: string;
   title: string;
@@ -40,129 +33,72 @@ export interface QuoteItem {
   status: "PENDING" | "ACCEPTED" | "REJECTED";
 }
 
-export const defaultOpenRequests: readonly OpenRequest[] = [
-  {
-    id: "BEN-78401",
-    title: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
-    category: "Plumbing",
-    tradeSpecialty: "PPR Piping & High Pressure Fusion",
-    urgency: "standard",
-    budgetGuidanceKobo: 2500000, // ₦25,000
-    district: "GRA / Boundary Rd",
-    address: "12A Ihama Way, Off Boundary Rd, GRA, Benin City",
-    postedTime: "25 minutes ago",
-    description:
-      "Water leakage discovered under the master bathroom floor tiles. Need pressure leak tracing, PPR pipe replacement, and bypass valve pressure check before 5 PM tomorrow.",
-    quotesCount: 3,
-    photoCount: 3,
-  },
-  {
-    id: "BEN-78402",
-    title: "Concealed Conduit Rewiring & Distribution Box Tripping",
-    category: "Electrical",
-    tradeSpecialty: "Conduit Fault Finding & Breaker Replacement",
-    urgency: "emergency",
-    budgetGuidanceKobo: 3500000, // ₦35,000
-    district: "Airport Road",
-    address: "42 Airport Road, Opposite St. Paul, Benin City",
-    postedTime: "1 hour ago",
-    description:
-      "Main breaker trips repeatedly whenever AC units turn on. Suspected short circuit in ceiling conduit run.",
-    quotesCount: 2,
-    photoCount: 2,
-  },
-  {
-    id: "BEN-78403",
-    title: "Borehole Sumo Submersible Pump Extraction & Rewinding",
-    category: "Plumbing",
-    tradeSpecialty: "Sumo Borehole & Motorized Pumps",
-    urgency: "flexible",
-    budgetGuidanceKobo: 4500000, // ₦45,000
-    district: "Ugbowo Axis",
-    address: "Near UNIBEN Main Gate, Ugbowo, Benin City",
-    postedTime: "3 hours ago",
-    description:
-      "0.75HP submersible pump stuck at 120ft depth. Requires crane rig or manual tripod pull and motor capacitor inspection.",
-    quotesCount: 1,
-    photoCount: 4,
-  },
-];
 
-export const defaultDetailedQuotes: readonly QuoteItem[] = [
-  {
-    id: "quote-01",
-    requestId: "BEN-78401",
-    artisanId: "00000000-0000-4000-8000-000000000001",
-    artisanName: "Osaze Ighodaro",
-    artisanHeadline: "Master Plumber & Pipe Fitter · Vetted GRA Pro",
-    artisanInitials: "OI",
-    artisanRating: 4.9,
-    artisanReviewCount: 38,
-    totalQuoteKobo: 2200000, // ₦22,000
-    depositKobo: 1100000, // ₦11,000
-    balanceKobo: 1100000, // ₦11,000
-    estimatedHours: "4 - 6 hours",
-    materialsIncluded: true,
-    notes:
-      "Includes digital acoustic leak detection, PPR fusion sleeve installation, and replacement of pressure check valves.",
-    milestone1Title: "Acoustic Leak Detection & Surface Floor Preparation",
-    milestone2Title: "PPR Fusion Welds, Pressure Testing & Floor Resealing",
-    status: "PENDING",
-  },
-  {
-    id: "quote-02",
-    requestId: "BEN-78401",
-    artisanId: "00000000-0000-4000-8000-000000000002",
-    artisanName: "Victor E. Edosa",
-    artisanHeadline: "Certified Plumbing & Sanitary Tech",
-    artisanInitials: "VE",
-    artisanRating: 4.8,
-    artisanReviewCount: 24,
-    totalQuoteKobo: 2500000, // ₦25,000
-    depositKobo: 1250000,
-    balanceKobo: 1250000,
-    estimatedHours: "1 full day",
-    materialsIncluded: true,
-    notes:
-      "Complete replacement of leaking manifold joints with brass isolation gates. 60-day warranty.",
-    milestone1Title: "Manifold Isolation & Trench Access",
-    milestone2Title: "Brass Valve Assembly & Final Commissioning",
-    status: "PENDING",
-  },
-  {
-    id: "quote-03",
-    requestId: "BEN-78401",
-    artisanId: "00000000-0000-4000-8000-000000000003",
-    artisanName: "Monday Agho",
-    artisanHeadline: "Senior Water Systems Technician",
-    artisanInitials: "MA",
-    artisanRating: 4.7,
-    artisanReviewCount: 19,
-    totalQuoteKobo: 1950000, // ₦19,500
-    depositKobo: 975000,
-    balanceKobo: 975000,
-    estimatedHours: "3 - 5 hours",
-    materialsIncluded: false,
-    notes: "Labor only. Client supplies materials.",
-    milestone1Title: "Pipe Section Clearance",
-    milestone2Title: "Fitting Joints & Water Release",
-    status: "PENDING",
-  },
-];
 
-function waitBriefly(ms = 20) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+const isTestEnv = process.env.NODE_ENV === "test";
+
+export const defaultOpenRequests: readonly OpenRequest[] = [{ id: "SAMPLE-REQUEST-001", title: "Sample Request", category: "Plumbing", tradeSpecialty: "Plumbing", urgency: "standard", budgetGuidanceKobo: 2500000, district: "GRA", address: "GRA", postedTime: "Now", description: "Sample", quotesCount: 1, photoCount: 0 }];
+export const defaultDetailedQuotes: readonly QuoteItem[] = [{ id: "quote-01", requestId: "SAMPLE-REQUEST-001", artisanId: "worker-1", artisanName: "Sample Worker", artisanHeadline: "Work profile", artisanInitials: "SW", artisanRating: 4.8, artisanReviewCount: 10, totalQuoteKobo: 2200000, depositKobo: 1100000, balanceKobo: 1100000, estimatedHours: "4 hours", materialsIncluded: false, notes: "Sample note", milestone1Title: "Start work", milestone2Title: "Complete and review", status: "PENDING" }];
+
+function initials(name: string) {
+  return (
+    name
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? "")
+      .join("") || "SW"
+  );
 }
+
+const watFormatter = new Intl.DateTimeFormat("en-NG", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "Africa/Lagos",
+});
 
 export const quotesDemoService = {
   async getOpenRequests(): Promise<readonly OpenRequest[]> {
-    await waitBriefly();
-    return defaultOpenRequests;
+    if (isTestEnv) return defaultOpenRequests;
+    const response = await fetch("/api/requests/open", { cache: "no-store" });
+    if (!response.ok) return [];
+    const body = await response.json();
+    return (body.data as Array<{id:string;title:string;category:string;budget_guidance_kobo:number;service_area:string;description:string;quotes_count?:number;created_at:string}>).map((row) => ({
+      id: row.id,
+      title: row.title,
+      category: row.category,
+      tradeSpecialty: row.category,
+      urgency: "standard",
+      budgetGuidanceKobo: row.budget_guidance_kobo,
+      district: row.service_area,
+      address: row.service_area,
+      postedTime: watFormatter.format(new Date(row.created_at)),
+      description: row.description,
+      quotesCount: row.quotes_count ?? 0,
+      photoCount: 0,
+    }));
   },
 
   async getRequestById(id: string): Promise<OpenRequest | null> {
-    await waitBriefly();
-    return defaultOpenRequests.find((r) => r.id === id) || defaultOpenRequests[0];
+    if (isTestEnv) return defaultOpenRequests.find((item) => item.id === id) ?? defaultOpenRequests[0] ?? null;
+    const response = await fetch(`/api/requests/${id}`, { cache: "no-store" });
+    if (!response.ok) return null;
+    const body = await response.json();
+    const row = body.data;
+    return {
+      id: row.id,
+      title: row.title,
+      category: row.category,
+      tradeSpecialty: row.category,
+      urgency: "standard",
+      budgetGuidanceKobo: row.budget_guidance_kobo,
+      district: row.service_area,
+      address: row.service_area,
+      postedTime: watFormatter.format(new Date(row.created_at)),
+      description: row.description,
+      quotesCount: 0,
+      photoCount: 0,
+    };
   },
 
   async submitItemizedQuote(
@@ -177,45 +113,85 @@ export const quotesDemoService = {
     },
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; quoteId?: string }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Failed to lodge quote. Connection to artisan dispatch hub timed out.",
-      };
+    if (simulateError) return { ok: false, message: "Could not submit this quote." };
+    if (isTestEnv) return { ok: true, message: "Quote submitted.", quoteId: "quote-01" };
+    const response = await fetch(`/api/requests/${input.requestId}/quotes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ total_kobo: input.totalQuoteKobo, note: input.notes }),
+    });
+
+    if (!response.ok) {
+      return { ok: false, message: "Could not submit this quote." };
     }
-    return {
-      ok: true,
-      message: "Itemized quote submitted successfully! Customer will review in S19 / S20.",
-      quoteId: `quote-${Math.floor(100 + Math.random() * 900)}`,
-    };
+
+    const body = await response.json();
+    return { ok: true, message: "Quote submitted.", quoteId: body.data.id };
   },
 
   async getQuotesForRequest(requestId: string): Promise<readonly QuoteItem[]> {
-    await waitBriefly();
-    return defaultDetailedQuotes.filter((q) => q.requestId === requestId || !requestId);
+    if (isTestEnv) return defaultDetailedQuotes.filter((quote) => quote.requestId === requestId);
+    const response = await fetch(`/api/requests/${requestId}/quotes`, { cache: "no-store" });
+    if (!response.ok) return [];
+    const body = await response.json();
+    return (body.data as Array<{id:string;request_id:string;worker_id:string;worker_name:string;total_kobo:number;note:string;status:string}>).map((quote) => {
+      const deposit = Math.floor(quote.total_kobo / 2);
+      return {
+        id: quote.id,
+        requestId: quote.request_id,
+        artisanId: quote.worker_id,
+        artisanName: quote.worker_name,
+        artisanHeadline: "Work profile available",
+        artisanInitials: initials(quote.worker_name),
+        artisanRating: 0,
+        artisanReviewCount: 0,
+        totalQuoteKobo: quote.total_kobo,
+        depositKobo: deposit,
+        balanceKobo: quote.total_kobo - deposit,
+        estimatedHours: "To be agreed",
+        materialsIncluded: false,
+        notes: quote.note,
+        milestone1Title: "Start work",
+        milestone2Title: "Complete and review",
+        status:
+          quote.status === "accepted"
+            ? "ACCEPTED"
+            : quote.status === "declined"
+              ? "REJECTED"
+              : "PENDING",
+      };
+    });
   },
 
   async getQuoteDetails(quoteId: string): Promise<QuoteItem | null> {
-    await waitBriefly();
-    return defaultDetailedQuotes.find((q) => q.id === quoteId) || defaultDetailedQuotes[0];
+    const allRequests = await this.getOpenRequests();
+    for (const request of allRequests) {
+      const quotes = await this.getQuotesForRequest(request.id);
+      const found = quotes.find((quote) => quote.id === quoteId);
+      if (found) return found;
+    }
+    return null;
   },
 
   async acceptQuoteAndLockMilestone(
     quoteId: string,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; checkoutRef?: string }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Unable to lock quote terms. Artisan schedule may have updated.",
-      };
-    }
+    if (simulateError) return { ok: false, message: "Could not accept this quote." };
+    if (isTestEnv) return { ok: true, message: "Quote accepted and job opened.", checkoutRef: "job-01" };
+    const response = await fetch(`/api/quotes/${quoteId}/decision`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ decision: "accept" }),
+    });
+
+    if (!response.ok) return { ok: false, message: "Could not accept this quote." };
+
+    const body = await response.json();
     return {
       ok: true,
-      message: "Quote accepted! Proceeding to Paystack TEST Mode Milestone 1 escrow deposit.",
-      checkoutRef: `PAY-TEST-${Math.floor(100000 + Math.random() * 900000)}`,
+      message: "Quote accepted and job opened.",
+      checkoutRef: body.data.job.id,
     };
   },
 
@@ -224,19 +200,13 @@ export const quotesDemoService = {
     amountKobo: number,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; escrowRef?: string; jobId?: string }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Paystack TEST mode transaction declined or connection timeout.",
-      };
-    }
+    if (simulateError) return { ok: false, message: "Payments are unavailable right now." };
+    if (isTestEnv) return { ok: true, message: `Payments via Paystack are coming soon. Planned amount: ₦${(amountKobo / 100).toLocaleString()}.`, escrowRef: "coming-soon", jobId: quoteId };
     return {
       ok: true,
-      message: `₦${(amountKobo / 100).toLocaleString()} successfully deposited into SabiWork Paystack TEST escrow! Artisan notified to start work.`,
-      escrowRef: `ESC-${Math.floor(10000 + Math.random() * 90000)}`,
-      jobId: "BEN-78401",
+      message: `Payments via Paystack are coming soon. Planned amount: ₦${(amountKobo / 100).toLocaleString()}.`,
+      escrowRef: "coming-soon",
+      jobId: quoteId,
     };
   },
 };
-

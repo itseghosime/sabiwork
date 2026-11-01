@@ -1,7 +1,7 @@
-import { AccountSettingsScreen } from "@/features/requests/screens";
-import { defaultSettings } from "@/features/requests/service";
+import { SettingsScreen } from "@/features/customer-workspace/settings-screen";
+
+export const dynamic = "force-dynamic";
 
 export default function SettingsPage() {
-  return <AccountSettingsScreen initialSettings={defaultSettings} />;
+  return <SettingsScreen />;
 }
-

@@ -2789,20 +2789,102 @@ body {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   min-height: 100vh;
-  background: var(--surface);
+  background: var(--surface, #f8fafc);
+  transition: grid-template-columns 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.workspace-shell[data-collapsed="true"] {
+  grid-template-columns: 76px minmax(0, 1fr);
+}
+
+/* Growly LMS Inspired Deep Navy Collapsible Sidebar */
 .workspace-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  padding: 28px 22px;
-  background: white;
-  border-right: 1px solid var(--border);
+  gap: 24px;
+  padding: 24px 18px;
+  background: #0b132b;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), padding 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.workspace-sidebar .eyebrow {
-  margin: 12px 0 0;
+.workspace-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.workspace-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.workspace-sidebar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+}
+.workspace-sidebar-brand .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #ffffff;
+}
+.workspace-sidebar-brand .brand-name {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+}
+.workspace-sidebar-brand .brand-accent {
+  color: #38a8e8;
+}
+.workspace-sidebar-brand .brand-tagline {
+  display: none;
+}
+
+.workspace-sidebar-toggle-btn {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  flex-shrink: 0;
+}
+.workspace-sidebar-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-toggle-btn {
+  transform: rotate(180deg);
+}
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-toggle-btn:hover {
+  transform: rotate(180deg) scale(1.05);
+}
+
+.workspace-sidebar .workspace-sidebar-label {
+  margin: 0;
+  font-size: 0.6875rem;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #64748b;
+  padding: 0 8px;
+  transition: opacity 0.2s ease;
 }
+
 .workspace-sidebar nav,
 .workspace-mobile-nav nav {
   display: flex;
@@ -2812,24 +2894,112 @@ body {
 .workspace-sidebar nav a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   min-height: 44px;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.workspace-sidebar nav a svg {
+  flex-shrink: 0;
+  color: #94a3b8;
+  transition: color 0.18s ease;
 }
 .workspace-sidebar nav a:hover {
-  background: var(--pale);
-  color: var(--primary);
+  background: rgba(255, 255, 255, 0.07);
+  color: #f1f5f9;
 }
+.workspace-sidebar nav a:hover svg {
+  color: #38a8e8;
+}
+.workspace-sidebar nav a[aria-current="page"] {
+  background: rgba(56, 168, 232, 0.14);
+  color: #38a8e8;
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 #38a8e8;
+}
+.workspace-sidebar nav a[aria-current="page"] svg {
+  color: #38a8e8;
+}
+.workspace-sidebar nav a .workspace-nav-arrow {
+  margin-left: auto;
+  opacity: 0.35;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.workspace-sidebar nav a:hover .workspace-nav-arrow {
+  opacity: 0.9;
+  transform: translateX(2px);
+}
+.workspace-sidebar nav a[aria-current="page"] .workspace-nav-arrow {
+  opacity: 0.9;
+  color: #38a8e8;
+}
+
+.workspace-public-link {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+.workspace-public-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+}
+.workspace-public-link .workspace-nav-arrow {
+  margin-left: auto;
+  opacity: 0.4;
+}
+
+/* Collapsed State Styling */
+.workspace-sidebar[data-collapsed="true"] {
+  padding: 24px 10px;
+}
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-brand {
+  justify-content: center;
+  flex-direction: column-reverse;
+  gap: 14px;
+}
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-brand .brand-name,
+.workspace-sidebar[data-collapsed="true"] .workspace-sidebar-label,
+.workspace-sidebar[data-collapsed="true"] nav a span,
+.workspace-sidebar[data-collapsed="true"] nav a .workspace-nav-arrow,
+.workspace-sidebar[data-collapsed="true"] .workspace-public-link span,
+.workspace-sidebar[data-collapsed="true"] .workspace-public-link .workspace-nav-arrow {
+  display: none !important;
+}
+.workspace-sidebar[data-collapsed="true"] nav a {
+  justify-content: center;
+  padding: 10px 0;
+}
+.workspace-sidebar[data-collapsed="true"] .workspace-public-link {
+  justify-content: center;
+  padding: 10px 0;
+}
+
 .workspace-main > header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 24px 32px;
-  background: white;
-  border-bottom: 1px solid var(--border);
+  padding: 18px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border, #e2e8f0);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 .workspace-main > main {
   padding: 32px;

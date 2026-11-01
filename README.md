@@ -16,7 +16,7 @@ Customers discover verified artisans, request work, compare quotes, pay in miles
 6. Paste [the OpenCode implementation prompt](docs/OPENCODE-PROMPT.md), your assigned Stitch code and screenshots. Build inside the shared app; do not create a separate project.
 7. Check phone/tablet/desktop and submit a pull request with a short explanation of your code. AI may help draft it, but you must understand and explain it yourself. Follow [the complete submission checklist](docs/TEAM.md#friday-acceptance). Only Abdulrahman reviews for acceptance and merges main.
 
-**Foundation status:** this branch adds the shared app and Abdulrahman’s S01/S02/S03/S47/S48. After the PR is merged, everyone builds in this same app. Accounts, profiles, jobs and payments still belong to their assigned owners.
+**Foundation status:** this app contains the shared frontend and a partial Neon backend foundation. Feature backend ownership remains with the assigned members; this branch does not replace the marketplace, payment, verification, or dispute implementations.
 
 ## Start here
 
@@ -38,9 +38,9 @@ Backend foundations start early; whole-team backend integration is Saturday, 31 
 
 ## Stack and current status
 
-Planned stack follows the guide: Next.js App Router + TypeScript, Neon Postgres, Better Auth, Resend, Paystack test mode and Vercel. Use npm with one committed package-lock.json.
+The planned stack follows the guide: Next.js App Router + TypeScript, Neon Postgres and Managed Auth, Resend, Paystack test mode, and Vercel. Use npm with one committed package-lock.json.
 
-The public discovery frontend is implemented using fictional typed fixtures. Authentication, profile detail, job/payment flows and database search are pending their owners’ integration. No mocked interaction counts as a completed server integration.
+Neon Postgres, Managed Auth, and Realtime are provisioned. The current backend implements account roles, artisan profile registration, private customer request drafts, and user-scoped live draft updates. Other profile editing, search, job/quote, payment, verification, training, review, and dispute features still use prototype data or interactions. See [the implementation status](docs/IMPLEMENTATION.md#current-neon-backend-status) for exact boundaries.
 
 ## Run the shared app
 
@@ -51,7 +51,16 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before submitting. `npm start` serves a production build.
+Open http://localhost:3000. Anonymous discovery pages can run without backend credentials. Account and workspace routes require the server environment variables in `.env.example`; keep their values local and secret. Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before submitting. `npm start` serves a production build.
+
+For the isolated validation branch only, apply the initial migration and verify Postgres plus Realtime with:
+
+```sh
+node --env-file=.env.backend-test.local scripts/migrate.mjs
+node --env-file=.env.backend-test.local scripts/backend-smoke.mjs
+```
+
+Verify `NEON_BRANCH` before running either command. Do not point the smoke test at production.
 
 The app uses Webpack to avoid native filesystem watcher failures in restricted desktop environments. On such machines use `WATCHPACK_POLLING=true npm run dev`. Versions are pinned in the npm lockfile.
 

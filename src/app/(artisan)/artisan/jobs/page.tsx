@@ -1,8 +1,5 @@
-import { ArtisanWorkOrdersScreen } from "@/features/artisan-ops/screens";
-import { artisanOperationsDemoService } from "@/features/artisan-ops/service";
+import { ArtisanJobsScreen } from "@/features/artisan-workspace/screens";
 
-export default async function ArtisanJobsPage() {
-  const orders = await artisanOperationsDemoService.getWorkOrders();
-  return <ArtisanWorkOrdersScreen initialOrders={orders} />;
+export default function ArtisanJobsPage() {
+  return <ArtisanJobsScreen />;
 }
-

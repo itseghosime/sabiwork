@@ -1,19 +1,10 @@
-import { notFound } from "next/navigation";
-import { QuoteDetailsAcceptanceScreen } from "@/features/quotes/screens";
-import { quotesDemoService } from "@/features/quotes/service";
+import { QuoteDetailScreen } from "@/features/hire-workspace/screens";
 
-export default async function QuoteDetailsPage({
+export default async function RequestQuoteDetailPage({
   params,
 }: {
   params: Promise<{ id: string; quoteId: string }>;
 }) {
-  const { quoteId } = await params;
-  const quote = await quotesDemoService.getQuoteDetails(quoteId);
-
-  if (!quote) {
-    notFound();
-  }
-
-  return <QuoteDetailsAcceptanceScreen quote={quote} />;
+  const { id, quoteId } = await params;
+  return <QuoteDetailScreen quoteId={quoteId} requestId={id} />;
 }
-

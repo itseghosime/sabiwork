@@ -12,3 +12,9 @@ coverage/
 *.tsbuildinfo
 test-results/
 playwright-report/
+.neon
+.vercel
+.env*
+
+.tmp-agent/
+

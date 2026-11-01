@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-fixed-variant": "#30476b", "on-tertiary-fixed": "#141d22", "surface-container-highest": "#dce2f7", "on-surface": "#141b2b", "surface-tint": "#006491", "outline-variant": "#bec8d1", "primary-fixed": "#c9e6ff", "on-tertiary-container": "#2e373d", "on-primary-fixed": "#001e2f", "on-error-container": "#93000a", "surface-variant": "#dce2f7", "on-primary-container": "#003a56", "tertiary-fixed-dim": "#bfc8ce", "primary": "#006491", "tertiary": "#576065", "surface-container-lowest": "#ffffff", "tertiary-fixed": "#dbe4eb", "inverse-on-surface": "#edf0ff", "surface-container-low": "#f1f3ff", "tertiary-container": "#97a0a7", "secondary-fixed-dim": "#b0c8f2", "error": "#ba1a1a", "secondary-fixed": "#d5e3ff", "on-tertiary-fixed-variant": "#3f484e", "on-primary-fixed-variant": "#004b6f", "surface-dim": "#d3daef", "error-container": "#ffdad6", "primary-container": "#38a8e8", "on-surface-variant": "#3f4850", "surface-bright": "#f9f9ff", "inverse-primary": "#8aceff", "primary-fixed-dim": "#8aceff", "on-secondary-fixed": "#001b3c", "inverse-surface": "#293040", "on-secondary-container": "#435a7f", "surface-container-high": "#e1e8fd", "secondary": "#485f84", "surface": "#f9f9ff", "on-tertiary": "#ffffff", "background": "#f9f9ff", "surface-container": "#e9edff", "on-primary": "#ffffff", "outline": "#6f7881", "secondary-container": "#bbd3fe", "on-error": "#ffffff", "on-background": "#141b2b", "on-secondary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.625rem", "margin-mobile": "1rem", "space-xl": "1.5rem", "gutter-mobile": "0.75rem", "space-lg": "1.25rem", "space-2xs": "0.25rem", "space-md": "1rem", "space-xs": "0.5rem", "margin": "2rem", "space-3xl": "3rem", "space-2xl": "2rem", "gutter": "1.25rem" }, "fontFamily": { "label-md": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "body-sm": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-xs px-space-xs"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm select-none">S</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Sabi<span class="text-primary-container">Work</span></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Artisan OS</span></div></div><div class="flex flex-col gap-space-xs"><span class="px-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">Workspace</span><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-label-lg"><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview</span></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="requests-and-quotes" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Requests &amp; quotes</span></div><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">3</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="my-jobs" href="#"><span class="material-symbols-outlined text-[20px]">handyman</span><span>My jobs</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="earnings" href="#"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Earnings</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="availability" href="#"><span class="material-symbols-outlined text-[20px]">event_available</span><span>Availability</span></a></nav></div><div class="flex flex-col gap-space-xs"><span class="px-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">Artisan Desk</span><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-label-lg"><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="my-profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span>My profile</span></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-2.5 rounded-lg transition-colors bg-primary-container text-on-primary-container font-label-lg" data-path="verification" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">verified</span><span>Verification</span></div><span class="w-2 h-2 rounded-full bg-primary-container"></span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="training" href="#"><span class="material-symbols-outlined text-[20px]">school</span><span>Training</span></a><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-md text-body-md transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div></div><div class="flex flex-col gap-space-sm pt-space-md"><div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container"><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface">Gig Availability</span><span class="font-body-sm text-body-sm text-outline">Open for bookings</span></div><label class="relative inline-flex items-center cursor-pointer"><input checked="" class="sr-only peer" type="checkbox"/><div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface peer-checked:bg-primary-container after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div></label></div><a class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg text-error hover:bg-error-container hover:text-on-error-container font-label-md text-label-md transition-colors" data-path="logout" href="#"><span class="material-symbols-outlined text-[20px]">logout</span><span>Log out</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md"><span class="material-symbols-outlined text-[16px] text-primary">location_city</span><span>Benin City Hub Desk</span></div><div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm tracking-wide"><span class="w-1.5 h-1.5 rounded-full bg-primary-fixed"></span><span>Paystack TEST Mode</span></div></div><div class="flex items-center gap-space-md"><button class="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors flex items-center justify-center" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="flex flex-col text-right"><span class="font-label-lg text-label-lg text-on-surface leading-tight">Osaze Ighodaro</span><span class="font-body-sm text-body-sm text-outline">Master Plumber #BN-8820</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background px-space-xl py-space-xl"><div class="flex flex-col w-full">
+<!-- Prototype State Controller Switcher (Sticky Tablet Toolbar) -->
+<div class="mb-space-xl p-space-sm bg-surface-container-high rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Prototype View State:</span>
+</div>
+<div class="flex items-center flex-wrap gap-1.5" id="prototype-state-bar">
+<button class="state-pill px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-all" id="btn-state-default" onclick="setScreenState('default')" type="button">Default Form</button>
+<button class="state-pill px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-highest font-label-md text-label-md transition-all" id="btn-state-error" onclick="setScreenState('error')" type="button">Validation Error</button>
+<button class="state-pill px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-highest font-label-md text-label-md transition-all" id="btn-state-upload-fail" onclick="setScreenState('upload-fail')" type="button">Upload Failure</button>
+<button class="state-pill px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-highest font-label-md text-label-md transition-all" id="btn-state-submitting" onclick="setScreenState('submitting')" type="button">Submitting</button>
+<button class="state-pill px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-highest font-label-md text-label-md transition-all" id="btn-state-success" onclick="setScreenState('success')" type="button">Success (Go to S41)</button>
+</div>
+</div>
+<!-- State Banner: Simulated Error or Upload Feedback -->
+<div class="hidden mb-space-lg p-space-md rounded-xl transition-all" id="dynamic-state-banner"></div>
+<!-- Screen Header Block -->
+<div class="flex flex-col gap-2 mb-space-xl">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide">Step 04 / 04</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Application #VER-BN-2026-104</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">upgrade</span>
+<span>Upgrade: Basic Tier-1 → Tier-2 Verified Pro</span>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm mt-1">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Artisan Verification &amp; Submission</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Submit your verified portfolio, identity token, and field competencies for Benin City Hub review.</p>
+</div>
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm bg-surface-container-low px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[18px]">cloud_download</span>
+<span>Manual Desk SLA: 24–48 hrs WAT</span>
+</div>
+</div>
+</div>
+<!-- Main Tablet 2-Column Responsive Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Verification Content & Form Flow (8 Cols on Tablet) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Compliance & Officer Review Notice -->
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 bg-primary/5 rounded-full pointer-events-none"></div>
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-container/20 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Hub Case Officer Review Process</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+              Applications are manually assessed by accredited Benin City Hub desk officers within 24–48 business hours. Your submitted evidence is strictly segregated and only accessible by designated verifiers.
+            </p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm pt-2">
+<div class="flex items-center gap-2 p-space-xs bg-surface-container-lowest rounded-lg">
+<span class="material-symbols-outlined text-primary text-[18px]">lock</span>
+<span class="font-body-sm text-body-sm text-on-surface">Private vault: Never indexed or displayed publicly</span>
+</div>
+<div class="flex items-center gap-2 p-space-xs bg-surface-container-lowest rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[18px]">info</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Administrative trade audit • No statutory bias</span>
+</div>
+</div>
+</div>
+<!-- SECTION 1: Artisan Profile Confirmation -->
+<section class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center">1</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Artisan Profile Confirmation</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">Synced with #BN-8820</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Confirmed Legal Full Name</label>
+<div class="h-11 px-3.5 bg-surface-container-low rounded-lg flex items-center justify-between text-on-surface font-body-md text-body-md">
+<span>Osaze Ighodaro</span>
+<span class="material-symbols-outlined text-outline text-[18px]">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Verified matching government photo identification format.</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Trade Classification</label>
+<div class="h-11 px-3.5 bg-surface-container-low rounded-lg flex items-center justify-between text-on-surface font-body-md text-body-md">
+<span class="font-label-lg text-label-lg">Master Plumber &amp; Pipe Fitter</span>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">Primary Trade</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Field category mapped to Edo State Technical Guild registry.</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Active Service Zones (Edo South)</label>
+<div class="h-11 px-3.5 bg-surface-container-low rounded-lg flex items-center gap-1.5 overflow-hidden">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">GRA Axis</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">Airport Rd</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">Ugbowo</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Selected response dispatch zones within 25km hub radius.</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Years of Documented Practice</label>
+<div class="h-11 px-3.5 bg-surface-container-low rounded-lg flex items-center justify-between text-on-surface font-body-md text-body-md">
+<span class="font-label-lg text-label-lg">8 Years Experience</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Since 2018</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Field apprenticeship validated via Benin Central Works.</span>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Selected Trade Skills & Technical Tags -->
+<section class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center">2</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Endorsed Skills &amp; Technical Scope</h3>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">4 Skills Tagged</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Your badge endorsements determine which specialized direct quote requests reach your inbox. Officers test samples against these competencies.
+        </p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-[20px]">heat_pump</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">PPR Hot-Fusion</span>
+<span class="font-body-sm text-body-sm text-outline">High-pressure welding</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-[20px]">water_damage</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Overhead Tanks</span>
+<span class="font-body-sm text-body-sm text-outline">Tower stand piping</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-[20px]">shower</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Concealed Mixers</span>
+<span class="font-body-sm text-body-sm text-outline">In-wall manifold rough-in</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-[20px]">alt_route</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Drainage Gradients</span>
+<span class="font-body-sm text-body-sm text-outline">Soil &amp; waste line leveling</span>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Evidence & Photographic Proof Dossier -->
+<section class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center">3</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Evidence &amp; Proof Dossier</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">4 of 4 Dossier Items Loaded</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Clear on-site job photos prove workmanship caliber. Minimum requirement: 2 verified work installations, 1 equipment set, and 1 government identity proof.
+        </p>
+<!-- Document Grid (2x2 on tablet) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-2">
+<!-- Sample 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs transition-shadow hover:shadow-md">
+<div class="relative w-full h-40 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A clean, professionally installed overhead PVC water storage tank system on a reinforced iron stand in Benin City Nigeria with immaculate PPR piping and valves under natural bright midday sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhU65LgTaKdeyEgHdaN6Nn-1_OjedqFoGwyZsOt2e_g-wYrl0o0nljDaYqnsyT_xw76ddPHj7i2w18SMrI3ln2pmSjMckNUwoFcbswaI0XDAbzKadoi9djesgSeWc2Eh58DPiMi_HOP74uvkOvsGudtpDlPIDynLIf1p2-gWINYgSd3APQQ6mPAMIiSCA_Zqx5Wow1WFmcNLx3tjBdgGFin53m0PO6pfCP3lIEyP0"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-on-surface/80 backdrop-blur-sm text-surface font-label-sm text-label-sm">Work Sample 1</span>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span> 2.4 MB
+              </span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface truncate">Overhead_Tank_GRA_Install.jpg</span>
+<span class="font-body-sm text-body-sm text-outline">PPR riser &amp; bypass loop manifold</span>
+</div>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-error transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Sample 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs transition-shadow hover:shadow-md">
+<div class="relative w-full h-40 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close up photography of precision under sink plumbing with white PVC P-trap cleanouts, brass ball valves, and neatly routed flexible braided hot cold water hoses in a modern domestic kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjmhSGha7cay6arwKM21dQktsi5KJaMmrXTeew96DlBbUEnqJPUA6aKk8qxLzm0YDuv7Fv-wYNy8TDDgiJBRLKlMGTwVhhJhMyE4H06y3ZU0JM-jDH345yoenMaYzClwdI2BfrSEy2NB8YFCF_znA_vXPvX8IM9WkYFWYIQBI3a6VvoNHsXjEErSZ0jObz9uFhn0AYrjeXbczreojTRO25YDpiN2WhfJ7A31CIAYk"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-on-surface/80 backdrop-blur-sm text-surface font-label-sm text-label-sm">Work Sample 2</span>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span> 1.8 MB
+              </span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface truncate">Undersink_Ptrap_Cleanout.jpg</span>
+<span class="font-body-sm text-body-sm text-outline">Double sink sanitary trap assembly</span>
+</div>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-error transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Sample 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs transition-shadow hover:shadow-md">
+<div class="relative w-full h-40 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Neatly laid out heavy-duty plumbing tooling on canvas including an electric thermo PPR pipe fusion welder with brass dies, pipe cutter shears, pipe wrenches, and precision spirit levels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEh-qZ5nauA5IWMKrkWCAIfc-8r8lg-BVIGZ3vDz0iAM7kEFsb8qq_nW0OMvPuub9U5yL0a1LgcDPS8bz5GE2NPEIGgJiMiL2d7di2bHtcsP0cm5y5bUFJnLxqhZrffZvL5W4rA79o_D4qXRHukpsMrZkZzGv3-3uxhuWZ4JcM0ItavBktNxEgEIADK9AofWBsjuObky3-jJsbhyW7R1Y2x1ChBw8eaFUBJoGNkM"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-on-surface/80 backdrop-blur-sm text-surface font-label-sm text-label-sm">Tooling Proof</span>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span> 3.1 MB
+              </span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface truncate">Fusion_Kit_&amp;_Wrench_Set.jpg</span>
+<span class="font-body-sm text-body-sm text-outline">Thermal welding equipment &amp; dies</span>
+</div>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-error transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Sample 4: Redacted Demo ID Document -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs transition-shadow hover:shadow-md" id="doc-card-id">
+<div class="relative w-full h-40 rounded-lg overflow-hidden bg-surface-container flex items-center justify-center">
+<div class="w-full h-full bg-gradient-to-tr from-surface-container-highest to-surface-container p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface uppercase tracking-wider">Demo ID Slip</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-outline font-label-sm text-label-sm">REDACTED</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-12 h-14 bg-surface-container-lowest rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[24px]">face</span>
+</div>
+<div class="flex flex-col gap-1 w-2/3">
+<div class="h-2 w-full bg-outline-variant/60 rounded"></div>
+<div class="h-2 w-3/4 bg-outline-variant/60 rounded"></div>
+<div class="h-2 w-1/2 bg-primary/40 rounded"></div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">NIN Slip (Masked token: ***-8820)</span>
+</div>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-on-surface/80 backdrop-blur-sm text-surface font-label-sm text-label-sm">Legal Identity</span>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span> 890 KB
+              </span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface truncate">Demo_NIN_Slip_Redacted.pdf</span>
+<span class="font-body-sm text-body-sm text-outline">Authorized encrypted format</span>
+</div>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-error transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Add Dropzone Area -->
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-container transition-all">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px]">add_photo_alternate</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="font-label-lg text-label-lg text-on-surface">+ Add Additional Work Evidence or Certificate</span>
+<span class="font-body-sm text-body-sm text-outline">JPG, PNG, or PDF format • Max file size 12MB each</span>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Declaration Checkboxes -->
+<section class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md" id="declaration-section">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center">4</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Artisan Solemn Declaration</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Please confirm these affirmations before passing your file to Benin City Hub desk review.
+        </p>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Checkbox 1 -->
+<label class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low cursor-pointer transition-colors hover:bg-surface-container">
+<div class="pt-0.5">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-0 cursor-pointer" id="check-truth" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Authenticity of Photographic Work Portfolio</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">I certify that all photographs uploaded depict jobs executed directly by myself or under my direct site supervision in Edo State.</span>
+</div>
+</label>
+<!-- Checkbox 2 -->
+<label class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low cursor-pointer transition-colors hover:bg-surface-container">
+<div class="pt-0.5">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-0 cursor-pointer" id="check-standards" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Commitment to SabiWork Plumbing Standards</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">I agree to adhere to standard pressure leak-testing protocols on completed rough-ins before final handover to clients.</span>
+</div>
+</label>
+<!-- Checkbox 3 -->
+<label class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low cursor-pointer transition-colors hover:bg-surface-container">
+<div class="pt-0.5">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-0 cursor-pointer" id="check-sla" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Acknowledgment of Hub Desk Review Timelines</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">I understand this is an administrative trade vetting process requiring 24–48 hrs, and does not constitute statutory governmental certification.</span>
+</div>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column: Review Summary & Submit Panel (4 Cols on Tablet/Desktop) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg lg:sticky lg:top-24">
+<!-- Submission Readiness Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Submission Readiness</span>
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-bold" id="badge-readiness">100% Complete</span>
+</div>
+<!-- Metric Visualizer (SVG Progress Ring) -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center gap-space-md">
+<div class="relative w-16 h-16 shrink-0 flex items-center justify-center">
+<svg class="w-16 h-16 transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-highest stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.5"></path>
+<path class="text-primary stroke-current transition-all duration-500 ease-out" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" id="progress-circle" stroke-dasharray="100, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<span class="absolute font-headline-sm text-headline-sm text-on-surface" id="progress-number">4/4</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold" id="progress-title">All Requirements Met</span>
+<span class="font-body-sm text-body-sm text-outline" id="progress-sub">Ready to dispatch dossier to officer queue</span>
+</div>
+</div>
+<!-- Itemized Verification Checklist -->
+<div class="flex flex-col gap-2.5 pt-1">
+<div class="flex items-center justify-between text-body-sm text-body-sm">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]">task_alt</span>
+<span>Profile sync &amp; zone coverage</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Valid</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-body-sm">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]">task_alt</span>
+<span>4 technical competencies</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Tagged</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-body-sm" id="chk-item-dossier">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]" id="icon-chk-dossier">task_alt</span>
+<span>4 uploaded evidence files</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary" id="lbl-chk-dossier">Attached</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-body-sm" id="chk-item-decl">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]" id="icon-chk-decl">task_alt</span>
+<span>Master plumber declaration</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary" id="lbl-chk-decl">Signed</span>
+</div>
+</div>
+<!-- Hub Desk SLA Note -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px] text-primary shrink-0">speed</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Benin City Desk SLA</span>
+<span class="font-body-sm text-body-sm text-outline">Response expected within 24–48 hrs WAT</span>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex flex-col gap-2.5 pt-2">
+<!-- Primary CTA Button (48px height, non-wrapping) -->
+<button class="h-12 w-full px-5 rounded-xl bg-primary text-on-primary hover:bg-[#2597d7] active:bg-[#1d85c0] font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md shrink-0 whitespace-nowrap" id="submit-cta-btn" onclick="executeSubmissionFlow()" type="button">
+<span id="btn-text">Submit for Admin Review</span>
+<span class="material-symbols-outlined text-[20px]" id="btn-icon">arrow_forward</span>
+</button>
+<!-- Secondary CTA -->
+<button class="h-11 w-full px-4 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md flex items-center justify-center gap-2 transition-colors shrink-0" onclick="saveDraft()" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">save</span>
+<span>Save Draft &amp; Exit</span>
+</button>
+</div>
+</div>
+<!-- Quick Desk Assistance Contact -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Hub Helpdesk Support</span>
+<span class="font-body-sm text-body-sm text-outline">Question about accepted image formats? Contact desk #BN-DESK</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentScreenState = 'default';
+
+  function setScreenState(state) {
+    currentScreenState = state;
+    
+    // Update toolbar active pill styles
+    document.querySelectorAll('.state-pill').forEach(btn => {
+      btn.className = 'state-pill px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-highest font-label-md text-label-md transition-all';
+    });
+    const activeBtn = document.getElementById('btn-state-' + state);
+    if (activeBtn) {
+      activeBtn.className = 'state-pill px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-all';
+    }
+
+    const banner = document.getElementById('dynamic-state-banner');
+    const submitBtn = document.getElementById('submit-cta-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnIcon = document.getElementById('btn-icon');
+    const progressCircle = document.getElementById('progress-circle');
+    const progressNumber = document.getElementById('progress-number');
+    const badgeReadiness = document.getElementById('badge-readiness');
+    const checkDecl = document.getElementById('check-truth');
+    const docCardId = document.getElementById('doc-card-id');
+
+    // Reset default UI state parameters
+    banner.classList.add('hidden');
+    banner.innerHTML = '';
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+    btnText.textContent = "Submit for Admin Review";
+    btnIcon.textContent = "arrow_forward";
+    btnIcon.classList.remove('animate-spin');
+
+    progressCircle.setAttribute('stroke-dasharray', '100, 100');
+    progressNumber.textContent = '4/4';
+    badgeReadiness.textContent = '100% Complete';
+    badgeReadiness.className = 'px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-bold';
+
+    if (state === 'default') {
+      // Clean baseline state
+      checkDecl.checked = true;
+    } else if (state === 'error') {
+      // Uncheck declaration to create validation blocker
+      checkDecl.checked = false;
+      progressCircle.setAttribute('stroke-dasharray', '75, 100');
+      progressNumber.textContent = '3/4';
+      badgeReadiness.textContent = '75% Attention Needed';
+      badgeReadiness.className = 'px-2.5 py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm font-bold';
+
+      banner.classList.remove('hidden');
+      banner.className = 'mb-space-lg p-space-md rounded-xl bg-error-container text-on-error-container flex items-start gap-space-sm';
+      banner.innerHTML = `
+        <span class="material-symbols-outlined text-error text-[24px] shrink-0">error</span>
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm text-on-error-container">Incomplete Artisan Declaration</span>
+          <span class="font-body-md text-body-md text-on-error-container">Please check all 3 declaration affirmations in Section 4 before submitting your application for officer assignment.</span>
+        </div>
+      `;
+    } else if (state === 'upload-fail') {
+      // Simulate file upload rejected due to size/clarity
+      progressCircle.setAttribute('stroke-dasharray', '75, 100');
+      progressNumber.textContent = '3/4';
+      badgeReadiness.textContent = 'Upload Alert';
+      badgeReadiness.className = 'px-2.5 py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm font-bold';
+
+      banner.classList.remove('hidden');
+      banner.className = 'mb-space-lg p-space-md rounded-xl bg-error-container text-on-error-container flex items-start gap-space-sm';
+      banner.innerHTML = `
+        <span class="material-symbols-outlined text-error text-[24px] shrink-0">cloud_off</span>
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm text-on-error-container">Evidence Document Validation Failed</span>
+          <span class="font-body-md text-body-md text-on-error-container">File 'Demo_NIN_Slip_Redacted.pdf' exceeds optical parsing resolution standard. Please re-upload a clear flat scan under 12MB.</span>
+        </div>
+      `;
+    } else if (state === 'submitting') {
+      // Button shows submitting animation
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      btnText.textContent = "Encrypting & Transmitting...";
+      btnIcon.textContent = "sync";
+      btnIcon.classList.add('animate-spin');
+
+      banner.classList.remove('hidden');
+      banner.className = 'mb-space-lg p-space-md rounded-xl bg-primary-fixed text-on-primary-fixed flex items-start gap-space-sm';
+      banner.innerHTML = `
+        <span class="material-symbols-outlined text-primary text-[24px] shrink-0 animate-spin">autorenew</span>
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm text-on-primary-fixed">Locking Submission Envelope</span>
+          <span class="font-body-md text-body-md text-on-primary-fixed">Hashing identity proofs and dispatching dossier to Benin City Hub desk intake...</span>
+        </div>
+      `;
+    } else if (state === 'success') {
+      // S41 Success Routing banner with prompt to proceed
+      banner.classList.remove('hidden');
+      banner.className = 'mb-space-lg p-space-md rounded-xl bg-surface-container-high text-on-surface flex items-start justify-between gap-space-sm';
+      banner.innerHTML = `
+        <div class="flex items-start gap-space-sm">
+          <span class="material-symbols-outlined text-primary text-[28px] shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          <div class="flex flex-col">
+            <span class="font-headline-sm text-headline-sm text-on-surface">Application Successfully Submitted (#VER-BN-2026-104)</span>
+            <span class="font-body-md text-body-md text-on-surface-variant">Your profile has been queued for Hub Officer audit. Proceeding to Screen S41 (Submission Received & SLA Tracking).</span>
+          </div>
+        </div>
+        <button type="button" onclick="alert('Navigating to Screen S41: Artisan Verification Pending Screen')" class="h-10 px-4 rounded-lg bg-primary text-on-primary font-label-md text-label-md shrink-0">Open S41 Tracker &rarr;</button>
+      `;
+    }
+  }
+
+  function executeSubmissionFlow() {
+    setScreenState('submitting');
+    setTimeout(() => {
+      setScreenState('success');
+    }, 1200);
+  }
+
+  function saveDraft() {
+    alert("Draft application #VER-BN-2026-104 saved successfully to Benin City local cache.");
+  }
+</script></main></div></body></html>

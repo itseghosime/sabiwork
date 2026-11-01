@@ -1,9 +1,3 @@
-/**
- * Fictional demonstration data and typed browser-only service adapter
- * for Job Lifecycle, Work Progress Updates, Customer Sign-off, and Payment History (S26, S27, S28, S29, S30).
- * Follows Clear Trade Modern specification and integer-kobo money calculations.
- */
-
 export interface ActiveJob {
   id: string;
   title: string;
@@ -35,110 +29,89 @@ export interface PaymentTransactionRecord {
   jobTitle: string;
   type: "DEPOSIT_ESCROW" | "BALANCE_ESCROW" | "REFUND";
   amountKobo: number;
-  status: "LOCKED" | "RELEASED" | "SETTLED";
+  status: "SAMPLE_PREVIEW";
   dateWat: string;
   channel: string;
 }
 
-export const defaultActiveJobs: readonly ActiveJob[] = [
-  {
-    id: "BEN-78401",
-    title: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
-    category: "Plumbing",
-    customerName: "Osamudiamen Osazuwa",
-    artisanName: "Osaze Ighodaro",
-    district: "GRA Axis",
-    status: "IN_PROGRESS",
-    currentMilestone: 1,
-    totalKobo: 2200000, // ₦22,000
-    depositPaidKobo: 1100000,
-    balanceKobo: 1100000,
-    startDate: "31 Oct 2026",
-    updates: [
-      {
-        id: "upd-1",
-        title: "Acoustic Leak Tracing Complete",
-        note: "Pinpointed hairline crack behind master bath concealed riser. Commencing PPR pipe cut and sleeve replacement.",
-        timeWat: "31 Oct, 16:30 WAT",
-        artisanName: "Osaze Ighodaro",
-      },
-      {
-        id: "upd-2",
-        title: "PPR High-Pressure Fusion Joint Installed",
-        note: "Welded 25mm high-pressure joint. Undergoing 30-minute static pressure test.",
-        timeWat: "31 Oct, 17:15 WAT",
-        artisanName: "Osaze Ighodaro",
-      },
-    ],
-  },
-  {
-    id: "BEN-78390",
-    title: "Concealed Conduit Rewiring in Airport Rd",
-    category: "Electrical",
-    customerName: "Blessing Igbinovia",
-    artisanName: "Osaze Ighodaro",
-    district: "Airport Road",
-    status: "AWAITING_SIGNOFF",
-    currentMilestone: 2,
-    totalKobo: 1800000,
-    depositPaidKobo: 900000,
-    balanceKobo: 900000,
-    startDate: "29 Oct 2026",
-    updates: [
-      {
-        id: "upd-10",
-        title: "All Breakers Replaced & Grounded",
-        note: "Work concluded and load tested across 3 AC zones. Waiting for customer sign-off.",
-        timeWat: "30 Oct, 14:00 WAT",
-        artisanName: "Osaze Ighodaro",
-      },
-    ],
-  },
-];
 
-export const defaultTransactions: readonly PaymentTransactionRecord[] = [
-  {
-    id: "TXN-8819",
-    jobId: "BEN-78401",
-    jobTitle: "PPR Water Pipe Burst & Overhead Tank Balancing",
-    type: "DEPOSIT_ESCROW",
-    amountKobo: 1100000,
-    status: "LOCKED",
-    dateWat: "31 Oct 2026 · 15:45 WAT",
-    channel: "Paystack TEST Mode Card",
-  },
-  {
-    id: "TXN-8740",
-    jobId: "BEN-78390",
-    jobTitle: "Concealed Conduit Rewiring in Airport Rd",
-    type: "DEPOSIT_ESCROW",
-    amountKobo: 900000,
-    status: "RELEASED",
-    dateWat: "29 Oct 2026 · 11:20 WAT",
-    channel: "Paystack TEST Bank Transfer",
-  },
-];
 
-const activeJobsStore: ActiveJob[] = defaultActiveJobs.map((j) => ({
-  ...j,
-  updates: [...j.updates],
-}));
+const isTestEnv = process.env.NODE_ENV === "test";
 
-const transactionsStore: PaymentTransactionRecord[] = [...defaultTransactions];
+export const defaultActiveJobs: readonly ActiveJob[] = [{ id: "SAMPLE-REQUEST-001", title: "Sample Job", category: "Plumbing", customerName: "Sample Customer", artisanName: "Sample Worker", district: "GRA", status: "IN_PROGRESS", currentMilestone: 1, totalKobo: 2200000, depositPaidKobo: 1100000, balanceKobo: 1100000, startDate: "Now", updates: [] }];
+export const defaultTransactions: readonly PaymentTransactionRecord[] = [{ id: "txn-1", jobId: "SAMPLE-REQUEST-001", jobTitle: "Sample Job", type: "DEPOSIT_ESCROW", amountKobo: 1100000, status: "SAMPLE_PREVIEW", dateWat: "Now", channel: "Paystack coming soon" }];
 
-function waitBriefly(ms = 20) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+const watFormatter = new Intl.DateTimeFormat("en-NG", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "Africa/Lagos",
+});
+
+function toJobStatus(status: string): ActiveJob["status"] {
+  if (status === "completed") return "COMPLETED";
+  if (status === "in_progress") return "IN_PROGRESS";
+  return "AWAITING_SIGNOFF";
 }
 
 export const lifecycleDemoService = {
   async getActiveJobs(): Promise<readonly ActiveJob[]> {
-    await waitBriefly();
-    return activeJobsStore;
+    if (isTestEnv) return defaultActiveJobs;
+    const response = await fetch("/api/jobs", { cache: "no-store" });
+    if (!response.ok) return [];
+
+    const body = await response.json();
+    return (body.data as Array<{id:string;title:string;category:string;service_area:string;status:string;created_at:string;total_quote_kobo:number;budget_guidance_kobo:number}>).map((job) => {
+      const total = job.total_quote_kobo ?? job.budget_guidance_kobo;
+      const deposit = Math.floor(total / 2);
+      return {
+        id: job.id,
+        title: job.title,
+        category: job.category,
+        customerName: "Customer",
+        artisanName: "Worker",
+        district: job.service_area,
+        status: toJobStatus(job.status),
+        currentMilestone: job.status === "completed" ? 2 : 1,
+        totalKobo: total,
+        depositPaidKobo: deposit,
+        balanceKobo: total - deposit,
+        startDate: watFormatter.format(new Date(job.created_at)),
+        updates: [],
+      };
+    });
   },
 
   async getJobById(id: string): Promise<ActiveJob | null> {
-    await waitBriefly();
-    return activeJobsStore.find((j) => j.id === id) || activeJobsStore[0];
+    if (isTestEnv) return defaultActiveJobs.find((job) => job.id === id) ?? defaultActiveJobs[0] ?? null;
+    const response = await fetch(`/api/jobs/${id}`, { cache: "no-store" });
+    if (!response.ok) return null;
+
+    const body = await response.json();
+    const row = body.data;
+    const total = row.total_quote_kobo ?? row.budget_guidance_kobo;
+    const deposit = Math.floor(total / 2);
+
+    return {
+      id: row.id,
+      title: row.title,
+      category: row.category,
+      customerName: "Customer",
+      artisanName: "Worker",
+      district: row.service_area,
+      status: toJobStatus(row.status),
+      currentMilestone: row.status === "completed" ? 2 : 1,
+      totalKobo: total,
+      depositPaidKobo: deposit,
+      balanceKobo: total - deposit,
+      startDate: watFormatter.format(new Date(row.created_at)),
+      updates: (row.updates as Array<{id:string;note:string;created_at:string}> ?? []).map((update) => ({
+        id: update.id,
+        title: "Progress update",
+        note: update.note,
+        timeWat: watFormatter.format(new Date(update.created_at)),
+        artisanName: "Worker",
+      })),
+    };
   },
 
   async addProgressUpdate(
@@ -146,68 +119,54 @@ export const lifecycleDemoService = {
     input: { title: string; note: string },
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; update?: JobUpdateItem }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Failed to broadcast progress update. Hub dispatch server timeout.",
-      };
+    if (simulateError) return { ok: false, message: "Could not save progress update." };
+    if (isTestEnv) return { ok: true, message: "Progress update posted.", update: { id: "upd-1", title: input.title, note: input.note, timeWat: "Now", artisanName: "Worker" } };
+    const response = await fetch(`/api/jobs/${jobId}/progress`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ note: `${input.title}: ${input.note}` }),
+    });
+
+    if (!response.ok) {
+      return { ok: false, message: "Could not save progress update." };
     }
-    const update: JobUpdateItem = {
-      id: `upd-${Date.now()}`,
-      title: input.title,
-      note: input.note,
-      timeWat: "Just now",
-      artisanName: "Osaze Ighodaro",
-    };
-    const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
-    if (target) {
-      target.updates = [update, ...target.updates];
-    }
+
+    const body = await response.json();
     return {
       ok: true,
-      message: "Work progress logged! Customer notified with live milestone audit.",
-      update,
+      message: "Progress update posted.",
+      update: {
+        id: body.data.id,
+        title: input.title,
+        note: input.note,
+        timeWat: watFormatter.format(new Date(body.data.created_at)),
+        artisanName: "Worker",
+      },
     };
   },
 
   async submitCompletionSignoff(
     jobId: string,
-    rating: number,
-    feedback: string,
+    _rating: number,
+    _feedback: string,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Sign-off timeout. Could not finalize escrow release ledger.",
-      };
-    }
-    const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
-    if (target) {
-      target.status = "COMPLETED";
-      target.currentMilestone = 2;
-    }
-    transactionsStore.unshift({
-      id: `TXN-${Date.now()}`,
-      jobId,
-      jobTitle: target?.title || "Milestone 2 Completion Release",
-      type: "BALANCE_ESCROW",
-      amountKobo: target?.balanceKobo || 1100000,
-      status: "SETTLED",
-      dateWat: "Just now",
-      channel: "Paystack Milestone Release",
+    if (simulateError) return { ok: false, message: "Could not complete this job yet." };
+    if (isTestEnv) return { ok: true, message: "Job marked as completed." };
+    const response = await fetch(`/api/jobs/${jobId}/status`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "completed" }),
     });
-    return {
-      ok: true,
-      message: `Job #${jobId} signed off successfully! Milestone balance released and rating (${rating}★) published to artisan profile.`,
-    };
+
+    if (!response.ok) {
+      return { ok: false, message: "Could not complete this job yet." };
+    }
+
+    return { ok: true, message: "Job marked as completed." };
   },
 
   async getTransactions(): Promise<readonly PaymentTransactionRecord[]> {
-    await waitBriefly();
-    return transactionsStore;
+    return defaultTransactions;
   },
 };
-

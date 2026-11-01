@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-fixed-dim":"#8aceff","on-secondary-fixed":"#001b3c","on-tertiary-fixed":"#141d22","on-primary-container":"#003a56","secondary-fixed":"#d5e3ff","surface-container-high":"#e1e8fd","primary-fixed":"#c9e6ff","error-container":"#ffdad6","tertiary-fixed-dim":"#bfc8ce","on-tertiary-container":"#2e373d","on-error":"#ffffff","on-error-container":"#93000a","background":"#f9f9ff","secondary":"#485f84","on-background":"#141b2b","tertiary-fixed":"#dbe4eb","secondary-fixed-dim":"#b0c8f2","on-surface":"#141b2b","surface-dim":"#d3daef","surface-variant":"#dce2f7","tertiary":"#576065","inverse-primary":"#8aceff","inverse-on-surface":"#edf0ff","surface-tint":"#006491","outline-variant":"#bec8d1","on-secondary-container":"#435a7f","on-tertiary-fixed-variant":"#3f484e","tertiary-container":"#97a0a7","error":"#ba1a1a","on-primary-fixed":"#001e2f","on-tertiary":"#ffffff","on-secondary":"#ffffff","surface-container-low":"#f1f3ff","surface":"#f9f9ff","surface-container-highest":"#dce2f7","primary-container":"#38a8e8","outline":"#6f7881","on-secondary-fixed-variant":"#30476b","surface-container":"#e9edff","surface-bright":"#f9f9ff","surface-container-lowest":"#ffffff","inverse-surface":"#293040","on-primary":"#ffffff","on-surface-variant":"#3f4850","secondary-container":"#bbd3fe","primary":"#006491","on-primary-fixed-variant":"#004b6f"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter":"1.25rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-lg":"1.25rem","space-xl":"1.5rem","space-3xl":"3rem","space-xs":"0.5rem","space-2xl":"2rem","space-sm":"0.625rem","space-2xs":"0.25rem","margin":"2rem","space-md":"1rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Inter"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"],"label-lg":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"]},fontSize:{"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-16 px-space-md flex items-center gap-space-xs bg-surface-container-lowest"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex items-center tracking-tight font-headline-sm text-headline-sm font-bold"><span class="text-on-secondary-fixed">Sabi</span><span class="text-primary-container">Work</span></div><span class="ml-space-2xs px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider">Admin Portal</span></div><div class="px-space-md py-space-sm"><div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-space-xs px-space-xs">Hub Operations</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]"><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="overview-metrics" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview / Metrics</span></div></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="artisan-verification-queue" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">verified_user</span><span>Artisan Verification Queue</span></div><span class="px-space-2xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">S42</span></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]" data-path="dispute-resolution" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">gavel</span><span>Dispute Resolution</span></div><span class="px-space-2xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">S34-S35</span></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="escrow-payout-releases" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Escrow &amp; Payout Releases</span></div><span class="px-space-2xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">S26</span></a></nav></div><div class="px-space-md py-space-sm"><div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-space-xs px-space-xs">Configuration</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]"><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="trade-categories-rates" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">tune</span><span>Trade Categories &amp; Rates</span></div></a><a class="flex items-center justify-between px-space-sm py-2.5 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="audit-logs-settings" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">history</span><span>Audit Logs &amp; Settings</span></div></a></nav></div></div><div class="p-space-md bg-surface-container-low mx-space-md mb-space-md rounded-xl"><div class="flex items-center gap-space-xs text-on-secondary-fixed"><span class="material-symbols-outlined text-[16px] text-primary">dns</span><span class="font-label-sm text-label-sm font-semibold">Edo State Territory</span></div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Session Gateway #BN-04</div></div></aside><div class="pl-72 min-h-screen flex flex-col"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs text-on-surface"><span class="material-symbols-outlined text-primary text-[20px]">location_city</span><span class="font-label-lg text-label-lg text-on-surface">Benin City Hub Admin Desk</span></div><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-on-secondary-fixed text-surface-container-low font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span>Paystack TEST Mode</span></div></div><div class="flex items-center gap-space-md"><div class="text-right hidden sm:block"><div class="font-label-lg text-label-lg text-on-surface leading-tight">Tunde Balogun</div><div class="font-body-sm text-body-sm text-on-surface-variant">Case Officer • Level 2</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-16 bg-surface flex-1 px-space-xl py-space-xl"><div class="flex flex-col w-full">
+<!-- Interactive State Switcher for Tablet Prototype Demonstration -->
+<div class="bg-surface-container-low px-space-md py-space-sm rounded-xl mb-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-sm shadow-sm">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">science</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Tablet Prototype State</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-2xs" id="stateSwitcher">
+<button class="px-space-sm py-1.5 rounded-lg text-xs font-semibold bg-on-secondary-fixed text-surface-container-low transition-all" data-state="default" type="button">Default Active</button>
+<button class="px-space-sm py-1.5 rounded-lg text-xs font-semibold bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all" data-state="awaiting" type="button">Awaiting Info</button>
+<button class="px-space-sm py-1.5 rounded-lg text-xs font-semibold bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all" data-state="submitting" type="button">Submitting</button>
+<button class="px-space-sm py-1.5 rounded-lg text-xs font-semibold bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all" data-state="resolved" type="button">Resolved Record</button>
+<button class="px-space-sm py-1.5 rounded-lg text-xs font-semibold bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all" data-state="validation" type="button">Validation Error</button>
+</div>
+</div>
+<!-- Breadcrumbs & Quick Meta Header -->
+<div class="flex flex-col gap-space-xs mb-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="hover:text-primary cursor-pointer">Admin Portal</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary cursor-pointer">Dispute Queue (S34)</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Case #DISP-REQ-8421</span>
+</div>
+<!-- Case Title Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-secondary-fixed tracking-tight">Dispute Determination: #DISP-REQ-8421</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Job: Under-sink kitchen drain pipe replacement &amp; leak repair (#BN-REQ-8421)</p>
+</div>
+<div class="flex items-center gap-space-xs self-start md:self-auto">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+          Level 2 Adjudication
+        </span>
+</div>
+</div>
+</div>
+<!-- Top Metric Shelf & SLA Timer (Tablet 2-Column Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-xl">
+<!-- Escrow Card -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">TEST Sandbox Escrow</span>
+<span class="material-symbols-outlined text-primary text-[20px]">lock</span>
+</div>
+<div class="my-space-xs">
+<div class="font-headline-md text-headline-md font-bold text-on-surface">₦10,000.00</div>
+<div class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          Held in Paystack TEST Sandbox Escrow
+        </div>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm">TxRef: PSTK_TST_849202_DS</div>
+</div>
+<!-- SLA Countdown Card -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Resolution SLA Target</span>
+<span class="material-symbols-outlined text-error text-[20px]">schedule</span>
+</div>
+<div class="my-space-xs">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md font-bold text-error">02h 45m</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Remaining</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-error h-full rounded-full w-3/4"></div>
+</div>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm">Enforced Cut-off: Today, 4:00 PM WAT</div>
+</div>
+<!-- Case Status & Officer Assignment -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between" id="statusCardWrapper">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Assigned Handler</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">assignment_ind</span>
+</div>
+<div class="my-space-xs">
+<div class="font-label-lg text-label-lg text-on-surface font-semibold flex items-center gap-space-2xs">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span id="caseStatusBadge">Under Review</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-0.5">Case Officer • Tunde Balogun</div>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm">Queue ID: BN-DISP-084</div>
+</div>
+</div>
+<!-- Main Tablet Flow: Section 1 & 2 Combined Layout -->
+<div class="flex flex-col gap-space-xl">
+<!-- Section 1: Parties Statements & Claims (Balanced Side-by-Side Cards) -->
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">balance</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Section 1: Parties Statements &amp; Claims</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 Statements Filed</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Customer Claim -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low/50 p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold font-headline-sm">AO</div>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">Ada O.</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Customer (Initiator)</div>
+</div>
+</div>
+<span class="px-space-xs py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">Lodged Dispute</span>
+</div>
+<div class="space-y-space-xs">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Disputed Claim:</span>
+<span class="font-semibold text-error">₦10,000.00 (100% Refund)</span>
+</div>
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Primary Grievance:</span>
+<span class="font-semibold text-on-surface">Faulty seal &amp; unattended debris</span>
+</div>
+<div class="mt-space-sm bg-surface-container-low p-space-sm rounded-lg text-on-surface font-body-md text-body-md leading-relaxed">
+                “Artisan Osaze finished replacing the drain trap at 1:15 PM and claimed everything was dry. Within 30 minutes after he left, water started pooling beneath the cabinetry. When contacted, he told me to tighten the nut myself with pliers. Substandard fitting and uncleaned work zone.”
+              </div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Verified Phone: +234 803 *** 1198</span>
+<span>Benin City, GRA</span>
+</div>
+</div>
+<!-- Artisan Rebuttal -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low/50 p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-primary-fixed text-on-primary-fixed font-bold flex items-center justify-center font-headline-sm">OI</div>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">Osaze Ighodaro</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Artisan • Licensed Plumber (#PL-402)</div>
+</div>
+</div>
+<span class="px-space-xs py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Counter-Statement</span>
+</div>
+<div class="space-y-space-xs">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Requested Settlement:</span>
+<span class="font-semibold text-primary">₦10,000.00 (Full Release)</span>
+</div>
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Work Status:</span>
+<span class="font-semibold text-on-surface">Marked Complete on Site</span>
+</div>
+<div class="mt-space-sm bg-surface-container-low p-space-sm rounded-lg text-on-surface font-body-md text-body-md leading-relaxed">
+                “I replaced the PVC bottle trap and ran tap water for 5 minutes without any leaks. The customer insisted on adjusting the angle after I walked out to plug in their filtration unit, which displaced the rubber gasket. I offered to return tomorrow morning, but she immediately flagged dispute.”
+              </div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Rating: 4.8★ (42 completed jobs)</span>
+<span>Ikpoba-Okha Hub</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Photographic Evidence Gallery -->
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">photo_library</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Section 2: Photographic Evidence Dossier</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 High-Res Attachments</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Evidence 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between group">
+<div class="relative overflow-hidden rounded-lg bg-surface-container-high h-56 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A focused high-contrast close-up shot of an under-sink PVC plastic kitchen pipe junction with droplets of clear water actively dripping at the white rubber ring seal. Modern kitchen cabinet backdrop, high clarity forensic service photograph." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDite4HO48V3hXZTsfhds1N1uqA_szl5S7yulmE9ACYiNYadFdk_bZTxZI6aFZm2H37p0t90LprFdPFarlgp_GNcMWtx-dSR_mKiv-BEkhpZyy4iCIfXoSU2EOraO55JKom2tHlpYWix10vjenZVUSiNBsbXy4C7zjKK1fcG_e59AQKyEyX9vQJPH616lsH5G2yum2HPoZdormf9C1_qJ6gr8sfVpDm0ivIm386Stk"/>
+<div class="absolute bottom-2 left-2 px-space-xs py-1 bg-on-secondary-fixed/80 backdrop-blur-sm rounded text-surface font-label-sm text-label-sm">
+              joint_leak_close.jpg • 2.4 MB
+            </div>
+</div>
+<div class="mt-space-sm flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">Joint Leakage at P-Trap</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Submitted by Ada O. • 1:44 PM</div>
+</div>
+<button class="h-11 px-4 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-all" onclick="inspectPhoto('joint_leak_close.jpg', 'Under-sink kitchen drain joint showing active water beads along the slip joint ring.')" type="button">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+<span>Inspect</span>
+</button>
+</div>
+</div>
+<!-- Evidence 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between group">
+<div class="relative overflow-hidden rounded-lg bg-surface-container-high h-56 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Overhead forensic view of kitchen floor tiles beneath a wooden sink unit with leftover plastic shavings, discarded sealing tape wrappers, and small dirty water stains left after plumbing repair work. Sharp natural interior lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeTPPCFSVVzcdRj4cv38-ur0P7ugKF3alZC04syrxZqUu1L1loSP8V0rdQgjIT2JaA2JMMkLd6z-7thLViU2yTD9XeA4GUPLRDXbBW_Ahlnf4yFFRlkv7kuVbAKmRfSuzdn_MhC0G44vLZZCCxVBktlaw6gE97ZKppNrP2619_AH7B-6aI4ET7o8n0LU6YAv5bSyl5kdi5aUUyhcR4dP_GvFXn6Qm2xz6Ovr-LR_g"/>
+<div class="absolute bottom-2 left-2 px-space-xs py-1 bg-on-secondary-fixed/80 backdrop-blur-sm rounded text-surface font-label-sm text-label-sm">
+              floor_scraps_raw.jpg • 1.9 MB
+            </div>
+</div>
+<div class="mt-space-sm flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">Uncleaned Debris &amp; Pool</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Submitted by Ada O. • 1:46 PM</div>
+</div>
+<button class="h-11 px-4 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-all" onclick="inspectPhoto('floor_scraps_raw.jpg', 'Forensic floor view displaying discarded thread seal tape and dirty puddle scraps.')" type="button">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+<span>Inspect</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Chronological Case Timeline -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Section 3: Case Chronology</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Session Hub Edo #BN-04</span>
+</div>
+<div class="relative pl-6 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-highest">
+<!-- Event 1 -->
+<div class="relative">
+<span class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-lowest"></span>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Dispute Lodged by Customer</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Today, 01:52 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Customer Ada O. flagged job #BN-REQ-8421 with photographic attachments citing incomplete seal work.</p>
+</div>
+<!-- Event 2 -->
+<div class="relative">
+<span class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-error flex items-center justify-center ring-4 ring-surface-container-lowest"></span>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Automatic Escrow Freeze Enforced</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Today, 01:53 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Paystack TEST Sandbox Escrow balance ₦10,000.00 isolated from standard artisan payout batch queue.</p>
+</div>
+<!-- Event 3 -->
+<div class="relative">
+<span class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center ring-4 ring-surface-container-lowest"></span>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Artisan Rebuttal Received</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Today, 02:18 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Artisan Osaze Ighodaro filed written defense claiming unauthorized customer modification post-handover.</p>
+</div>
+<!-- Event 4 -->
+<div class="relative">
+<span class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-primary-container flex items-center justify-center ring-4 ring-surface-container-lowest"></span>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Officer Tunde Balogun Assigned</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Today, 02:30 PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Level 2 review opened. SLA target window calibrated for 4:00 PM closure.</p>
+</div>
+</div>
+</div>
+<!-- Section 4: Formal Determination & Adjudication Panel -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm" id="determinationFormCard">
+<div class="flex items-center justify-between mb-space-sm pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">gavel</span>
+<h2 class="font-headline-sm text-headline-sm text-on-secondary-fixed font-bold">Section 4: Determination &amp; Adjudication Record</h2>
+</div>
+<span class="px-space-xs py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">Mandatory Audit Logged</span>
+</div>
+<!-- Policy Disclosure Callout -->
+<div class="bg-surface-container-low p-space-md rounded-xl mb-space-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5 flex-shrink-0">info</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<strong class="font-semibold text-on-surface">Escrow Disbursement Policy Disclosure:</strong> Recording a resolution does not automatically execute a banking transfer or refund. Financial disbursements are finalized in <span class="text-primary font-semibold">Escrow Payout Releases (S26)</span> following supervisory verification.
+        </div>
+</div>
+<!-- Outcome Options (Radio Group) -->
+<div class="space-y-space-sm mb-space-lg">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold">Select Adjudication Outcome <span class="text-error">*</span></label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<!-- Option 1: Remedial Rework -->
+<label class="flex items-start gap-space-sm p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all has-[:checked]:bg-secondary-fixed/30">
+<input checked="" class="mt-1 w-5 h-5 text-primary accent-primary" name="outcome" type="radio" value="rework"/>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Mandated Remedial Rework</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Order artisan Osaze to return within 12 hours for re-sealing at zero cost before releasing escrow.</div>
+</div>
+</label>
+<!-- Option 2: Partial Split -->
+<label class="flex items-start gap-space-sm p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all has-[:checked]:bg-secondary-fixed/30">
+<input class="mt-1 w-5 h-5 text-primary accent-primary" name="outcome" type="radio" value="partial"/>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Partial Split (50% / 50%)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">₦5,000.00 refunded to Ada O. &amp; ₦5,000.00 disbursed to Osaze for replacement materials used.</div>
+</div>
+</label>
+<!-- Option 3: Full Refund -->
+<label class="flex items-start gap-space-sm p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all has-[:checked]:bg-secondary-fixed/30">
+<input class="mt-1 w-5 h-5 text-primary accent-primary" name="outcome" type="radio" value="refund"/>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Full Customer Refund (100%)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Full return of ₦10,000.00 to Ada O. due to substandard work and unserviceable result.</div>
+</div>
+</label>
+<!-- Option 4: Full Release -->
+<label class="flex items-start gap-space-sm p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all has-[:checked]:bg-secondary-fixed/30">
+<input class="mt-1 w-5 h-5 text-primary accent-primary" name="outcome" type="radio" value="release"/>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Full Artisan Release (100%)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Authorize release of ₦10,000.00 to artisan. Deem claim unfounded or self-inflicted tamper.</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Mandatory Officer Reasoning -->
+<div class="mb-space-lg">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold mb-space-xs" for="reasoningNotes">
+          Case Officer Determination Justification <span class="text-error">*</span>
+</label>
+<textarea class="w-full p-space-md bg-surface-container-low rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-all" id="reasoningNotes" placeholder="Detail forensic evidence assessment, trade standards referenced, and exact compliance expectations for both parties..." rows="4">Photographic exhibit joint_leak_close.jpg demonstrates active droplet pooling consistent with unseated O-ring gasket during compression tightening. No structural cracking detected on PVC trap body. Rework order is balanced: artisan must reseat washer and clear work debris per SabiWork Trade Standards §4.2.</textarea>
+<div class="hidden mt-space-xs text-error font-body-sm text-body-sm flex items-center gap-1" id="validationWarning">
+<span class="material-symbols-outlined text-[16px]">error</span>
+<span>Justification notes cannot be empty and must exceed 30 characters.</span>
+</div>
+</div>
+<!-- Officer Audit Stamp Confirmation -->
+<div class="bg-surface-container-low p-space-md rounded-xl mb-space-xl flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-on-secondary-fixed text-on-primary flex items-center justify-center font-bold">TB</div>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">Officer Tunde Balogun • Level 2 Sign-off</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Authenticated Gateway BN-04 • IP 102.89.33.14 (Benin City Hub Desk)</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-primary font-semibold">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Timestamped Active Session</span>
+</div>
+</div>
+<!-- Action Shelf -->
+<div class="flex flex-col sm:flex-row items-center justify-end gap-space-md pt-space-xs">
+<button class="w-full sm:w-auto min-h-[44px] px-5 py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 transition-all flex-shrink-0 whitespace-nowrap" id="btnRequestInfo" onclick="requestMoreInfo()" type="button">
+<span class="material-symbols-outlined text-[18px]">contact_support</span>
+<span>Request More Info</span>
+</button>
+<button class="w-full sm:w-auto min-h-[44px] px-6 py-2.5 rounded-lg bg-primary hover:bg-on-primary-fixed text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 transition-all shadow-sm flex-shrink-0 whitespace-nowrap" id="btnRecordDetermination" onclick="submitDetermination()" type="button">
+<span>Record Formal Determination</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Resolved Notice Card (Hidden by default, shown in 'Resolved Record' state) -->
+<div class="hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm" id="resolvedRecordBanner">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">task_alt</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Formal Determination Successfully Logged</h3>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">Order #DET-8421</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Outcome: <strong class="text-on-surface">Mandated Remedial Rework within 12 Hours</strong>. Notification dispatches sent via SMS/In-App to Ada O. and Osaze Ighodaro.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Escrow Status: Held pending rework reinspection signoff</span>
+<a class="text-primary font-semibold hover:underline" href="#">Proceed to Escrow Payout Releases (S26) →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Evidence Inspection Modal Dialog -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-space-md bg-on-secondary-fixed/60 backdrop-blur-sm" id="inspectModal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-2xl w-full p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">pageview</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface" id="modalFilename">joint_leak_close.jpg</span>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-all" onclick="closeInspect()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="h-80 bg-surface-container-high rounded-xl overflow-hidden flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="High resolution inspect view for forensic case plumbing evidence" id="modalImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEfvX-av3pQvyMU7eBGyzy0jQAjtlQISRjt8MPsJptNRkArpw10eZc8gntrEqN3L71Sw-NvKqpg82lfzVoZt2muIP_FYha8uOv5NwpVrrbJ13cK-mKRQGsgaYhbvD1v-4gaPL6D0wW3OTcaqLLzc6EIET5pgnW9pMZvylQH51zo_IjUlFxsU3QpTj1zdBtTJ7JDcNDUYah-aXZTVc5MdX5PdLmYeecZngurYS5QDk"/>
+<div class="absolute top-3 right-3 px-space-xs py-1 rounded bg-on-secondary-fixed/80 backdrop-blur text-surface font-label-sm text-label-sm">
+          Forensic Metadata: ISO 200 • 1/120s • Benin City GEO Tagged
+        </div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-xl">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Officer Forensic Note</div>
+<p class="font-body-md text-body-md text-on-surface mt-0.5" id="modalCaption">Inspecting active droplet formation along slip ring joint.</p>
+</div>
+<div class="flex items-center justify-end gap-space-sm">
+<button class="h-11 px-6 rounded-lg bg-primary hover:bg-on-primary-fixed text-on-primary font-label-lg text-label-lg transition-all" onclick="closeInspect()" type="button">
+          Done Reviewing
+        </button>
+</div>
+</div>
+</div>
+<!-- Inline Micro-Interaction Script for Prototype States & Modal -->
+<script>
+    function inspectPhoto(filename, caption) {
+      document.getElementById('modalFilename').textContent = filename;
+      document.getElementById('modalCaption').textContent = caption;
+      document.getElementById('inspectModal').classList.remove('hidden');
+    }
+
+    function closeInspect() {
+      document.getElementById('inspectModal').classList.add('hidden');
+    }
+
+    function submitDetermination() {
+      const textarea = document.getElementById('reasoningNotes');
+      const warning = document.getElementById('validationWarning');
+      if (!textarea.value || textarea.value.trim().length < 30) {
+        warning.classList.remove('hidden');
+        textarea.classList.add('bg-error-container');
+        return;
+      }
+      warning.classList.add('hidden');
+      textarea.classList.remove('bg-error-container');
+
+      const submitBtn = document.getElementById('btnRecordDetermination');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Recording Resolution...';
+
+      setTimeout(() => {
+        applyState('resolved');
+      }, 700);
+    }
+
+    function requestMoreInfo() {
+      applyState('awaiting');
+    }
+
+    function applyState(state) {
+      const determinationCard = document.getElementById('determinationFormCard');
+      const resolvedBanner = document.getElementById('resolvedRecordBanner');
+      const statusBadge = document.getElementById('caseStatusBadge');
+      const submitBtn = document.getElementById('btnRecordDetermination');
+      const textarea = document.getElementById('reasoningNotes');
+      const warning = document.getElementById('validationWarning');
+
+      // Update state buttons styling
+      document.querySelectorAll('#stateSwitcher button').forEach(btn => {
+        if (btn.getAttribute('data-state') === state) {
+          btn.className = 'px-space-sm py-1.5 rounded-lg text-xs font-semibold bg-on-secondary-fixed text-surface-container-low transition-all';
+        } else {
+          btn.className = 'px-space-sm py-1.5 rounded-lg text-xs font-semibold bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all';
+        }
+      });
+
+      // Reset standard UI
+      determinationCard.classList.remove('hidden');
+      resolvedBanner.classList.add('hidden');
+      warning.classList.add('hidden');
+      textarea.classList.remove('bg-error-container');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>Record Formal Determination</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span>';
+
+      if (state === 'default') {
+        statusBadge.textContent = 'Under Review';
+        statusBadge.parentElement.className = 'font-label-lg text-label-lg text-on-surface font-semibold flex items-center gap-space-2xs';
+      } else if (state === 'awaiting') {
+        statusBadge.textContent = 'Awaiting Supplemental Info';
+        statusBadge.parentElement.className = 'font-label-lg text-label-lg text-secondary font-semibold flex items-center gap-space-2xs';
+        textarea.value = 'RFI Sent: Artisan requested to supply raw time-stamped photo of the dry trap prior to departure.';
+      } else if (state === 'submitting') {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Recording Resolution...';
+        statusBadge.textContent = 'Submitting Determination...';
+      } else if (state === 'resolved') {
+        determinationCard.classList.add('hidden');
+        resolvedBanner.classList.remove('hidden');
+        statusBadge.textContent = 'Resolved • Rework Mandated';
+        statusBadge.parentElement.className = 'font-label-lg text-label-lg text-primary font-semibold flex items-center gap-space-2xs';
+      } else if (state === 'validation') {
+        textarea.value = '';
+        warning.classList.remove('hidden');
+        textarea.classList.add('bg-error-container');
+        statusBadge.textContent = 'Action Required';
+      }
+    }
+
+    document.querySelectorAll('#stateSwitcher button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const targetState = e.currentTarget.getAttribute('data-state');
+        applyState(targetState);
+      });
+    });
+  </script>
+</div></main></div></body></html>

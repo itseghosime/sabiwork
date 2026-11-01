@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed-variant": "#3f484e", "secondary-fixed": "#d5e3ff", "error-container": "#ffdad6", "on-secondary-container": "#435a7f", "inverse-on-surface": "#edf0ff", "on-primary": "#ffffff", "secondary-container": "#bbd3fe", "tertiary-fixed": "#dbe4eb", "surface-dim": "#d3daef", "on-background": "#141b2b", "on-secondary": "#ffffff", "on-tertiary-container": "#2e373d", "on-primary-fixed-variant": "#004b6f", "surface-variant": "#dce2f7", "surface-container-highest": "#dce2f7", "on-secondary-fixed": "#001b3c", "on-tertiary-fixed": "#141d22", "surface-container-lowest": "#ffffff", "surface": "#f9f9ff", "primary-fixed-dim": "#8aceff", "outline": "#6f7881", "tertiary-fixed-dim": "#bfc8ce", "inverse-primary": "#8aceff", "primary": "#006491", "primary-fixed": "#c9e6ff", "on-error-container": "#93000a", "outline-variant": "#bec8d1", "surface-container": "#e9edff", "on-secondary-fixed-variant": "#30476b", "on-surface": "#141b2b", "surface-container-high": "#e1e8fd", "surface-tint": "#006491", "primary-container": "#38a8e8", "on-tertiary": "#ffffff", "on-error": "#ffffff", "on-surface-variant": "#3f4850", "on-primary-container": "#003a56", "tertiary-container": "#97a0a7", "error": "#ba1a1a", "surface-bright": "#f9f9ff", "inverse-surface": "#293040", "surface-container-low": "#f1f3ff", "tertiary": "#576065", "background": "#f9f9ff", "on-primary-fixed": "#001e2f", "secondary-fixed-dim": "#b0c8f2", "secondary": "#485f84" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "2rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "space-md": "1rem", "space-2xs": "0.25rem", "space-sm": "0.625rem", "space-2xl": "2rem", "space-3xl": "3rem", "space-xl": "1.5rem", "space-xs": "0.5rem", "gutter": "1.25rem", "space-lg": "1.25rem" }, fontFamily: { "body-md": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"], "label-lg": ["Inter"] }, fontSize: { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">SabiWork</span><span class="px-2 py-0.5 rounded-full bg-secondary text-surface text-[10px] font-semibold tracking-wide flex-shrink-0 uppercase">Paystack TEST Mode</span></div><div class="flex items-center gap-1 min-w-0"><span class="font-label-sm text-label-sm text-primary font-semibold truncate">Artisan Workspace</span><span class="text-outline font-label-sm text-label-sm">•</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Jobs</span></div></div></div><div class="flex items-center flex-shrink-0"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-[0_1px_3px_rgba(14,41,75,0.15)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full pt-16 pb-24 bg-surface min-h-screen flex flex-col"><div class="flex flex-col w-full">
+<!-- Simulation Scenario Bar (Artisan Workspace Testing Switcher) -->
+<div class="sticky top-0 z-40 bg-surface-container-high/95 backdrop-blur-md px-margin-mobile py-2 shadow-sm">
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">tune</span> Sim:
+      </span>
+<button class="px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap bg-primary text-on-primary shadow-sm transition-all" id="sim-btn-default" onclick="setSimState('default')">
+        Default Active
+      </button>
+<button class="px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all" id="sim-btn-awaiting" onclick="setSimState('awaiting')">
+        Awaiting Deposit
+      </button>
+<button class="px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all" id="sim-btn-empty" onclick="setSimState('empty')">
+        Empty State
+      </button>
+<button class="px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all" id="sim-btn-loading" onclick="setSimState('loading')">
+        Loading
+      </button>
+<button class="px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all" id="sim-btn-error" onclick="setSimState('error')">
+        Error
+      </button>
+</div>
+</div>
+<!-- Screen Header & Profile Bar -->
+<div class="px-margin-mobile pt-3 pb-2 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">My Active Jobs</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Live Track
+      </span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Osaze Ighodaro (Verified Pro #BN-8820)</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary">4 Total</span>
+</div>
+</div>
+<!-- Search & Filter Controls -->
+<div class="px-margin-mobile py-2 flex items-center gap-space-xs">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-11 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:bg-surface-container shadow-sm transition-colors" placeholder="Search jobs or customer..." type="text"/>
+</div>
+<button aria-label="Toggle Filter Sheet" class="h-11 w-11 flex-shrink-0 flex items-center justify-center rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+<!-- Quick Filter Pills -->
+<div class="px-margin-mobile py-1 overflow-x-auto no-scrollbar flex items-center gap-space-xs">
+<button class="filter-pill active px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm whitespace-nowrap shadow-sm">
+      All (4)
+    </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-high">
+      In Progress (2)
+    </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-high">
+      Awaiting Sign-off (1)
+    </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-high">
+      Awaiting Deposit (1)
+    </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-high">
+      Completed (4)
+    </button>
+</div>
+<!-- KPI 2x2 Bento Summary Grid -->
+<div class="px-margin-mobile py-2.5">
+<div class="grid grid-cols-2 gap-space-xs">
+<!-- In Progress KPI -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">In Progress</span>
+<span class="material-symbols-outlined text-[16px] text-primary">engineering</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">2</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">₦65,000</span>
+</div>
+</div>
+<!-- Awaiting Sign-off KPI -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sign-off Pending</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">approval</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">1</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">₦20,000</span>
+</div>
+</div>
+<!-- Awaiting Deposit KPI -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Awaiting Deposit</span>
+<span class="material-symbols-outlined text-[16px] text-outline">pending_actions</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">1</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface-variant">₦18,500</span>
+</div>
+</div>
+<!-- Completed KPI -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Completed (Total)</span>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">4</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">₦112,000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CONTAINER: Default State Job Cards Stack -->
+<div class="px-margin-mobile flex flex-col gap-3 py-1" id="view-default">
+<!-- Card 1: In Progress - Active -->
+<article class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3">
+<!-- Header meta -->
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold text-primary">#JOB-BN-2026-092</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Boundary Rd, GRA Axis</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-bold">
+            Kitchen Sink Trap &amp; Pipe Leak Repair
+          </h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Ada O.</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-medium">In Progress</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Customer avatar photo of Nigerian woman Ada smiling warmly in casual indoor daylight setting, framed headshot with natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSImhXZQ_19ltaOT5h3zOWLBY96iMSDpRvVdFgUBZvnNJXREB7a-4HYp4giEG3d1bM3CvFeB09D3jed1DbuWHJ--0F-VJ-BZ7BAhGU3jrsb8yZdoQi0f3JVs9G9QsQbI5dbpSu-csAi4ulun2IRK5_eoQvIRUsNyM7GbeIlUH8MFeg8nY72kApA46B3iTtn4KvrlfnzG13CZSZfXf5ReRaypLZhLJiAWWLsN07D3U"/>
+</div>
+</div>
+<!-- Schedule Banner -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+<span class="font-label-md text-label-md font-semibold">Today, 2:00 PM – 4:30 PM</span>
+<span class="ml-auto text-[11px] font-semibold text-primary bg-primary-fixed px-2 py-0.5 rounded-full">On Site</span>
+</div>
+<!-- Stage Progress -->
+<div class="flex flex-col gap-1.5 p-3 rounded-lg bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Stage 5 of 6 (83%)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pressure test pending</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 83%;"></div>
+</div>
+</div>
+<!-- Escrow Status Badge -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px] text-secondary">lock</span>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm leading-tight">
+<span class="font-bold">₦10,000</span> deposit cleared • <span class="font-semibold text-secondary">₦20,000 balance</span> in Paystack TEST Escrow
+          </p>
+</div>
+</div>
+<!-- Action Button Group -->
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full h-[46px] rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-95 transition-opacity">
+<span>Add Progress Update (S29)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="w-full h-[46px] rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span>View Job Details (S28)</span>
+</button>
+<!-- Tertiary Row -->
+<div class="grid grid-cols-2 gap-2 pt-0.5">
+<button class="h-11 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Chat Client</span>
+</button>
+<button class="h-11 rounded-lg bg-surface-container-low text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+<span>Escrow History</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Awaiting Sign-off -->
+<article class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3">
+<!-- Header meta -->
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold text-primary">#JOB-BN-2026-088</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Airport Rd Bypass</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-bold">
+            Water Booster Pump Servicing
+          </h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Victor E.</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+              Awaiting Client Sign-off
+            </span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of Nigerian gentleman Victor with glasses, warm professional expression against clean background, natural daylight lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeKR0FUf6vk_yMYjK2FV3tfS-lC-ZHYdAhVJx32XepeElAVsbl76669TWkW8KlUuslqP2U-bBJnDRXEWI2c0tnSN3cStRNRbTQIZddrEgyNiIoUhaEzK-vWrKvYKAn-rEHQMKVHMpfIoGXhvlX1aEHZAPfJ4sNB_VCPG-pEsQX2OHae_OhjzDCUJpXJBG-oyQvJ2A4WWwYp-Lgl4dkXdkrLxbWlWoZyLzxUnQRdNs"/>
+</div>
+</div>
+<!-- Schedule / Milestone Indicator -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-label-md text-label-md font-semibold">Handover submitted today</span>
+<span class="ml-auto text-[11px] font-semibold text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded-full">Milestone Complete</span>
+</div>
+<!-- Escrow Detail -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">payments</span>
+<div class="flex-1 min-w-0">
+<p class="font-body-sm text-body-sm leading-tight">
+<span class="font-bold">₦45,000 Total</span> • <span class="font-semibold text-primary">₦25,000 balance pending release</span>
+</p>
+</div>
+</div>
+<!-- Buttons -->
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full h-[46px] rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-95 transition-opacity">
+<span>Send Sign-off Reminder</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+<button class="w-full h-[46px] rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span>View Job Details (S28)</span>
+</button>
+</div>
+</article>
+<!-- Card 3: In Progress (Next Day) -->
+<article class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3">
+<!-- Header meta -->
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold text-primary">#JOB-BN-2026-079</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Ihama Rd, GRA</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-bold">
+            Bathroom Concealed Mixer Fix
+          </h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Chief E. Obaseki</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-medium">In Progress</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Portrait photograph of senior Nigerian client Chief Obaseki smiling respectfully, wearing traditional patterned attire in bright studio ambient daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMFbIZ-ZH95M8h3GfxBvQaE6cKZk14KxRefsMTO4KAqAE2bNjAuARYWtze4Am32sMnAgLU9m-d4ZOc1FMRVg_1_W03uZ8xcPtP-tiWaRjFec8HKlZYsKhhyDyOgsi6xj_ghxB79LizYVcEHDJIUXHD-Pg29J6ITbRXKJ7FfYcUZB7QCJcVfbJ9EpxZzN4O77cf-nomWdrDKqCi0q92PuIu8zXLBFFOuiJ9wTM-_dU"/>
+</div>
+</div>
+<!-- Schedule -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">event</span>
+<span class="font-label-md text-label-md font-semibold">Tomorrow, 9:00 AM</span>
+<span class="ml-auto text-[11px] font-semibold text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">Phase 2</span>
+</div>
+<!-- Stage Progress -->
+<div class="flex flex-col gap-1.5 p-3 rounded-lg bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Stage 2 of 4 (50%)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tile demolition finished</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Escrow Detail -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
+<p class="font-body-sm text-body-sm leading-tight">
+<span class="font-bold">₦16,000 Deposit held</span> in Paystack TEST Escrow
+        </p>
+</div>
+<!-- Buttons -->
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full h-[46px] rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-95 transition-opacity">
+<span>Add Progress Update (S29)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="w-full h-[46px] rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span>View Job Details (S28)</span>
+</button>
+</div>
+</article>
+<!-- Card 4: Awaiting Deposit -->
+<article class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3">
+<!-- Header meta -->
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold text-outline">#JOB-BN-2026-075</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Ugbowo Corridor</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-bold">
+            Borehole Non-return Valve
+          </h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Blessing A.</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold">
+              Awaiting Test Deposit
+            </span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Portrait photography of young Nigerian woman Blessing looking pleasantly towards camera, wearing teal modern top, soft sunlight background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABguSEvbwvRSCavXfXbBwf5HxlxZLtTlf9-MaCKOCc_qdngkr8VHJPr2aqpIvR6U0RqPN8aQPlnLoSMJe1q9NUNH6ahhmiSJC1vQW4a0gGpVYqLqa5mz-fdFCndPRjvCwDZKhJlauI9GzNZc3rthvcBT6QfXhZzDlHqpB9UMRYgdPrG6KCwMb2vu3ZuHVnlUhlv1PU02CmRQ1nwSq8Zj7SbLcuM_WrFdTIs9qamV0"/>
+</div>
+</div>
+<!-- Schedule Notice -->
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-outline">hourglass_empty</span>
+<span class="font-label-md text-label-md font-medium">Waiting customer checkout on Paystack</span>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full h-[46px] rounded-lg bg-surface-container-highest text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm hover:bg-surface-container transition-colors">
+<span>View Accepted Quote</span>
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="w-full h-[46px] rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span>View Job Details (S28)</span>
+</button>
+</div>
+</article>
+</div>
+<!-- CONTAINER: Simulation - Awaiting Deposit Focus View -->
+<div class="hidden px-margin-mobile flex flex-col gap-3 py-1" id="view-awaiting">
+<div class="p-3 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+<span class="font-body-sm text-body-sm font-semibold">Showing 1 job currently awaiting customer initial escrow deposit.</span>
+</div>
+<article class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold text-outline">#JOB-BN-2026-075</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Ugbowo Corridor</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-bold">
+            Borehole Non-return Valve
+          </h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Blessing A.</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+              Awaiting Test Deposit
+            </span>
+</div>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col gap-1 text-on-surface">
+<div class="flex justify-between font-label-md text-label-md font-semibold">
+<span>Quoted Labor &amp; Parts:</span>
+<span>₦18,500</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Initial Escrow Required:</span>
+<span class="font-semibold text-primary">₦10,000</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full h-[46px] rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm">
+<span>Resend Deposit Prompt SMS</span>
+<span class="material-symbols-outlined text-[18px]">sms</span>
+</button>
+<button class="w-full h-[46px] rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2">
+<span>View Job Details (S28)</span>
+</button>
+</div>
+</article>
+</div>
+<!-- CONTAINER: Simulation - Empty State -->
+<div class="hidden px-margin-mobile py-8 flex flex-col items-center text-center" id="view-empty">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[40px] text-primary">work_outline</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">No Active Jobs Right Now</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mt-2">
+      You are not running any active bookings at the moment. Check your new job requests to accept next gigs!
+    </p>
+<div class="mt-6 flex flex-col gap-2 w-full max-w-[280px]">
+<a class="w-full h-[46px] rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+<span>View Inbound Requests</span>
+</a>
+<button class="w-full h-[46px] rounded-lg bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-2" onclick="setSimState('default')">
+<span>Reset Simulation</span>
+</button>
+</div>
+</div>
+<!-- CONTAINER: Simulation - Loading Shimmer State -->
+<div class="hidden px-margin-mobile flex flex-col gap-3 py-1" id="view-loading">
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3 animate-pulse">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-2 w-3/4">
+<div class="h-3 w-1/2 bg-surface-container-highest rounded"></div>
+<div class="h-5 w-4/5 bg-surface-container-highest rounded"></div>
+<div class="h-3 w-1/3 bg-surface-container-highest rounded"></div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex-shrink-0"></div>
+</div>
+<div class="h-9 w-full bg-surface-container-low rounded-lg"></div>
+<div class="h-10 w-full bg-surface-container rounded-lg"></div>
+<div class="h-11 w-full bg-surface-container-highest rounded-lg"></div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3 animate-pulse">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-2 w-3/4">
+<div class="h-3 w-2/5 bg-surface-container-highest rounded"></div>
+<div class="h-5 w-3/4 bg-surface-container-highest rounded"></div>
+<div class="h-3 w-1/2 bg-surface-container-highest rounded"></div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex-shrink-0"></div>
+</div>
+<div class="h-9 w-full bg-surface-container-low rounded-lg"></div>
+<div class="h-11 w-full bg-surface-container-highest rounded-lg"></div>
+</div>
+</div>
+<!-- CONTAINER: Simulation - Error State -->
+<div class="hidden px-margin-mobile py-8 flex flex-col items-center text-center" id="view-error">
+<div class="w-20 h-20 rounded-full bg-error-container flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[40px] text-error">cloud_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Failed to Sync Workspace</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mt-2">
+      We couldn't refresh your active job cards due to an unstable local network. Your offline cached jobs remain safe.
+    </p>
+<div class="mt-6 flex flex-col gap-2 w-full max-w-[280px]">
+<button class="w-full h-[46px] rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm" onclick="setSimState('default')">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+<span>Retry Connection</span>
+</button>
+<button class="w-full h-[46px] rounded-lg bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-2" onclick="setSimState('default')">
+<span>Load Cached Version</span>
+</button>
+</div>
+</div>
+<!-- Bottom Spacing Cushion for Shell Navigation Bar -->
+<div class="h-4"></div>
+</div>
+<script>
+  function setSimState(state) {
+    const states = ['default', 'awaiting', 'empty', 'loading', 'error'];
+    states.forEach(s => {
+      const el = document.getElementById('view-' + s);
+      const btn = document.getElementById('sim-btn-' + s);
+      if (el) {
+        if (s === state) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      }
+      if (btn) {
+        if (s === state) {
+          btn.className = "px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap bg-primary text-on-primary shadow-sm transition-all";
+        } else {
+          btn.className = "px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all";
+        }
+      }
+    });
+  }
+
+  // Support quick filter clicks
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.filter-pill').forEach(p => {
+        p.classList.remove('bg-primary', 'text-on-primary');
+        p.classList.add('bg-surface-container', 'text-on-surface-variant');
+      });
+      this.classList.remove('bg-surface-container', 'text-on-surface-variant');
+      this.classList.add('bg-primary', 'text-on-primary');
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="h-16 px-gutter-mobile flex items-center justify-around"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-2xs text-on-surface-variant transition-colors hover:text-on-surface" data-path="overview" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm tracking-tight">Overview</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-2xs text-on-surface-variant transition-colors hover:text-on-surface" data-path="requests" href="#"><span class="material-symbols-outlined text-[22px]">inbox</span><span class="font-label-sm text-label-sm tracking-tight">Requests</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-2xs transition-colors text-primary font-semibold" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">handyman</span><span class="font-label-sm text-label-sm tracking-tight">Jobs</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-2xs text-on-surface-variant transition-colors hover:text-on-surface" data-path="earnings" href="#"><span class="material-symbols-outlined text-[22px]">account_balance_wallet</span><span class="font-label-sm text-label-sm tracking-tight">Earnings</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-2xs text-on-surface-variant transition-colors hover:text-on-surface" data-path="more" href="#"><span class="material-symbols-outlined text-[22px]">manage_accounts</span><span class="font-label-sm text-label-sm tracking-tight">More</span></a></div></nav></body></html>

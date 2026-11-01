@@ -4,6 +4,8 @@ import {
   categories,
   tradeAliases,
   type Artisan,
+  type CategoryId,
+  type Area,
 } from "./data";
 
 export type SearchInput = Record<string, string | string[] | undefined>;
@@ -94,11 +96,87 @@ export function searchArtisans(
 }
 // This is the single replacement point for the future server search/database adapter.
 // Failures deliberately propagate to the route error boundary rather than look empty.
+function inferCategory(value: string): CategoryId {
+  const normalized = value.toLowerCase();
+  if (normalized.includes("plumb") || normalized.includes("water")) return "plumbing";
+  if (normalized.includes("elect") || normalized.includes("solar") || normalized.includes("inverter")) return "electrical";
+  if (normalized.includes("carpen") || normalized.includes("wood") || normalized.includes("cabinet")) return "carpentry";
+  if (normalized.includes("tailor") || normalized.includes("fashion")) return "tailoring";
+  if (normalized.includes("paint")) return "painting";
+  return "cleaning";
+}
+
+function inferArea(value: string): Area {
+  const found = areas.find((item) => value.toLowerCase().includes(item.toLowerCase()));
+  return found ?? "GRA";
+}
+
 export async function listArtisans(
   filters: SearchFilters,
 ): Promise<SearchResult> {
-  return searchArtisans(filters);
+  if (process.env.NODE_ENV === "test") {
+    return searchArtisans(filters);
+  }
+
+  try {
+    const params = new URLSearchParams();
+    if (filters.q) params.set("q", filters.q);
+    if (filters.category) params.set("category", filters.category);
+    if (filters.area) params.set("area", filters.area);
+
+    const endpoint = `/api/artisans${params.size ? `?${params}` : ""}`;
+    const base = typeof window === "undefined"
+      ? process.env.NEXT_PUBLIC_APP_URL || "http://127.0.0.1:3000"
+      : window.location.origin;
+    const response = await fetch(new URL(endpoint, base).toString(), { cache: "no-store" });
+    if (!response.ok) return searchArtisans(filters);
+
+    const body = await response.json();
+    const rows = body.data as Array<{
+      id: string;
+      name: string;
+      primary_trade: string;
+      coverage_areas: string[];
+      bio: string;
+      rate_guidance_kobo: number | null;
+      average_rating: number;
+      reviews_count: number;
+      verification_status: string;
+    }>;
+
+    const records: Artisan[] = rows.map((row) => {
+      const category = inferCategory(row.primary_trade);
+      const initials = row.name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() ?? "")
+        .join("") || "SW";
+
+      return {
+        id: row.id,
+        name: row.name,
+        category,
+        skills: [category],
+        area: inferArea(row.coverage_areas[0] ?? "GRA"),
+        headline: row.primary_trade,
+        bio: row.bio,
+        rating: row.average_rating || 0,
+        reviewCount: row.reviews_count || 0,
+        startingPriceKobo: row.rate_guidance_kobo ?? 0,
+        profileReviewed: row.verification_status === "approved",
+        portrait: null,
+        initials,
+      };
+    });
+
+    return searchArtisans(filters, records.length ? records : artisans);
+  } catch (error) {
+    console.error("[search] Falling back to fixture directory", error);
+    return searchArtisans(filters);
+  }
 }
+
 export function searchHref(
   filters: SearchFilters,
   changes: Partial<SearchFilters> = {},

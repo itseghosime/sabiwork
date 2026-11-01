@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { Icon } from "./icon";
 
-export function Brand() {
+export function Brand({ href = "/" }: { href?: string } = {}) {
   return (
-    <Link href="/" className="brand" aria-label="SabiWork home">
+    <Link href={href} className="brand" aria-label="SabiWork home">
       <span className="brand-mark">
         <Image
           src="/images/sabiwork-icon.png"
@@ -54,7 +54,7 @@ function PublicShellContent({
         Skip to content
       </a>
       <header
-        className="site-header"
+        className="site-header public-shell-header"
         onKeyDown={(event) => {
           if (event.key === "Escape" && open) {
             setOpen(false);
@@ -62,7 +62,7 @@ function PublicShellContent({
           }
         }}
       >
-        <div className="container header-inner">
+        <div className="container header-inner public-header-inner">
           <Brand />
           <nav aria-label="Main navigation" className="desktop-nav">
             {links.map((link) => (
@@ -79,8 +79,11 @@ function PublicShellContent({
             <Link href="/login" className="text-link">
               Log in
             </Link>
-            <Link href="/signup/artisan" className="button button-subtle">
-              Join as an artisan <Icon name="arrow" size={17} />
+            <Link href="/signup/artisan" className="button button-outline">
+              Join as an artisan
+            </Link>
+            <Link href="/signup/customer" className="button button-primary">
+              Hire an artisan <Icon name="arrow" size={17} />
             </Link>
           </div>
           <button
@@ -121,25 +124,22 @@ function PublicShellContent({
               Log in
               <Icon name="next" size={17} />
             </Link>
+            <p className="mobile-nav-label">Choose your path</p>
             <Link
-              className="button button-primary"
+              className="button button-outline mobile-path"
               href="/signup/artisan"
               onClick={() => setOpen(false)}
             >
-              Join as an artisan <Icon name="arrow" size={17} />
+              Join as an artisan
+              <Icon name="arrow" size={17} />
             </Link>
-            <div style={{ borderTop: "1px solid var(--border, #e2e8f0)", margin: "8px 0" }} />
-            <Link href="/jobs" onClick={() => setOpen(false)}>
-              Customer Workspace
-              <Icon name="next" size={17} />
-            </Link>
-            <Link href="/artisan" onClick={() => setOpen(false)}>
-              Artisan Workspace
-              <Icon name="next" size={17} />
-            </Link>
-            <Link href="/admin/verification" onClick={() => setOpen(false)}>
-              Admin Desk
-              <Icon name="next" size={17} />
+            <Link
+              className="button button-primary mobile-path"
+              href="/signup/customer"
+              onClick={() => setOpen(false)}
+            >
+              Hire an artisan
+              <Icon name="arrow" size={17} />
             </Link>
           </nav>
         )}
@@ -147,9 +147,9 @@ function PublicShellContent({
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
-      <footer className="site-footer">
+      <footer className="site-footer public-shell-footer">
         <div className="container footer-top">
-          <div>
+          <div className="footer-brand">
             <Brand />
             <p>
               Good work starts with the right person.
@@ -157,22 +157,32 @@ function PublicShellContent({
               Discover skilled hands around Benin City.
             </p>
           </div>
-          <nav aria-label="Footer navigation">
+          <nav aria-label="Explore" className="footer-column">
+            <p className="footer-heading">Explore</p>
             <Link href="/categories">Explore services</Link>
             <Link href="/artisans">Find an artisan</Link>
             <Link href="/#how-it-works">How it works</Link>
           </nav>
+          <nav aria-label="Account" className="footer-column">
+            <p className="footer-heading">Account</p>
+            <Link href="/login">Log in</Link>
+            <Link href="/signup/customer">Hire an artisan</Link>
+            <Link href="/signup/artisan">Join as an artisan</Link>
+          </nav>
           <div className="footer-location">
-            <Icon name="pin" size={18} /> Benin City, Nigeria
-            <span className="demo-tag">Group Four · Demo</span>
+            <p className="footer-heading">Where we work</p>
+            <span className="footer-place">
+              <Icon name="pin" size={16} /> Benin City, Nigeria
+            </span>
+            <span className="demo-tag">Neighbourhood services marketplace</span>
           </div>
         </div>
         <div className="container footer-bottom">
           <span>
-            © {new Date().getFullYear()} SabiWork. Built by Group Four.
+            © {new Date().getFullYear()} SabiWork. Built for skilled work in Benin City.
           </span>
           <span>
-            Fictional profiles & ratings. Payments are not connected yet.
+            Payments via Paystack are coming soon. Service requests and work updates run on your account data.
           </span>
         </div>
       </footer>

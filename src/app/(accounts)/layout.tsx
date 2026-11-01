@@ -1,14 +1,10 @@
-import { PublicShell } from "@/components/public-shell";
-import { AccountDemoProvider } from "@/features/accounts/demo-context";
 import "./accounts.css";
+import "./account-redesign.css";
+import "./auth-editorial.css";
 export default function AccountLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <AccountDemoProvider>
-      <PublicShell>{children}</PublicShell>
-    </AccountDemoProvider>
-  );
+  return <main className="account-main" id="main-content" tabIndex={-1}>{children}</main>;
 }

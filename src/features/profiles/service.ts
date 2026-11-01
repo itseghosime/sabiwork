@@ -59,7 +59,6 @@ export interface VerificationApplication {
   applicationRef: string;
   lodgedDate: string;
   status: VerificationState;
-  ninNumber: string;
   tradeGuild: string;
   certificateRef: string;
   masterCraftsman: string;
@@ -79,7 +78,7 @@ const defaultPortfolio: readonly PortfolioItem[] = [
     id: "photo-01",
     title: "Dual Pressure PPR Piping & Manifold Installation",
     category: "Plumbing",
-    location: "Boundary Rd, GRA, Benin City",
+    location: "Sample area, Benin City",
     completedDate: "18 Feb 2026",
     description:
       "Installed full PPR hot/cold manifold distribution system with independent isolation valves and high-pressure leak testing.",
@@ -90,7 +89,7 @@ const defaultPortfolio: readonly PortfolioItem[] = [
     id: "photo-02",
     title: "Concealed Wall Vanity & Trap Replacement",
     category: "Plumbing",
-    location: "Ihama Rd, GRA, Benin City",
+    location: "Sample area, Benin City",
     completedDate: "04 Jan 2026",
     description:
       "Concealed bottle trap and flexible drain lines retrofit to eliminate sewer odor and under-sink dripping.",
@@ -101,7 +100,7 @@ const defaultPortfolio: readonly PortfolioItem[] = [
     id: "photo-03",
     title: "2,000L Overhead Tank & Automatic Float Switch",
     category: "Plumbing",
-    location: "Ugbowo Axis, Benin City",
+    location: "Sample area, Benin City",
     completedDate: "12 Dec 2025",
     description:
       "Reinforced steel stanchion plumbing with non-return check valves and automated submersible pump control wiring.",
@@ -112,7 +111,7 @@ const defaultPortfolio: readonly PortfolioItem[] = [
     id: "photo-04",
     title: "Ground Floor Inspection Chamber & Manhole Clearing",
     category: "Plumbing",
-    location: "Airport Rd, Benin City",
+    location: "Sample area, Benin City",
     completedDate: "28 Nov 2025",
     description:
       "Excavated blocked grease trap, renewed damaged PVC sweeps, and sealed with heavy-duty ductile iron inspection covers.",
@@ -124,59 +123,59 @@ const defaultPortfolio: readonly PortfolioItem[] = [
 const defaultReviews: readonly CustomerReview[] = [
   {
     id: "rev-01",
-    reviewerName: "Ada Okafor",
-    area: "GRA Axis",
+    reviewerName: "Sample Customer 1",
+    area: "Sample area",
     rating: 5,
     date: "24 Oct 2026",
     comment:
-      "Osaze arrived right on schedule and diagnosed the persistent leak under our kitchen sink instantly. Clean work and very courteous.",
-    jobRef: "BN-REQ-8421",
-    milestoneVerified: true,
+      "Sample review text for layout preview only.",
+    jobRef: "SAMPLE-REQUEST-001",
+    milestoneVerified: false,
   },
   {
     id: "rev-02",
-    reviewerName: "Pastor Eghosa Imasuen",
-    area: "Boundary Rd",
+    reviewerName: "Sample Customer 2",
+    area: "Sample area",
     rating: 5,
     date: "09 Oct 2026",
     comment:
-      "Replaced our entire overhead tank bypass manifold. Honest pricing and genuine heavy gauge pipes used.",
-    jobRef: "BN-REQ-7910",
-    milestoneVerified: true,
+      "Sample review text for layout preview only.",
+    jobRef: "SAMPLE-REQUEST-002",
+    milestoneVerified: false,
   },
   {
     id: "rev-03",
-    reviewerName: "Engr. Felix Omokaro",
-    area: "Ugbowo",
+    reviewerName: "Sample Customer 3",
+    area: "Sample area",
     rating: 4,
     date: "15 Sep 2026",
     comment:
-      "Good technical know-how on water booster pump wiring and pressure switches. Will recommend to colleagues.",
-    jobRef: "BN-REQ-7104",
-    milestoneVerified: true,
+      "Sample review text for layout preview only.",
+    jobRef: "SAMPLE-REQUEST-003",
+    milestoneVerified: false,
   },
 ];
 
 export const defaultArtisan: ArtisanProfile = {
-  id: "00000000-0000-4000-8000-000000000001",
-  slug: "osaze-ighodaro",
-  name: "Osaze Ighodaro",
+  id: "SAMPLE-ARTISAN-001",
+  slug: "sample-artisan-1",
+  name: "Sample Artisan 1",
   headline: "Master Plumber & Pipe Fitter",
   category: "plumbing",
   trade: "Plumbing & Water Systems",
   area: "GRA",
-  workshopAddress: "14 Boundary Road, GRA, Benin City (Opposite Royal Marble Hotel)",
+  workshopAddress: "Sample workshop area, Benin City",
   rating: 4.9,
   reviewCount: 38,
   completedJobsCount: 142,
   startingPriceKobo: 1_000_000,
   experienceYears: 12,
-  profileReviewed: true,
-  bvnVerified: true,
-  ninVerified: true,
-  workshopVetted: true,
-  initials: "OI",
-  bio: "Trade-certified master plumber with over 12 years of hands-on installation, troubleshooting, and pressurized piping maintenance across Benin City. Specializing in high-density PPR fusion, concealed drainage traps, borehole water distribution, and sanitary ware fixtures. Registered member of the Edo State Professional Artisans Guild.",
+  profileReviewed: false,
+  bvnVerified: false,
+  ninVerified: false,
+  workshopVetted: false,
+  initials: "SA",
+  bio: "Fictional artisan profile for demonstrating plumbing skills, sample reviews, and portfolio layouts. No credentials or work history are verified.",
   skills: [
     "PPR Heat-Fusion Piping",
     "Under-Sink Leak Detection",
@@ -190,45 +189,44 @@ export const defaultArtisan: ArtisanProfile = {
 };
 
 export const defaultVerification: VerificationApplication = {
-  id: "app-ver-001",
+  id: "SAMPLE-APPLICATION-001",
   artisanId: defaultArtisan.id,
-  applicationRef: "VER-BN-2026-104",
+  applicationRef: "SAMPLE-VERIFICATION-PREVIEW",
   lodgedDate: "28 October 2026 · 10:15 WAT",
   status: "UNDER_REVIEW",
-  ninNumber: "••••••••9012",
-  tradeGuild: "Edo State Guild of Plumbers & Building Craftsmen",
-  certificateRef: "EDG-PL-2018-0442",
-  masterCraftsman: "Chief Pa Osagie Omorogbe (Uselu)",
-  workshopLocation: "14 Boundary Road, GRA, Benin City",
+  tradeGuild: "Not provided in this sample",
+  certificateRef: "Not issued",
+  masterCraftsman: "Not assigned",
+  workshopLocation: "Sample workshop area, Benin City",
   submittedFiles: [
-    { id: "f1", name: "national_id_slip.pdf", type: "application/pdf" },
-    { id: "f2", name: "workshop_signboard_front.jpg", type: "image/jpeg" },
-    { id: "f3", name: "guild_membership_certificate.pdf", type: "application/pdf" },
+    { id: "f1", name: "sample-identity-document-not-uploaded.pdf", type: "application/pdf" },
+    { id: "f2", name: "sample-workshop-image-not-uploaded.jpg", type: "image/jpeg" },
+    { id: "f3", name: "sample-certificate-not-issued.pdf", type: "application/pdf" },
   ],
   reviewNotes:
-    "Physical workshop inspection scheduled with Benin Hub field verification team.",
+    "Sample status only. No documents were uploaded and no review was performed.",
   timeline: [
     {
-      title: "Application Submitted",
-      detail: "Credentials, NIN validation token, and workshop photos uploaded.",
+      title: "Sample Form Preview",
+      detail: "No credentials or documents were submitted or saved.",
       time: "28 Oct, 10:15 WAT",
       state: "complete",
     },
     {
-      title: "Identity & Guild Audit",
-      detail: "NIN match verified against guild membership registry.",
-      time: "29 Oct, 14:30 WAT",
-      state: "complete",
+      title: "Identity and Guild Review",
+        detail: "Sample state only; no identity or membership check occurred.",
+        time: "Example timeline step",
+        state: "pending",
     },
     {
-      title: "Workshop Field Inspection",
-      detail: "Physical verification officer assigned for workshop site visit.",
-      time: "In Progress",
-      state: "current",
+      title: "Sample Workshop Review State",
+      detail: "No visit or inspection was scheduled.",
+      time: "Not started",
+      state: "pending",
     },
     {
-      title: "Pro Badge Issuance",
-      detail: "Final review and public badge credential publishing.",
+      title: "Credential Preview",
+      detail: "No badge or credential is issued or published.",
       time: "Pending",
       state: "pending",
     },
@@ -242,9 +240,9 @@ export const profilesDemoService = {
     await waitBriefly();
     const query = idOrSlug.toLowerCase().trim();
     if (
-      query === defaultArtisan.id ||
+      query === defaultArtisan.id.toLowerCase() ||
       query === defaultArtisan.slug ||
-      query === "osaze" ||
+      query === "sample-artisan" ||
       query === "1" ||
       query === "default"
     ) {
@@ -261,7 +259,7 @@ export const profilesDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Network timeout while syncing profile with Benin City directory. Please try again.",
+        message: "Could not update the local profile preview. No profile data was saved.",
       };
     }
     const updated: ArtisanProfile = {
@@ -270,7 +268,7 @@ export const profilesDemoService = {
     };
     return {
       ok: true,
-      message: "Profile updated successfully! Preview changes reflected locally.",
+      message: "Sample profile preview updated locally; nothing was saved.",
       profile: updated,
     };
   },
@@ -294,9 +292,6 @@ export const profilesDemoService = {
 
   async submitVerification(
     input: {
-      ninNumber: string;
-      certificateRef: string;
-      workshopAddress: string;
       declarationChecked: boolean;
       simulateError?: boolean;
     },
@@ -305,25 +300,19 @@ export const profilesDemoService = {
     if (input.simulateError) {
       return {
         ok: false,
-        message: "Failed to upload verification documents. Connection to verification vault timed out.",
+        message: "Sample verification preview failed. No document was uploaded or stored.",
       };
     }
     if (!input.declarationChecked) {
       return {
         ok: false,
-        message: "Please accept the legal declaration to submit your verification application.",
-      };
-    }
-    if (!input.ninNumber || input.ninNumber.trim().length < 11) {
-      return {
-        ok: false,
-        message: "Please enter a valid 11-digit National Identity Number (NIN).",
+        message: "Acknowledge the prototype limitation to preview the form.",
       };
     }
     return {
       ok: true,
-      message: "Verification application lodged successfully! Application #VER-BN-2026-104 under review.",
-      ref: "VER-BN-2026-104",
+      message: "Sample form preview complete. No details were stored, uploaded, or checked.",
+      ref: "SAMPLE-VERIFICATION-PREVIEW",
     };
   },
 };

@@ -1,0 +1,521 @@
+/* Landing page — motion layer.
+   All motion is gated on prefers-reduced-motion. Reveals use CSS scroll-driven
+   timelines where supported and fall back to fully visible content, so the page
+   never depends on JavaScript to become readable. */
+
+.landing-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+/* Pin the hero column to the container width. Wide decorative children (the
+   artisan fan) must be clipped by .landing-hero, never widen the grid track. */
+.marketplace-hero-inner {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.landing-hero .eyebrow-pill {
+  justify-self: center;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.landing-hero h1 {
+  justify-self: center;
+  max-width: 22ch;
+}
+
+.landing-hero .hero-copy {
+  justify-self: center;
+  max-width: 54ch;
+}
+
+/* The arc keeps its five cards but never stacks one over another, so every
+   caption stays legible. Overlap is what clipped the names. */
+.landing-hero .artisan-fan {
+  max-width: 1040px;
+  padding-inline: 0;
+}
+
+.landing-hero .fan-card {
+  width: 168px;
+  margin: 0 12px;
+  border-radius: 14px;
+  border-width: 3px;
+}
+
+.landing-hero .fan-2 {
+  width: 196px;
+}
+
+.landing-hero .fan-0 {
+  transform: translateY(-10px) rotate(-5deg);
+}
+
+.landing-hero .fan-1 {
+  transform: translateY(-26px) rotate(-2.5deg);
+}
+
+.landing-hero .fan-2 {
+  transform: translateY(-42px) rotate(0deg);
+}
+
+.landing-hero .fan-3 {
+  transform: translateY(-26px) rotate(2.5deg);
+}
+
+.landing-hero .fan-4 {
+  transform: translateY(-10px) rotate(5deg);
+}
+
+.landing-hero .fan-card:hover,
+.landing-hero .fan-card:focus-visible {
+  transform: translateY(-50px) rotate(0deg);
+}
+
+.landing-aurora {
+  position: absolute;
+  inset: -12% -6%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.aurora-orb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+}
+
+.aurora-orb-sky {
+  width: 42rem;
+  height: 42rem;
+  left: -13rem;
+  top: -17rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(56 168 232 / 38%),
+    transparent 66%
+  );
+}
+
+.aurora-orb-navy {
+  width: 34rem;
+  height: 34rem;
+  right: -11rem;
+  top: -13rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(14 41 75 / 24%),
+    transparent 66%
+  );
+}
+
+.aurora-orb-pale {
+  width: 32rem;
+  height: 32rem;
+  left: 44%;
+  bottom: -18rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(56 168 232 / 20%),
+    transparent 68%
+  );
+}
+
+/* ---------- Hero entry ---------- */
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    translate: 0 22px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes auroraDriftA {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(5%, 7%, 0) scale(1.08);
+  }
+}
+
+@keyframes auroraDriftB {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.06);
+  }
+  to {
+    transform: translate3d(-6%, 5%, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise,
+  .fan-card {
+    animation: heroRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--rise, 0ms);
+  }
+
+  .aurora-orb-sky {
+    animation: auroraDriftA 24s ease-in-out infinite alternate;
+  }
+
+  .aurora-orb-navy {
+    animation: auroraDriftB 28s ease-in-out infinite alternate;
+  }
+
+  .aurora-orb-pale {
+    animation: auroraDriftA 32s ease-in-out infinite alternate-reverse;
+  }
+}
+
+/* ---------- Scroll reveals ---------- */
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    translate: 0 26px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 28%;
+    }
+  }
+}
+
+/* ---------- Hero path choices ---------- */
+
+.landing-choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  justify-self: center;
+}
+
+.landing-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+  min-height: 60px;
+  padding: 0.6rem 1.15rem;
+  white-space: nowrap;
+  word-break: normal;
+  min-width: 15.5rem;
+}
+
+.choice-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgb(255 255 255 / 18%);
+}
+
+.choice-text {
+  display: grid;
+  gap: 2px;
+  flex: 1 1 auto;
+  text-align: left;
+  line-height: 1.2;
+  font-weight: 650;
+}
+
+.choice-text small {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  opacity: 0.78;
+}
+
+/* ---------- Two-path chooser ---------- */
+
+.landing-paths {
+  background:
+    radial-gradient(circle at 12% 0%, rgb(56 168 232 / 12%), transparent 42%),
+    linear-gradient(180deg, #f6faff 0%, #ffffff 62%);
+}
+
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: 1.75rem;
+}
+
+.path-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgb(14 41 75 / 5%);
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.path-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-border);
+  box-shadow: 0 24px 48px -24px rgb(14 41 75 / 28%);
+}
+
+.path-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.path-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font: 600 12.5px/1.15 var(--body);
+  white-space: nowrap;
+}
+
+.path-customer .path-chip {
+  background: var(--pale);
+  border: 1px solid var(--accent-border);
+  color: var(--navy);
+}
+
+.path-kicker {
+  font: 600 10.5px/1 var(--body);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.path-card h3 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  letter-spacing: -0.02em;
+}
+
+.path-summary {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.path-steps {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.path-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.path-step-number {
+  flex-shrink: 0;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-border);
+  background: var(--pale);
+  color: var(--primary);
+  font: 700 10.5px/1 var(--body);
+  letter-spacing: 0.06em;
+}
+
+.path-steps strong {
+  display: block;
+  font-size: 14px;
+}
+
+.path-steps p {
+  margin: 3px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.path-cta {
+  margin-top: auto;
+  width: 100%;
+  min-height: 48px;
+  flex-shrink: 0;
+  justify-content: space-between;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.path-aside {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Artisan side reads as the darker half of the fork. */
+.path-artisan {
+  background: linear-gradient(160deg, #0e294b 0%, #14396a 58%, #0a2340 100%);
+  border-color: #1d3f6b;
+  color: #eaf3ff;
+}
+
+.path-artisan h3 {
+  color: #fff;
+}
+
+.path-artisan .path-chip {
+  background: rgb(56 168 232 / 18%);
+  border: 1px solid rgb(56 168 232 / 45%);
+  color: #d3ecff;
+}
+
+.path-artisan .path-kicker {
+  color: #8aceff;
+}
+
+.path-artisan .path-summary,
+.path-artisan .path-aside {
+  color: #b9cde6;
+}
+
+.path-artisan .path-steps strong {
+  color: #fff;
+}
+
+.path-artisan .path-steps p {
+  color: #a9c0dc;
+}
+
+.path-artisan .path-step-number {
+  background: rgb(56 168 232 / 20%);
+  border-color: rgb(56 168 232 / 45%);
+  color: #bfe6ff;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 767px) {
+  .path-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .landing-hero .artisan-fan {
+    max-width: 780px;
+  }
+
+  .landing-hero .fan-card {
+    width: 132px;
+    margin: 0 8px;
+  }
+
+  .landing-hero .fan-2 {
+    width: 156px;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Five legible cards cannot sit side by side on a phone, so the arc becomes
+     a snap-scrolling row that bleeds to the screen edge. */
+  .landing-hero .artisan-fan {
+    justify-content: flex-start;
+    height: auto;
+    max-width: none;
+    margin-inline: -20px;
+    padding: 12px 20px 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .landing-hero .artisan-fan::-webkit-scrollbar {
+    display: none;
+  }
+
+  .landing-hero .artisan-fan .fan-card {
+    transform: none;
+    scroll-snap-align: center;
+  }
+
+  .landing-hero .fan-card {
+    width: 150px;
+    margin: 0 8px;
+  }
+
+  .landing-hero .fan-2 {
+    width: 168px;
+  }
+
+  .landing-hero .fan-photo {
+    height: 190px;
+  }
+
+  .landing-hero .fan-2 .fan-photo {
+    height: 210px;
+  }
+
+  .landing-hero .fan-caption {
+    padding: 10px 9px 9px;
+  }
+
+  .landing-hero .fan-badge {
+    display: inline-flex;
+    font-size: 8px;
+    padding: 3px 6px;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-choices {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .landing-choice {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .aurora-orb-sky {
+    width: 26rem;
+    height: 26rem;
+  }
+
+  .aurora-orb-navy {
+    width: 22rem;
+    height: 22rem;
+  }
+}

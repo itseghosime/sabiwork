@@ -1,5 +1,4 @@
-import { MilestoneBalanceCheckoutScreen } from "@/features/payments/screens";
-import { paymentsDemoService } from "@/features/payments/service";
+import { PaymentUnavailableScreen } from "@/features/hire-workspace/screens";
 
 export default async function BalanceCheckoutPage({
   params,
@@ -7,7 +6,5 @@ export default async function BalanceCheckoutPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const receipt = await paymentsDemoService.getReceipt(id);
-  return <MilestoneBalanceCheckoutScreen receipt={receipt} />;
+  return <PaymentUnavailableScreen reference={id} title="Milestone balance payment" />;
 }
-
