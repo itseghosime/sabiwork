@@ -491,4 +491,62 @@
   .auth-grid {
     gap: 24px;
   }
-  .a
+  .auth-story {
+    padding: 22px;
+    border-radius: 20px;
+  }
+  .auth-story h2 {
+    font-size: 24px;
+  }
+  .auth-story > p:not(.eyebrow) {
+    font-size: 14px;
+  }
+  .auth-card {
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+  .auth-card h1 {
+    font-size: 24px;
+  }
+  .auth-card .auth-submit {
+    padding-inline: 10px;
+    min-height: 52px;
+  }
+  .auth-card .eyebrow {
+    font-size: 11px;
+  }
+  .auth-link-preview {
+    padding: 16px 12px;
+    gap: 8px;
+  }
+  .auth-link-preview .text-link {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-card,
+  .auth-spinner {
+    animation: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .auth-form-column {
+    order: 0;
+  }
+  .auth-story {
+    order: 1;
+  }
+}
+
+.auth-fields {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.auth-role-choice p {
+  margin: 0;
+  color: #485f84;
+  line-height: 1.6;
+}
