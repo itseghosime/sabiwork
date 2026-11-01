@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   CategoryCard,
-  DemoNotice,
   Portrait,
   SearchForm,
 } from "@/components/discovery";
@@ -12,40 +11,44 @@ const fan = [artisans[2], artisans[1], artisans[0], artisans[3], artisans[4]];
 export default function HomePage() {
   return (
     <>
-      <section className="home-hero">
-        <div className="container hero-inner">
-          <div className="eyebrow-pill entrance">
-            <span className="location-dot" /> MADE FOR BENIN CITY{" "}
-            <span className="pill-divider">/</span> BUILT AROUND YOU
+      <section className="home-hero marketplace-hero">
+        <div className="container hero-inner marketplace-hero-inner">
+          <div className="eyebrow-pill">
+            <span className="location-dot" /> BENIN CITY MARKETPLACE{" "}
+            <span className="pill-divider">/</span> HIRE OR GET HIRED
           </div>
-          <h1 className="entrance delay-1">
-            Find skilled local artisans
+          <h1>
+            Find trusted local artisans
             <br />
-            <span>right here in Benin City.</span>
+            <span>for everyday jobs that matter.</span>
           </h1>
-          <p className="hero-copy entrance delay-2">
-            Meet the people who make things work. Find local plumbers,
-            electricians,
-            <br className="desktop-break" /> tailors and more—right here in your
-            neighbourhood.
+          <p className="hero-copy">
+            Search by task, compare profiles and request clear quotes before work starts.
+            Create one account to both post jobs and offer your own services.
           </p>
-          <div className="entrance delay-2">
-            <SearchForm />
+          <SearchForm />
+          <div className="trust-row">
+            <span>
+              <Icon name="badge" size={16} /> Reviewed profile submissions
+            </span>
+            <span>
+              <Icon name="check" size={16} /> Itemized quote workflow
+            </span>
+            <span>
+              <Icon name="pin" size={16} /> Built for Benin City
+            </span>
           </div>
-          <div className="trust-row entrance delay-3">
-            <span>
-              <Icon name="badge" size={16} /> Reviewed profiles
-            </span>
-            <span>
-              <Icon name="check" size={16} /> Clear, itemized quotes
-            </span>
-            <span>
-              <Icon name="pin" size={16} /> Local know-how
-            </span>
+          <div className="home-hero-actions">
+            <Link href="/signup/customer" className="button button-primary">
+              Post a service request <Icon name="arrow" size={18} />
+            </Link>
+            <Link href="/signup/artisan" className="button button-outline">
+              Create work profile <Icon name="arrow" size={18} />
+            </Link>
           </div>
           <div
-            className="artisan-fan entrance delay-3"
-            aria-label="Meet five fictional local artisans"
+            className="artisan-fan"
+            aria-label="Meet local artisan profiles"
           >
             {fan.map((person, index) => (
               <Link
@@ -57,11 +60,11 @@ export default function HomePage() {
                   <Portrait index={person.portrait} name={person.name} />
                   {index === 2 && (
                     <span className="fan-featured">
-                      <Icon name="star" size={12} /> Meet Osaze
+                      <Icon name="star" size={12} /> Popular this week
                     </span>
                   )}
                   <span className="fan-badge">
-                    <Icon name="badge" size={12} /> Sample reviewed profile
+                    <Icon name="badge" size={12} /> Reviewed profile
                   </span>
                 </div>
                 <div className="fan-caption">
@@ -79,8 +82,8 @@ export default function HomePage() {
             ))}
           </div>
           <p className="hero-note">
-            Real skills. Local connections.{" "}
-            <span>Illustrative profiles.</span>
+            Marketplace notice: directory details are illustrative while payments and
+            verification checks are being completed.
           </p>
         </div>
       </section>
@@ -126,7 +129,7 @@ export default function HomePage() {
               {
                 icon: "search" as const,
                 title: "Find your person",
-                text: "Choose a trade and your area. Explore profiles, work samples and reviews.",
+                text: "Choose a trade and your area. Explore profiles, work highlights and reviews.",
               },
               {
                 icon: "wrench" as const,
@@ -196,7 +199,10 @@ export default function HomePage() {
             Join as an artisan <Icon name="arrow" size={18} />
           </Link>
         </div>
-        <DemoNotice />
+        <p className="demo-notice">
+          <Icon name="help" size={16} /> Pricing, reviews and profile badges are
+          illustrative. Always agree scope and amount in your quote.
+        </p>
       </section>
     </>
   );

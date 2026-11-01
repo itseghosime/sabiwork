@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { ArtisanProfileScreen } from "@/features/profiles/screens";
 import { getPublicArtisanProfile } from "@/lib/server/artisans";
+import { PublicArtisanDetail } from "./public-artisan-detail";
 
 export default async function ArtisanPage({
   params,
@@ -14,5 +14,5 @@ export default async function ArtisanPage({
     notFound();
   }
 
-  return <ArtisanProfileScreen initialArtisan={artisan} />;
+  return <PublicArtisanDetail artisan={artisan} />;
 }

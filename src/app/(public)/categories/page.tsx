@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CategoryDirectory } from "@/features/search/category-directory";
-import { DemoNotice } from "@/components/discovery";
 import { Icon } from "@/components/icon";
 export const metadata: Metadata = { title: "Explore services" };
 export default function CategoriesPage() {
@@ -22,8 +21,7 @@ export default function CategoriesPage() {
           </h1>
           <p>
             Find the right technical specialty for your next project.
-            <br />
-            Browse skills, compare sample estimates and explore local profiles.
+            Browse skills, compare estimate ranges and explore local profiles.
           </p>
         </div>
       </section>
@@ -46,7 +44,10 @@ export default function CategoriesPage() {
             Browse all artisans <Icon name="arrow" size={17} />
           </Link>
         </div>
-        <DemoNotice />
+        <p className="demo-notice">
+          <Icon name="help" size={16} /> Directory data is illustrative while
+          backend verification workflows are still being integrated.
+        </p>
       </section>
     </>
   );

@@ -54,7 +54,7 @@ function PublicShellContent({
         Skip to content
       </a>
       <header
-        className="site-header"
+        className="site-header public-shell-header"
         onKeyDown={(event) => {
           if (event.key === "Escape" && open) {
             setOpen(false);
@@ -62,7 +62,7 @@ function PublicShellContent({
           }
         }}
       >
-        <div className="container header-inner">
+        <div className="container header-inner public-header-inner">
           <Brand />
           <nav aria-label="Main navigation" className="desktop-nav">
             {links.map((link) => (
@@ -78,6 +78,9 @@ function PublicShellContent({
           <div className="desktop-auth">
             <Link href="/login" className="text-link">
               Log in
+            </Link>
+            <Link href="/signup/customer" className="button button-outline">
+              Post a job
             </Link>
             <Link href="/signup/artisan" className="button button-subtle">
               Join as an artisan <Icon name="arrow" size={17} />
@@ -121,6 +124,10 @@ function PublicShellContent({
               Log in
               <Icon name="next" size={17} />
             </Link>
+            <Link href="/signup/customer" onClick={() => setOpen(false)}>
+              Post a job
+              <Icon name="next" size={17} />
+            </Link>
             <Link
               className="button button-primary"
               href="/signup/artisan"
@@ -128,26 +135,13 @@ function PublicShellContent({
             >
               Join as an artisan <Icon name="arrow" size={17} />
             </Link>
-            <div style={{ borderTop: "1px solid var(--border, #e2e8f0)", margin: "8px 0" }} />
-            <Link href="/jobs" onClick={() => setOpen(false)}>
-              Customer Workspace
-              <Icon name="next" size={17} />
-            </Link>
-            <Link href="/artisan" onClick={() => setOpen(false)}>
-              Artisan Workspace
-              <Icon name="next" size={17} />
-            </Link>
-            <Link href="/admin/verification" onClick={() => setOpen(false)}>
-              Admin Desk
-              <Icon name="next" size={17} />
-            </Link>
           </nav>
         )}
       </header>
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
-      <footer className="site-footer">
+      <footer className="site-footer public-shell-footer">
         <div className="container footer-top">
           <div>
             <Brand />
@@ -164,7 +158,7 @@ function PublicShellContent({
           </nav>
           <div className="footer-location">
             <Icon name="pin" size={18} /> Benin City, Nigeria
-            <span className="demo-tag">Benin City Marketplace</span>
+            <span className="demo-tag">Neighbourhood services marketplace</span>
           </div>
         </div>
         <div className="container footer-bottom">
