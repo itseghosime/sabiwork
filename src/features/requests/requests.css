@@ -1,7 +1,7 @@
 /* ==========================================================================
    Clear Trade Modern — Customer Requests & Matching (S13, S14, S15, S16)
-   Tokens from DESIGN.md: Canvas #F7F6F2, Card #FFFFFF, Border #E2E0D8,
-   Primary #075E46, Accent #0E294B. Touch targets min 44px.
+   Tokens from DESIGN.md: white and pale-blue surfaces, sky-blue primary, navy headings.
+   Touch targets min 44px.
    ========================================================================== */
 
 .rq-page {
@@ -82,7 +82,7 @@
 }
 
 .rq-sim-btn:hover {
-  background: #f7f6f2;
+  background: var(--surface);
   border-color: var(--primary);
 }
 
@@ -219,9 +219,9 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #e8f5ed;
-  border: 2px solid #075e46;
-  color: #075e46;
+  background: #eff8ff;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   font-weight: 700;
   display: flex;
   align-items: center;

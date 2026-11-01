@@ -26,7 +26,7 @@ describe("reviews and disputes demo adapter", () => {
   });
 
   it("keeps review input after a recoverable error", async () => {
-    render(<ReviewScreen jobId="demo-job-8421" />);
+    render(<ReviewScreen jobId="SAMPLE-REQUEST-001" />);
     await screen.findByRole("heading", { name: "Rate your experience" });
     fireEvent.click(screen.getByRole("button", { name: "5 stars" }));
     const feedback = screen.getByLabelText(/Detailed feedback/) as HTMLTextAreaElement;
@@ -47,15 +47,14 @@ describe("reviews and disputes demo adapter", () => {
     fireEvent.click(screen.getByRole("button", { name: "Clear filters" }));
     expect(
       (await screen.findByRole("link", { name: /View case/ })).getAttribute("href"),
-    ).toBe("/admin/disputes/demo-dispute-01");
+    ).toBe("/admin/disputes/SAMPLE-DISPUTE-001");
   });
 
   it("clearly labels admin decisions as previews and leaves case state unchanged", async () => {
-    render(<AdminDisputeDetailScreen disputeId="demo-dispute-01" />);
+    render(<AdminDisputeDetailScreen disputeId="SAMPLE-DISPUTE-001" />);
     await screen.findByRole("button", { name: "Preview continue review" });
     fireEvent.click(screen.getByRole("button", { name: "Preview continue review" }));
     expect((await screen.findByRole("status")).textContent).toContain("case has not changed");
     expect(screen.getByText("Under review · sample")).toBeTruthy();
   });
 });
-

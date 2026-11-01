@@ -1347,9 +1347,14 @@
   width: 100%;
   min-height: 70px;
   padding: 14px 20px;
+  white-space: normal;
+  word-break: normal;
   text-align: left;
   border: 0;
   background: white;
+}
+.workspace-main > main .rw-accordion-toggle {
+  white-space: normal;
 }
 .rw-accordion-toggle:hover {
   background: #f8fbff;
@@ -1364,6 +1369,7 @@
   display: grid;
   gap: 3px;
   flex: 1;
+  min-width: 0;
 }
 .rw-accordion-toggle strong {
   color: var(--navy);

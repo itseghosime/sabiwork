@@ -48,10 +48,10 @@ export interface MatchingQuote {
 }
 
 export const defaultSettings: CustomerSettings = {
-  fullName: "Osamudiamen Osazuwa",
-  email: "o.osazuwa@example.com",
-  phone: "+234 803 555 0192",
-  primaryDistrict: "GRA / Ihama Road",
+  fullName: "Sample Customer",
+  email: "customer@example.test",
+  phone: "Not provided",
+  primaryDistrict: "Sample area",
   language: "English (Nigeria)",
   currency: "NGN (₦)",
   smsNotifications: true,
@@ -59,14 +59,14 @@ export const defaultSettings: CustomerSettings = {
 };
 
 export const defaultJobDraft: JobRequestDraft = {
-  id: "BEN-78401",
+  id: "SAMPLE-REQUEST-001",
   title: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
   category: "Plumbing",
   tradeSpecialty: "PPR Piping & High Pressure Fusion",
   urgency: "standard",
   budgetGuidanceKobo: 2500000, // ₦25,000
-  district: "GRA / Boundary Rd",
-  address: "12A Ihama Way, Off Boundary Rd, GRA, Benin City",
+  district: "Sample area",
+  address: "Sample service area, Benin City",
   description:
     "Water leakage discovered under the master bathroom floor tiles. Need pressure leak tracing, PPR pipe replacement, and bypass valve pressure check before 5 PM tomorrow.",
   photoCount: 3,
@@ -77,10 +77,10 @@ export const defaultJobDraft: JobRequestDraft = {
 export const defaultQuotes: readonly MatchingQuote[] = [
   {
     id: "quote-01",
-    artisanId: "00000000-0000-4000-8000-000000000001",
-    artisanName: "Osaze Ighodaro",
-    artisanHeadline: "Master Plumber & Pipe Fitter · Vetted GRA Pro",
-    artisanInitials: "OI",
+    artisanId: "SAMPLE-ARTISAN-001",
+    artisanName: "Sample Artisan 1",
+    artisanHeadline: "Sample Plumber Profile",
+    artisanInitials: "SA",
     rating: 4.9,
     reviewCount: 38,
     completedJobsCount: 42,
@@ -90,14 +90,14 @@ export const defaultQuotes: readonly MatchingQuote[] = [
     estimatedHours: "4 - 6 hours",
     materialsIncluded: true,
     notes:
-      "Includes pressure testing with digital gauge, high-temperature PPR fusion sleeve, and 30-day leak guarantee.",
+      "Fictional quote details for layout preview only. No service is booked and no warranty is offered.",
   },
   {
     id: "quote-02",
-    artisanId: "00000000-0000-4000-8000-000000000002",
-    artisanName: "Victor E. Edosa",
-    artisanHeadline: "Certified Plumbing & Sanitary Tech",
-    artisanInitials: "VE",
+    artisanId: "SAMPLE-ARTISAN-002",
+    artisanName: "Sample Artisan 2",
+    artisanHeadline: "Sample Plumbing Profile",
+    artisanInitials: "SA",
     rating: 4.8,
     reviewCount: 24,
     completedJobsCount: 29,
@@ -107,14 +107,14 @@ export const defaultQuotes: readonly MatchingQuote[] = [
     estimatedHours: "1 full day",
     materialsIncluded: true,
     notes:
-      "Complete replacement of leaking manifold joints with brass isolation gates. Same-day service available.",
+      "Sample quote notes only. No service availability, booking, or warranty is represented.",
   },
   {
     id: "quote-03",
-    artisanId: "00000000-0000-4000-8000-000000000003",
-    artisanName: "Monday Agho",
-    artisanHeadline: "Senior Water Systems Technician",
-    artisanInitials: "MA",
+    artisanId: "SAMPLE-ARTISAN-003",
+    artisanName: "Sample Artisan 3",
+    artisanHeadline: "Sample Water Systems Profile",
+    artisanInitials: "SA",
     rating: 4.7,
     reviewCount: 19,
     completedJobsCount: 21,
@@ -124,7 +124,7 @@ export const defaultQuotes: readonly MatchingQuote[] = [
     estimatedHours: "3 - 5 hours",
     materialsIncluded: false,
     notes:
-      "Labor only. Client supplies PPR elbows, heat fusion machine provided by artisan.",
+      "Sample labor-only quote preview. No materials arrangement or service is agreed.",
   },
 ];
 
@@ -132,9 +132,9 @@ function waitBriefly(ms = 20) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const savedDrafts = new Map<string, JobRequestDraft>();
-savedDrafts.set(defaultJobDraft.id, defaultJobDraft);
-savedDrafts.set("BEN-78401", defaultJobDraft);
+const savedDrafts = new Map<string, JobRequestDraft>([
+  [defaultJobDraft.id, defaultJobDraft],
+]);
 
 export const requestsDemoService = {
   async getSettings(): Promise<CustomerSettings> {
@@ -150,7 +150,7 @@ export const requestsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Failed to update settings. Connection to customer preferences timed out.",
+        message: "Sample settings preview failed. No account preference was saved.",
       };
     }
     const updated: CustomerSettings = {
@@ -159,7 +159,7 @@ export const requestsDemoService = {
     };
     return {
       ok: true,
-      message: "Customer preferences and notifications updated successfully!",
+      message: "Sample preferences updated in this page preview only; nothing was saved.",
       settings: updated,
     };
   },
@@ -180,19 +180,19 @@ export const requestsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Failed to create job draft. Validation error in district coverage.",
+        message: "Sample request preview could not be prepared. No request was saved.",
       };
     }
     const draft: JobRequestDraft = {
       ...defaultJobDraft,
       ...input,
-      id: `BEN-${Math.floor(10000 + Math.random() * 90000)}`,
+      id: "SAMPLE-REQUEST-PREVIEW",
       status: "DRAFT",
     };
     savedDrafts.set(draft.id, draft);
     return {
       ok: true,
-      message: "Job request draft created! Review details before dispatching to artisans.",
+      message: "Sample request preview added to in-memory state only; it was not saved to an account or sent to artisans.",
       draft,
     };
   },
@@ -205,13 +205,13 @@ export const requestsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Dispatch timeout. Could not reach Benin City artisan notification queue.",
+        message: "Sample request preview could not be prepared. No dispatch service is connected.",
       };
     }
     return {
       ok: true,
-      message: `Job ${jobId} dispatched to verified artisans in GRA Axis! Matching quotes will appear in S16.`,
-      jobRef: jobId,
+      message: `Sample request ${jobId} is ready for preview. No job was dispatched and no artisan was notified.`,
+      jobRef: `SAMPLE-${jobId}`,
     };
   },
 
@@ -223,4 +223,3 @@ export const requestsDemoService = {
     return defaultQuotes;
   },
 };
-

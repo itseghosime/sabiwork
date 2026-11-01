@@ -12,7 +12,7 @@ describe("discovery search contract", () => {
     });
     const result = searchArtisans(filters);
     expect(result.total).toBe(1);
-    expect(result.items[0].name).toBe("Osaze Ighodaro");
+    expect(result.items[0].name).toBe("Sample Artisan 1");
     expect(searchArtisans({ ...filters, area: "Ugbowo" }).total).toBe(0);
   });
   it("searches service aliases and returns a clear empty result", () => {

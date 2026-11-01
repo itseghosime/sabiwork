@@ -1,4 +1,3 @@
-import { PublicShell } from "@/components/public-shell";
 import { AccountDemoProvider } from "@/features/accounts/demo-context";
 import "./accounts.css";
 export default function AccountLayout({
@@ -8,7 +7,7 @@ export default function AccountLayout({
 }) {
   return (
     <AccountDemoProvider>
-      <PublicShell>{children}</PublicShell>
+      <main className="account-main" id="main-content" tabIndex={-1}>{children}</main>
     </AccountDemoProvider>
   );
 }

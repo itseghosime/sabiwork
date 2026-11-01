@@ -24,8 +24,8 @@ describe("Customer Requests & Matching (S13, S14, S15, S16)", () => {
   it("renders S13 Account Settings with current profile preferences", () => {
     render(<AccountSettingsScreen initialSettings={defaultSettings} />);
     expect(screen.getByRole("heading", { level: 1, name: /Account Settings/i })).toBeDefined();
-    expect(screen.getByDisplayValue("Osamudiamen Osazuwa")).toBeDefined();
-    expect(screen.getByDisplayValue("o.osazuwa@example.com")).toBeDefined();
+    expect(screen.getByDisplayValue("Sample Customer")).toBeDefined();
+    expect(screen.getByDisplayValue("customer@example.test")).toBeDefined();
   });
 
   it("updates settings and provides user feedback in S13", async () => {
@@ -34,7 +34,7 @@ describe("Customer Requests & Matching (S13, S14, S15, S16)", () => {
     fireEvent.click(saveBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Customer preferences and notifications updated successfully/i)).toBeDefined();
+      expect(screen.getByText(/Sample preferences updated in this page preview only; nothing was saved/i)).toBeDefined();
     });
   });
 
@@ -53,7 +53,7 @@ describe("Customer Requests & Matching (S13, S14, S15, S16)", () => {
       screen.getByRole("heading", { level: 1, name: /Review Your Job Request/i }),
     ).toBeDefined();
     expect(screen.getByText(/₦25,000/i)).toBeDefined();
-    expect(screen.getByText(/Paystack TEST Mode SafeTrade/i)).toBeDefined();
+    expect(screen.getByText(/Prototype limitation/i)).toBeDefined();
   });
 
   it("renders S16 Matching Quotes and supports simulator state switching", () => {
@@ -61,8 +61,8 @@ describe("Customer Requests & Matching (S13, S14, S15, S16)", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: /Artisan Matching & Quotes/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Osaze Ighodaro/i)).toBeDefined();
-    expect(screen.getByText(/Victor E. Edosa/i)).toBeDefined();
+    expect(screen.getByText(/Sample Artisan 1/i)).toBeDefined();
+    expect(screen.getByText(/Sample Artisan 2/i)).toBeDefined();
 
     // Switch to awaiting state
     const awaitingBtn = screen.getByRole("button", { name: "awaiting" });
