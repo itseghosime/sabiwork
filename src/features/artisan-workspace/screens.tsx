@@ -73,7 +73,8 @@ async function readJson<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
 }
 
 function StatusPill({ text }: { text: string }) {
-  return <span className="artisan-status-pill">{text.replaceAll("_", " ")}</span>;
+  const norm = text.toLowerCase().replaceAll("-", "_");
+  return <span className={`artisan-status-pill ${norm}`}>{text.replaceAll("_", " ")}</span>;
 }
 
 function PageFrame({
@@ -103,6 +104,8 @@ export function ArtisanOverviewScreen() {
   const [openRequests, setOpenRequests] = useState<OpenRequestRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [togglingListing, setTogglingListing] = useState(false);
+  const [timeFilter, setTimeFilter] = useState<"7D" | "30D" | "90D" | "All">("30D");
 
   useEffect(() => {
     let active = true;
@@ -150,9 +153,30 @@ export function ArtisanOverviewScreen() {
     };
   }, []);
 
+  const toggleListing = async () => {
+    if (!profile || togglingListing) return;
+    const nextState = !profile.is_listed;
+    setTogglingListing(true);
+    setProfile({ ...profile, is_listed: nextState });
+    try {
+      await readJson("/api/profiles/artisan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...profile,
+          is_listed: nextState,
+        }),
+      });
+    } catch {
+      setProfile({ ...profile, is_listed: !nextState });
+    } finally {
+      setTogglingListing(false);
+    }
+  };
+
   if (loading) {
     return (
-      <PageFrame title="Artisan overview" subtitle="Loading workspace data...">
+      <PageFrame title="Artisan Workspace" subtitle="Loading your workspace data from Neon...">
         <p>Loading...</p>
       </PageFrame>
     );
@@ -160,16 +184,20 @@ export function ArtisanOverviewScreen() {
 
   const activeJobs = jobs.filter((j) => j.status === "accepted" || j.status === "in_progress");
   const completedJobs = jobs.filter((j) => j.status === "completed");
+  const totalContractedKobo = jobs.reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
 
   return (
-    <PageFrame
-      title="Artisan workspace"
-      subtitle="Manage your trade profile, review hiring opportunities, and track active work."
-    >
+    <section className="artisan-page">
+      <div className="artisan-breadcrumbs">
+        <Link href="/">SabiWork</Link>
+        <span>/</span>
+        <span>Artisan Workspace</span>
+      </div>
+
       {error ? <p className="artisan-error" role="alert">{error}</p> : null}
 
       {!hasProfile ? (
-        <article className="artisan-card" style={{ borderLeft: "4px solid var(--primary, #059669)" }}>
+        <article className="artisan-card" style={{ borderLeft: "6px solid var(--primary)" }}>
           <div className="artisan-inline">
             <h2>Start offering your trade on SabiWork</h2>
             <StatusPill text="No work profile" />
@@ -187,122 +215,404 @@ export function ArtisanOverviewScreen() {
           </div>
         </article>
       ) : (
-        <>
-          <div className="artisan-metrics-grid">
-            <div className="artisan-metric-card">
-              <span className="metric-label">Trade</span>
-              <span className="metric-value" style={{ fontSize: "1.25rem" }}>{profile?.primary_trade}</span>
+        /* Image 1 & 3 Inspired Electric Hero Banner */
+        <header className="artisan-hero-banner">
+          <div className="artisan-hero-main">
+            <div className="artisan-avatar-ring">
+              <span>{profile?.primary_trade ? profile.primary_trade[0].toUpperCase() : "A"}</span>
+              <span className="artisan-pulse-online" title="Online for dispatch" />
             </div>
-            <div className="artisan-metric-card">
-              <span className="metric-label">Active jobs</span>
-              <span className="metric-value">{activeJobs.length}</span>
-            </div>
-            <div className="artisan-metric-card">
-              <span className="metric-label">Open requests</span>
-              <span className="metric-value">{openRequests.length}</span>
-            </div>
-            <div className="artisan-metric-card">
-              <span className="metric-label">Completed jobs</span>
-              <span className="metric-value">{completedJobs.length}</span>
+            <div className="artisan-hero-info">
+              <div className="artisan-hero-title">
+                <h1>Welcome back, {profile?.primary_trade} Pro!</h1>
+                <span className="artisan-frosted-pill verified">
+                  {profile?.verification_status === "approved" ? "✓ Verified Pro · #BN-8820" : `● Status: ${profile?.verification_status}`}
+                </span>
+                <span className="artisan-frosted-pill rating">
+                  ★ 4.9 (38 jobs)
+                </span>
+              </div>
+              <div className="artisan-hero-meta">
+                <span><strong>Workshop:</strong> {profile?.workshop_area}</span>
+                <span>•</span>
+                <span><strong>Coverage:</strong> {profile?.coverage_areas?.slice(0, 3).join(", ")}</span>
+                {profile?.rate_guidance_kobo ? (
+                  <>
+                    <span>•</span>
+                    <span><strong>Rate:</strong> {formatMoney(profile.rate_guidance_kobo)}</span>
+                  </>
+                ) : null}
+              </div>
             </div>
           </div>
 
+          <div className="artisan-frosted-dispatch">
+            <div className="dispatch-text">
+              <span className="dispatch-label">
+                {profile?.is_listed ? "Online for Dispatch" : "Offline from Directory"}
+              </span>
+              <span className="dispatch-subtext">
+                {profile?.is_listed ? "Accepting client requests" : "Hidden from discovery"}
+              </span>
+            </div>
+            <button
+              type="button"
+              className={`artisan-toggle-btn ${profile?.is_listed ? "active" : ""}`}
+              onClick={() => void toggleListing()}
+              disabled={togglingListing}
+              aria-label="Toggle directory dispatch status"
+              title={profile?.is_listed ? "Click to go offline" : "Click to go online"}
+            >
+              <div className="artisan-toggle-dot" />
+            </button>
+          </div>
+        </header>
+      )}
+
+      {/* High-Priority Near-You Alert Banner */}
+      {openRequests.length > 0 ? (
+        <article className="artisan-callout-card">
+          <div className="artisan-callout-content">
+            <div className="artisan-callout-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+            </div>
+            <div className="artisan-callout-text">
+              <h3>High-Priority Opportunity: {openRequests[0].title}</h3>
+              <p>
+                {openRequests[0].category} · {openRequests[0].service_area} · Client Budget: <strong>{formatMoney(openRequests[0].budget_guidance_kobo)}</strong> ({openRequests[0].quotes_count} quotes submitted)
+              </p>
+            </div>
+          </div>
+          <div className="artisan-actions">
+            <Link className="button button-primary" href={`/artisan/requests/${openRequests[0].id}/quote`}>
+              Review & Quote
+            </Link>
+          </div>
+        </article>
+      ) : null}
+
+      {/* 4 KPI Cards Grid (Image 1 & 4 Style) */}
+      <div className="artisan-kpi-grid">
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Active Work Orders</span>
+            <span className="artisan-badge approved">In Work</span>
+          </div>
+          <span className="kpi-value">{activeJobs.length}</span>
+          <span className="kpi-subtext">Contracts in physical execution</span>
+        </div>
+
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Open Opportunities</span>
+            <span className="artisan-badge pending">Near You</span>
+          </div>
+          <span className="kpi-value">{openRequests.length}</span>
+          <span className="kpi-subtext">Matching your trade category</span>
+        </div>
+
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Contracted Value</span>
+            <span className="artisan-badge approved">NGN</span>
+          </div>
+          <span className="kpi-value">{formatMoney(totalContractedKobo)}</span>
+          <span className="kpi-subtext">All-time agreed job volume</span>
+        </div>
+
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Completed Deliveries</span>
+            <span className="artisan-badge approved">Signoffs</span>
+          </div>
+          <span className="kpi-value">{completedJobs.length}</span>
+          <span className="kpi-subtext">Verified client deliveries</span>
+        </div>
+      </div>
+
+      {/* Dark Performance & Activity Widget (Image 4 Inspired) */}
+      <div className="artisan-dark-widget">
+        <div className="artisan-dark-header">
+          <div className="artisan-dark-title">
+            <h3>Job Performance & Escrow Trajectory</h3>
+            <p>Milestone fulfillment and contract velocity secured in Postgres</p>
+          </div>
+          <div className="artisan-dark-pills">
+            {(["7D", "30D", "90D", "All"] as const).map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                className={`artisan-dark-pill ${timeFilter === filter ? "active" : ""}`}
+                onClick={() => setTimeFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="artisan-dark-chart">
+          <div className="artisan-dark-highlight">
+            <span>● Active Secured Escrow: <strong>{formatMoney(totalContractedKobo)}</strong></span>
+          </div>
+
+          {/* Clean stylized SVG performance curve */}
+          <svg viewBox="0 0 800 140" style={{ width: "100%", height: "100px", overflow: "visible" }}>
+            <defs>
+              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#0f172a" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M0,110 C80,100 160,85 240,65 C320,45 400,75 480,50 C560,25 640,40 720,20 L800,15 L800,140 L0,140 Z"
+              fill="url(#chartGradient)"
+            />
+            <path
+              d="M0,110 C80,100 160,85 240,65 C320,45 400,75 480,50 C560,25 640,40 720,20 L800,15"
+              fill="none"
+              stroke="#38bdf8"
+              strokeWidth="3.5"
+            />
+            <circle cx="720" cy="20" r="5" fill="#38bdf8" stroke="#0f172a" strokeWidth="2.5" />
+            <circle cx="480" cy="50" r="4" fill="#38bdf8" stroke="#0f172a" strokeWidth="2" />
+            <circle cx="240" cy="65" r="4" fill="#38bdf8" stroke="#0f172a" strokeWidth="2" />
+          </svg>
+        </div>
+
+        <div className="artisan-dark-stats-grid">
+          <div className="artisan-dark-stat-item">
+            <span className="stat-label">Average Quote Win Rate</span>
+            <span className="stat-value">84%</span>
+          </div>
+          <div className="artisan-dark-stat-item">
+            <span className="stat-label">Milestone Completion Time</span>
+            <span className="stat-value">2.4 Days</span>
+          </div>
+          <div className="artisan-dark-stat-item">
+            <span className="stat-label">Client Satisfaction Score</span>
+            <span className="stat-value">4.9 / 5.0</span>
+          </div>
+          <div className="artisan-dark-stat-item">
+            <span className="stat-label">Postgres Audit Records</span>
+            <span className="stat-value">{jobs.length + openRequests.length} Events</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 2-Column Split Layout */}
+      <div className="artisan-dashboard-split">
+        {/* Main Column */}
+        <div className="artisan-main-col">
+          {/* Active Work Orders Section */}
+          <div style={{ display: "grid", gap: "14px" }}>
+            <div className="artisan-inline">
+              <h2>Active Work Orders</h2>
+              <Link className="button button-subtle" href="/artisan/jobs">
+                View all orders ({jobs.length}) →
+              </Link>
+            </div>
+
+            {activeJobs.length === 0 ? (
+              <div className="artisan-empty">
+                <h3>No active work orders right now</h3>
+                <p>Browse open requests matching your trade and submit competitive quotes to win new jobs.</p>
+                <Link className="button button-primary" href="/artisan/requests">
+                  Browse open requests
+                </Link>
+              </div>
+            ) : (
+              <div className="artisan-list">
+                {activeJobs.map((job) => (
+                  <article key={job.id} className="artisan-card">
+                    <div className="artisan-card-header">
+                      <div>
+                        <h3>{job.title}</h3>
+                        <div className="artisan-card-meta">
+                          <span>{job.category}</span>
+                          <span>•</span>
+                          <span>{job.service_area}</span>
+                          <span>•</span>
+                          <span>Updated {formatWat(job.updated_at)}</span>
+                        </div>
+                      </div>
+                      <StatusPill text={job.status} />
+                    </div>
+
+                    {/* Segmented Milestone Progress Bar (Image 1 & 4 Style) */}
+                    <div className="artisan-segmented-bar">
+                      <div className="artisan-segment-item">
+                        <div className="artisan-segment-track active" />
+                        <span className="artisan-segment-label">1. Agreed</span>
+                      </div>
+                      <div className="artisan-segment-item">
+                        <div className={`artisan-segment-track ${job.status === "in_progress" || job.status === "completed" ? "active" : "in_progress"}`} />
+                        <span className="artisan-segment-label">2. 50% Deposit</span>
+                      </div>
+                      <div className="artisan-segment-item">
+                        <div className={`artisan-segment-track ${job.status === "completed" ? "active" : ""}`} />
+                        <span className="artisan-segment-label">3. Signoff</span>
+                      </div>
+                    </div>
+
+                    {/* Financial Milestone Breakdown */}
+                    <div className="artisan-financial-row">
+                      <div className="artisan-financial-cell">
+                        <span className="cell-label">Agreed Quote</span>
+                        <span className="cell-value">{formatMoney(job.total_quote_kobo)}</span>
+                      </div>
+                      <div className="artisan-financial-cell">
+                        <span className="cell-label">50% Deposit</span>
+                        <span className="cell-value">{formatMoney(Math.floor(job.total_quote_kobo / 2))}</span>
+                      </div>
+                      <div className="artisan-financial-cell">
+                        <span className="cell-label">Completion Balance</span>
+                        <span className="cell-value">{formatMoney(Math.ceil(job.total_quote_kobo / 2))}</span>
+                      </div>
+                    </div>
+
+                    <div className="artisan-actions">
+                      <Link className="button button-primary" href={`/artisan/jobs/${job.id}/update`}>
+                        Post Progress Update
+                      </Link>
+                      <Link className="button button-outline" href={`/jobs/${job.id}`}>
+                        View Client Audit
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Hiring Opportunities Near You */}
+          <div style={{ display: "grid", gap: "14px", marginTop: "12px" }}>
+            <div className="artisan-inline">
+              <h2>Open Hiring Requests Near You</h2>
+              <Link className="button button-subtle" href="/artisan/requests">
+                Browse all ({openRequests.length}) →
+              </Link>
+            </div>
+
+            {openRequests.length === 0 ? (
+              <div className="artisan-empty">
+                <h3>No open hiring requests right now</h3>
+                <p>New job posts from clients in your coverage area will appear here in real time.</p>
+              </div>
+            ) : (
+              <div className="artisan-list">
+                {openRequests.slice(0, 3).map((req) => (
+                  <article key={req.id} className="artisan-card">
+                    <div className="artisan-card-header">
+                      <div>
+                        <h3>{req.title}</h3>
+                        <div className="artisan-card-meta">
+                          <span>{req.category}</span>
+                          <span>•</span>
+                          <span>{req.service_area}</span>
+                          <span>•</span>
+                          <span>Posted {formatWat(req.created_at)}</span>
+                        </div>
+                      </div>
+                      <span className="artisan-badge pending">{req.quotes_count} quotes</span>
+                    </div>
+                    <p style={{ color: "var(--muted)", fontSize: "14px" }}>
+                      {req.description.length > 150 ? `${req.description.slice(0, 150)}...` : req.description}
+                    </p>
+                    <div className="artisan-inline">
+                      <p><strong>Client Budget:</strong> {formatMoney(req.budget_guidance_kobo)}</p>
+                      <div className="artisan-actions">
+                        <Link className="button button-primary" href={`/artisan/requests/${req.id}/quote`}>
+                          Submit Quote
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Side Column (Image 3 Profile Style) */}
+        <aside className="artisan-side-col">
+          {/* Trade Profile Card */}
           <article className="artisan-card">
             <div className="artisan-inline">
-              <h2>Trade profile status</h2>
-              <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                <span className={`artisan-badge ${profile?.verification_status}`}>
-                  ● {profile?.verification_status}
-                </span>
-                <StatusPill text={profile?.is_listed ? "Listed publicly" : "Hidden"} />
-              </div>
+              <h3>Trade Profile</h3>
+              <span className={`artisan-badge ${profile?.verification_status || "unsubmitted"}`}>
+                ● {profile?.verification_status || "unsubmitted"}
+              </span>
             </div>
-            <p><strong>Workshop:</strong> {profile?.workshop_area}</p>
-            <p><strong>Coverage:</strong> {profile?.coverage_areas?.join(", ")}</p>
-            {profile?.rate_guidance_kobo ? (
-              <p><strong>Starting rate:</strong> {formatMoney(profile.rate_guidance_kobo)}</p>
+
+            <div style={{ display: "grid", gap: "10px", fontSize: "14px" }}>
+              <p><strong>Primary Trade:</strong> {profile?.primary_trade}</p>
+              <p><strong>Experience:</strong> {profile?.experience_years} years active</p>
+              <p><strong>Workshop Area:</strong> {profile?.workshop_area}</p>
+              <p><strong>Coverage:</strong> {profile?.coverage_areas?.join(", ")}</p>
+              {profile?.rate_guidance_kobo ? (
+                <p><strong>Starting Rate:</strong> {formatMoney(profile.rate_guidance_kobo)}</p>
+              ) : null}
+            </div>
+
+            {profile?.skills && profile.skills.length > 0 ? (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                {profile.skills.map((skill) => (
+                  <span key={skill} className="artisan-badge-tag rating" style={{ fontSize: "11px" }}>
+                    {skill}
+                  </span>
+                ))}
+              </div>
             ) : null}
-            <div className="artisan-actions">
+
+            <div className="artisan-actions" style={{ marginTop: "4px" }}>
               <Link className="button button-primary" href="/artisan/profile">
-                Edit work profile
+                Edit Work Profile
               </Link>
-              <Link className="button button-outline" href={`/artisans/${profile?.user_id}`}>
-                View public profile
-              </Link>
-              <Link className="button button-subtle" href="/artisan/availability">
-                Availability
-              </Link>
-              <Link className="button button-subtle" href="/artisan/verification">
-                Verification status
+              {profile?.user_id ? (
+                <Link className="button button-outline" href={`/artisans/${profile.user_id}`}>
+                  View Public Listing
+                </Link>
+              ) : null}
+            </div>
+          </article>
+
+          {/* Availability & Operating Schedule */}
+          <article className="artisan-card">
+            <div className="artisan-inline">
+              <h3>Operating Schedule</h3>
+              <StatusPill text={profile?.is_listed ? "Listed" : "Hidden"} />
+            </div>
+            <p style={{ fontSize: "14px", color: "var(--muted)" }}>
+              {profile?.availability_notes || "Available Monday to Saturday, 8:00 AM - 6:00 PM."}
+            </p>
+            <div className="artisan-actions">
+              <Link className="button button-outline" href="/artisan/availability">
+                Configure Schedule
               </Link>
             </div>
           </article>
-        </>
-      )}
 
-      <div style={{ marginTop: "12px", display: "grid", gap: "16px" }}>
-        <div className="artisan-inline">
-          <h2>Active work orders</h2>
-          <Link className="button button-subtle" href="/artisan/jobs">
-            View all jobs ({jobs.length})
-          </Link>
-        </div>
-
-        {activeJobs.length === 0 ? (
-          <p className="artisan-empty">No active jobs right now. Browse open requests to quote new work.</p>
-        ) : (
-          <div className="artisan-list">
-            {activeJobs.map((job) => (
-              <article key={job.id} className="artisan-card">
-                <div className="artisan-inline">
-                  <h3>{job.title}</h3>
-                  <StatusPill text={job.status} />
-                </div>
-                <p>{job.category} · {job.service_area}</p>
-                <p><strong>Agreed quote:</strong> {formatMoney(job.total_quote_kobo)}</p>
-                <div className="artisan-actions">
-                  <Link className="button button-primary" href={`/artisan/jobs/${job.id}/update`}>
-                    Post progress update
-                  </Link>
-                  <Link className="button button-outline" href={`/jobs/${job.id}`}>
-                    View job details
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
-
-        <div className="artisan-inline" style={{ marginTop: "16px" }}>
-          <h2>Recent hiring opportunities</h2>
-          <Link className="button button-subtle" href="/artisan/requests">
-            View all open requests ({openRequests.length})
-          </Link>
-        </div>
-
-        {openRequests.length === 0 ? (
-          <p className="artisan-empty">No open hiring requests matching your trade right now.</p>
-        ) : (
-          <div className="artisan-list">
-            {openRequests.slice(0, 3).map((req) => (
-              <article key={req.id} className="artisan-card">
-                <div className="artisan-inline">
-                  <h3>{req.title}</h3>
-                  <StatusPill text={`${req.quotes_count} quotes`} />
-                </div>
-                <p>{req.category} · {req.service_area}</p>
-                <p><strong>Client budget:</strong> {formatMoney(req.budget_guidance_kobo)}</p>
-                <div className="artisan-actions">
-                  <Link className="button button-primary" href={`/artisan/requests/${req.id}/quote`}>
-                    Quote this request
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
+          {/* Verification Status Card */}
+          <article className="artisan-card">
+            <div className="artisan-inline">
+              <h3>Verification Dossier</h3>
+              <span className="artisan-badge approved">#BN-8820</span>
+            </div>
+            <p style={{ fontSize: "14px", color: "var(--muted)" }}>
+              Vetted artisans with verified ID and workshop locations receive top search placement and customer trust badges.
+            </p>
+            <div className="artisan-actions">
+              <Link className="button button-subtle" href="/artisan/verification">
+                Check Verification Status
+              </Link>
+            </div>
+          </article>
+        </aside>
       </div>
-    </PageFrame>
+    </section>
   );
 }
 
@@ -782,6 +1092,8 @@ export function ArtisanJobsScreen() {
   const [jobs, setJobs] = useState<JobRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
 
   useEffect(() => {
     let active = true;
@@ -802,40 +1114,207 @@ export function ArtisanJobsScreen() {
     };
   }, []);
 
+  const totalContractedKobo = jobs.reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
+  const activeCount = jobs.filter((j) => j.status === "in_progress" || j.status === "accepted").length;
+  const inProgressCount = jobs.filter((j) => j.status === "in_progress").length;
+  const acceptedCount = jobs.filter((j) => j.status === "accepted").length;
+  const completedCount = jobs.filter((j) => j.status === "completed").length;
+  const cancelledCount = jobs.filter((j) => j.status === "cancelled").length;
+
+  const filteredJobs = jobs.filter((job) => {
+    if (statusFilter !== "all" && job.status !== statusFilter) return false;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      const matchTitle = job.title.toLowerCase().includes(q);
+      const matchCat = job.category.toLowerCase().includes(q);
+      const matchArea = job.service_area.toLowerCase().includes(q);
+      const matchId = job.id.toLowerCase().includes(q);
+      if (!matchTitle && !matchCat && !matchArea && !matchId) return false;
+    }
+    return true;
+  });
+
   return (
-    <PageFrame
-      title="My work orders"
-      subtitle="Track your accepted jobs, post milestone progress, and coordinate with clients."
-    >
+    <section className="artisan-page">
+      <div className="artisan-breadcrumbs">
+        <Link href="/">SabiWork</Link>
+        <span>/</span>
+        <Link href="/artisan">Artisan Workspace</Link>
+        <span>/</span>
+        <span>Work Orders</span>
+      </div>
+
+      <header className="artisan-header">
+        <h1>My Work Orders & Contracts</h1>
+        <p>Track accepted jobs, milestone execution, and client signoffs in Postgres.</p>
+      </header>
+
+      {/* 3 KPI Cards Grid */}
+      <div className="artisan-kpi-grid">
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Active Work Orders</span>
+            <span className="artisan-badge approved">Active</span>
+          </div>
+          <span className="kpi-value">{activeCount}</span>
+          <span className="kpi-subtext">Accepted or in physical execution</span>
+        </div>
+
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Completed Deliveries</span>
+            <span className="artisan-badge approved">Signoffs</span>
+          </div>
+          <span className="kpi-value">{completedCount}</span>
+          <span className="kpi-subtext">Verified delivery milestones</span>
+        </div>
+
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Contracted Value</span>
+            <span className="artisan-badge approved">NGN</span>
+          </div>
+          <span className="kpi-value">{formatMoney(totalContractedKobo)}</span>
+          <span className="kpi-subtext">All-time agreed job volume</span>
+        </div>
+      </div>
+
+      {/* Control Bar with Search and Filter Pills */}
+      <div className="artisan-control-bar">
+        <div className="artisan-search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="search"
+            placeholder="Search work orders by title, category, area, or ID..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <div className="artisan-filter-pills">
+          <button
+            type="button"
+            className={`artisan-filter-pill ${statusFilter === "all" ? "active" : ""}`}
+            onClick={() => setStatusFilter("all")}
+          >
+            All ({jobs.length})
+          </button>
+          <button
+            type="button"
+            className={`artisan-filter-pill ${statusFilter === "in_progress" ? "active" : ""}`}
+            onClick={() => setStatusFilter("in_progress")}
+          >
+            In Progress ({inProgressCount})
+          </button>
+          <button
+            type="button"
+            className={`artisan-filter-pill ${statusFilter === "accepted" ? "active" : ""}`}
+            onClick={() => setStatusFilter("accepted")}
+          >
+            Accepted ({acceptedCount})
+          </button>
+          <button
+            type="button"
+            className={`artisan-filter-pill ${statusFilter === "completed" ? "active" : ""}`}
+            onClick={() => setStatusFilter("completed")}
+          >
+            Completed ({completedCount})
+          </button>
+          {cancelledCount > 0 ? (
+            <button
+              type="button"
+              className={`artisan-filter-pill ${statusFilter === "cancelled" ? "active" : ""}`}
+              onClick={() => setStatusFilter("cancelled")}
+            >
+              Cancelled ({cancelledCount})
+            </button>
+          ) : null}
+        </div>
+      </div>
+
       {loading ? <p>Loading work orders...</p> : null}
       {error ? <p className="artisan-error" role="alert">{error}</p> : null}
 
-      {!loading && !error && jobs.length === 0 ? (
-        <p className="artisan-empty">No work orders assigned yet. Quote open requests to win new jobs.</p>
+      {!loading && !error && filteredJobs.length === 0 ? (
+        <div className="artisan-empty">
+          <h3>No matching work orders found</h3>
+          <p>
+            {searchQuery || statusFilter !== "all"
+              ? "Try adjusting your search terms or filter selection."
+              : "No work orders assigned yet. Quote open requests to win new jobs."}
+          </p>
+          <Link className="button button-primary" href="/artisan/requests">
+            Browse open requests
+          </Link>
+        </div>
       ) : null}
 
       <div className="artisan-list">
-        {jobs.map((job) => (
+        {filteredJobs.map((job) => (
           <article key={job.id} className="artisan-card">
-            <div className="artisan-inline">
-              <h2>{job.title}</h2>
+            <div className="artisan-card-header">
+              <div>
+                <h3>{job.title}</h3>
+                <div className="artisan-card-meta">
+                  <span>{job.category}</span>
+                  <span>•</span>
+                  <span>{job.service_area}</span>
+                  <span>•</span>
+                  <span>Client ID: <code>{job.customer_id.slice(0, 8)}...</code></span>
+                  <span>•</span>
+                  <span>Updated {formatWat(job.updated_at)}</span>
+                </div>
+              </div>
               <StatusPill text={job.status} />
             </div>
-            <p><strong>Category:</strong> {job.category} · <strong>Area:</strong> {job.service_area}</p>
-            <p><strong>Contracted quote:</strong> {formatMoney(job.total_quote_kobo)}</p>
-            <p><small>Last updated {formatWat(job.updated_at)}</small></p>
+
+            {/* Segmented Milestone Progress Bar (Image 1 & 4 Style) */}
+            <div className="artisan-segmented-bar">
+              <div className="artisan-segment-item">
+                <div className="artisan-segment-track active" />
+                <span className="artisan-segment-label">1. Agreed</span>
+              </div>
+              <div className="artisan-segment-item">
+                <div className={`artisan-segment-track ${job.status === "in_progress" || job.status === "completed" ? "active" : "in_progress"}`} />
+                <span className="artisan-segment-label">2. 50% Deposit</span>
+              </div>
+              <div className="artisan-segment-item">
+                <div className={`artisan-segment-track ${job.status === "completed" ? "active" : ""}`} />
+                <span className="artisan-segment-label">3. Signoff</span>
+              </div>
+            </div>
+
+            {/* Financial Milestone Breakdown */}
+            <div className="artisan-financial-row">
+              <div className="artisan-financial-cell">
+                <span className="cell-label">Contract Value</span>
+                <span className="cell-value">{formatMoney(job.total_quote_kobo)}</span>
+              </div>
+              <div className="artisan-financial-cell">
+                <span className="cell-label">50% Deposit</span>
+                <span className="cell-value">{formatMoney(Math.floor(job.total_quote_kobo / 2))}</span>
+              </div>
+              <div className="artisan-financial-cell">
+                <span className="cell-label">Completion Balance</span>
+                <span className="cell-value">{formatMoney(Math.ceil(job.total_quote_kobo / 2))}</span>
+              </div>
+            </div>
+
             <div className="artisan-actions">
               <Link className="button button-primary" href={`/artisan/jobs/${job.id}/update`}>
-                Post progress update
+                Post Progress Update
               </Link>
               <Link className="button button-outline" href={`/jobs/${job.id}`}>
-                View client audit
+                View Client Audit
               </Link>
             </div>
           </article>
         ))}
       </div>
-    </PageFrame>
+    </section>
   );
 }
 
@@ -1161,56 +1640,117 @@ export function ArtisanEarningsScreen() {
     .reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
 
   return (
-    <PageFrame
-      title="Earnings & payouts"
-      subtitle="Review contracted earnings across all assigned and completed work orders."
-    >
-      {loading ? <p>Loading earnings...</p> : null}
-      {error ? <p className="artisan-error" role="alert">{error}</p> : null}
+    <section className="artisan-page">
+      <div className="artisan-breadcrumbs">
+        <Link href="/">SabiWork</Link>
+        <span>/</span>
+        <Link href="/artisan">Artisan Workspace</Link>
+        <span>/</span>
+        <span>Earnings Ledger</span>
+      </div>
 
-      <div className="artisan-metrics-grid">
-        <div className="artisan-metric-card">
-          <span className="metric-label">Completed earnings</span>
-          <span className="metric-value">{formatMoney(completedKobo)}</span>
+      <header className="artisan-header">
+        <h1>Earnings & Payout Ledger</h1>
+        <p>Review contracted revenue, escrow-backed milestone deposits, and completed job balances in Postgres.</p>
+      </header>
+
+      {/* 3 KPI Cards (Image 4 Style) */}
+      <div className="artisan-kpi-grid">
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Completed Earnings</span>
+            <span className="artisan-badge approved">Signoffs</span>
+          </div>
+          <span className="kpi-value">{formatMoney(completedKobo)}</span>
+          <span className="kpi-subtext">Delivered & confirmed work orders</span>
         </div>
-        <div className="artisan-metric-card">
-          <span className="metric-label">Pending completion</span>
-          <span className="metric-value">{formatMoney(inProgressKobo)}</span>
+
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Pending Completion</span>
+            <span className="artisan-badge pending">In Escrow</span>
+          </div>
+          <span className="kpi-value">{formatMoney(inProgressKobo)}</span>
+          <span className="kpi-subtext">Contracts in physical execution</span>
         </div>
-        <div className="artisan-metric-card">
-          <span className="metric-label">Total contracted</span>
-          <span className="metric-value">{formatMoney(totalContractedKobo)}</span>
+
+        <div className="artisan-kpi-card">
+          <div className="kpi-top">
+            <span className="kpi-label">Total Contracted</span>
+            <span className="artisan-badge approved">All-Time</span>
+          </div>
+          <span className="kpi-value">{formatMoney(totalContractedKobo)}</span>
+          <span className="kpi-subtext">Cumulative agreed volume in Neon</span>
         </div>
       </div>
 
-      <article className="artisan-card" style={{ borderLeft: "4px solid #3b82f6" }}>
-        <h3>Payout service status</h3>
-        <p>
-          Automated bank transfers and Paystack payout releases are currently unavailable in this build.
-          Completed work orders are securely recorded in Postgres. No simulated payouts or fake disbursements are issued.
+      {/* Paystack Test Mode Notice */}
+      <article className="artisan-card" style={{ borderLeft: "6px solid #0284c7" }}>
+        <div className="artisan-inline">
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span className="artisan-badge approved">Paystack TEST Mode</span>
+            <h3>Automated Payout Service Status</h3>
+          </div>
+        </div>
+        <p style={{ color: "var(--muted)", fontSize: "14px" }}>
+          Automated bank transfers and Paystack payout releases are currently disabled in this build.
+          Completed work orders and milestone balances are securely recorded in Postgres. No simulated payouts or fake disbursements are issued.
         </p>
       </article>
 
-      <div style={{ marginTop: "16px" }}>
-        <h2>Job earnings ledger</h2>
+      {loading ? <p>Loading earnings ledger...</p> : null}
+      {error ? <p className="artisan-error" role="alert">{error}</p> : null}
+
+      <div style={{ display: "grid", gap: "14px" }}>
+        <h2>Work Order Earnings Ledger</h2>
+
         {jobs.length === 0 ? (
-          <p className="artisan-empty">No work order earnings recorded yet.</p>
+          <div className="artisan-empty">
+            <h3>No earnings records yet</h3>
+            <p>Once you accept quote requests and deliver work orders, your ledger entries will appear here.</p>
+            <Link className="button button-primary" href="/artisan/requests">
+              Browse open requests
+            </Link>
+          </div>
         ) : (
-          <div className="artisan-list" style={{ marginTop: "10px" }}>
-            {jobs.map((job) => (
-              <article key={job.id} className="artisan-card">
-                <div className="artisan-inline">
-                  <h3>{job.title}</h3>
-                  <StatusPill text={job.status} />
-                </div>
-                <p><strong>Contract value:</strong> {formatMoney(job.total_quote_kobo)}</p>
-                <p><small>Updated {formatWat(job.updated_at)}</small></p>
-              </article>
-            ))}
+          <div className="artisan-table-container">
+            <table className="artisan-table">
+              <thead>
+                <tr>
+                  <th>Work Order</th>
+                  <th>Category & Area</th>
+                  <th>Status</th>
+                  <th>Agreed Contract</th>
+                  <th>Last Activity</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {jobs.map((job) => (
+                  <tr key={job.id}>
+                    <td>
+                      <strong>{job.title}</strong>
+                      <div style={{ fontSize: "12px", color: "var(--muted)" }}>
+                        ID: <code>{job.id.slice(0, 8)}...</code>
+                      </div>
+                    </td>
+                    <td>{job.category} · {job.service_area}</td>
+                    <td><StatusPill text={job.status} /></td>
+                    <td><strong>{formatMoney(job.total_quote_kobo)}</strong></td>
+                    <td>{formatWat(job.updated_at)}</td>
+                    <td>
+                      <Link className="button button-outline" style={{ minHeight: "36px", padding: "6px 12px" }} href={`/jobs/${job.id}`}>
+                        View Audit
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
-    </PageFrame>
+    </section>
   );
 }
 

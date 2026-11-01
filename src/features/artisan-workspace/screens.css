@@ -1,73 +1,793 @@
+/* ==========================================================================
+   Artisan Workspace Modern SaaS Styles (Inspired by User Designs)
+   ========================================================================== */
+
 .artisan-page {
   display: grid;
-  gap: 16px;
+  gap: 24px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.artisan-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.artisan-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.artisan-breadcrumbs a:hover {
+  color: var(--primary);
 }
 
 .artisan-header h1 {
-  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0;
 }
 
 .artisan-header p {
-  margin-top: 6px;
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Hero Banner (Image 1 & 3 Inspired Electric Gradient Card)
+   ========================================================================== */
+.artisan-hero-banner {
+  border-radius: 22px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 45%, #0f172a 100%);
+  color: #fff;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 36px -4px rgba(2, 132, 199, 0.28), 0 4px 16px rgba(14, 41, 75, 0.12);
+}
+
+@media (min-width: 960px) {
+  .artisan-hero-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.artisan-hero-banner::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.artisan-hero-main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1;
+}
+
+.artisan-avatar-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid #38bdf8;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+  background: #0f172a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.artisan-avatar-ring .artisan-pulse-online {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #fff;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.artisan-hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.artisan-hero-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.artisan-hero-title h1,
+.artisan-hero-title h2 {
+  font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.95rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.artisan-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #e0f2fe;
+}
+
+.artisan-frosted-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.artisan-frosted-pill.verified {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #ecfdf5;
+}
+
+.artisan-frosted-pill.rating {
+  background: rgba(245, 158, 11, 0.22);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fef3c7;
+}
+
+/* Frosted Dispatch Box inside Hero */
+.artisan-frosted-dispatch {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  z-index: 1;
+}
+
+.artisan-frosted-dispatch .dispatch-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.artisan-frosted-dispatch .dispatch-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.artisan-frosted-dispatch .dispatch-subtext {
+  font-size: 11px;
+  color: #bae6fd;
+}
+
+/* Toggle Switch */
+.artisan-toggle-btn {
+  width: 50px;
+  height: 28px;
+  border-radius: 999px;
+  padding: 3px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.artisan-toggle-btn.active {
+  background: #10b981;
+  border-color: #34d399;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
+.artisan-toggle-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  transform: translateX(0);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.artisan-toggle-btn.active .artisan-toggle-dot {
+  transform: translateX(22px);
+}
+
+/* ==========================================================================
+   High-Priority Alert Banner (Image 1 Callout Style)
+   ========================================================================== */
+.artisan-callout-card {
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid #bae6fd;
+  border-left: 6px solid #0284c7;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+}
+
+@media (min-width: 768px) {
+  .artisan-callout-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.artisan-callout-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.artisan-callout-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f0f9ff;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.artisan-callout-text h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: var(--text);
+}
+
+.artisan-callout-text p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   KPI Metrics Grid (Image 1 & 4 Style)
+   ========================================================================== */
+.artisan-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.artisan-kpi-card {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  padding: 22px 24px;
+  display: grid;
+  gap: 8px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.artisan-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+.artisan-kpi-card .kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.artisan-kpi-card .kpi-label {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--muted);
 }
 
-.artisan-metrics-grid {
+.artisan-kpi-card .kpi-value {
+  font-size: clamp(1.6rem, 1.4rem + 0.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+}
+
+.artisan-kpi-card .kpi-subtext {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Dark Performance & Activity Widget (Image 4 Inspired)
+   ========================================================================== */
+.artisan-dark-widget {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 22px;
+  padding: 26px 28px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
+  position: relative;
+  overflow: hidden;
+}
+
+.artisan-dark-header {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
-.artisan-metric-card {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #fff;
-  padding: 16px;
+@media (min-width: 768px) {
+  .artisan-dark-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.artisan-dark-title h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px 0;
+}
+
+.artisan-dark-title p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.artisan-dark-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.artisan-dark-pill {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.artisan-dark-pill.active {
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
+}
+
+.artisan-dark-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0 8px 0;
+}
+
+.artisan-dark-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #7dd3fc;
+  font-size: 13px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.artisan-dark-stats-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.artisan-dark-stat-item {
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
-.artisan-metric-card .metric-label {
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 500;
+.artisan-dark-stat-item .stat-label {
+  font-size: 12px;
+  color: #94a3b8;
 }
 
-.artisan-metric-card .metric-value {
-  font-size: 1.5rem;
+.artisan-dark-stat-item .stat-value {
+  font-size: 1.35rem;
   font-weight: 700;
-  color: var(--navy);
+  color: #fff;
 }
 
-.artisan-list {
+/* ==========================================================================
+   2-Column Split Dashboard Layout
+   ========================================================================== */
+.artisan-dashboard-split {
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 24px;
 }
 
+@media (min-width: 1024px) {
+  .artisan-dashboard-split {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.artisan-main-col {
+  display: grid;
+  gap: 24px;
+}
+
+.artisan-side-col {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+/* ==========================================================================
+   Card Styling (Image 1, 3, 4 Clean Style)
+   ========================================================================== */
 .artisan-card {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 20px;
   background: #fff;
-  padding: 16px;
+  padding: 24px;
   display: grid;
-  gap: 10px;
+  gap: 16px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.artisan-inline {
+.artisan-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(14, 41, 75, 0.08);
+  border-color: #cbd5e1;
+}
+
+.artisan-card-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
 }
 
+.artisan-card-header h2,
+.artisan-card-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.artisan-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Segmented Milestone Progress Bar (Image 1 & 4 Style) */
+.artisan-segmented-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 4px 0;
+}
+
+.artisan-segment-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.artisan-segment-track {
+  height: 6px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.artisan-segment-track.active {
+  background: #10b981;
+}
+
+.artisan-segment-track.in_progress {
+  background: #0284c7;
+}
+
+.artisan-segment-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Financial Milestone Breakdown Row */
+.artisan-financial-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.artisan-financial-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.artisan-financial-cell .cell-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.artisan-financial-cell .cell-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Status Pills with Vibrant Pastels */
+.artisan-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.artisan-status-pill.accepted {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.artisan-status-pill.in_progress {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.artisan-status-pill.completed {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.artisan-status-pill.cancelled {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Control Bar & Filter Pills (Stitch S37 & Image 1) */
+.artisan-control-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+}
+
+@media (min-width: 768px) {
+  .artisan-control-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.artisan-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.artisan-search-box input {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 8px 14px 8px 38px;
+  font-size: 14px;
+  background: var(--surface);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.artisan-search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 100, 145, 0.12);
+}
+
+.artisan-search-box svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.artisan-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.artisan-filter-pill {
+  min-height: 38px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.artisan-filter-pill:hover {
+  background: #e2e8f0;
+  color: var(--text);
+}
+
+.artisan-filter-pill.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 100, 145, 0.25);
+}
+
+/* Earnings Ledger Table (Stitch S38 & Image 4) */
+.artisan-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+}
+
+.artisan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.artisan-table th {
+  padding: 16px 20px;
+  background: #f8fafc;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.artisan-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.artisan-table tr:hover td {
+  background: #f8fafc;
+}
+
+.artisan-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Empty State */
+.artisan-empty {
+  border: 2px dashed var(--border);
+  border-radius: 20px;
+  padding: 44px 24px;
+  text-align: center;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.artisan-empty h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.artisan-empty p {
+  color: var(--muted);
+  max-width: 440px;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Form Styling */
 .artisan-form {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 20px;
   background: #fff;
-  padding: 16px;
+  padding: 28px;
   display: grid;
-  gap: 14px;
+  gap: 18px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
 }
 
 .artisan-form label {
@@ -85,11 +805,20 @@
 .artisan-form input,
 .artisan-form textarea,
 .artisan-form select {
-  min-height: 44px;
+  min-height: 46px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 12px;
+  border-radius: 12px;
+  padding: 10px 14px;
   font-size: 15px;
+  background: #fff;
+}
+
+.artisan-form input:focus,
+.artisan-form textarea:focus,
+.artisan-form select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 100, 145, 0.12);
 }
 
 .artisan-form textarea {
@@ -114,62 +843,385 @@
 .artisan-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 
-.artisan-status-pill {
-  border: 1px solid var(--accent-border);
-  background: var(--pale);
-  color: var(--navy);
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 10px;
-  text-transform: capitalize;
+.artisan-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.artisan-error {
-  color: #b91c1c;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  padding: 10px 12px;
-}
-
-.artisan-success {
-  color: #065f46;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  border-radius: 8px;
-  padding: 10px 12px;
-}
-
-.artisan-empty {
-  border: 1px dashed var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  color: var(--muted);
-  background: var(--surface);
+.artisan-list {
+  display: grid;
+  gap: 16px;
 }
 
 .artisan-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
 }
 
-.artisan-badge.verified {
-  color: #059669;
+.artisan-badge.approved {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
 }
 
-.artisan-badge.unsubmitted,
 .artisan-badge.pending {
-  color: #d97706;
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.artisan-badge.unsubmitted {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
 }
 
 .artisan-badge.rejected {
-  color: #dc2626;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.artisan-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 14px;
+}
+
+.artisan-success {
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 14px;
+}
+
+.artisan-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(14, 41, 75, 0.08);
+  border-color: var(--accent-border);
+}
+
+.artisan-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.artisan-card-header h2,
+.artisan-card-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.artisan-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.artisan-financial-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--pale);
+  border: 1px solid var(--accent-border);
+}
+
+.artisan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.artisan-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.artisan-status-pill.accepted {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.artisan-status-pill.in_progress {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.artisan-status-pill.completed {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.artisan-status-pill.cancelled {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.artisan-empty {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.artisan-empty h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.artisan-empty p {
+  color: var(--muted);
+  max-width: 420px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.artisan-form {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
+}
+
+.artisan-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.artisan-form label small {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.artisan-form input,
+.artisan-form textarea,
+.artisan-form select {
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 15px;
+  background: #fff;
+}
+
+.artisan-form input:focus,
+.artisan-form textarea:focus,
+.artisan-form select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 100, 145, 0.12);
+}
+
+.artisan-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.artisan-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.artisan-form-checkbox input {
+  min-height: auto;
+  width: 18px;
+  height: 18px;
+}
+
+/* Control Bar & Filter Pills (Stitch S37) */
+.artisan-control-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.03);
+}
+
+@media (min-width: 768px) {
+  .artisan-control-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.artisan-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.artisan-search-box input {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 8px 14px 8px 38px;
+  font-size: 14px;
+  background: var(--surface);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.artisan-search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 100, 145, 0.12);
+}
+
+.artisan-search-box svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.artisan-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.artisan-filter-pill {
+  min-height: 38px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.artisan-filter-pill:hover {
+  background: #e2e8f0;
+  color: var(--text);
+}
+
+.artisan-filter-pill.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 100, 145, 0.25);
+}
+
+/* Earnings Ledger Table (Stitch S38) */
+.artisan-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
+}
+
+.artisan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.artisan-table th {
+  padding: 14px 18px;
+  background: var(--surface);
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.artisan-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.artisan-table tr:hover td {
+  background: #f8fafc;
+}
+
+.artisan-table tr:last-child td {
+  border-bottom: none;
+}
+
+.artisan-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.artisan-success {
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
 }

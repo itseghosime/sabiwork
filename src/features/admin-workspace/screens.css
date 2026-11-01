@@ -1,56 +1,182 @@
 .admin-page {
   display: grid;
-  gap: 16px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.admin-breadcrumbs a:hover {
+  color: var(--primary);
 }
 
 .admin-header h1 {
-  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0;
 }
 
 .admin-header p {
-  margin-top: 6px;
   color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+  max-width: 800px;
 }
 
+/* 4-Column KPI Grid */
 .admin-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
 }
 
 .admin-metric-card {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   background: #fff;
-  padding: 16px;
+  padding: 18px 20px;
   display: grid;
-  gap: 4px;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(14, 41, 75, 0.06);
 }
 
 .admin-metric-card .metric-label {
   font-size: 13px;
+  font-weight: 600;
   color: var(--muted);
-  font-weight: 500;
 }
 
 .admin-metric-card .metric-value {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--navy);
 }
 
-.admin-list {
+.admin-metric-card .metric-subtext {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Control Filter Bar */
+.admin-control-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.admin-filter-pill {
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  background: var(--surface);
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.admin-filter-pill:hover {
+  background: #e2e8f0;
+  color: var(--text);
+}
+
+.admin-filter-pill.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 100, 145, 0.25);
+}
+
+/* Table Container (Stitch S42) */
+.admin-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.admin-table th {
+  padding: 14px 18px;
+  background: var(--surface);
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.admin-table tr:hover td {
+  background: #f8fafc;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Split Layout for Dossier Review (Stitch S43) */
+.admin-dossier-split {
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .admin-dossier-split {
+    grid-template-columns: 2fr 1fr;
+  }
 }
 
 .admin-card {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   background: #fff;
-  padding: 16px;
+  padding: 22px 24px;
   display: grid;
-  gap: 10px;
+  gap: 14px;
+  box-shadow: 0 2px 8px rgba(14, 41, 75, 0.04);
 }
 
 .admin-inline {
@@ -69,66 +195,67 @@
 }
 
 .admin-status-pill {
-  border: 1px solid var(--accent-border);
-  background: var(--pale);
-  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 4px 12px;
   text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.admin-status-pill.approved {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.admin-status-pill.pending {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.admin-status-pill.rejected {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.admin-status-pill.unsubmitted {
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.admin-empty {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .admin-error {
   color: #b91c1c;
   background: #fef2f2;
   border: 1px solid #fecaca;
-  border-radius: 8px;
-  padding: 10px 12px;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
 }
 
 .admin-success {
-  color: #065f46;
+  color: #047857;
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
-  border-radius: 8px;
-  padding: 10px 12px;
-}
-
-.admin-empty {
-  border: 1px dashed var(--border);
   border-radius: 10px;
-  padding: 16px;
-  color: var(--muted);
-  background: var(--surface);
-}
-
-.admin-table-container {
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #fff;
-}
-
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  text-align: left;
-}
-
-.admin-table th,
-.admin-table td {
   padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.admin-table th {
-  background: var(--surface);
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.admin-table tr:last-child td {
-  border-bottom: none;
+  font-size: 14px;
 }

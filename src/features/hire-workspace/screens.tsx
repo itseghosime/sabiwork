@@ -70,7 +70,8 @@ async function readJson<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
 }
 
 function StatusPill({ text }: { text: string }) {
-  return <span className="hire-status-pill">{text.replaceAll("_", " ")}</span>;
+  const norm = text.toLowerCase().replaceAll("-", "_");
+  return <span className={`hire-status-pill ${norm}`}>{text.replaceAll("_", " ")}</span>;
 }
 
 function PageFrame({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
@@ -357,6 +358,8 @@ export function CheckoutNoticeScreen({ quoteId, requestId }: { quoteId: string; 
 
 export function JobsListScreen() {
   const [jobs, setJobs] = useState<JobRow[]>([]);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState<string>("all");
   const [state, setState] = useState<{ loading: boolean; error: string | null }>({ loading: true, error: null });
 
   useEffect(() => {
@@ -376,25 +379,200 @@ export function JobsListScreen() {
     };
   }, []);
 
+  const inProgressCount = jobs.filter((j) => j.status === "in_progress").length;
+  const acceptedCount = jobs.filter((j) => j.status === "accepted").length;
+  const completedCount = jobs.filter((j) => j.status === "completed").length;
+
+  const filteredJobs = jobs.filter((job) => {
+    if (filter !== "all" && job.status !== filter) return false;
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      const match =
+        job.title.toLowerCase().includes(q) ||
+        job.category.toLowerCase().includes(q) ||
+        job.service_area.toLowerCase().includes(q);
+      if (!match) return false;
+    }
+    return true;
+  });
+
   return (
-    <PageFrame title="Jobs" subtitle="Track accepted quotes, progress, and completion status.">
+    <section className="hire-page">
+      <header className="hire-header">
+        <div className="hire-eyebrow">
+          <span className="hire-eyebrow-pill">Customer Portal</span>
+          <span>•</span>
+          <span>{jobs.length} Active Engagements</span>
+        </div>
+        <div className="hire-header-top">
+          <h1>My Jobs &amp; Engagements</h1>
+          <div className="hire-actions">
+            <Link className="button button-primary" href="/requests/new">
+              + Post a new request
+            </Link>
+          </div>
+        </div>
+        <p>Track accepted artisan quotes, milestone progress updates, and completion sign-offs.</p>
+      </header>
+
+      {/* Quick Metrics Bar (Stitch S27) */}
+      <div className="hire-metrics-row">
+        <div className="hire-metric-pill">
+          <span className="sabi-pulse-dot online" />
+          <span>In Progress: <strong>{inProgressCount}</strong></span>
+        </div>
+        <div className="hire-metric-pill">
+          <span className="sabi-pulse-dot escrow" />
+          <span>Awaiting Work Start: <strong>{acceptedCount}</strong></span>
+        </div>
+        <div className="hire-metric-pill">
+          <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#059669" }} />
+          <span>Completed: <strong>{completedCount}</strong></span>
+        </div>
+      </div>
+
+      {/* Control Bar: Search & Status Filters */}
+      <div className="hire-control-bar">
+        <div className="hire-search-box">
+          <span className="hire-search-icon">🔍</span>
+          <input
+            type="text"
+            placeholder="Search by job title, craft, or area (e.g. Plumbing, Ikeja)..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+
+        <div className="hire-filters-group">
+          {["all", "in_progress", "accepted", "completed", "cancelled"].map((item) => (
+            <button
+              key={item}
+              type="button"
+              className={`hire-filter-pill ${filter === item ? "active" : ""}`}
+              onClick={() => setFilter(item)}
+            >
+              {item === "all" ? "All Jobs" : item.replace("_", " ")}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {state.loading ? <p>Loading jobs...</p> : null}
       {state.error ? <p className="hire-error" role="alert">{state.error}</p> : null}
-      {!state.loading && !state.error && jobs.length === 0 ? <p className="hire-empty">No jobs yet. Accept a quote to create one.</p> : null}
-      <div className="hire-list">
-        {jobs.map((job) => (
-          <article key={job.id} className="hire-card">
-            <div className="hire-inline"><h2>{job.title}</h2><StatusPill text={job.status} /></div>
-            <p>{job.category} · {job.service_area}</p>
-            <p><strong>Total quote:</strong> {formatMoney(job.total_quote_kobo ?? job.budget_guidance_kobo)}</p>
-            <div className="hire-actions">
-              <Link className="button button-primary" href={`/jobs/${job.id}`}>Open job</Link>
-              <Link className="button button-outline" href={`/jobs/${job.id}/progress`}>Progress</Link>
+
+      {!state.loading && !state.error && filteredJobs.length === 0 ? (
+        <div className="hire-empty">
+          <div style={{ fontSize: "2rem" }}>📋</div>
+          <h3>No jobs found</h3>
+          <p>
+            {jobs.length === 0
+              ? "You haven't accepted any artisan quotes yet. Post a service request to start receiving quotes from verified craftspeople."
+              : "No jobs match your current search query or filter selection."}
+          </p>
+          {jobs.length === 0 ? (
+            <div className="hire-actions" style={{ marginTop: "8px" }}>
+              <Link className="button button-primary" href="/requests/new">
+                Post a new request
+              </Link>
             </div>
-          </article>
-        ))}
+          ) : (
+            <button className="button button-subtle" type="button" onClick={() => { setSearch(""); setFilter("all"); }}>
+              Reset filters
+            </button>
+          )}
+        </div>
+      ) : null}
+
+      <div className="hire-list">
+        {filteredJobs.map((job) => {
+          const agreedKobo = job.total_quote_kobo ?? job.budget_guidance_kobo;
+          const depositKobo = Math.floor(agreedKobo / 2);
+          const balanceKobo = agreedKobo - depositKobo;
+
+          return (
+            <article key={job.id} className="hire-card">
+              <div className="hire-card-top">
+                <div className="hire-card-title-group">
+                  <h2>{job.title}</h2>
+                  <div className="hire-card-meta" style={{ marginTop: "6px" }}>
+                    <span className="hire-card-meta-item">📍 {job.service_area}</span>
+                    <span className="hire-card-meta-item">🛠️ {job.category}</span>
+                    <span className="hire-card-meta-item">🕒 Updated {formatWat(job.updated_at)}</span>
+                  </div>
+                </div>
+                <StatusPill text={job.status} />
+              </div>
+
+              {job.description ? <p style={{ margin: 0, color: "var(--muted)" }}>{job.description}</p> : null}
+
+              {/* Segmented Milestone Progress Bar (Image 1 & 4 Style) */}
+              <div className="hire-segmented-bar">
+                <div className="hire-segment-item">
+                  <div className="hire-segment-track active" />
+                  <span className="hire-segment-label">1. Agreed</span>
+                </div>
+                <div className="hire-segment-item">
+                  <div className={`hire-segment-track ${job.status === "in_progress" || job.status === "completed" ? "active" : "in_progress"}`} />
+                  <span className="hire-segment-label">2. 50% Deposit</span>
+                </div>
+                <div className="hire-segment-item">
+                  <div className={`hire-segment-track ${job.status === "completed" ? "active" : ""}`} />
+                  <span className="hire-segment-label">3. Signoff</span>
+                </div>
+              </div>
+
+              {/* Financial Milestone Summary (Stitch S27) */}
+              <div className="hire-financial-block">
+                <div className="hire-financial-item">
+                  <span className="fin-label">Agreed Quote</span>
+                  <span className="fin-value">{formatMoney(agreedKobo)}</span>
+                </div>
+                <div className="hire-financial-item">
+                  <span className="fin-label">Milestone 1 Deposit (50%)</span>
+                  <span className="fin-value" style={{ color: "var(--navy)" }}>{formatMoney(depositKobo)}</span>
+                </div>
+                <div className="hire-financial-item">
+                  <span className="fin-label">Completion Balance</span>
+                  <span className="fin-value" style={{ color: "var(--navy)" }}>{formatMoney(balanceKobo)}</span>
+                </div>
+              </div>
+
+              {/* Latest Progress Snippet */}
+              {job.updates && job.updates.length > 0 ? (
+                <div className="hire-progress-snippet">
+                  <span className="snippet-icon">💬</span>
+                  <div>
+                    <strong>Latest worker update:</strong> &ldquo;{job.updates.at(-1)?.note}&rdquo;
+                    <span style={{ display: "block", fontSize: "11px", color: "var(--muted)", marginTop: "2px" }}>
+                      {formatWat(job.updates.at(-1)?.created_at ?? "")}
+                    </span>
+                  </div>
+                </div>
+              ) : null}
+
+              <div className="hire-actions">
+                <Link className="button button-primary" href={`/jobs/${job.id}`}>
+                  Open job details →
+                </Link>
+                <Link className="button button-outline" href={`/jobs/${job.id}/progress`}>
+                  Progress updates
+                </Link>
+                {job.status === "in_progress" ? (
+                  <Link className="button button-subtle" href={`/jobs/${job.id}/signoff`}>
+                    Sign-off job
+                  </Link>
+                ) : null}
+                {job.status === "completed" ? (
+                  <Link className="button button-subtle" href={`/jobs/${job.id}/review`}>
+                    Leave review
+                  </Link>
+                ) : null}
+              </div>
+            </article>
+          );
+        })}
       </div>
-    </PageFrame>
+    </section>
   );
 }
 
