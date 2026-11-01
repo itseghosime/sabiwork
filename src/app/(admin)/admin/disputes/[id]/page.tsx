@@ -1,4 +1,4 @@
-import { AdminDisputeDetailScreen } from "@/features/admin-workspace/screens";
+import { AdminDisputeDetailScreen } from "@/features/admin-workspace/dispute-screens";
 
 export default async function AdminDisputeDetailPage({
   params,

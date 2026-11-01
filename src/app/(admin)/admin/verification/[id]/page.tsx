@@ -1,4 +1,4 @@
-import { AdminDossierReviewScreen } from "@/features/admin-workspace/screens";
+import { AdminDossierReviewScreen } from "@/features/admin-workspace/verification-screen";
 
 export default async function AdminDossierPage({
   params,

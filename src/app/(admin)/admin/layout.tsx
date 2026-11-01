@@ -1,13 +1,13 @@
-import { WorkspaceShell } from "@/components/workspace-shell";
+import { AdminShell } from "@/components/admin-shell";
 import { requirePageRole } from "@/lib/server/authorization";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminVerificationLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   await requirePageRole("admin");
-  return <WorkspaceShell role="admin">{children}</WorkspaceShell>;
+  return <AdminShell>{children}</AdminShell>;
 }

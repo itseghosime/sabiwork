@@ -13,7 +13,8 @@ const navigation: Record<
   readonly { href: string; label: string; icon: IconName }[]
 > = {
   customer: [
-    { href: "/jobs", label: "My jobs", icon: "briefcase" },
+    { href: "/jobs", label: "My bookings", icon: "briefcase" },
+    { href: "/categories", label: "Explore services", icon: "grid" },
     { href: "/requests/new", label: "Post a request", icon: "clipboard" },
     { href: "/payments", label: "Payment history", icon: "wallet" },
     { href: "/settings", label: "Account settings", icon: "settings" },
