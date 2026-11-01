@@ -8,7 +8,6 @@ import {
   User,
   Wrench,
   ShieldAlert,
-  ChevronDown,
   Layers,
   ChevronUp,
 } from "lucide-react";

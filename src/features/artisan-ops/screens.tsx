@@ -91,11 +91,11 @@ export function ArtisanDashboardScreen({
         </div>
 
         <div className="ao-metric-card">
-          <span className="ao-metric-label">Pending Escrow Funds</span>
+          <span className="ao-metric-label">Pending payment previews</span>
           <span className="ao-metric-value" style={{ color: "var(--primary)" }}>
-            ₦{(data.pendingEscrowKobo / 100).toLocaleString()}
+            ₦{(data.pendingPaymentsKobo / 100).toLocaleString()}
           </span>
-          <span className="ao-metric-sub">Held in safe milestone deposits</span>
+          <span className="ao-metric-sub">Demo amounts only · no funds are held</span>
         </div>
 
         <div className="ao-metric-card">

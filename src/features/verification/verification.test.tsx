@@ -79,7 +79,7 @@ describe("Verification Service", () => {
 describe("Verification Screens UI", () => {
   it("renders S08 Artisan Signup and validates required step fields", () => {
     render(<ArtisanSignupScreen />);
-    expect(screen.getByText(/Join SabiWork as a Verified Artisan/i)).toBeDefined();
+    expect(screen.getByText(/Create an artisan account/i)).toBeDefined();
     expect(screen.getByText(/Step 1 of 5/i)).toBeDefined();
 
     // Click continue with empty inputs to trigger validation error
@@ -105,8 +105,8 @@ describe("Verification Screens UI", () => {
   it("renders S42 Admin Verification Queue and filters list", () => {
     render(<AdminVerificationQueueScreen />);
     expect(screen.getByText(/Artisan Verification Queue/i)).toBeDefined();
-    expect(screen.getByText(/Edo State Desk Active/i)).toBeDefined();
-    expect(screen.getByText(/Export Audit Log/i)).toBeDefined();
+    expect(screen.getByText(/Prototype queue/i)).toBeDefined();
+    expect(screen.getByText(/Export sample CSV/i)).toBeDefined();
 
     // Click Pending filter tab
     const pendingTab = screen.getByRole("button", { name: /Pending \(/i });

@@ -140,6 +140,9 @@
 
 /* Shared workspace framing for customer, artisan, and admin routes. */
 .workspace-shell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   background:
     radial-gradient(ellipse at 100% 0%, rgb(56 168 232 / 7%), transparent 36%),
     var(--surface);
@@ -152,8 +155,22 @@
   height: 100dvh;
   gap: 22px;
   padding: 20px 16px;
-  background: rgb(255 255 255 / 94%);
-  box-shadow: 4px 0 24px rgb(14 41 75 / 3%);
+  color: #f3f8ff;
+  background: linear-gradient(180deg, #0e294b 0%, #102f54 100%);
+  border-right: 1px solid rgb(255 255 255 / 8%);
+  box-shadow: 6px 0 26px rgb(14 41 75 / 10%);
+}
+
+.workspace-sidebar .brand > span:last-child {
+  color: #f7fbff;
+}
+
+.workspace-sidebar .brand small {
+  color: #c0d0e2;
+}
+
+.workspace-sidebar .workspace-sidebar-label {
+  color: #9edbff;
 }
 
 .workspace-sidebar-brand {
@@ -178,10 +195,10 @@
   display: grid;
   place-items: center;
   list-style: none;
-  border: 1px solid #dce7f2;
+  border: 1px solid rgb(255 255 255 / 24%);
   border-radius: 12px;
-  color: #45617e;
-  background: #fff;
+  color: #f3f8ff;
+  background: rgb(255 255 255 / 9%);
   cursor: pointer;
   transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
 }
@@ -191,9 +208,9 @@
 }
 
 .workspace-sidebar-collapse summary:hover {
-  color: var(--primary);
-  background: #eff8ff;
-  border-color: #bae6fd;
+  color: #fff;
+  background: rgb(56 168 232 / 28%);
+  border-color: #8aceff;
 }
 
 .workspace-sidebar-collapse[open] summary svg {
@@ -210,7 +227,7 @@
   grid-template-columns: 22px minmax(0, 1fr) 16px;
   justify-content: initial;
   gap: 11px;
-  color: #344c68;
+  color: #dce9f5;
   font-size: 14px;
   font-weight: 550;
   transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
@@ -218,26 +235,27 @@
 
 .workspace-sidebar nav a > svg:first-child,
 .workspace-public-link > svg:first-child {
-  color: #68819c;
+  color: #adc3d8;
 }
 
 .workspace-sidebar nav a:hover {
   transform: translateX(2px);
-  background: #edf8ff;
+  color: #fff;
+  background: rgb(255 255 255 / 9%);
 }
 
 .workspace-sidebar nav a[aria-current="page"] {
-  color: var(--primary);
-  background: #e9f6ff;
+  color: #003a56;
+  background: #8aceff;
   font-weight: 650;
 }
 
 .workspace-sidebar nav a[aria-current="page"] > svg:first-child {
-  color: var(--primary);
+  color: #003a56;
 }
 
 .workspace-nav-arrow {
-  color: #91a2b4;
+  color: #9db4cb;
   justify-self: end;
 }
 
@@ -248,8 +266,9 @@
   gap: 11px;
   align-items: center;
   padding: 10px;
-  border-top: 1px solid #eaf0f6;
+  border-top: 1px solid rgb(255 255 255 / 16%);
   font-size: 14px;
+  color: #dce9f5;
 }
 
 .workspace-shell:has(.workspace-sidebar-collapse:not([open])) {
@@ -295,6 +314,21 @@
   min-height: 72px;
   background: rgb(255 255 255 / 92%);
   backdrop-filter: blur(14px);
+}
+
+.workspace-main,
+.workspace-main > main,
+.workspace-main > header,
+.workspace-main > header > div,
+.workspace-mobile-nav {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.workspace-main .demo-tag {
+  max-width: min(100%, 360px);
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .workspace-main > main {
@@ -370,8 +404,9 @@
 }
 
 @media (max-width: 900px) {
+  .workspace-shell,
   .workspace-shell:has(.workspace-sidebar-collapse:not([open])) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .workspace-sidebar {
@@ -380,6 +415,32 @@
 
   .workspace-main > header {
     position: static;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 10px;
+  }
+
+  .workspace-main > header > div {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .workspace-mobile-nav {
+    width: auto;
+    margin-inline: 16px;
+    overflow: hidden;
+  }
+
+  .workspace-mobile-nav nav a {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  :is(.ao-page, .lc-page, .rw-page, .rq-page, .qt-page, .py-page,
+      .pf-page, .sabi-verif-container, .sabi-training-container) {
+    min-width: 0;
+    max-width: 100%;
   }
 }
 
@@ -402,6 +463,16 @@
 
   .workspace-main > header {
     padding: 16px;
+    gap: 10px;
+  }
+
+  .workspace-main .demo-tag {
+    max-width: 100%;
+  }
+
+  .workspace-main > main :is(h1, h2, h3, p, a, span, strong) {
+    min-width: 0;
+    overflow-wrap: break-word;
   }
 }
 

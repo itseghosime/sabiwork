@@ -42,7 +42,7 @@ export function WorkspaceShell({
 }) {
   const pathname = usePathname();
   return (
-    <div className="workspace-shell">
+    <div className="workspace-shell" data-role={role}>
       <a href="#workspace-content" className="skip-link">
         Skip to workspace
       </a>

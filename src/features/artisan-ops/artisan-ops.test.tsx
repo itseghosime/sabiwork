@@ -22,7 +22,7 @@ describe("Artisan Dashboard, Orders, Earnings & Schedule (S36, S37, S38, S39)", 
       screen.getByRole("heading", { level: 1, name: /Welcome, Osaze Ighodaro/i }),
     ).toBeDefined();
     expect(screen.getByText(/Active Work Orders/i)).toBeDefined();
-    expect(screen.getByText(/Pending Escrow Funds/i)).toBeDefined();
+    expect(screen.getByText(/Pending payment previews/i)).toBeDefined();
   });
 
   it("renders S37 Artisan Work Orders with active milestone badges", () => {

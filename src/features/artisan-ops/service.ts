@@ -12,7 +12,7 @@ export interface ArtisanDashboardData {
   activeJobsCount: number;
   openRequestsInDistrict: number;
   totalEarningsKobo: number;
-  pendingEscrowKobo: number;
+  pendingPaymentsKobo: number;
   availableBalanceKobo: number;
   ratingAverage: number;
   totalReviews: number;
@@ -54,7 +54,7 @@ export const defaultArtisanDashboard: ArtisanDashboardData = {
   activeJobsCount: 2,
   openRequestsInDistrict: 5,
   totalEarningsKobo: 4100000, // ₦41,000
-  pendingEscrowKobo: 1100000, // ₦11,000
+  pendingPaymentsKobo: 1100000, // ₦11,000 simulated in the demo
   availableBalanceKobo: 3000000, // ₦30,000
   ratingAverage: 4.9,
   totalReviews: 38,
