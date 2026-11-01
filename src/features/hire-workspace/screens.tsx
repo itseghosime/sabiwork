@@ -606,3 +606,228 @@ export function PaymentUnavailableScreen({ reference, title }: { reference: stri
     </PageFrame>
   );
 }
+
+export function PaymentHistoryListScreen() {
+  const [jobs, setJobs] = useState<JobRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    readJson<JobRow[]>("/api/jobs?scope=customer")
+      .then((rows) => {
+        if (!active) return;
+        setJobs(rows);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (!active) return;
+        setError(err instanceof Error ? err.message : "Could not load transaction history.");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  return (
+    <PageFrame
+      title="Payment history"
+      subtitle="Review milestone amounts and escrow status for your contracted jobs."
+    >
+      <article className="hire-card" style={{ borderLeft: "4px solid #3b82f6" }}>
+        <h3>Payment processing status</h3>
+        <p>
+          Automated Paystack transaction syncing is unavailable in this build.
+          Milestone amounts below reflect agreed quotes saved in Postgres. No live transfers or debit card charges are initiated.
+        </p>
+      </article>
+
+      {loading ? <p>Loading payment history...</p> : null}
+      {error ? <p className="hire-error" role="alert">{error}</p> : null}
+
+      {!loading && !error && jobs.length === 0 ? (
+        <p className="hire-empty">No payment milestones recorded yet.</p>
+      ) : (
+        <div className="hire-list">
+          {jobs.map((job) => (
+            <article key={job.id} className="hire-card">
+              <div className="hire-inline">
+                <h2>{job.title}</h2>
+                <StatusPill text={job.status} />
+              </div>
+              <p><strong>Agreed total:</strong> {formatMoney(job.total_quote_kobo)}</p>
+              <p><strong>Milestone 1 deposit (50%):</strong> {formatMoney(Math.floor(job.total_quote_kobo / 2))}</p>
+              <p><strong>Milestone 2 completion (50%):</strong> {formatMoney(job.total_quote_kobo - Math.floor(job.total_quote_kobo / 2))}</p>
+              <p><small>Updated {formatWat(job.updated_at)}</small></p>
+              <div className="hire-actions">
+                <Link className="button button-outline" href={`/jobs/${job.id}`}>View job</Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </PageFrame>
+  );
+}
+
+export function DisputeUnavailableScreen({ jobId }: { jobId: string }) {
+  return (
+    <PageFrame
+      title="Dispute resolution"
+      subtitle="Administrative dispute mediation is unavailable in this build."
+    >
+      <article className="hire-card">
+        <h2>Dispute arbitration status</h2>
+        <p>Reference: <strong>{jobId}</strong></p>
+        <p>
+          Formal dispute arbitration, evidence lockers, and administrative hold mediation are currently unavailable in this build.
+          Please coordinate directly with your assigned party using the job progress updates.
+        </p>
+        <p style={{ color: "var(--muted)" }}>
+          No mock arbitrations or simulated administrative decisions are recorded.
+        </p>
+      </article>
+      <div className="hire-actions">
+        <Link className="button button-outline" href={`/jobs/${jobId}`}>
+          Back to job
+        </Link>
+        <Link className="button button-subtle" href="/jobs">
+          Back to jobs
+        </Link>
+      </div>
+    </PageFrame>
+  );
+}
+
+export function AccountSettingsScreen() {
+  const [displayName, setDisplayName] = useState("");
+  const [role, setRole] = useState("customer");
+  const [hasWorkProfile, setHasWorkProfile] = useState<boolean | null>(null);
+  const [trade, setTrade] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        const [accountRes, profileRes] = await Promise.all([
+          readJson<{ role: string; display_name: string }>("/api/account/profile"),
+          readJson<{ primary_trade: string }>("/api/profiles/artisan").catch(() => null),
+        ]);
+        if (!active) return;
+        setDisplayName(accountRes.display_name || "");
+        setRole(accountRes.role || "customer");
+        if (profileRes) {
+          setHasWorkProfile(true);
+          setTrade(profileRes.primary_trade);
+        } else {
+          setHasWorkProfile(false);
+        }
+      } catch (err) {
+        if (!active) return;
+        setError(err instanceof Error ? err.message : "Could not load account profile.");
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const save = async (event: FormEvent) => {
+    event.preventDefault();
+    setSaving(true);
+    setStatusMessage(null);
+    setError(null);
+    try {
+      await readJson("/api/account/profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ display_name: displayName.trim() }),
+      });
+      setStatusMessage("Account profile updated successfully.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not update account profile.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <PageFrame title="Account settings" subtitle="Loading account preferences...">
+        <p>Loading...</p>
+      </PageFrame>
+    );
+  }
+
+  return (
+    <PageFrame
+      title="Account settings"
+      subtitle="Manage your profile information and optional craft listing."
+    >
+      <form className="hire-form" onSubmit={save}>
+        <label>
+          Display name
+          <input
+            required
+            minLength={2}
+            maxLength={100}
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+          />
+          <small>Visible to artisans and customers across the marketplace.</small>
+        </label>
+
+        <label>
+          Account role
+          <input value={role} disabled style={{ background: "var(--surface)" }} />
+          <small>Server-authorized role. Any marketplace user can hire and optionally offer their trade.</small>
+        </label>
+
+        {error ? <p className="hire-error" role="alert">{error}</p> : null}
+        {statusMessage ? <p className="hire-success" role="status">{statusMessage}</p> : null}
+
+        <div className="hire-actions">
+          <button className="button button-primary" type="submit" disabled={saving}>
+            {saving ? "Saving..." : "Save changes"}
+          </button>
+        </div>
+      </form>
+
+      <article className="hire-card" style={{ marginTop: "16px" }}>
+        <h2>Work profile & craft offering</h2>
+        {hasWorkProfile ? (
+          <div>
+            <p>You have an active work profile listed as <strong>{trade}</strong>.</p>
+            <div className="hire-actions" style={{ marginTop: "10px" }}>
+              <Link className="button button-primary" href="/artisan/profile">
+                Edit work profile
+              </Link>
+              <Link className="button button-outline" href="/artisan">
+                Artisan workspace
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <p>
+              Want to get hired too? Any SabiWork account can optionally create a work profile to appear in public search and submit quotes for open requests.
+            </p>
+            <div className="hire-actions" style={{ marginTop: "10px" }}>
+              <Link className="button button-primary" href="/artisan/profile">
+                Create work profile
+              </Link>
+            </div>
+          </div>
+        )}
+      </article>
+    </PageFrame>
+  );
+}

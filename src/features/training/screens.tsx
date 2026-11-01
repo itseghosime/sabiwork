@@ -226,14 +226,14 @@ export function TrainingDirectoryScreen() {
                         href={`/training/${mod.id}/certificate`}
                         className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 hover:bg-emerald-100 transition-colors"
                       >
-                        <Award className="w-3.5 h-3.5" /> View Sample Preview (S46)
+                        <Award className="w-3.5 h-3.5" /> View Certificate Status
                       </Link>
                     ) : (
                       <Link
                         href={`/training/${mod.id}`}
                         className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
                       >
-                        {mod.status === "in_progress" ? "Resume Guide (S45)" : "Start Guide"}
+                        {mod.status === "in_progress" ? "Resume Guide" : "Start Guide"}
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     )}
@@ -310,7 +310,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs text-secondary">
           <Link href="/training" className="hover:text-primary">
-            Master Guides Directory (S44)
+            Master Guides Directory
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <span className="font-semibold text-on-surface">{mod.id}</span>
@@ -414,7 +414,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
                     </>
                   ) : (
                     <>
-                      <Award className="w-4 h-4" /> Mark as Complete & Continue (S46)
+                      <Award className="w-4 h-4" /> Mark as Complete & Continue
                     </>
                   )}
                 </button>
@@ -479,14 +479,14 @@ export function CertificateScreen({ id }: { id: string }) {
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs text-secondary">
           <Link href="/training" className="hover:text-primary">
-            Master Guides (S44)
+            Master Guides
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
           <Link href={`/training/${mod.id}`} className="hover:text-primary">
-            Guide Reader (S45)
+            Guide Reader
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="font-semibold text-on-surface">Sample Completion Preview (S46)</span>
+          <span className="font-semibold text-on-surface">Certificate Preview</span>
         </div>
 
         {/* Certificate Card Frame */}

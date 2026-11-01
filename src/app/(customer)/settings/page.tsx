@@ -1,7 +1,5 @@
-import { AccountSettingsScreen } from "@/features/requests/screens";
-import { defaultSettings } from "@/features/requests/service";
+import { AccountSettingsScreen } from "@/features/hire-workspace/screens";
 
 export default function SettingsPage() {
-  return <AccountSettingsScreen initialSettings={defaultSettings} />;
+  return <AccountSettingsScreen />;
 }
-

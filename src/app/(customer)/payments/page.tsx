@@ -1,7 +1,5 @@
-import { PaymentHistoryScreen } from "@/features/lifecycle/screens";
-import { defaultTransactions } from "@/features/lifecycle/service";
+import { PaymentHistoryListScreen } from "@/features/hire-workspace/screens";
 
 export default function PaymentHistoryPage() {
-  return <PaymentHistoryScreen initialTransactions={defaultTransactions} />;
+  return <PaymentHistoryListScreen />;
 }
-
