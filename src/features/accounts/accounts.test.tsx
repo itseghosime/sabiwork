@@ -8,7 +8,6 @@ import {
 } from "@testing-library/react";
 import { AccountForm } from "./account-form";
 import { CompleteProfileForm } from "./complete-profile";
-import { VerificationForm } from "./verification-form";
 import { validateAccount } from "./validation";
 
 const authMocks = vi.hoisted(() => ({
@@ -16,8 +15,6 @@ const authMocks = vi.hoisted(() => ({
   signInEmail: vi.fn(),
   requestPasswordReset: vi.fn(),
   resetPassword: vi.fn(),
-  verifyEmailOtp: vi.fn(),
-  sendVerificationOtp: vi.fn(),
 }));
 const routerMocks = vi.hoisted(() => ({
   replace: vi.fn(),
@@ -35,10 +32,6 @@ vi.mock("@/lib/auth/client", () => ({
     signIn: { email: authMocks.signInEmail },
     requestPasswordReset: authMocks.requestPasswordReset,
     resetPassword: authMocks.resetPassword,
-    emailOtp: {
-      verifyEmail: authMocks.verifyEmailOtp,
-      sendVerificationOtp: authMocks.sendVerificationOtp,
-    },
   },
 }));
 
@@ -82,8 +75,6 @@ beforeEach(() => {
   authMocks.signInEmail.mockResolvedValue(successfulResult);
   authMocks.requestPasswordReset.mockResolvedValue(successfulResult);
   authMocks.resetPassword.mockResolvedValue(successfulResult);
-  authMocks.verifyEmailOtp.mockResolvedValue(successfulResult);
-  authMocks.sendVerificationOtp.mockResolvedValue(successfulResult);
   fetchMock.mockResolvedValue(jsonResponse(201));
 });
 
@@ -120,15 +111,13 @@ describe("account validation", () => {
 });
 
 describe("Neon Auth account flows", () => {
-  it("creates a customer auth account, saves the role, and requires email verification", async () => {
+  it("creates a customer auth account, saves the role, and opens the workspace", async () => {
     render(<AccountForm mode="signup" />);
     fillAccountForm("signup");
     fireEvent.click(screen.getByRole("button", { name: "Create account" }));
 
     await waitFor(() =>
-      expect(routerMocks.replace).toHaveBeenCalledWith(
-        "/verify-email?email=customer%40example.test",
-      ),
+      expect(routerMocks.replace).toHaveBeenCalledWith("/jobs"),
     );
     expect(authMocks.signUpEmail).toHaveBeenCalledWith({
       name: "Example Customer",
@@ -159,23 +148,6 @@ describe("Neon Auth account flows", () => {
       (screen.getByLabelText("Password", { exact: true }) as HTMLInputElement)
         .value,
     ).toBe("ExamplePassword123");
-  });
-
-  it("routes an unverified login to email verification", async () => {
-    authMocks.signInEmail.mockResolvedValue({
-      data: { user: { emailVerified: false } },
-      error: null,
-    });
-    render(<AccountForm mode="login" />);
-    fillAccountForm("login");
-    fireEvent.click(screen.getByRole("button", { name: "Log in" }));
-
-    await waitFor(() =>
-      expect(routerMocks.replace).toHaveBeenCalledWith(
-        "/verify-email?email=customer%40example.test",
-      ),
-    );
-    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("routes an authenticated account without a profile to role completion", async () => {
@@ -218,41 +190,6 @@ describe("Neon Auth account flows", () => {
     expect(authMocks.resetPassword).toHaveBeenCalledWith({
       newPassword: "ExamplePassword123",
       token: "provider-token",
-    });
-  });
-
-  it("verifies a six-digit email code through Neon Auth", async () => {
-    render(<VerificationForm initialEmail="customer@example.test" />);
-    fireEvent.change(screen.getByLabelText("Six-digit code"), {
-      target: { value: "123456" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "Verify email" }));
-
-    expect(await screen.findByText(/Your email is verified/))
-      .toBeTruthy();
-    expect(authMocks.verifyEmailOtp).toHaveBeenCalledWith({
-      email: "customer@example.test",
-      otp: "123456",
-    });
-  });
-
-  it("requests a verification code for a valid address", async () => {
-    render(<VerificationForm />);
-    fireEvent.change(screen.getByLabelText("Email address"), {
-      target: { value: "customer@example.test" },
-    });
-    fireEvent.click(
-      screen.getByRole("button", { name: "Send a new code" }),
-    );
-
-    expect(
-      await screen.findByText(
-        "If verification is needed for this account, a code has been sent.",
-      ),
-    ).toBeTruthy();
-    expect(authMocks.sendVerificationOtp).toHaveBeenCalledWith({
-      email: "customer@example.test",
-      type: "email-verification",
     });
   });
 

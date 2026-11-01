@@ -13,7 +13,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 export async function POST(request: Request) {
-  const access = await authorizeRole("artisan", { allowUnverified: true });
+  const access = await authorizeRole("artisan");
   if (access.kind === "unauthenticated") {
     return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
   }

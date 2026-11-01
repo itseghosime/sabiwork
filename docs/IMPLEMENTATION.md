@@ -55,13 +55,13 @@ The Neon project has Postgres, Managed Neon Auth, and Realtime provisioned. The 
 
 Implemented and verified in this branch:
 
-- Managed Auth email signup, login, sign-out, password reset, and email OTP verification client calls.
+- Managed Auth email signup, login, sign-out, and password reset client calls. Email verification/OTP is intentionally not used in this prototype.
 - Server-checked session, verified-email, and database role guards for customer, artisan, admin, reviews, and training routes. Customer/artisan roles can be selected by a signed-in user; admin cannot be self-assigned.
 - Customer and artisan account profiles, with artisan verification status fixed to `unsubmitted`.
 - Customer-owned request drafts: authenticated list/create API, integer-kobo storage, and a user-scoped sealed Realtime query.
 - A transactional, advisory-locked SQL migration runner and an isolated-branch Postgres/Realtime smoke test.
 
-The migration currently defines `user_profiles`, `artisan_profiles`, and `job_requests`. The browser request flow saves private drafts only; it does not dispatch requests, notify artisans, create quotes/jobs, or initiate payment. The artisan profile editor, identity document storage/review, admin provisioning, production Realtime origins, and marketplace APIs remain unimplemented. The validation branch reports OTP verification and a shared email sender; email-code verification is wired, but code delivery and receipt have not been independently confirmed through an inbox. App page and role-protected API access now fails closed until Neon Auth reports `emailVerified`.
+The migration currently defines `user_profiles`, `artisan_profiles`, and `job_requests`. The browser request flow saves private drafts only; it does not dispatch requests, notify artisans, create quotes/jobs, or initiate payment. The artisan profile editor, identity document storage/review, admin provisioning, production Realtime origins, and marketplace APIs remain unimplemented. Role-protected pages and APIs require a signed-in session and the matching role; email addresses are not verified.
 
 Local-only environment variables are listed in `.env.example`; never commit `.env.local` or `.env.backend-test.local`. `npm run db:migrate` targets the configured application database, so verify the branch before running it. For the isolated validation branch, these commands were used:
 

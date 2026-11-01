@@ -10,6 +10,7 @@ import {
   FileText,
   MapPin,
   User,
+  Briefcase,
   Phone,
   Mail,
   Eye,
@@ -553,7 +554,7 @@ export function ArtisanSignupScreen() {
                     Artisan profile saved
                   </h2>
                   <p className="text-secondary text-sm max-w-md mx-auto mt-2">
-                    Your account and profile are stored. Verify your email before accessing the workspace. Artisan verification remains unsubmitted; no identity documents were uploaded or reviewed.
+                    Your account and profile are stored. Artisan verification remains unsubmitted; no identity documents were uploaded or reviewed.
                   </p>
                 </div>
 
@@ -574,11 +575,8 @@ export function ArtisanSignupScreen() {
                 </div>
 
                 <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-                  <Link
-                    href={`/verify-email?email=${encodeURIComponent(email.trim())}`}
-                    className="sabi-btn-primary"
-                  >
-                    <Mail className="w-4 h-4" /> Verify email to continue
+                  <Link href="/artisan" className="sabi-btn-primary">
+                    <Briefcase className="w-4 h-4" /> Go to Artisan Workspace (S36)
                   </Link>
                   <Link href="/artisans" className="sabi-btn-secondary">
                     <User className="w-4 h-4" /> View Public Directory (S03)

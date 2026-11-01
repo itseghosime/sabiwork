@@ -13,9 +13,6 @@ function authorizationResponse(kind: string) {
   if (kind === "unauthenticated") {
     return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
   }
-  if (kind === "email-unverified") {
-    return jsonError(403, "EMAIL_UNVERIFIED", "Verify your email to continue.");
-  }
   if (kind === "forbidden") {
     return jsonError(403, "FORBIDDEN", "A customer account is required.");
   }

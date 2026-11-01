@@ -418,16 +418,6 @@
 .auth-request-error p {
   margin: 0;
 }
-.auth-verification-notice {
-  background: #ecfdf5;
-  color: #065f46 !important;
-  border: 1px solid #a7f3d0;
-  padding: 12px;
-  border-radius: 10px;
-  margin-top: 18px;
-  font-size: 14px !important;
-  line-height: 1.6;
-}
 .auth-state {
   text-align: center;
 }

@@ -13,9 +13,6 @@ export async function POST() {
   if (access.kind === "unauthenticated") {
     return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
   }
-  if (access.kind === "email-unverified") {
-    return jsonError(403, "EMAIL_UNVERIFIED", "Verify your email to continue.");
-  }
   if (access.kind === "forbidden" || access.kind === "profile-required") {
     return jsonError(403, "FORBIDDEN", "A customer account is required.");
   }

@@ -7,10 +7,7 @@ import { getAuth } from "./auth";
 import { getDb } from "./db";
 import { userProfiles } from "./schema";
 
-export async function authorizeRole(
-  role: AccountRole,
-  { allowUnverified = false }: { allowUnverified?: boolean } = {},
-) {
+export async function authorizeRole(role: AccountRole) {
   const { data, error } = await getAuth().getSession();
   if (error) {
     console.error("[auth] Session lookup failed", error.code);
@@ -18,9 +15,6 @@ export async function authorizeRole(
   }
   const user = data?.user;
   if (!user) return { kind: "unauthenticated" as const };
-  if (!user.emailVerified && !allowUnverified) {
-    return { kind: "email-unverified" as const, user };
-  }
 
   let profile: { role: AccountRole } | undefined;
   try {
@@ -45,9 +39,6 @@ export async function requirePageRole(role: AccountRole) {
     throw new Error("Authentication is temporarily unavailable.");
   }
   if (result.kind === "unauthenticated") redirect("/login");
-  if (result.kind === "email-unverified") {
-    redirect(`/verify-email?email=${encodeURIComponent(result.user.email)}`);
-  }
   if (result.kind === "profile-required") redirect("/complete-profile");
   if (result.kind === "forbidden") redirect("/forbidden");
   return result.user;
@@ -60,8 +51,5 @@ export async function requireSignedInPage() {
     throw new Error("Authentication is temporarily unavailable.");
   }
   if (!data?.user) redirect("/login");
-  if (!data.user.emailVerified) {
-    redirect(`/verify-email?email=${encodeURIComponent(data.user.email)}`);
-  }
   return data.user;
 }

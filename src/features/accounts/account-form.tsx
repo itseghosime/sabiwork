@@ -199,26 +199,17 @@ export function AccountForm({
         });
         if (error) throw new Error(error.message || "Could not create account.");
         await setAccountRole(role);
-        router.replace(
-          `/verify-email?email=${encodeURIComponent(values.email.trim())}`,
-        );
+        router.replace(workspaceRoutes[role]);
         router.refresh();
         return;
       }
 
       if (mode === "login") {
-        const { data, error } = await authClient.signIn.email({
+        const { error } = await authClient.signIn.email({
           email: values.email.trim(),
           password: values.password,
         });
         if (error) throw new Error(error.message || "Could not log in.");
-        if (data?.user && !data.user.emailVerified) {
-          router.replace(
-            `/verify-email?email=${encodeURIComponent(values.email.trim())}`,
-          );
-          router.refresh();
-          return;
-        }
         const currentRole = await getAccountRole();
         router.replace(
           currentRole ? workspaceRoutes[currentRole] : "/complete-profile",
