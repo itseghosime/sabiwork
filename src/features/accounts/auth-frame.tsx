@@ -70,9 +70,7 @@ export function AuthFrame({
           <div className="auth-demo-notice">
             <Icon name="help" size={18} />
             <p>
-              <strong>Neon Auth connected</strong> · Account credentials and
-              roles use the backend. Marketplace actions, identity checks, and
-              payments remain prototype-only.
+              <strong>Neon Auth connected</strong> · Account credentials are live. Payments via Paystack, verification checks, and disputes are rolling out soon.
             </p>
           </div>
           {children}

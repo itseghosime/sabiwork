@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, desc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { getDb } from "./db";
 import { jobRequests } from "./schema";
 
@@ -16,12 +16,7 @@ export function customerRequestsQuery(userId: string) {
       created_at: jobRequests.created_at,
     })
     .from(jobRequests)
-    .where(
-      and(
-        eq(jobRequests.customer_id, userId),
-        eq(jobRequests.status, "draft"),
-      ),
-    )
+    .where(eq(jobRequests.customer_id, userId))
     .orderBy(desc(jobRequests.created_at), desc(jobRequests.id))
     .limit(50);
 }

@@ -7,30 +7,51 @@ import { getAuth } from "./auth";
 import { getDb } from "./db";
 import { userProfiles } from "./schema";
 
-export async function authorizeRole(role: AccountRole) {
+type ProfileRow = { role: AccountRole };
+
+export async function getSessionUser() {
   const { data, error } = await getAuth().getSession();
   if (error) {
     console.error("[auth] Session lookup failed", error.code);
     return { kind: "unavailable" as const };
   }
-  const user = data?.user;
-  if (!user) return { kind: "unauthenticated" as const };
+  if (!data?.user) return { kind: "unauthenticated" as const };
+  return { kind: "authenticated" as const, user: data.user };
+}
 
-  let profile: { role: AccountRole } | undefined;
+export async function getUserRole(userId: string): Promise<ProfileRow | null> {
+  const [profile] = await getDb()
+    .select({ role: userProfiles.role })
+    .from(userProfiles)
+    .where(eq(userProfiles.user_id, userId))
+    .limit(1);
+  return profile ?? null;
+}
+
+export async function authorizeRole(role: AccountRole) {
+  const session = await getSessionUser();
+  if (session.kind !== "authenticated") return session;
+
+  let profile: ProfileRow | null;
   try {
-    [profile] = await getDb()
-      .select({ role: userProfiles.role })
-      .from(userProfiles)
-      .where(eq(userProfiles.user_id, user.id))
-      .limit(1);
+    profile = await getUserRole(session.user.id);
   } catch (databaseError) {
     console.error("[auth] Role profile lookup failed", databaseError);
     return { kind: "unavailable" as const };
   }
 
-  if (!profile) return { kind: "profile-required" as const, user };
-  if (profile.role !== role) return { kind: "forbidden" as const, user };
-  return { kind: "authorized" as const, user, role: profile.role };
+  if (!profile) return { kind: "profile-required" as const, user: session.user };
+
+  if (role === "admin") {
+    if (profile.role !== "admin") return { kind: "forbidden" as const, user: session.user };
+    return { kind: "authorized" as const, user: session.user, role: profile.role };
+  }
+
+  if (profile.role === "admin") {
+    return { kind: "forbidden" as const, user: session.user };
+  }
+
+  return { kind: "authorized" as const, user: session.user, role: profile.role };
 }
 
 export async function requirePageRole(role: AccountRole) {
@@ -45,11 +66,10 @@ export async function requirePageRole(role: AccountRole) {
 }
 
 export async function requireSignedInPage() {
-  const { data, error } = await getAuth().getSession();
-  if (error) {
-    console.error("[auth] Session lookup failed", error.code);
+  const session = await getSessionUser();
+  if (session.kind === "unavailable") {
     throw new Error("Authentication is temporarily unavailable.");
   }
-  if (!data?.user) redirect("/login");
-  return data.user;
+  if (session.kind === "unauthenticated") redirect("/login");
+  return session.user;
 }

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useId, useRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Icon } from "@/components/icon";
-import { accountRoles, workspaceRoutes, type AccountRole } from "./access";
+import { workspaceRoutes, type AccountRole } from "./access";
 import { authClient } from "@/lib/auth/client";
 import {
   passwordChecks,
@@ -16,8 +16,8 @@ import {
 const copy = {
   signup: {
     eyebrow: "YOUR NEXT PROJECT STARTS HERE",
-    title: "Create a customer account",
-    text: "Find skilled local people and plan your next job.",
+    title: "Create your SabiWork account",
+    text: "Post requests now and optionally add a work profile when you're ready to be hired.",
     action: "Create account",
   },
   login: {
@@ -47,10 +47,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function isAccountRole(value: unknown): value is AccountRole {
-  return (
-    typeof value === "string" &&
-    accountRoles.some((role) => role === value)
-  );
+  return value === "customer" || value === "artisan" || value === "admin";
 }
 
 function errorMessage(error: unknown) {
@@ -59,11 +56,11 @@ function errorMessage(error: unknown) {
     : "The request could not be completed. Try again.";
 }
 
-async function setAccountRole(role: Exclude<AccountRole, "admin">) {
+async function setAccountRole() {
   const response = await fetch("/api/account/profile", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ role }),
+    body: JSON.stringify({}),
   });
   if (!response.ok) {
     throw new Error(
@@ -151,11 +148,9 @@ function PasswordInput({
 export function AccountForm({
   mode,
   token = "",
-  role = "customer",
 }: {
   mode: AccountMode;
   token?: string;
-  role?: Exclude<AccountRole, "admin">;
 }) {
   const router = useRouter();
   const id = useId();
@@ -198,8 +193,8 @@ export function AccountForm({
           password: values.password,
         });
         if (error) throw new Error(error.message || "Could not create account.");
-        await setAccountRole(role);
-        router.replace(workspaceRoutes[role]);
+        await setAccountRole();
+        router.replace(workspaceRoutes.customer);
         router.refresh();
         return;
       }
@@ -311,11 +306,11 @@ export function AccountForm({
       {mode === "signup" && (
         <div className="auth-role-choice">
           <span>
-            <Icon name="home" size={18} /> I’m looking for an artisan
+            <Icon name="home" size={18} /> One account for hiring and working
           </span>
-          <p>Choose the artisan path if you want to offer your skills.</p>
-          <Link href="/signup/artisan" className="auth-role-link">
-            Join as an artisan <Icon name="arrow" size={16} />
+          <p>After signup, create your optional work profile from your workspace.</p>
+          <Link href="/artisan/profile" className="auth-role-link">
+            Create work profile <Icon name="arrow" size={16} />
           </Link>
         </div>
       )}
@@ -470,7 +465,7 @@ export function AccountForm({
           <>
             New to SabiWork?{" "}
             <Link className="text-link" href="/signup/customer">
-              Create a customer account
+              Create an account
             </Link>
           </>
         ) : (

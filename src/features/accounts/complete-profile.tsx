@@ -3,38 +3,34 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Icon } from "@/components/icon";
-import { workspaceRoutes } from "./access";
-
-type Role = "customer" | "artisan";
 
 export function CompleteProfileForm() {
   const router = useRouter();
-  const [role, setRole] = useState<Role>("customer");
+  const [displayName, setDisplayName] = useState("");
   const [pending, setPending] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (pending) return;
+
     setPending(true);
     setErrorMessage("");
     try {
       const response = await fetch("/api/account/profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role }),
+        body: JSON.stringify({ display_name: displayName }),
       });
       if (!response.ok) {
         setErrorMessage(
           response.status === 401
-            ? "Sign in before choosing an account type."
-            : response.status === 409
-              ? "This account already has a different account type."
-              : "Could not complete your profile. Try again.",
+            ? "Sign in before completing your profile."
+            : "Could not complete your profile. Try again.",
         );
         return;
       }
-      router.replace(workspaceRoutes[role]);
+      router.replace("/jobs");
       router.refresh();
     } catch {
       setErrorMessage("The account service is unavailable. Try again.");
@@ -46,41 +42,24 @@ export function CompleteProfileForm() {
   return (
     <div className="auth-card">
       <p className="eyebrow">ONE LAST STEP</p>
-      <h1>Choose your account type</h1>
+      <h1>Complete your account</h1>
       <p className="auth-intro">
-        Your account has no marketplace role yet. Choose the workspace that
-        matches how you plan to use SabiWork.
+        Your SabiWork account can both post requests and create an optional work profile.
       </p>
       <form onSubmit={submit}>
-        <fieldset className="auth-role-options" disabled={pending}>
-          <legend>Account type</legend>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="customer"
-              checked={role === "customer"}
-              onChange={() => setRole("customer")}
-            />
-            <span>
-              <strong>Customer</strong>
-              <small>Find and request local services.</small>
-            </span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="artisan"
-              checked={role === "artisan"}
-              onChange={() => setRole("artisan")}
-            />
-            <span>
-              <strong>Artisan</strong>
-              <small>Build a service profile and manage requests.</small>
-            </span>
-          </label>
-        </fieldset>
+        <div className="auth-field">
+          <label htmlFor="display-name">Display name</label>
+          <input
+            id="display-name"
+            name="display-name"
+            type="text"
+            maxLength={100}
+            value={displayName}
+            onChange={(event) => setDisplayName(event.target.value)}
+            placeholder="How should we address you?"
+          />
+        </div>
+
         {errorMessage && (
           <p className="auth-request-error" role="alert">
             {errorMessage}
@@ -91,14 +70,11 @@ export function CompleteProfileForm() {
           className="button button-primary auth-submit"
           disabled={pending}
         >
-          {pending ? "Saving account type…" : "Continue"}
+          {pending ? "Saving profile…" : "Continue"}
           <Icon name="arrow" size={18} />
         </button>
       </form>
-      <p className="auth-fineprint">
-        Account type is saved to your profile. Admin access cannot be selected
-        here.
-      </p>
+      <p className="auth-fineprint">Admin access is assigned only by project maintainers.</p>
     </div>
   );
 }

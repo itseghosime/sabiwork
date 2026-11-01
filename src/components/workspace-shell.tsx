@@ -85,7 +85,7 @@ export function WorkspaceShell({
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span className="demo-tag">
-              Auth active · workflows still in prototype
+              Payments via Paystack coming soon
             </span>
             <SignOutButton />
           </div>

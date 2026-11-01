@@ -59,7 +59,7 @@ export function TrainingDirectoryScreen() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                Screen S44 • Sample Training Library
+                Sample Training Library
               </span>
               <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
                 <ShieldCheck className="w-3.5 h-3.5" /> Sample content
@@ -324,7 +324,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                    Screen S45 • Active Study Guide
+                    Active Study Guide
                   </span>
                   <span className="text-xs font-semibold text-secondary">
                     • {mod.durationMinutes} min read

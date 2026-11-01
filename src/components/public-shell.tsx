@@ -164,15 +164,15 @@ function PublicShellContent({
           </nav>
           <div className="footer-location">
             <Icon name="pin" size={18} /> Benin City, Nigeria
-            <span className="demo-tag">Group Four · Demo</span>
+            <span className="demo-tag">Benin City Marketplace</span>
           </div>
         </div>
         <div className="container footer-bottom">
           <span>
-            © {new Date().getFullYear()} SabiWork. Built by Group Four.
+            © {new Date().getFullYear()} SabiWork. Built for skilled work in Benin City.
           </span>
           <span>
-            Fictional profiles & ratings. Payments are not connected yet.
+            Payments via Paystack are coming soon. Service requests and work updates run on your account data.
           </span>
         </div>
       </footer>

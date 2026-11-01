@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { profilesDemoService } from "@/features/profiles/service";
 import { ArtisanProfileScreen } from "@/features/profiles/screens";
+import { getPublicArtisanProfile } from "@/lib/server/artisans";
 
 export default async function ArtisanPage({
   params,
@@ -8,7 +8,7 @@ export default async function ArtisanPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const artisan = await profilesDemoService.getProfile(id);
+  const artisan = await getPublicArtisanProfile(id);
 
   if (!artisan) {
     notFound();
@@ -16,4 +16,3 @@ export default async function ArtisanPage({
 
   return <ArtisanProfileScreen initialArtisan={artisan} />;
 }
-

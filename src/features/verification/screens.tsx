@@ -258,7 +258,7 @@ export function ArtisanSignupScreen() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  Screen S08 • Artisan Registration
+                  Artisan Registration
                 </span>
                 <h1 className="text-xl font-bold text-on-surface">
                   Create an artisan account
@@ -669,7 +669,7 @@ export function AdminVerificationQueueScreen() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                Screen S42 • Desk Operations
+                Desk Operations
               </span>
               <span className="sabi-status-pill pending">Prototype queue</span>
             </div>

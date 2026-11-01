@@ -73,7 +73,7 @@ describe("Training Screens UI", () => {
 
   it("renders S45 Guide Reader and displays sections and takeaways", () => {
     render(<GuideReaderScreen id="SAMPLE-MODULE-01" />);
-    expect(screen.getByText(/Screen S45 • Active Study Guide/i)).toBeDefined();
+    expect(screen.getByText(/Active Study Guide/i)).toBeDefined();
     expect(screen.getByText(/4 Core Takeaways for Every Callout/i)).toBeDefined();
     expect(screen.getByRole("button", { name: /Mark as Complete & Continue/i })).toBeDefined();
   });

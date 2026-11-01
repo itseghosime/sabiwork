@@ -14,7 +14,7 @@ export async function POST() {
     return jsonError(401, "UNAUTHORIZED", "Sign in to continue.");
   }
   if (access.kind === "forbidden" || access.kind === "profile-required") {
-    return jsonError(403, "FORBIDDEN", "A customer account is required.");
+    return jsonError(403, "FORBIDDEN", "A signed-in member account is required.");
   }
   if (access.kind === "unavailable") {
     return jsonError(503, "AUTH_UNAVAILABLE", "Authentication is unavailable.");
