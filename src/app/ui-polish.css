@@ -357,6 +357,34 @@
   color: #245777;
   padding: 7px 12px;
 }
+.workspace-signout {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+  min-width: 0;
+}
+.workspace-signout button {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #bec8d1;
+  border-radius: 10px;
+  background: #fff;
+  color: #0e294b;
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.workspace-signout button:hover {
+  border-color: #38a8e8;
+  background: #eff8ff;
+}
+.workspace-signout [role="alert"] {
+  max-width: 280px;
+  color: #93000a;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
 
 /* Feature pages share a calm canvas, consistent rhythm, and quiet entrance motion. */
 :is(.pf-page, .ao-page, .lc-page, .py-page, .qt-page, .rq-page, .rw-page, .sabi-training-container, .sabi-verif-container) {

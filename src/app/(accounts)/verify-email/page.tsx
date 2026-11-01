@@ -11,13 +11,16 @@ export default async function Page({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const query = await searchParams;
-  const token =
-    typeof query.token === "string" && query.token.length < 100
-      ? query.token
+  const initialEmail =
+    typeof query.email === "string" && query.email.length <= 254
+      ? query.email
       : "";
   return (
     <AuthFrame recovery>
-      <VerificationForm key={token} token={token} />
+      <VerificationForm
+        key={initialEmail}
+        initialEmail={initialEmail}
+      />
     </AuthFrame>
   );
 }

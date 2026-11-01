@@ -1,6 +1,6 @@
 # Shared implementation contract
 
-This is the starting contract for team implementation, not a claim that endpoints or schemas exist. Friday now targets frontend pages using typed mock adapters; shared foundations start early and backend integration is scheduled for Saturday. SCREEN-OWNERSHIP.md supersedes the approximate routes below. Owners must agree changes in the relevant issue before dependent code is changed.
+This is the shared contract for team implementation. SCREEN-OWNERSHIP.md supersedes the approximate routes below. Owners must agree changes in the relevant issue before dependent code is changed.
 
 ## Application conventions
 
@@ -48,6 +48,29 @@ Search ratings are calculated from persisted eligible reviews. Verified badges d
 Preferred JSON envelope for feature APIs: `{ data: ... }`; errors `{ error: { code, message, fields? } }`. Use appropriate 400, 401, 403/404, 409 and 5xx statuses, pagination on lists and validation on the server. App Router server actions may be used consistently instead, but preserve the same authorisation and error semantics. Never trust role, price, userId or payment success from the client.
 
 Natalie verifies Paystack's signature on the raw webhook body before dispatching to George's transaction-safe handler. Validate reference, expected amount and currency against server records and provider verification. Use unique references and idempotency, never mark success from a browser redirect alone. Persist no card details. Refunds and escrow are outside the prototype unless explicitly implemented and validated; the UI must not promise protection the test flow does not provide.
+
+## Current Neon backend status
+
+The Neon project has Postgres, Managed Neon Auth, and Realtime provisioned. The initial application migration has been applied only to the isolated `sabiwork-backend-validation` branch. The production database has not received application migrations.
+
+Implemented and verified in this branch:
+
+- Managed Auth email signup, login, sign-out, password reset, and email OTP verification client calls.
+- Server-checked session, verified-email, and database role guards for customer, artisan, admin, reviews, and training routes. Customer/artisan roles can be selected by a signed-in user; admin cannot be self-assigned.
+- Customer and artisan account profiles, with artisan verification status fixed to `unsubmitted`.
+- Customer-owned request drafts: authenticated list/create API, integer-kobo storage, and a user-scoped sealed Realtime query.
+- A transactional, advisory-locked SQL migration runner and an isolated-branch Postgres/Realtime smoke test.
+
+The migration currently defines `user_profiles`, `artisan_profiles`, and `job_requests`. The browser request flow saves private drafts only; it does not dispatch requests, notify artisans, create quotes/jobs, or initiate payment. The artisan profile editor, identity document storage/review, admin provisioning, production Realtime origins, and marketplace APIs remain unimplemented. The validation branch reports OTP verification and a shared email sender; email-code verification is wired, but code delivery and receipt have not been independently confirmed through an inbox. App page and role-protected API access now fails closed until Neon Auth reports `emailVerified`.
+
+Local-only environment variables are listed in `.env.example`; never commit `.env.local` or `.env.backend-test.local`. `npm run db:migrate` targets the configured application database, so verify the branch before running it. For the isolated validation branch, these commands were used:
+
+```sh
+node --env-file=.env.backend-test.local scripts/migrate.mjs
+node --env-file=.env.backend-test.local scripts/backend-smoke.mjs
+```
+
+The production branch needs a reviewed migration, configured Vercel environment variables and Realtime origin, an admin bootstrap procedure, and a separate deployment approval before it can serve the application.
 
 ## Shared component contract
 

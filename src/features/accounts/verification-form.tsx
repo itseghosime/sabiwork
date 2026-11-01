@@ -1,53 +1,74 @@
 "use client";
+
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Mail } from "lucide-react";
 import { Icon } from "@/components/icon";
-import { demoAuthAdapter, type DemoAuthResult } from "./demo-adapter";
-import { useAccountDemo } from "./demo-context";
-export function VerificationForm({ token = "" }: { token?: string }) {
-  const { email } = useAccountDemo();
+import { authClient } from "@/lib/auth/client";
+
+export function VerificationForm({
+  initialEmail = "",
+}: {
+  initialEmail?: string;
+}) {
+  const [email, setEmail] = useState(initialEmail);
+  const [otp, setOtp] = useState("");
   const [pending, setPending] = useState(false);
-  const [cooldown, setCooldown] = useState(0);
-  const [result, setResult] = useState<DemoAuthResult | null>(null);
-  const controller = useRef<AbortController | null>(null);
-  useEffect(() => () => controller.current?.abort(), []);
-  useEffect(() => {
-    if (cooldown <= 0) return;
-    const timer = setTimeout(
-      () => setCooldown((previous) => Math.max(0, previous - 1)),
-      1000,
-    );
-    return () => clearTimeout(timer);
-  }, [cooldown]);
+  const [verified, setVerified] = useState(false);
+  const [message, setMessage] = useState<{
+    ok: boolean;
+    text: string;
+  } | null>(null);
+
   async function perform(action: "verify" | "resend") {
-    if (pending || (action === "resend" && cooldown > 0)) return;
-    const request = new AbortController();
-    controller.current?.abort();
-    controller.current = request;
+    if (pending) return;
     setPending(true);
-    setResult(null);
+    setMessage(null);
     try {
-      const response =
-        action === "verify"
-          ? await demoAuthAdapter.verify(token, request.signal)
-          : await demoAuthAdapter.resend(email, request.signal);
-      if (request.signal.aborted) return;
-      setResult(response);
-      if (response.ok && action === "resend") setCooldown(60);
-    } catch {
-      if (!request.signal.aborted)
-        setResult({
-          ok: false,
-          mode: "demo",
-          code: "UNAVAILABLE",
-          message: "The preview could not finish. Please try again.",
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+        throw new Error("Enter the email address associated with your account.");
+      }
+
+      if (action === "verify") {
+        if (!/^\d{6}$/.test(otp.trim())) {
+          throw new Error("Enter the six-digit code from your email.");
+        }
+        const { error } = await authClient.emailOtp.verifyEmail({
+          email: email.trim(),
+          otp: otp.trim(),
         });
+        if (error) throw new Error(error.message || "Email verification failed.");
+        setVerified(true);
+        setMessage({
+          ok: true,
+          text: "Your email is verified. Sign in to continue to your account.",
+        });
+      } else {
+        const { error } = await authClient.emailOtp.sendVerificationOtp({
+          email: email.trim(),
+          type: "email-verification",
+        });
+        if (error) {
+          throw new Error(error.message || "Could not send a verification code.");
+        }
+        setMessage({
+          ok: true,
+          text: "If verification is needed for this account, a code has been sent.",
+        });
+      }
+    } catch (error) {
+      setMessage({
+        ok: false,
+        text:
+          error instanceof Error
+            ? error.message
+            : "The request could not be completed. Try again.",
+      });
     } finally {
-      if (!request.signal.aborted) setPending(false);
+      setPending(false);
     }
   }
-  const verified = result?.ok && result.kind === "verification-preview";
+
   return (
     <div className="auth-card auth-state">
       <span className="auth-state-icon">
@@ -57,86 +78,74 @@ export function VerificationForm({ token = "" }: { token?: string }) {
           <Mail size={30} aria-hidden="true" />
         )}
       </span>
-      <p className="eyebrow">ONE SMALL STEP</p>
-      <h1>
-        {verified
-          ? "Verification preview complete."
-          : token
-            ? "Preview this verification link"
-            : "Check your sample inbox"}
-      </h1>
+      <p className="eyebrow">EMAIL VERIFICATION</p>
+      <h1>{verified ? "Email verified" : "Verify your email"}</h1>
       <p>
-        {verified ? (
-          "The sample link passed the preview check. No email or account has actually been verified."
-        ) : (
-          <>
-            A real account would need to verify{" "}
-            <strong className="auth-email">{email}</strong> before continuing.
-            No email is sent in this frontend demo.
-          </>
-        )}
+        {verified
+          ? message?.text
+          : "Enter the six-digit code sent by Neon Auth. Email verification does not imply identity, trade, or payment verification."}
       </p>
-      {result && !result.ok && (
-        <p className="auth-request-error" role="alert">
-          {result.message}
+      {message && !verified && (
+        <p
+          className={message.ok ? "auth-verification-notice" : "auth-request-error"}
+          role={message.ok ? "status" : "alert"}
+        >
+          {message.text}
         </p>
       )}
-      {result?.ok && result.kind === "resend-preview" && (
-        <p className="auth-inline-status" role="status">
-          Resend preview complete. No email was sent. The timer below is a local
-          demo only.
-        </p>
-      )}
-      {verified ? (
-        <Link className="button button-primary auth-submit" href="/login">
-          Back to login <Icon name="arrow" size={18} />
-        </Link>
-      ) : (
+      {!verified && (
         <>
-          {token && (
-            <button
-              className="button button-primary auth-submit"
-              type="button"
-              disabled={pending}
-              onClick={() => perform("verify")}
-            >
-              {pending ? "Checking sample link…" : "Preview verification"}
-              <Icon name="arrow" size={18} />
-            </button>
-          )}
-          <div className="auth-link-preview">
-            <Icon name="lock" size={20} />
-            <div>
-              <strong>No inbox access needed</strong>
-              <p>Try the sample link to explore the next step.</p>
-              <Link className="text-link" href="/verify-email?token=demo-valid">
-                Open sample verification link <Icon name="arrow" size={16} />
-              </Link>
-            </div>
+          <div className="auth-field">
+            <label htmlFor="verification-email">Email address</label>
+            <input
+              id="verification-email"
+              type="email"
+              autoComplete="email"
+              maxLength={254}
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                setMessage(null);
+              }}
+            />
           </div>
+          <div className="auth-field">
+            <label htmlFor="verification-code">Six-digit code</label>
+            <input
+              id="verification-code"
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              maxLength={6}
+              value={otp}
+              onChange={(event) => {
+                setOtp(event.target.value.replace(/\D/g, "").slice(0, 6));
+                setMessage(null);
+              }}
+            />
+          </div>
+          <button
+            className="button button-primary auth-submit"
+            type="button"
+            disabled={pending}
+            onClick={() => perform("verify")}
+          >
+            {pending ? "Verifying…" : "Verify email"}
+            <Icon name="arrow" size={18} />
+          </button>
           <button
             type="button"
             className="button button-subtle auth-submit"
-            disabled={pending || cooldown > 0}
+            disabled={pending}
             onClick={() => perform("resend")}
           >
-            {cooldown > 0
-              ? `Preview resend in ${cooldown}s`
-              : pending
-                ? "Checking sample details…"
-                : "Preview resend email"}
+            {pending ? "Sending…" : "Send a new code"}
           </button>
-          <p className="auth-fineprint">
-            This 60-second demo timer does not enforce server rate limits.
-          </p>
-          <Link className="text-link" href="/signup/customer">
-            Use a different sample email
-          </Link>
-          <Link className="text-link" href="/login">
-            Back to login
-          </Link>
         </>
       )}
+      <Link className="text-link" href="/login">
+        {verified ? "Continue to login" : "Back to login"}
+      </Link>
     </div>
   );
 }

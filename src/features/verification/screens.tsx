@@ -10,7 +10,6 @@ import {
   FileText,
   MapPin,
   User,
-  Briefcase,
   Phone,
   Mail,
   Eye,
@@ -26,6 +25,7 @@ import {
 import { WorkspaceShell } from "@/components/workspace-shell";
 import { Brand } from "@/components/public-shell";
 import { PrototypeNotice } from "@/components/prototype-notice";
+import { authClient } from "@/lib/auth/client";
 import {
   type VerificationDossier,
   getVerificationDossiers,
@@ -33,7 +33,6 @@ import {
   getDossierMetrics,
   previewDossierApproval,
   previewDossierRevision,
-  previewArtisanRegistration,
 } from "./service";
 import "./verification.css";
 
@@ -64,7 +63,6 @@ export function ArtisanSignupScreen() {
   const [step, setStep] = useState<number>(1);
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [assignedRef, setAssignedRef] = useState<string>("SAMPLE-REGISTRATION-PREVIEW");
 
   // Form State
   const [fullName, setFullName] = useState("");
@@ -73,7 +71,7 @@ export function ArtisanSignupScreen() {
   const [password, setPassword] = useState("");
   const [trade, setTrade] = useState(TRADES[0]);
   const [experienceYears, setExperienceYears] = useState(5);
-  const [coverageAreas, setCoverageAreas] = useState<string[]>(["GRA", "Airport Road"]);
+  const [coverageAreas, setCoverageAreas] = useState<string[]>([]);
   const [workshopAddress, setWorkshopAddress] = useState("");
   const [bio, setBio] = useState("");
   const [formError, setFormError] = useState("");
@@ -87,20 +85,28 @@ export function ArtisanSignupScreen() {
   };
 
   const validateStep1 = () => {
-    if (!fullName.trim()) {
-      setFormError("Enter a sample name to preview the form.");
+    if (fullName.trim().length < 2 || fullName.trim().length > 100) {
+      setFormError("Enter a name between 2 and 100 characters.");
       return false;
     }
-    if (!phone.trim() || phone.trim().length < 10) {
-      setFormError("Enter a sample contact value with at least 10 characters.");
+    if (!/^[+()\d\s-]{8,20}$/.test(phone.trim())) {
+      setFormError("Enter a valid phone number between 8 and 20 characters.");
       return false;
     }
-    if (!email.includes("@")) {
+    if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ||
+      email.length > 254
+    ) {
       setFormError("Please provide a valid email address.");
       return false;
     }
-    if (password.length < 6) {
-      setFormError("Password must be at least 6 characters.");
+    if (
+      password.length < 12 ||
+      password.length > 128 ||
+      !/\p{L}/u.test(password) ||
+      !/\d/.test(password)
+    ) {
+      setFormError("Use a 12–128 character password with a letter and a number.");
       return false;
     }
     setFormError("");
@@ -108,12 +114,20 @@ export function ArtisanSignupScreen() {
   };
 
   const validateStep2 = () => {
-    if (coverageAreas.length === 0) {
-      setFormError("Select at least one sample service area.");
+    if (
+      !Number.isSafeInteger(experienceYears) ||
+      experienceYears < 0 ||
+      experienceYears > 60
+    ) {
+      setFormError("Enter experience between 0 and 60 years.");
       return false;
     }
-    if (!workshopAddress.trim()) {
-      setFormError("Enter a sample workshop area.");
+    if (coverageAreas.length === 0) {
+      setFormError("Select at least one service area.");
+      return false;
+    }
+    if (workshopAddress.trim().length < 2 || workshopAddress.trim().length > 100) {
+      setFormError("Enter a workshop area (2–100 characters), not a street address.");
       return false;
     }
     setFormError("");
@@ -121,8 +135,8 @@ export function ArtisanSignupScreen() {
   };
 
   const validateStep3 = () => {
-    if (!bio.trim()) {
-      setFormError("Please provide a brief summary of your trade expertise and past work.");
+    if (bio.trim().length < 20 || bio.trim().length > 2000) {
+      setFormError("Write a profile summary between 20 and 2,000 characters.");
       return false;
     }
     setFormError("");
@@ -137,21 +151,105 @@ export function ArtisanSignupScreen() {
     setStep((prev) => Math.min(prev + 1, 5));
   };
 
-  const handleFinalSubmit = () => {
+  const handleFinalSubmit = async () => {
+    if (!validateStep2() || !validateStep3()) return;
     setIsSubmitting(true);
-    setTimeout(() => {
-      const res = previewArtisanRegistration();
-      setAssignedRef(res.reference);
-      setIsSubmitting(false);
+    setFormError("");
+    try {
+      const { data: currentSession, error: sessionError } =
+        await authClient.getSession();
+      if (sessionError) throw new Error(sessionError.message);
+      if (
+        currentSession?.user &&
+        currentSession.user.email.toLowerCase() !== email.trim().toLowerCase()
+      ) {
+        throw new Error(
+          "You are signed in with a different email. Sign out before creating this profile.",
+        );
+      }
+      if (!currentSession?.user) {
+        const { error } = await authClient.signUp.email({
+          name: fullName.trim(),
+          email: email.trim(),
+          password,
+        });
+        if (error) throw new Error(error.message || "Could not create account.");
+      }
+
+      const accountProfile = await fetch("/api/account/profile", {
+        cache: "no-store",
+      });
+      if (accountProfile.status === 404) {
+        const roleResponse = await fetch("/api/account/profile", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ role: "artisan" }),
+        });
+        if (!roleResponse.ok) {
+          throw new Error(
+            "Your account exists, but the artisan role could not be saved. Log in and try again.",
+          );
+        }
+      } else if (!accountProfile.ok) {
+        throw new Error(
+          accountProfile.status === 401
+            ? "Sign in to continue completing your artisan profile."
+            : "Could not load your account profile.",
+        );
+      } else {
+        const body: unknown = await accountProfile.json();
+        if (
+          typeof body !== "object" ||
+          body === null ||
+          !("data" in body) ||
+          typeof body.data !== "object" ||
+          body.data === null ||
+          !("role" in body.data) ||
+          body.data.role !== "artisan"
+        ) {
+          throw new Error("This account is already registered with a different role.");
+        }
+      }
+
+      const profileResponse = await fetch("/api/profiles/artisan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contact_phone: phone.trim(),
+          primary_trade: trade,
+          experience_years: experienceYears,
+          coverage_areas: coverageAreas,
+          workshop_area: workshopAddress.trim(),
+          bio: bio.trim(),
+        }),
+      });
+      if (!profileResponse.ok) {
+        throw new Error(
+          profileResponse.status === 401
+            ? "Your account was created, but the session is not ready. Log in to save your profile."
+            : "Your account exists, but the artisan profile could not be saved. Review the details and try again.",
+        );
+      }
+      setPassword("");
       setStep(5);
-    }, 800);
+    } catch (error) {
+      setFormError(
+        error instanceof Error
+          ? error.message
+          : "Could not save your artisan account. Try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
       <div className="sabi-verif-container">
         <div className="sabi-wizard-card">
           <PrototypeNotice>
-            Use fictional values only. This form does not create an account, save a submission, upload documents, or verify identity.
+            This form creates an account and saves an artisan profile. Identity
+            documents, artisan verification, and marketplace activity are not
+            connected.
           </PrototypeNotice>
           {/* Header */}
           <div className="sabi-wizard-header">
@@ -159,7 +257,7 @@ export function ArtisanSignupScreen() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  Screen S08 • Sample Registration Preview
+                  Screen S08 • Artisan Registration
                 </span>
                 <h1 className="text-xl font-bold text-on-surface">
                   Create an artisan account
@@ -198,28 +296,30 @@ export function ArtisanSignupScreen() {
                 <div>
                   <h2 className="text-lg font-bold text-on-surface">Step 1: Account Credentials</h2>
                   <p className="text-sm text-secondary">
-                    Preview the account form using fictional contact details only.
+                    Create an account with Neon Auth. Use an area only; do not enter a street or home address.
                   </p>
                 </div>
 
                 <div className="sabi-form-grid sabi-form-grid-2">
                   <div className="sabi-input-group">
-                    <label htmlFor="artisan-name">Sample Name</label>
+                    <label htmlFor="artisan-name">Full name</label>
                     <input
                       id="artisan-name"
                       type="text"
-                      placeholder="Sample Artisan"
+                      maxLength={100}
+                      placeholder="Your name"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                     />
                   </div>
 
                   <div className="sabi-input-group">
-                    <label htmlFor="artisan-phone">Sample Contact Value</label>
+                    <label htmlFor="artisan-phone">Phone number</label>
                     <input
                       id="artisan-phone"
                       type="tel"
-                      placeholder="Fictional contact value"
+                      maxLength={20}
+                      placeholder="+234 800 000 0000"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                     />
@@ -232,7 +332,8 @@ export function ArtisanSignupScreen() {
                     <input
                       id="artisan-email"
                       type="email"
-                      placeholder="artisan@example.test"
+                      maxLength={254}
+                      placeholder="you@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -244,6 +345,8 @@ export function ArtisanSignupScreen() {
                       <input
                         id="artisan-password"
                         type={showPassword ? "text" : "password"}
+                        minLength={12}
+                        maxLength={128}
                         placeholder="••••••••"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -269,7 +372,7 @@ export function ArtisanSignupScreen() {
                 <div>
                   <h2 className="text-lg font-bold text-on-surface">Step 2: Trade Specialization & Coverage</h2>
                   <p className="text-sm text-secondary">
-                    Select sample trade and service-area values for this preview.
+                    Choose the trade and areas you serve.
                   </p>
                 </div>
 
@@ -292,8 +395,8 @@ export function ArtisanSignupScreen() {
                     <input
                       id="artisan-exp"
                       type="number"
-                      min={1}
-                      max={45}
+                      min={0}
+                      max={60}
                       value={experienceYears}
                       onChange={(e) => setExperienceYears(Number(e.target.value))}
                     />
@@ -301,7 +404,7 @@ export function ArtisanSignupScreen() {
                 </div>
 
                 <div className="sabi-input-group">
-                  <label>Benin City Coverage Zones (Select all that apply)</label>
+                  <label>Benin City service areas (select all that apply)</label>
                   <div className="sabi-chip-grid mt-1">
                     {BENIN_LOCATIONS.map((loc) => {
                       const isSelected = coverageAreas.includes(loc);
@@ -321,11 +424,12 @@ export function ArtisanSignupScreen() {
                 </div>
 
                 <div className="sabi-input-group">
-                  <label htmlFor="artisan-workshop">Sample Workshop Area (no street address)</label>
+                  <label htmlFor="artisan-workshop">Workshop area (no street address)</label>
                   <input
                     id="artisan-workshop"
                     type="text"
-                    placeholder="Sample workshop area, Benin City"
+                    maxLength={100}
+                    placeholder="Area in Benin City"
                     value={workshopAddress}
                     onChange={(e) => setWorkshopAddress(e.target.value)}
                   />
@@ -333,34 +437,34 @@ export function ArtisanSignupScreen() {
               </div>
             )}
 
-            {/* STEP 3: Identity & Portfolio */}
+            {/* STEP 3: Profile summary */}
             {step === 3 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-lg font-bold text-on-surface">Step 3: Sample Identity & Trade Evidence</h2>
+                  <h2 className="text-lg font-bold text-on-surface">Step 3: Profile summary</h2>
                   <p className="text-sm text-secondary">
-                    This step only previews the form layout. No document is uploaded and no identity or trade evidence is checked.
+                    Describe your work. Identity documents and trade evidence are not collected here.
                   </p>
                 </div>
 
                 <div className="sabi-form-grid sabi-form-grid-2">
                   <div className="sabi-input-group">
-                    <label htmlFor="artisan-nin">Sample identity placeholder (not collected)</label>
+                    <label htmlFor="artisan-nin">Identity verification</label>
                     <input
                       id="artisan-nin"
                       type="text"
-                      value="Not connected in this preview"
+                      value="Not available"
                       readOnly
                       disabled
                     />
                   </div>
 
                   <div className="sabi-input-group">
-                    <label>Sample trade document (not uploaded)</label>
+                    <label>Identity or trade documents</label>
                     <div className="sabi-dropzone">
                       <FileText className="w-6 h-6 text-primary mx-auto mb-1" />
                       <span className="text-xs text-secondary block font-medium">
-                        Document upload is not connected in this prototype.
+                        Secure document storage is not configured.
                       </span>
                     </div>
                   </div>
@@ -371,7 +475,8 @@ export function ArtisanSignupScreen() {
                   <textarea
                     id="artisan-bio"
                     rows={4}
-                    placeholder="Describe your apprenticeship, major projects completed in Edo State, and the tools you use..."
+                    maxLength={2000}
+                    placeholder="Describe your trade experience and the work you offer..."
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
                   />
@@ -380,7 +485,7 @@ export function ArtisanSignupScreen() {
                 <div className="p-4 rounded-lg bg-blue-50 border border-blue-200 text-blue-900 text-xs flex items-start gap-3">
                   <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Prototype limitation:</span> No officer visit, phone call, registry lookup, or verification occurs. Do not enter real identity or address details.
+                    <span className="font-bold">Not verified:</span> No identity documents, registry lookups, officer visits, or trade checks are performed.
                   </div>
                 </div>
               </div>
@@ -392,17 +497,17 @@ export function ArtisanSignupScreen() {
                 <div>
                   <h2 className="text-lg font-bold text-on-surface">Step 4: Review Registration Details</h2>
                   <p className="text-sm text-secondary">
-                    Review this fictional sample. Nothing will be sent to a review queue or saved.
+                    Review these details before saving your account and artisan profile. This does not submit a verification request.
                   </p>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-5 space-y-4 text-sm">
                   <div className="flex justify-between border-b pb-2">
-                    <span className="text-secondary font-medium">Sample Name</span>
+                    <span className="text-secondary font-medium">Name</span>
                     <span className="font-semibold text-on-surface">{fullName}</span>
                   </div>
                   <div className="flex justify-between border-b pb-2">
-                    <span className="text-secondary font-medium">Sample Contact Value</span>
+                    <span className="text-secondary font-medium">Phone</span>
                     <span className="font-semibold text-on-surface">{phone}</span>
                   </div>
                   <div className="flex justify-between border-b pb-2">
@@ -418,25 +523,25 @@ export function ArtisanSignupScreen() {
                     <span className="font-semibold text-on-surface">{coverageAreas.join(", ")}</span>
                   </div>
                   <div className="flex justify-between border-b pb-2">
-                    <span className="text-secondary font-medium">Sample Workshop Area</span>
+                    <span className="text-secondary font-medium">Workshop area</span>
                     <span className="font-semibold text-on-surface">{workshopAddress}</span>
                   </div>
                   <div className="flex justify-between pb-1">
-                    <span className="text-secondary font-medium">Sample identity reference</span>
-                    <span className="font-mono text-on-surface">Fictional sample only</span>
+                    <span className="text-secondary font-medium">Verification</span>
+                    <span className="font-mono text-on-surface">Not submitted</span>
                   </div>
                 </div>
 
                 <div className="p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Prototype disclosure:</span> This is not a real submission. No application is queued, account created, document checked, or profile activated.
+                    <span className="font-bold">Prototype disclosure:</span> Account and profile data will be saved. Identity verification, document review, profile activation, and marketplace activity are not implemented.
                   </div>
                 </div>
               </div>
             )}
 
-            {/* STEP 5: Success & Assigned Dossier */}
+            {/* STEP 5: Saved profile */}
             {step === 5 && (
               <div className="text-center py-8 space-y-6">
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center">
@@ -444,36 +549,36 @@ export function ArtisanSignupScreen() {
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-on-surface">Registration Preview Complete</h2>
+                  <h2 className="text-2xl font-bold text-on-surface">
+                    Artisan profile saved
+                  </h2>
                   <p className="text-secondary text-sm max-w-md mx-auto mt-2">
-                    No account or application was created or saved. The reference below is a fixed sample value.
+                    Your account and profile are stored. Verify your email before accessing the workspace. Artisan verification remains unsubmitted; no identity documents were uploaded or reviewed.
                   </p>
                 </div>
 
-                <div className="inline-block bg-slate-100 border border-slate-300 rounded-lg px-6 py-3">
-                  <span className="text-xs text-secondary uppercase font-semibold block">Sample reference (not saved)</span>
-                  <span className="text-xl font-mono font-bold text-primary">{assignedRef}</span>
-                </div>
-
                 <div className="max-w-md mx-auto text-left bg-blue-50 border border-blue-200 rounded-lg p-4 text-xs text-blue-900 space-y-2">
-                  <div className="font-bold text-sm">What this prototype does not do:</div>
+                  <div className="font-bold text-sm">Still not implemented:</div>
                   <div className="flex items-start gap-2">
                     <span className="font-bold">1.</span>
-                    <span>It does not check identity numbers or contact an identity gateway.</span>
+                    <span>Identity document collection, secure storage, and verification checks.</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="font-bold">2.</span>
-                    <span>It does not contact you or inspect a workshop.</span>
+                    <span>Verification review, public profile activation, and contact workflows.</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="font-bold">3.</span>
-                    <span>It does not approve an artisan, issue a badge, or activate a public profile.</span>
+                    <span>Verification approval, badges, job matching, quotes, and payments.</span>
                   </div>
                 </div>
 
                 <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-                  <Link href="/artisan" className="sabi-btn-primary">
-                    <Briefcase className="w-4 h-4" /> Go to Artisan Workspace (S36)
+                  <Link
+                    href={`/verify-email?email=${encodeURIComponent(email.trim())}`}
+                    className="sabi-btn-primary"
+                  >
+                    <Mail className="w-4 h-4" /> Verify email to continue
                   </Link>
                   <Link href="/artisans" className="sabi-btn-secondary">
                     <User className="w-4 h-4" /> View Public Directory (S03)
@@ -519,11 +624,11 @@ export function ArtisanSignupScreen() {
                   >
                     {isSubmitting ? (
                       <>
-                        <RefreshCw className="w-4 h-4 animate-spin" /> Preparing preview...
+                        <RefreshCw className="w-4 h-4 animate-spin" /> Saving account and profile...
                       </>
                     ) : (
                       <>
-                        <ShieldCheck className="w-4 h-4" /> Preview Registration
+                        <ShieldCheck className="w-4 h-4" /> Create account and save profile
                       </>
                     )}
                   </button>

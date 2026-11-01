@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Brand } from "./public-shell";
 import { Icon, type IconName } from "./icon";
 import type { AccountRole } from "@/features/accounts/access";
+import { SignOutButton } from "@/features/accounts/sign-out-button";
 
 const navigation: Record<
   AccountRole,
@@ -84,8 +85,9 @@ export function WorkspaceShell({
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span className="demo-tag">
-              UI scaffold · auth integration pending
+              Auth active · workflows still in prototype
             </span>
+            <SignOutButton />
           </div>
         </header>
         <details className="workspace-mobile-nav">

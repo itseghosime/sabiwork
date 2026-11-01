@@ -284,13 +284,3 @@ export function previewDossierRevision(
   target.decidedAt = new Date().toISOString();
   return { success: true, dossier: { ...target } };
 }
-
-export function previewArtisanRegistration(): {
-  previewed: true;
-  reference: string;
-} {
-  return {
-    previewed: true,
-    reference: "SAMPLE-REGISTRATION-PREVIEW",
-  };
-}

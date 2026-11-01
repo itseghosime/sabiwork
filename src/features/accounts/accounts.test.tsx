@@ -1,7 +1,5 @@
-import React from "react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
-  act,
   cleanup,
   fireEvent,
   render,
@@ -9,24 +7,93 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { AccountForm } from "./account-form";
-import { AccountDemoProvider } from "./demo-context";
+import { CompleteProfileForm } from "./complete-profile";
 import { VerificationForm } from "./verification-form";
-import { demoAuthAdapter, demoCredentials } from "./demo-adapter";
-import { validateAccount, type AccountValues } from "./validation";
+import { validateAccount } from "./validation";
+
+const authMocks = vi.hoisted(() => ({
+  signUpEmail: vi.fn(),
+  signInEmail: vi.fn(),
+  requestPasswordReset: vi.fn(),
+  resetPassword: vi.fn(),
+  verifyEmailOtp: vi.fn(),
+  sendVerificationOtp: vi.fn(),
+}));
+const routerMocks = vi.hoisted(() => ({
+  replace: vi.fn(),
+  refresh: vi.fn(),
+}));
+const fetchMock = vi.hoisted(() => vi.fn());
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => routerMocks,
+}));
+
+vi.mock("@/lib/auth/client", () => ({
+  authClient: {
+    signUp: { email: authMocks.signUpEmail },
+    signIn: { email: authMocks.signInEmail },
+    requestPasswordReset: authMocks.requestPasswordReset,
+    resetPassword: authMocks.resetPassword,
+    emailOtp: {
+      verifyEmail: authMocks.verifyEmailOtp,
+      sendVerificationOtp: authMocks.sendVerificationOtp,
+    },
+  },
+}));
+
+const successfulResult = { error: null };
+const jsonResponse = (status: number, body: unknown = {}) => ({
+  ok: status >= 200 && status < 300,
+  status,
+  json: async () => body,
+});
+
+function fillAccountForm(mode: "signup" | "login" | "forgot" | "reset") {
+  if (mode === "signup") {
+    fireEvent.change(screen.getByLabelText("Full name"), {
+      target: { value: "Example Customer" },
+    });
+  }
+  if (mode !== "reset") {
+    fireEvent.change(screen.getByLabelText("Email address"), {
+      target: { value: "customer@example.test" },
+    });
+  }
+  if (mode === "signup" || mode === "reset") {
+    const label = mode === "reset" ? "New password" : "Password";
+    fireEvent.change(screen.getByLabelText(label, { exact: true }), {
+      target: { value: "ExamplePassword123" },
+    });
+    fireEvent.change(screen.getByLabelText("Confirm password"), {
+      target: { value: "ExamplePassword123" },
+    });
+  } else if (mode === "login") {
+    fireEvent.change(screen.getByLabelText("Password", { exact: true }), {
+      target: { value: "ExamplePassword123" },
+    });
+  }
+}
+
+beforeEach(() => {
+  vi.resetAllMocks();
+  vi.stubGlobal("fetch", fetchMock);
+  authMocks.signUpEmail.mockResolvedValue(successfulResult);
+  authMocks.signInEmail.mockResolvedValue(successfulResult);
+  authMocks.requestPasswordReset.mockResolvedValue(successfulResult);
+  authMocks.resetPassword.mockResolvedValue(successfulResult);
+  authMocks.verifyEmailOtp.mockResolvedValue(successfulResult);
+  authMocks.sendVerificationOtp.mockResolvedValue(successfulResult);
+  fetchMock.mockResolvedValue(jsonResponse(201));
+});
+
 afterEach(() => {
   cleanup();
-  vi.useRealTimers();
+  vi.unstubAllGlobals();
 });
-const valid: AccountValues = {
-  name: "Sample Customer",
-  email: demoCredentials.email,
-  password: demoCredentials.password,
-  confirmation: demoCredentials.password,
-};
-const mount = (child: React.ReactNode) =>
-  render(<AccountDemoProvider>{child}</AccountDemoProvider>);
-describe("account preview boundaries", () => {
-  it("validates names, email, strong matching passwords, and does not trim passwords", () => {
+
+describe("account validation", () => {
+  it("requires a valid name, email, strong matching password, and leaves passwords untrimmed", () => {
     expect(
       validateAccount("signup", {
         name: " ",
@@ -35,229 +102,173 @@ describe("account preview boundaries", () => {
         confirmation: "different",
       }),
     ).toHaveProperty("name");
-    expect(validateAccount("signup", valid)).toEqual({});
     expect(
-      validateAccount("reset", {
-        ...valid,
-        password: "  strong sample 8 ",
-        confirmation: "  strong sample 8 ",
+      validateAccount("signup", {
+        name: "Example Customer",
+        email: "customer@example.test",
+        password: "ExamplePassword123",
+        confirmation: "ExamplePassword123",
       }),
     ).toEqual({});
     expect(
-      validateAccount("reset", { ...valid, confirmation: "bad" }),
-    ).toHaveProperty("confirmation");
-  });
-  it("refuses real email accounts and gives identical recovery replies for sample addresses", async () => {
-    const real = await demoAuthAdapter.signup({
-      ...valid,
-      email: "someone@example.com",
-    });
-    expect(real).toMatchObject({ ok: false, code: "BACKEND_NOT_CONNECTED" });
-    expect(await demoAuthAdapter.requestReset("unknown@example.test")).toEqual(
-      await demoAuthAdapter.requestReset(demoCredentials.email),
-    );
-    expect(
-      await demoAuthAdapter.login({ ...valid, password: "wrong" }),
-    ).toMatchObject({ ok: false, code: "INVALID_CREDENTIALS" });
-    expect(await demoAuthAdapter.reset(valid, "arbitrary-token")).toMatchObject(
-      { ok: false, code: "INVALID_TOKEN" },
-    );
-    expect(await demoAuthAdapter.verify("demo-expired")).toMatchObject({
-      ok: false,
-      code: "EXPIRED_TOKEN",
-    });
-  });
-  it("can cancel a pending operation without completing it", async () => {
-    const abort = new AbortController();
-    const request = demoAuthAdapter.signup(valid, abort.signal);
-    abort.abort();
-    await expect(request).rejects.toMatchObject({ name: "AbortError" });
+      validateAccount("reset", {
+        password: "  StrongPassword123  ",
+        confirmation: "  StrongPassword123  ",
+      }),
+    ).toEqual({});
   });
 });
-describe("review regressions", () => {
-  it("accepts only the fields each operation needs and returns its own preview kind", async () => {
-    const login = await demoAuthAdapter.login({
-      email: valid.email,
-      password: valid.password,
-    });
-    expect(login).toEqual({ ok: true, mode: "demo", kind: "login-preview" });
-    const reset = await demoAuthAdapter.reset(
-      { password: valid.password, confirmation: valid.confirmation },
-      "demo-valid",
-    );
-    expect(reset).toEqual({ ok: true, mode: "demo", kind: "reset-preview" });
-  });
-  it("offers the implemented artisan signup path from customer signup", () => {
-    mount(<AccountForm mode="signup" />);
-    expect(
-      screen.queryByRole("link", { name: /Offer your skills/ }),
-    ).toBeNull();
-    expect(
-      screen.getByRole("link", { name: /Join as an artisan/i }),
-    ).toBeTruthy();
-  });
-});
-describe("account forms", () => {
-  it("focuses invalid fields and previews signup without persisting a password", async () => {
-    mount(<AccountForm mode="signup" />);
-    fireEvent.click(screen.getByRole("button", { name: "Preview signup" }));
-    expect(document.activeElement).toBe(screen.getByLabelText("Full name"));
-    fireEvent.change(screen.getByLabelText("Full name"), {
-      target: { value: valid.name },
-    });
-    fireEvent.change(screen.getByLabelText("Email address"), {
-      target: { value: valid.email },
-    });
-    fireEvent.change(screen.getByLabelText("Password", { exact: true }), {
-      target: { value: valid.password },
-    });
-    fireEvent.change(screen.getByLabelText("Confirm password"), {
-      target: { value: valid.confirmation },
-    });
-    fireEvent.click(screen.getByRole("button", { name: /^Show password$/ }));
-    expect(
-      screen.getByLabelText("Password", { exact: true }).getAttribute("type"),
-    ).toBe("text");
-    fireEvent.click(screen.getByRole("button", { name: "Preview signup" }));
-    expect(
-      screen
-        .getByRole("button", { name: "Checking sample details…" })
-        .hasAttribute("disabled"),
-    ).toBe(true);
-    const emailField = screen.getByLabelText(
-      "Email address",
-    ) as HTMLInputElement;
-    expect(emailField.matches(":disabled")).toBe(true);
-    fireEvent.change(emailField, { target: { value: "changed@example.test" } });
-    expect(emailField.value).toBe(valid.email);
-    await screen.findByRole("heading", {
-      name: "Your signup preview is ready",
-    });
-    expect(screen.getByRole("status").textContent).toContain(
-      "No account has been created",
-    );
-    fireEvent.click(screen.getByRole("button", { name: "Back to form" }));
-    expect(
-      (screen.getByLabelText("Password", { exact: true }) as HTMLInputElement)
-        .value,
-    ).toBe("");
-  });
-  it("preserves input after failure and only previews sample login", async () => {
-    mount(<AccountForm mode="login" />);
-    fireEvent.change(screen.getByLabelText("Email address"), {
-      target: { value: "offline@example.test" },
-    });
-    fireEvent.change(screen.getByLabelText("Password", { exact: true }), {
-      target: { value: valid.password },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "Preview login" }));
-    await screen.findByRole("alert");
-    expect(
-      (screen.getByLabelText("Password", { exact: true }) as HTMLInputElement)
-        .value,
-    ).toBe(valid.password);
-    fireEvent.click(screen.getByText("Sample details for this preview"));
-    fireEvent.click(
-      screen.getByRole("button", { name: "Fill sample details" }),
-    );
-    fireEvent.click(screen.getByRole("button", { name: "Preview login" }));
-    await screen.findByRole("heading", { name: "Login preview complete" });
-    expect(screen.getByRole("status").textContent).toContain(
-      "does not sign you in",
-    );
-  });
-  it("requires a sample reset token and displays honest reset completion", async () => {
-    const first = mount(<AccountForm mode="reset" token="demo-expired" />);
-    expect(screen.queryByLabelText("New password")).toBeNull();
-    expect(
-      screen
-        .getByRole("link", { name: /Request another link/ })
-        .getAttribute("href"),
-    ).toBe("/forgot-password");
-    first.unmount();
-    mount(<AccountForm mode="reset" token="demo-valid" />);
-    fireEvent.change(screen.getByLabelText("New password"), {
-      target: { value: valid.password },
-    });
-    fireEvent.change(screen.getByLabelText("Confirm password"), {
-      target: { value: valid.password },
-    });
-    fireEvent.click(
-      screen.getByRole("button", { name: "Preview password reset" }),
-    );
-    await screen.findByRole("heading", {
-      name: "Password reset preview complete",
-    });
-    expect(screen.getByRole("status").textContent).toContain(
-      "No password was changed",
-    );
-  });
-  it("previews forgot-password completion with a sample recovery link", async () => {
-    mount(<AccountForm mode="forgot" />);
-    fireEvent.change(screen.getByLabelText("Email address"), {
-      target: { value: valid.email },
-    });
-    fireEvent.click(
-      screen.getByRole("button", { name: "Preview reset request" }),
-    );
-    await screen.findByRole("heading", { name: "Reset request preview ready" });
-    expect(
-      screen
-        .getByRole("link", { name: /Preview sample reset link/ })
-        .getAttribute("href"),
-    ).toBe("/reset-password?token=demo-valid");
-  });
-  it("handles invalid verification links and allows a fresh sample link", async () => {
-    mount(<VerificationForm token="demo-expired" />);
-    fireEvent.click(
-      screen.getByRole("button", { name: /Preview verification/ }),
-    );
-    expect((await screen.findByRole("alert")).textContent).toContain("expired");
-    expect(
-      screen
-        .getByRole("link", { name: /Open sample verification link/ })
-        .getAttribute("href"),
-    ).toBe("/verify-email?token=demo-valid");
-  });
-  it("prevents duplicate resend requests during the demo cooldown", async () => {
-    vi.useFakeTimers();
-    mount(<VerificationForm />);
-    fireEvent.click(
-      screen.getByRole("button", { name: "Preview resend email" }),
-    );
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(180);
-    });
-    expect(screen.getByRole("status").textContent).toContain(
-      "No email was sent",
-    );
-    expect(
-      screen
-        .getByRole("button", { name: "Preview resend in 60s" })
-        .hasAttribute("disabled"),
-    ).toBe(true);
-    for (let tick = 0; tick < 60; tick++)
-      await act(async () => {
-        await vi.advanceTimersByTimeAsync(1000);
-      });
-    expect(
-      screen
-        .getByRole("button", { name: "Preview resend email" })
-        .hasAttribute("disabled"),
-    ).toBe(false);
-  });
-  it("previews verification without creating an authenticated account", async () => {
-    mount(<VerificationForm token="demo-valid" />);
-    fireEvent.click(
-      screen.getByRole("button", { name: /Preview verification/ }),
-    );
+
+describe("Neon Auth account flows", () => {
+  it("creates a customer auth account, saves the role, and requires email verification", async () => {
+    render(<AccountForm mode="signup" />);
+    fillAccountForm("signup");
+    fireEvent.click(screen.getByRole("button", { name: "Create account" }));
+
     await waitFor(() =>
-      expect(
-        screen.getByRole("heading", { name: "Verification preview complete." }),
-      ).toBeTruthy(),
+      expect(routerMocks.replace).toHaveBeenCalledWith(
+        "/verify-email?email=customer%40example.test",
+      ),
+    );
+    expect(authMocks.signUpEmail).toHaveBeenCalledWith({
+      name: "Example Customer",
+      email: "customer@example.test",
+      password: "ExamplePassword123",
+    });
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/account/profile",
+      expect.objectContaining({
+        method: "POST",
+        body: JSON.stringify({ role: "customer" }),
+      }),
+    );
+  });
+
+  it("preserves input and reports provider errors on login", async () => {
+    authMocks.signInEmail.mockResolvedValue({
+      error: { message: "Invalid email or password." },
+    });
+    render(<AccountForm mode="login" />);
+    fillAccountForm("login");
+    fireEvent.click(screen.getByRole("button", { name: "Log in" }));
+
+    expect((await screen.findByRole("alert")).textContent).toContain(
+      "Invalid email or password.",
     );
     expect(
-      screen.getByText(/No email or account has actually been verified/),
+      (screen.getByLabelText("Password", { exact: true }) as HTMLInputElement)
+        .value,
+    ).toBe("ExamplePassword123");
+  });
+
+  it("routes an unverified login to email verification", async () => {
+    authMocks.signInEmail.mockResolvedValue({
+      data: { user: { emailVerified: false } },
+      error: null,
+    });
+    render(<AccountForm mode="login" />);
+    fillAccountForm("login");
+    fireEvent.click(screen.getByRole("button", { name: "Log in" }));
+
+    await waitFor(() =>
+      expect(routerMocks.replace).toHaveBeenCalledWith(
+        "/verify-email?email=customer%40example.test",
+      ),
+    );
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("routes an authenticated account without a profile to role completion", async () => {
+    fetchMock.mockResolvedValue(jsonResponse(404, { error: {} }));
+    render(<AccountForm mode="login" />);
+    fillAccountForm("login");
+    fireEvent.click(screen.getByRole("button", { name: "Log in" }));
+
+    await waitFor(() =>
+      expect(routerMocks.replace).toHaveBeenCalledWith("/complete-profile"),
+    );
+  });
+
+  it("sends a password-reset request without revealing whether the address exists", async () => {
+    render(<AccountForm mode="forgot" />);
+    fillAccountForm("forgot");
+    fireEvent.click(
+      screen.getByRole("button", { name: "Send reset instructions" }),
+    );
+
+    expect(await screen.findByRole("heading", { name: "Check your inbox" }))
+      .toBeTruthy();
+    expect(authMocks.requestPasswordReset).toHaveBeenCalledWith({
+      email: "customer@example.test",
+      redirectTo: expect.stringMatching(/\/reset-password$/),
+    });
+  });
+
+  it("requires a real reset token and submits a valid password reset", async () => {
+    const missingToken = render(<AccountForm mode="reset" />);
+    expect(screen.queryByLabelText("New password")).toBeNull();
+    missingToken.unmount();
+
+    render(<AccountForm mode="reset" token="provider-token" />);
+    fillAccountForm("reset");
+    fireEvent.click(screen.getByRole("button", { name: "Reset password" }));
+
+    expect(await screen.findByRole("heading", { name: "Password updated" }))
+      .toBeTruthy();
+    expect(authMocks.resetPassword).toHaveBeenCalledWith({
+      newPassword: "ExamplePassword123",
+      token: "provider-token",
+    });
+  });
+
+  it("verifies a six-digit email code through Neon Auth", async () => {
+    render(<VerificationForm initialEmail="customer@example.test" />);
+    fireEvent.change(screen.getByLabelText("Six-digit code"), {
+      target: { value: "123456" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Verify email" }));
+
+    expect(await screen.findByText(/Your email is verified/))
+      .toBeTruthy();
+    expect(authMocks.verifyEmailOtp).toHaveBeenCalledWith({
+      email: "customer@example.test",
+      otp: "123456",
+    });
+  });
+
+  it("requests a verification code for a valid address", async () => {
+    render(<VerificationForm />);
+    fireEvent.change(screen.getByLabelText("Email address"), {
+      target: { value: "customer@example.test" },
+    });
+    fireEvent.click(
+      screen.getByRole("button", { name: "Send a new code" }),
+    );
+
+    expect(
+      await screen.findByText(
+        "If verification is needed for this account, a code has been sent.",
+      ),
     ).toBeTruthy();
+    expect(authMocks.sendVerificationOtp).toHaveBeenCalledWith({
+      email: "customer@example.test",
+      type: "email-verification",
+    });
+  });
+
+  it("saves only a customer or artisan account type through the profile API", async () => {
+    render(<CompleteProfileForm />);
+    fireEvent.click(screen.getByRole("radio", { name: /Artisan/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+
+    await waitFor(() =>
+      expect(routerMocks.replace).toHaveBeenCalledWith("/artisan"),
+    );
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/account/profile",
+      expect.objectContaining({
+        body: JSON.stringify({ role: "artisan" }),
+      }),
+    );
   });
 });

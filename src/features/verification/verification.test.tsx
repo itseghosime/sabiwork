@@ -11,11 +11,9 @@ import {
 } from "./screens";
 import {
   getVerificationDossiers,
-  getVerificationDossier,
   getDossierMetrics,
   previewDossierApproval,
   previewDossierRevision,
-  previewArtisanRegistration,
 } from "./service";
 
 // Mock next/navigation
@@ -55,14 +53,6 @@ describe("Verification Service", () => {
     expect(res.dossier?.status).toBe("rejected");
   });
 
-  it("returns a fixed registration preview without creating a dossier", () => {
-    const countBefore = getVerificationDossiers().length;
-    const res = previewArtisanRegistration();
-    expect(res.previewed).toBe(true);
-    expect(res.reference).toBe("SAMPLE-REGISTRATION-PREVIEW");
-    expect(getVerificationDossier(res.reference)).toBeUndefined();
-    expect(getVerificationDossiers()).toHaveLength(countBefore);
-  });
 });
 
 describe("Verification Screens UI", () => {
@@ -74,18 +64,18 @@ describe("Verification Screens UI", () => {
     // Click continue with empty inputs to trigger validation error
     const continueBtn = screen.getByRole("button", { name: /Continue/i });
     fireEvent.click(continueBtn);
-    expect(screen.getByText(/Enter a sample name to preview the form/i)).toBeDefined();
+    expect(screen.getByText(/Enter a name between 2 and 100 characters/i)).toBeDefined();
 
     // Fill Step 1
-    const nameInput = screen.getByLabelText(/Sample Name/i);
-    const phoneInput = screen.getByLabelText(/Sample Contact Value/i);
+    const nameInput = screen.getByLabelText(/Full name/i);
+    const phoneInput = screen.getByLabelText(/Phone number/i);
     const emailInput = screen.getByLabelText(/Email Address/i);
     const passwordInput = screen.getByLabelText(/Secure Password/i);
 
     fireEvent.change(nameInput, { target: { value: "Sample Artisan" } });
-    fireEvent.change(phoneInput, { target: { value: "sample-contact-001" } });
+    fireEvent.change(phoneInput, { target: { value: "+234 800 000 0000" } });
     fireEvent.change(emailInput, { target: { value: "artisan@example.test" } });
-    fireEvent.change(passwordInput, { target: { value: "sample-password" } });
+    fireEvent.change(passwordInput, { target: { value: "ExamplePassword123" } });
 
     fireEvent.click(continueBtn);
     expect(screen.getByText(/Step 2: Trade Specialization & Coverage/i)).toBeDefined();

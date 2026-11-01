@@ -70,8 +70,9 @@ export function AuthFrame({
           <div className="auth-demo-notice">
             <Icon name="help" size={18} />
             <p>
-              <strong>Frontend demo</strong> · Nothing is sent or saved. Use
-              sample details, never a real password.
+              <strong>Neon Auth connected</strong> · Account credentials and
+              roles use the backend. Marketplace actions, identity checks, and
+              payments remain prototype-only.
             </p>
           </div>
           {children}

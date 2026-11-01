@@ -39,7 +39,7 @@ export function validateAccount<M extends AccountMode>(
   )
     errors.email = "Enter a valid email address.";
   if (mode === "login" && "password" in values && !values.password)
-    errors.password = "Enter your sample password.";
+    errors.password = "Enter your password.";
   if (
     (mode === "signup" || mode === "reset") &&
     "password" in values &&
