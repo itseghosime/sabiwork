@@ -622,7 +622,7 @@ export function QuoteDetailsAcceptanceScreen({
     if (res.ok) {
       setStatusMessage({
         type: "success",
-        text: "Quote accepted (demo). Continue to the Milestone 1 deposit checkout in Paystack TEST mode.",
+        text: res.message,
       });
       router.push(`/requests/${quote.requestId}/checkout/${quote.id}`);
     } else {
@@ -895,7 +895,7 @@ export function MilestoneDepositCheckoutScreen({
         <div className="qt-alert qt-alert-error" role="alert">
           <AlertCircle size={24} />
           <div>
-            <strong>Payment Declined (TEST Mode)</strong>
+            <strong>Payment preview unavailable</strong>
             <p>{statusMessage.text}</p>
             <div
               style={{

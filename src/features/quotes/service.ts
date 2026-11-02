@@ -178,7 +178,13 @@ export const quotesDemoService = {
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; checkoutRef?: string }> {
     if (simulateError) return { ok: false, message: "Could not accept this quote." };
-    if (isTestEnv) return { ok: true, message: "Quote accepted and job opened.", checkoutRef: "job-01" };
+    if (isTestEnv) {
+      return {
+        ok: true,
+        message: "Quote accepted in the preview only; no job was persisted.",
+        checkoutRef: "job-01",
+      };
+    }
     const response = await fetch(`/api/quotes/${quoteId}/decision`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

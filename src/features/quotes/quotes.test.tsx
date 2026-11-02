@@ -87,8 +87,13 @@ describe("Quote screens: comparison, acceptance and deposit checkout (S17, S18, 
     fireEvent.click(acceptBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Quote accepted and job opened/i)).toBeDefined();
+      expect(
+        screen.getByText(/Quote accepted in the preview only; no job was persisted/i),
+      ).toBeDefined();
     });
+    expect(nav.push).toHaveBeenCalledWith(
+      `/requests/${defaultDetailedQuotes[0].requestId}/checkout/${defaultDetailedQuotes[0].id}`,
+    );
   });
 
   it("renders S21 Milestone Deposit Checkout and previews a payment interaction", async () => {
@@ -120,8 +125,8 @@ describe("Quote screens: comparison, acceptance and deposit checkout (S17, S18, 
     fireEvent.click(screen.getByRole("button", { name: /Simulate Card Decline/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/Payment Declined \(TEST Mode\)/i)).toBeDefined();
-      expect(screen.getByText(/declined or connection timeout/i)).toBeDefined();
+      expect(screen.getByText(/Payment preview unavailable/i)).toBeDefined();
+      expect(screen.getByText(/Payments are unavailable right now/i)).toBeDefined();
     });
     expect(nav.push).not.toHaveBeenCalled();
     expect(

@@ -51,27 +51,26 @@ Natalie verifies Paystack's signature on the raw webhook body before dispatching
 
 ## Current Neon backend status
 
-The Neon project has Postgres, Managed Neon Auth, and Realtime provisioned. The initial application migration has been applied only to the isolated `sabiwork-backend-validation` branch. The production database has not received application migrations.
+Neon Postgres, Managed Auth, and Realtime are provisioned. Application migrations `0001`–`0007` are applied to the production database. Local environment variables are listed in `.env.example`; never commit `.env.local` or `.env.backend-test.local`, and verify `NEON_BRANCH` before running `npm run db:migrate`.
 
-Implemented and verified in this branch:
+Implemented in this branch:
 
-- Managed Auth email signup, login, sign-out, and password reset client calls. Email verification/OTP is intentionally not used in this prototype.
-- Server-checked session, verified-email, and database role guards for customer, artisan, admin, reviews, and training routes. Customer/artisan roles can be selected by a signed-in user; admin cannot be self-assigned.
-- Customer and artisan account profiles, with artisan verification status fixed to `unsubmitted`.
-- Customer-owned request drafts: authenticated list/create API, integer-kobo storage, and a user-scoped sealed Realtime query.
-- `/explore` and `/artisans` read listed work profiles and persisted review summaries from Neon. Production listings exclude seeded fixture IDs; local development may opt into clearly disclosed seed profiles and seed detail pages for presentations. Sample-profile booking requires Paystack test keys and makes no real reservation or payment. Public cards use initials when no real portrait is stored.
-- A transactional, advisory-locked SQL migration runner and an isolated-branch Postgres/Realtime smoke test.
+- Managed Auth signup, login, sign-out, and password reset. Email OTP/verification is intentionally disabled.
+- Server-checked sessions and database-backed role checks. Any signed-in non-admin account can hire; an account may also create an optional work profile to be hired. Admin remains a separately provisioned role.
+- Database-backed work profiles and public search. Production `/explore`, `/artisans`, and public artisan details include only listed account-created profiles and saved review summaries. Local development may show the explicitly disclosed fictional seed profiles for presentations; these do not appear in production listings or public APIs. Missing real portraits render as initials.
+- Customer requests, itemized quotes, jobs, progress updates, and reviews use Neon with ownership and role checks. Amounts are stored as integer kobo.
+- Admin verification, trade, audit, escrow-ledger, and payout workflows are server/API-backed where implemented. Identity-document storage and formal dispute arbitration are not implemented.
+- Paystack deposit/transfer integrations are test-mode only. Deposit status is based on server-side provider verification and webhook validation; no real funds are moved and no escrow guarantee is made.
+- Device preferences are local to the browser. Training progress and certificate views are preview-only and are not persisted or accredited.
 
-The migration currently defines `user_profiles`, `artisan_profiles`, and `job_requests`. Request, quote, and job APIs are implemented for signed-in marketplace accounts (`customer` or `artisan`), while admin users remain separated from hire flows. Any signed-in non-admin account can create/list requests; a work profile is still required before an account can send quotes. Payment processing, identity document storage/review, admin provisioning, and production Realtime origin setup remain pending. Email addresses are not verified in this prototype.
+The current production database contains 20 seeded artisan records and zero account-created artisan profiles. The public listing filters out those seeds; create and list real work profiles to populate production discovery. Do not run the seed script against production to represent these fixtures as real people.
 
-Local-only environment variables are listed in `.env.example`; never commit `.env.local` or `.env.backend-test.local`. `npm run db:migrate` targets the configured application database, so verify the branch before running it. For the isolated validation branch, these commands were used:
+The migration runner uses the configured database connection. For an isolated validation branch, the smoke-test commands are:
 
 ```sh
 node --env-file=.env.backend-test.local scripts/migrate.mjs
 node --env-file=.env.backend-test.local scripts/backend-smoke.mjs
 ```
-
-The production branch needs a reviewed migration, configured Vercel environment variables and Realtime origin, an admin bootstrap procedure, and a separate deployment approval before it can serve the application.
 
 ## Shared component contract
 

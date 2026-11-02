@@ -87,6 +87,6 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
     expect(nav.push).not.toHaveBeenCalled();
     expect(
       screen.getByRole("link", { name: /Continue → View Job Progress/i }).getAttribute("href"),
-    ).toBe("/jobs/BEN-78401/progress");
+    ).toBe(`/jobs/${defaultReceipt.jobId}/progress`);
   });
 });

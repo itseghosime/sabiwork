@@ -16,7 +16,7 @@ Customers discover listed artisan work profiles, request work, compare quotes, a
 6. Paste [the OpenCode implementation prompt](docs/OPENCODE-PROMPT.md), your assigned Stitch code and screenshots. Build inside the shared app; do not create a separate project.
 7. Check phone/tablet/desktop and submit a pull request with a short explanation of your code. AI may help draft it, but you must understand and explain it yourself. Follow [the complete submission checklist](docs/TEAM.md#friday-acceptance). Only Abdulrahman reviews for acceptance and merges main.
 
-**Foundation status:** this app contains the shared frontend and a partial Neon backend foundation. Feature backend ownership remains with the assigned members; this branch does not replace the marketplace, payment, verification, or dispute implementations.
+**Foundation status:** this shared Next.js app now includes Neon-backed account, work-profile, artisan discovery, request, quote, job, progress, review, and admin workflows. Payment flows use Paystack test mode only; training progress and dispute handling remain limited.
 
 ## Start here
 
@@ -40,18 +40,18 @@ Backend foundations start early; whole-team backend integration is Saturday, 31 
 
 The planned stack follows the guide: Next.js App Router + TypeScript, Neon Postgres and Managed Auth, Resend, Paystack test mode, and Vercel. Use npm with one committed package-lock.json.
 
-Neon Postgres, Managed Auth, and Realtime are provisioned. The customer `/explore` page and public `/artisans` directory load listed work profiles, rate guidance, coverage areas, and review summaries from Neon. During local development only, these pages and seed profile details can show explicitly disclosed fictional records for presentations; their booking checkout requires Paystack test keys and cannot reserve a real slot or move real money. Production public listings exclude these seed records. Other profile editing, job/quote, payment, verification, training, review, and dispute features may still use prototype data or interactions. See [the implementation status](docs/IMPLEMENTATION.md#current-neon-backend-status) for exact boundaries.
+Neon Postgres, Managed Auth, and Realtime are provisioned, and migrations `0001`–`0007` are applied to the production database. Signed-in non-admin accounts can hire; any such account can create an optional work profile to be hired. Listed, account-created profiles and saved reviews power production artisan search. Local development may show the explicitly disclosed fictional seed profiles for presentations; production listings exclude them. Paystack is test-mode only, training progress is session-only, and formal dispute handling is unavailable. See [the implementation status](docs/IMPLEMENTATION.md#current-neon-backend-status) for exact boundaries.
 
 ## Run the shared app
 
-Use Node **22 LTS** (`nvm use`) and npm. No environment secrets are needed for these demo screens.
+Use Node **22 LTS** (`nvm use`) and npm. Configure the local variables from `.env.example` in an ignored `.env.local`; never use live payment keys for this prototype.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. The home and category pages can render without a database connection; `/explore` and `/artisans` require a configured Neon database. Account and workspace routes require the server environment variables in `.env.example`; keep their values local and secret. Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before submitting. `npm start` serves a production build.
+Open http://localhost:3000. The home and category pages can render without a database connection; `/explore`, `/artisans`, account, and workspace routes require the Neon environment variables. Presentation seed profiles appear only in local development and are labeled as fictional. Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before submitting. `npm start` serves a production build.
 
 For the isolated validation branch only, apply the initial migration and verify Postgres plus Realtime with:
 
