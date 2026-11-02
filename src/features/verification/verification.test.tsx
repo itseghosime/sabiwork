@@ -93,6 +93,12 @@ describe("Verification Screens UI", () => {
     expect(pendingTab).toBeDefined();
   });
 
+  it("shows a not-found state for an unknown dossier instead of another applicant", () => {
+    render(<AdminDossierReviewScreen id="UNKNOWN-DEMO-ID" />);
+    expect(screen.getByText(/Dossier Not Found/i)).toBeDefined();
+    expect(screen.queryByText(/Osaze Victor Ighodaro/i)).toBeNull();
+  });
+
   it("renders S43 Admin Dossier Review and shows competencies", () => {
     render(<AdminDossierReviewScreen id="SAMPLE-VERIFY-005" />);
     expect(screen.getByText(/Dossier SAMPLE-VERIFY-005/i)).toBeDefined();

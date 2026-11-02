@@ -82,5 +82,11 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
     await waitFor(() => {
       expect(screen.getByText(/No work was signed off and no funds were released/i)).toBeDefined();
     });
+
+    // Success must NOT auto-redirect into sign-off; the user continues manually
+    expect(nav.push).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("link", { name: /Continue → View Job Progress/i }).getAttribute("href"),
+    ).toBe("/jobs/BEN-78401/progress");
   });
 });

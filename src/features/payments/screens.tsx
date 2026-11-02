@@ -22,6 +22,22 @@ import {
 import "./payments.css";
 
 /* ==========================================================================
+   Demo-mode disclosure labels for George's payment screens (S24, S25).
+   AGENTS.md honesty rule: never claim escrow or protection the demo flow
+   does not provide. Payments are Paystack TEST mode simulations only.
+   ========================================================================== */
+
+function TestModeBadge() {
+  return <span className="py-test-badge">Paystack TEST Mode</span>;
+}
+
+function DemoDataNote() {
+  return (
+    <span className="py-demo-note">Demo data only, no real money moves.</span>
+  );
+}
+
+/* ==========================================================================
    S22: Payment Verification & Status Check Screen
    ========================================================================== */
 
@@ -379,6 +395,10 @@ export function PaymentRecoveryScreen({
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
           Preview methods for sample request {receipt.jobId} (₦{(receipt.amountKobo / 100).toLocaleString()})
         </p>
+        <div className="py-test-strip">
+          <TestModeBadge />
+          <DemoDataNote />
+        </div>
       </header>
 
       {statusMessage && (
@@ -489,6 +509,8 @@ export function MilestoneBalanceCheckoutScreen({
     );
     setSubmitting(false);
 
+    /* No automatic redirect: the pending-verification outcome must stay
+       readable. The user chooses the next step. */
     if (res.ok) {
       setStatusMessage({ type: "success", text: res.message });
     } else {
@@ -523,17 +545,56 @@ export function MilestoneBalanceCheckoutScreen({
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
           Illustrative amount {balanceFormatted} for sample request {receipt.jobId}
         </p>
+        <div className="py-test-strip">
+          <TestModeBadge />
+          <DemoDataNote />
+        </div>
       </header>
 
-      {statusMessage && (
-        <div
-          className={`py-alert ${
-            statusMessage.type === "success" ? "py-alert-success" : "py-alert-error"
-          }`}
-          role="status"
-        >
-          {statusMessage.type === "success" ? <Check size={20} /> : <AlertCircle size={20} />}
-          <div>{statusMessage.text}</div>
+      {statusMessage?.type === "success" && (
+        <div className="py-alert py-alert-success" role="status">
+          <Check size={24} />
+          <div>
+            <strong>Submitted — Awaiting Server Verification</strong>
+            <p>{statusMessage.text}</p>
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "12px",
+                flexWrap: "wrap",
+              }}
+            >
+              <Link href={`/jobs/${receipt.jobId}/progress`} className="button button-primary">
+                Continue → View Job Progress
+              </Link>
+              <button
+                type="button"
+                className="button button-outline"
+                onClick={() => setStatusMessage(null)}
+              >
+                Stay on This Page
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {statusMessage?.type === "error" && (
+        <div className="py-alert py-alert-error" role="alert">
+          <AlertCircle size={24} />
+          <div>
+            <strong>Payment Declined (TEST Mode)</strong>
+            <p>{statusMessage.text}</p>
+            <button
+              type="button"
+              className="button button-outline"
+              style={{ marginTop: "10px" }}
+              onClick={() => setStatusMessage(null)}
+            >
+              Try Again Here
+            </button>
+          </div>
         </div>
       )}
 

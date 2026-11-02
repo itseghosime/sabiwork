@@ -284,6 +284,9 @@ export function ArtisanSignupScreen() {
 
           {/* Form Body */}
           <div className="sabi-wizard-body">
+            <div role="status" className="mb-5 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+              Demo preview only. Do not enter real passwords or identity numbers. This screen does not create an account or securely submit identity evidence; authentication and upload services are pending.
+            </div>
             {formError && (
               <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
@@ -871,7 +874,7 @@ export function AdminVerificationQueueScreen() {
 // S43: Admin Dossier Verification & Review Screen
 export function AdminDossierReviewScreen({ id }: { id: string }) {
   const [dossier, setDossier] = useState<VerificationDossier | undefined>(() =>
-    getVerificationDossier(id) || getVerificationDossiers("pending")[0]
+    getVerificationDossier(id)
   );
   const [isApproveOpen, setIsApproveOpen] = useState(false);
   const [isRejectOpen, setIsRejectOpen] = useState(false);

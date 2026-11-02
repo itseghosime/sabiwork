@@ -21,7 +21,7 @@ afterEach(() => {
   nav.replace.mockClear();
 });
 
-describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
+describe("Quote screens: comparison, acceptance and deposit checkout (S17, S18, S19, S20, S21)", () => {
   it("renders S17 Open Requests Feed and filters by district", () => {
     const requests = [
       defaultOpenRequests[0]!,
@@ -106,5 +106,26 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     await waitFor(() => {
       expect(screen.getByText(/Payments via Paystack are coming soon/i)).toBeDefined();
     });
+
+    // Success must NOT auto-redirect: the user reads the pending message first
+    expect(nav.push).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("link", { name: /Continue → Back to My Jobs/i }).getAttribute("href"),
+    ).toBe("/jobs");
+  });
+
+  it("shows S21 declined payment with a recovery link to S24 for the quote reference", async () => {
+    render(<MilestoneDepositCheckoutScreen quote={defaultDetailedQuotes[0]} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /Simulate Card Decline/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/Payment Declined \(TEST Mode\)/i)).toBeDefined();
+      expect(screen.getByText(/declined or connection timeout/i)).toBeDefined();
+    });
+    expect(nav.push).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("link", { name: /Switch Payment Channel \(S24\)/i }).getAttribute("href"),
+    ).toBe("/payments/quote-01/recover");
   });
 });
