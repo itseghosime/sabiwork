@@ -49,6 +49,8 @@ Preferred JSON envelope for feature APIs: `{ data: ... }`; errors `{ error: { co
 
 Natalie verifies Paystack's signature on the raw webhook body before dispatching to George's transaction-safe handler. Validate reference, expected amount and currency against server records and provider verification. Use unique references and idempotency, never mark success from a browser redirect alone. Persist no card details. Refunds and escrow are outside the prototype unless explicitly implemented and validated; the UI must not promise protection the test flow does not provide.
 
+Settings and training screens currently use in-memory preview adapters. Their changes reset on refresh; certificate views are sample previews and do not represent accredited credentials. Payment pages use TEST-mode UI only and do not confirm or hold funds.
+
 ## Shared component contract
 
 AppShell, Sidebar, MobileNav, Button, Input, Select, FilterSheet, ArtisanCard, VerifiedBadge, StatusBadge, JobTimeline, MilestoneSummary, Dialog, Toast and EmptyState. Abigail coordinates UX; Rachel checks keyboard/focus/touch behaviour. One shared token set. Feature owners reuse these components rather than making ten conflicting sets.
