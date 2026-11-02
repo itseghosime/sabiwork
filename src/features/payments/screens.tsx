@@ -490,7 +490,6 @@ export function MilestoneBalanceCheckoutScreen({
 }: {
   receipt?: PaymentReceiptData;
 }) {
-  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
     type: "success" | "error";
@@ -511,12 +510,13 @@ export function MilestoneBalanceCheckoutScreen({
     );
     setSubmitting(false);
 
+    /* No automatic redirect: the pending-verification outcome must stay
+       readable. The user chooses the next step. */
     if (res.ok) {
       setStatusMessage({
         type: "success",
         text: "Milestone 2 balance payment submitted in Paystack TEST mode. Confirmation is pending server verification. No sign-off or payout happens in this demo.",
       });
-      router.push(`/jobs/${receipt.jobId}/review`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
     }
@@ -552,15 +552,50 @@ export function MilestoneBalanceCheckoutScreen({
         </div>
       </header>
 
-      {statusMessage && (
-        <div
-          className={`py-alert ${
-            statusMessage.type === "success" ? "py-alert-success" : "py-alert-error"
-          }`}
-          role="status"
-        >
-          {statusMessage.type === "success" ? <Check size={20} /> : <AlertCircle size={20} />}
-          <div>{statusMessage.text}</div>
+      {statusMessage?.type === "success" && (
+        <div className="py-alert py-alert-success" role="status">
+          <Check size={24} />
+          <div>
+            <strong>Submitted — Awaiting Server Verification</strong>
+            <p>{statusMessage.text}</p>
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "12px",
+                flexWrap: "wrap",
+              }}
+            >
+              <Link href={`/jobs/${receipt.jobId}/progress`} className="button button-primary">
+                Continue → View Job Progress
+              </Link>
+              <button
+                type="button"
+                className="button button-outline"
+                onClick={() => setStatusMessage(null)}
+              >
+                Stay on This Page
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {statusMessage?.type === "error" && (
+        <div className="py-alert py-alert-error" role="alert">
+          <AlertCircle size={24} />
+          <div>
+            <strong>Payment Declined (TEST Mode)</strong>
+            <p>{statusMessage.text}</p>
+            <button
+              type="button"
+              className="button button-outline"
+              style={{ marginTop: "10px" }}
+              onClick={() => setStatusMessage(null)}
+            >
+              Try Again Here
+            </button>
+          </div>
         </div>
       )}
 

@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import {
   AlertCircle,
   Check,
+  Clock,
   CreditCard,
   MapPin,
   ShieldCheck,
+  SlidersHorizontal,
 } from "lucide-react";
 import {
   type OpenRequest,
@@ -409,8 +411,85 @@ export function QuoteComparisonScreen({
   request?: OpenRequest;
   quotes?: readonly QuoteItem[];
 }) {
+  const [liveQuotes, setLiveQuotes] = useState(quotes);
+  const [viewState, setViewState] = useState<"loading" | "received" | "empty" | "error">(
+    quotes.length > 0 ? "received" : "empty",
+  );
+
+  /* Re-fetches quotes through the typed mock service, like the retry
+     boundaries on the S24 recovery screen. */
+  const retryQuotes = async () => {
+    setViewState("loading");
+    const next = await quotesDemoService.getQuotesForRequest(request.id);
+    setLiveQuotes(next);
+    setViewState(next.length > 0 ? "received" : "empty");
+  };
+
+  const stateSimulatorBar = (
+    <div className="qt-simulator-bar">
+      <span className="qt-simulator-label">
+        <SlidersHorizontal size={16} /> Comparison State Simulator:
+      </span>
+      <div className="qt-simulator-buttons">
+        {(["received", "loading", "empty", "error"] as const).map((state) => (
+          <button
+            key={state}
+            type="button"
+            className={`qt-sim-btn ${viewState === state ? "active" : ""}`}
+            onClick={() => setViewState(state)}
+          >
+            {state}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (viewState === "loading") {
+    return (
+      <div className="qt-page" data-testid="quote-comparison-loading">
+        {stateSimulatorBar}
+        <section className="qt-card" style={{ textAlign: "center", padding: "48px 24px" }}>
+          <Clock size={32} style={{ margin: "0 auto", color: "var(--primary)" }} aria-hidden="true" />
+          <h2 style={{ margin: "12px 0 6px 0", fontSize: "20px" }}>Loading quotes…</h2>
+          <p style={{ color: "var(--muted)", fontSize: "14px" }}>
+            Requesting itemized quotes for Job #{request.id} from the demo fixture store.
+          </p>
+        </section>
+      </div>
+    );
+  }
+
+  if (viewState === "error") {
+    return (
+      <div className="qt-page" data-testid="quote-comparison-error">
+        {stateSimulatorBar}
+        <div className="qt-alert qt-alert-error" role="alert">
+          <AlertCircle size={24} />
+          <div>
+            <strong>Could Not Load Quotes</strong>
+            <p>
+              The demo adapter timed out while retrieving quotations for Job #{request.id}.
+              Nothing was changed by this error.
+            </p>
+            <button
+              type="button"
+              className="button button-outline"
+              style={{ marginTop: "10px" }}
+              onClick={() => void retryQuotes()}
+            >
+              Retry Connection
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="qt-page" data-testid="quote-comparison-screen">
+    <div className="qt-page" data-testid="quote-comparison-received">
+      {stateSimulatorBar}
+
       <div className="qt-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -437,52 +516,72 @@ export function QuoteComparisonScreen({
         <DemoDataNote />
       </header>
 
-      <div className="qt-comparison-table-wrapper">
-        <table className="qt-table">
-          <thead>
-            <tr>
-              <th>Artisan Details</th>
-              <th>Rating & Jobs</th>
-              <th>Total Quote</th>
-              <th>Deposit (Milestone 1)</th>
-              <th>Duration</th>
-              <th>Materials</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {quotes.map((q) => (
-              <tr key={q.id}>
-                <td>
-                  <strong>{q.artisanName}</strong>
-                  <div style={{ fontSize: "12px", color: "var(--muted)" }}>{q.artisanHeadline}</div>
-                </td>
-                <td>
-                  <span style={{ color: "#b45309", fontWeight: 700 }}>★ {q.artisanRating}</span>
-                  <div style={{ fontSize: "12px", color: "var(--muted)" }}>({q.artisanReviewCount} reviews)</div>
-                </td>
-                <td>
-                  <strong style={{ color: "var(--primary)", fontSize: "15px" }}>
-                    ₦{(q.totalQuoteKobo / 100).toLocaleString()}
-                  </strong>
-                </td>
-                <td>₦{(q.depositKobo / 100).toLocaleString()}</td>
-                <td>{q.estimatedHours}</td>
-                <td>{q.materialsIncluded ? "✓ Included" : "Client Supplies"}</td>
-                <td>
-                  <Link
-                    href={`/requests/${request.id}/quotes/${q.id}`}
-                    className="button button-primary"
-                    style={{ minHeight: "36px", padding: "6px 12px", fontSize: "12.5px" }}
-                  >
-                    View Details (S20) →
-                  </Link>
-                </td>
+      {liveQuotes.length === 0 ? (
+        <section
+          className="qt-card"
+          data-testid="quote-comparison-empty"
+          style={{ textAlign: "center", padding: "48px 24px" }}
+        >
+          <Clock size={32} style={{ margin: "0 auto", color: "var(--primary)" }} aria-hidden="true" />
+          <h2 style={{ margin: "12px 0 6px 0", fontSize: "20px" }}>No quotes yet</h2>
+          <p style={{ color: "var(--muted)", fontSize: "14px" }}>
+            Artisan quotes for Job #{request.id} will appear here as they arrive. This is demo
+            data — nothing is stored.
+          </p>
+          <div>
+            <button type="button" className="button button-outline" onClick={() => void retryQuotes()}>
+              Check Again
+            </button>
+          </div>
+        </section>
+      ) : (
+        <div className="qt-comparison-table-wrapper">
+          <table className="qt-table">
+            <thead>
+              <tr>
+                <th>Artisan Details</th>
+                <th>Rating & Jobs</th>
+                <th>Total Quote</th>
+                <th>Deposit (Milestone 1)</th>
+                <th>Duration</th>
+                <th>Materials</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {liveQuotes.map((q) => (
+                <tr key={q.id}>
+                  <td>
+                    <strong>{q.artisanName}</strong>
+                    <div style={{ fontSize: "12px", color: "var(--muted)" }}>{q.artisanHeadline}</div>
+                  </td>
+                  <td>
+                    <span style={{ color: "#b45309", fontWeight: 700 }}>★ {q.artisanRating}</span>
+                    <div style={{ fontSize: "12px", color: "var(--muted)" }}>({q.artisanReviewCount} reviews)</div>
+                  </td>
+                  <td>
+                    <strong style={{ color: "var(--primary)", fontSize: "15px" }}>
+                      ₦{(q.totalQuoteKobo / 100).toLocaleString()}
+                    </strong>
+                  </td>
+                  <td>₦{(q.depositKobo / 100).toLocaleString()}</td>
+                  <td>{q.estimatedHours}</td>
+                  <td>{q.materialsIncluded ? "✓ Included" : "Client Supplies"}</td>
+                  <td>
+                    <Link
+                      href={`/requests/${request.id}/quotes/${q.id}`}
+                      className="button button-primary"
+                      style={{ minHeight: "44px", padding: "6px 16px", fontSize: "13px" }}
+                    >
+                      View Details (S20) →
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
@@ -695,7 +794,6 @@ export function MilestoneDepositCheckoutScreen({
 }: {
   quote?: QuoteItem;
 }) {
-  const router = useRouter();
   const [processing, setProcessing] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
     type: "success" | "error";
@@ -715,12 +813,13 @@ export function MilestoneDepositCheckoutScreen({
     );
     setProcessing(false);
 
+    /* No automatic redirect in either case: the user must be able to read
+       the pending-verification outcome and choose the next step themselves. */
     if (res.ok) {
       setStatusMessage({
         type: "success",
         text: "Payment submitted in Paystack TEST mode. Confirmation is pending server verification.",
       });
-      router.push("/jobs");
     } else {
       setStatusMessage({ type: "error", text: res.message });
     }
@@ -756,15 +855,64 @@ export function MilestoneDepositCheckoutScreen({
         </div>
       </header>
 
-      {statusMessage && (
-        <div
-          className={`qt-alert ${
-            statusMessage.type === "success" ? "qt-alert-success" : "qt-alert-error"
-          }`}
-          role="status"
-        >
-          {statusMessage.type === "success" ? <Check size={20} /> : <AlertCircle size={20} />}
-          <div>{statusMessage.text}</div>
+      {statusMessage?.type === "success" && (
+        <div className="qt-alert qt-alert-success" role="status">
+          <Check size={24} />
+          <div>
+            <strong>Submitted — Awaiting Server Verification</strong>
+            <p>{statusMessage.text}</p>
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "12px",
+                flexWrap: "wrap",
+              }}
+            >
+              <Link href="/jobs" className="button button-primary">
+                Continue → Back to My Jobs
+              </Link>
+              <button
+                type="button"
+                className="button button-outline"
+                onClick={() => setStatusMessage(null)}
+              >
+                Stay on This Page
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {statusMessage?.type === "error" && (
+        <div className="qt-alert qt-alert-error" role="alert">
+          <AlertCircle size={24} />
+          <div>
+            <strong>Payment Declined (TEST Mode)</strong>
+            <p>{statusMessage.text}</p>
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "12px",
+                flexWrap: "wrap",
+              }}
+            >
+              <Link
+                href={`/payments/${quote.id}/recover`}
+                className="button button-primary"
+              >
+                Switch Payment Channel (S24) →
+              </Link>
+              <button
+                type="button"
+                className="button button-outline"
+                onClick={() => setStatusMessage(null)}
+              >
+                Try Again Here
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
