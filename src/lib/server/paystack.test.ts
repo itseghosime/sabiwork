@@ -3,6 +3,7 @@ import { afterEach, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 import {
   initializePaystackTransaction,
+  listPaystackBanks,
   paystackTestMode,
   verifyPaystackTransaction,
 } from "./paystack";
@@ -32,4 +33,13 @@ it("rejects mixed test and live configuration", async () => {
   await expect(verifyPaystackTransaction("QA")).rejects.toThrow(
     "Only Paystack test keys are supported.",
   );
+});
+
+it("offers Paystack test bank without bypassing provider bank lookup", async () => {
+  vi.stubEnv("PAYSTACK_SECRET_KEY", "sk_test_fictional_qa");
+  vi.stubEnv("NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY", "pk_test_fictional_qa");
+  const fetch = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ status: true, data: [{name: "Zenith Bank", code: "057"}] }) });
+  vi.stubGlobal("fetch", fetch);
+  await expect(listPaystackBanks()).resolves.toEqual([{name: "Paystack test bank (001)", code: "001"}, {name: "Zenith Bank", code: "057"}]);
+  expect(fetch).toHaveBeenCalledOnce();
 });
