@@ -20,6 +20,22 @@ import {
 import "./quotes.css";
 
 /* ==========================================================================
+   Demo-mode disclosure labels for the customer quote screens (S19, S20, S21).
+   AGENTS.md honesty rule: never claim escrow or protection the demo flow
+   does not provide. This is a mock checkout in Paystack TEST mode only.
+   ========================================================================== */
+
+function TestModeBadge() {
+  return <span className="qt-test-badge">Paystack TEST Mode</span>;
+}
+
+function DemoDataNote() {
+  return (
+    <span className="qt-demo-note">Demo data only, no real money moves.</span>
+  );
+}
+
+/* ==========================================================================
    S17: Open Requests Feed & Details Screen (Artisan Workspace)
    ========================================================================== */
 
@@ -415,9 +431,10 @@ export function QuoteComparisonScreen({
           Compare Artisan Quotes
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Review competing offers side-by-side for Job #{request.id}. All deposits are protected
-          under SabiWork SafeTrade.
+          Review competing offers side-by-side for Job #{request.id}. Prices, ratings and
+          artisans are fictional demo fixtures.
         </p>
+        <DemoDataNote />
       </header>
 
       <div className="qt-comparison-table-wrapper">
@@ -494,7 +511,10 @@ export function QuoteDetailsAcceptanceScreen({
     setAccepting(false);
 
     if (res.ok) {
-      setStatusMessage({ type: "success", text: res.message });
+      setStatusMessage({
+        type: "success",
+        text: "Quote accepted (demo). Continue to the Milestone 1 deposit checkout in Paystack TEST mode.",
+      });
       router.push(`/requests/${quote.requestId}/checkout/${quote.id}`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
@@ -534,6 +554,7 @@ export function QuoteDetailsAcceptanceScreen({
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
             Quote #{quote.id} for Job #{quote.requestId}
           </p>
+          <DemoDataNote />
         </div>
 
         <div style={{ display: "flex", gap: "8px" }}>
@@ -551,7 +572,7 @@ export function QuoteDetailsAcceptanceScreen({
             onClick={() => handleAccept(false)}
             disabled={accepting}
           >
-            {accepting ? "Locking Quote..." : "Accept Quote & Proceed to Escrow (S21) →"}
+            {accepting ? "Locking Quote..." : "Accept Quote & Continue to Deposit (S21) →"}
           </button>
         </div>
       </header>
@@ -568,7 +589,7 @@ export function QuoteDetailsAcceptanceScreen({
         </div>
       )}
 
-      {/* Two-Milestone Escrow Ledger */}
+      {/* Two-Milestone Payment Plan */}
       <section className="qt-card">
         <h2 className="qt-card-title">Milestone Payment Breakdown (Paystack TEST Mode)</h2>
         <div
@@ -611,7 +632,8 @@ export function QuoteDetailsAcceptanceScreen({
               {quote.milestone1Title}
             </p>
             <span style={{ fontSize: "11.5px", color: "var(--muted)", display: "block", marginTop: "8px" }}>
-              Deposited into escrow upon acceptance. Held securely until artisan arrives and starts.
+              Submitted in Paystack TEST mode when you accept this quote. Confirmation is
+              pending server verification.
             </span>
           </div>
 
@@ -648,7 +670,8 @@ export function QuoteDetailsAcceptanceScreen({
               {quote.milestone2Title}
             </p>
             <span style={{ fontSize: "11.5px", color: "var(--muted)", display: "block", marginTop: "8px" }}>
-              Released only after you inspect and sign off on completed work.
+              Intended only after you inspect and sign off on completed work. Sign-off is not
+              part of this demo.
             </span>
           </div>
         </div>
@@ -693,7 +716,10 @@ export function MilestoneDepositCheckoutScreen({
     setProcessing(false);
 
     if (res.ok) {
-      setStatusMessage({ type: "success", text: res.message });
+      setStatusMessage({
+        type: "success",
+        text: "Payment submitted in Paystack TEST mode. Confirmation is pending server verification.",
+      });
       router.push("/jobs");
     } else {
       setStatusMessage({ type: "error", text: res.message });
@@ -719,11 +745,15 @@ export function MilestoneDepositCheckoutScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Fund Milestone 1 Escrow Deposit
+          Fund Milestone 1 Deposit
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Paystack TEST Mode · Escrow deposit of {depositFormatted} for Job #{quote.requestId}
+          Simulated transaction of {depositFormatted} for Job #{quote.requestId}
         </p>
+        <div className="qt-test-strip">
+          <TestModeBadge />
+          <DemoDataNote />
+        </div>
       </header>
 
       {statusMessage && (
@@ -748,20 +778,21 @@ export function MilestoneDepositCheckoutScreen({
               <div>
                 <strong>Paystack TEST Mode Card / Bank Transfer</strong>
                 <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-                  Zero live bank charges. Test tokens automatically verified.
+                  Test tokens only in this demo. No real charges and no confirmation yet.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Escrow Terms Banner */}
+          {/* Honest terms banner */}
           <div className="qt-alert qt-alert-info">
             <ShieldCheck size={24} />
             <div>
-              <strong>Funds Held in Neutral SabiWork Escrow</strong>
+              <strong>Authorization Only — Demo Checkout</strong>
               <p>
-                The artisan does not receive these funds directly until work milestone 1 has been
-                validated. You can raise a dispute at any point under SabiWork SafeTrade.
+                This demo only simulates a Paystack TEST mode card authorization. No money
+                moves and no funds are kept anywhere. Confirmation is pending server
+                verification, and a dispute process is not part of this prototype.
               </p>
             </div>
           </div>

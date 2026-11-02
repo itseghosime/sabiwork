@@ -22,6 +22,22 @@ import {
 import "./payments.css";
 
 /* ==========================================================================
+   Demo-mode disclosure labels for George's payment screens (S24, S25).
+   AGENTS.md honesty rule: never claim escrow or protection the demo flow
+   does not provide. Payments are Paystack TEST mode simulations only.
+   ========================================================================== */
+
+function TestModeBadge() {
+  return <span className="py-test-badge">Paystack TEST Mode</span>;
+}
+
+function DemoDataNote() {
+  return (
+    <span className="py-demo-note">Demo data only, no real money moves.</span>
+  );
+}
+
+/* ==========================================================================
    S22: Payment Verification & Status Check Screen
    ========================================================================== */
 
@@ -343,7 +359,13 @@ export function PaymentRecoveryScreen({
     setRecovering(false);
 
     if (res.ok) {
-      setStatusMessage({ type: "success", text: res.message });
+      setStatusMessage({
+        type: "success",
+        text: `Payment submitted in Paystack TEST mode via ${selectedMethod.replace(
+          "_",
+          " ",
+        )}. Confirmation is pending server verification.`,
+      });
       router.push(`/payments/${receipt.paymentRef}/receipt`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
@@ -374,6 +396,10 @@ export function PaymentRecoveryScreen({
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
           Resolve failed transaction for Job #{receipt.jobId} (₦{(receipt.amountKobo / 100).toLocaleString()})
         </p>
+        <div className="py-test-strip">
+          <TestModeBadge />
+          <DemoDataNote />
+        </div>
       </header>
 
       {statusMessage && (
@@ -486,7 +512,10 @@ export function MilestoneBalanceCheckoutScreen({
     setSubmitting(false);
 
     if (res.ok) {
-      setStatusMessage({ type: "success", text: res.message });
+      setStatusMessage({
+        type: "success",
+        text: "Milestone 2 balance payment submitted in Paystack TEST mode. Confirmation is pending server verification. No sign-off or payout happens in this demo.",
+      });
       router.push(`/jobs/${receipt.jobId}/review`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
@@ -517,6 +546,10 @@ export function MilestoneBalanceCheckoutScreen({
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
           Final payment of {balanceFormatted} for #{receipt.jobId} completed by {receipt.artisanName}
         </p>
+        <div className="py-test-strip">
+          <TestModeBadge />
+          <DemoDataNote />
+        </div>
       </header>
 
       {statusMessage && (
@@ -532,11 +565,12 @@ export function MilestoneBalanceCheckoutScreen({
       )}
 
       <section className="py-card">
-        <h2 className="py-card-title">Completion Sign-off & Release Authorization</h2>
+        <h2 className="py-card-title">Completion Balance Confirmation (Demo)</h2>
         <p style={{ margin: 0, color: "#334155", lineHeight: 1.5 }}>
-          By funding this final milestone balance, you confirm that you have physically inspected
-          the repair works completed by {receipt.artisanName} and authorize full escrow release to
-          the artisan.
+          In this demo, submitting the final milestone balance confirms that you have inspected
+          the repair works completed by {receipt.artisanName}. The demo does not perform job
+          sign-off, fund transfer or artisan payout; confirmation is pending server
+          verification.
         </p>
         <div
           style={{
@@ -554,7 +588,8 @@ export function MilestoneBalanceCheckoutScreen({
               Milestone 2 Balance (50%)
             </span>
             <div style={{ fontSize: "11px", color: "#166534" }}>
-              Milestone 1 Deposit (₦{(receipt.amountKobo / 100).toLocaleString()}) already fulfilled.
+              Milestone 1 Deposit (₦{(receipt.amountKobo / 100).toLocaleString()}) was submitted
+              earlier in this demo.
             </div>
           </div>
           <div
