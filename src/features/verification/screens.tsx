@@ -150,13 +150,11 @@ export function ArtisanSignupScreen() {
         fullName,
         phone,
         email,
-        password,
         trade,
         experienceYears,
         coverageAreas,
         workshopAddress,
         bio,
-        ninNumber,
       };
       const res = registerArtisan(draft);
       setAssignedRef(res.dossierId);
@@ -200,6 +198,9 @@ export function ArtisanSignupScreen() {
 
           {/* Form Body */}
           <div className="sabi-wizard-body">
+            <div role="status" className="mb-5 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+              Demo preview only. Do not enter real passwords or identity numbers. This screen does not create an account or securely submit identity evidence; authentication and upload services are pending.
+            </div>
             {formError && (
               <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
@@ -375,7 +376,7 @@ export function ArtisanSignupScreen() {
                     <div className="sabi-dropzone">
                       <FileText className="w-6 h-6 text-primary mx-auto mb-1" />
                       <span className="text-xs text-secondary block font-medium">
-                        Upload NABTEB, City & Guilds, or Union Card (PDF/PNG)
+                        Demo preview only. Secure document upload is pending.
                       </span>
                     </div>
                   </div>
@@ -395,7 +396,7 @@ export function ArtisanSignupScreen() {
                 <div className="p-4 rounded-lg bg-blue-50 border border-blue-200 text-blue-900 text-xs flex items-start gap-3">
                   <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Edo State Physical Inspection Notice:</span> SabiWork verification officers may visit your declared workshop address on Boundary Road / Airport Road to confirm your tooling and operations before badge activation.
+                    <span className="font-bold">Demo preview:</span> Physical inspection scheduling is not connected. A live verification process would need to explain any inspection before collecting an address.
                   </div>
                 </div>
               </div>
@@ -438,14 +439,14 @@ export function ArtisanSignupScreen() {
                   </div>
                   <div className="flex justify-between pb-1">
                     <span className="text-secondary font-medium">NIN Reference</span>
-                    <span className="font-mono text-on-surface">{ninNumber || "Provided"}</span>
+                    <span className="font-mono text-on-surface">Demo entry (not submitted)</span>
                   </div>
                 </div>
 
                 <div className="p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Transparent Disclosure:</span> This submission enters the Desk Review Queue (S42). While pending review, you can access your artisan dashboard to practice quoting and check job requests in preview mode.
+                    <span className="font-bold">Demo disclosure:</span> Continue adds a temporary mock dossier for screen preview only. No account, secure submission, dashboard access, or persistence is created.
                   </div>
                 </div>
               </div>
@@ -459,9 +460,9 @@ export function ArtisanSignupScreen() {
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-on-surface">Application Submitted to Desk Queue</h2>
+                  <h2 className="text-2xl font-bold text-on-surface">Demo application preview complete</h2>
                   <p className="text-secondary text-sm max-w-md mx-auto mt-2">
-                    Your artisan profile has been registered and assigned to the Edo State Verification Officer.
+                    A temporary mock dossier was added to this browser session for preview. It has not been sent to a verification officer.
                   </p>
                 </div>
 
@@ -474,15 +475,15 @@ export function ArtisanSignupScreen() {
                   <div className="font-bold text-sm">Next Steps for Verification:</div>
                   <div className="flex items-start gap-2">
                     <span className="font-bold">1.</span>
-                    <span>Desk review will match your NIN against the NIMC identity gateway within 24 hours.</span>
+                    <span>Identity checks are not connected in this demo; do not provide a real NIN.</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="font-bold">2.</span>
-                    <span>A field officer may call your phone to verify your workshop address on {workshopAddress}.</span>
+                    <span>Workshop checks and applicant contact are not connected in this demo.</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="font-bold">3.</span>
-                    <span>Upon approval, the SabiWork Pro Badge will be activated on your public profile.</span>
+                    <span>Badge decisions and public profile updates are not connected in this demo.</span>
                   </div>
                 </div>
 
@@ -580,22 +581,32 @@ export function AdminVerificationQueueScreen() {
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                 Screen S42 • Desk Operations
               </span>
-              <span className="sabi-status-pill approved">Edo State Desk Active</span>
+              <span className="sabi-status-pill approved">Demo queue</span>
             </div>
             <h1 className="text-2xl font-bold text-on-surface mt-1">Artisan Verification Queue</h1>
             <p className="text-sm text-secondary">
-              Review incoming identity proofs, NABTEB credentials, and workshop evidence for Benin City artisans.
+              Fictional sample dossiers for the verification workflow preview. No identity checks or admin access controls are connected.
             </p>
           </div>
 
           <button
             type="button"
             onClick={() => {
-              alert("Audit log exported in CSV format for Edo Ministry records.");
+              const rows = [
+                ["Dossier", "Applicant", "Trade", "Location", "Status", "Submitted"],
+                ...filteredDossiers.map((item) => [item.id, item.fullName, item.trade, item.location, item.status, item.submittedAt]),
+              ];
+              const csv = rows.map((row) => row.map((value) => `"${String(value).replace(/"/g, '""')}"`).join(",")).join("\r\n");
+              const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = "sabiwork-demo-verification-queue.csv";
+              link.click();
+              URL.revokeObjectURL(url);
             }}
             className="sabi-btn-secondary"
           >
-            <Download className="w-4 h-4" /> Export Audit Log (CSV)
+            <Download className="w-4 h-4" /> Download demo queue CSV
           </button>
         </div>
 
@@ -607,9 +618,9 @@ export function AdminVerificationQueueScreen() {
             <div className="sabi-metric-sub">Requires desk officer examination</div>
           </div>
           <div className="sabi-metric-card">
-            <span className="text-xs font-semibold text-secondary uppercase">Pro Badges Issued</span>
+            <span className="text-xs font-semibold text-secondary uppercase">Demo approvals</span>
             <div className="sabi-metric-val text-emerald-600">{metrics.approved}</div>
-            <div className="sabi-metric-sub">Active verified artisans in Benin City</div>
+            <div className="sabi-metric-sub">Mock status only; no verification completed</div>
           </div>
           <div className="sabi-metric-card">
             <span className="text-xs font-semibold text-secondary uppercase">Determinations Rejected</span>
@@ -619,7 +630,7 @@ export function AdminVerificationQueueScreen() {
           <div className="sabi-metric-card">
             <span className="text-xs font-semibold text-secondary uppercase">Average SLA Turnaround</span>
             <div className="sabi-metric-val text-primary">{metrics.averageTurnaroundHours} hrs</div>
-            <div className="sabi-metric-sub">Within Edo State 24h compliance target</div>
+            <div className="sabi-metric-sub">Illustrative demo value; not a live service measure</div>
           </div>
         </div>
 
@@ -768,7 +779,7 @@ export function AdminVerificationQueueScreen() {
 // S43: Admin Dossier Verification & Review Screen
 export function AdminDossierReviewScreen({ id }: { id: string }) {
   const [dossier, setDossier] = useState<VerificationDossier | undefined>(() =>
-    getVerificationDossier(id) || getVerificationDossiers("pending")[0]
+    getVerificationDossier(id)
   );
   const [isApproveOpen, setIsApproveOpen] = useState(false);
   const [isRejectOpen, setIsRejectOpen] = useState(false);
@@ -800,11 +811,11 @@ export function AdminDossierReviewScreen({ id }: { id: string }) {
   };
 
   const handleApprove = () => {
-    const res = approveDossier(dossier.id, officerNote || "Verified all credentials against Edo State database.");
+    const res = approveDossier(dossier.id, officerNote || "Demo review decision.");
     if (res.success && res.dossier) {
       setDossier(res.dossier);
       setIsApproveOpen(false);
-      setMessage({ type: "success", text: `SabiWork Pro Badge successfully issued to ${dossier.fullName}!` });
+      setMessage({ type: "success", text: `Demo only: approval recorded for ${dossier.fullName}. No official status or badge was issued.` });
     }
   };
 
@@ -817,13 +828,16 @@ export function AdminDossierReviewScreen({ id }: { id: string }) {
     if (res.success && res.dossier) {
       setDossier(res.dossier);
       setIsRejectOpen(false);
-      setMessage({ type: "error", text: `Dossier ${dossier.id} has been rejected and applicant notified.` });
+      setMessage({ type: "error", text: `Demo only: dossier ${dossier.id} marked rejected. No applicant notification was sent.` });
     }
   };
 
   return (
     <WorkspaceShell role="admin">
       <div className="space-y-6">
+        <div role="note" className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          Demo review only. This route has no authentication or admin access enforcement; decisions change temporary mock data only.
+        </div>
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs text-secondary">
           <Link href="/admin/verification" className="hover:text-primary">
@@ -886,7 +900,7 @@ export function AdminDossierReviewScreen({ id }: { id: string }) {
                   onClick={() => setIsApproveOpen(true)}
                   className="sabi-btn-primary"
                 >
-                  <Award className="w-4 h-4" /> Issue Pro Badge
+                  <Award className="w-4 h-4" /> Simulate approval
                 </button>
               )}
               {dossier.status !== "rejected" && (
@@ -1026,17 +1040,17 @@ export function AdminDossierReviewScreen({ id }: { id: string }) {
           <div className="sabi-modal-overlay">
             <div className="sabi-modal">
               <div className="flex items-center justify-between pb-3 border-b">
-                <h3 className="font-bold text-base text-on-surface">Confirm Pro Badge Issuance</h3>
+                <h3 className="font-bold text-base text-on-surface">Simulate demo approval</h3>
                 <button type="button" onClick={() => setIsApproveOpen(false)}>
                   <X className="w-5 h-5 text-secondary" />
                 </button>
               </div>
               <div className="py-4 space-y-3 text-sm text-secondary">
                 <p>
-                  You are about to issue the official SabiWork Pro Badge to <strong className="text-on-surface">{dossier.fullName}</strong>.
+                  This changes mock data in this browser session only. No official verification status or badge will be issued for <strong className="text-on-surface">{dossier.fullName}</strong>.
                 </p>
                 <div className="sabi-input-group">
-                  <label htmlFor="officer-notes">Officer Inspection Notes (Saved to Audit Log)</label>
+                  <label htmlFor="officer-notes">Demo review notes (in-memory only)</label>
                   <textarea
                     id="officer-notes"
                     rows={3}
@@ -1051,7 +1065,7 @@ export function AdminDossierReviewScreen({ id }: { id: string }) {
                   Cancel
                 </button>
                 <button type="button" onClick={handleApprove} className="sabi-btn-primary">
-                  <Award className="w-4 h-4" /> Confirm & Issue Badge
+                  <Award className="w-4 h-4" /> Save demo decision
                 </button>
               </div>
             </div>
