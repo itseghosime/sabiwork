@@ -4,9 +4,8 @@ import Link from "next/link";
 import { FormEvent, useCallback, useMemo, useState } from "react";
 import { Icon } from "@/components/icon";
 import {
-  areas,
   formatNaira,
-  type Area,
+  type Artisan,
   type CategoryId,
 } from "@/features/search/data";
 import { searchArtisans, type SearchFilters } from "@/features/search/service";
@@ -84,10 +83,10 @@ function ErrorState({ message, onRetry }: { message: string; onRetry: () => void
       <h3>We could not load this page</h3>
       <p>{message}</p>
       <div className="cb-inline-actions">
-        <button type="button" className="button button-outline" onClick={onRetry}>
+        <button type="button" className="button button-primary" onClick={onRetry}>
           <Icon name="refresh" size={16} /> Try again
         </button>
-        <Link className="button button-subtle" href="/support">
+        <Link className="button button-primary" href="/support">
           Get help
         </Link>
       </div>
@@ -176,7 +175,7 @@ export function CustomerDashboardScreen({ displayName }: { displayName: string }
           </p>
         </div>
         <div className="cb-actions">
-          <Link className="button button-outline" href="/explore">
+          <Link className="button button-primary" href="/explore">
             <Icon name="compass" size={17} /> Explore services
           </Link>
           <Link className="button button-primary" href="/requests/new">
@@ -307,13 +306,13 @@ export function CustomerDashboardScreen({ displayName }: { displayName: string }
                     Open booking
                   </Link>
                   <Link
-                    className="button button-outline"
+                    className="button button-primary"
                     href={`/jobs/${currentBooking.id}/progress`}
                   >
                     Track progress
                   </Link>
                   <Link
-                    className="button button-subtle"
+                    className="button button-primary"
                     href={`/jobs/${currentBooking.id}/signoff`}
                   >
                     Review &amp; sign off
@@ -331,7 +330,7 @@ export function CustomerDashboardScreen({ displayName }: { displayName: string }
                   trades or post a new request to begin collecting quotes.
                 </p>
                 <div className="cb-inline-actions">
-                  <Link className="button button-outline" href="/explore">
+                  <Link className="button button-primary" href="/explore">
                     Explore services
                   </Link>
                   <Link className="button button-primary" href="/requests/new">
@@ -440,7 +439,7 @@ export function CustomerDashboardScreen({ displayName }: { displayName: string }
               Browse booking answers or send a message. Support messages are not
               delivered to a live inbox yet.
             </p>
-            <Link className="button button-outline" href="/support">
+            <Link className="button button-primary" href="/support">
               <Icon name="lifeBuoy" size={16} /> Visit support
             </Link>
           </div>
@@ -499,27 +498,43 @@ function matchTrade(value: string | undefined): CategoryId | "" {
   return (match?.id as CategoryId | undefined) ?? "";
 }
 
-export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: string }) {
+export function ExploreServicesScreen({
+  initialTrade = "",
+  initialArtisans,
+  isPresentationData = false,
+}: {
+  initialTrade?: string;
+  initialArtisans: readonly Artisan[];
+  isPresentationData?: boolean;
+}) {
   const [query, setQuery] = useState("");
   const [trade, setTrade] = useState<CategoryId | "">(matchTrade(initialTrade));
-  const [area, setArea] = useState<Area | "">("");
+  const [area, setArea] = useState("");
   const [sort, setSort] = useState<SearchFilters["sort"]>("recommended");
   const [page, setPage] = useState(1);
-
-  const filters: SearchFilters = {
-    q: query,
-    category: trade,
-    area,
-    rating: 0,
-    sort,
-    page,
-    view: "grid",
-  };
+  const artisanAreas = useMemo(
+    () =>
+      Array.from(
+        new Set(initialArtisans.flatMap((artisan) => artisan.area.split(", "))),
+      ).sort((a, b) => a.localeCompare(b, "en-NG")),
+    [initialArtisans],
+  );
 
   const result = useMemo(
-    () => searchArtisans(filters),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [query, trade, area, sort, page],
+    () =>
+      searchArtisans(
+        {
+          q: query,
+          category: trade,
+          area,
+          rating: 0,
+          sort,
+          page,
+          view: "grid",
+        },
+        initialArtisans,
+      ),
+    [query, trade, area, sort, page, initialArtisans],
   );
 
   const activeTrade = trade ? tradesById.get(trade) : undefined;
@@ -539,12 +554,12 @@ export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: st
           </p>
           <h1>Find the right trade for the job</h1>
           <p>
-            Browse trades and sample artisan profiles, then post a request so
-            artisans can send you itemised quotes.
+            Browse listed artisan work profiles, compare service areas and rate
+            guidance, then request an itemised quote.
           </p>
         </div>
         <div className="cb-actions">
-          <Link className="button button-outline" href="/categories">
+          <Link className="button button-primary" href="/categories">
             Full directory
           </Link>
           <Link className="button button-primary" href="/requests/new">
@@ -560,7 +575,7 @@ export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: st
             type="search"
             value={query}
             placeholder="Search a trade, service or artisan (e.g. plumber, wiring)"
-            aria-label="Search trades and sample artisans"
+            aria-label="Search trades and artisans"
             onChange={(event) => update(() => setQuery(event.target.value))}
           />
           {query ? (
@@ -590,12 +605,12 @@ export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: st
               value={area}
               aria-label="Filter by area"
               onChange={(event) =>
-                update(() => setArea(event.target.value as Area | ""))
+                update(() => setArea(event.target.value))
               }
               style={{ border: 0, padding: 0, minHeight: 0, background: "transparent" }}
             >
               <option value="">All areas</option>
-              {areas.map((item) => (
+              {artisanAreas.map((item) => (
                 <option key={item} value={item}>
                   {item}
                 </option>
@@ -656,7 +671,7 @@ export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: st
 
       <div className="cb-result-head">
         <h2>
-          {activeTrade ? `${activeTrade.short} profiles` : "Sample artisan profiles"}
+          {activeTrade ? `${activeTrade.short} profiles` : "Artisan work profiles"}
         </h2>
         <p>
           {result.total} {result.total === 1 ? "profile" : "profiles"} ·{" "}
@@ -667,9 +682,9 @@ export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: st
       <div className="cb-disclosure">
         <Icon name="alertCircle" size={17} />
         <span>
-          These directory profiles are fictional sample records used to preview
-          discovery. Ratings are not persisted reviews and profiles are not
-          verified artisans.
+          {isPresentationData
+            ? "Presentation sample data: these fictional seeded profiles are not real artisans. Do not contact them or rely on their credentials."
+            : "Profiles come from listed Neon work profiles. Ratings reflect recorded reviews; an unrated profile has no reviews yet. A listed or reviewed profile is not a guarantee of work."}
         </span>
       </div>
 
@@ -678,15 +693,20 @@ export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: st
           <span className="cb-empty-icon">
             <Icon name="search" size={22} />
           </span>
-          <h3>No profiles match those filters</h3>
+          <h3>
+            {initialArtisans.length
+              ? "No profiles match those filters"
+              : "No listed artisan profiles yet"}
+          </h3>
           <p>
-            Try a different trade or area, or post a request and let artisans
-            come to you.
+            {initialArtisans.length
+              ? "Try a different trade or area, or post a request and let artisans come to you."
+              : "Listed work profiles will appear here when artisans publish them."}
           </p>
           <div className="cb-inline-actions">
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               onClick={() =>
                 update(() => {
                   setQuery("");
@@ -716,26 +736,37 @@ export function ExploreServicesScreen({ initialTrade = "" }: { initialTrade?: st
                 </div>
               </div>
               <div className="cb-artisan-meta">
-                <span className="cb-rating">
-                  <Icon name="star" size={13} /> {artisan.rating.toFixed(1)}
-                </span>
-                <span>{artisan.reviewCount} sample reviews</span>
+                {artisan.reviewCount > 0 ? (
+                  <>
+                    <span className="cb-rating">
+                      <Icon name="star" size={13} /> {artisan.rating.toFixed(1)}
+                    </span>
+                    <span>
+                      {artisan.reviewCount}{" "}
+                      {artisan.reviewCount === 1 ? "review" : "reviews"}
+                    </span>
+                  </>
+                ) : (
+                  <span className="cb-rating">No reviews yet</span>
+                )}
                 <span>
                   <Icon name="pin" size={13} /> {artisan.area}
                 </span>
               </div>
               <div className="cb-artisan-foot">
                 <span className="cb-artisan-price">
-                  <span>Typical starting labour</span>
-                  <strong>{formatNaira(artisan.startingPriceKobo)}</strong>
+                  <span>Rate guidance</span>
+                  <strong>
+                    {artisan.startingPriceKobo > 0
+                      ? formatNaira(artisan.startingPriceKobo)
+                      : "Request a quote"}
+                  </strong>
                 </span>
                 <Link
-                  className="button button-subtle"
-                  href={`/requests/new?category=${encodeURIComponent(
-                    tradeRequestLabels[artisan.category],
-                  )}`}
+                  className="button button-primary"
+                  href={`/explore/${artisan.id}`}
                 >
-                  Request this trade
+                  View profile
                 </Link>
               </div>
             </article>
@@ -904,7 +935,7 @@ export function MyRequestsScreen() {
             ) : (
               <button
                 type="button"
-                className="button button-outline"
+                className="button button-primary"
                 onClick={() => {
                   setQuery("");
                   setTab("all");
@@ -949,7 +980,7 @@ export function MyRequestsScreen() {
                 </span>
                 <div className="cb-actions">
                   <Link
-                    className="button button-outline"
+                    className="button button-primary"
                     href={`/requests/${request.id}`}
                   >
                     View request
@@ -1001,7 +1032,7 @@ export function ReviewsHubScreen() {
           </p>
         </div>
         <div className="cb-actions">
-          <Link className="button button-outline" href="/jobs">
+          <Link className="button button-primary" href="/jobs">
             View bookings
           </Link>
         </div>
@@ -1066,7 +1097,7 @@ export function ReviewsHubScreen() {
                     </div>
                     <div className="cb-actions">
                       <Link
-                        className="button button-outline"
+                        className="button button-primary"
                         href={`/jobs/${job.id}`}
                       >
                         View booking
@@ -1100,7 +1131,7 @@ export function ReviewsHubScreen() {
                   comments here.
                 </p>
                 <div className="cb-inline-actions">
-                  <Link className="button button-outline" href="/jobs">
+                  <Link className="button button-primary" href="/jobs">
                     Open my bookings
                   </Link>
                 </div>
@@ -1190,7 +1221,7 @@ export function SupportScreen() {
           </p>
         </div>
         <div className="cb-actions">
-          <Link className="button button-outline" href="/jobs">
+          <Link className="button button-primary" href="/jobs">
             Open my bookings
           </Link>
         </div>
@@ -1255,7 +1286,7 @@ export function SupportScreen() {
               <div className="cb-inline-actions" style={{ justifyContent: "flex-start" }}>
                 <button
                   type="button"
-                  className="button button-outline"
+                  className="button button-primary"
                   onClick={() => setResult(null)}
                 >
                   Send another message
@@ -1462,7 +1493,7 @@ export function MyBookingsScreen() {
           </p>
         </div>
         <div className="cb-actions">
-          <Link className="button button-outline" href="/explore">
+          <Link className="button button-primary" href="/explore">
             <Icon name="compass" size={17} /> Explore services
           </Link>
           <Link className="button button-primary" href="/requests/new">
@@ -1559,7 +1590,7 @@ export function MyBookingsScreen() {
             trade or post a request to start receiving quotes.
           </p>
           <div className="cb-inline-actions">
-            <Link className="button button-outline" href="/explore">
+            <Link className="button button-primary" href="/explore">
               Explore services
             </Link>
             <Link className="button button-primary" href="/requests/new">
@@ -1577,7 +1608,7 @@ export function MyBookingsScreen() {
           <div className="cb-inline-actions">
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               onClick={() => {
                 setFilter("all");
                 setQuery("");
@@ -1746,12 +1777,12 @@ export function MyBookingsScreen() {
                       </Link>
                     ) : null}
 
-                    <Link className="button button-outline" href={`/jobs/${job.id}`}>
+                    <Link className="button button-primary" href={`/jobs/${job.id}`}>
                       View booking
                     </Link>
                     {job.status === "completed" ? (
                       <Link
-                        className="button button-subtle"
+                        className="button button-primary"
                         href={`/jobs/${job.id}/signoff`}
                       >
                         Sign-off record
@@ -1950,7 +1981,7 @@ export function PaymentsScreen() {
           </p>
         </div>
         <div className="cb-actions">
-          <Link className="button button-outline" href="/jobs">
+          <Link className="button button-primary" href="/jobs">
             <Icon name="briefcase" size={17} /> My bookings
           </Link>
           <Link className="button button-primary" href="/support">
@@ -2103,7 +2134,7 @@ export function PaymentsScreen() {
                 <div className="cb-inline-actions">
                   <button
                     type="button"
-                    className="button button-outline"
+                    className="button button-primary"
                     onClick={() => {
                       setStatus("all");
                       setQuery("");
@@ -2259,13 +2290,13 @@ export function PaymentsScreen() {
 
                 <div className="cb-actions">
                   <Link
-                    className="button button-outline"
+                    className="button button-primary"
                     href={`/jobs/${selected.jobId}/progress`}
                   >
                     <Icon name="trending" size={16} /> View progress
                   </Link>
                   <Link
-                    className="button button-subtle"
+                    className="button button-primary"
                     href={`/payments/${selected.ref}/receipt`}
                   >
                     <Icon name="receipt" size={16} /> Open receipt

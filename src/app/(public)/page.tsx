@@ -51,7 +51,7 @@ export default function HomePage() {
             </Link>
             <Link
               href={artisan.href}
-              className="button button-dark landing-choice"
+              className="button button-subtle landing-choice"
             >
               <span className="choice-icon">
                 <Icon name={artisan.icon} size={18} />
@@ -159,9 +159,7 @@ export default function HomePage() {
                 </ol>
                 <Link
                   href={path.href}
-                  className={`button path-cta ${
-                    path.role === "customer" ? "button-dark" : "button-primary"
-                  }`}
+                  className="button button-primary path-cta"
                 >
                   {path.cta}
                   <Icon name="arrow" size={18} />
@@ -179,7 +177,7 @@ export default function HomePage() {
       </section>
 
       <section
-        className="section container reveal"
+        className="section container reveal landing-categories"
         aria-labelledby="trades-heading"
       >
         <div className="section-heading">
@@ -198,7 +196,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container section reveal">
+      <section className="container section reveal landing-community">
         <div className="community-panel">
           <div className="community-photo">
             <Portrait index={3} name="Sunday Alabi" />
@@ -224,7 +222,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container cta-wrap reveal">
+      <section className="container cta-wrap reveal landing-cta">
         <div className="cta-panel">
           <div>
             <p className="eyebrow">GOOD AT WHAT YOU DO?</p>
@@ -234,7 +232,7 @@ export default function HomePage() {
               answer the requests that fit.
             </p>
           </div>
-          <Link href={artisan.href} className="button button-dark">
+          <Link href={artisan.href} className="button button-primary">
             Join as an artisan <Icon name="arrow" size={18} />
           </Link>
         </div>

@@ -105,7 +105,7 @@ export function PaymentHistoryScreen({
                 <div style={{ marginTop: "6px" }}>
                   <Link
                     href={`/payments/${t.id}/receipt`}
-                    className="button button-outline"
+                    className="button button-primary"
                     style={{ minHeight: "34px", fontSize: "12px", padding: "4px 10px" }}
                   >
                     View Sample Receipt (S23)
@@ -237,7 +237,7 @@ export function MyJobsListScreen({
               <div style={{ display: "flex", gap: "8px" }}>
                 <Link
                   href={`/jobs/${j.id}/progress`}
-                  className="button button-outline"
+                  className="button button-primary"
                   style={{ minHeight: "36px", fontSize: "13px" }}
                 >
                   View Sample Progress (S28)
@@ -310,7 +310,7 @@ export function JobProgressDetailScreen({
         <div style={{ display: "flex", gap: "8px" }}>
           <Link
             href={`/artisan/jobs/${job.id}/update`}
-            className="button button-outline"
+            className="button button-primary"
           >
             + Add Progress Update (S29)
           </Link>
@@ -484,7 +484,7 @@ export function ArtisanAddProgressScreen({
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={(e) => handleSubmit(e, true)}
             disabled={saving}
           >
@@ -625,7 +625,7 @@ export function CustomerSignoffScreen({
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={(e) => handleSignoff(e, true)}
             disabled={signingOff}
           >

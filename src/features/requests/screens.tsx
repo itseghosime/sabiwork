@@ -119,7 +119,7 @@ export function AccountSettingsScreen({
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={(e) => handleSave(e, true)}
             disabled={saving}
           >
@@ -494,7 +494,7 @@ export function NewJobRequestScreen() {
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={(e) => handleCreateDraft(e, true)}
             disabled={saving}
           >
@@ -586,7 +586,7 @@ export function JobRequestReviewScreen({
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={() => handleDispatch(true)}
             disabled={submitting}
           >
@@ -807,7 +807,7 @@ export function ArtisanMatchingScreen({
             </p>
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               style={{ marginTop: "10px" }}
               onClick={() => setViewState("received")}
             >
@@ -992,7 +992,7 @@ export function ArtisanMatchingScreen({
               >
                 <Link
                   href={`/artisans/${q.artisanId}`}
-                  className="button button-outline"
+                  className="button button-primary"
                   style={{ minHeight: "38px", fontSize: "13px" }}
                 >
                   View Full Profile (S04)

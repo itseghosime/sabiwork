@@ -1,4 +1,4 @@
-import { eq, sql } from "drizzle-orm";
+import { and, eq, notLike, sql } from "drizzle-orm";
 import { getDb } from "@/lib/server/db";
 import { artisanProfiles, jobReviews, userProfiles } from "@/lib/server/schema";
 
@@ -30,7 +30,13 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     })
     .from(artisanProfiles)
     .innerJoin(userProfiles, eq(userProfiles.user_id, artisanProfiles.user_id))
-    .where(eq(artisanProfiles.user_id, id))
+    .where(
+      and(
+        eq(artisanProfiles.user_id, id),
+        eq(artisanProfiles.is_listed, true),
+        notLike(artisanProfiles.user_id, "seed-artisan-%"),
+      ),
+    )
     .limit(1);
 
   if (!row || row.verification_status === "rejected") {

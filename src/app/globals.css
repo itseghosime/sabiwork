@@ -180,13 +180,6 @@ h3 {
 .button-primary:hover {
   background: #62baf0;
 }
-.button-dark {
-  background: var(--navy);
-  color: white;
-}
-.button-dark:hover {
-  background: #183d6d;
-}
 .button-subtle {
   background: var(--pale);
   border-color: var(--accent-border);
@@ -194,15 +187,6 @@ h3 {
 }
 .button-subtle:hover {
   background: #e0f2fe;
-}
-.button-outline {
-  border-color: var(--border);
-  background: white;
-  color: var(--navy);
-}
-.button-outline:hover {
-  background: var(--pale);
-  border-color: var(--accent-border);
 }
 .text-link {
   display: inline-flex;
@@ -1015,6 +999,11 @@ h3 {
   border: 1px solid var(--border);
   border-radius: 12px;
   background: white;
+  position: sticky;
+  top: 104px;
+  max-height: calc(100dvh - 128px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .filter-panel > summary {
   display: flex;
@@ -2012,6 +2001,11 @@ h3 {
   }
   .results-layout {
     grid-template-columns: 1fr;
+  }
+  .filter-panel {
+    position: static;
+    max-height: none;
+    overflow: visible;
   }
   .filter-fields {
     display: grid;

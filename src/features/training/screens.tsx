@@ -71,7 +71,7 @@ export function TrainingDirectoryScreen() {
             </p>
           </div>
 
-          <Link href="/artisan" className="button button-outline">
+          <Link href="/artisan" className="button button-primary">
             Return to Dashboard
           </Link>
         </div>
@@ -294,7 +294,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
           <AlertCircle className="w-10 h-10 text-red-500 mx-auto mb-2" />
           <h2 className="text-lg font-bold">Training Guide Not Found</h2>
           <p className="text-sm text-secondary mt-1">Module reference {id} could not be located.</p>
-          <Link href="/training" className="button button-outline mt-4">
+          <Link href="/training" className="button button-primary mt-4">
             Return to Training Directory
           </Link>
         </div>
@@ -613,7 +613,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
                 <button
                   type="button"
                   onClick={() => setActiveTab("content")}
-                  className="button button-outline"
+                  className="button button-primary"
                 >
                   View All Lessons ({mod.sections.length}) <ArrowRight className="w-4 h-4 ml-1 inline" />
                 </button>
@@ -1368,14 +1368,14 @@ export function CertificateScreen({ id }: { id: string }) {
 
           <Link
             href="/artisan/profile"
-            className="button button-outline w-full sm:w-auto"
+            className="button button-primary w-full sm:w-auto"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-600" /> Open Sample Profile Preview
           </Link>
 
           <Link
             href="/training"
-            className="button button-outline w-full sm:w-auto"
+            className="button button-primary w-full sm:w-auto"
           >
             <ArrowRight className="w-4 h-4" /> Next Recommended Module
           </Link>

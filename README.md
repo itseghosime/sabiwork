@@ -2,7 +2,7 @@
 
 **Skilled hands. Trusted work.** Group Four's artisan marketplace for Nigeria.
 
-Customers discover verified artisans, request work, compare quotes, pay in milestones using Paystack **test mode**, track progress and leave reviews. Artisans manage work, availability and training; admins manage verification and disputes.
+Customers discover listed artisan work profiles, request work, compare quotes, and track progress. Artisan search reads listed profiles and persisted review summaries from Neon; profiles without uploaded portraits show initials. Payment screens remain Paystack **test mode** previews and do not confirm or hold real funds.
 
 ## Team: start your assigned pages
 
@@ -40,7 +40,7 @@ Backend foundations start early; whole-team backend integration is Saturday, 31 
 
 The planned stack follows the guide: Next.js App Router + TypeScript, Neon Postgres and Managed Auth, Resend, Paystack test mode, and Vercel. Use npm with one committed package-lock.json.
 
-Neon Postgres, Managed Auth, and Realtime are provisioned. The current backend implements account roles, artisan profile registration, private customer request drafts, and user-scoped live draft updates. Other profile editing, search, job/quote, payment, verification, training, review, and dispute features still use prototype data or interactions. See [the implementation status](docs/IMPLEMENTATION.md#current-neon-backend-status) for exact boundaries.
+Neon Postgres, Managed Auth, and Realtime are provisioned. The customer `/explore` page and public `/artisans` directory load listed work profiles, rate guidance, coverage areas, and review summaries from Neon. During local development only, these pages and seed profile details can show explicitly disclosed fictional records for presentations; their booking checkout requires Paystack test keys and cannot reserve a real slot or move real money. Production public listings exclude these seed records. Other profile editing, job/quote, payment, verification, training, review, and dispute features may still use prototype data or interactions. See [the implementation status](docs/IMPLEMENTATION.md#current-neon-backend-status) for exact boundaries.
 
 ## Run the shared app
 
@@ -51,7 +51,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. Anonymous discovery pages can run without backend credentials. Account and workspace routes require the server environment variables in `.env.example`; keep their values local and secret. Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before submitting. `npm start` serves a production build.
+Open http://localhost:3000. The home and category pages can render without a database connection; `/explore` and `/artisans` require a configured Neon database. Account and workspace routes require the server environment variables in `.env.example`; keep their values local and secret. Run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` before submitting. `npm start` serves a production build.
 
 For the isolated validation branch only, apply the initial migration and verify Postgres plus Realtime with:
 

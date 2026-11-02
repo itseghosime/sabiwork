@@ -75,7 +75,8 @@ export interface Artisan {
   name: string;
   category: CategoryId;
   skills: readonly CategoryId[];
-  area: Area;
+  /** Free text: artisan coverage areas come from the database. */
+  area: string;
   headline: string;
   bio: string;
   rating: number;

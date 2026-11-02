@@ -59,6 +59,7 @@ Implemented and verified in this branch:
 - Server-checked session, verified-email, and database role guards for customer, artisan, admin, reviews, and training routes. Customer/artisan roles can be selected by a signed-in user; admin cannot be self-assigned.
 - Customer and artisan account profiles, with artisan verification status fixed to `unsubmitted`.
 - Customer-owned request drafts: authenticated list/create API, integer-kobo storage, and a user-scoped sealed Realtime query.
+- `/explore` and `/artisans` read listed work profiles and persisted review summaries from Neon. Production listings exclude seeded fixture IDs; local development may opt into clearly disclosed seed profiles and seed detail pages for presentations. Sample-profile booking requires Paystack test keys and makes no real reservation or payment. Public cards use initials when no real portrait is stored.
 - A transactional, advisory-locked SQL migration runner and an isolated-branch Postgres/Realtime smoke test.
 
 The migration currently defines `user_profiles`, `artisan_profiles`, and `job_requests`. Request, quote, and job APIs are implemented for signed-in marketplace accounts (`customer` or `artisan`), while admin users remain separated from hire flows. Any signed-in non-admin account can create/list requests; a work profile is still required before an account can send quotes. Payment processing, identity document storage/review, admin provisioning, and production Realtime origin setup remain pending. Email addresses are not verified in this prototype.

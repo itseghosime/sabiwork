@@ -60,7 +60,7 @@ export function CategoryDirectory() {
             ))}
           </select>
         </label>
-        <button className="button button-outline" onClick={reset}>
+        <button className="button button-primary" onClick={reset}>
           <Icon name="filters" size={16} />
           Reset
         </button>

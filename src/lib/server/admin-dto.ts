@@ -1,5 +1,9 @@
 import "server-only";
 
+import {
+  maskAccountNumber,
+  type EscrowTransferStatus,
+} from "@/features/payments/transfer";
 import type {
   AuditLog,
   CommissionTier,
@@ -58,6 +62,14 @@ export type EscrowHoldDto = {
   heldSinceIso: string;
   releaseDueIso: string;
   releasedAtIso: string | null;
+  payoutAccountMasked: string | null;
+  payoutAccountName: string | null;
+  payoutBankCode: string | null;
+  recipientReady: boolean;
+  transferStatus: EscrowTransferStatus | null;
+  transferReference: string | null;
+  transferFailureReason: string | null;
+  paidOutAtIso: string | null;
 };
 
 export type TradeTierDto = {
@@ -170,6 +182,14 @@ export function toEscrowHold(row: EscrowHold): EscrowHoldDto {
     heldSinceIso: row.held_since.toISOString(),
     releaseDueIso: row.release_due_at.toISOString(),
     releasedAtIso: row.released_at ? row.released_at.toISOString() : null,
+    payoutAccountMasked: maskAccountNumber(row.payout_account_number),
+    payoutAccountName: row.payout_account_name,
+    payoutBankCode: row.payout_bank_code,
+    recipientReady: Boolean(row.recipient_code && row.payout_account_number),
+    transferStatus: row.transfer_status,
+    transferReference: row.transfer_reference,
+    transferFailureReason: row.transfer_failure_reason,
+    paidOutAtIso: row.paid_out_at ? row.paid_out_at.toISOString() : null,
   };
 }
 

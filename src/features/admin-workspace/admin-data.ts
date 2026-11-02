@@ -11,7 +11,7 @@ import type { IconName } from "@/components/icon";
 export const SAMPLE_NOW_ISO = "2026-11-01T12:00:00Z";
 
 export const SAMPLE_LEDGER_NOTE =
-  "Financial records describe fictional parties. No payment provider is connected in this build.";
+  "Financial records describe fictional parties. Escrow payouts settle through Paystack test mode; dispute rulings do not move funds.";
 
 const naira = new Intl.NumberFormat("en-NG", {
   style: "currency",

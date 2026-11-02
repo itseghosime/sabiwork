@@ -49,7 +49,7 @@
   flex: none;
   min-height: 64px;
   padding: 0 14px;
-  border-bottom: 1px solid #f0f3fa;
+  border-bottom: 1px solid var(--admin-brand-tint-08);
 }
 
 .admin-sidebar-head .brand {
@@ -2483,36 +2483,36 @@ a.ad-cell-strong:hover {
 
 /* ------------------------------ Trade tiers ------------------------------ */
 
-.ad-tier-grid {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.ad-table-tier {
+  min-width: 780px;
 }
 
-.ad-tier-card {
-  display: grid;
-  gap: 12px;
-  align-content: start;
-  padding: 16px;
-  background: var(--admin-brand-tint-05);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+.ad-table-tier td {
+  vertical-align: top;
 }
 
-.ad-tier-head {
+.ad-tier-cell {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ad-tier-cell-head {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
   gap: 8px;
-  color: var(--primary);
+  flex-wrap: wrap;
 }
 
-.ad-tier-head h3 {
-  margin: 0;
-  font-family: var(--heading);
-  font-size: 15px;
+.ad-tier-input input {
+  width: 84px;
+  flex: none;
+}
+
+.ad-tier-convert {
+  font-size: 12px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--primary);
 }
 
 .ad-tier-badge {
@@ -2526,13 +2526,6 @@ a.ad-cell-strong:hover {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-}
-
-.ad-tier-desc {
-  margin: 0;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--muted);
 }
 
 .ad-tier-min {

@@ -374,7 +374,7 @@ export function SendItemizedQuoteScreen({
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={(e) => handleSubmit(e, true)}
             disabled={saving}
           >
@@ -552,7 +552,7 @@ export function QuoteDetailsAcceptanceScreen({
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={() => handleAccept(true)}
             disabled={accepting}
           >
@@ -815,7 +815,7 @@ export function MilestoneDepositCheckoutScreen({
 
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={() => handleDeposit(true)}
             disabled={processing}
           >

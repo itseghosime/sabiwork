@@ -10,6 +10,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
+import type { EscrowTransferStatus } from "@/features/payments/transfer";
 
 export const appRole = pgEnum("app_role", ["customer", "artisan", "admin"]);
 export const artisanVerificationStatus = pgEnum("artisan_verification_status", [
@@ -56,6 +57,7 @@ export const artisanProfiles = pgTable("artisan_profiles", {
   bio: text("bio").notNull(),
   skills: text("skills").array().notNull().default(sql`ARRAY[]::text[]`),
   rate_guidance_kobo: integer("rate_guidance_kobo"),
+  portrait_index: integer("portrait_index"),
   availability_notes: text("availability_notes"),
   is_listed: boolean("is_listed").notNull().default(true),
   verification_status: artisanVerificationStatus("verification_status")
@@ -221,6 +223,32 @@ export const payments = pgTable(
   (table) => [check("payments_amount_kobo_non_negative", sql`${table.amount_kobo} >= 0`)],
 );
 
+export const bookingDeposits = pgTable(
+  "booking_deposits",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    artisan_id: text("artisan_id")
+      .notNull()
+      .references(() => userProfiles.user_id, { onDelete: "cascade" }),
+    customer_email: text("customer_email").notNull(),
+    amount_kobo: integer("amount_kobo").notNull(),
+    reference: text("reference").notNull().unique(),
+    status: paymentStatus("status").notNull().default("pending"),
+    channel: text("channel").notNull().default("paystack_test"),
+    failure_reason: text("failure_reason"),
+    paid_at: timestamp("paid_at", { withTimezone: true }),
+    created_at: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updated_at: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    check("booking_deposits_amount_kobo_positive", sql`${table.amount_kobo} > 0`),
+  ],
+);
+
 export const disputeStatus = pgEnum("dispute_status", [
   "open",
   "under_review",
@@ -231,6 +259,10 @@ export const disputeStatus = pgEnum("dispute_status", [
 export const disputePriority = pgEnum("dispute_priority", ["urgent", "high", "normal"]);
 export const escrowStatus = pgEnum("escrow_status", ["held", "release_due", "released", "disputed"]);
 export const escrowMilestone = pgEnum("escrow_milestone", ["deposit", "balance"]);
+
+// Kept as text rather than an enum so a new Paystack transfer state can be
+// recorded without an ALTER TYPE, which cannot run inside the migration
+// transaction in scripts/migrate.mjs.
 export const auditSeverity = pgEnum("audit_severity", ["info", "warning", "critical"]);
 export const deskTicketStatus = pgEnum("desk_ticket_status", ["new", "open", "waiting", "resolved"]);
 export const deskChannel = pgEnum("desk_channel", ["email", "chat", "phone"]);
@@ -319,10 +351,28 @@ export const escrowHolds = pgTable(
     held_since: timestamp("held_since", { withTimezone: true }).notNull().defaultNow(),
     release_due_at: timestamp("release_due_at", { withTimezone: true }).notNull(),
     released_at: timestamp("released_at", { withTimezone: true }),
+    artisan_id: text("artisan_id").references(() => userProfiles.user_id, {
+      onDelete: "set null",
+    }),
+    payout_account_number: text("payout_account_number"),
+    payout_bank_code: text("payout_bank_code"),
+    payout_account_name: text("payout_account_name"),
+    recipient_code: text("recipient_code"),
+    transfer_code: text("transfer_code"),
+    transfer_reference: text("transfer_reference"),
+    transfer_status: text("transfer_status").$type<EscrowTransferStatus>(),
+    transfer_failure_reason: text("transfer_failure_reason"),
+    paid_out_at: timestamp("paid_out_at", { withTimezone: true }),
     created_at: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updated_at: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [check("escrow_amount_kobo_non_negative", sql`${table.amount_kobo} >= 0`)],
+  (table) => [
+    check("escrow_amount_kobo_non_negative", sql`${table.amount_kobo} >= 0`),
+    check(
+      "escrow_holds_transfer_status_check",
+      sql`${table.transfer_status} IS NULL OR ${table.transfer_status} IN ('pending', 'otp', 'success', 'failed', 'reversed', 'abandoned')`,
+    ),
+  ],
 );
 
 export const commissionTiers = pgTable("commission_tiers", {

@@ -171,7 +171,7 @@ export function RequestComposerScreen() {
         </label>
         {error ? <p className="hire-error" role="alert">{error}</p> : null}
         <div className="hire-actions">
-          <button className="button button-outline" type="submit" disabled={saving !== null}>
+          <button className="button button-primary" type="submit" disabled={saving !== null}>
             {saving === "draft" ? "Saving draft..." : "Save draft"}
           </button>
           <button className="button button-primary" type="button" disabled={saving !== null} onClick={(event) => void submit(event, "submitted")}>
@@ -216,7 +216,7 @@ export function RequestDetailScreen({ requestId }: { requestId: string }) {
       </article>
       <div className="hire-actions">
         <Link className="button button-primary" href={`/requests/${item.id}/quotes`}>View incoming quotes</Link>
-        <Link className="button button-outline" href="/requests/new">Create another request</Link>
+        <Link className="button button-primary" href="/requests/new">Create another request</Link>
       </div>
     </PageFrame>
   );
@@ -341,7 +341,7 @@ export function QuoteDetailScreen({ quoteId, requestId }: { quoteId: string; req
           <button type="button" className="button button-primary" disabled={submitting} onClick={() => void decide("accept")}>
             Accept quote &amp; start engagement
           </button>
-          <button type="button" className="button button-outline" disabled={submitting} onClick={() => void decide("decline")}>
+          <button type="button" className="button button-primary" disabled={submitting} onClick={() => void decide("decline")}>
             Decline quote
           </button>
         </div>
@@ -362,7 +362,7 @@ export function CheckoutNoticeScreen({ quoteId, requestId }: { quoteId: string; 
       </article>
       <div className="hire-actions">
         <Link className="button button-primary" href={`/quotes/${quoteId}`}>Back to quote</Link>
-        <Link className="button button-outline" href="/jobs">View active jobs</Link>
+        <Link className="button button-primary" href="/jobs">View active jobs</Link>
       </div>
     </PageFrame>
   );
@@ -438,7 +438,7 @@ export function JobsListScreen() {
         <div className="hire-header-top">
           <h1>My Bookings &amp; Engagements</h1>
           <div className="hire-actions">
-            <Link className="button button-outline" href="/categories">
+            <Link className="button button-primary" href="/categories">
               Explore services
             </Link>
             <Link className="button button-primary" href="/requests/new">
@@ -537,7 +537,7 @@ export function JobsListScreen() {
           </p>
           {jobs.length === 0 ? (
             <div className="hire-actions" style={{ marginTop: "8px" }}>
-              <Link className="button button-outline" href="/categories">
+              <Link className="button button-primary" href="/categories">
                 Explore services
               </Link>
               <Link className="button button-primary" href="/requests/new">
@@ -545,7 +545,7 @@ export function JobsListScreen() {
               </Link>
             </div>
           ) : (
-            <button className="button button-subtle" type="button" onClick={() => { setSearch(""); setFilter("all"); }}>
+            <button className="button button-primary" type="button" onClick={() => { setSearch(""); setFilter("all"); }}>
               Reset filters
             </button>
           )}
@@ -618,11 +618,11 @@ export function JobsListScreen() {
                   <Link className="button button-primary" href={`/jobs/${job.id}`}>
                     View details →
                   </Link>
-                  <Link className="button button-outline" href={`/jobs/${job.id}/progress`}>
+                  <Link className="button button-primary" href={`/jobs/${job.id}/progress`}>
                     Track progress
                   </Link>
                   {job.status === "in_progress" || job.status === "accepted" ? (
-                    <Link className="button button-subtle" href={`/jobs/${job.id}/signoff`}>
+                    <Link className="button button-primary" href={`/jobs/${job.id}/signoff`}>
                       Review &amp; Sign-off
                     </Link>
                   ) : null}
@@ -634,7 +634,7 @@ export function JobsListScreen() {
                 </div>
 
                 <div className="hire-actions">
-                  <Link className="button button-subtle" href={`/jobs/${job.id}/dispute`}>
+                  <Link className="button button-primary" href={`/jobs/${job.id}/dispute`}>
                     Report issue
                   </Link>
                 </div>
@@ -720,7 +720,7 @@ export function JobDetailScreen({ jobId }: { jobId: string }) {
         <div className="hire-header-top">
           <h1>{job.title}</h1>
           <div className="hire-actions">
-            <Link className="button button-outline" href={`/jobs/${job.id}/dispute`}>
+            <Link className="button button-primary" href={`/jobs/${job.id}/dispute`}>
               Report dispute / Help
             </Link>
             {job.status === "completed" ? (
@@ -948,7 +948,7 @@ export function JobProgressScreen({ jobId }: { jobId: string }) {
   return (
     <PageFrame title="Job Progress Updates" subtitle="Follow milestone evidence and communicate directly with your artisan.">
       <div className="hire-actions" style={{ marginBottom: "16px" }}>
-        <Link className="button button-outline" href={`/jobs/${jobId}`}>
+        <Link className="button button-primary" href={`/jobs/${jobId}`}>
           ← Back to job detail
         </Link>
       </div>
@@ -1105,11 +1105,11 @@ export function JobSignoffScreen({ jobId }: { jobId: string }) {
         {error ? <p className="hire-error" role="alert">{error}</p> : null}
 
         <div className="hire-actions" style={{ justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid #f1f5f9" }}>
-          <Link className="button button-subtle" href={`/jobs/${jobId}/dispute`}>
+          <Link className="button button-primary" href={`/jobs/${jobId}/dispute`}>
             Unsatisfied? Report an issue
           </Link>
           <div className="hire-actions">
-            <Link className="button button-outline" href={`/jobs/${jobId}`}>
+            <Link className="button button-primary" href={`/jobs/${jobId}`}>
               Back to job
             </Link>
             <button
@@ -1265,7 +1265,7 @@ export function JobReviewScreen({ jobId }: { jobId: string }) {
           {error ? <p className="hire-error" role="alert">{error}</p> : null}
 
           <div className="hire-actions" style={{ justifyContent: "flex-end" }}>
-            <Link className="button button-outline" href={`/jobs/${jobId}`}>
+            <Link className="button button-primary" href={`/jobs/${jobId}`}>
               Cancel
             </Link>
             <button className="button button-primary" type="submit" disabled={submitting}>
@@ -1396,7 +1396,7 @@ export function JobDisputeScreen({ jobId }: { jobId: string }) {
         {error ? <p className="hire-error" role="alert">{error}</p> : null}
 
         <div className="hire-actions" style={{ justifyContent: "flex-end" }}>
-          <Link className="button button-outline" href={`/jobs/${jobId}`}>
+          <Link className="button button-primary" href={`/jobs/${jobId}`}>
             Cancel
           </Link>
           <button className="button button-primary" type="submit" disabled={submitting}>
@@ -1468,7 +1468,7 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
         </div>
 
         <div className="hire-actions" style={{ justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid #f1f5f9" }}>
-          <Link className="button button-outline" href={`/jobs/${disputeId}`}>
+          <Link className="button button-primary" href={`/jobs/${disputeId}`}>
             View job timeline
           </Link>
           <a className="button button-primary" href="mailto:support@sabiwork.ng?subject=Dispute%20Inquiry%20Ref%20#DISP-BN-8421">
@@ -1622,7 +1622,7 @@ export function PaymentHistoryListScreen() {
                 <div className="hire-card-foot">
                   <span className="hire-card-meta-item">🕒 Recorded on {formatWat(job.created_at)}</span>
                   <div className="hire-actions">
-                    <Link className="button button-outline" href={`/jobs/${job.id}`}>
+                    <Link className="button button-primary" href={`/jobs/${job.id}`}>
                       View job details
                     </Link>
                   </div>
@@ -1644,7 +1644,7 @@ export function PaymentUnavailableScreen({ reference, title }: { reference: stri
         <p>Live card billing is not enabled. All milestone allocations operate in test mode.</p>
       </article>
       <div className="hire-actions">
-        <Link className="button button-outline" href="/jobs">Back to bookings</Link>
+        <Link className="button button-primary" href="/jobs">Back to bookings</Link>
       </div>
     </PageFrame>
   );
@@ -1771,7 +1771,7 @@ export function AccountSettingsScreen() {
               <div>
                 <strong>Active Artisan Work Profile:</strong> You offer services as <strong>{trade || "Artisan"}</strong>. You can switch to your artisan workspace at any time to receive job requests.
                 <div style={{ marginTop: "8px" }}>
-                  <Link className="button button-outline" href="/artisan">
+                  <Link className="button button-primary" href="/artisan">
                     Open Artisan Workspace →
                   </Link>
                 </div>
@@ -1783,7 +1783,7 @@ export function AccountSettingsScreen() {
               <div>
                 <strong>Offer Services as an Artisan:</strong> Any account can optionally create an artisan work profile without creating a separate login.
                 <div style={{ marginTop: "8px" }}>
-                  <Link className="button button-outline" href="/artisan/profile">
+                  <Link className="button button-primary" href="/artisan/profile">
                     Create Work Profile →
                   </Link>
                 </div>

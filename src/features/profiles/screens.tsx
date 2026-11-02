@@ -117,7 +117,7 @@ export function ArtisanProfileScreen({
             </p>
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               style={{ marginTop: "12px" }}
               onClick={() => setViewState("default")}
             >
@@ -413,7 +413,7 @@ export function ArtisanProfileScreen({
                   </p>
                   <button
                     type="button"
-                    className="button button-outline"
+                    className="button button-primary"
                     style={{ marginTop: "10px", width: "100%" }}
                     onClick={() => {
                       setQuoteSubmitted(false);
@@ -562,7 +562,7 @@ export function PortfolioViewerScreen({
           </div>
           <Link
             href={`/artisans/${artisan.id}`}
-            className="button button-outline"
+            className="button button-primary"
             style={{ minHeight: "36px", padding: "6px 12px", fontSize: "13px" }}
           >
             ← Back to Profile
@@ -596,7 +596,7 @@ export function PortfolioViewerScreen({
                 </p>
                 <button
                   type="button"
-                  className="button button-outline"
+                  className="button button-primary"
                   onClick={() => setViewerState("default")}
                   style={{ marginTop: "12px" }}
                 >
@@ -816,7 +816,7 @@ export function ArtisanProfileEditorScreen({
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={(e) => handleSave(e, true)}
             disabled={saving}
           >
@@ -1177,7 +1177,7 @@ export function ArtisanVerificationScreen() {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <button
                 type="button"
-                className="button button-outline"
+                className="button button-primary"
                 onClick={() => setCurrentStep(1)}
               >
                 ← Back
@@ -1227,7 +1227,7 @@ export function ArtisanVerificationScreen() {
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "12px" }}>
               <button
                 type="button"
-                className="button button-outline"
+                className="button button-primary"
                 onClick={() => setCurrentStep(2)}
               >
                 ← Back
@@ -1280,7 +1280,7 @@ export function ArtisanVerificationScreen() {
             <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
               <button
                 type="button"
-                className="button button-outline"
+                className="button button-primary"
                 onClick={() => setCurrentStep(3)}
               >
                 ← Back
@@ -1288,7 +1288,7 @@ export function ArtisanVerificationScreen() {
               <div style={{ display: "flex", gap: "8px" }}>
                 <button
                   type="button"
-                  className="button button-outline"
+                  className="button button-primary"
                   onClick={() => handleSubmit(true)}
                   disabled={submitting}
                 >

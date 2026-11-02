@@ -285,7 +285,8 @@ export function AdminOverviewScreen() {
 
       <SampleNotice>
         Every figure on this page is aggregated from the Neon admin API. Parties behind the records are
-        fictional, and no payment provider is connected, so settlement values are record-only.
+        fictional. Escrow releases settle through Paystack Transfers, so released values reflect money that
+        actually moved in test mode.
       </SampleNotice>
 
       <section className="ad-kpi-grid" aria-label="Key operational metrics">
@@ -371,8 +372,8 @@ export function AdminOverviewScreen() {
             </ul>
           </div>
           <p className="ad-card-note">
-            Released milestones drop out of this split. No payment provider is connected, so a recorded release
-            does not move money.
+            Released milestones drop out of this split. A release settles through Paystack Transfers, so the
+            split reflects money that has actually left the platform balance.
           </p>
         </SectionCard>
       </div>

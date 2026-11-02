@@ -221,7 +221,7 @@ export function AdminTradesScreen() {
       />
       <SampleNotice>
         Rates and categories below are stored in the Neon database. Edits here change what the hub records;
-        no payment provider is connected, so saved rates do not charge anyone.
+        commission rates are not yet applied to the payout ledger, so saving them does not charge anyone.
       </SampleNotice>
 
       {error ? (
@@ -245,60 +245,71 @@ export function AdminTradesScreen() {
 
       <SectionCard
         title="Tier matrix"
-        description="Commission and payout window per tier. Edit the two fields directly."
+        description="Commission (bps: 100 bps = 1%) and payout window per tier. Edit the two columns directly."
       >
-        <div className="ad-tier-grid">
-          {tiers.map((tier) => (
-            <article key={tier.id} className="ad-tier-card">
-              <div className="ad-tier-head">
-                <div>
-                  <h3>{tier.name}</h3>
-                  <span className="ad-tier-badge">{tier.badge}</span>
-                </div>
-                <Icon name="badge" size={20} />
-              </div>
-              <p className="ad-tier-desc">{tier.description}</p>
-
-              <label className="ad-field">
-                <span>Commission ({formatBps(tier.commissionBps)})</span>
-                <div className="ad-input-row">
-                  <input
-                    type="number"
-                    min={0}
-                    max={5000}
-                    step={25}
-                    value={tier.commissionBps}
-                    onChange={(event) => updateTier(tier.id, { commissionBps: clamp(Number(event.target.value), 0, 5000) })}
-                    aria-label={`${tier.name} commission in basis points`}
-                    disabled={saving}
-                  />
-                  <span className="ad-input-suffix">bps</span>
-                </div>
-              </label>
-
-              <label className="ad-field">
-                <span>Payout window</span>
-                <div className="ad-input-row">
-                  <input
-                    type="number"
-                    min={0}
-                    max={60}
-                    step={1}
-                    value={tier.payoutWindowDays}
-                    onChange={(event) => updateTier(tier.id, { payoutWindowDays: clamp(Number(event.target.value), 0, 60) })}
-                    aria-label={`${tier.name} payout window in days`}
-                    disabled={saving}
-                  />
-                  <span className="ad-input-suffix">days</span>
-                </div>
-              </label>
-
-              <div className="ad-tier-min">
-                <span>{tier.minCompletedJobs}+ jobs</span>
-                <span>{tier.minRating.toFixed(1)}+ rating</span>
-              </div>
-            </article>
-          ))}
+        <div className="ad-table-wrap ad-table-flush">
+          <table className="ad-table ad-table-tier">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Commission</th>
+                <th>Payout window</th>
+                <th>Eligibility</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tiers.map((tier) => (
+                <tr key={tier.id}>
+                  <td>
+                    <div className="ad-tier-cell">
+                      <div className="ad-tier-cell-head">
+                        <span className="ad-cell-strong">{tier.name}</span>
+                        <span className="ad-tier-badge">{tier.badge}</span>
+                      </div>
+                      <span className="ad-cell-muted">{tier.description}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="ad-input-row ad-tier-input">
+                      <input
+                        type="number"
+                        min={0}
+                        max={5000}
+                        step={25}
+                        value={tier.commissionBps}
+                        onChange={(event) => updateTier(tier.id, { commissionBps: clamp(Number(event.target.value), 0, 5000) })}
+                        aria-label={`${tier.name} commission in basis points`}
+                        disabled={saving}
+                      />
+                      <span className="ad-input-suffix">bps</span>
+                      <span className="ad-tier-convert">{formatBps(tier.commissionBps)}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="ad-input-row ad-tier-input">
+                      <input
+                        type="number"
+                        min={0}
+                        max={60}
+                        step={1}
+                        value={tier.payoutWindowDays}
+                        onChange={(event) => updateTier(tier.id, { payoutWindowDays: clamp(Number(event.target.value), 0, 60) })}
+                        aria-label={`${tier.name} payout window in days`}
+                        disabled={saving}
+                      />
+                      <span className="ad-input-suffix">days</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="ad-tier-min">
+                      <span>{tier.minCompletedJobs}+ jobs</span>
+                      <span>{tier.minRating.toFixed(1)}+ rating</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </SectionCard>
 

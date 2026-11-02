@@ -205,7 +205,7 @@ export function NotificationsScreen() {
         <div className="cb-actions">
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             disabled={unread.length === 0}
             onClick={() => markRead(notices.map((notice) => notice.id))}
           >
@@ -247,7 +247,7 @@ export function NotificationsScreen() {
       ) : error ? (
         <div className="cb-error-state">
           <p>{error}</p>
-          <button type="button" className="button button-outline" onClick={retry}>
+          <button type="button" className="button button-primary" onClick={retry}>
             <Icon name="refresh" size={15} />
             Try again
           </button>
@@ -270,7 +270,7 @@ export function NotificationsScreen() {
           ) : (
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               onClick={() => setTab("all")}
             >
               View all notifications

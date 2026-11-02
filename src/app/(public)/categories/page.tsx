@@ -40,7 +40,7 @@ export default function CategoriesPage() {
               Search by the task itself. Try “leak repairs” or “door fittings”.
             </p>
           </div>
-          <Link href="/artisans" className="button button-outline">
+          <Link href="/artisans" className="button button-primary">
             Browse all artisans <Icon name="arrow" size={17} />
           </Link>
         </div>

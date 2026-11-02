@@ -149,11 +149,11 @@ export function ArtisanCard({ artisan }: { artisan: Artisan }) {
           <h3>{artisan.name}</h3>
           {artisan.profileReviewed && (
             <span
-              title="Sample admin-reviewed profile"
+              title="Admin-reviewed profile"
               className="reviewed-icon"
             >
               <Icon name="badge" size={20} />
-              <span className="sr-only">Sample profile reviewed</span>
+              <span className="sr-only">Profile reviewed</span>
             </span>
           )}
         </div>
@@ -166,7 +166,10 @@ export function ArtisanCard({ artisan }: { artisan: Artisan }) {
           <span>
             <Icon name="star" size={15} />{" "}
             <strong>{artisan.rating.toFixed(1)}</strong>{" "}
-            <span>({artisan.reviewCount} sample reviews)</span>
+            <span>
+              ({artisan.reviewCount}{" "}
+              {artisan.reviewCount === 1 ? "review" : "reviews"})
+            </span>
           </span>
         </div>
         <div className="artisan-bottom">
@@ -175,7 +178,7 @@ export function ArtisanCard({ artisan }: { artisan: Artisan }) {
             <strong>{formatNaira(artisan.startingPriceKobo)}</strong>
           </p>
           <Link
-            className="button button-subtle"
+            className="button button-primary"
             href={`/artisans/${artisan.id}`}
           >
             View profile <Icon name="arrow" size={15} />

@@ -1,4 +1,4 @@
-import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
+import { and, desc, eq, ilike, notLike, or, sql } from "drizzle-orm";
 import { getDb } from "@/lib/server/db";
 import { artisanProfiles, jobReviews, userProfiles } from "@/lib/server/schema";
 
@@ -14,7 +14,10 @@ export async function GET(request: Request) {
   const category = asSingle(url.searchParams.get("category"));
   const area = asSingle(url.searchParams.get("area"));
 
-  const filters = [eq(artisanProfiles.is_listed, true)];
+  const filters = [
+    eq(artisanProfiles.is_listed, true),
+    notLike(artisanProfiles.user_id, "seed-artisan-%"),
+  ];
   if (category) {
     filters.push(
       or(

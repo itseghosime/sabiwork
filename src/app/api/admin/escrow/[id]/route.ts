@@ -3,12 +3,18 @@ import { adminActor, recordAudit } from "@/lib/server/audit";
 import { authorizeRole } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
 import { toEscrowHold } from "@/lib/server/admin-dto";
+import { releaseEscrowHold } from "@/lib/server/payouts";
 import { escrowHolds } from "@/lib/server/schema";
 
 export const dynamic = "force-dynamic";
 
 function jsonError(status: number, code: string, message: string) {
   return Response.json({ error: { code, message } }, { status });
+}
+
+async function currentHold(id: string) {
+  const [row] = await getDb().select().from(escrowHolds).where(eq(escrowHolds.id, id)).limit(1);
+  return row ?? null;
 }
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -27,51 +33,82 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     return jsonError(400, "INVALID_JSON", "Request body must be valid JSON.");
   }
 
-  const status =
-    typeof body === "object" && body && "status" in body && typeof (body as { status: unknown }).status === "string"
-      ? (body as { status: string }).status
-      : undefined;
-
-  if (status !== "released") {
-    return jsonError(400, "INVALID_INPUT", "Only a release (status 'released') can be recorded here.");
+  const record = typeof body === "object" && body !== null ? (body as Record<string, unknown>) : {};
+  if (record.action !== "release" && record.status !== "released") {
+    return jsonError(400, "INVALID_INPUT", "Only a release can be requested here.");
   }
 
   try {
-    const db = getDb();
-    const [existing] = await db.select().from(escrowHolds).where(eq(escrowHolds.id, id)).limit(1);
-    if (!existing) return jsonError(404, "NOT_FOUND", "Escrow hold not found.");
+    const result = await releaseEscrowHold(id);
 
-    if (existing.status === "released") {
-      return jsonError(409, "ALREADY_RELEASED", "This milestone has already been released.");
+    switch (result.kind) {
+      case "not_found":
+        return jsonError(404, "NOT_FOUND", "Escrow hold not found.");
+
+      case "needs_payee":
+        return jsonError(409, "NEEDS_PAYEE", result.message);
+
+      case "not_payable":
+        return jsonError(409, "NOT_PAYABLE", result.message);
+
+      case "gateway_error":
+        return jsonError(502, "PAYOUT_FAILED", result.message);
+
+      case "paid": {
+        const hold = await currentHold(id);
+        await recordAudit({
+          actor: adminActor(user),
+          actorRole: "Payout desk",
+          action: "payout.released",
+          target: `Escrow release ${id} · ${result.reference}`,
+          severity: "warning",
+        });
+        return Response.json(
+          {
+            data: {
+              hold: hold ? toEscrowHold(hold) : null,
+              transfer: {
+                state: "paid",
+                reference: result.reference,
+                amountKobo: result.amountKobo,
+                accountName: result.accountName,
+              },
+            },
+          },
+          { headers: { "Cache-Control": "private, no-store" } },
+        );
+      }
+
+      case "otp_required":
+      case "in_flight": {
+        const hold = await currentHold(id);
+        const otpRequired = result.kind === "otp_required";
+        if (otpRequired) {
+          await recordAudit({
+            actor: adminActor(user),
+            actorRole: "Payout desk",
+            action: "payout.otp_pending",
+            target: `Escrow release ${id} · ${result.reference}`,
+            severity: "warning",
+          });
+        }
+        return Response.json(
+          {
+            data: {
+              hold: hold ? toEscrowHold(hold) : null,
+              transfer: {
+                state: otpRequired ? "otp_required" : "in_flight",
+                reference: result.reference,
+                transferCode: otpRequired ? result.transferCode : null,
+              },
+            },
+          },
+          { status: 202, headers: { "Cache-Control": "private, no-store" } },
+        );
+      }
     }
-    if (existing.status !== "release_due") {
-      return jsonError(409, "NOT_DUE", "Only milestones marked release due can be released.");
-    }
-    if (!existing.signed_off) {
-      return jsonError(409, "NOT_SIGNED_OFF", "The customer has not signed this milestone off yet.");
-    }
-
-    const now = new Date();
-    const [updated] = await db
-      .update(escrowHolds)
-      .set({ status: "released", released_at: now, updated_at: now })
-      .where(eq(escrowHolds.id, id))
-      .returning();
-
-    await recordAudit({
-      actor: adminActor(user),
-      actorRole: "Payout desk",
-      action: "payout.released",
-      target: `Escrow release ${id}`,
-      severity: "warning",
-    });
-
-    return Response.json(
-      { data: { hold: toEscrowHold(updated) } },
-      { headers: { "Cache-Control": "private, no-store" } },
-    );
   } catch (error) {
     console.error("[admin] Escrow release failed", error);
-    return jsonError(500, "INTERNAL_ERROR", "Could not record the release.");
+    return jsonError(500, "INTERNAL_ERROR", "Could not release this milestone.");
   }
 }

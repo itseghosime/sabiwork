@@ -97,7 +97,7 @@ export function PaymentVerificationScreen({
               >
                 View Sample Receipt (S23) →
               </Link>
-              <Link href="/jobs" className="button button-outline">
+              <Link href="/jobs" className="button button-primary">
                 Back to My Jobs
               </Link>
             </div>
@@ -115,7 +115,7 @@ export function PaymentVerificationScreen({
             </p>
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               style={{ marginTop: "12px" }}
               onClick={() => setVerifyState("SAMPLE_SUCCESS")}
             >
@@ -142,7 +142,7 @@ export function PaymentVerificationScreen({
               </Link>
               <button
                 type="button"
-                className="button button-outline"
+                className="button button-primary"
                 onClick={() => setVerifyState("SAMPLE_SUCCESS")}
               >
                 Preview success
@@ -301,7 +301,7 @@ export function PaymentReceiptScreen({
           <div style={{ display: "flex", gap: "8px" }}>
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               onClick={() => window.print()}
             >
               Print Sample Preview
@@ -440,7 +440,7 @@ export function PaymentRecoveryScreen({
       <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px" }}>
         <button
           type="button"
-          className="button button-outline"
+          className="button button-primary"
           onClick={() => handleRetry(true)}
           disabled={recovering}
         >
@@ -577,7 +577,7 @@ export function MilestoneBalanceCheckoutScreen({
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px", marginTop: "10px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={() => handlePayBalance(true)}
             disabled={submitting}
           >

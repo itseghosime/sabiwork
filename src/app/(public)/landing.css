@@ -1,12 +1,28 @@
-/* Landing page — motion layer.
-   All motion is gated on prefers-reduced-motion. Reveals use CSS scroll-driven
-   timelines where supported and fall back to fully visible content, so the page
-   never depends on JavaScript to become readable. */
+/* Home page — one brand hue.
+   Every colour here is --brand or a tint/shade of it (declared in
+   public-redesign.css). Motion is gated on prefers-reduced-motion, and reveals
+   fall back to fully visible content, so the page never depends on JavaScript
+   to become readable. */
+
+/* ---------- Hero ---------- */
 
 .landing-hero {
   position: relative;
   isolation: isolate;
   overflow: clip;
+}
+
+.home-hero.landing-hero {
+  padding-block: clamp(52px, 5.6vw, 88px) 0;
+  background:
+    radial-gradient(ellipse at 50% -12%, rgb(0 100 145 / 13%), transparent 58%),
+    linear-gradient(
+      180deg,
+      var(--brand-tint-08) 0%,
+      var(--brand-tint-04) 54%,
+      #fff 100%
+    );
+  border-bottom: 1px solid var(--brand-tint-16);
 }
 
 /* Pin the hero column to the container width. Wide decorative children (the
@@ -19,59 +35,37 @@
   justify-self: center;
   width: fit-content;
   max-width: 100%;
+  border-color: var(--brand-border);
+  background: #fff;
+  color: var(--brand);
 }
 
-.landing-hero h1 {
+.landing-hero .location-dot {
+  background: var(--brand);
+}
+
+.landing-hero .pill-divider {
+  color: var(--brand-border);
+}
+
+.home-hero.landing-hero h1 {
   justify-self: center;
-  max-width: 22ch;
+  max-width: 21ch;
+  margin-block: 26px 0;
+  font-size: clamp(36px, 4.2vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.042em;
+  color: var(--brand-ink);
+  text-wrap: balance;
 }
 
-.landing-hero .hero-copy {
+.home-hero.landing-hero .hero-copy {
   justify-self: center;
-  max-width: 54ch;
-}
-
-/* The arc keeps its five cards but never stacks one over another, so every
-   caption stays legible. Overlap is what clipped the names. */
-.landing-hero .artisan-fan {
-  max-width: 1040px;
-  padding-inline: 0;
-}
-
-.landing-hero .fan-card {
-  width: 168px;
-  margin: 0 12px;
-  border-radius: 14px;
-  border-width: 3px;
-}
-
-.landing-hero .fan-2 {
-  width: 196px;
-}
-
-.landing-hero .fan-0 {
-  transform: translateY(-10px) rotate(-5deg);
-}
-
-.landing-hero .fan-1 {
-  transform: translateY(-26px) rotate(-2.5deg);
-}
-
-.landing-hero .fan-2 {
-  transform: translateY(-42px) rotate(0deg);
-}
-
-.landing-hero .fan-3 {
-  transform: translateY(-26px) rotate(2.5deg);
-}
-
-.landing-hero .fan-4 {
-  transform: translateY(-10px) rotate(5deg);
-}
-
-.landing-hero .fan-card:hover,
-.landing-hero .fan-card:focus-visible {
-  transform: translateY(-50px) rotate(0deg);
+  max-width: 56ch;
+  margin-block: 22px 30px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--brand-muted);
 }
 
 .landing-aurora {
@@ -94,7 +88,7 @@
   top: -17rem;
   background: radial-gradient(
     circle at 50% 50%,
-    rgb(56 168 232 / 38%),
+    rgb(0 100 145 / 26%),
     transparent 66%
   );
 }
@@ -106,7 +100,7 @@
   top: -13rem;
   background: radial-gradient(
     circle at 50% 50%,
-    rgb(14 41 75 / 24%),
+    rgb(0 70 101 / 16%),
     transparent 66%
   );
 }
@@ -118,7 +112,7 @@
   bottom: -18rem;
   background: radial-gradient(
     circle at 50% 50%,
-    rgb(56 168 232 / 20%),
+    rgb(0 100 145 / 14%),
     transparent 68%
   );
 }
@@ -203,8 +197,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
   justify-self: center;
+  gap: 0.75rem;
 }
 
 .landing-choice {
@@ -212,11 +206,12 @@
   align-items: center;
   gap: 0.7rem;
   flex-shrink: 0;
-  min-height: 60px;
-  padding: 0.6rem 1.15rem;
+  min-height: 62px;
+  min-width: 16rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 12px;
   white-space: nowrap;
   word-break: normal;
-  min-width: 15.5rem;
 }
 
 .choice-icon {
@@ -242,15 +237,139 @@
   font-size: 11.5px;
   font-weight: 500;
   letter-spacing: 0.01em;
-  opacity: 0.78;
+  opacity: 0.82;
+}
+
+/* Second path: same hue, quiet surface, so the pair still reads as one choice
+   set rather than two competing calls to action. */
+.landing-choice.button-subtle {
+  border-color: var(--brand-border);
+  background: #fff;
+  color: var(--brand-ink);
+}
+
+.landing-choice.button-subtle .choice-icon {
+  background: var(--brand-tint-12);
+  color: var(--brand);
+}
+
+.landing-choice.button-subtle .choice-text small {
+  color: var(--brand-muted);
+  opacity: 1;
+}
+
+.landing-choice.button-subtle:hover {
+  border-color: var(--brand);
+  background: var(--brand-tint-04);
+}
+
+/* ---------- Hero search + reassurance ---------- */
+
+.landing-hero .discovery-search {
+  border-color: var(--brand-border);
+  box-shadow: 0 12px 34px rgb(0 40 58 / 8%);
+}
+
+.landing-hero .discovery-search label > svg {
+  color: var(--brand);
+}
+
+.landing-hero .trust-row {
+  color: var(--brand-muted);
+}
+
+.landing-hero .trust-row svg {
+  color: var(--brand);
+}
+
+.landing-hero .hero-note {
+  margin-block: 18px 34px;
+  color: var(--brand-muted);
+}
+
+/* ---------- Artisan arc ---------- */
+
+/* The arc keeps its five cards but never stacks one over another, so every
+   caption stays legible. Overlap is what was clipping the names. */
+.landing-hero .artisan-fan {
+  max-width: 1040px;
+  padding-inline: 0;
+}
+
+.landing-hero .fan-card {
+  width: 168px;
+  margin: 0 12px;
+  border-width: 3px;
+  border-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgb(0 40 58 / 12%);
+}
+
+.landing-hero .fan-0 {
+  transform: translateY(-10px) rotate(-5deg);
+}
+
+.landing-hero .fan-1 {
+  transform: translateY(-26px) rotate(-2.5deg);
+}
+
+.landing-hero .fan-2 {
+  width: 196px;
+  transform: translateY(-42px) rotate(0deg);
+}
+
+.landing-hero .fan-3 {
+  transform: translateY(-26px) rotate(2.5deg);
+}
+
+.landing-hero .fan-4 {
+  transform: translateY(-10px) rotate(5deg);
+}
+
+.landing-hero .fan-card:hover,
+.landing-hero .fan-card:focus-visible {
+  transform: translateY(-50px) rotate(0deg);
+  box-shadow: 0 24px 44px rgb(0 40 58 / 20%);
+}
+
+.landing-hero .fan-photo {
+  border-radius: 11px 11px 0 0;
+}
+
+.landing-hero .fan-badge {
+  color: var(--brand);
+}
+
+.landing-hero .fan-featured {
+  background: var(--brand-ink);
+}
+
+.landing-hero .fan-caption strong {
+  color: var(--brand-ink);
+}
+
+.landing-hero .fan-caption > span {
+  color: var(--brand-muted);
 }
 
 /* ---------- Two-path chooser ---------- */
 
 .landing-paths {
   background:
-    radial-gradient(circle at 12% 0%, rgb(56 168 232 / 12%), transparent 42%),
-    linear-gradient(180deg, #f6faff 0%, #ffffff 62%);
+    radial-gradient(circle at 12% 0%, rgb(0 100 145 / 7%), transparent 44%),
+    linear-gradient(180deg, var(--brand-tint-04) 0%, #fff 62%);
+}
+
+.landing-paths h2,
+.landing-categories h2,
+.landing-community h2,
+.landing-cta h2 {
+  color: var(--brand-ink);
+}
+
+.landing-paths .demo-notice,
+.landing-cta .demo-notice {
+  color: var(--brand-muted);
 }
 
 .path-grid {
@@ -266,10 +385,10 @@
   flex-direction: column;
   gap: 0.85rem;
   padding: clamp(1.25rem, 2.4vw, 2rem);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  border: 1px solid var(--brand-tint-16);
+  border-radius: 18px;
   background: #fff;
-  box-shadow: 0 1px 3px 0 rgb(14 41 75 / 5%);
+  box-shadow: 0 1px 3px 0 rgb(0 40 58 / 5%);
   transition:
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s ease,
@@ -278,8 +397,8 @@
 
 .path-card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-border);
-  box-shadow: 0 24px 48px -24px rgb(14 41 75 / 28%);
+  border-color: var(--brand-border);
+  box-shadow: 0 24px 48px -26px rgb(0 40 58 / 28%);
 }
 
 .path-card-top {
@@ -302,15 +421,15 @@
 }
 
 .path-customer .path-chip {
-  background: var(--pale);
-  border: 1px solid var(--accent-border);
-  color: var(--navy);
+  border: 1px solid var(--brand-border);
+  background: var(--brand-tint-08);
+  color: var(--brand-strong);
 }
 
 .path-kicker {
   font: 600 10.5px/1 var(--body);
   letter-spacing: 0.1em;
-  color: var(--muted);
+  color: var(--brand-muted);
   white-space: nowrap;
 }
 
@@ -318,11 +437,12 @@
   margin: 0;
   font-size: clamp(1.3rem, 2vw, 1.6rem);
   letter-spacing: -0.02em;
+  color: var(--brand-ink);
 }
 
 .path-summary {
   margin: 0;
-  color: var(--muted);
+  color: var(--brand-muted);
   line-height: 1.65;
 }
 
@@ -344,9 +464,9 @@
   flex-shrink: 0;
   padding: 5px 8px;
   border-radius: 999px;
-  border: 1px solid var(--accent-border);
-  background: var(--pale);
-  color: var(--primary);
+  border: 1px solid var(--brand-border);
+  background: var(--brand-tint-08);
+  color: var(--brand);
   font: 700 10.5px/1 var(--body);
   letter-spacing: 0.06em;
 }
@@ -360,7 +480,7 @@
   margin: 3px 0 0;
   font-size: 13.5px;
   line-height: 1.55;
-  color: var(--muted);
+  color: var(--brand-muted);
 }
 
 .path-cta {
@@ -377,14 +497,19 @@
   margin: 0;
   font-size: 12.5px;
   line-height: 1.5;
-  color: var(--muted);
+  color: var(--brand-muted);
 }
 
-/* Artisan side reads as the darker half of the fork. */
+/* The artisan side is the darker half of the fork: the same hue, deeper. */
 .path-artisan {
-  background: linear-gradient(160deg, #0e294b 0%, #14396a 58%, #0a2340 100%);
-  border-color: #1d3f6b;
-  color: #eaf3ff;
+  background: linear-gradient(
+    160deg,
+    var(--brand-strong) 0%,
+    var(--brand) 58%,
+    var(--brand-deep) 100%
+  );
+  border-color: var(--brand-deep);
+  color: #eaf5fa;
 }
 
 .path-artisan h3 {
@@ -392,18 +517,18 @@
 }
 
 .path-artisan .path-chip {
-  background: rgb(56 168 232 / 18%);
-  border: 1px solid rgb(56 168 232 / 45%);
-  color: #d3ecff;
+  background: rgb(255 255 255 / 14%);
+  border: 1px solid rgb(255 255 255 / 32%);
+  color: #e2f2f9;
 }
 
 .path-artisan .path-kicker {
-  color: #8aceff;
+  color: #a8cddd;
 }
 
 .path-artisan .path-summary,
 .path-artisan .path-aside {
-  color: #b9cde6;
+  color: #cfe3ed;
 }
 
 .path-artisan .path-steps strong {
@@ -411,16 +536,99 @@
 }
 
 .path-artisan .path-steps p {
-  color: #a9c0dc;
+  color: #bcd6e4;
 }
 
 .path-artisan .path-step-number {
-  background: rgb(56 168 232 / 20%);
-  border-color: rgb(56 168 232 / 45%);
-  color: #bfe6ff;
+  background: rgb(255 255 255 / 14%);
+  border-color: rgb(255 255 255 / 32%);
+  color: #e2f2f9;
+}
+
+/* Filled teal on a teal card would disappear, so the dark half gets the
+   inverted button. */
+.path-artisan .path-cta {
+  border-color: #fff;
+  background: #fff;
+  color: var(--brand-ink);
+}
+
+.path-artisan .path-cta:hover {
+  border-color: #fff;
+  background: var(--brand-tint-12);
+}
+
+/* ---------- Categories, community, closing call to action ---------- */
+
+.landing-categories .category-card {
+  border-color: var(--brand-tint-16);
+}
+
+.landing-categories .category-card:hover {
+  border-color: var(--brand-border);
+}
+
+.landing-categories .category-card h3 {
+  color: var(--brand-ink);
+}
+
+.landing-community .photo-caption {
+  border: 1px solid var(--brand-tint-16);
+  background: rgb(255 255 255 / 94%);
+  color: var(--brand-ink);
+}
+
+.landing-community .community-copy > p:not(.eyebrow) {
+  color: var(--brand-muted);
+}
+
+.landing-cta .cta-panel {
+  border-color: var(--brand-tint-16);
+  background: var(--brand-tint-08);
+}
+
+.landing-cta .cta-panel p:not(.eyebrow) {
+  color: var(--brand-muted);
 }
 
 /* ---------- Responsive ---------- */
+
+/* Below 1024 the container narrows faster than five fixed cards can follow, so
+   the widths track the viewport. Fixed 132px cards overflowed the track from
+   769px down and the hero clipped both ends of the row. The centre card keeps
+   its extra width, so the row stays inside the track with the gutter to spare. */
+@media (max-width: 1024px) {
+  .landing-hero .artisan-fan {
+    max-width: 780px;
+  }
+
+  .landing-hero .fan-card {
+    width: clamp(100px, 18.4vw - 26px, 132px);
+    margin: 0 8px;
+  }
+
+  .landing-hero .fan-2 {
+    width: calc(clamp(100px, 18.4vw - 26px, 132px) + 24px);
+  }
+
+  /* Narrow cards wrapped the badge onto two lines and into the caption. */
+  .landing-hero .fan-badge {
+    padding: 3px 6px;
+    gap: 2px;
+    font-size: 8px;
+    white-space: nowrap;
+  }
+
+  /* The shared 12px caption size is what pushed names onto a third line and
+     stranded the surname on its own. */
+  .landing-hero .fan-caption strong {
+    font-size: 11px;
+  }
+
+  .landing-hero .fan-caption > span {
+    font-size: 10px;
+  }
+}
 
 @media (max-width: 767px) {
   .path-grid {
@@ -428,29 +636,18 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .landing-hero .artisan-fan {
-    max-width: 780px;
-  }
-
-  .landing-hero .fan-card {
-    width: 132px;
-    margin: 0 8px;
-  }
-
-  .landing-hero .fan-2 {
-    width: 156px;
-  }
-}
-
 @media (max-width: 760px) {
   /* Five legible cards cannot sit side by side on a phone, so the arc becomes
      a snap-scrolling row that bleeds to the screen edge. */
+  /* The row is not a stretched grid item, so a negative margin only moves the
+     box instead of widening it and the last card never reaches the edge. A
+     viewport-wide box shifted by the gutter bleeds both sides exactly. */
   .landing-hero .artisan-fan {
     justify-content: flex-start;
     height: auto;
+    width: 100vw;
     max-width: none;
-    margin-inline: -20px;
+    margin-inline: calc(50% - 50vw);
     padding: 12px 20px 10px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;

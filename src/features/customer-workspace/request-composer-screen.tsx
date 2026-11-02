@@ -117,7 +117,7 @@ export function RequestComposerScreen() {
           </p>
         </div>
         <div className="cb-actions">
-          <Link className="button button-outline" href="/requests">
+          <Link className="button button-primary" href="/requests">
             <Icon name="back" size={15} />
             My requests
           </Link>
@@ -245,7 +245,7 @@ export function RequestComposerScreen() {
             <div className="cb-composer-actions">
               <button
                 type="button"
-                className="button button-outline"
+                className="button button-primary"
                 disabled={saving !== null}
                 onClick={() => void submit("draft")}
               >

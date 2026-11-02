@@ -30,15 +30,30 @@ const categories = [
   ["cat-auto", "Auto mechanics", "settings", 9, 1_500_000, "tier-starter", false, -3168],
 ];
 
+// Fictional demo profiles. Fields: id, name, phone, trade, years, coverage
+// areas, workshop area, bio, verification status, listed, skills, rate in kobo,
+// portrait index into /images/artisan-demo-sheet.png (0-4).
 const artisans = [
-  ["seed-artisan-0001", "Friday Osas", "08030000001", "Tiling", 9, ["GRA", "Ugbowo"], "Ugbowo", "Tiler with nine years on bathroom and kitchen installations across Benin City.", "pending", true],
-  ["seed-artisan-0002", "Blessing Iyamu", "08030000002", "Electrical", 6, ["Sapele Road", "Ring Road"], "Sapele Road", "Certified electrician handling residential rewiring and distribution board upgrades.", "pending", true],
-  ["seed-artisan-0003", "Peter Akpan", "08030000003", "Carpentry", 12, ["Ikpoba Hill"], "Ikpoba Hill", "Carpenter building fitted wardrobes, kitchen units and door frames to measure.", "pending", false],
-  ["seed-artisan-0004", "Grace Iyabo", "08030000004", "Painting", 4, ["GRA", "Adesuwa"], "Adesuwa", "Painter specialising in interior finishing, screeding and waterproof coatings.", "pending", true],
-  ["seed-artisan-0005", "Kelvin Uche", "08030000005", "AC & HVAC", 7, ["Ring Road", "Ugbor"], "Ugbor", "HVAC technician servicing split units and installing ducted cooling systems.", "pending", true],
-  ["seed-artisan-0006", "Chiamaka Eze", "08030000006", "Plumbing", 10, ["GRA"], "GRA", "Plumber handling pipework, pump installation and leak diagnostics for homes.", "approved", true],
-  ["seed-artisan-0007", "Emeka Obi", "08030000007", "Plumbing", 5, ["Ugbowo"], "Ugbowo", "Plumber focused on bathroom fit-outs and pressurised water systems.", "approved", true],
-  ["seed-artisan-0008", "Tunde Ade", "08030000008", "Welding", 3, ["Ikpoba Hill"], "Ikpoba Hill", "Welder fabricating gates, burglary bars and light structural frames.", "rejected", false],
+  ["seed-artisan-0001", "Friday Osas", "08030000001", "Tiling", 9, ["GRA", "Ugbowo"], "Ugbowo", "Tiler with nine years on bathroom and kitchen installations across Benin City.", "approved", true, ["floor tiling", "wall tiling", "grouting"], 2_800_000, 0],
+  ["seed-artisan-0002", "Blessing Iyamu", "08030000002", "Electrical", 6, ["Sapele Road", "Ring Road"], "Sapele Road", "Certified electrician handling residential rewiring and distribution board upgrades.", "approved", true, ["rewiring", "distribution boards", "fault finding"], 3_500_000, 1],
+  ["seed-artisan-0003", "Peter Akpan", "08030000003", "Carpentry", 12, ["Ikpoba Hill", "Uselu"], "Ikpoba Hill", "Carpenter building fitted wardrobes, kitchen units and door frames to measure.", "approved", true, ["fitted wardrobes", "kitchen units", "door frames"], 4_200_000, 2],
+  ["seed-artisan-0004", "Grace Iyabo", "08030000004", "Painting", 4, ["GRA", "Adesuwa"], "Adesuwa", "Painter specialising in interior finishing, screeding and waterproof coatings.", "approved", true, ["interior painting", "screeding", "waterproofing"], 1_900_000, 3],
+  ["seed-artisan-0005", "Kelvin Uche", "08030000005", "AC & HVAC", 7, ["Ring Road", "Ugbor"], "Ugbor", "HVAC technician servicing split units and installing ducted cooling systems.", "approved", true, ["split units", "ducted cooling", "gas refills"], 3_100_000, 4],
+  ["seed-artisan-0006", "Chiamaka Eze", "08030000006", "Plumbing", 10, ["GRA", "Uselu"], "GRA", "Plumber handling pipework, pump installation and leak diagnostics for homes.", "approved", true, ["pipework", "pump installation", "leak detection"], 2_600_000, 0],
+  ["seed-artisan-0007", "Emeka Obi", "08030000007", "Plumbing", 5, ["Ugbowo", "Uselu"], "Ugbowo", "Plumber focused on bathroom fit-outs and pressurised water systems.", "approved", true, ["bathroom fit-out", "pressurised systems"], 2_400_000, 1],
+  ["seed-artisan-0008", "Tunde Ade", "08030000008", "Welding", 3, ["Ikpoba Hill", "New Benin"], "Ikpoba Hill", "Welder fabricating gates, burglary bars and light structural frames.", "approved", true, ["gates", "burglary bars", "metal frames"], 3_600_000, 2],
+  ["seed-artisan-0009", "Ngozi Okonkwo", "08030000009", "Tailoring", 8, ["Uselu", "New Benin"], "Uselu", "Tailor making native wear, corporate outfits and alterations to measurement.", "approved", true, ["native wear", "corporate wear", "alterations"], 1_500_000, 3],
+  ["seed-artisan-0010", "Musa Ibrahim", "08030000010", "Electrical", 11, ["Ugbowo", "Ring Road"], "Ugbowo", "Electrician for solar inverters, meter wiring and commercial fit-outs.", "approved", true, ["solar inverters", "meter wiring", "commercial fit-out"], 4_000_000, 4],
+  ["seed-artisan-0011", "Ifeoma Nwankwo", "08030000011", "Cleaning", 3, ["GRA", "Uselu"], "GRA", "Cleaner covering post-construction clearing, deep cleaning and office upkeep.", "pending", true, ["post-construction", "deep cleaning", "office upkeep"], 1_200_000, 0],
+  ["seed-artisan-0012", "Samuel Ojo", "08030000012", "Carpentry", 14, ["Airport Road", "Uselu"], "Airport Road", "Cabinet maker producing shelving, TV units and shop fittings.", "approved", true, ["cabinets", "shelving", "shop fittings"], 4_500_000, 1],
+  ["seed-artisan-0013", "Aisha Bello", "08030000013", "Painting", 6, ["Ikpoba Hill", "New Benin"], "New Benin", "Painter for exterior coats, texture finishes and popcorn ceiling removal.", "approved", true, ["exterior coats", "texture finish", "ceiling works"], 2_100_000, 2],
+  ["seed-artisan-0014", "Chinedu Okeke", "08030000014", "Tiling", 8, ["Adesuwa", "GRA"], "Adesuwa", "Tiler for large-format floors, staircases and swimming pool surrounds.", "approved", true, ["large format", "staircases", "pool surrounds"], 3_000_000, 3],
+  ["seed-artisan-0015", "Bukola Adeyemi", "08030000015", "Tailoring", 5, ["New Benin", "Ikpoba Hill"], "New Benin", "Tailor specialising in school uniforms, bridal wear and bulk orders.", "pending", true, ["school uniforms", "bridal", "bulk orders"], 1_700_000, 4],
+  ["seed-artisan-0016", "Yusuf Danjuma", "08030000016", "Masonry", 15, ["Airport Road", "Ugbor"], "Airport Road", "Mason building blockwork, plastering and concrete slabs to drawing.", "approved", true, ["blockwork", "plastering", "concrete slabs"], 4_800_000, 0],
+  ["seed-artisan-0017", "Rita Aigbe", "08030000017", "Cleaning", 4, ["Ugbor", "Ring Road"], "Ugbor", "Cleaner for move-in clearing, upholstery care and recurring home visits.", "approved", true, ["move-in clearing", "upholstery", "recurring visits"], 1_300_000, 1],
+  ["seed-artisan-0018", "Osa Igbinovia", "08030000018", "Plumbing", 7, ["Sapele Road", "GRA"], "Sapele Road", "Plumber installing water tanks, booster pumps and bathroom suites.", "approved", true, ["water tanks", "booster pumps", "bathroom suites"], 2_900_000, 2],
+  ["seed-artisan-0019", "Halima Sani", "08030000019", "AC & HVAC", 9, ["GRA", "Adesuwa"], "GRA", "HVAC specialist for cassette units, cold rooms and preventive maintenance.", "approved", true, ["cassette units", "cold rooms", "maintenance"], 3_800_000, 3],
+  ["seed-artisan-0020", "Victor Eze", "08030000020", "Electrical", 4, ["New Benin", "Ikpoba Hill"], "New Benin", "Electrician for lighting design, socket circuits and generator changeovers.", "pending", true, ["lighting", "socket circuits", "changeovers"], 2_700_000, 4],
 ];
 
 const disputes = [
@@ -169,7 +184,7 @@ try {
     );
   }
 
-  for (const [userId, displayName, phone, trade, years, areas, workshop, bio, status, listed] of artisans) {
+  for (const [userId, displayName, phone, trade, years, areas, workshop, bio, status, listed, skills, rate, portraitIndex] of artisans) {
     await client.query(
       `INSERT INTO public.user_profiles (user_id, role, display_name)
        VALUES ($1, 'artisan', $2)
@@ -178,10 +193,21 @@ try {
     );
     await client.query(
       `INSERT INTO public.artisan_profiles
-         (user_id, contact_phone, primary_trade, experience_years, coverage_areas, workshop_area, bio, is_listed, verification_status)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
-       ON CONFLICT (user_id) DO NOTHING`,
-      [userId, phone, trade, years, areas, workshop, bio, listed, status],
+         (user_id, contact_phone, primary_trade, experience_years, coverage_areas, workshop_area, bio, skills, rate_guidance_kobo, portrait_index, is_listed, verification_status)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+       ON CONFLICT (user_id) DO UPDATE SET
+         contact_phone = EXCLUDED.contact_phone,
+         primary_trade = EXCLUDED.primary_trade,
+         experience_years = EXCLUDED.experience_years,
+         coverage_areas = EXCLUDED.coverage_areas,
+         workshop_area = EXCLUDED.workshop_area,
+         bio = EXCLUDED.bio,
+         skills = EXCLUDED.skills,
+         rate_guidance_kobo = EXCLUDED.rate_guidance_kobo,
+         portrait_index = EXCLUDED.portrait_index,
+         is_listed = EXCLUDED.is_listed,
+         verification_status = EXCLUDED.verification_status`,
+      [userId, phone, trade, years, areas, workshop, bio, skills, rate, portraitIndex, listed, status],
     );
   }
 

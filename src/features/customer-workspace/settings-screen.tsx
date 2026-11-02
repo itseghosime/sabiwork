@@ -192,7 +192,7 @@ export function SettingsScreen() {
         </header>
         <div className="cb-error-state">
           <p>{error}</p>
-          <button type="button" className="button button-outline" onClick={retry}>
+          <button type="button" className="button button-primary" onClick={retry}>
             <Icon name="refresh" size={15} />
             Try again
           </button>
@@ -369,7 +369,7 @@ export function SettingsScreen() {
                     You offer services as {workProfile.primary_trade}. Switch to
                     the artisan workspace to manage jobs and availability.
                   </p>
-                  <Link className="button button-outline" href="/artisan">
+                  <Link className="button button-primary" href="/artisan">
                     Open artisan workspace
                     <Icon name="arrow" size={15} />
                   </Link>
@@ -386,7 +386,7 @@ export function SettingsScreen() {
                     Create an artisan work profile to receive job requests
                     without a second login.
                   </p>
-                  <Link className="button button-outline" href="/artisan/profile">
+                  <Link className="button button-primary" href="/artisan/profile">
                     Create work profile
                     <Icon name="arrow" size={15} />
                   </Link>
@@ -409,7 +409,7 @@ export function SettingsScreen() {
                   <strong>Password</strong>
                   <span>Reset it from the sign-in screen.</span>
                 </div>
-                <Link className="button button-outline" href="/forgot-password">
+                <Link className="button button-primary" href="/forgot-password">
                   Reset password
                 </Link>
               </li>
@@ -441,7 +441,7 @@ export function SettingsScreen() {
                 </div>
                 <button
                   type="button"
-                  className="button button-outline"
+                  className="button button-primary"
                   disabled={exporting}
                   onClick={() => void downloadAccount()}
                 >

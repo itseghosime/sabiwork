@@ -2,668 +2,1579 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useCallback, useEffect, useState } from "react";
-import "./screens.css";
+import {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+import { Icon, type IconName } from "@/components/icon";
+import { readJson } from "./api";
+import { Badge, Crumbs, Empty, Head, Kpi, PanelHead, type Tone } from "./ui";
+import type {
+  ArtisanDesk,
+  ArtisanProfileDTO,
+  DeskJob,
+  DeskPayment,
+  DeskQuote,
+  DeskRequest,
+} from "./types";
 
-type WorkProfile = {
-  user_id: string;
-  contact_phone: string;
-  primary_trade: string;
-  experience_years: number;
-  coverage_areas: string[];
-  workshop_area: string;
-  bio: string;
-  skills: string[];
-  rate_guidance_kobo: number | null;
-  availability_notes: string | null;
-  is_listed: boolean;
-  verification_status: "unsubmitted" | "pending" | "approved" | "rejected";
-};
 
-type OpenRequestRow = {
-  id: string;
-  title: string;
-  category: string;
-  service_area: string;
-  description: string;
-  budget_guidance_kobo: number;
-  status: string;
-  created_at: string;
-  quotes_count: number;
-};
-
-type JobRow = {
-  id: string;
-  request_id: string;
-  status: "accepted" | "in_progress" | "completed" | "cancelled";
-  customer_id: string;
-  worker_id: string;
-  title: string;
-  category: string;
-  service_area: string;
-  description?: string;
-  budget_guidance_kobo: number;
-  total_quote_kobo: number;
-  quote_note?: string;
-  updates?: Array<{ id: string; author_id: string; note: string; created_at: string }>;
-  created_at: string;
-  updated_at: string;
-};
-
-type ApiError = { error?: { code?: string; message?: string } };
-
-const formatMoney = (kobo: number) =>
+const money = (kobo: number) =>
   new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(kobo / 100);
 
-const formatWat = (value: string) =>
+const dateTime = (value: string) =>
   new Intl.DateTimeFormat("en-NG", {
     dateStyle: "medium",
     timeStyle: "short",
     timeZone: "Africa/Lagos",
   }).format(new Date(value));
 
-async function readJson<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
-  const response = await fetch(input, { cache: "no-store", ...init });
-  if (!response.ok) {
-    const body = (await response.json().catch(() => ({}))) as ApiError;
-    throw new Error(body.error?.message ?? "Request failed.");
-  }
-  const body = (await response.json()) as { data: T };
-  return body.data;
+const dateOnly = (value: string) =>
+  new Intl.DateTimeFormat("en-NG", { dateStyle: "medium", timeZone: "Africa/Lagos" }).format(
+    new Date(value),
+  );
+
+const timeOnly = (value: string) =>
+  new Intl.DateTimeFormat("en-NG", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Africa/Lagos",
+  }).format(new Date(value));
+
+const depositOf = (total: number) => Math.floor(total / 2);
+const balanceOf = (total: number) => total - Math.floor(total / 2);
+
+const jobTone: Record<DeskJob["status"], Tone> = {
+  accepted: "info",
+  in_progress: "warning",
+  completed: "success",
+  cancelled: "danger",
+};
+
+const jobLabel: Record<DeskJob["status"], string> = {
+  accepted: "Accepted",
+  in_progress: "In progress",
+  completed: "Completed",
+  cancelled: "Cancelled",
+};
+
+const quoteTone: Record<DeskQuote["status"], Tone> = {
+  pending: "warning",
+  accepted: "success",
+  declined: "danger",
+};
+
+const paymentTone: Record<DeskPayment["status"], Tone> = {
+  pending: "warning",
+  confirmed: "success",
+  failed: "danger",
+  cancelled: "neutral",
+};
+
+const verificationTone: Record<ArtisanProfileDTO["verification_status"], Tone> = {
+  unsubmitted: "neutral",
+  pending: "warning",
+  approved: "success",
+  rejected: "danger",
+};
+
+const verificationLabel: Record<ArtisanProfileDTO["verification_status"], string> = {
+  unsubmitted: "Not submitted",
+  pending: "Under review",
+  approved: "Verified pro",
+  rejected: "Changes requested",
+};
+
+const verificationStage: Record<ArtisanProfileDTO["verification_status"], number> = {
+  unsubmitted: 0,
+  pending: 2,
+  approved: 4,
+  rejected: 2,
+};
+
+function jobStages(status: DeskJob["status"]) {
+  if (status === "completed") return ["is-done", "is-done", "is-done"];
+  if (status === "in_progress") return ["is-done", "is-done", "is-current"];
+  if (status === "accepted") return ["is-done", "is-current", ""];
+  return ["is-done", "", ""];
 }
 
-function StatusPill({ text }: { text: string }) {
-  const norm = text.toLowerCase().replaceAll("-", "_");
-  return <span className={`artisan-status-pill ${norm}`}>{text.replaceAll("_", " ")}</span>;
+function jobReference(id: string) {
+  return `JOB-${id.slice(0, 8).toUpperCase()}`;
 }
 
-function PageFrame({
-  title,
-  subtitle,
-  children,
-}: {
-  title: string;
-  subtitle: string;
-  children: React.ReactNode;
-}) {
+function initialsFrom(value: string) {
+  return value
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+}
+
+function isWithinLastDays(value: string, days: number) {
+  const stamp = new Date(value).getTime();
+  return Date.now() - stamp <= days * 24 * 60 * 60 * 1000;
+}
+
+function Milestones({ status }: { status: DeskJob["status"] }) {
+  const stages = jobStages(status);
   return (
-    <section className="artisan-page">
-      <header className="artisan-header">
-        <h1>{title}</h1>
-        <p>{subtitle}</p>
-      </header>
-      {children}
-    </section>
+    <div className="aw-milestones">
+      {["Agreed", "Deposit", "Sign-off"].map((label, index) => (
+        <div className="aw-milestone" key={label}>
+          <div className={`aw-milestone-track ${stages[index]}`.trim()} />
+          <span className="aw-milestone-label">{label}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 
-export function ArtisanOverviewScreen() {
-  const [profile, setProfile] = useState<WorkProfile | null>(null);
-  const [hasProfile, setHasProfile] = useState<boolean | null>(null);
-  const [jobs, setJobs] = useState<JobRow[]>([]);
-  const [openRequests, setOpenRequests] = useState<OpenRequestRow[]>([]);
+function MoneyRow({ job }: { job: DeskJob }) {
+  const outstanding = Math.max(job.total_quote_kobo - job.escrow_kobo, 0);
+  return (
+    <div className="aw-money">
+      <div className="aw-money-cell">
+        <span className="aw-money-label">Contract value</span>
+        <span className="aw-money-value">{money(job.total_quote_kobo)}</span>
+      </div>
+      <div className="aw-money-cell">
+        <span className="aw-money-label">Escrow funded</span>
+        <span className="aw-money-value">{money(job.escrow_kobo)}</span>
+      </div>
+      <div className="aw-money-cell">
+        <span className="aw-money-label">Outstanding</span>
+        <span className="aw-money-value">{money(outstanding)}</span>
+      </div>
+    </div>
+  );
+}
+
+function JobRow({ job }: { job: DeskJob }) {
+  return (
+    <article className="aw-row">
+      <div className="aw-row-head">
+        <div className="aw-row-title">
+          <span className="aw-mono">{jobReference(job.id)}</span>
+          <h3>
+            <Link href={`/artisan/jobs/${job.id}/update`}>{job.title}</Link>
+          </h3>
+          <div className="aw-row-meta">
+            <span>{job.customer_name}</span>
+            <span>•</span>
+            <span>{job.category}</span>
+            <span>•</span>
+            <span>{job.service_area}</span>
+            <span>•</span>
+            <span>Updated {dateOnly(job.updated_at)}</span>
+          </div>
+        </div>
+        <Badge tone={jobTone[job.status]}>{jobLabel[job.status]}</Badge>
+      </div>
+
+      <Milestones status={job.status} />
+      <MoneyRow job={job} />
+
+      {job.latest_update ? (
+        <p className="aw-row-body">
+          Latest update · {job.latest_update.note}
+          <br />
+          <span className="aw-cell-muted">{dateTime(job.latest_update.created_at)}</span>
+        </p>
+      ) : null}
+
+      <div className="aw-row-foot">
+        <div className="aw-row-meta">
+          <span>
+            {job.update_count} progress {job.update_count === 1 ? "update" : "updates"}
+          </span>
+        </div>
+        <div className="aw-row-actions">
+          <Link className="aw-btn aw-btn-ghost aw-btn-sm" href={`/artisan/jobs/${job.id}/update`}>
+            <Icon name="plus" size={14} />
+            Add progress
+          </Link>
+          <Link className="aw-btn aw-btn-ghost aw-btn-sm" href={`/jobs/${job.id}`}>
+            <Icon name="file" size={14} />
+            Job details
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function useArtisanDesk() {
+  const [desk, setDesk] = useState<ArtisanDesk | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [togglingListing, setTogglingListing] = useState(false);
-  const [timeFilter, setTimeFilter] = useState<"7D" | "30D" | "90D" | "All">("30D");
+
+  const reload = useCallback(async () => {
+    try {
+      const data = await readJson<ArtisanDesk>("/api/artisan/desk");
+      setDesk(data);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not load your artisan board.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     let active = true;
-    async function loadData() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const profilePromise = readJson<WorkProfile>("/api/profiles/artisan")
-          .then((data) => ({ ok: true as const, data }))
-          .catch((err) => ({ ok: false as const, error: err }));
-
-        const jobsPromise = readJson<JobRow[]>("/api/jobs?scope=worker").catch(() => []);
-        const requestsPromise = readJson<OpenRequestRow[]>("/api/requests/open").catch(() => []);
-
-        const [profileRes, jobsData, requestsData] = await Promise.all([
-          profilePromise,
-          jobsPromise,
-          requestsPromise,
-        ]);
-
+    void readJson<ArtisanDesk>("/api/artisan/desk")
+      .then((data) => {
         if (!active) return;
-
-        if (profileRes.ok) {
-          setProfile(profileRes.data);
-          setHasProfile(true);
-        } else {
-          setProfile(null);
-          setHasProfile(false);
-        }
-
-        setJobs(jobsData);
-        setOpenRequests(requestsData);
-      } catch (err) {
+        setDesk(data);
+        setLoading(false);
+      })
+      .catch((err) => {
         if (!active) return;
-        setError(err instanceof Error ? err.message : "Could not load overview data.");
-      } finally {
-        if (active) setLoading(false);
-      }
-    }
+        setError(err instanceof Error ? err.message : "Could not load your artisan board.");
+        setLoading(false);
+      });
 
-    void loadData();
     return () => {
       active = false;
     };
   }, []);
+
+  return { desk, setDesk, loading, error, reload };
+}
+
+/* ------------------------------ S36 Overview ----------------------------- */
+
+export function ArtisanOverviewScreen() {
+  const { desk, setDesk, loading, error } = useArtisanDesk();
+  const [togglingListing, setTogglingListing] = useState(false);
+
+  const profile = desk?.profile ?? null;
+  const activeJobs =
+    desk?.jobs.filter((job) => job.status === "accepted" || job.status === "in_progress") ?? [];
+  const priorityRequest = desk?.open_requests[0] ?? null;
+  const weekPayments =
+    desk?.payments.filter(
+      (payment) =>
+        payment.status === "confirmed" && isWithinLastDays(payment.paid_at ?? payment.created_at, 7),
+    ) ?? [];
 
   const toggleListing = async () => {
     if (!profile || togglingListing) return;
     const nextState = !profile.is_listed;
     setTogglingListing(true);
-    setProfile({ ...profile, is_listed: nextState });
+    setDesk((current) =>
+      current && current.profile
+        ? { ...current, profile: { ...current.profile, is_listed: nextState } }
+        : current,
+    );
     try {
       await readJson("/api/profiles/artisan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...profile,
-          is_listed: nextState,
-        }),
+        body: JSON.stringify({ ...profile, is_listed: nextState }),
       });
     } catch {
-      setProfile({ ...profile, is_listed: !nextState });
+      setDesk((current) =>
+        current && current.profile
+          ? { ...current, profile: { ...current.profile, is_listed: !nextState } }
+          : current,
+      );
     } finally {
       setTogglingListing(false);
     }
   };
 
-  if (loading) {
-    return (
-      <PageFrame title="Artisan Workspace" subtitle="Loading your workspace data from Neon...">
-        <p>Loading...</p>
-      </PageFrame>
-    );
-  }
-
-  const activeJobs = jobs.filter((j) => j.status === "accepted" || j.status === "in_progress");
-  const completedJobs = jobs.filter((j) => j.status === "completed");
-  const totalContractedKobo = jobs.reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
+  const displayName = desk?.display_name?.trim() || profile?.primary_trade || "Artisan";
+  const rating = desk?.stats.average_rating ?? 0;
+  const reviews = desk?.stats.reviews_count ?? 0;
 
   return (
-    <section className="artisan-page">
-      <div className="artisan-breadcrumbs">
-        <Link href="/">SabiWork</Link>
-        <span>/</span>
-        <span>Artisan Workspace</span>
-      </div>
+    <div className="aw-page">
+      <Crumbs trail={[{ label: "SabiWork", href: "/" }, { label: "Artisan workspace" }]} />
 
-      {error ? <p className="artisan-error" role="alert">{error}</p> : null}
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {loading ? <p className="aw-loading">Loading your board…</p> : null}
 
-      {!hasProfile ? (
-        <article className="artisan-card" style={{ borderLeft: "6px solid var(--primary)" }}>
-          <div className="artisan-inline">
-            <h2>Start offering your trade on SabiWork</h2>
-            <StatusPill text="No work profile" />
-          </div>
-          <p>
-            Any SabiWork account can create a work profile to appear in the directory, receive quote requests, and take on jobs.
-          </p>
-          <div className="artisan-actions">
-            <Link className="button button-primary" href="/artisan/profile">
-              Create your work profile
+      {!loading && !profile ? (
+        <Empty
+          icon="user"
+          title="Create your work profile"
+          body="Add your trade, coverage areas and workshop so you appear in the directory and can send quotes to clients."
+          action={
+            <Link className="aw-btn aw-btn-primary" href="/artisan/profile">
+              Create work profile
             </Link>
-            <Link className="button button-outline" href="/artisan/requests">
-              Browse open requests
-            </Link>
-          </div>
-        </article>
-      ) : (
-        /* Image 1 & 3 Inspired Electric Hero Banner */
-        <header className="artisan-hero-banner">
-          <div className="artisan-hero-main">
-            <div className="artisan-avatar-ring">
-              <span>{profile?.primary_trade ? profile.primary_trade[0].toUpperCase() : "A"}</span>
-              <span className="artisan-pulse-online" title="Online for dispatch" />
-            </div>
-            <div className="artisan-hero-info">
-              <div className="artisan-hero-title">
-                <h1>Welcome back, {profile?.primary_trade} Pro!</h1>
-                <span className="artisan-frosted-pill verified">
-                  {profile?.verification_status === "approved" ? "✓ Verified Pro · #BN-8820" : `● Status: ${profile?.verification_status}`}
-                </span>
-                <span className="artisan-frosted-pill rating">
-                  ★ 4.9 (38 jobs)
-                </span>
-              </div>
-              <div className="artisan-hero-meta">
-                <span><strong>Workshop:</strong> {profile?.workshop_area}</span>
-                <span>•</span>
-                <span><strong>Coverage:</strong> {profile?.coverage_areas?.slice(0, 3).join(", ")}</span>
-                {profile?.rate_guidance_kobo ? (
-                  <>
-                    <span>•</span>
-                    <span><strong>Rate:</strong> {formatMoney(profile.rate_guidance_kobo)}</span>
-                  </>
-                ) : null}
-              </div>
-            </div>
-          </div>
-
-          <div className="artisan-frosted-dispatch">
-            <div className="dispatch-text">
-              <span className="dispatch-label">
-                {profile?.is_listed ? "Online for Dispatch" : "Offline from Directory"}
-              </span>
-              <span className="dispatch-subtext">
-                {profile?.is_listed ? "Accepting client requests" : "Hidden from discovery"}
-              </span>
-            </div>
-            <button
-              type="button"
-              className={`artisan-toggle-btn ${profile?.is_listed ? "active" : ""}`}
-              onClick={() => void toggleListing()}
-              disabled={togglingListing}
-              aria-label="Toggle directory dispatch status"
-              title={profile?.is_listed ? "Click to go offline" : "Click to go online"}
-            >
-              <div className="artisan-toggle-dot" />
-            </button>
-          </div>
-        </header>
-      )}
-
-      {/* High-Priority Near-You Alert Banner */}
-      {openRequests.length > 0 ? (
-        <article className="artisan-callout-card">
-          <div className="artisan-callout-content">
-            <div className="artisan-callout-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-              </svg>
-            </div>
-            <div className="artisan-callout-text">
-              <h3>High-Priority Opportunity: {openRequests[0].title}</h3>
-              <p>
-                {openRequests[0].category} · {openRequests[0].service_area} · Client Budget: <strong>{formatMoney(openRequests[0].budget_guidance_kobo)}</strong> ({openRequests[0].quotes_count} quotes submitted)
-              </p>
-            </div>
-          </div>
-          <div className="artisan-actions">
-            <Link className="button button-primary" href={`/artisan/requests/${openRequests[0].id}/quote`}>
-              Review & Quote
-            </Link>
-          </div>
-        </article>
+          }
+        />
       ) : null}
 
-      {/* 4 KPI Cards Grid (Image 1 & 4 Style) */}
-      <div className="artisan-kpi-grid">
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Active Work Orders</span>
-            <span className="artisan-badge approved">In Work</span>
-          </div>
-          <span className="kpi-value">{activeJobs.length}</span>
-          <span className="kpi-subtext">Contracts in physical execution</span>
-        </div>
-
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Open Opportunities</span>
-            <span className="artisan-badge pending">Near You</span>
-          </div>
-          <span className="kpi-value">{openRequests.length}</span>
-          <span className="kpi-subtext">Matching your trade category</span>
-        </div>
-
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Contracted Value</span>
-            <span className="artisan-badge approved">NGN</span>
-          </div>
-          <span className="kpi-value">{formatMoney(totalContractedKobo)}</span>
-          <span className="kpi-subtext">All-time agreed job volume</span>
-        </div>
-
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Completed Deliveries</span>
-            <span className="artisan-badge approved">Signoffs</span>
-          </div>
-          <span className="kpi-value">{completedJobs.length}</span>
-          <span className="kpi-subtext">Verified client deliveries</span>
-        </div>
-      </div>
-
-      {/* Dark Performance & Activity Widget (Image 4 Inspired) */}
-      <div className="artisan-dark-widget">
-        <div className="artisan-dark-header">
-          <div className="artisan-dark-title">
-            <h3>Job Performance & Escrow Trajectory</h3>
-            <p>Milestone fulfillment and contract velocity secured in Postgres</p>
-          </div>
-          <div className="artisan-dark-pills">
-            {(["7D", "30D", "90D", "All"] as const).map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                className={`artisan-dark-pill ${timeFilter === filter ? "active" : ""}`}
-                onClick={() => setTimeFilter(filter)}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="artisan-dark-chart">
-          <div className="artisan-dark-highlight">
-            <span>● Active Secured Escrow: <strong>{formatMoney(totalContractedKobo)}</strong></span>
-          </div>
-
-          {/* Clean stylized SVG performance curve */}
-          <svg viewBox="0 0 800 140" style={{ width: "100%", height: "100px", overflow: "visible" }}>
-            <defs>
-              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#0f172a" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,110 C80,100 160,85 240,65 C320,45 400,75 480,50 C560,25 640,40 720,20 L800,15 L800,140 L0,140 Z"
-              fill="url(#chartGradient)"
-            />
-            <path
-              d="M0,110 C80,100 160,85 240,65 C320,45 400,75 480,50 C560,25 640,40 720,20 L800,15"
-              fill="none"
-              stroke="#38bdf8"
-              strokeWidth="3.5"
-            />
-            <circle cx="720" cy="20" r="5" fill="#38bdf8" stroke="#0f172a" strokeWidth="2.5" />
-            <circle cx="480" cy="50" r="4" fill="#38bdf8" stroke="#0f172a" strokeWidth="2" />
-            <circle cx="240" cy="65" r="4" fill="#38bdf8" stroke="#0f172a" strokeWidth="2" />
-          </svg>
-        </div>
-
-        <div className="artisan-dark-stats-grid">
-          <div className="artisan-dark-stat-item">
-            <span className="stat-label">Average Quote Win Rate</span>
-            <span className="stat-value">84%</span>
-          </div>
-          <div className="artisan-dark-stat-item">
-            <span className="stat-label">Milestone Completion Time</span>
-            <span className="stat-value">2.4 Days</span>
-          </div>
-          <div className="artisan-dark-stat-item">
-            <span className="stat-label">Client Satisfaction Score</span>
-            <span className="stat-value">4.9 / 5.0</span>
-          </div>
-          <div className="artisan-dark-stat-item">
-            <span className="stat-label">Postgres Audit Records</span>
-            <span className="stat-value">{jobs.length + openRequests.length} Events</span>
-          </div>
-        </div>
-      </div>
-
-      {/* 2-Column Split Layout */}
-      <div className="artisan-dashboard-split">
-        {/* Main Column */}
-        <div className="artisan-main-col">
-          {/* Active Work Orders Section */}
-          <div style={{ display: "grid", gap: "14px" }}>
-            <div className="artisan-inline">
-              <h2>Active Work Orders</h2>
-              <Link className="button button-subtle" href="/artisan/jobs">
-                View all orders ({jobs.length}) →
-              </Link>
+      {profile ? (
+        <>
+          <header className="aw-hero">
+            <div className="aw-hero-main">
+              <div className="aw-avatar">
+                {initialsFrom(displayName)}
+                <span
+                  className={`aw-avatar-dot ${profile.is_listed ? "is-online" : ""}`.trim()}
+                  aria-hidden="true"
+                />
+              </div>
+              <div className="aw-hero-copy">
+                <div className="aw-hero-name">
+                  <h1>Welcome back, {displayName}</h1>
+                  <Badge tone={verificationTone[profile.verification_status]}>
+                    {verificationLabel[profile.verification_status]} · #{desk?.reference}
+                  </Badge>
+                  {reviews > 0 ? (
+                    <span className="aw-tag">
+                      <Icon name="star" size={11} /> {rating.toFixed(1)} ({reviews} jobs)
+                    </span>
+                  ) : null}
+                </div>
+                <div className="aw-hero-meta">
+                  <span>
+                    <strong>{profile.primary_trade}</strong>
+                  </span>
+                  <span>{profile.workshop_area}</span>
+                  <span>{profile.coverage_areas.slice(0, 3).join(" · ")}</span>
+                  {profile.rate_guidance_kobo ? (
+                    <span>From {money(profile.rate_guidance_kobo)}</span>
+                  ) : null}
+                </div>
+              </div>
             </div>
 
-            {activeJobs.length === 0 ? (
-              <div className="artisan-empty">
-                <h3>No active work orders right now</h3>
-                <p>Browse open requests matching your trade and submit competitive quotes to win new jobs.</p>
-                <Link className="button button-primary" href="/artisan/requests">
+            <div className="aw-dispatch">
+              <div className="aw-dispatch-copy">
+                <strong>{profile.is_listed ? "Online for dispatch" : "Offline from directory"}</strong>
+                <span>{profile.is_listed ? "Accepting client requests" : "Hidden from discovery"}</span>
+              </div>
+              <button
+                type="button"
+                className="aw-switch"
+                data-on={profile.is_listed ? "true" : "false"}
+                onClick={() => void toggleListing()}
+                disabled={togglingListing}
+                aria-label="Toggle directory dispatch status"
+                aria-pressed={profile.is_listed}
+              >
+                <span className="aw-switch-dot" />
+              </button>
+            </div>
+          </header>
+
+          {priorityRequest ? (
+            <article className="aw-notice">
+              <span className="aw-notice-icon">
+                <Icon name="zap" size={17} />
+              </span>
+              <div className="aw-notice-copy">
+                <strong>High priority near you</strong>
+                <p>
+                  {priorityRequest.title} · {priorityRequest.category} ·{" "}
+                  {priorityRequest.service_area} · Budget{" "}
+                  {money(priorityRequest.budget_guidance_kobo)} · {priorityRequest.quotes_count}{" "}
+                  {priorityRequest.quotes_count === 1 ? "quote" : "quotes"} submitted
+                </p>
+              </div>
+              <Link
+                className="aw-btn aw-btn-primary"
+                href={`/artisan/requests/${priorityRequest.id}/quote`}
+              >
+                View & draft quote
+              </Link>
+            </article>
+          ) : null}
+
+          <div className="aw-kpi-strip">
+            <Kpi
+              icon="briefcase"
+              label="Active jobs"
+              value={desk?.stats.active_jobs ?? 0}
+              foot={`${desk?.stats.in_progress_jobs ?? 0} in physical execution`}
+            />
+            <Kpi
+              icon="inbox"
+              label="New quote requests"
+              value={desk?.stats.pending_quotes ?? 0}
+              foot="Awaiting a client decision"
+            />
+            <Kpi
+              icon="wallet"
+              label="MTD cleared earnings"
+              value={money(desk?.stats.mtd_earnings_kobo ?? 0)}
+              foot="Confirmed milestone payments"
+            />
+            <Kpi
+              icon="star"
+              label="Client satisfaction"
+              value={reviews > 0 ? `${rating.toFixed(1)} / 5.0` : "—"}
+              foot={reviews > 0 ? `From ${reviews} completed reviews` : "No reviews yet"}
+            />
+          </div>
+
+          <div className="aw-split">
+            <div className="aw-stack">
+              <section className="aw-panel">
+                <PanelHead
+                  title="Ongoing jobs"
+                  note={`${activeJobs.length} active ${activeJobs.length === 1 ? "job" : "jobs"}`}
+                >
+                  <Link className="aw-link" href="/artisan/jobs">
+                    View all jobs <Icon name="next" size={13} />
+                  </Link>
+                </PanelHead>
+
+                {activeJobs.length === 0 ? (
+                  <Empty
+                    icon="clipboard"
+                    title="No ongoing jobs yet"
+                    body="Quotes you submit appear here once a client accepts them."
+                    action={
+                      <Link className="aw-btn aw-btn-primary" href="/artisan/requests">
+                        Browse open requests
+                      </Link>
+                    }
+                  />
+                ) : (
+                  <div className="aw-list">
+                    {activeJobs.slice(0, 4).map((job) => (
+                      <JobRow job={job} key={job.id} />
+                    ))}
+                  </div>
+                )}
+              </section>
+
+              <section className="aw-panel">
+                <PanelHead
+                  title="Recent quote submissions"
+                  note={`${desk?.stats.pending_quotes ?? 0} awaiting a decision`}
+                >
+                  <Link className="aw-link" href="/artisan/requests">
+                    View all quotes <Icon name="next" size={13} />
+                  </Link>
+                </PanelHead>
+
+                {(desk?.quotes.length ?? 0) === 0 ? (
+                  <Empty
+                    icon="send"
+                    title="No quotes submitted yet"
+                    body="Send your first quote from the open requests feed and it will be tracked here."
+                    action={
+                      <Link className="aw-btn aw-btn-primary" href="/artisan/requests">
+                        Browse open requests
+                      </Link>
+                    }
+                  />
+                ) : (
+                  <div className="aw-table-wrap">
+                    <table className="aw-table">
+                      <thead>
+                        <tr>
+                          <th>Job / scope</th>
+                          <th>Customer</th>
+                          <th className="aw-cell-right">Quoted total</th>
+                          <th>Deposit</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {desk?.quotes.slice(0, 6).map((quote) => (
+                          <tr key={quote.id}>
+                            <td>
+                              <div className="aw-cell-stack">
+                                <span className="aw-cell-strong">{quote.title}</span>
+                                <span className="aw-cell-muted">
+                                  {quote.category} · {quote.service_area}
+                                </span>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="aw-cell-stack">
+                                <span>{quote.customer_name}</span>
+                                <span className="aw-cell-muted">{dateOnly(quote.created_at)}</span>
+                              </div>
+                            </td>
+                            <td className="aw-cell-right aw-cell-strong">{money(quote.total_kobo)}</td>
+                            <td>
+                              <div className="aw-cell-stack">
+                                <span>50% · {money(depositOf(quote.total_kobo))}</span>
+                                <span className="aw-cell-muted">
+                                  Balance {money(balanceOf(quote.total_kobo))}
+                                </span>
+                              </div>
+                            </td>
+                            <td>
+                              <Badge tone={quoteTone[quote.status]}>{quote.status}</Badge>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </section>
+            </div>
+
+            <aside className="aw-stack aw-sticky">
+              <section className="aw-panel">
+                <PanelHead title="Weekly payout flow" note="Mon – Sun" />
+                <div className="aw-money">
+                  <div className="aw-money-cell">
+                    <span className="aw-money-label">Cleared this week</span>
+                    <span className="aw-money-value">{money(desk?.stats.week_earnings_kobo ?? 0)}</span>
+                  </div>
+                  <div className="aw-money-cell">
+                    <span className="aw-money-label">Held in escrow</span>
+                    <span className="aw-money-value">{money(desk?.stats.pending_escrow_kobo ?? 0)}</span>
+                  </div>
+                </div>
+
+                {weekPayments.length === 0 ? (
+                  <p className="aw-panel-note">No milestone releases recorded this week.</p>
+                ) : (
+                  <dl className="aw-facts">
+                    {weekPayments.slice(0, 3).map((payment) => (
+                      <div className="aw-fact" key={payment.id}>
+                        <dt>{dateOnly(payment.paid_at ?? payment.created_at)}</dt>
+                        <dd>{money(payment.amount_kobo)}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
+                <p className="aw-panel-note">
+                  Automated payouts are disabled in this build. Cleared milestones are recorded, not
+                  disbursed.
+                </p>
+              </section>
+
+              <section className="aw-panel">
+                <PanelHead title="Artisan standing" note={`Reference #${desk?.reference}`}>
+                  <Link className="aw-link" href="/artisan/verification/status">
+                    View status <Icon name="next" size={13} />
+                  </Link>
+                </PanelHead>
+                <dl className="aw-facts">
+                  <div className="aw-fact">
+                    <dt>Verification</dt>
+                    <dd>{verificationLabel[profile.verification_status]}</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Primary trade</dt>
+                    <dd>{profile.primary_trade}</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Experience</dt>
+                    <dd>{profile.experience_years} years</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Workshop</dt>
+                    <dd>{profile.workshop_area}</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Coverage</dt>
+                    <dd>{profile.coverage_areas.join(", ")}</dd>
+                  </div>
+                </dl>
+              </section>
+
+              <section className="aw-panel">
+                <PanelHead title="Quick tasks" />
+                <dl className="aw-facts">
+                  {[
+                    { href: "/artisan/profile", label: "Update profile & bio", icon: "user" as IconName },
+                    {
+                      href: "/artisan/availability",
+                      label: "Set coverage & hours",
+                      icon: "calendar" as IconName,
+                    },
+                    { href: "/artisan/earnings", label: "Review earnings ledger", icon: "wallet" as IconName },
+                    {
+                      href: "/training",
+                      label: "Safety & compliance training",
+                      icon: "graduation" as IconName,
+                    },
+                    { href: "/settings", label: "Account settings", icon: "settings" as IconName },
+                  ].map((task) => (
+                    <div className="aw-fact" key={task.href}>
+                      <dt>
+                        <Link className="aw-link" href={task.href}>
+                          <Icon name={task.icon} size={13} /> {task.label}
+                        </Link>
+                      </dt>
+                      <dd>
+                        <Icon name="next" size={13} />
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            </aside>
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
+/* --------------------------- S37 Jobs & contracts ------------------------- */
+
+const jobFilters: Array<{ key: string; label: string }> = [
+  { key: "all", label: "All" },
+  { key: "in_progress", label: "In progress" },
+  { key: "accepted", label: "Accepted" },
+  { key: "completed", label: "Completed" },
+  { key: "cancelled", label: "Cancelled" },
+];
+
+export function ArtisanJobsScreen() {
+  const { desk, loading, error } = useArtisanDesk();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const jobs = desk?.jobs ?? [];
+
+  const filteredJobs = jobs.filter((job) => {
+    if (statusFilter !== "all" && job.status !== statusFilter) return false;
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      return (
+        job.title.toLowerCase().includes(query) ||
+        job.category.toLowerCase().includes(query) ||
+        job.service_area.toLowerCase().includes(query) ||
+        job.customer_name.toLowerCase().includes(query) ||
+        job.id.toLowerCase().includes(query)
+      );
+    }
+    return true;
+  });
+
+  const contracted = jobs.reduce((sum, job) => sum + job.total_quote_kobo, 0);
+
+  return (
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "My jobs" },
+        ]}
+      />
+
+      <Head
+        title="My jobs & work orders"
+        subtitle="Track accepted contracts, milestone funding and client sign-offs."
+      >
+        <Link className="aw-btn aw-btn-ghost" href="/artisan/requests">
+          Browse open requests
+        </Link>
+      </Head>
+
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {loading ? <p className="aw-loading">Loading work orders…</p> : null}
+
+      {!loading ? (
+        <>
+          <div className="aw-kpi-strip">
+            <Kpi
+              icon="briefcase"
+              label="Active work orders"
+              value={
+                jobs.filter((job) => job.status === "accepted" || job.status === "in_progress").length
+              }
+              foot="Accepted or in physical execution"
+            />
+            <Kpi
+              icon="wrench"
+              label="In progress"
+              value={jobs.filter((job) => job.status === "in_progress").length}
+              foot="Sites currently being worked"
+            />
+            <Kpi
+              icon="check"
+              label="Completed"
+              value={jobs.filter((job) => job.status === "completed").length}
+              foot="Signed off by the client"
+            />
+            <Kpi
+              icon="banknote"
+              label="Contracted value"
+              value={money(contracted)}
+              foot="All-time agreed volume"
+            />
+          </div>
+
+          <div className="aw-toolbar">
+            <label className="aw-search">
+              <Icon name="search" size={16} />
+              <input
+                type="search"
+                placeholder="Search by title, category, area, customer or job ID"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                aria-label="Search work orders"
+              />
+            </label>
+
+            <div className="aw-filters">
+              {jobFilters.map((filter) => {
+                const count =
+                  filter.key === "all"
+                    ? jobs.length
+                    : jobs.filter((job) => job.status === filter.key).length;
+                if (filter.key === "cancelled" && count === 0) return null;
+                return (
+                  <button
+                    key={filter.key}
+                    type="button"
+                    className="aw-filter"
+                    data-active={statusFilter === filter.key ? "true" : "false"}
+                    onClick={() => setStatusFilter(filter.key)}
+                  >
+                    {filter.label} ({count})
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {filteredJobs.length === 0 ? (
+            <Empty
+              icon="clipboard"
+              title={
+                searchQuery || statusFilter !== "all"
+                  ? "No jobs match this filter"
+                  : "No work orders yet"
+              }
+              body={
+                searchQuery || statusFilter !== "all"
+                  ? "Adjust your search or reset the filters to see every work order."
+                  : "Quote open requests to win your first job. Accepted quotes appear here."
+              }
+              action={
+                <Link className="aw-btn aw-btn-primary" href="/artisan/requests">
                   Browse open requests
                 </Link>
-              </div>
-            ) : (
-              <div className="artisan-list">
-                {activeJobs.map((job) => (
-                  <article key={job.id} className="artisan-card">
-                    <div className="artisan-card-header">
-                      <div>
-                        <h3>{job.title}</h3>
-                        <div className="artisan-card-meta">
-                          <span>{job.category}</span>
-                          <span>•</span>
-                          <span>{job.service_area}</span>
-                          <span>•</span>
-                          <span>Updated {formatWat(job.updated_at)}</span>
-                        </div>
-                      </div>
-                      <StatusPill text={job.status} />
-                    </div>
-
-                    {/* Segmented Milestone Progress Bar (Image 1 & 4 Style) */}
-                    <div className="artisan-segmented-bar">
-                      <div className="artisan-segment-item">
-                        <div className="artisan-segment-track active" />
-                        <span className="artisan-segment-label">1. Agreed</span>
-                      </div>
-                      <div className="artisan-segment-item">
-                        <div className={`artisan-segment-track ${job.status === "in_progress" || job.status === "completed" ? "active" : "in_progress"}`} />
-                        <span className="artisan-segment-label">2. 50% Deposit</span>
-                      </div>
-                      <div className="artisan-segment-item">
-                        <div className={`artisan-segment-track ${job.status === "completed" ? "active" : ""}`} />
-                        <span className="artisan-segment-label">3. Signoff</span>
-                      </div>
-                    </div>
-
-                    {/* Financial Milestone Breakdown */}
-                    <div className="artisan-financial-row">
-                      <div className="artisan-financial-cell">
-                        <span className="cell-label">Agreed Quote</span>
-                        <span className="cell-value">{formatMoney(job.total_quote_kobo)}</span>
-                      </div>
-                      <div className="artisan-financial-cell">
-                        <span className="cell-label">50% Deposit</span>
-                        <span className="cell-value">{formatMoney(Math.floor(job.total_quote_kobo / 2))}</span>
-                      </div>
-                      <div className="artisan-financial-cell">
-                        <span className="cell-label">Completion Balance</span>
-                        <span className="cell-value">{formatMoney(Math.ceil(job.total_quote_kobo / 2))}</span>
-                      </div>
-                    </div>
-
-                    <div className="artisan-actions">
-                      <Link className="button button-primary" href={`/artisan/jobs/${job.id}/update`}>
-                        Post Progress Update
-                      </Link>
-                      <Link className="button button-outline" href={`/jobs/${job.id}`}>
-                        View Client Audit
-                      </Link>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Hiring Opportunities Near You */}
-          <div style={{ display: "grid", gap: "14px", marginTop: "12px" }}>
-            <div className="artisan-inline">
-              <h2>Open Hiring Requests Near You</h2>
-              <Link className="button button-subtle" href="/artisan/requests">
-                Browse all ({openRequests.length}) →
-              </Link>
+              }
+            />
+          ) : (
+            <div className="aw-list">
+              {filteredJobs.map((job) => (
+                <JobRow job={job} key={job.id} />
+              ))}
             </div>
+          )}
+        </>
+      ) : null}
+    </div>
+  );
+}
 
-            {openRequests.length === 0 ? (
-              <div className="artisan-empty">
-                <h3>No open hiring requests right now</h3>
-                <p>New job posts from clients in your coverage area will appear here in real time.</p>
-              </div>
+/* ----------------------------- S38 Earnings ------------------------------ */
+
+export function ArtisanEarningsScreen() {
+  const { desk, loading, error, reload } = useArtisanDesk();
+
+  const jobs = desk?.jobs ?? [];
+  const payments = desk?.payments ?? [];
+  const jobTitles = new Map(jobs.map((job) => [job.id, job.title]));
+  const contracted = jobs.reduce((sum, job) => sum + job.total_quote_kobo, 0);
+
+  return (
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "Earnings" },
+        ]}
+      />
+
+      <Head
+        title="Earnings & settlement ledger"
+        subtitle="Contracted revenue, escrow-backed milestone payments and cleared earnings."
+      >
+        <button type="button" className="aw-btn aw-btn-ghost" onClick={() => void reload()}>
+          <Icon name="refresh" size={14} />
+          Refresh ledger
+        </button>
+      </Head>
+
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {loading ? <p className="aw-loading">Loading ledger…</p> : null}
+
+      {!loading ? (
+        <>
+          <div className="aw-kpi-strip">
+            <Kpi
+              icon="check"
+              label="MTD cleared"
+              value={money(desk?.stats.mtd_earnings_kobo ?? 0)}
+              foot={`${payments.filter((payment) => payment.status === "confirmed").length} confirmed milestone payments`}
+            />
+            <Kpi
+              icon="banknote"
+              label="Cleared this week"
+              value={money(desk?.stats.week_earnings_kobo ?? 0)}
+              foot="Monday to today"
+            />
+            <Kpi
+              icon="lock"
+              label="Pending escrow"
+              value={money(desk?.stats.pending_escrow_kobo ?? 0)}
+              foot="Funded on jobs in progress"
+            />
+            <Kpi
+              icon="trending"
+              label="Total contracted"
+              value={money(contracted)}
+              foot={`${desk?.stats.completed_jobs ?? 0} completed orders`}
+            />
+          </div>
+
+          <article className="aw-notice">
+            <span className="aw-notice-icon">
+              <Icon name="lock" size={17} />
+            </span>
+            <div className="aw-notice-copy">
+              <strong>Paystack TEST mode</strong>
+              <p>
+                Automated bank transfers and payout releases are disabled in this build. Cleared
+                milestones are recorded here; no simulated disbursements are issued.
+              </p>
+            </div>
+          </article>
+
+          <section className="aw-panel">
+            <PanelHead title="Milestone payments" note={`${payments.length} recorded events`} />
+
+            {payments.length === 0 ? (
+              <Empty
+                icon="receipt"
+                title="No earnings recorded yet"
+                body="Once a client funds a milestone on an accepted job, the payment appears in this ledger."
+                action={
+                  <Link className="aw-btn aw-btn-primary" href="/artisan/requests">
+                    Browse open requests
+                  </Link>
+                }
+              />
             ) : (
-              <div className="artisan-list">
-                {openRequests.slice(0, 3).map((req) => (
-                  <article key={req.id} className="artisan-card">
-                    <div className="artisan-card-header">
-                      <div>
-                        <h3>{req.title}</h3>
-                        <div className="artisan-card-meta">
-                          <span>{req.category}</span>
-                          <span>•</span>
-                          <span>{req.service_area}</span>
-                          <span>•</span>
-                          <span>Posted {formatWat(req.created_at)}</span>
-                        </div>
-                      </div>
-                      <span className="artisan-badge pending">{req.quotes_count} quotes</span>
-                    </div>
-                    <p style={{ color: "var(--muted)", fontSize: "14px" }}>
-                      {req.description.length > 150 ? `${req.description.slice(0, 150)}...` : req.description}
-                    </p>
-                    <div className="artisan-inline">
-                      <p><strong>Client Budget:</strong> {formatMoney(req.budget_guidance_kobo)}</p>
-                      <div className="artisan-actions">
-                        <Link className="button button-primary" href={`/artisan/requests/${req.id}/quote`}>
-                          Submit Quote
-                        </Link>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+              <div className="aw-table-wrap">
+                <table className="aw-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Reference</th>
+                      <th>Job order</th>
+                      <th>Milestone</th>
+                      <th className="aw-cell-right">Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {payments.map((payment) => (
+                      <tr key={payment.id}>
+                        <td>
+                          <div className="aw-cell-stack">
+                            <span>{dateOnly(payment.paid_at ?? payment.created_at)}</span>
+                            <span className="aw-cell-muted">
+                              {timeOnly(payment.paid_at ?? payment.created_at)} WAT
+                            </span>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="aw-mono">{payment.reference}</span>
+                        </td>
+                        <td>
+                          <div className="aw-cell-stack">
+                            <span>{jobTitles.get(payment.job_id) ?? "Job order"}</span>
+                            <span className="aw-cell-muted">{jobReference(payment.job_id)}</span>
+                          </div>
+                        </td>
+                        <td style={{ textTransform: "capitalize" }}>{payment.milestone}</td>
+                        <td className="aw-cell-right aw-cell-strong">{money(payment.amount_kobo)}</td>
+                        <td>
+                          <Badge tone={paymentTone[payment.status]}>{payment.status}</Badge>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             )}
+          </section>
+
+          <section className="aw-panel">
+            <PanelHead title="Contract ledger" note="Agreed value per work order" />
+
+            {jobs.length === 0 ? (
+              <p className="aw-panel-note">No contracts yet.</p>
+            ) : (
+              <div className="aw-table-wrap">
+                <table className="aw-table">
+                  <thead>
+                    <tr>
+                      <th>Work order</th>
+                      <th>Client</th>
+                      <th>Status</th>
+                      <th className="aw-cell-right">Contract</th>
+                      <th className="aw-cell-right">Funded</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {jobs.map((job) => (
+                      <tr key={job.id}>
+                        <td>
+                          <div className="aw-cell-stack">
+                            <span className="aw-cell-strong">{job.title}</span>
+                            <span className="aw-cell-muted">
+                              {job.category} · {job.service_area}
+                            </span>
+                          </div>
+                        </td>
+                        <td>{job.customer_name}</td>
+                        <td>
+                          <Badge tone={jobTone[job.status]}>{jobLabel[job.status]}</Badge>
+                        </td>
+                        <td className="aw-cell-right aw-cell-strong">{money(job.total_quote_kobo)}</td>
+                        <td className="aw-cell-right">{money(job.escrow_kobo)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
+/* ---------------------------- S39 Availability ---------------------------- */
+
+export function ArtisanAvailabilityScreen() {
+  const { desk, setDesk, loading, error } = useArtisanDesk();
+  const profile = desk?.profile ?? null;
+
+  const activeJobs =
+    desk?.jobs.filter((job) => job.status === "accepted" || job.status === "in_progress") ?? [];
+
+  return (
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "Availability" },
+        ]}
+      />
+
+      <Head
+        title="Availability & work schedule"
+        subtitle="Set your dispatch status, working notes and the areas you cover."
+      />
+
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {loading ? <p className="aw-loading">Loading availability…</p> : null}
+
+      {!loading && !profile ? (
+        <Empty
+          icon="calendar"
+          title="Work profile required"
+          body="Create your work profile before setting availability and coverage."
+          action={
+            <Link className="aw-btn aw-btn-primary" href="/artisan/profile">
+              Create work profile
+            </Link>
+          }
+        />
+      ) : null}
+
+      {profile ? (
+        <>
+          <div className="aw-kpi-strip">
+            <Kpi
+              icon="zap"
+              label="Dispatch status"
+              value={profile.is_listed ? "Online" : "Offline"}
+              foot={profile.is_listed ? "Visible in the directory" : "Hidden from discovery"}
+            />
+            <Kpi
+              icon="briefcase"
+              label="Active jobs"
+              value={activeJobs.length}
+              foot="Booked work orders"
+            />
+            <Kpi
+              icon="pin"
+              label="Coverage zones"
+              value={profile.coverage_areas.length}
+              foot={profile.coverage_areas.slice(0, 2).join(", ")}
+            />
+            <Kpi
+              icon="clock"
+              label="Experience"
+              value={`${profile.experience_years} yrs`}
+              foot="Active trade practice"
+            />
           </div>
+
+          <div className="aw-grid-2">
+            <AvailabilityPanel key={profile.user_id} profile={profile} setDesk={setDesk} />
+
+            <div className="aw-stack">
+              <section className="aw-panel">
+                <PanelHead title="Coverage zones" note="Derived from your work profile." />
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {profile.coverage_areas.map((area) => (
+                    <span className="aw-tag" key={area}>
+                      {area}
+                    </span>
+                  ))}
+                </div>
+                <p className="aw-panel-note">Workshop base: {profile.workshop_area}</p>
+                <Link className="aw-btn aw-btn-ghost aw-btn-sm" href="/artisan/profile">
+                  Edit coverage areas
+                </Link>
+              </section>
+
+              <section className="aw-panel">
+                <PanelHead title="Booked work" note={`${activeJobs.length} active orders`} />
+                {activeJobs.length === 0 ? (
+                  <p className="aw-panel-note">No booked work at the moment.</p>
+                ) : (
+                  <dl className="aw-facts">
+                    {activeJobs.map((job) => (
+                      <div className="aw-fact" key={job.id}>
+                        <dt>
+                          {job.customer_name} · {job.service_area}
+                        </dt>
+                        <dd>{dateOnly(job.updated_at)}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+              </section>
+            </div>
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
+function AvailabilityPanel({
+  profile,
+  setDesk,
+}: {
+  profile: ArtisanProfileDTO;
+  setDesk: Dispatch<SetStateAction<ArtisanDesk | null>>;
+}) {
+  const [notes, setNotes] = useState(profile.availability_notes ?? "");
+  const [isListed, setIsListed] = useState(profile.is_listed);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const save = async (event: FormEvent) => {
+    event.preventDefault();
+    setSaving(true);
+    setSaveError(null);
+    setSuccess(null);
+
+    try {
+      await readJson("/api/profiles/artisan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contact_phone: profile.contact_phone,
+          primary_trade: profile.primary_trade,
+          experience_years: profile.experience_years,
+          coverage_areas: profile.coverage_areas,
+          workshop_area: profile.workshop_area,
+          bio: profile.bio,
+          skills: profile.skills,
+          rate_guidance_kobo: profile.rate_guidance_kobo,
+          availability_notes: notes.trim(),
+          is_listed: isListed,
+        }),
+      });
+      setDesk((current) =>
+        current && current.profile
+          ? {
+              ...current,
+              profile: {
+                ...current.profile,
+                availability_notes: notes.trim() || null,
+                is_listed: isListed,
+              },
+            }
+          : current,
+      );
+      setSuccess("Availability and dispatch status saved.");
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : "Could not update availability.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <section className="aw-panel">
+      <PanelHead title="Dispatch availability" note="Controls directory and search visibility." />
+
+      <form className="aw-form" onSubmit={save}>
+        <div className="aw-dispatch" style={{ alignSelf: "start" }}>
+          <div className="aw-dispatch-copy">
+            <strong>{isListed ? "Online for dispatch" : "Offline from directory"}</strong>
+            <span>{isListed ? "Accepting new client requests" : "Hidden from discovery"}</span>
+          </div>
+          <button
+            type="button"
+            className="aw-switch"
+            data-on={isListed ? "true" : "false"}
+            onClick={() => setIsListed((current) => !current)}
+            aria-label="Toggle dispatch availability"
+            aria-pressed={isListed}
+          >
+            <span className="aw-switch-dot" />
+          </button>
         </div>
 
-        {/* Side Column (Image 3 Profile Style) */}
-        <aside className="artisan-side-col">
-          {/* Trade Profile Card */}
-          <article className="artisan-card">
-            <div className="artisan-inline">
-              <h3>Trade Profile</h3>
-              <span className={`artisan-badge ${profile?.verification_status || "unsubmitted"}`}>
-                ● {profile?.verification_status || "unsubmitted"}
-              </span>
-            </div>
+        <label className="aw-field">
+          <span>Working hours & booking notes</span>
+          <textarea
+            maxLength={500}
+            rows={4}
+            value={notes}
+            onChange={(event) => setNotes(event.target.value)}
+            placeholder="e.g. Monday to Friday 8:00 AM – 5:30 PM. Saturday emergency call-outs only."
+          />
+          <small>Shown to clients considering your quote.</small>
+        </label>
 
-            <div style={{ display: "grid", gap: "10px", fontSize: "14px" }}>
-              <p><strong>Primary Trade:</strong> {profile?.primary_trade}</p>
-              <p><strong>Experience:</strong> {profile?.experience_years} years active</p>
-              <p><strong>Workshop Area:</strong> {profile?.workshop_area}</p>
-              <p><strong>Coverage:</strong> {profile?.coverage_areas?.join(", ")}</p>
-              {profile?.rate_guidance_kobo ? (
-                <p><strong>Starting Rate:</strong> {formatMoney(profile.rate_guidance_kobo)}</p>
-              ) : null}
-            </div>
+        {saveError ? <p className="aw-alert aw-alert-error">{saveError}</p> : null}
+        {success ? <p className="aw-alert aw-alert-success">{success}</p> : null}
 
-            {profile?.skills && profile.skills.length > 0 ? (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                {profile.skills.map((skill) => (
-                  <span key={skill} className="artisan-badge-tag rating" style={{ fontSize: "11px" }}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            ) : null}
+        <div className="aw-form-actions">
+          <button className="aw-btn aw-btn-primary" type="submit" disabled={saving}>
+            {saving ? "Saving…" : "Save availability"}
+          </button>
+          <Link className="aw-btn aw-btn-ghost" href="/artisan">
+            Back to overview
+          </Link>
+        </div>
+      </form>
 
-            <div className="artisan-actions" style={{ marginTop: "4px" }}>
-              <Link className="button button-primary" href="/artisan/profile">
-                Edit Work Profile
-              </Link>
-              {profile?.user_id ? (
-                <Link className="button button-outline" href={`/artisans/${profile.user_id}`}>
-                  View Public Listing
-                </Link>
-              ) : null}
-            </div>
-          </article>
-
-          {/* Availability & Operating Schedule */}
-          <article className="artisan-card">
-            <div className="artisan-inline">
-              <h3>Operating Schedule</h3>
-              <StatusPill text={profile?.is_listed ? "Listed" : "Hidden"} />
-            </div>
-            <p style={{ fontSize: "14px", color: "var(--muted)" }}>
-              {profile?.availability_notes || "Available Monday to Saturday, 8:00 AM - 6:00 PM."}
-            </p>
-            <div className="artisan-actions">
-              <Link className="button button-outline" href="/artisan/availability">
-                Configure Schedule
-              </Link>
-            </div>
-          </article>
-
-          {/* Verification Status Card */}
-          <article className="artisan-card">
-            <div className="artisan-inline">
-              <h3>Verification Dossier</h3>
-              <span className="artisan-badge approved">#BN-8820</span>
-            </div>
-            <p style={{ fontSize: "14px", color: "var(--muted)" }}>
-              Vetted artisans with verified ID and workshop locations receive top search placement and customer trust badges.
-            </p>
-            <div className="artisan-actions">
-              <Link className="button button-subtle" href="/artisan/verification">
-                Check Verification Status
-              </Link>
-            </div>
-          </article>
-        </aside>
-      </div>
+      <p className="aw-panel-note">
+        Recurring weekly windows and calendar bookings are not stored yet — availability is
+        published as the working notes above.
+      </p>
     </section>
   );
 }
 
-export function ArtisanProfileEditorScreen() {
-  const router = useRouter();
-  const [phone, setPhone] = useState("");
-  const [trade, setTrade] = useState("Plumbing");
-  const [experience, setExperience] = useState(3);
-  const [coverage, setCoverage] = useState("Ikeja, Lekki, Victoria Island");
-  const [workshop, setWorkshop] = useState("Ikeja, Lagos");
-  const [bio, setBio] = useState("");
-  const [skills, setSkills] = useState("Pipe fitting, Drain repair, Leak fixing");
-  const [rateNaira, setRateNaira] = useState("15000");
-  const [availabilityNotes, setAvailabilityNotes] = useState("Available Monday to Saturday, 8am - 6pm");
-  const [isListed, setIsListed] = useState(true);
+/* --------------------------- S40/S41 Verification ------------------------- */
 
-  const [initialLoaded, setInitialLoaded] = useState(false);
+export function ArtisanVerificationScreen() {
+  const { desk, loading, error } = useArtisanDesk();
+  const profile = desk?.profile ?? null;
+
+  return (
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "Verification" },
+        ]}
+      />
+
+      <Head
+        title="Verification & credentials"
+        subtitle="Understand what the verified pro badge requires and where your dossier stands."
+      >
+        <Link className="aw-btn aw-btn-ghost" href="/artisan/verification/status">
+          View status
+        </Link>
+      </Head>
+
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {loading ? <p className="aw-loading">Loading verification…</p> : null}
+
+      {!loading && !profile ? (
+        <Empty
+          icon="shield"
+          title="Work profile required"
+          body="Create your work profile before starting verification."
+          action={
+            <Link className="aw-btn aw-btn-primary" href="/artisan/profile">
+              Create work profile
+            </Link>
+          }
+        />
+      ) : null}
+
+      {profile ? (
+        <>
+          <section className="aw-panel">
+            <PanelHead title="Current verification status">
+              <Badge tone={verificationTone[profile.verification_status]}>
+                {verificationLabel[profile.verification_status]}
+              </Badge>
+            </PanelHead>
+            <dl className="aw-facts">
+              <div className="aw-fact">
+                <dt>Primary trade</dt>
+                <dd>{profile.primary_trade}</dd>
+              </div>
+              <div className="aw-fact">
+                <dt>Workshop area</dt>
+                <dd>{profile.workshop_area}</dd>
+              </div>
+              <div className="aw-fact">
+                <dt>Coverage</dt>
+                <dd>{profile.coverage_areas.join(", ")}</dd>
+              </div>
+              <div className="aw-fact">
+                <dt>Experience</dt>
+                <dd>{profile.experience_years} years</dd>
+              </div>
+              <div className="aw-fact">
+                <dt>Workspace reference</dt>
+                <dd>#{desk?.reference}</dd>
+              </div>
+            </dl>
+          </section>
+
+          <div className="aw-grid-2">
+            <section className="aw-panel">
+              <PanelHead title="Trade skills" note={`${profile.skills.length} listed competencies`} />
+              {profile.skills.length === 0 ? (
+                <p className="aw-panel-note">No skills listed yet.</p>
+              ) : (
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {profile.skills.map((skill) => (
+                    <span className="aw-tag" key={skill}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </section>
+
+            <section className="aw-panel">
+              <PanelHead title="Professional bio" />
+              <p className="aw-row-body">{profile.bio}</p>
+              <p className="aw-panel-note">
+                Contact: {profile.contact_phone} · Availability:{" "}
+                {profile.availability_notes || "not set"}
+              </p>
+            </section>
+          </div>
+
+          <section className="aw-panel">
+            <PanelHead
+              title="How verification works"
+              note="Reviewed manually by SabiWork administrators."
+            />
+            <ol className="aw-steps">
+              <li className="aw-step">
+                <strong>Profile confirmation</strong>
+                <p>Your trade, workshop and coverage are checked against your submitted details.</p>
+              </li>
+              <li className="aw-step">
+                <strong>Skills & competency review</strong>
+                <p>Listed competencies are cross-referenced with your primary trade.</p>
+              </li>
+              <li className="aw-step">
+                <strong>Evidence assessment</strong>
+                <p>Work samples and identity documents are reviewed by a case officer.</p>
+              </li>
+              <li className="aw-step">
+                <strong>Badge determination</strong>
+                <p>The verified pro badge is granted or changes are requested.</p>
+              </li>
+            </ol>
+          </section>
+
+          <article className="aw-notice">
+            <span className="aw-notice-icon">
+              <Icon name="alert" size={17} />
+            </span>
+            <div className="aw-notice-copy">
+              <strong>Document upload is not available yet</strong>
+              <p>
+                This build has no storage for identity documents or work samples, so a dossier cannot
+                be submitted from the board. Verification status is set by an administrator once
+                evidence has been reviewed out of band.
+              </p>
+            </div>
+            <Link className="aw-btn aw-btn-ghost" href="/artisan/profile">
+              Update profile details
+            </Link>
+          </article>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
+export function ArtisanVerificationStatusScreen() {
+  const { desk, loading, error } = useArtisanDesk();
+  const profile = desk?.profile ?? null;
+  const stage = profile ? verificationStage[profile.verification_status] : 0;
+
+  const stages = [
+    { title: "Dossier received", body: "Your details are captured on the artisan board." },
+    {
+      title: "Trade tagging check",
+      body: "Competencies cross-referenced with your primary trade.",
+    },
+    {
+      title: "Portfolio & proof assessment",
+      body: "Work samples and identity documents reviewed.",
+    },
+    { title: "Badge determination", body: "Badge issued or corrections requested." },
+  ];
+
+  return (
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "Verification", href: "/artisan/verification" },
+          { label: "Status" },
+        ]}
+      />
+
+      <Head
+        title="Verification status"
+        subtitle="Track the administrative review of your verified pro badge."
+      >
+        <Link className="aw-btn aw-btn-ghost" href="/artisan/verification">
+          Verification hub
+        </Link>
+      </Head>
+
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {loading ? <p className="aw-loading">Loading status…</p> : null}
+
+      {!loading && !profile ? (
+        <Empty
+          icon="shield"
+          title="Work profile required"
+          body="Create your work profile before starting verification."
+          action={
+            <Link className="aw-btn aw-btn-primary" href="/artisan/profile">
+              Create work profile
+            </Link>
+          }
+        />
+      ) : null}
+
+      {profile ? (
+        <>
+          <section className="aw-hero">
+            <div className="aw-hero-main">
+              <div className="aw-avatar">
+                <Icon name="shield" size={22} />
+              </div>
+              <div className="aw-hero-copy">
+                <div className="aw-hero-name">
+                  <h1>{verificationLabel[profile.verification_status]}</h1>
+                  <Badge tone={verificationTone[profile.verification_status]}>
+                    #{desk?.reference}
+                  </Badge>
+                </div>
+                <div className="aw-hero-meta">
+                  <span>
+                    <strong>{profile.primary_trade}</strong>
+                  </span>
+                  <span>{profile.workshop_area}</span>
+                  <span>Stage {Math.min(stage, 4)} of 4</span>
+                </div>
+              </div>
+            </div>
+            <div className="aw-dispatch">
+              <div className="aw-dispatch-copy">
+                <strong>
+                  {profile.verification_status === "approved" ? "Badge active" : "Not yet issued"}
+                </strong>
+                <span>
+                  {profile.verification_status === "pending"
+                    ? "Awaiting administrator review"
+                    : profile.verification_status === "rejected"
+                      ? "Corrections requested"
+                      : profile.verification_status === "unsubmitted"
+                        ? "No dossier submitted"
+                        : "Verified pro badge granted"}
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <div className="aw-split">
+            <div className="aw-stack">
+              <section className="aw-panel">
+                <PanelHead title="Review workflow" note={`Stage ${Math.min(stage, 4)} of 4 active`} />
+                <ol className="aw-steps">
+                  {stages.map((item, index) => {
+                    const done = index < stage;
+                    const current = index === stage;
+                    return (
+                      <li className="aw-step" key={item.title}>
+                        <strong>
+                          {item.title}
+                          {done ? " · complete" : current ? " · active" : ""}
+                        </strong>
+                        <p>{item.body}</p>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </section>
+
+              <section className="aw-panel">
+                <PanelHead title="Submitted snapshot" note="Read-only profile details." />
+                <dl className="aw-facts">
+                  <div className="aw-fact">
+                    <dt>Reference</dt>
+                    <dd>#{desk?.reference}</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Primary craft</dt>
+                    <dd>{profile.primary_trade}</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Hub zone</dt>
+                    <dd>{profile.workshop_area}</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Coverage</dt>
+                    <dd>{profile.coverage_areas.join(", ")}</dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Skills tagged</dt>
+                    <dd>{profile.skills.length}</dd>
+                  </div>
+                </dl>
+              </section>
+            </div>
+
+            <aside className="aw-stack aw-sticky">
+              <section className="aw-panel">
+                <PanelHead title="Badge perks" />
+                <dl className="aw-facts">
+                  <div className="aw-fact">
+                    <dt>Priority placement in artisan search</dt>
+                    <dd>
+                      <Icon
+                        name={profile.verification_status === "approved" ? "check" : "x"}
+                        size={13}
+                      />
+                    </dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Verified pro badge on your listing</dt>
+                    <dd>
+                      <Icon
+                        name={profile.verification_status === "approved" ? "check" : "x"}
+                        size={13}
+                      />
+                    </dd>
+                  </div>
+                  <div className="aw-fact">
+                    <dt>Dispatch eligibility</dt>
+                    <dd>{profile.is_listed ? "Listed" : "Hidden"}</dd>
+                  </div>
+                </dl>
+              </section>
+
+              <section className="aw-panel">
+                <PanelHead title="Need help?" />
+                <p className="aw-panel-note">
+                  Verification is reviewed by SabiWork administrators during weekday hours. Ensure
+                  your profile details are accurate before a review completes.
+                </p>
+                <Link className="aw-btn aw-btn-ghost aw-btn-sm" href="/artisan/profile">
+                  Edit profile
+                </Link>
+              </section>
+            </aside>
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
+/* ------------------------- S06 Profile editor ---------------------------- */
+
+export function ArtisanProfileEditorScreen() {
+  const { desk, loading } = useArtisanDesk();
+  const profile = desk?.profile ?? null;
+
+  return (
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "Work profile" },
+        ]}
+      />
+
+      <Head
+        title="Work profile"
+        subtitle="Complete your profile to appear in public search and send quotes to prospective clients."
+      >
+        <Link className="aw-btn aw-btn-ghost" href="/artisan">
+          Back to overview
+        </Link>
+      </Head>
+
+      {loading ? <p className="aw-loading">Loading profile…</p> : null}
+
+      {!loading ? (
+        <section className="aw-panel">
+          <ProfileEditorForm key={profile?.user_id ?? "new"} profile={profile} />
+        </section>
+      ) : null}
+    </div>
+  );
+}
+
+function ProfileEditorForm({ profile }: { profile: ArtisanProfileDTO | null }) {
+  const router = useRouter();
+  const [phone, setPhone] = useState(profile?.contact_phone ?? "");
+  const [trade, setTrade] = useState(profile?.primary_trade ?? "Plumbing");
+  const [experience, setExperience] = useState(profile?.experience_years ?? 3);
+  const [coverage, setCoverage] = useState(profile?.coverage_areas.join(", ") ?? "");
+  const [workshop, setWorkshop] = useState(profile?.workshop_area ?? "");
+  const [bio, setBio] = useState(profile?.bio ?? "");
+  const [skills, setSkills] = useState(profile?.skills.join(", ") ?? "");
+  const [rateNaira, setRateNaira] = useState(
+    typeof profile?.rate_guidance_kobo === "number"
+      ? String(Math.round(profile.rate_guidance_kobo / 100))
+      : "15000",
+  );
+  const [availabilityNotes, setAvailabilityNotes] = useState(profile?.availability_notes ?? "");
+  const [isListed, setIsListed] = useState(profile?.is_listed ?? true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-  const [savedUserId, setSavedUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    void readJson<WorkProfile>("/api/profiles/artisan")
-      .then((data) => {
-        if (!active) return;
-        setPhone(data.contact_phone || "");
-        setTrade(data.primary_trade || "Plumbing");
-        setExperience(data.experience_years ?? 1);
-        setCoverage(data.coverage_areas?.join(", ") || "");
-        setWorkshop(data.workshop_area || "");
-        setBio(data.bio || "");
-        setSkills(data.skills?.join(", ") || "");
-        if (typeof data.rate_guidance_kobo === "number") {
-          setRateNaira(String(Math.round(data.rate_guidance_kobo / 100)));
-        }
-        setAvailabilityNotes(data.availability_notes || "");
-        setIsListed(data.is_listed ?? true);
-        setSavedUserId(data.user_id);
-        setInitialLoaded(true);
-      })
-      .catch(() => {
-        if (!active) return;
-        setInitialLoaded(true);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
+  const [savedUserId, setSavedUserId] = useState<string | null>(profile?.user_id ?? null);
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -687,26 +1598,24 @@ export function ArtisanProfileEditorScreen() {
       .map((item) => item.trim())
       .filter((item) => item.length >= 2);
 
-    const payload = {
-      contact_phone: phone,
-      primary_trade: trade,
-      experience_years: Number(experience),
-      coverage_areas: coverageArray,
-      workshop_area: workshop,
-      bio,
-      skills: skillsArray.length > 0 ? skillsArray : [trade],
-      rate_guidance_kobo: Math.round(Number(rateNaira || "0") * 100),
-      availability_notes: availabilityNotes || null,
-      is_listed: isListed,
-    };
-
     try {
       const saved = await readJson<{ user_id: string }>("/api/profiles/artisan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          contact_phone: phone,
+          primary_trade: trade,
+          experience_years: Number(experience),
+          coverage_areas: coverageArray,
+          workshop_area: workshop,
+          bio,
+          skills: skillsArray.length > 0 ? skillsArray : [trade],
+          rate_guidance_kobo: Math.round(Number(rateNaira || "0") * 100),
+          availability_notes: availabilityNotes || null,
+          is_listed: isListed,
+        }),
       });
-      setSuccess("Your work profile has been saved successfully in Neon.");
+      setSuccess("Your work profile has been saved.");
       setSavedUserId(saved.user_id);
       router.refresh();
     } catch (saveError) {
@@ -717,244 +1626,320 @@ export function ArtisanProfileEditorScreen() {
   };
 
   return (
-    <PageFrame
-      title="Work profile"
-      subtitle="Complete your profile to get listed in public search and send quotes to prospective clients."
-    >
-      {!initialLoaded ? (
-        <p>Loading profile...</p>
-      ) : (
-        <form className="artisan-form" onSubmit={submit}>
-          <label>
-            Primary trade / craft
-            <input
-              required
-              minLength={2}
-              maxLength={100}
-              value={trade}
-              onChange={(e) => setTrade(e.target.value)}
-              placeholder="e.g. Plumbing, Carpentry, Electrical"
-            />
-          </label>
+    <form className="aw-form" onSubmit={submit}>
+<div className="aw-form-row">
+        <label className="aw-field">
+          <span>Primary trade / craft</span>
+          <input
+            required
+            minLength={2}
+            maxLength={100}
+            value={trade}
+            onChange={(event) => setTrade(event.target.value)}
+            placeholder="e.g. Plumbing, Carpentry, Electrical"
+          />
+        </label>
 
-          <label>
-            Contact phone number
-            <input
-              required
-              minLength={8}
-              maxLength={20}
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="e.g. +234 801 234 5678"
-            />
-            <small>Used for direct job coordination once work is agreed.</small>
-          </label>
+        <label className="aw-field">
+          <span>Contact phone number</span>
+          <input
+            required
+            minLength={8}
+            maxLength={20}
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
+            placeholder="e.g. +234 801 234 5678"
+          />
+          <small>Used for direct job coordination once work is agreed.</small>
+        </label>
+      </div>
 
-          <label>
-            Years of active experience
-            <input
-              required
-              type="number"
-              min={0}
-              max={60}
-              value={experience}
-              onChange={(e) => setExperience(Number(e.target.value))}
-            />
-          </label>
+      <div className="aw-form-row">
+        <label className="aw-field">
+          <span>Years of active experience</span>
+          <input
+            required
+            type="number"
+            min={0}
+            max={60}
+            value={experience}
+            onChange={(event) => setExperience(Number(event.target.value))}
+          />
+        </label>
 
-          <label>
-            Workshop / base address
-            <input
-              required
-              minLength={2}
-              maxLength={100}
-              value={workshop}
-              onChange={(e) => setWorkshop(e.target.value)}
-              placeholder="e.g. 14 Airport Road, Benin City"
-            />
-          </label>
+        <label className="aw-field">
+          <span>Starting rate guidance (NGN)</span>
+          <input
+            type="number"
+            min={0}
+            step={1}
+            value={rateNaira}
+            onChange={(event) => setRateNaira(event.target.value)}
+            placeholder="15000"
+          />
+          <small>Helps customers understand your baseline pricing.</small>
+        </label>
+      </div>
 
-          <label>
-            Coverage areas (comma-separated)
-            <input
-              required
-              value={coverage}
-              onChange={(e) => setCoverage(e.target.value)}
-              placeholder="e.g. GRA, Airport Road, Ring Road, Ugbowo"
-            />
-            <small>Areas where you can travel to take on client jobs.</small>
-          </label>
+      <label className="aw-field">
+        <span>Workshop / base address</span>
+        <input
+          required
+          minLength={2}
+          maxLength={100}
+          value={workshop}
+          onChange={(event) => setWorkshop(event.target.value)}
+          placeholder="e.g. 14 Airport Road, Benin City"
+        />
+      </label>
 
-          <label>
-            Skills and specialties (comma-separated)
-            <input
-              value={skills}
-              onChange={(e) => setSkills(e.target.value)}
-              placeholder="e.g. PPR welding, Water pump repair, Underground drainage"
-            />
-          </label>
+      <label className="aw-field">
+        <span>Coverage areas (comma-separated)</span>
+        <input
+          required
+          value={coverage}
+          onChange={(event) => setCoverage(event.target.value)}
+          placeholder="e.g. GRA, Airport Road, Ring Road, Ugbowo"
+        />
+        <small>Areas where you can travel to take on client jobs.</small>
+      </label>
 
-          <label>
-            Starting rate guidance (NGN)
-            <input
-              type="number"
-              min={0}
-              step={1}
-              value={rateNaira}
-              onChange={(e) => setRateNaira(e.target.value)}
-              placeholder="15000"
-            />
-            <small>Saved in integer kobo; helps customers understand your baseline pricing.</small>
-          </label>
+      <label className="aw-field">
+        <span>Skills and specialties (comma-separated)</span>
+        <input
+          value={skills}
+          onChange={(event) => setSkills(event.target.value)}
+          placeholder="e.g. PPR welding, Water pump repair, Underground drainage"
+        />
+      </label>
 
-          <label>
-            Professional bio
-            <textarea
-              required
-              minLength={20}
-              maxLength={2000}
-              rows={5}
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              placeholder="Describe your craft background, apprenticeships, standard response times, and quality standards."
-            />
-          </label>
+      <label className="aw-field">
+        <span>Professional bio</span>
+        <textarea
+          required
+          minLength={20}
+          maxLength={2000}
+          rows={5}
+          value={bio}
+          onChange={(event) => setBio(event.target.value)}
+          placeholder="Describe your craft background, apprenticeships, standard response times and quality standards."
+        />
+      </label>
 
-          <label>
-            Availability notes
-            <input
-              maxLength={500}
-              value={availabilityNotes}
-              onChange={(e) => setAvailabilityNotes(e.target.value)}
-              placeholder="e.g. Monday-Saturday 8am-6pm; 24hr emergency leak response"
-            />
-          </label>
+      <label className="aw-field">
+        <span>Availability notes</span>
+        <input
+          maxLength={500}
+          value={availabilityNotes}
+          onChange={(event) => setAvailabilityNotes(event.target.value)}
+          placeholder="e.g. Monday-Saturday 8am-6pm; 24hr emergency leak response"
+        />
+      </label>
 
-          <label className="artisan-form-checkbox">
-            <input
-              type="checkbox"
-              checked={isListed}
-              onChange={(e) => setIsListed(e.target.checked)}
-            />
-            <span>List my profile publicly in the artisan directory and search</span>
-          </label>
+      <label className="aw-check">
+        <input
+          type="checkbox"
+          checked={isListed}
+          onChange={(event) => setIsListed(event.target.checked)}
+        />
+        <span>List my profile publicly in the artisan directory and search</span>
+      </label>
 
-          {error ? <p className="artisan-error" role="alert">{error}</p> : null}
-          {success ? (
-            <div className="artisan-success" role="status">
-              <p>{success}</p>
-              {savedUserId ? (
-                <p style={{ marginTop: "6px" }}>
-                  <Link href={`/artisans/${savedUserId}`} style={{ textDecoration: "underline", fontWeight: 600 }}>
-                    View your public artisan listing →
-                  </Link>
-                </p>
-              ) : null}
-            </div>
-          ) : null}
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {success ? (
+        <div className="aw-alert aw-alert-success">
+          <span>
+            {success}{" "}
+            {savedUserId ? (
+              <Link className="aw-link" href={`/artisans/${savedUserId}`}>
+                View your public listing →
+              </Link>
+            ) : null}
+          </span>
+        </div>
+      ) : null}
 
-          <div className="artisan-actions">
-            <button className="button button-primary" type="submit" disabled={saving}>
-              {saving ? "Saving profile..." : "Save work profile"}
-            </button>
-            <Link className="button button-outline" href="/artisan">
-              Back to overview
-            </Link>
-          </div>
-        </form>
-      )}
-    </PageFrame>
+      <div className="aw-form-actions">
+        <button className="aw-btn aw-btn-primary" type="submit" disabled={saving}>
+          {saving ? "Saving profile…" : "Save work profile"}
+        </button>
+        <Link className="aw-btn aw-btn-ghost" href="/artisan">
+          Back to overview
+        </Link>
+      </div>
+    </form>
   );
 }
 
+/* -------------------------- S17 Open requests ---------------------------- */
+
 export function ArtisanOpportunitiesScreen() {
-  const [requests, setRequests] = useState<OpenRequestRow[]>([]);
-  const [hasProfile, setHasProfile] = useState<boolean | null>(null);
+  const { desk, loading: deskLoading } = useArtisanDesk();
+  const [requests, setRequests] = useState<DeskRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     let active = true;
-    async function loadData() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const [profileRes, requestsData] = await Promise.all([
-          readJson<WorkProfile>("/api/profiles/artisan")
-            .then(() => true)
-            .catch(() => false),
-          readJson<OpenRequestRow[]>("/api/requests/open"),
-        ]);
-
+    void readJson<DeskRequest[]>("/api/requests/open")
+      .then((rows) => {
         if (!active) return;
-        setHasProfile(profileRes);
-        setRequests(requestsData);
-      } catch (err) {
+        setRequests(rows);
+        setLoading(false);
+      })
+      .catch((err) => {
         if (!active) return;
         setError(err instanceof Error ? err.message : "Could not load open requests.");
-      } finally {
-        if (active) setLoading(false);
-      }
-    }
+        setLoading(false);
+      });
 
-    void loadData();
     return () => {
       active = false;
     };
   }, []);
 
+  const hasProfile = desk?.profile != null;
+  const filtered = requests.filter((request) => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      request.title.toLowerCase().includes(query) ||
+      request.category.toLowerCase().includes(query) ||
+      request.service_area.toLowerCase().includes(query) ||
+      request.description.toLowerCase().includes(query)
+    );
+  });
+
   return (
-    <PageFrame
-      title="Open job requests"
-      subtitle="Discover jobs posted by clients in need of your trade."
-    >
-      {hasProfile === false ? (
-        <article className="artisan-card" style={{ borderLeft: "4px solid #d97706" }}>
-          <p>
-            <strong>Work profile required:</strong> You can browse requests, but creating a work profile is required before submitting quotes.
-          </p>
-          <div className="artisan-actions">
-            <Link className="button button-primary" href="/artisan/profile">
-              Create work profile now
-            </Link>
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "Requests & quotes" },
+        ]}
+      />
+
+      <Head
+        title="Open job requests"
+        subtitle="Discover jobs posted by clients in need of your trade."
+      />
+
+      {!deskLoading && !hasProfile ? (
+        <article className="aw-notice">
+          <span className="aw-notice-icon">
+            <Icon name="alert" size={17} />
+          </span>
+          <div className="aw-notice-copy">
+            <strong>Work profile required</strong>
+            <p>
+              You can browse requests, but creating a work profile is required before submitting
+              quotes.
+            </p>
           </div>
+          <Link className="aw-btn aw-btn-primary" href="/artisan/profile">
+            Create work profile
+          </Link>
         </article>
       ) : null}
 
-      {loading ? <p>Loading open requests...</p> : null}
-      {error ? <p className="artisan-error" role="alert">{error}</p> : null}
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {loading ? <p className="aw-loading">Loading open requests…</p> : null}
 
-      {!loading && !error && requests.length === 0 ? (
-        <p className="artisan-empty">No open job requests currently available.</p>
+      <div className="aw-toolbar">
+        <label className="aw-search">
+          <Icon name="search" size={16} />
+          <input
+            type="search"
+            placeholder="Search by title, category, area or scope"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            aria-label="Search open requests"
+          />
+        </label>
+        <div className="aw-filters">
+          <span className="aw-badge is-info">
+            {filtered.length} of {requests.length} open
+          </span>
+        </div>
+      </div>
+
+      {!loading && filtered.length === 0 ? (
+        <Empty
+          icon="inbox"
+          title={searchQuery ? "No requests match your search" : "No open requests right now"}
+          body={
+            searchQuery
+              ? "Try a different trade, area or keyword."
+              : "New client job posts appear here as soon as they are published."
+          }
+        />
       ) : null}
 
-      <div className="artisan-list">
-        {requests.map((req) => (
-          <article key={req.id} className="artisan-card">
-            <div className="artisan-inline">
-              <h2>{req.title}</h2>
-              <StatusPill text={`${req.quotes_count} quotes`} />
-            </div>
-            <p><strong>Category:</strong> {req.category} · <strong>Area:</strong> {req.service_area}</p>
-            <p>{req.description}</p>
-            <p><strong>Client budget:</strong> {formatMoney(req.budget_guidance_kobo)}</p>
-            <p><small>Posted {formatWat(req.created_at)}</small></p>
-            <div className="artisan-actions">
-              <Link className="button button-primary" href={`/artisan/requests/${req.id}/quote`}>
-                Submit quote
-              </Link>
-            </div>
-          </article>
-        ))}
-      </div>
-    </PageFrame>
+      {filtered.length > 0 ? (
+        <div className="aw-list">
+          {filtered.map((request) => (
+            <article className="aw-row" key={request.id}>
+              <div className="aw-row-head">
+                <div className="aw-row-title">
+                  <span className="aw-mono">{jobReference(request.id)}</span>
+                  <h3>
+                    <Link href={`/artisan/requests/${request.id}/quote`}>{request.title}</Link>
+                  </h3>
+                  <div className="aw-row-meta">
+                    <span>{request.customer_name}</span>
+                    <span>•</span>
+                    <span>{request.category}</span>
+                    <span>•</span>
+                    <span>{request.service_area}</span>
+                    <span>•</span>
+                    <span>Posted {dateOnly(request.created_at)}</span>
+                  </div>
+                </div>
+                <span className="aw-badge is-info">
+                  {request.quotes_count} {request.quotes_count === 1 ? "quote" : "quotes"}
+                </span>
+              </div>
+
+              <p className="aw-row-body">{request.description}</p>
+
+              <div className="aw-row-foot">
+                <div className="aw-money" style={{ borderTop: 0, paddingTop: 0 }}>
+                  <div className="aw-money-cell">
+                    <span className="aw-money-label">Client budget</span>
+                    <span className="aw-money-value">{money(request.budget_guidance_kobo)}</span>
+                  </div>
+                  <div className="aw-money-cell">
+                    <span className="aw-money-label">50% deposit guidance</span>
+                    <span className="aw-money-value">
+                      {money(depositOf(request.budget_guidance_kobo))}
+                    </span>
+                  </div>
+                </div>
+                <div className="aw-row-actions">
+                  <Link
+                    className="aw-btn aw-btn-primary aw-btn-sm"
+                    href={`/artisan/requests/${request.id}/quote`}
+                  >
+                    <Icon name="send" size={14} />
+                    Submit quote
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
+/* ---------------------------- S18 Send quote ----------------------------- */
+
 export function ArtisanSubmitQuoteScreen({ requestId }: { requestId: string }) {
   const router = useRouter();
-  const [request, setRequest] = useState<OpenRequestRow | null>(null);
+  const [request, setRequest] = useState<DeskRequest | null>(null);
   const [totalNaira, setTotalNaira] = useState("25000");
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(true);
@@ -964,7 +1949,7 @@ export function ArtisanSubmitQuoteScreen({ requestId }: { requestId: string }) {
 
   useEffect(() => {
     let active = true;
-    readJson<OpenRequestRow>(`/api/requests/${requestId}`)
+    void readJson<DeskRequest>(`/api/requests/${requestId}`)
       .then((data) => {
         if (!active) return;
         setRequest(data);
@@ -1001,16 +1986,10 @@ export function ArtisanSubmitQuoteScreen({ requestId }: { requestId: string }) {
       await readJson(`/api/requests/${requestId}/quotes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          total_kobo: totalKobo,
-          note,
-        }),
+        body: JSON.stringify({ total_kobo: totalKobo, note }),
       });
-
       setSuccess("Your quote has been sent to the client.");
-      setTimeout(() => {
-        router.push("/artisan/requests");
-      }, 1500);
+      setTimeout(() => router.push("/artisan/requests"), 1500);
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : "Could not submit quote.");
     } finally {
@@ -1018,309 +1997,153 @@ export function ArtisanSubmitQuoteScreen({ requestId }: { requestId: string }) {
     }
   };
 
-  if (loading) {
-    return (
-      <PageFrame title="Submit quote" subtitle="Loading request details...">
-        <p>Loading...</p>
-      </PageFrame>
-    );
-  }
+  const totalKobo = Math.round(Number(totalNaira || "0") * 100);
 
   return (
-    <PageFrame
-      title="Submit a quote"
-      subtitle="Send a transparent, itemized quote to the client for this request."
-    >
-      {request ? (
-        <article className="artisan-card">
-          <div className="artisan-inline">
-            <h2>{request.title}</h2>
-            <StatusPill text={request.status} />
-          </div>
-          <p><strong>Category:</strong> {request.category} · <strong>Area:</strong> {request.service_area}</p>
-          <p>{request.description}</p>
-          <p><strong>Client budget:</strong> {formatMoney(request.budget_guidance_kobo)}</p>
-        </article>
-      ) : null}
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "Requests", href: "/artisan/requests" },
+          { label: "New quote" },
+        ]}
+      />
 
-      <form className="artisan-form" onSubmit={submit}>
-        <label>
-          Total quote amount (NGN)
-          <input
-            required
-            type="number"
-            min={1}
-            step={1}
-            value={totalNaira}
-            onChange={(e) => setTotalNaira(e.target.value)}
-          />
-          <small>
-            50% deposit guidance: {formatMoney(Math.floor((Number(totalNaira || 0) * 100) / 2))}
-          </small>
-        </label>
+      <Head
+        title="Submit a quote"
+        subtitle="Send a transparent, itemised quote to the client for this request."
+      />
 
-        <label>
-          Scope note & breakdown
-          <textarea
-            required
-            minLength={10}
-            maxLength={2000}
-            rows={5}
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            placeholder="Explain what is included: labor, materials, estimated completion time, and warranty."
-          />
-        </label>
+      {loading ? <p className="aw-loading">Loading request…</p> : null}
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
 
-        {error ? <p className="artisan-error" role="alert">{error}</p> : null}
-        {success ? <p className="artisan-success" role="status">{success}</p> : null}
+      <div className="aw-split">
+        <section className="aw-panel">
+          {request ? (
+            <>
+              <PanelHead
+                title={request.title}
+                note={`${request.category} · ${request.service_area}`}
+              >
+                <span className="aw-badge is-info">
+                  {request.quotes_count} {request.quotes_count === 1 ? "quote" : "quotes"}
+                </span>
+              </PanelHead>
 
-        <div className="artisan-actions">
-          <button className="button button-primary" type="submit" disabled={submitting}>
-            {submitting ? "Sending quote..." : "Submit quote"}
-          </button>
-          <Link className="button button-outline" href="/artisan/requests">
-            Cancel
-          </Link>
-        </div>
-      </form>
-    </PageFrame>
-  );
-}
+              <p className="aw-row-body">{request.description}</p>
 
-export function ArtisanJobsScreen() {
-  const [jobs, setJobs] = useState<JobRow[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
-
-  useEffect(() => {
-    let active = true;
-    readJson<JobRow[]>("/api/jobs?scope=worker")
-      .then((rows) => {
-        if (!active) return;
-        setJobs(rows);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (!active) return;
-        setError(err instanceof Error ? err.message : "Could not load work orders.");
-        setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const totalContractedKobo = jobs.reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
-  const activeCount = jobs.filter((j) => j.status === "in_progress" || j.status === "accepted").length;
-  const inProgressCount = jobs.filter((j) => j.status === "in_progress").length;
-  const acceptedCount = jobs.filter((j) => j.status === "accepted").length;
-  const completedCount = jobs.filter((j) => j.status === "completed").length;
-  const cancelledCount = jobs.filter((j) => j.status === "cancelled").length;
-
-  const filteredJobs = jobs.filter((job) => {
-    if (statusFilter !== "all" && job.status !== statusFilter) return false;
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      const matchTitle = job.title.toLowerCase().includes(q);
-      const matchCat = job.category.toLowerCase().includes(q);
-      const matchArea = job.service_area.toLowerCase().includes(q);
-      const matchId = job.id.toLowerCase().includes(q);
-      if (!matchTitle && !matchCat && !matchArea && !matchId) return false;
-    }
-    return true;
-  });
-
-  return (
-    <section className="artisan-page">
-      <div className="artisan-breadcrumbs">
-        <Link href="/">SabiWork</Link>
-        <span>/</span>
-        <Link href="/artisan">Artisan Workspace</Link>
-        <span>/</span>
-        <span>Work Orders</span>
-      </div>
-
-      <header className="artisan-header">
-        <h1>My Work Orders & Contracts</h1>
-        <p>Track accepted jobs, milestone execution, and client signoffs in Postgres.</p>
-      </header>
-
-      {/* 3 KPI Cards Grid */}
-      <div className="artisan-kpi-grid">
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Active Work Orders</span>
-            <span className="artisan-badge approved">Active</span>
-          </div>
-          <span className="kpi-value">{activeCount}</span>
-          <span className="kpi-subtext">Accepted or in physical execution</span>
-        </div>
-
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Completed Deliveries</span>
-            <span className="artisan-badge approved">Signoffs</span>
-          </div>
-          <span className="kpi-value">{completedCount}</span>
-          <span className="kpi-subtext">Verified delivery milestones</span>
-        </div>
-
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Contracted Value</span>
-            <span className="artisan-badge approved">NGN</span>
-          </div>
-          <span className="kpi-value">{formatMoney(totalContractedKobo)}</span>
-          <span className="kpi-subtext">All-time agreed job volume</span>
-        </div>
-      </div>
-
-      {/* Control Bar with Search and Filter Pills */}
-      <div className="artisan-control-bar">
-        <div className="artisan-search-box">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input
-            type="search"
-            placeholder="Search work orders by title, category, area, or ID..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-
-        <div className="artisan-filter-pills">
-          <button
-            type="button"
-            className={`artisan-filter-pill ${statusFilter === "all" ? "active" : ""}`}
-            onClick={() => setStatusFilter("all")}
-          >
-            All ({jobs.length})
-          </button>
-          <button
-            type="button"
-            className={`artisan-filter-pill ${statusFilter === "in_progress" ? "active" : ""}`}
-            onClick={() => setStatusFilter("in_progress")}
-          >
-            In Progress ({inProgressCount})
-          </button>
-          <button
-            type="button"
-            className={`artisan-filter-pill ${statusFilter === "accepted" ? "active" : ""}`}
-            onClick={() => setStatusFilter("accepted")}
-          >
-            Accepted ({acceptedCount})
-          </button>
-          <button
-            type="button"
-            className={`artisan-filter-pill ${statusFilter === "completed" ? "active" : ""}`}
-            onClick={() => setStatusFilter("completed")}
-          >
-            Completed ({completedCount})
-          </button>
-          {cancelledCount > 0 ? (
-            <button
-              type="button"
-              className={`artisan-filter-pill ${statusFilter === "cancelled" ? "active" : ""}`}
-              onClick={() => setStatusFilter("cancelled")}
-            >
-              Cancelled ({cancelledCount})
-            </button>
-          ) : null}
-        </div>
-      </div>
-
-      {loading ? <p>Loading work orders...</p> : null}
-      {error ? <p className="artisan-error" role="alert">{error}</p> : null}
-
-      {!loading && !error && filteredJobs.length === 0 ? (
-        <div className="artisan-empty">
-          <h3>No matching work orders found</h3>
-          <p>
-            {searchQuery || statusFilter !== "all"
-              ? "Try adjusting your search terms or filter selection."
-              : "No work orders assigned yet. Quote open requests to win new jobs."}
-          </p>
-          <Link className="button button-primary" href="/artisan/requests">
-            Browse open requests
-          </Link>
-        </div>
-      ) : null}
-
-      <div className="artisan-list">
-        {filteredJobs.map((job) => (
-          <article key={job.id} className="artisan-card">
-            <div className="artisan-card-header">
-              <div>
-                <h3>{job.title}</h3>
-                <div className="artisan-card-meta">
-                  <span>{job.category}</span>
-                  <span>•</span>
-                  <span>{job.service_area}</span>
-                  <span>•</span>
-                  <span>Client ID: <code>{job.customer_id.slice(0, 8)}...</code></span>
-                  <span>•</span>
-                  <span>Updated {formatWat(job.updated_at)}</span>
+              <dl className="aw-facts">
+                <div className="aw-fact">
+                  <dt>Client</dt>
+                  <dd>{request.customer_name}</dd>
                 </div>
-              </div>
-              <StatusPill text={job.status} />
-            </div>
+                <div className="aw-fact">
+                  <dt>Client budget</dt>
+                  <dd>{money(request.budget_guidance_kobo)}</dd>
+                </div>
+                <div className="aw-fact">
+                  <dt>Posted</dt>
+                  <dd>{dateTime(request.created_at)}</dd>
+                </div>
+              </dl>
+            </>
+          ) : null}
 
-            {/* Segmented Milestone Progress Bar (Image 1 & 4 Style) */}
-            <div className="artisan-segmented-bar">
-              <div className="artisan-segment-item">
-                <div className="artisan-segment-track active" />
-                <span className="artisan-segment-label">1. Agreed</span>
-              </div>
-              <div className="artisan-segment-item">
-                <div className={`artisan-segment-track ${job.status === "in_progress" || job.status === "completed" ? "active" : "in_progress"}`} />
-                <span className="artisan-segment-label">2. 50% Deposit</span>
-              </div>
-              <div className="artisan-segment-item">
-                <div className={`artisan-segment-track ${job.status === "completed" ? "active" : ""}`} />
-                <span className="artisan-segment-label">3. Signoff</span>
-              </div>
-            </div>
+          <form className="aw-form" onSubmit={submit}>
+            <label className="aw-field">
+              <span>Total quote amount (NGN)</span>
+              <input
+                required
+                type="number"
+                min={1}
+                step={1}
+                value={totalNaira}
+                onChange={(event) => setTotalNaira(event.target.value)}
+              />
+              <small>
+                Deposit guidance: {money(depositOf(totalKobo))} · Balance:{" "}
+                {money(balanceOf(totalKobo))}
+              </small>
+            </label>
 
-            {/* Financial Milestone Breakdown */}
-            <div className="artisan-financial-row">
-              <div className="artisan-financial-cell">
-                <span className="cell-label">Contract Value</span>
-                <span className="cell-value">{formatMoney(job.total_quote_kobo)}</span>
-              </div>
-              <div className="artisan-financial-cell">
-                <span className="cell-label">50% Deposit</span>
-                <span className="cell-value">{formatMoney(Math.floor(job.total_quote_kobo / 2))}</span>
-              </div>
-              <div className="artisan-financial-cell">
-                <span className="cell-label">Completion Balance</span>
-                <span className="cell-value">{formatMoney(Math.ceil(job.total_quote_kobo / 2))}</span>
-              </div>
-            </div>
+            <label className="aw-field">
+              <span>Scope note & breakdown</span>
+              <textarea
+                required
+                minLength={10}
+                maxLength={2000}
+                rows={6}
+                value={note}
+                onChange={(event) => setNote(event.target.value)}
+                placeholder="Explain what is included: labour, materials, estimated completion time and warranty."
+              />
+            </label>
 
-            <div className="artisan-actions">
-              <Link className="button button-primary" href={`/artisan/jobs/${job.id}/update`}>
-                Post Progress Update
+            {success ? <p className="aw-alert aw-alert-success">{success}</p> : null}
+
+            <div className="aw-form-actions">
+              <button
+                className="aw-btn aw-btn-primary"
+                type="submit"
+                disabled={submitting || Boolean(success)}
+              >
+                {submitting ? "Sending quote…" : "Submit quote"}
+              </button>
+              <Link className="aw-btn aw-btn-ghost" href="/artisan/requests">
+                Cancel
               </Link>
-              <Link className="button button-outline" href={`/jobs/${job.id}`}>
-                View Client Audit
-              </Link>
             </div>
-          </article>
-        ))}
+          </form>
+        </section>
+
+        <aside className="aw-stack aw-sticky">
+          <section className="aw-panel">
+            <PanelHead title="How quoting works" />
+            <ol className="aw-steps">
+              <li className="aw-step">
+                <strong>Send your quote</strong>
+                <p>The client compares quotes from artisans for this request.</p>
+              </li>
+              <li className="aw-step">
+                <strong>Client accepts</strong>
+                <p>An accepted quote becomes an active work order on your board.</p>
+              </li>
+              <li className="aw-step">
+                <strong>Milestone funding</strong>
+                <p>Deposits are recorded against the job as the client funds escrow.</p>
+              </li>
+            </ol>
+          </section>
+        </aside>
       </div>
-    </section>
+    </div>
   );
 }
+
+/* ------------------------ S28/S29 Progress updates ----------------------- */
+
+type JobDetail = {
+  id: string;
+  request_id: string;
+  status: DeskJob["status"];
+  customer_id: string;
+  worker_id: string;
+  title: string;
+  category: string;
+  service_area: string;
+  description?: string;
+  budget_guidance_kobo: number;
+  total_quote_kobo: number;
+  created_at: string;
+  updated_at: string;
+};
+
+type ProgressNote = { id: string; author_id: string; note: string; created_at: string };
 
 export function ArtisanProgressUpdateScreen({ jobId }: { jobId: string }) {
-  const [job, setJob] = useState<JobRow | null>(null);
-  const [updates, setUpdates] = useState<Array<{ id: string; author_id: string; note: string; created_at: string }>>([]);
+  const [job, setJob] = useState<JobDetail | null>(null);
+  const [updates, setUpdates] = useState<ProgressNote[]>([]);
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -1330,8 +2153,8 @@ export function ArtisanProgressUpdateScreen({ jobId }: { jobId: string }) {
   const reloadData = useCallback(async () => {
     try {
       const [jobData, progressUpdates] = await Promise.all([
-        readJson<JobRow>(`/api/jobs/${jobId}`),
-        readJson<Array<{ id: string; author_id: string; note: string; created_at: string }>>(`/api/jobs/${jobId}/progress`),
+        readJson<JobDetail>(`/api/jobs/${jobId}`),
+        readJson<ProgressNote[]>(`/api/jobs/${jobId}/progress`),
       ]);
       setJob(jobData);
       setUpdates(progressUpdates);
@@ -1345,9 +2168,9 @@ export function ArtisanProgressUpdateScreen({ jobId }: { jobId: string }) {
 
   useEffect(() => {
     let active = true;
-    Promise.all([
-      readJson<JobRow>(`/api/jobs/${jobId}`),
-      readJson<Array<{ id: string; author_id: string; note: string; created_at: string }>>(`/api/jobs/${jobId}/progress`),
+    void Promise.all([
+      readJson<JobDetail>(`/api/jobs/${jobId}`),
+      readJson<ProgressNote[]>(`/api/jobs/${jobId}/progress`),
     ])
       .then(([jobData, progressUpdates]) => {
         if (!active) return;
@@ -1406,438 +2229,117 @@ export function ArtisanProgressUpdateScreen({ jobId }: { jobId: string }) {
     }
   };
 
-  if (loading) {
-    return (
-      <PageFrame title="Job progress" subtitle="Loading work order...">
-        <p>Loading...</p>
-      </PageFrame>
-    );
-  }
-
   return (
-    <PageFrame
-      title="Log job progress"
-      subtitle="Share milestone notes and technical updates with the client."
-    >
-      {job ? (
-        <article className="artisan-card">
-          <div className="artisan-inline">
-            <h2>{job.title}</h2>
-            <StatusPill text={job.status} />
-          </div>
-          <p>{job.category} · {job.service_area}</p>
-          <p><strong>Contract value:</strong> {formatMoney(job.total_quote_kobo)}</p>
+    <div className="aw-page">
+      <Crumbs
+        trail={[
+          { label: "SabiWork", href: "/" },
+          { label: "Artisan workspace", href: "/artisan" },
+          { label: "My jobs", href: "/artisan/jobs" },
+          { label: "Progress" },
+        ]}
+      />
 
-          {job.status === "accepted" ? (
-            <div style={{ marginTop: "10px", padding: "12px", background: "var(--surface)", borderRadius: "8px" }}>
-              <p style={{ marginBottom: "8px" }}>
-                This job has been accepted. Mark it as in progress when you begin physical or on-site work:
-              </p>
-              <button className="button button-primary" type="button" onClick={() => void startJob()} disabled={submitting}>
-                Start job (Set in progress)
-              </button>
-            </div>
+      <Head
+        title="Log job progress"
+        subtitle="Share milestone notes and technical updates with the client."
+      >
+        <Link className="aw-btn aw-btn-ghost" href="/artisan/jobs">
+          Back to jobs
+        </Link>
+      </Head>
+
+      {loading ? <p className="aw-loading">Loading work order…</p> : null}
+      {error ? <p className="aw-alert aw-alert-error">{error}</p> : null}
+      {statusMessage ? <p className="aw-alert aw-alert-success">{statusMessage}</p> : null}
+
+      <div className="aw-split">
+        <div className="aw-stack">
+          {job ? (
+            <section className="aw-panel">
+              <PanelHead title={job.title} note={`${job.category} · ${job.service_area}`}>
+                <Badge tone={jobTone[job.status]}>{jobLabel[job.status]}</Badge>
+              </PanelHead>
+
+              <Milestones status={job.status} />
+
+              <div className="aw-money">
+                <div className="aw-money-cell">
+                  <span className="aw-money-label">Contract value</span>
+                  <span className="aw-money-value">{money(job.total_quote_kobo)}</span>
+                </div>
+                <div className="aw-money-cell">
+                  <span className="aw-money-label">Deposit</span>
+                  <span className="aw-money-value">{money(depositOf(job.total_quote_kobo))}</span>
+                </div>
+                <div className="aw-money-cell">
+                  <span className="aw-money-label">Balance</span>
+                  <span className="aw-money-value">{money(balanceOf(job.total_quote_kobo))}</span>
+                </div>
+              </div>
+
+              {job.status === "accepted" ? (
+                <div className="aw-form-actions">
+                  <button
+                    className="aw-btn aw-btn-primary"
+                    type="button"
+                    onClick={() => void startJob()}
+                    disabled={submitting}
+                  >
+                    Start job · set in progress
+                  </button>
+                </div>
+              ) : null}
+            </section>
           ) : null}
-        </article>
-      ) : null}
 
-      <form className="artisan-form" onSubmit={submitNote}>
-        <label>
-          Technical progress note
-          <textarea
-            required
-            minLength={3}
-            maxLength={2000}
-            rows={4}
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            placeholder="e.g. Cleared main drain pipe; installed replacement brass valve. Ready for client inspection."
-          />
-        </label>
+          <section className="aw-panel">
+            <PanelHead title="Post an update" note="Visible to the client on the shared job view." />
+            <form className="aw-form" onSubmit={submitNote}>
+              <label className="aw-field">
+                <span>Technical progress note</span>
+                <textarea
+                  required
+                  minLength={3}
+                  maxLength={2000}
+                  rows={4}
+                  value={note}
+                  onChange={(event) => setNote(event.target.value)}
+                  placeholder="e.g. Cleared main drain pipe; installed replacement brass valve. Ready for client inspection."
+                />
+              </label>
 
-        {error ? <p className="artisan-error" role="alert">{error}</p> : null}
-        {statusMessage ? <p className="artisan-success" role="status">{statusMessage}</p> : null}
-
-        <div className="artisan-actions">
-          <button className="button button-primary" type="submit" disabled={submitting || !note.trim()}>
-            {submitting ? "Posting..." : "Post update"}
-          </button>
-          <Link className="button button-outline" href="/artisan/jobs">
-            Back to work orders
-          </Link>
-        </div>
-      </form>
-
-      <div style={{ marginTop: "16px" }}>
-        <h2>Update history</h2>
-        {updates.length === 0 ? (
-          <p className="artisan-empty">No updates posted yet.</p>
-        ) : (
-          <div className="artisan-list" style={{ marginTop: "10px" }}>
-            {updates.map((item) => (
-              <article key={item.id} className="artisan-card">
-                <p>{item.note}</p>
-                <p><small>{formatWat(item.created_at)}</small></p>
-              </article>
-            ))}
-          </div>
-        )}
-      </div>
-    </PageFrame>
-  );
-}
-
-export function ArtisanAvailabilityScreen() {
-  const [profile, setProfile] = useState<WorkProfile | null>(null);
-  const [notes, setNotes] = useState("");
-  const [isListed, setIsListed] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    readJson<WorkProfile>("/api/profiles/artisan")
-      .then((data) => {
-        if (!active) return;
-        setProfile(data);
-        setNotes(data.availability_notes || "");
-        setIsListed(data.is_listed ?? true);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (!active) return;
-        setError(err instanceof Error ? err.message : "Create your work profile first.");
-        setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const save = async (event: FormEvent) => {
-    event.preventDefault();
-    if (!profile) return;
-    setSaving(true);
-    setError(null);
-    setSuccess(null);
-
-    const payload = {
-      contact_phone: profile.contact_phone,
-      primary_trade: profile.primary_trade,
-      experience_years: profile.experience_years,
-      coverage_areas: profile.coverage_areas,
-      workshop_area: profile.workshop_area,
-      bio: profile.bio,
-      skills: profile.skills,
-      rate_guidance_kobo: profile.rate_guidance_kobo,
-      availability_notes: notes.trim(),
-      is_listed: isListed,
-    };
-
-    try {
-      await readJson("/api/profiles/artisan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      setSuccess("Availability and listing status updated in Neon.");
-    } catch (saveError) {
-      setError(saveError instanceof Error ? saveError.message : "Could not update availability.");
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  return (
-    <PageFrame
-      title="Availability & schedule"
-      subtitle="Configure your active working hours and marketplace directory visibility."
-    >
-      {loading ? <p>Loading availability settings...</p> : null}
-      {error ? (
-        <article className="artisan-card">
-          <p className="artisan-error" role="alert">{error}</p>
-          <div className="artisan-actions">
-            <Link className="button button-primary" href="/artisan/profile">
-              Create work profile
-            </Link>
-          </div>
-        </article>
-      ) : null}
-
-      {profile ? (
-        <form className="artisan-form" onSubmit={save}>
-          <label>
-            Working hours & booking notes
-            <textarea
-              maxLength={500}
-              rows={4}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="e.g. Available Monday to Friday: 8:00 AM - 5:30 PM. Saturday emergency callouts only."
-            />
-          </label>
-
-          <label className="artisan-form-checkbox">
-            <input
-              type="checkbox"
-              checked={isListed}
-              onChange={(e) => setIsListed(e.target.checked)}
-            />
-            <span>Show my profile as actively listed in public searches</span>
-          </label>
-
-          {error ? <p className="artisan-error" role="alert">{error}</p> : null}
-          {success ? <p className="artisan-success" role="status">{success}</p> : null}
-
-          <div className="artisan-actions">
-            <button className="button button-primary" type="submit" disabled={saving}>
-              {saving ? "Saving..." : "Save availability"}
-            </button>
-            <Link className="button button-outline" href="/artisan">
-              Back to overview
-            </Link>
-          </div>
-        </form>
-      ) : null}
-    </PageFrame>
-  );
-}
-
-export function ArtisanEarningsScreen() {
-  const [jobs, setJobs] = useState<JobRow[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    readJson<JobRow[]>("/api/jobs?scope=worker")
-      .then((rows) => {
-        if (!active) return;
-        setJobs(rows);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (!active) return;
-        setError(err instanceof Error ? err.message : "Could not load earnings.");
-        setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const totalContractedKobo = jobs.reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
-  const completedKobo = jobs
-    .filter((j) => j.status === "completed")
-    .reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
-  const inProgressKobo = jobs
-    .filter((j) => j.status === "in_progress" || j.status === "accepted")
-    .reduce((sum, j) => sum + (j.total_quote_kobo || 0), 0);
-
-  return (
-    <section className="artisan-page">
-      <div className="artisan-breadcrumbs">
-        <Link href="/">SabiWork</Link>
-        <span>/</span>
-        <Link href="/artisan">Artisan Workspace</Link>
-        <span>/</span>
-        <span>Earnings Ledger</span>
-      </div>
-
-      <header className="artisan-header">
-        <h1>Earnings & Payout Ledger</h1>
-        <p>Review contracted revenue, escrow-backed milestone deposits, and completed job balances in Postgres.</p>
-      </header>
-
-      {/* 3 KPI Cards (Image 4 Style) */}
-      <div className="artisan-kpi-grid">
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Completed Earnings</span>
-            <span className="artisan-badge approved">Signoffs</span>
-          </div>
-          <span className="kpi-value">{formatMoney(completedKobo)}</span>
-          <span className="kpi-subtext">Delivered & confirmed work orders</span>
+              <div className="aw-form-actions">
+                <button
+                  className="aw-btn aw-btn-primary"
+                  type="submit"
+                  disabled={submitting || !note.trim()}
+                >
+                  {submitting ? "Posting…" : "Post update"}
+                </button>
+              </div>
+            </form>
+          </section>
         </div>
 
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Pending Completion</span>
-            <span className="artisan-badge pending">In Escrow</span>
-          </div>
-          <span className="kpi-value">{formatMoney(inProgressKobo)}</span>
-          <span className="kpi-subtext">Contracts in physical execution</span>
-        </div>
-
-        <div className="artisan-kpi-card">
-          <div className="kpi-top">
-            <span className="kpi-label">Total Contracted</span>
-            <span className="artisan-badge approved">All-Time</span>
-          </div>
-          <span className="kpi-value">{formatMoney(totalContractedKobo)}</span>
-          <span className="kpi-subtext">Cumulative agreed volume in Neon</span>
-        </div>
-      </div>
-
-      {/* Paystack Test Mode Notice */}
-      <article className="artisan-card" style={{ borderLeft: "6px solid #0284c7" }}>
-        <div className="artisan-inline">
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <span className="artisan-badge approved">Paystack TEST Mode</span>
-            <h3>Automated Payout Service Status</h3>
-          </div>
-        </div>
-        <p style={{ color: "var(--muted)", fontSize: "14px" }}>
-          Automated bank transfers and Paystack payout releases are currently disabled in this build.
-          Completed work orders and milestone balances are securely recorded in Postgres. No simulated payouts or fake disbursements are issued.
-        </p>
-      </article>
-
-      {loading ? <p>Loading earnings ledger...</p> : null}
-      {error ? <p className="artisan-error" role="alert">{error}</p> : null}
-
-      <div style={{ display: "grid", gap: "14px" }}>
-        <h2>Work Order Earnings Ledger</h2>
-
-        {jobs.length === 0 ? (
-          <div className="artisan-empty">
-            <h3>No earnings records yet</h3>
-            <p>Once you accept quote requests and deliver work orders, your ledger entries will appear here.</p>
-            <Link className="button button-primary" href="/artisan/requests">
-              Browse open requests
-            </Link>
-          </div>
-        ) : (
-          <div className="artisan-table-container">
-            <table className="artisan-table">
-              <thead>
-                <tr>
-                  <th>Work Order</th>
-                  <th>Category & Area</th>
-                  <th>Status</th>
-                  <th>Agreed Contract</th>
-                  <th>Last Activity</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {jobs.map((job) => (
-                  <tr key={job.id}>
-                    <td>
-                      <strong>{job.title}</strong>
-                      <div style={{ fontSize: "12px", color: "var(--muted)" }}>
-                        ID: <code>{job.id.slice(0, 8)}...</code>
-                      </div>
-                    </td>
-                    <td>{job.category} · {job.service_area}</td>
-                    <td><StatusPill text={job.status} /></td>
-                    <td><strong>{formatMoney(job.total_quote_kobo)}</strong></td>
-                    <td>{formatWat(job.updated_at)}</td>
-                    <td>
-                      <Link className="button button-outline" style={{ minHeight: "36px", padding: "6px 12px" }} href={`/jobs/${job.id}`}>
-                        View Audit
-                      </Link>
-                    </td>
-                  </tr>
+        <aside className="aw-stack aw-sticky">
+          <section className="aw-panel">
+            <PanelHead title="Update history" note={`${updates.length} entries`} />
+            {updates.length === 0 ? (
+              <p className="aw-panel-note">No updates posted yet.</p>
+            ) : (
+              <ul className="aw-timeline">
+                {updates.map((item) => (
+                  <li key={item.id}>
+                    <p className="aw-timeline-note">{item.note}</p>
+                    <span className="aw-timeline-time">{dateTime(item.created_at)}</span>
+                  </li>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              </ul>
+            )}
+          </section>
+        </aside>
       </div>
-    </section>
+    </div>
   );
-}
-
-export function ArtisanVerificationScreen() {
-  const [profile, setProfile] = useState<WorkProfile | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    readJson<WorkProfile>("/api/profiles/artisan")
-      .then((data) => {
-        if (!active) return;
-        setProfile(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (!active) return;
-        setError(err instanceof Error ? err.message : "Create your work profile first.");
-        setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  return (
-    <PageFrame
-      title="Identity & workshop verification"
-      subtitle="Understand the verification standards for the SabiWork verified artisan badge."
-    >
-      {loading ? <p>Loading verification status...</p> : null}
-      {error ? (
-        <article className="artisan-card">
-          <p className="artisan-error" role="alert">{error}</p>
-          <div className="artisan-actions">
-            <Link className="button button-primary" href="/artisan/profile">
-              Create work profile
-            </Link>
-          </div>
-        </article>
-      ) : null}
-
-      {profile ? (
-        <div className="artisan-list">
-          <article className="artisan-card">
-            <div className="artisan-inline">
-              <h2>Current verification status</h2>
-              <span className={`artisan-badge ${profile.verification_status}`}>
-                ● {profile.verification_status}
-              </span>
-            </div>
-            <p><strong>Trade:</strong> {profile.primary_trade}</p>
-            <p><strong>Workshop area:</strong> {profile.workshop_area}</p>
-            <p><strong>Coverage:</strong> {profile.coverage_areas.join(", ")}</p>
-          </article>
-
-          <article className="artisan-card">
-            <h3>Verification process</h3>
-            <p>
-              Verification dossiers are reviewed directly by SabiWork server administrators.
-              To maintain marketplace safety and trust:
-            </p>
-            <ul style={{ paddingLeft: "20px", display: "grid", gap: "6px" }}>
-              <li>Government-issued ID verification is evaluated by administrators.</li>
-              <li>Workshop physical address is verified before granting the vetted workshop badge.</li>
-              <li>Customer reviews and completed jobs reflect on your public artisan profile.</li>
-            </ul>
-            <p style={{ marginTop: "8px", color: "var(--muted)" }}>
-              No fake third-party APIs or automated checks are simulated in this build.
-            </p>
-            <div className="artisan-actions" style={{ marginTop: "12px" }}>
-              <Link className="button button-outline" href="/artisan/profile">
-                Update profile details
-              </Link>
-              <Link className="button button-subtle" href="/artisan">
-                Back to overview
-              </Link>
-            </div>
-          </article>
-        </div>
-      ) : null}
-    </PageFrame>
-  );
-}
-
-export function ArtisanVerificationStatusScreen() {
-  return <ArtisanVerificationScreen />;
 }

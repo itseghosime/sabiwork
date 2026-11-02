@@ -219,7 +219,7 @@ function NotFoundCard({
       <CircleHelp size={32} className="rw-muted-icon" />
       <h2>{title}</h2>
       <p>{message}</p>
-      <Link className="button button-outline" href={returnHref}>
+      <Link className="button button-primary" href={returnHref}>
         <ArrowLeft size={16} /> {returnLabel}
       </Link>
     </div>
@@ -336,7 +336,7 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
                 >
                   <User size={16} /> View Artisan Profile
                 </Link>
-                <Link className="button button-outline" href="/jobs">
+                <Link className="button button-primary" href="/jobs">
                   <ArrowLeft size={16} /> Return to My Jobs
                 </Link>
               </div>
@@ -440,7 +440,7 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
                 </p>
                 <button
                   type="button"
-                  className="button button-outline"
+                  className="button button-primary"
                   onClick={() => setSimulateUnavailable(true)}
                 >
                   Simulate the next request failing
@@ -448,7 +448,7 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
               </details>
 
               <div className="rw-actions">
-                <Link className="button button-subtle" href="/jobs">
+                <Link className="button button-primary" href="/jobs">
                   <ArrowLeft size={16} /> Return to My Jobs
                 </Link>
                 <button
@@ -504,7 +504,7 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
           </section>
 
           <Link
-            className="button button-outline rw-full"
+            className="button button-primary rw-full"
             href={`/jobs/${encodeURIComponent(job.id)}/dispute`}
           >
             <ShieldAlert size={16} /> Report a job issue or dispute
@@ -599,7 +599,7 @@ function EvidencePicker({
           <strong>Add evidence files</strong>
           <small>JPG, PNG, WebP or PDF · up to 10 MB each · maximum 4 files</small>
         </span>
-        <span className="button button-outline">Choose files</span>
+        <span className="button button-primary">Choose files</span>
       </label>
       <p id="evidence-help" className="rw-help">
         Provide photos showing uncompleted scope or defective parts. This demo stores files
@@ -965,7 +965,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
             </p>
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               onClick={() => setSimulateUnavailable(true)}
             >
               Simulate the next request failing
@@ -973,7 +973,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
           </details>
 
           <div className="rw-actions rw-actions-end">
-            <Link className="button button-subtle" href="/jobs">
+            <Link className="button button-primary" href="/jobs">
               <ArrowLeft size={16} /> Cancel
             </Link>
             <button
@@ -1333,7 +1333,7 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
                 />
                 <div className="rw-response-bottom">
                   <button
-                    className="button button-outline"
+                    className="button button-primary"
                     type="button"
                     onClick={() => noteFile.current?.click()}
                   >
@@ -1356,7 +1356,7 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
                   <p>Simulate network latency or service timeout.</p>
                   <button
                     type="button"
-                    className="button button-outline"
+                    className="button button-primary"
                     onClick={() => setSimulateUnavailable(true)}
                   >
                     Simulate the next request failing
@@ -1402,7 +1402,7 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
           </section>
 
           <Link
-            className="button button-outline rw-full"
+            className="button button-primary rw-full"
             href={`/jobs/${encodeURIComponent(data.job.id)}/dispute`}
           >
             <ArrowLeft size={16} /> Return to dispute form
@@ -1574,7 +1574,7 @@ export function AdminDisputeQueueScreen() {
             <p>Try a different status filter or search keyword.</p>
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               onClick={() => {
                 setFilter("All cases");
                 setQuery("");
@@ -1832,7 +1832,7 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
             </p>
             <button
               type="button"
-              className="button button-outline"
+              className="button button-primary"
               onClick={() => setNoteSaved(Boolean(internalNote.trim()))}
               disabled={!internalNote.trim()}
             >
@@ -1891,7 +1891,7 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
               These controls update no case, notify no participant, and make no determination.
             </p>
             <button
-              className="button button-outline rw-full"
+              className="button button-primary rw-full"
               type="button"
               disabled={pending}
               onClick={() => previewAction("request-info")}
@@ -1912,7 +1912,7 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
             </div>
           </section>
 
-          <Link className="button button-subtle rw-full" href="/admin/disputes">
+          <Link className="button button-primary rw-full" href="/admin/disputes">
             <ArrowLeft size={16} /> Return to Queue
           </Link>
         </aside>

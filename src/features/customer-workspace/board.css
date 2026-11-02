@@ -2890,6 +2890,15 @@
 }
 
 @media (max-width: 640px) {
+  .cb-container {
+    width: min(100% - 24px, 1280px);
+  }
+  .cb-header-actions {
+    gap: 4px;
+  }
+  .cb-cta {
+    padding-inline: 10px;
+  }
   .cb-field-row {
     grid-template-columns: 1fr;
   }

@@ -71,7 +71,7 @@ export function ArtisanDashboardScreen({
         </div>
 
         <div style={{ display: "flex", gap: "8px" }}>
-          <Link href="/artisan/requests" className="button button-outline">
+          <Link href="/artisan/requests" className="button button-primary">
             Browse Open Requests
           </Link>
           <Link href="/artisan/profile" className="button button-primary">
@@ -270,7 +270,7 @@ export function ArtisanWorkOrdersScreen({
             >
               <Link
                 href={`/artisan/jobs/${ord.id}/update`}
-                className="button button-outline"
+                className="button button-primary"
                 style={{ minHeight: "36px", fontSize: "13px" }}
               >
                 Log Technical Update (S29)
@@ -359,7 +359,7 @@ export function ArtisanEarningsLedgerScreen({
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={() => handleTestPayout(true)}
             disabled={requestingPayout}
           >
@@ -517,7 +517,7 @@ export function ArtisanAvailabilityScreen({
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             type="button"
-            className="button button-outline"
+            className="button button-primary"
             onClick={() => handleSaveSchedule(true)}
             disabled={saving}
           >

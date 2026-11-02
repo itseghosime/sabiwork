@@ -79,11 +79,8 @@ function PublicShellContent({
             <Link href="/login" className="text-link">
               Log in
             </Link>
-            <Link href="/signup/artisan" className="button button-outline">
-              Join as an artisan
-            </Link>
             <Link href="/signup/customer" className="button button-primary">
-              Hire an artisan <Icon name="arrow" size={17} />
+              Sign up <Icon name="arrow" size={17} />
             </Link>
           </div>
           <button
@@ -124,21 +121,12 @@ function PublicShellContent({
               Log in
               <Icon name="next" size={17} />
             </Link>
-            <p className="mobile-nav-label">Choose your path</p>
-            <Link
-              className="button button-outline mobile-path"
-              href="/signup/artisan"
-              onClick={() => setOpen(false)}
-            >
-              Join as an artisan
-              <Icon name="arrow" size={17} />
-            </Link>
             <Link
               className="button button-primary mobile-path"
               href="/signup/customer"
               onClick={() => setOpen(false)}
             >
-              Hire an artisan
+              Sign up
               <Icon name="arrow" size={17} />
             </Link>
           </nav>

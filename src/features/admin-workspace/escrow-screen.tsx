@@ -13,6 +13,7 @@ import {
   StatusPill,
   type Tone,
 } from "./admin-ui";
+import type { EscrowTransferStatus } from "@/features/payments/transfer";
 import {
   escrowStatusLabel,
   formatNaira,
@@ -24,7 +25,28 @@ import {
 
 type ApiError = { error?: { code?: string; message?: string } };
 
-type EscrowHoldRecord = EscrowHold & { releasedAtIso: string | null };
+type TransferStatus = EscrowTransferStatus;
+
+type EscrowHoldRecord = EscrowHold & {
+  releasedAtIso: string | null;
+  payoutAccountMasked: string | null;
+  payoutAccountName: string | null;
+  payoutBankCode: string | null;
+  recipientReady: boolean;
+  transferStatus: TransferStatus | null;
+  transferReference: string | null;
+  transferFailureReason: string | null;
+  paidOutAtIso: string | null;
+};
+
+type TransferOutcome =
+  | { state: "paid"; reference: string; amountKobo: number; accountName: string | null }
+  | { state: "otp_required"; reference: string; transferCode: string | null }
+  | { state: "in_flight"; reference: string };
+
+type ReleaseResponse = { hold: EscrowHoldRecord | null; transfer: TransferOutcome };
+
+type Bank = { name: string; code: string };
 
 type EscrowTotals = {
   held: number;
@@ -34,15 +56,45 @@ type EscrowTotals = {
   dueToday: number;
 };
 
+class ApiFailure extends Error {
+  readonly code: string | null;
+  constructor(message: string, code: string | null) {
+    super(message);
+    this.name = "ApiFailure";
+    this.code = code;
+  }
+}
+
 async function readJson<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
   const response = await fetch(input, { cache: "no-store", ...init });
   if (!response.ok) {
     const body = (await response.json().catch(() => ({}))) as ApiError;
-    throw new Error(body.error?.message ?? "Request failed.");
+    throw new ApiFailure(
+      body.error?.message ?? "Request failed.",
+      body.error?.code ?? null,
+    );
   }
   const body = (await response.json()) as { data: T };
   return body.data;
 }
+
+const transferTone: Record<TransferStatus, Tone> = {
+  pending: "info",
+  otp: "warning",
+  success: "success",
+  failed: "danger",
+  reversed: "danger",
+  abandoned: "neutral",
+};
+
+const transferLabel: Record<TransferStatus, string> = {
+  pending: "Payout in flight",
+  otp: "Awaiting OTP",
+  success: "Paid out",
+  failed: "Payout failed",
+  reversed: "Payout reversed",
+  abandoned: "Payout abandoned",
+};
 
 const statusTone: Record<EscrowStatus, Tone> = {
   held: "info",
@@ -64,6 +116,12 @@ export function AdminEscrowScreen() {
   const [notice, setNotice] = useState<string | null>(null);
   const [pendingRelease, setPendingRelease] = useState<EscrowHoldRecord | null>(null);
   const [releasing, setReleasing] = useState(false);
+  const [banks, setBanks] = useState<Bank[]>([]);
+  const [bankCode, setBankCode] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [savingPayee, setSavingPayee] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [awaitingOtp, setAwaitingOtp] = useState(false);
 
   const load = useCallback(async (isRefresh = false) => {
     if (isRefresh) setRefreshing(true);
@@ -121,6 +179,72 @@ export function AdminEscrowScreen() {
   );
 
   const readyToRelease = holds.filter((hold) => hold.status === "release_due" && hold.signedOff).length;
+  const needsPayee = holds.filter((hold) => hold.status !== "released" && !hold.recipientReady).length;
+  const failedPayouts = holds.filter(
+    (hold) => hold.transferStatus === "failed" || hold.transferStatus === "reversed",
+  ).length;
+
+  const openRelease = useCallback(async (hold: EscrowHoldRecord) => {
+    setPendingRelease(hold);
+    setError(null);
+    setNotice(null);
+    setOtp("");
+    setAccountNumber("");
+    setBankCode(hold.payoutBankCode ?? "");
+    setAwaitingOtp(hold.transferStatus === "otp");
+    if (hold.recipientReady || banks.length > 0) return;
+    try {
+      const next = await readJson<{ banks: Bank[] }>("/api/admin/banks");
+      setBanks(next.banks);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not load the bank list.");
+    }
+  }, [banks.length]);
+
+  async function savePayee() {
+    if (!pendingRelease) return;
+    setSavingPayee(true);
+    setError(null);
+    setNotice(null);
+    try {
+      const bank = banks.find((entry) => entry.code === bankCode);
+      const next = await readJson<{ hold: EscrowHoldRecord | null }>(
+        `/api/admin/escrow/${pendingRelease.id}/payout-details`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accountNumber, bankCode, bankName: bank?.name ?? "" }),
+        },
+      );
+      if (next.hold) setPendingRelease(next.hold);
+      setNotice(`Payout account saved for ${next.hold?.payoutAccountName ?? "this artisan"}. You can release the milestone now.`);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not save the payout account.");
+    } finally {
+      setSavingPayee(false);
+    }
+  }
+
+  function applyOutcome(next: ReleaseResponse) {
+    const outcome = next.transfer;
+    if (outcome.state === "paid") {
+      setNotice(
+        `${formatNaira(outcome.amountKobo)} sent to ${outcome.accountName ?? "the artisan"} · reference ${outcome.reference}.`,
+      );
+      setPendingRelease(null);
+      setAwaitingOtp(false);
+      return;
+    }
+    if (outcome.state === "otp_required") {
+      setAwaitingOtp(true);
+      if (next.hold) setPendingRelease(next.hold);
+      setNotice("Paystack sent a transfer OTP. Enter it to finish the payout.");
+      return;
+    }
+    if (next.hold) setPendingRelease(next.hold);
+    setNotice(`Payout ${outcome.reference} is in flight with Paystack. Refresh to see the final state.`);
+  }
 
   async function confirmRelease() {
     if (!pendingRelease) return;
@@ -128,18 +252,42 @@ export function AdminEscrowScreen() {
     setError(null);
     setNotice(null);
     try {
-      const next = await readJson<{ hold: EscrowHoldRecord }>(`/api/admin/escrow/${pendingRelease.id}`, {
+      const next = await readJson<ReleaseResponse>(`/api/admin/escrow/${pendingRelease.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: "released" }),
+        body: JSON.stringify({ action: "release" }),
       });
-      setNotice(
-        `Release for ${next.hold.id} (${formatNaira(next.hold.amountKobo)}) recorded in Neon. No payment provider is connected, so no funds moved.`,
-      );
-      setPendingRelease(null);
+      applyOutcome(next);
       await load();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not record the release.");
+      const message = err instanceof Error ? err.message : "Could not release this milestone.";
+      setError(message);
+      // A stale card can go out of step with the ledger; reload so the modal
+      // shows the real transfer state instead of a stale one.
+      if (err instanceof ApiFailure && (err.code === "NEEDS_PAYEE" || err.code === "NOT_PAYABLE")) {
+        await load();
+      }
+    } finally {
+      setReleasing(false);
+    }
+  }
+
+  async function submitOtp() {
+    if (!pendingRelease) return;
+    setReleasing(true);
+    setError(null);
+    setNotice(null);
+    try {
+      const next = await readJson<ReleaseResponse>(`/api/admin/escrow/${pendingRelease.id}/finalize`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ otp }),
+      });
+      setOtp("");
+      applyOutcome(next);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Paystack rejected that OTP.");
     } finally {
       setReleasing(false);
     }
@@ -184,8 +332,9 @@ export function AdminEscrowScreen() {
       />
 
       <SampleNotice>
-        Holds below are stored in the Neon database and describe fictional parties. A recorded release is
-        persisted here; no payment provider is connected, so no funds move.
+        Releasing a milestone now moves money: it initiates a Paystack transfer to the artisan&apos;s verified
+        NUBAN account. Payout accounts are resolved with Paystack before they can be used, and a
+        failed or reversed transfer leaves the milestone payable instead of marking it released.
       </SampleNotice>
 
       {error ? (
@@ -282,6 +431,11 @@ export function AdminEscrowScreen() {
                       <span className="ad-cell-strong">{hold.customerName}</span>
                       <span className="ad-cell-muted">→ {hold.artisanName}</span>
                       <span className="ad-cell-muted">{hold.payoutBank}</span>
+                      <span className="ad-cell-muted">
+                        {hold.recipientReady
+                          ? (hold.payoutAccountMasked ?? "Account on file")
+                          : "No payout account"}
+                      </span>
                     </div>
                   </td>
                   <td>
@@ -303,25 +457,43 @@ export function AdminEscrowScreen() {
                     </div>
                   </td>
                   <td>
-                    <StatusPill tone={statusTone[hold.status]}>{escrowStatusLabel[hold.status]}</StatusPill>
+                    <div className="ad-cell-stack">
+                      <StatusPill tone={statusTone[hold.status]}>{escrowStatusLabel[hold.status]}</StatusPill>
+                      {hold.transferStatus ? (
+                        <StatusPill tone={transferTone[hold.transferStatus]} dot={false}>
+                          {transferLabel[hold.transferStatus]}
+                        </StatusPill>
+                      ) : null}
+                    </div>
                   </td>
                   <td className="ad-cell-right">
                     <button
                       type="button"
                       className="ad-btn ad-btn-ghost ad-btn-sm"
-                      disabled={hold.status !== "release_due" || !hold.signedOff}
-                      onClick={() => setPendingRelease(hold)}
+                      disabled={
+                        hold.transferStatus === "success" ||
+                        hold.transferStatus === "pending" ||
+                        !(
+                          hold.transferStatus === "otp" ||
+                          (hold.status === "release_due" && hold.signedOff)
+                        )
+                      }
+                      onClick={() => void openRelease(hold)}
                       title={
-                        hold.status === "released"
-                          ? "This milestone has already been released"
-                          : hold.status !== "release_due"
-                            ? "Only milestones due for release can be actioned"
-                            : !hold.signedOff
-                              ? "The customer has not signed this milestone off"
-                              : "Record this release"
+                        hold.transferStatus === "success"
+                          ? "This milestone has already been paid out"
+                          : hold.transferStatus === "pending"
+                            ? "A payout is already in flight with Paystack"
+                            : hold.transferStatus === "otp"
+                              ? "Finish the payout with the transfer OTP"
+                              : hold.status !== "release_due"
+                                ? "Only milestones due for release can be actioned"
+                                : !hold.signedOff
+                                  ? "The customer has not signed this milestone off"
+                                  : "Release the funds"
                       }
                     >
-                      View <Icon name="next" size={14} />
+                      {hold.transferStatus === "otp" ? "Finish payout" : "Release"} <Icon name="next" size={14} />
                     </button>
                   </td>
                 </tr>
@@ -375,12 +547,23 @@ export function AdminEscrowScreen() {
               </StatusPill>
             </li>
             <li>
-              <span className="ad-health-icon is-danger"><Icon name="alert" size={17} /></span>
+              <span className="ad-health-icon is-success"><Icon name="banknote" size={17} /></span>
               <div>
                 <strong>Provider connection</strong>
-                <p>No payment provider is connected, so a recorded release does not settle funds.</p>
+                <p>
+                  Releases settle through Paystack Transfers. {needsPayee} payable{" "}
+                  {pluralUnit(needsPayee, "hold")} still {needsPayee === 1 ? "needs" : "need"} a verified payout account.
+                </p>
               </div>
-              <StatusPill tone="danger">Records only</StatusPill>
+              <StatusPill tone="success">Paystack connected</StatusPill>
+            </li>
+            <li>
+              <span className="ad-health-icon is-danger"><Icon name="alert" size={17} /></span>
+              <div>
+                <strong>Failed transfers</strong>
+                <p>Failed and reversed payouts return the milestone to payable so the desk can retry them.</p>
+              </div>
+              <StatusPill tone={failedPayouts ? "danger" : "neutral"}>{failedPayouts} failed</StatusPill>
             </li>
           </ul>
         </SectionCard>
@@ -397,7 +580,9 @@ export function AdminEscrowScreen() {
           >
             <div className="ad-modal-head">
               <div>
-                <span className="ad-modal-eyebrow">Record release</span>
+                <span className="ad-modal-eyebrow">
+                  {awaitingOtp ? "Finish payout" : "Release milestone"}
+                </span>
                 <h2 id="release-modal-title">{formatNaira(pendingRelease.amountKobo)}</h2>
               </div>
               <button
@@ -415,26 +600,126 @@ export function AdminEscrowScreen() {
               <div><dt>Hold</dt><dd>{pendingRelease.id}</dd></div>
               <div><dt>Job</dt><dd>{pendingRelease.jobRef}</dd></div>
               <div><dt>Artisan</dt><dd>{pendingRelease.artisanName}</dd></div>
+              <div>
+                <dt>Payee</dt>
+                <dd>
+                  {pendingRelease.recipientReady
+                    ? `${pendingRelease.payoutAccountName ?? "Verified account"} · ${pendingRelease.payoutAccountMasked ?? ""}`
+                    : "No verified payout account"}
+                </dd>
+              </div>
               <div><dt>Payout bank</dt><dd>{pendingRelease.payoutBank}</dd></div>
               <div><dt>Milestone</dt><dd>{pendingRelease.milestone}</dd></div>
               <div><dt>Sign-off</dt><dd>{pendingRelease.signedOff ? "Confirmed" : "Not confirmed"}</dd></div>
+              {pendingRelease.transferStatus ? (
+                <div>
+                  <dt>Transfer</dt>
+                  <dd>
+                    {transferLabel[pendingRelease.transferStatus]}
+                    {pendingRelease.transferReference ? ` · ${pendingRelease.transferReference}` : ""}
+                  </dd>
+                </div>
+              ) : null}
+              {pendingRelease.transferFailureReason ? (
+                <div><dt>Provider note</dt><dd>{pendingRelease.transferFailureReason}</dd></div>
+              ) : null}
             </dl>
 
-            <p className="ad-modal-note">
-              <Icon name="alert" size={16} /> The release is written to Neon and audited. No money moves and no
-              provider call is made.
-            </p>
+            {error ? (
+              <p className="ad-inline-notice is-danger" role="alert">
+                <Icon name="alert" size={16} /> {error}
+              </p>
+            ) : null}
+
+            {awaitingOtp ? (
+              <label className="ad-field">
+                <span>Transfer OTP</span>
+                <input
+                  value={otp}
+                  onChange={(event) => setOtp(event.target.value)}
+                  placeholder="Enter the OTP Paystack sent for this transfer"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  disabled={releasing}
+                />
+              </label>
+            ) : pendingRelease.recipientReady ? (
+              <p className="ad-modal-note">
+                <Icon name="banknote" size={16} /> Releasing sends {formatNaira(pendingRelease.amountKobo)} to{" "}
+                {pendingRelease.payoutAccountName ?? "the artisan"} {pendingRelease.payoutAccountMasked ?? ""}{" "}
+                through Paystack. The milestone is only marked released after the provider confirms the transfer.
+              </p>
+            ) : (
+              <>
+                <p className="ad-modal-note">
+                  <Icon name="alert" size={16} /> This hold has no verified payout account, so there is nowhere
+                  to send the money yet.
+                </p>
+                <label className="ad-field">
+                  <span>Payout bank</span>
+                  <select
+                    value={bankCode}
+                    onChange={(event) => setBankCode(event.target.value)}
+                    disabled={savingPayee}
+                  >
+                    <option value="">Select a bank…</option>
+                    {banks.map((bank) => (
+                      <option key={bank.code} value={bank.code}>
+                        {bank.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="ad-field">
+                  <span>NUBAN account number</span>
+                  <input
+                    value={accountNumber}
+                    onChange={(event) => setAccountNumber(event.target.value.replace(/[^0-9]/g, "").slice(0, 10))}
+                    placeholder="0123456789"
+                    inputMode="numeric"
+                    maxLength={10}
+                    disabled={savingPayee}
+                  />
+                </label>
+              </>
+            )}
 
             <div className="ad-modal-actions">
+              {awaitingOtp ? (
+                <button
+                  type="button"
+                  className="ad-btn ad-btn-primary"
+                  onClick={submitOtp}
+                  disabled={releasing || otp.trim().length < 4}
+                >
+                  <Icon name="send" size={16} /> {releasing ? "Confirming…" : "Submit OTP"}
+                </button>
+              ) : pendingRelease.recipientReady ? (
+                <button
+                  type="button"
+                  className="ad-btn ad-btn-primary"
+                  onClick={confirmRelease}
+                  disabled={!pendingRelease.signedOff || releasing}
+                >
+                  <Icon name="send" size={16} />{" "}
+                  {releasing ? "Sending payout…" : `Release ${formatNaira(pendingRelease.amountKobo)}`}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="ad-btn ad-btn-primary"
+                  onClick={savePayee}
+                  disabled={savingPayee || accountNumber.trim().length !== 10 || !bankCode}
+                >
+                  <Icon name="checkCircle" size={16} /> {savingPayee ? "Verifying…" : "Save payout account"}
+                </button>
+              )}
               <button
                 type="button"
-                className="ad-btn ad-btn-primary"
-                onClick={confirmRelease}
-                disabled={!pendingRelease.signedOff || releasing}
+                className="ad-btn ad-btn-ghost"
+                onClick={() => setPendingRelease(null)}
+                disabled={releasing || savingPayee}
               >
-                <Icon name="send" size={16} /> {releasing ? "Recording…" : "Record release"}
-              </button>
-              <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setPendingRelease(null)} disabled={releasing}>
                 Cancel
               </button>
             </div>
