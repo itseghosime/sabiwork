@@ -61,11 +61,13 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/successfully processed via bank_transfer/i)).toBeDefined();
+      expect(screen.getByText(/submitted in Paystack TEST mode/i)).toBeDefined();
+      expect(screen.getByText(/pending server verification/i)).toBeDefined();
+      expect(screen.queryByText(/escrow/i)).toBeNull();
     });
   });
 
-  it("renders S25 Milestone Balance Checkout and approves completion sign-off", async () => {
+  it("renders S25 Milestone Balance Checkout with honest demo messaging", async () => {
     render(<MilestoneBalanceCheckoutScreen receipt={defaultReceipt} />);
     expect(
       screen.getByRole("heading", {
@@ -80,8 +82,17 @@ describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Milestone 2 final balance/i)).toBeDefined();
+      expect(screen.getByText(/Milestone 2 balance payment submitted in Paystack TEST mode/i)).toBeDefined();
+      expect(screen.getByText(/No sign-off or payout happens in this demo/i)).toBeDefined();
+      expect(screen.queryByText(/escrow/i)).toBeNull();
+      expect(screen.queryByText(/signed off and released/i)).toBeNull();
     });
+
+    // Success must NOT auto-redirect into sign-off; the user continues manually
+    expect(nav.push).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("link", { name: /Continue → View Job Progress/i }).getAttribute("href"),
+    ).toBe("/jobs/BEN-78401/progress");
   });
 });
 
