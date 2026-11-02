@@ -1,7 +1,7 @@
 # Marketplace journey corrections and verification — 2 November 2026
 
 Base: `119dee1e851cb4da96877bd3ea496fa71b20935f` (`main`, PR #26).
-Status: code and isolated integration checks complete; authenticated deployment/provider walkthrough pending. This is not a claim that every production journey has passed.
+Status: code and isolated integration checks complete; actual customer/artisan browser journey and Paystack test charges passed. Admin/provider payout walkthrough remains unverified. This is not a claim that every production journey has passed.
 
 ## Problems corrected
 
@@ -32,15 +32,27 @@ Covered: draft → publish → competing artisan quotes → acceptance → booki
 
 In the existing signed-in local customer session, a clearly fictional QA request was saved as a draft and remained after refresh. Its detail view had no publish action before these fixes. That baseline screen had no document overflow at 390, 768 or 1440px; this is not responsive proof for the newly changed screens.
 
-The branch preview deployed successfully and its public directory rendered an honest empty state (zero listed artisan accounts). The homepage illustration links were also traced and corrected. The production tab was signed out at `/login`. No customer/artisan/admin production session or real provider checkout/payout was completed. No real service was requested, no live payment was made, and no production migration or configuration was changed. New code has not been visually approved on a deployment.
+## Authenticated preview/provider results
 
-## Setup needed for the remaining walkthrough
+The latest preview was redeployed at commit `7f6abf2` against a separate Neon branch, `sabiwork-journey-qa-20261102`. Migration 0008 was applied only to that QA branch. Six sensitive, branch-specific preview variables connect its database, Auth and Realtime. Production database/schema and production Vercel variables were not changed. Exact no-trailing-slash Auth trusted origins were added for the existing production and PR app origins to correct signup's Invalid origin error.
 
-1. Use an isolated Neon/Auth validation environment with fictional customer, artisan and administrator accounts. Keep Paystack keys in test mode.
-2. Apply additive migration `0008_connected_marketplace_payments.sql` using the existing migration runner against that validation database, then deploy this branch against it. This change does not apply the migration to production. Do not point the existing backend smoke script at production.
-3. Sign in privately to the validation deployment. Test actual signup/login/reset separately with a controlled mailbox. Use two different marketplace accounts for customer/artisan; an account cannot quote its own request. Admin must already be provisioned through the supported process.
-4. Walk through the chain above at 390/768/1440px. Verify refresh persistence and matching request/job IDs, amounts, actual Paystack test receipts, held/release-due/released statuses, account isolation and provider failure/cancellation behavior.
-5. Verify the configured webhook endpoint receives test charge/transfer events. A redirect alone does not establish payment success. Payouts may require provider OTP or test balance; do not replace those with simulated confirmation.
-6. An administrator resolves/configures the test recipient and authorizes a release. Customer sign-off makes a settled hold eligible; it does not silently send a transfer. Refunds and split disbursements are not implemented. Training remains a session-only preview, outside the paid-booking chain.
+Actual browser checks passed:
 
-Only the repository owner merges `main`. Keep this PR draft until migration/deployment and the authenticated browser/provider walkthrough are complete.
+- Customer signup/login/sign-out; publish request; a separate artisan signup, work-profile save, request discovery and quote submission.
+- Quote acceptance creates a matching booking in customer and artisan boards and opens its deposit checkout.
+- Paystack hosted TEST checkout and server-confirmed receipt for a ₦15,000 deposit. SQL confirmed one matching held escrow record and an in-progress booking.
+- Artisan progress note appears in the customer's shared timeline. Premature customer sign-off is rejected until artisan readiness. Artisan readiness, then four explicit customer inspection checks, opens balance checkout.
+- Paystack hosted TEST checkout and server-confirmed receipt for the ₦15,000 balance. SQL confirmed a completed booking, artisan readiness and customer sign-off, two confirmed payments totalling 3,000,000 kobo, and two release-due holds.
+- Customer review saved; booking showed the submitted four-star rating and correct ₦30,000 recorded total.
+- Customer issue persisted with its event history and froze both unreleased holds. Final SQL confirmed both remain disputed; no payout was sent.
+
+The verified provider journey uses request `2210fa2b-27c2-488f-90e9-2378716f0a72`, quote `bd856076-b11d-40eb-b4bb-c78945aeb2ac`, and booking `84e828e0-416f-4295-843b-cdec0060b387`. All descriptions explicitly identify fictional QA work. An earlier QA customer used a reserved `.test` email rejected by Paystack; repeating with an `example.com` QA address reached checkout without weakening provider validation. Its earlier unpaid booking is intentionally retained as evidence.
+
+## Remaining limits
+
+- The connected browser reported no open tabs at the final five-minute wrap-up, preventing further interactive checks. A dedicated QA admin was not created and actual admin resolution, recipient setup and provider payout were not completed. The final QA holds intentionally remain disputed/frozen.
+- Admin authorization, dispute decisions, recipient creation, release, duplicate prevention, timeout reconciliation and reversal pass isolated integration tests with a stubbed provider. Those tests do not prove real Paystack transfer success or network webhook delivery.
+- Real callback redirects and server verification succeeded for charges. External signed webhook delivery was not separately confirmed.
+- Artisan identity/work-sample document submission is explicitly unavailable in this build; verification depends on out-of-band evidence and administrator review. Training remains a session-only preview. Refunds and split disbursements are not implemented; such decisions retain the freeze.
+- Password recovery/email delivery, every settings/support path, and responsive checks of all changed authenticated screens have not been completed. Do not interpret this report as every profile journey being production-ready.
+- No live money was charged or transferred. The new code/migration has not been promoted to production. Only the repository owner merges main; this PR remains draft until the remaining validation and product gaps are addressed.
