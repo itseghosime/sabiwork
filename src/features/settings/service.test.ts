@@ -63,6 +63,7 @@ describe("demo save adapter (TEST mode)", () => {
   it("reports the sample unavailable trigger without erasing edits", async () => {
     const result = await updateSettings({ email: "offline@example.test" });
     expect(result).toMatchObject({ ok: false, code: "UNAVAILABLE" });
+    if (result.ok) throw new Error("Expected the unavailable result.");
     expect(result.message).toContain("try again");
     // The snapshot keeps the previously saved record; form edits are not lost.
     expect((await fetchSettings()).email).toBe("osaze@example.test");

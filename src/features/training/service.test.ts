@@ -14,7 +14,6 @@ import {
   type TrainingFilter,
 } from "./service";
 
-const firstId = guides[0].id;
 const readyId = guides[2].id;
 
 beforeEach(() => {
@@ -99,6 +98,7 @@ describe("directory filter, sort and metrics", () => {
     const quotes = filterGuides({ ...base, q: "quotes" });
     expect(quotes.map((guide) => guide.id)).toEqual([
       guides[2].id,
+      guides[4].id,
       guides[7].id,
     ]);
   });

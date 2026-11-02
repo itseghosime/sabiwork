@@ -17,16 +17,14 @@ vi.mock("./service", async (importOriginal) => {
   };
 });
 
-const { fail } = markState;
-
 beforeEach(() => {
-  fail.value = false;
+  markState.fail = false;
   resetTrainingProgress();
 });
 
 afterEach(() => {
   cleanup();
-  fail.value = false;
+  markState.fail = false;
   resetTrainingProgress();
 });
 
@@ -85,7 +83,7 @@ describe("guide reader (S45 demo)", () => {
   });
 
   it("recovers from a failed demo save without losing reading state", async () => {
-    fail.value = true;
+    markState.fail = true;
     render(<GuideReader guide={guides[0]} />);
     fireEvent.click(screen.getByRole("button", { name: "Mark part 3 read" }));
     const alert = await screen.findByRole("alert");
@@ -95,7 +93,7 @@ describe("guide reader (S45 demo)", () => {
     expect(
       screen.queryByRole("button", { name: "Mark part 3 read" }),
     ).not.toBeNull();
-    fail.value = false;
+    markState.fail = false;
     fireEvent.click(screen.getByRole("button", { name: "Mark part 3 read" }));
     expect(
       await screen.findByText(

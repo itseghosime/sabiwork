@@ -28,9 +28,14 @@ const enumGuard = (
 /** Merge untrusted partial input onto the demo record, trimming strings and
  * snapping unknown option values back to their safe defaults. */
 export function normalizeSettings(input: SettingsInput): DemoSettings {
-  const channels = { ...demoSettings.channels, ...input.channels };
-  for (const key of Object.keys(channels) as (keyof typeof channels)[]) {
-    if (typeof channels[key] !== "boolean") channels[key] = demoSettings[key];
+  const channels: DemoSettings["channels"] = {
+    ...demoSettings.channels,
+    ...input.channels,
+  };
+  for (const key of Object.keys(channels) as (keyof DemoSettings["channels"])[]) {
+    if (typeof channels[key] !== "boolean") {
+      channels[key] = demoSettings.channels[key];
+    }
   }
   const text = (value: unknown, fallback: string, max: number) =>
     typeof value === "string" ? value.trim().slice(0, max) : fallback;
@@ -53,7 +58,7 @@ export function normalizeSettings(input: SettingsInput): DemoSettings {
       districtOptions,
       demoSettings.district,
     ),
-    channels: channels as DemoSettings["channels"],
+    channels,
   };
 }
 
@@ -62,7 +67,7 @@ export function validateSettings(record: DemoSettings): {
   email?: string;
 } {
   const errors: { fullName?: string; email?: string } = {};
-  if (!record.fullName) errors.fullName = "Enter your full name.";
+  if (!record.fullName.trim()) errors.fullName = "Enter your full name.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(record.email))
     errors.email = "Enter a valid email address, for example name@example.test.";
   return errors;
@@ -109,7 +114,7 @@ export async function updateSettings(
       ok: false,
       mode: "demo",
       code: "VALIDATION",
-      message: "Check the highlighted fields before saving.",
+      message: Object.values(errors).join(" "),
     };
   if (record.email === "offline@example.test")
     return {

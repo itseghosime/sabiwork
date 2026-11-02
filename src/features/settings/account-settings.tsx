@@ -305,11 +305,9 @@ export function AccountSettings({
                 <Icon name="lock" size={16} />
                 Account role
               </span>
-              <span className="settings-bubble">Artisan · demo role</span>
+              <span className="settings-bubble">Account role unavailable</span>
               <p>
-                Roles come from the verified server session and cannot be
-                changed here. Role changes are part of the backend handoff with
-                the accounts owner.
+                This preview does not load or change account permissions.
               </p>
             </div>
           </section>
@@ -597,7 +595,6 @@ function Modal({
             className={`button ${confirmClass}`}
             type="button"
             onClick={onConfirm}
-            // eslint-disable-next-line jsx-a11y/no-autofocus -- focus moves into the dialog on open and returns on close
             autoFocus
           >
             {confirmLabel}

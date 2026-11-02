@@ -228,11 +228,17 @@ h3 {
   border: 1px solid var(--border);
 }
 .site-header {
-  border-bottom: 1px solid var(--border);
-  background: #fffffffa;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 30;
+  transition: box-shadow 0.2s ease;
+}
+.site-header:focus-within {
+  box-shadow: 0 4px 20px rgba(14, 41, 75, 0.04);
 }
 .header-inner {
   display: flex;
@@ -2861,3 +2867,254 @@ body {
     font-size: 14px;
   }
 }
+
+/* ==========================================================================
+   Clear Trade Modern — Micro-Interactions, Motion & App Interactivity Tokens
+   ========================================================================== */
+
+@keyframes sabiFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sabiScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sabiPulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes sabiShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Universal button physics & micro-interactions */
+button:not(:disabled),
+.button:not([aria-disabled="true"]),
+.sabi-btn-primary:not(:disabled),
+.sabi-btn-secondary:not(:disabled) {
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.16s ease,
+              box-shadow 0.16s ease,
+              border-color 0.16s ease;
+}
+
+button:not(:disabled):active,
+.button:not([aria-disabled="true"]):active,
+.sabi-btn-primary:not(:disabled):active,
+.sabi-btn-secondary:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+button:not(:disabled):hover .lucide-arrow-right,
+.button:not([aria-disabled="true"]):hover .lucide-arrow-right {
+  transform: translateX(3px);
+  transition: transform 0.18s ease;
+}
+
+/* Card hover elevation */
+.sabi-hover-lift,
+.rq-card,
+.pf-card,
+.sabi-module-card,
+.sabi-metric-card,
+.sabi-wizard-card {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s ease,
+              border-color 0.22s ease;
+}
+
+.sabi-hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(14, 41, 75, 0.08);
+}
+
+/* Live status pulse dot */
+.sabi-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.sabi-pulse-dot.online {
+  background: #107c41;
+  box-shadow: 0 0 0 3px rgba(16, 124, 65, 0.2);
+  animation: sabiPulseDot 2s infinite ease-in-out;
+}
+
+.sabi-pulse-dot.escrow {
+  background: #006491;
+  box-shadow: 0 0 0 3px rgba(0, 100, 145, 0.2);
+  animation: sabiPulseDot 2.2s infinite ease-in-out;
+}
+
+.sabi-pulse-dot.pending {
+  background: #b76e00;
+  box-shadow: 0 0 0 3px rgba(183, 110, 0, 0.2);
+  animation: sabiPulseDot 1.8s infinite ease-in-out;
+}
+
+/* Interactive Floating Role Navigator */
+.sabi-role-dock {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-family: var(--body);
+}
+
+.sabi-role-dock-panel {
+  background: rgba(14, 41, 75, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 10px 14px;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: sabiScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sabi-role-dock-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c9e6ff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sabi-role-dock-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #eff8ff;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.sabi-role-dock-link:hover {
+  background: rgba(56, 168, 232, 0.25);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.sabi-role-dock-link.active {
+  background: var(--sky, #38a8e8);
+  color: var(--navy, #0e294b);
+  box-shadow: 0 2px 8px rgba(56, 168, 232, 0.4);
+}
+
+.sabi-role-dock-toggle {
+  background: transparent;
+  border: none;
+  color: #bec8d1;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.sabi-role-dock-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.sabi-role-dock-collapsed-btn {
+  background: var(--navy, #0e294b);
+  border: 1px solid var(--accent-border, #bae6fd);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(14, 41, 75, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sabi-role-dock-collapsed-btn:hover {
+  background: var(--primary, #006491);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .sabi-role-dock {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+  }
+  .sabi-role-dock-panel {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .sabi-role-dock-title {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+    justify-content: center;
+  }
+}
+
+/* Reduced motion preference compliance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .sabi-pulse-dot {
+    animation: none !important;
+  }
+  .sabi-hover-lift:hover {
+    transform: none !important;
+  }
+}
+

@@ -16,12 +16,6 @@ export function GuideReader({ guide }: { guide: Guide }) {
   const [justCompleted, setJustCompleted] = useState(false);
 
   useEffect(() => {
-    setProgress(progressFor(guide));
-    setJustCompleted(false);
-    setError(null);
-  }, [guide]);
-
-  useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(null), 3800);
     return () => clearTimeout(timer);
@@ -51,25 +45,25 @@ export function GuideReader({ guide }: { guide: Guide }) {
   };
 
   const finishGuide = async () => {
+    if (pending) return;
     const remaining = guide.steps.filter(
       (step) => !progress.completedStepIds.includes(step.id),
     );
-    for (const step of remaining) {
-      if (pending) return;
-      setPending(step.id);
-      setError(null);
-      try {
+    setPending("finish");
+    setError(null);
+    try {
+      for (const step of remaining) {
         setProgress(await markStep(guide, step.id));
-      } catch {
-        setError(
-          "The demo save could not finish. Your reading is still on the page; try again.",
-        );
-        setPending(null);
-        return;
       }
+      setJustCompleted(true);
+      setToast("Guide finished (demo). The certificate view is now unlocked.");
+    } catch {
+      setError(
+        "The demo save could not finish. Your reading is still on the page; try again.",
+      );
+    } finally {
+      setPending(null);
     }
-    setJustCompleted(true);
-    setToast("Guide finished (demo). The certificate view is now unlocked.");
   };
 
   return (
@@ -280,7 +274,7 @@ export function GuideReader({ guide }: { guide: Guide }) {
                   disabled={Boolean(pending)}
                   onClick={finishGuide}
                 >
-                  {pending
+                  {pending === "finish"
                     ? "Saving (demo)…"
                     : `Finish guide (${progress.completedCount}/${progress.totalSteps})`}
                 </button>
