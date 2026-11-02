@@ -64,12 +64,12 @@ export type DemoResult<T extends string> =
   | DemoServiceError;
 
 const job: DemoJob = {
-  id: "demo-job-8421",
-  reference: "BN-REQ-8421",
+  id: "SAMPLE-REQUEST-001",
+  reference: "SAMPLE-REQUEST-001",
   title: "Under-sink kitchen drain pipe replacement & leak repair",
-  artisan: "Osaze Ighodaro",
+  artisan: "Sample Artisan 1",
   artisanTrade: "Master Plumber",
-  area: "Benin City, GRA",
+  area: "Sample area, Benin City",
   completedOn: "24 October 2026",
   totalKobo: 3_000_000,
   depositKobo: 1_000_000,
@@ -77,7 +77,7 @@ const job: DemoJob = {
 };
 
 const dispute: DemoDispute = {
-  id: "demo-dispute-01",
+  id: "SAMPLE-DISPUTE-001",
   job,
   category: "Incomplete work",
   milestone: "Deposit",
@@ -99,22 +99,22 @@ const dispute: DemoDispute = {
   ],
   timeline: [
     {
-      title: "Dispute submitted",
-      detail: "The customer sent an issue description and two sample photos.",
-      time: "11:42 WAT",
+      title: "Sample form preview",
+      detail: "No issue description or photo was sent.",
+      time: "Example timeline step",
       state: "complete",
     },
     {
-      title: "Case received",
-      detail: "The case is shown in this local demonstration queue.",
-      time: "12:05 WAT",
+      title: "Sample queue state",
+      detail: "This record exists only in the local demonstration fixture.",
+      time: "Example timeline step",
       state: "complete",
     },
     {
-      title: "Review in progress",
-      detail: "Both sides can add information in the demonstration flow.",
-      time: "Now",
-      state: "current",
+      title: "Review not started",
+      detail: "No participant was contacted and no review occurred.",
+      time: "Not started",
+      state: "pending",
     },
     {
       title: "Next steps",
@@ -136,13 +136,7 @@ export const reviewsDemoService = {
   async getJob(jobId: string): Promise<DemoJob | null> {
     await waitBriefly();
     const normalized = jobId.toLowerCase().trim();
-    if (
-      normalized === "demo-job-8421" ||
-      normalized === "8421" ||
-      normalized === "bn-req-8421" ||
-      normalized.includes("8421") ||
-      normalized === "default"
-    ) {
+    if (normalized === "sample-request-001" || normalized === "default") {
       return job;
     }
     return null;
@@ -197,13 +191,7 @@ export const reviewsDemoService = {
   async getDispute(disputeId: string): Promise<DemoDispute | null> {
     await waitBriefly();
     const normalized = disputeId.toLowerCase().trim();
-    if (
-      normalized === "demo-dispute-01" ||
-      normalized === "disp-req-8421" ||
-      normalized.includes("8421") ||
-      normalized.includes("dispute") ||
-      normalized === "default"
-    ) {
+    if (normalized === "sample-dispute-001" || normalized === "default") {
       return dispute;
     }
     return null;
@@ -253,4 +241,3 @@ export function formatNaira(amountKobo: number) {
     minimumFractionDigits: 2,
   }).format(amountKobo / 100);
 }
-

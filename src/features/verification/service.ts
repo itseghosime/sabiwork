@@ -7,7 +7,7 @@ export interface VerificationDocument {
   url: string;
   identifier?: string;
   notes?: string;
-  verified: boolean;
+  verified?: boolean;
 }
 
 export interface VerificationDossier {
@@ -28,20 +28,6 @@ export interface VerificationDossier {
   reviewerNotes?: string;
   rejectionReasons?: string[];
   decidedAt?: string;
-  badgeIssued?: boolean;
-}
-
-export interface ArtisanRegistrationDraft {
-  fullName: string;
-  phone: string;
-  email: string;
-  password?: string;
-  trade: string;
-  experienceYears: number;
-  coverageAreas: string[];
-  workshopAddress: string;
-  bio: string;
-  ninNumber: string;
 }
 
 export interface DossierMetrics {
@@ -54,16 +40,16 @@ export interface DossierMetrics {
 
 const mockDossiers: VerificationDossier[] = [
   {
-    id: "VET-BEN-4081",
-    artisanId: "00000000-0000-4000-8000-000000000001",
-    fullName: "Osaze Victor Ighodaro",
+    id: "SAMPLE-VERIFY-001",
+    artisanId: "SAMPLE-ARTISAN-001",
+    fullName: "Sample Artisan 1",
     avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
     trade: "Electrical Installation & Solar Inverters",
     experienceYears: 8,
-    phone: "+234 803 123 4567",
-    email: "osaze.ighodaro@sabiwork.ng",
+    phone: "Not provided",
+    email: "artisan-1@example.test",
     location: "GRA, Benin City",
-    workshopAddress: "14 Boundary Road, GRA, Benin City, Edo State",
+    workshopAddress: "Sample workshop area, Benin City",
     submittedAt: "2026-10-28T09:30:00Z",
     status: "pending",
     competencies: [
@@ -76,48 +62,45 @@ const mockDossiers: VerificationDossier[] = [
       {
         id: "doc-01",
         type: "nin",
-        label: "National Identity Number (NIN Slip)",
-        url: "/mock/docs/nin-ighodaro.pdf",
-        identifier: "NIN: 6721-9840-2311",
+        label: "Sample identity-document placeholder",
+        url: "/mock/docs/sample-identity-document.pdf",
+        identifier: "Sample only; no identity number",
         verified: false,
       },
       {
         id: "doc-02",
         type: "trade_cert",
-        label: "NABTEB Advanced Craft Certificate",
-        url: "/mock/docs/nabteb-cert.pdf",
-        identifier: "Cert No: NAB/ELEC/2018/0942",
-        verified: false,
+        label: "Sample trade-certificate placeholder",
+        url: "/mock/docs/sample-certificate-not-issued.pdf",
+        identifier: "Sample only; no certificate issued",
       },
       {
         id: "doc-03",
         type: "workshop",
-        label: "Workshop Physical Inspection Photo",
+        label: "Sample workshop image",
         url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
-        notes: "Geotagged: Boundary Rd GRA (6.3176° N, 5.6145° E)",
-        verified: false,
+        notes: "Sample image only; no location metadata",
       },
       {
         id: "doc-04",
         type: "utility_bill",
-        label: "BEDC Electricity Proof of Address",
-        url: "/mock/docs/bedc-bill.pdf",
-        identifier: "Meter: 0142-8871-33",
-        verified: false,
+        label: "Sample utility-document placeholder",
+        url: "/mock/docs/sample-utility-bill-not-uploaded.pdf",
+        identifier: "Sample only; no utility account or meter number",
       },
     ],
   },
   {
-    id: "VET-BEN-4082",
-    artisanId: "00000000-0000-4000-8000-000000000002",
-    fullName: "Blessing Osahon",
+    id: "SAMPLE-VERIFY-002",
+    artisanId: "SAMPLE-ARTISAN-002",
+    fullName: "Sample Artisan 2",
     avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
     trade: "Plumbing & Borehole Systems",
     experienceYears: 6,
-    phone: "+234 805 987 6543",
-    email: "blessing.osahon@sabiwork.ng",
+    phone: "Not provided",
+    email: "artisan-2@example.test",
     location: "Airport Road, Benin City",
-    workshopAddress: "45 Airport Road, opposite Ogba Zoo turnoff, Benin City",
+    workshopAddress: "Sample workshop area, Benin City",
     submittedAt: "2026-10-29T11:15:00Z",
     status: "pending",
     competencies: [
@@ -130,45 +113,41 @@ const mockDossiers: VerificationDossier[] = [
       {
         id: "doc-05",
         type: "nin",
-        label: "National Identification Slip",
-        url: "/mock/docs/nin-osahon.pdf",
-        identifier: "NIN: 4310-8821-6674",
-        verified: false,
+        label: "Sample identity-document placeholder",
+        url: "/mock/docs/sample-identity-document-2.pdf",
+        identifier: "Sample only; no identity number",
       },
       {
         id: "doc-06",
         type: "trade_cert",
-        label: "City & Guilds Plumbing Certificate",
-        url: "/mock/docs/cg-plumbing.pdf",
-        identifier: "Cert No: CG-6129-NG",
-        verified: false,
+        label: "Sample trade-certificate placeholder",
+        url: "/mock/docs/sample-plumbing-certificate-not-issued.pdf",
+        identifier: "Sample only; no certificate issued",
       },
       {
         id: "doc-07",
         type: "workshop",
-        label: "Workshop Signpost & Frontage Photo",
+        label: "Sample workshop image",
         url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80",
-        notes: "Airport Road artisan cluster",
-        verified: false,
+        notes: "Sample image only; no location metadata",
       },
     ],
   },
   {
-    id: "VET-BEN-4083",
-    artisanId: "00000000-0000-4000-8000-000000000003",
-    fullName: "Efe Godstime",
+    id: "SAMPLE-VERIFY-003",
+    artisanId: "SAMPLE-ARTISAN-003",
+    fullName: "Sample Artisan 3",
     avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80",
     trade: "Carpentry & Custom Cabinetry",
     experienceYears: 10,
-    phone: "+234 812 345 6789",
-    email: "efe.godstime@sabiwork.ng",
+    phone: "Not provided",
+    email: "artisan-3@example.test",
     location: "Uselu, Benin City",
-    workshopAddress: "12 Lagos-Benin Expressway, Uselu Shell, Benin City",
+    workshopAddress: "Sample workshop area, Benin City",
     submittedAt: "2026-10-25T14:00:00Z",
     status: "approved",
-    badgeIssued: true,
     decidedAt: "2026-10-26T10:30:00Z",
-    reviewerNotes: "Physical workshop inspection verified by Desk Officer. NABTEB credentials authenticated with board registry.",
+    reviewerNotes: "Sample reviewer note. No workshop inspection or credential check was performed.",
     competencies: [
       "Hardwood Roofing Truss Fabrication",
       "Kitchen Modular Cabinet Assembly",
@@ -178,31 +157,30 @@ const mockDossiers: VerificationDossier[] = [
       {
         id: "doc-08",
         type: "nin",
-        label: "NIN Slip Verified",
-        url: "/mock/docs/nin-godstime.pdf",
-        identifier: "NIN: 9012-3341-7782",
-        verified: true,
+        label: "Sample identity-document placeholder",
+        url: "/mock/docs/sample-identity-document-3.pdf",
+        identifier: "Sample only; no identity number",
       },
     ],
   },
   {
-    id: "VET-BEN-4084",
-    artisanId: "00000000-0000-4000-8000-000000000004",
-    fullName: "Nosa Omokaro",
+    id: "SAMPLE-VERIFY-004",
+    artisanId: "SAMPLE-ARTISAN-004",
+    fullName: "Sample Artisan 4",
     avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80",
     trade: "Auto-Mechanic & Diagnostician",
     experienceYears: 4,
-    phone: "+234 814 555 1212",
-    email: "nosa.omokaro@sabiwork.ng",
+    phone: "Not provided",
+    email: "artisan-4@example.test",
     location: "Ikpoba Hill, Benin City",
-    workshopAddress: "88 Agbor Road, Ikpoba Hill, Benin City",
+    workshopAddress: "Sample workshop area, Benin City",
     submittedAt: "2026-10-24T16:20:00Z",
     status: "rejected",
     rejectionReasons: [
-      "Illegible NIN photo upload (name could not be matched with registry)",
-      "Workshop address proof expired over 12 months ago",
+      "Sample identity-document placeholder needs revision",
+      "Sample location detail needs revision",
     ],
-    reviewerNotes: "Applicant notified to upload clear colour photocopy of NIMC slip and current Edo State utility voucher.",
+    reviewerNotes: "Sample reviewer note. No applicant was contacted or document checked.",
     decidedAt: "2026-10-26T12:00:00Z",
     competencies: [
       "OBD-II Diagnostic Scanning",
@@ -212,24 +190,23 @@ const mockDossiers: VerificationDossier[] = [
       {
         id: "doc-09",
         type: "nin",
-        label: "NIN Slip (Low Resolution)",
-        url: "/mock/docs/nin-lowres.pdf",
-        identifier: "NIN: Unreadable",
-        verified: false,
+        label: "Sample identity-document placeholder",
+        url: "/mock/docs/sample-identity-document-low-resolution.pdf",
+        identifier: "Sample only; no identity number",
       },
     ],
   },
   {
-    id: "VET-BEN-4085",
-    artisanId: "00000000-0000-4000-8000-000000000005",
-    fullName: "Patience Aigbogun",
+    id: "SAMPLE-VERIFY-005",
+    artisanId: "SAMPLE-ARTISAN-005",
+    fullName: "Sample Artisan 5",
     avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80",
     trade: "Commercial Tiling & Masonry",
     experienceYears: 7,
-    phone: "+234 809 432 1098",
-    email: "patience.aigbogun@sabiwork.ng",
+    phone: "Not provided",
+    email: "artisan-5@example.test",
     location: "Ekenwan, Benin City",
-    workshopAddress: "22 Ekenwan Road, near UNIBEN Ekenwan Campus, Benin City",
+    workshopAddress: "Sample workshop area, Benin City",
     submittedAt: "2026-10-30T08:00:00Z",
     status: "pending",
     competencies: [
@@ -241,18 +218,16 @@ const mockDossiers: VerificationDossier[] = [
       {
         id: "doc-10",
         type: "nin",
-        label: "NIMC Verification Slip",
-        url: "/mock/docs/nin-aigbogun.pdf",
-        identifier: "NIN: 1120-7749-3301",
-        verified: false,
+        label: "Sample identity-document placeholder",
+        url: "/mock/docs/sample-identity-document-5.pdf",
+        identifier: "Sample only; no identity number",
       },
       {
         id: "doc-11",
         type: "trade_cert",
-        label: "Edo State Artisans Union Membership ID",
-        url: "/mock/docs/union-card.pdf",
-        identifier: "ID: EDA-MAS-2021-081",
-        verified: false,
+        label: "Sample membership-record placeholder",
+        url: "/mock/docs/sample-membership-record-not-issued.pdf",
+        identifier: "Sample only; no membership ID",
       },
     ],
   },
@@ -283,78 +258,39 @@ export function getVerificationDossier(id: string): VerificationDossier | undefi
   return mockDossiers.find((d) => d.id === id);
 }
 
-export function approveDossier(id: string, notes: string): { success: boolean; dossier?: VerificationDossier; error?: string } {
+export function previewDossierApproval(id: string, notes: string): { success: boolean; dossier?: VerificationDossier; error?: string } {
   const target = mockDossiers.find((d) => d.id === id);
   if (!target) {
-    return { success: false, error: "Dossier not found" };
+    return { success: false, error: "Sample dossier not found" };
   }
   target.status = "approved";
-  target.badgeIssued = true;
   target.reviewerNotes = notes;
   target.decidedAt = new Date().toISOString();
-  target.documents.forEach((doc) => {
-    doc.verified = true;
-  });
   return { success: true, dossier: { ...target } };
 }
 
-export function rejectDossier(
+export function previewDossierRevision(
   id: string,
   reasons: string[],
   notes: string
 ): { success: boolean; dossier?: VerificationDossier; error?: string } {
   const target = mockDossiers.find((d) => d.id === id);
   if (!target) {
-    return { success: false, error: "Dossier not found" };
+    return { success: false, error: "Sample dossier not found" };
   }
   target.status = "rejected";
-  target.badgeIssued = false;
   target.rejectionReasons = reasons;
   target.reviewerNotes = notes;
   target.decidedAt = new Date().toISOString();
   return { success: true, dossier: { ...target } };
 }
 
-export function registerArtisan(draft: ArtisanRegistrationDraft): {
-  success: boolean;
-  dossierId: string;
-  artisanId: string;
+export function previewArtisanRegistration(): {
+  previewed: true;
+  reference: string;
 } {
-  const newId = `VET-BEN-${Math.floor(1000 + Math.random() * 9000)}`;
-  const newArtisanId = `00000000-0000-4000-8000-${Math.floor(100000000000 + Math.random() * 900000000000)}`;
-  const newDossier: VerificationDossier = {
-    id: newId,
-    artisanId: newArtisanId,
-    fullName: draft.fullName,
-    avatarUrl: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80",
-    trade: draft.trade,
-    experienceYears: draft.experienceYears,
-    phone: draft.phone,
-    email: draft.email,
-    location: draft.coverageAreas[0] ? `${draft.coverageAreas[0]}, Benin City` : "Benin City, Edo State",
-    workshopAddress: draft.workshopAddress,
-    submittedAt: new Date().toISOString(),
-    status: "pending",
-    competencies: [
-      `${draft.trade} General Practice`,
-      `${draft.trade} Safety Compliance`,
-    ],
-    documents: [
-      {
-        id: `doc-${Date.now()}-1`,
-        type: "nin",
-        label: "National Identity Number (NIN)",
-        url: "#",
-        identifier: `NIN: ${draft.ninNumber}`,
-        verified: false,
-      },
-    ],
-  };
-  mockDossiers.unshift(newDossier);
   return {
-    success: true,
-    dossierId: newId,
-    artisanId: newArtisanId,
+    previewed: true,
+    reference: "SAMPLE-REGISTRATION-PREVIEW",
   };
 }
-

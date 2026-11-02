@@ -29,8 +29,8 @@ export type DemoResult<K extends DemoSuccessKind> =
   { ok: true; mode: "demo"; kind: K } | DemoAuthError;
 export type DemoAuthResult = DemoResult<DemoSuccessKind>;
 export const demoCredentials = {
-  email: "ada@example.test",
-  password: "SabiWork-demo-2026!",
+  email: "sample.user@example.test",
+  password: "sample-preview-password-42",
 } as const;
 const fail = (code: DemoAuthErrorCode, message: string): DemoAuthError => ({
   ok: false,

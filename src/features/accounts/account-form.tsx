@@ -283,7 +283,10 @@ export function AccountForm({
           <span>
             <Icon name="home" size={18} /> I’m looking for an artisan
           </span>
-          <p>Artisan registration will be available soon.</p>
+          <p>Choose the artisan path if you want to offer your skills.</p>
+          <Link href="/signup/artisan" className="auth-role-link">
+            Join as an artisan <Icon name="arrow" size={16} />
+          </Link>
         </div>
       )}
       <form ref={form} onSubmit={submit} noValidate aria-busy={pending}>
@@ -298,7 +301,7 @@ export function AccountForm({
                 onChange={(event) => update("name", event.target.value)}
                 autoComplete="name"
                 maxLength={100}
-                placeholder="Ada Okafor"
+                placeholder="Sample Customer"
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? `${id}-name-error` : undefined}
               />
@@ -320,7 +323,7 @@ export function AccountForm({
                 onChange={(event) => update("email", event.target.value)}
                 autoComplete="email"
                 maxLength={254}
-                placeholder="ada@example.test"
+                placeholder="sample.user@example.test"
                 aria-invalid={!!errors.email}
                 aria-describedby={
                   errors.email ? `${id}-email-error` : undefined

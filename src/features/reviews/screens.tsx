@@ -15,7 +15,6 @@ import {
   Gavel,
   ImagePlus,
   Info,
-  Lock,
   MessageSquareText,
   Paperclip,
   Scale,
@@ -122,9 +121,9 @@ function PageTitle({
         )}
         <div className="rw-badge-cluster">
           {badge}
-          <div className="rw-test-mode-pill" title="Paystack sandbox integration active">
+          <div className="rw-test-mode-pill" title="Frontend sample interaction; no payment provider connected">
             <span className="rw-pulse-dot" aria-hidden="true" />
-            <span>Paystack TEST Mode Active</span>
+            <span>Prototype Preview</span>
           </div>
         </div>
       </div>
@@ -163,7 +162,7 @@ function JobCard({
         </div>
         <div className="rw-job-name">
           <div className="rw-job-header-row">
-            <span className="rw-kicker">COMPLETED SERVICE · #{job.reference}</span>
+            <span className="rw-kicker">SAMPLE SERVICE · #{job.reference}</span>
             <span className="rw-trade-tag">{job.artisanTrade}</span>
           </div>
           <h2>{job.artisan}</h2>
@@ -188,9 +187,9 @@ function JobCard({
         )}
       </div>
       <div className="rw-job-amount">
-        <span className="rw-label">Total paid (escrow released)</span>
+        <span className="rw-label">Sample total amount</span>
         <strong>{formatNaira(job.totalKobo)}</strong>
-        <span>Completed {job.completedOn} · 2:30 PM WAT</span>
+        <span>Example date {job.completedOn} · no service completion recorded</span>
       </div>
     </section>
   );
@@ -306,7 +305,7 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
       <PageTitle
         eyebrow="S31 · CUSTOMER REVIEW & RATING"
         title="Rate your experience"
-        description="Your verified review helps maintain high service standards for trade craft across Benin City."
+        description="Preview the customer review form with fictional job details. No service completion or payment is verified."
         badge={
           <span className="rw-service-pill">
             Completed Service • Ref: #{job.reference}
@@ -326,10 +325,9 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
               <div className="rw-success-icon-wrap">
                 <CheckCircle2 size={44} className="rw-success-icon" />
               </div>
-              <h2>Review Submitted Successfully!</h2>
+              <h2>Sample Review Preview Complete</h2>
               <p>
-                Thank you for helping maintain quality standards in Benin City. Your
-                verified feedback is now staged for {job.artisan}&apos;s profile.
+                Your review text was processed for this page preview only. It was not saved or published.
               </p>
               <div className="rw-actions rw-actions-center">
                 <Link
@@ -482,11 +480,11 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
             <ul className="rw-checklist">
               <li>
                 <Check size={15} className="rw-check-icon" />
-                <span>Reviews can only be submitted for fully completed jobs with confirmed payment release.</span>
+                <span>Production review eligibility must be checked by the backend; this sample does not verify completion or payment.</span>
               </li>
               <li>
                 <Check size={15} className="rw-check-icon" />
-                <span>Once submitted, ratings are permanently locked to ensure trust and fairness.</span>
+                <span>This preview does not save, publish, or lock ratings.</span>
               </li>
               <li>
                 <Check size={15} className="rw-check-icon" />
@@ -498,11 +496,10 @@ export function ReviewScreen({ jobId }: { jobId: string }) {
           <section className="rw-card rw-already-reviewed">
             <div className="rw-flex-row">
               <Shield size={18} className="rw-primary-icon" />
-              <strong>Already Reviewed Status</strong>
+              <strong>Sample review status</strong>
             </div>
             <p>
-              You submitted feedback for job #{job.reference} on {job.completedOn}.
-              Duplicate submissions are restricted to preserve rating integrity.
+              Example state only. No feedback was submitted for job #{job.reference}, and no duplicate-submission rule is active.
             </p>
           </section>
 
@@ -731,12 +728,12 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
       </div>
 
       <PageTitle
-        eyebrow="S32 · MEDIATION INTAKE DESK • BENIN CITY HUB"
-        title="Report Job Issue & Request Mediation"
-        description="Submit a detailed dispute or quality issue for independent mediation by SabiWork Benin City support team."
+        eyebrow="S32 · SAMPLE DISPUTE INTAKE"
+        title="Preview a Job Issue Report"
+        description="Preview the dispute form with fictional job details. No case is sent to a support or mediation team."
         badge={
           <span className="rw-service-pill">
-            Ref: DISP-{job.reference}
+            Sample ref: {job.reference}
           </span>
         }
       />
@@ -763,9 +760,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
                 <Star size={13} fill="currentColor" aria-hidden="true" /> 4.9
               </span>
               <span className="rw-dot">•</span>
-              <span className="rw-status-indicator">
-                <span className="rw-amber-dot" /> Work Submitted / Under Review
-              </span>
+              <span className="rw-status-indicator">Sample work status · not verified</span>
             </div>
           </div>
         </div>
@@ -773,11 +768,11 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
         <div className="rw-escrow-summary-box">
           <div className="rw-escrow-row">
             <div>
-              <span className="rw-label">Agreed Quote</span>
+              <span className="rw-label">Sample quote amount</span>
               <strong>{formatNaira(job.totalKobo)}</strong>
             </div>
             <div className="rw-text-right">
-              <span className="rw-label rw-highlight-label">Milestone 1 Held</span>
+              <span className="rw-label rw-highlight-label">Sample milestone amount</span>
               <strong className="rw-highlight-strong">{formatNaira(job.depositKobo)}</strong>
             </div>
           </div>
@@ -786,12 +781,12 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
           </div>
           <div className="rw-escrow-split">
             <span>
-              Milestone 2 Balance Due: <strong>{formatNaira(job.balanceKobo)}</strong>
+              Sample balance: <strong>{formatNaira(job.balanceKobo)}</strong>
             </span>
-            <span>33% Escrowed</span>
+            <span>No escrow connected</span>
           </div>
           <p className="rw-escrow-notice">
-            <Shield size={14} /> Funds held securely in mock TEST escrow pending dispute assessment.
+            <Shield size={14} /> Amounts are examples only. No payment or funds are held.
           </p>
         </div>
       </section>
@@ -944,7 +939,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
               >
                 <option>Ask the artisan to review and correct the issue</option>
                 <option>Agree on a mutual completion deadline</option>
-                <option>Request formal SabiWork mediation & escrow review</option>
+                <option>Preview a future support-review request (not connected)</option>
               </select>
               <ChevronDown size={17} aria-hidden="true" />
             </div>
@@ -956,7 +951,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
           {result?.ok && (
             <ResultBanner tone="success">
               {result.message}{" "}
-              <Link href="/disputes/demo-dispute-01">
+              <Link href="/disputes/SAMPLE-DISPUTE-001">
                 View sample dispute status tracker →
               </Link>
             </ResultBanner>
@@ -998,18 +993,17 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
             </button>
           </div>
           <p className="rw-fineprint">
-            Official disputes follow SabiWork Trade Mediation rules. Server authorization
-            and automated escrow holding will be enforced on backend integration.
+            Production dispute rules, authorization, evidence storage, payment safeguards, and outcomes are not implemented.
           </p>
         </form>
 
         <aside className="rw-side-stack">
           <section className="rw-card rw-money-card">
-            <p className="rw-eyebrow">ESCROW BALANCE · BENIN HUB</p>
+            <p className="rw-eyebrow">SAMPLE AMOUNT · NO ESCROW</p>
             <h2>{formatNaira(job.totalKobo)}</h2>
             <dl>
               <div>
-                <dt>Deposit (Held in Escrow)</dt>
+                <dt>Sample deposit amount</dt>
                 <dd>{formatNaira(job.depositKobo)}</dd>
               </div>
               <div>
@@ -1032,21 +1026,21 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
                 <span>1</span>
                 <div>
                   <strong>Intake & Evidence Audit</strong>
-                  <p>Our Benin City mediation desk reviews statements, receipts, and photo proof.</p>
+                  <p>A future support workflow needs to be defined and implemented.</p>
                 </div>
               </li>
               <li>
                 <span>2</span>
                 <div>
                   <strong>Artisan Fact-Finding</strong>
-                  <p>The artisan is invited to submit clarification or a corrective rework proposal.</p>
+                  <p>No artisan notification or response is sent by this preview.</p>
                 </div>
               </li>
               <li>
                 <span>3</span>
                 <div>
                   <strong>Impartial Determination</strong>
-                  <p>Escrow is disbursed or refunded according to documented project milestones.</p>
+                  <p>No determination, payout, refund, or payment status change occurs here.</p>
                 </div>
               </li>
             </ol>
@@ -1056,7 +1050,7 @@ export function DisputeFormScreen({ jobId }: { jobId: string }) {
             <CircleHelp size={20} />
             <div>
               <strong>Need Immediate Guidance?</strong>
-              <p>For urgent safety issues or emergency leak assistance, call the Benin City Hub Desk.</p>
+              <p>Support contact details are not configured in this prototype.</p>
             </div>
           </section>
         </aside>
@@ -1161,9 +1155,9 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
   return (
     <div className="rw-page rw-status-page">
       <PageTitle
-        eyebrow="S33 · MEDIATION DESK WORKSPACE • BENIN CITY HUB (GRA NODE)"
-        title="Dispute Status & Mediation Tracker"
-        description="Follow case progress, inspect submitted evidence, and communicate with the neutral mediator."
+        eyebrow="S33 · SAMPLE DISPUTE STATUS"
+        title="Sample Dispute Status Preview"
+        description="Preview a sample status tracker with fictional case details. No mediation or dispute workflow is active."
         backHref={`/jobs/${encodeURIComponent(data.job.id)}/dispute`}
         backText="Back to dispute form"
         badge={
@@ -1178,7 +1172,7 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
       </DemoNotice>
 
       <div className="rw-status-controls" aria-label="Preview status states">
-        <span>Interactive State Switcher:</span>
+        <span>Sample State:</span>
         {statusChoices.map((choice) => (
           <button
             type="button"
@@ -1186,7 +1180,7 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
             aria-pressed={status === choice}
             onClick={() => setStatus(choice)}
           >
-            {choice}
+            Sample {choice}
           </button>
         ))}
       </div>
@@ -1197,19 +1191,18 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
             className={`rw-status-pill rw-status-${status.toLowerCase().replaceAll(" ", "-")}`}
           >
             <span />
-            {status}
-            {status === "Resolved" ? " · demonstration" : ""}
+            Sample {status}
           </span>
           <h2>{data.job.title}</h2>
           <p>
-            Case #{data.id} <i aria-hidden="true">·</i> Lodged {data.openedOn} via Customer Protection Channel
+            Sample case {data.id} <i aria-hidden="true">·</i> Example date {data.openedOn}
           </p>
         </div>
         <div className="rw-case-amount">
-          <span className="rw-label">Contested escrow ({data.milestone})</span>
+          <span className="rw-label">Sample amount ({data.milestone})</span>
           <strong>{formatNaira(relatedAmountKobo)}</strong>
           <small>
-            <Lock size={12} /> Held safely in Paystack mock escrow
+            No funds held · no provider connected
           </small>
         </div>
       </section>
@@ -1296,7 +1289,7 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
               ))}
             </ol>
             <p className="rw-fineprint">
-              Timestamps correspond to West Africa Time (WAT) audit logs.
+              Example timestamps use West Africa Time (WAT); no audit log is recorded.
             </p>
           </section>
 
@@ -1396,16 +1389,14 @@ export function DisputeStatusScreen({ disputeId }: { disputeId: string }) {
             <div className="rw-card-icon">
               <Scale size={20} />
             </div>
-            <h2>Neutral Mediation Protocol</h2>
+            <h2>Future Dispute Workflow</h2>
             <p>
-              SabiWork mediators uphold strict procedural neutrality between property
-              owners and guild artisans.
+              Real dispute handling, neutral review, and policy are not implemented in this prototype.
             </p>
             <div className="rw-policy-line">
               <Info size={16} />
               <span>
-                Escrow funds remain frozen until an agreed settlement or formal
-                determination is entered.
+                No funds are held or frozen, and this preview cannot create a determination.
               </span>
             </div>
           </section>
@@ -1501,12 +1492,12 @@ export function AdminDisputeQueueScreen() {
       </div>
 
       <PageTitle
-        eyebrow="S34 · BENIN HUB DESK • ESCROW DISPUTE OPERATIONS"
-        title="Dispute Resolution & Mediation Queue"
-        description="Review active trade disputes lodged across Benin City. Impartially examine linked contracts, frozen Paystack TEST milestone escrow, and lodged evidence."
+        eyebrow="S34 · SAMPLE ADMIN QUEUE"
+        title="Sample Dispute Queue"
+        description="Search and filter fictional dispute records. No cases, contracts, payments, or evidence are received or reviewed."
         badge={
           <span className="rw-service-pill">
-            <Gavel size={14} /> Dual Sign-off Active
+            <Gavel size={14} /> Sample controls
           </span>
         }
       />
@@ -1518,23 +1509,25 @@ export function AdminDisputeQueueScreen() {
       <div className="rw-queue-metrics">
         <div>
           <span>Open Cases</span>
-          <strong>{disputes?.length ?? "6"}</strong>
-          <small>Total queued</small>
+          <strong>{disputes?.length ?? "—"}</strong>
+          <small>Sample records only</small>
         </div>
         <div>
-          <span>Urgent Escalations</span>
-          <strong className="rw-metric-warn">2</strong>
-          <small>&gt; 48h SLA deadline</small>
+          <span>Sample urgent states</span>
+          <strong className="rw-metric-warn">0</strong>
+          <small>No SLA is configured</small>
         </div>
         <div>
-          <span>Contested Escrow</span>
-          <strong>₦145,000</strong>
-          <small>Held in Paystack TEST</small>
+          <span>Sample amount</span>
+          <strong>—</strong>
+          <small>No escrow or payment provider</small>
         </div>
         <div>
-          <span>Resolved (This Week)</span>
-          <strong className="rw-metric-success">14</strong>
-          <small>Mutual settlements</small>
+          <span>Sample resolved states</span>
+          <strong className="rw-metric-success">
+            {disputes?.filter((item) => item.status === "Resolved").length ?? "—"}
+          </strong>
+          <small>No settlement is recorded</small>
         </div>
       </div>
 
@@ -1623,10 +1616,10 @@ export function AdminDisputeQueueScreen() {
                         .replaceAll(" ", "-")}`}
                     >
                       <span />
-                      {item.status}
+                      Sample {item.status}
                     </span>
                   </span>
-                  <span className="rw-case-date">{item.openedOn.split(" · ")[0]}</span>
+                  <span className="rw-case-date">Example: {item.openedOn.split(" · ")[0]}</span>
                   <span className="rw-row-action">
                     View case <ArrowRight size={15} />
                   </span>
@@ -1665,7 +1658,7 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
       <div className="rw-page">
         <NotFoundCard
           title="Case record not found"
-          message={`No dispute record found matching ID "${disputeId}". Return to the queue to review active cases.`}
+          message={`No sample dispute record matches ID "${disputeId}". Return to the sample queue.`}
           returnHref="/admin/disputes"
           returnLabel="Return to Dispute Queue"
         />
@@ -1697,20 +1690,20 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
       </div>
 
       <PageTitle
-        eyebrow="S35 · DISPUTE DETERMINATION • BENIN HUB MEDIATION"
-        title={`Dispute Determination: Case #${dispute.id}`}
-        description="Inspect submitted statements, verify photographic field telemetry, and record formal resolution."
+        eyebrow="S35 · SAMPLE ADMIN DETAIL"
+        title={`Sample Dispute Record: ${dispute.id}`}
+        description="Inspect fictional statements and placeholders. No evidence is verified and no resolution is recorded."
         backHref="/admin/disputes"
         backText="Back to dispute queue"
         badge={
           <span className="rw-service-pill">
-            <Clock3 size={14} /> Decision Due: Today 4:00 PM (2h remaining)
+            <Clock3 size={14} /> Sample deadline (not configured)
           </span>
         }
       />
       <DemoNotice>
         These admin controls are prototype interaction previews. They do not alter database
-        case state or trigger automated Paystack escrow transfers.
+        case state, trigger payment transfers, or change financial records.
       </DemoNotice>
 
       <section className="rw-case-hero rw-admin-case-hero">
@@ -1725,15 +1718,15 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
           </span>
           <h2>{dispute.job.title}</h2>
           <p>
-            Case #{dispute.id} <i aria-hidden="true">·</i> Job #{dispute.job.reference} · Officer Assigned: Tunde Balogun
+            Sample case {dispute.id} <i aria-hidden="true">·</i> Sample job {dispute.job.reference} · No officer assigned
           </p>
         </div>
         <div className="rw-case-amount">
-          <span className="rw-label">Opened date</span>
+          <span className="rw-label">Example date</span>
           <strong className="rw-date-amount">
             {dispute.openedOn.split(" · ")[0]}
           </strong>
-          <small>WAT Mediation Desk</small>
+          <small>Sample date only</small>
         </div>
       </section>
 
@@ -1744,14 +1737,14 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
           <section className="rw-card rw-case-overview">
             <div className="rw-section-head">
               <div>
-                <p className="rw-eyebrow">CUSTOMER REPORT & POSITION</p>
-                <h2>Claim Summary & Evidence</h2>
+                <p className="rw-eyebrow">SAMPLE REPORT</p>
+                <h2>Sample Statement & Placeholders</h2>
               </div>
               <span className="rw-category-pill">{dispute.category}</span>
             </div>
 
             <div className="rw-detail-pair">
-              <span className="rw-label">Contested milestone</span>
+              <span className="rw-label">Sample milestone amount</span>
               <strong>
                 {dispute.milestone} ({formatNaira(disputedAmountKobo)})
               </strong>
@@ -1760,8 +1753,8 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
             <blockquote>{dispute.summary}</blockquote>
 
             <div className="rw-evidence-heading">
-              <strong>Submitted Evidence & Field Telemetry</strong>
-              <span>{dispute.evidence.length} files attached</span>
+              <strong>Sample Evidence Placeholders</strong>
+              <span>{dispute.evidence.length} fictional records · no uploads</span>
             </div>
             <div className="rw-evidence-cards">
               {dispute.evidence.map((item, index) => (
@@ -1784,8 +1777,8 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
           <section className="rw-card rw-timeline">
             <div className="rw-section-head">
               <div>
-                <p className="rw-eyebrow">CASE HISTORY</p>
-                <h2>Chronological Audit & Event Log</h2>
+                <p className="rw-eyebrow">SAMPLE HISTORY</p>
+                <h2>Example Timeline</h2>
               </div>
             </div>
             <ol className="rw-timeline-list">
@@ -1832,7 +1825,7 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
                 setInternalNote(event.target.value);
                 setNoteSaved(false);
               }}
-              placeholder="Record findings from physical inspection, material receipt check, or phone inquiry before recording determination..."
+              placeholder="Sample note for layout preview only. Do not enter real personal or financial information."
             />
             <p className="rw-help">
               This note draft remains in the local page state for preview testing.
@@ -1860,25 +1853,25 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
             <div className="rw-person-row">
               <span className="rw-avatar">AO</span>
               <div>
-                <strong>Ada Okafor</strong>
-                <small>Customer · GRA Axis, Benin City</small>
+                <strong>Sample Customer 1</strong>
+                <small>Customer · Sample area</small>
               </div>
             </div>
             <div className="rw-person-row">
               <span className="rw-avatar rw-avatar-alt">OI</span>
               <div>
                 <strong>{dispute.job.artisan}</strong>
-                <small>{dispute.job.artisanTrade} · Master Guild Member</small>
+                <small>{dispute.job.artisanTrade} · Sample profile</small>
               </div>
             </div>
           </section>
 
           <section className="rw-card rw-money-card">
-            <p className="rw-eyebrow">CONTESTED ESCROW BREAKDOWN</p>
+            <p className="rw-eyebrow">SAMPLE AMOUNT BREAKDOWN</p>
             <h2>{formatNaira(dispute.job.totalKobo)}</h2>
             <dl>
               <div>
-                <dt>Deposit (Held in Escrow)</dt>
+                <dt>Sample deposit amount</dt>
                 <dd>{formatNaira(dispute.job.depositKobo)}</dd>
               </div>
               <div>
@@ -1887,16 +1880,15 @@ export function AdminDisputeDetailScreen({ disputeId }: { disputeId: string }) {
               </div>
             </dl>
             <p className="rw-caution">
-              <Info size={16} /> Escrow freeze active on Paystack mock gateway.
+              <Info size={16} /> No payment provider is connected and no funds are held.
             </p>
           </section>
 
           <section className="rw-card rw-admin-actions">
-            <p className="rw-eyebrow">RECORD RESOLUTION</p>
-            <h2>Formal Next Step</h2>
+            <p className="rw-eyebrow">SAMPLE ACTIONS</p>
+            <h2>Preview Next Step</h2>
             <p>
-              Simulate mediator determination workflows. Real outcomes require dual sign-off
-              and server-side authorization.
+              These controls update no case, notify no participant, and make no determination.
             </p>
             <button
               className="button button-outline rw-full"

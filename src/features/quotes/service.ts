@@ -1,8 +1,8 @@
 /**
  * Fictional demonstration data and typed browser-only service adapter
  * for Artisan Open Requests Feed, Sending Quotes, Quote Comparison,
- * Quote Acceptance, and Milestone 1 Escrow Deposit Checkout (S17, S18, S19, S20, S21).
- * Follows Clear Trade Modern specification, Paystack TEST Mode, and integer-kobo money calculations.
+ * Quote Acceptance and Milestone 1 Checkout previews (S17-S21).
+ * This adapter performs no dispatch, payment, escrow, or persistence.
  */
 
 export interface OpenRequest {
@@ -42,47 +42,45 @@ export interface QuoteItem {
 
 export const defaultOpenRequests: readonly OpenRequest[] = [
   {
-    id: "BEN-78401",
+    id: "SAMPLE-REQUEST-001",
     title: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
     category: "Plumbing",
     tradeSpecialty: "PPR Piping & High Pressure Fusion",
     urgency: "standard",
     budgetGuidanceKobo: 2500000, // ₦25,000
-    district: "GRA / Boundary Rd",
-    address: "12A Ihama Way, Off Boundary Rd, GRA, Benin City",
+    district: "Sample area",
+    address: "Sample service area, Benin City",
     postedTime: "25 minutes ago",
     description:
-      "Water leakage discovered under the master bathroom floor tiles. Need pressure leak tracing, PPR pipe replacement, and bypass valve pressure check before 5 PM tomorrow.",
+      "Sample plumbing request for previewing quote and milestone layouts. No service is booked.",
     quotesCount: 3,
     photoCount: 3,
   },
   {
-    id: "BEN-78402",
+    id: "SAMPLE-REQUEST-002",
     title: "Concealed Conduit Rewiring & Distribution Box Tripping",
     category: "Electrical",
     tradeSpecialty: "Conduit Fault Finding & Breaker Replacement",
     urgency: "emergency",
     budgetGuidanceKobo: 3500000, // ₦35,000
-    district: "Airport Road",
-    address: "42 Airport Road, Opposite St. Paul, Benin City",
+    district: "Airport sample area",
+    address: "Sample service area, Benin City",
     postedTime: "1 hour ago",
-    description:
-      "Main breaker trips repeatedly whenever AC units turn on. Suspected short circuit in ceiling conduit run.",
+    description: "Sample electrical request for previewing the quote flow. No service is booked.",
     quotesCount: 2,
     photoCount: 2,
   },
   {
-    id: "BEN-78403",
+    id: "SAMPLE-REQUEST-003",
     title: "Borehole Sumo Submersible Pump Extraction & Rewinding",
     category: "Plumbing",
     tradeSpecialty: "Sumo Borehole & Motorized Pumps",
     urgency: "flexible",
     budgetGuidanceKobo: 4500000, // ₦45,000
-    district: "Ugbowo Axis",
-    address: "Near UNIBEN Main Gate, Ugbowo, Benin City",
+    district: "Sample area",
+    address: "Sample service area, Benin City",
     postedTime: "3 hours ago",
-    description:
-      "0.75HP submersible pump stuck at 120ft depth. Requires crane rig or manual tripod pull and motor capacitor inspection.",
+    description: "Sample water-system request for previewing the quote flow. No service is booked.",
     quotesCount: 1,
     photoCount: 4,
   },
@@ -91,11 +89,11 @@ export const defaultOpenRequests: readonly OpenRequest[] = [
 export const defaultDetailedQuotes: readonly QuoteItem[] = [
   {
     id: "quote-01",
-    requestId: "BEN-78401",
-    artisanId: "00000000-0000-4000-8000-000000000001",
-    artisanName: "Osaze Ighodaro",
-    artisanHeadline: "Master Plumber & Pipe Fitter · Vetted GRA Pro",
-    artisanInitials: "OI",
+    requestId: "SAMPLE-REQUEST-001",
+    artisanId: "SAMPLE-ARTISAN-001",
+    artisanName: "Sample Artisan 1",
+    artisanHeadline: "Sample plumbing profile",
+    artisanInitials: "S1",
     artisanRating: 4.9,
     artisanReviewCount: 38,
     totalQuoteKobo: 2200000, // ₦22,000
@@ -104,18 +102,18 @@ export const defaultDetailedQuotes: readonly QuoteItem[] = [
     estimatedHours: "4 - 6 hours",
     materialsIncluded: true,
     notes:
-      "Includes digital acoustic leak detection, PPR fusion sleeve installation, and replacement of pressure check valves.",
+      "Sample quote details only; no service, warranty, or booking is created.",
     milestone1Title: "Acoustic Leak Detection & Surface Floor Preparation",
     milestone2Title: "PPR Fusion Welds, Pressure Testing & Floor Resealing",
     status: "PENDING",
   },
   {
     id: "quote-02",
-    requestId: "BEN-78401",
-    artisanId: "00000000-0000-4000-8000-000000000002",
-    artisanName: "Victor E. Edosa",
-    artisanHeadline: "Certified Plumbing & Sanitary Tech",
-    artisanInitials: "VE",
+    requestId: "SAMPLE-REQUEST-001",
+    artisanId: "SAMPLE-ARTISAN-002",
+    artisanName: "Sample Artisan 2",
+    artisanHeadline: "Sample plumbing profile",
+    artisanInitials: "S2",
     artisanRating: 4.8,
     artisanReviewCount: 24,
     totalQuoteKobo: 2500000, // ₦25,000
@@ -124,18 +122,18 @@ export const defaultDetailedQuotes: readonly QuoteItem[] = [
     estimatedHours: "1 full day",
     materialsIncluded: true,
     notes:
-      "Complete replacement of leaking manifold joints with brass isolation gates. 60-day warranty.",
+      "Sample quote details only; no service, warranty, or booking is created.",
     milestone1Title: "Manifold Isolation & Trench Access",
     milestone2Title: "Brass Valve Assembly & Final Commissioning",
     status: "PENDING",
   },
   {
     id: "quote-03",
-    requestId: "BEN-78401",
-    artisanId: "00000000-0000-4000-8000-000000000003",
-    artisanName: "Monday Agho",
-    artisanHeadline: "Senior Water Systems Technician",
-    artisanInitials: "MA",
+    requestId: "SAMPLE-REQUEST-001",
+    artisanId: "SAMPLE-ARTISAN-003",
+    artisanName: "Sample Artisan 3",
+    artisanHeadline: "Sample water-systems profile",
+    artisanInitials: "S3",
     artisanRating: 4.7,
     artisanReviewCount: 19,
     totalQuoteKobo: 1950000, // ₦19,500
@@ -181,13 +179,13 @@ export const quotesDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Failed to lodge quote. Connection to artisan dispatch hub timed out.",
+        message: "Sample quote preview could not be prepared. No request was sent.",
       };
     }
     return {
       ok: true,
-      message: "Itemized quote submitted successfully! Customer will review in S19 / S20.",
-      quoteId: `quote-${Math.floor(100 + Math.random() * 900)}`,
+      message: "Sample quote preview prepared locally; no quote was sent to a customer.",
+      quoteId: "SAMPLE-QUOTE-PREVIEW",
     };
   },
 
@@ -209,13 +207,13 @@ export const quotesDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Unable to lock quote terms. Artisan schedule may have updated.",
+        message: "Sample acceptance preview could not be prepared. No quote or job was changed.",
       };
     }
     return {
       ok: true,
-      message: "Quote accepted! Proceeding to Paystack TEST Mode Milestone 1 escrow deposit.",
-      checkoutRef: `PAY-TEST-${Math.floor(100000 + Math.random() * 900000)}`,
+      message: "Sample quote acceptance preview only; no job, payment, or escrow was created.",
+      checkoutRef: "SAMPLE-CHECKOUT-PREVIEW",
     };
   },
 
@@ -228,15 +226,14 @@ export const quotesDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Paystack TEST mode transaction declined or connection timeout.",
+        message: "Sample checkout preview could not be completed. No payment was attempted.",
       };
     }
     return {
       ok: true,
-      message: `₦${(amountKobo / 100).toLocaleString()} successfully deposited into SabiWork Paystack TEST escrow! Artisan notified to start work.`,
-      escrowRef: `ESC-${Math.floor(10000 + Math.random() * 90000)}`,
-      jobId: "BEN-78401",
+      message: `Sample checkout preview for ₦${(amountKobo / 100).toLocaleString()}. No payment, escrow, job, or artisan notification occurred.`,
+      escrowRef: "SAMPLE-NO-ESCROW",
+      jobId: "SAMPLE-NO-JOB",
     };
   },
 };
-

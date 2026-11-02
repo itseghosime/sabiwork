@@ -1,7 +1,7 @@
 /**
  * Fictional demonstration data and typed browser-only service adapter
  * for Job Lifecycle, Work Progress Updates, Customer Sign-off, and Payment History (S26, S27, S28, S29, S30).
- * Follows Clear Trade Modern specification and integer-kobo money calculations.
+ * These records and actions are local previews; no payment or backend event occurs.
  */
 
 export interface ActiveJob {
@@ -35,19 +35,19 @@ export interface PaymentTransactionRecord {
   jobTitle: string;
   type: "DEPOSIT_ESCROW" | "BALANCE_ESCROW" | "REFUND";
   amountKobo: number;
-  status: "LOCKED" | "RELEASED" | "SETTLED";
+  status: "SAMPLE_PREVIEW";
   dateWat: string;
   channel: string;
 }
 
 export const defaultActiveJobs: readonly ActiveJob[] = [
   {
-    id: "BEN-78401",
+    id: "SAMPLE-REQUEST-001",
     title: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
     category: "Plumbing",
-    customerName: "Osamudiamen Osazuwa",
-    artisanName: "Osaze Ighodaro",
-    district: "GRA Axis",
+    customerName: "Sample Customer",
+    artisanName: "Sample Artisan 1",
+    district: "Sample area",
     status: "IN_PROGRESS",
     currentMilestone: 1,
     totalKobo: 2200000, // ₦22,000
@@ -60,24 +60,24 @@ export const defaultActiveJobs: readonly ActiveJob[] = [
         title: "Acoustic Leak Tracing Complete",
         note: "Pinpointed hairline crack behind master bath concealed riser. Commencing PPR pipe cut and sleeve replacement.",
         timeWat: "31 Oct, 16:30 WAT",
-        artisanName: "Osaze Ighodaro",
+        artisanName: "Sample Artisan 1",
       },
       {
         id: "upd-2",
         title: "PPR High-Pressure Fusion Joint Installed",
         note: "Welded 25mm high-pressure joint. Undergoing 30-minute static pressure test.",
         timeWat: "31 Oct, 17:15 WAT",
-        artisanName: "Osaze Ighodaro",
+        artisanName: "Sample Artisan 1",
       },
     ],
   },
   {
-    id: "BEN-78390",
-    title: "Concealed Conduit Rewiring in Airport Rd",
+    id: "SAMPLE-REQUEST-002",
+    title: "Sample electrical work request",
     category: "Electrical",
-    customerName: "Blessing Igbinovia",
-    artisanName: "Osaze Ighodaro",
-    district: "Airport Road",
+    customerName: "Sample Customer 2",
+    artisanName: "Sample Artisan 1",
+    district: "Sample area",
     status: "AWAITING_SIGNOFF",
     currentMilestone: 2,
     totalKobo: 1800000,
@@ -90,7 +90,7 @@ export const defaultActiveJobs: readonly ActiveJob[] = [
         title: "All Breakers Replaced & Grounded",
         note: "Work concluded and load tested across 3 AC zones. Waiting for customer sign-off.",
         timeWat: "30 Oct, 14:00 WAT",
-        artisanName: "Osaze Ighodaro",
+        artisanName: "Sample Artisan 1",
       },
     ],
   },
@@ -98,24 +98,24 @@ export const defaultActiveJobs: readonly ActiveJob[] = [
 
 export const defaultTransactions: readonly PaymentTransactionRecord[] = [
   {
-    id: "TXN-8819",
-    jobId: "BEN-78401",
+    id: "SAMPLE-TRANSACTION-001",
+    jobId: "SAMPLE-REQUEST-001",
     jobTitle: "PPR Water Pipe Burst & Overhead Tank Balancing",
     type: "DEPOSIT_ESCROW",
     amountKobo: 1100000,
-    status: "LOCKED",
+    status: "SAMPLE_PREVIEW",
     dateWat: "31 Oct 2026 · 15:45 WAT",
-    channel: "Paystack TEST Mode Card",
+    channel: "Sample only; no provider connected",
   },
   {
-    id: "TXN-8740",
-    jobId: "BEN-78390",
-    jobTitle: "Concealed Conduit Rewiring in Airport Rd",
+    id: "SAMPLE-TRANSACTION-002",
+    jobId: "SAMPLE-REQUEST-002",
+    jobTitle: "Sample electrical work request",
     type: "DEPOSIT_ESCROW",
     amountKobo: 900000,
-    status: "RELEASED",
+    status: "SAMPLE_PREVIEW",
     dateWat: "29 Oct 2026 · 11:20 WAT",
-    channel: "Paystack TEST Bank Transfer",
+    channel: "Sample only; no provider connected",
   },
 ];
 
@@ -150,7 +150,7 @@ export const lifecycleDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Failed to broadcast progress update. Hub dispatch server timeout.",
+        message: "Could not prepare the sample progress preview. No customer notification was sent.",
       };
     }
     const update: JobUpdateItem = {
@@ -158,7 +158,7 @@ export const lifecycleDemoService = {
       title: input.title,
       note: input.note,
       timeWat: "Just now",
-      artisanName: "Osaze Ighodaro",
+      artisanName: "Sample Artisan 1",
     };
     const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
     if (target) {
@@ -166,22 +166,22 @@ export const lifecycleDemoService = {
     }
     return {
       ok: true,
-      message: "Work progress logged! Customer notified with live milestone audit.",
+      message: "Sample progress preview updated in memory only; no backend record was saved and no customer was notified.",
       update,
     };
   },
 
   async submitCompletionSignoff(
     jobId: string,
-    rating: number,
-    feedback: string,
+    _rating: number,
+    _feedback: string,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string }> {
     await waitBriefly();
     if (simulateError) {
       return {
         ok: false,
-        message: "Sign-off timeout. Could not finalize escrow release ledger.",
+        message: "Sample sign-off preview failed. No payment or release record was created.",
       };
     }
     const target = activeJobsStore.find((j) => j.id === jobId) || activeJobsStore[0];
@@ -189,19 +189,9 @@ export const lifecycleDemoService = {
       target.status = "COMPLETED";
       target.currentMilestone = 2;
     }
-    transactionsStore.unshift({
-      id: `TXN-${Date.now()}`,
-      jobId,
-      jobTitle: target?.title || "Milestone 2 Completion Release",
-      type: "BALANCE_ESCROW",
-      amountKobo: target?.balanceKobo || 1100000,
-      status: "SETTLED",
-      dateWat: "Just now",
-      channel: "Paystack Milestone Release",
-    });
     return {
       ok: true,
-      message: `Job #${jobId} signed off successfully! Milestone balance released and rating (${rating}★) published to artisan profile.`,
+      message: `Sample sign-off preview for job ${jobId} updated in memory only. No backend record, payment, escrow release, or review was created.`,
     };
   },
 
@@ -210,4 +200,3 @@ export const lifecycleDemoService = {
     return transactionsStore;
   },
 };
-

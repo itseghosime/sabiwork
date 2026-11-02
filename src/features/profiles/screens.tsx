@@ -15,6 +15,7 @@ import {
   Upload,
   User,
 } from "lucide-react";
+import { PrototypeNotice } from "@/components/prototype-notice";
 import {
   type ArtisanProfile,
   type VerificationApplication,
@@ -134,6 +135,9 @@ export function ArtisanProfileScreen({
 
   return (
     <div className="pf-page" data-testid="artisan-profile-screen">
+      <PrototypeNotice>
+        This profile, its ratings, work history, reviews, and prices are fictional samples. Skills and identity are not verified; no booking or payment can be made here.
+      </PrototypeNotice>
       {/* State Switcher Simulator */}
       <div className="pf-simulator-bar">
         <span className="pf-simulator-label">
@@ -173,10 +177,9 @@ export function ArtisanProfileScreen({
         <div className="pf-alert pf-alert-warning" role="status">
           <AlertCircle size={20} />
           <div>
-            <strong>Verification Under Review</strong>
+            <strong>Sample review state</strong>
             <p>
-              This artisan profile is currently undergoing credentials review by the Benin City Hub
-              desk. Direct escrow quote submission is temporarily in preview mode.
+              This status is illustrative only. No credentials were submitted or reviewed; quote actions are previews only.
             </p>
           </div>
         </div>
@@ -193,13 +196,13 @@ export function ArtisanProfileScreen({
               <div className="pf-hero-title-row">
                 <h1 className="pf-hero-title">{artisan.name}</h1>
                 <div className="pf-badge-cluster">
-                  <span className="pf-badge-master">Master Artisan</span>
+                  <span className="pf-badge-master">Sample Profile</span>
                   {isPending ? (
-                    <span className="pf-badge-pending">Pending Admin Review</span>
+                    <span className="pf-badge-pending">Sample Pending State</span>
                   ) : (
-                    <span className="pf-badge-reviewed">Admin-Reviewed Profile</span>
+                    <span className="pf-badge-reviewed">Not Verified</span>
                   )}
-                  <span className="pf-badge-testmode">Paystack TEST Mode</span>
+                  <span className="pf-badge-testmode">Prototype</span>
                 </div>
               </div>
               <p style={{ margin: "4px 0 8px 0", color: "#475569", fontWeight: 500 }}>
@@ -223,7 +226,7 @@ export function ArtisanProfileScreen({
             <span className="pf-price-label">Starting Labor Benchmark</span>
             <span className="pf-price-value">{formattedStartingPrice}</span>
             <span style={{ fontSize: "11px", color: "#64748b" }}>
-              Paystack TEST Mode Escrow Protected
+              Sample price only · no payment or escrow
             </span>
           </div>
         </div>
@@ -271,7 +274,7 @@ export function ArtisanProfileScreen({
           {/* Verified Skills */}
           <section className="pf-card" aria-labelledby="skills-heading">
             <h2 id="skills-heading" className="pf-card-title">
-              <Check size={20} /> Verified Core Skillsets
+              <Check size={20} /> Sample Skills (Not Verified)
             </h2>
             <div className="pf-skills-grid">
               {artisan.skills.map((skill) => (
@@ -297,7 +300,7 @@ export function ArtisanProfileScreen({
                 <FileCheck2 size={20} /> Portfolio Showcase
               </h2>
               <span style={{ fontSize: "13px", color: "var(--muted)" }}>
-                {displayPortfolio.length} photographic proof jobs
+                {displayPortfolio.length} sample portfolio previews
               </span>
             </div>
 
@@ -364,7 +367,7 @@ export function ArtisanProfileScreen({
           {/* Customer Reviews */}
           <section className="pf-card" aria-labelledby="reviews-heading">
             <h2 id="reviews-heading" className="pf-card-title">
-              <Star size={20} /> Verified Customer Reviews
+              <Star size={20} /> Sample Reviews (Not Verified)
             </h2>
             <div className="pf-reviews-list">
               {artisan.reviews.map((rev) => (
@@ -381,7 +384,7 @@ export function ArtisanProfileScreen({
                   </div>
                   <p className="pf-review-comment">{rev.comment}</p>
                   <div style={{ fontSize: "12px", color: "var(--primary)", fontWeight: 600 }}>
-                    ✓ Milestone Verified Job · Ref #{rev.jobRef}
+                    Sample review · Reference {rev.jobRef} (not verified)
                   </div>
                 </article>
               ))}
@@ -396,8 +399,7 @@ export function ArtisanProfileScreen({
               <FileText size={20} /> Request a Quote
             </h2>
             <p style={{ fontSize: "13px", color: "var(--muted)", margin: 0 }}>
-              Direct inquiry to {artisan.name}. All payments held in Paystack TEST Mode escrow until
-              job completion.
+              Preview an inquiry for {artisan.name}. No request, job, payment, or escrow is created.
             </p>
 
             {quoteSubmitted ? (
@@ -478,7 +480,7 @@ export function ArtisanProfileScreen({
           {/* Safety & Compliance Card */}
           <div className="pf-card" style={{ background: "#f8fafc" }}>
             <h3 style={{ fontSize: "14px", fontWeight: 700, margin: 0, color: "#0e294b" }}>
-              SabiWork SafeTrade Guarantee
+              Prototype Limitations
             </h3>
             <ul
               style={{
@@ -490,9 +492,9 @@ export function ArtisanProfileScreen({
                 gap: "8px",
               }}
             >
-              <li>Physical workshop vetted in Benin City</li>
-              <li>Two-milestone Paystack TEST escrow release</li>
-              <li>Official dispute resolution protocol (S33)</li>
+              <li>No identity or workshop verification is connected</li>
+              <li>No payment provider or escrow service is connected</li>
+              <li>No production dispute process is implemented</li>
             </ul>
           </div>
         </div>
@@ -520,6 +522,9 @@ export function PortfolioViewerScreen({
 
   return (
     <div className="pf-page" data-testid="portfolio-viewer-screen">
+      <PrototypeNotice>
+        Portfolio images, locations, and job details are fictional samples. No work history or field inspection is verified.
+      </PrototypeNotice>
       <div className="pf-breadcrumbs">
         <Link href="/">Home</Link>
         <span aria-hidden="true">/</span>
@@ -552,7 +557,7 @@ export function PortfolioViewerScreen({
           <div>
             <h1 className="pf-modal-title">{artisan.name} · Proof of Work</h1>
             <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-              High-Resolution Milestone & Workshop Verification Inspection
+              Portfolio sample preview only; no milestone or workshop inspection occurred.
             </span>
           </div>
           <Link
@@ -694,10 +699,10 @@ export function PortfolioViewerScreen({
                 >
                   <div>
                     <h3 style={{ margin: 0, fontSize: "16px", color: "var(--text-dark, #0e294b)" }}>
-                      Job Technical Verification Notes
+                      Sample Work Preview Notes
                     </h3>
                     <p style={{ fontSize: "13px", color: "var(--muted)", margin: "4px 0 0 0" }}>
-                      Completed by {artisan.name} · Verified by SabiWork Field Inspector Desk
+                      Sample portfolio content; no work or inspection was verified.
                     </p>
                   </div>
                   <Link
@@ -774,6 +779,9 @@ export function ArtisanProfileEditorScreen({
 
   return (
     <div className="pf-page" data-testid="artisan-profile-editor-screen">
+      <PrototypeNotice>
+        Profile edits remain in this page preview only. No account data is saved, and identity or credentials are not verified.
+      </PrototypeNotice>
       <div className="pf-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -850,7 +858,7 @@ export function ArtisanProfileEditorScreen({
             <label htmlFor="artisan-name">Full Legal Trade Name</label>
             <input id="artisan-name" type="text" value={profile.name} disabled readOnly />
             <span style={{ fontSize: "11.5px", color: "var(--muted)" }}>
-              Locked via NIN/BVN Identity Verification. Contact Admin Desk to update legal name.
+              Read-only sample field. No identity number or background check is connected.
             </span>
           </div>
 
@@ -892,16 +900,17 @@ export function ArtisanProfileEditorScreen({
         <div className="pf-form-card">
           <h2 className="pf-form-section-title">Service Coverage & Workshop</h2>
           <div className="pf-quote-field">
-            <label htmlFor="artisan-workshop">Physical Workshop / Base Address</label>
+            <label htmlFor="artisan-workshop">Primary Service Area (sample district)</label>
             <input
               id="artisan-workshop"
               type="text"
               required
+              placeholder="Sample district, Benin City"
               value={workshopAddress}
               onChange={(e) => setWorkshopAddress(e.target.value)}
             />
             <span style={{ fontSize: "11.5px", color: "var(--muted)" }}>
-              Vetted during physical hub inspection in Edo State.
+              Use a general area only. This preview does not store or inspect a location.
             </span>
           </div>
 
@@ -983,10 +992,9 @@ export function ArtisanProfileEditorScreen({
                 color: "#475569",
               }}
             >
-              <strong style={{ color: "var(--text-dark, #0e294b)" }}>Pricing Integrity Note:</strong>
+              <strong style={{ color: "var(--text-dark, #0e294b)" }}>Sample Pricing Note:</strong>
               <p style={{ margin: "4px 0 0 0" }}>
-                Starting prices are transparently displayed on discovery cards (S01, S03). All
-                contracts require 2-milestone escrow deposits in Paystack TEST mode.
+                Prices and milestone examples are fictional. No payment provider or escrow service is connected.
               </p>
             </div>
           </div>
@@ -1002,11 +1010,10 @@ export function ArtisanProfileEditorScreen({
 
 export function ArtisanVerificationScreen() {
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
-  const [ninNumber, setNinNumber] = useState("29481029381");
-  const [tradeGuild, setTradeGuild] = useState("Benin Plumbing Guild (Edo State Chapter)");
-  const [certificateRef, setCertificateRef] = useState("CERT-BN-2018-992");
-  const [masterCraftsman, setMasterCraftsman] = useState("Chief P. O. Osagie");
-  const [workshopAddress, setWorkshopAddress] = useState("14 Airport Rd, Boundary, Benin City");
+  const [tradeGuild, setTradeGuild] = useState("Sample association value");
+  const [certificateRef, setCertificateRef] = useState("SAMPLE-NOT-ISSUED");
+  const [masterCraftsman, setMasterCraftsman] = useState("Not assigned");
+  const [workshopAddress, setWorkshopAddress] = useState("Sample workshop area, Benin City");
   const [declarationChecked, setDeclarationChecked] = useState(false);
 
   const [submitting, setSubmitting] = useState(false);
@@ -1021,9 +1028,6 @@ export function ArtisanVerificationScreen() {
     setSubmissionResult(null);
 
     const res = await profilesDemoService.submitVerification({
-      ninNumber,
-      certificateRef,
-      workshopAddress,
       declarationChecked,
       simulateError,
     });
@@ -1034,10 +1038,13 @@ export function ArtisanVerificationScreen() {
 
   return (
     <div className="pf-page" data-testid="artisan-verification-screen">
+      <PrototypeNotice>
+        Use fictional values only. No identity number, address, document, or credential is uploaded, saved, or verified.
+      </PrototypeNotice>
       <div className="pf-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
-        <strong>Artisan Verification & Credentials Intake (S40)</strong>
+        <strong>Sample Verification Form (S40)</strong>
       </div>
 
       <header>
@@ -1049,11 +1056,10 @@ export function ArtisanVerificationScreen() {
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Artisan Verification & Credentials Submission
+          Artisan Verification Form Preview
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Submit your official qualifications, NIN, and photographic work proof for Benin City Hub
-          vetting.
+          Preview a verification form with fictional data. No qualification, identity, photo, or application is submitted or reviewed.
         </p>
       </header>
 
@@ -1065,11 +1071,11 @@ export function ArtisanVerificationScreen() {
         </div>
         <div className={`pf-step-tab ${currentStep === 2 ? "active" : ""}`}>
           <span className="pf-step-num">2</span>
-          <span>Trade & Guild</span>
+          <span>Sample Trade</span>
         </div>
         <div className={`pf-step-tab ${currentStep === 3 ? "active" : ""}`}>
           <span className="pf-step-num">3</span>
-          <span>Evidence & NIN</span>
+          <span>Sample Evidence</span>
         </div>
         <div className={`pf-step-tab ${currentStep === 4 ? "active" : ""}`}>
           <span className="pf-step-num">4</span>
@@ -1090,9 +1096,7 @@ export function ArtisanVerificationScreen() {
             <AlertCircle size={20} />
           )}
           <div>
-            <strong>
-              {submissionResult.ok ? "Submission Successful!" : "Submission Incomplete"}
-            </strong>
+            <strong>{submissionResult.ok ? "Preview Ready" : "Preview Incomplete"}</strong>
             <p>{submissionResult.message}</p>
             {submissionResult.ok && (
               <Link
@@ -1100,7 +1104,7 @@ export function ArtisanVerificationScreen() {
                 className="button button-primary"
                 style={{ marginTop: "12px" }}
               >
-                Track Review Status in S41 →
+                View Sample Status in S41 →
               </Link>
             )}
           </div>
@@ -1111,16 +1115,16 @@ export function ArtisanVerificationScreen() {
       <div className="pf-card">
         {currentStep === 1 && (
           <div style={{ display: "grid", gap: "16px" }}>
-            <h2 className="pf-form-section-title">Step 1: Artisan Profile Confirmation</h2>
+            <h2 className="pf-form-section-title">Step 1: Sample Profile Preview</h2>
             <p style={{ fontSize: "13.5px", color: "var(--muted)" }}>
-              Ensure your registered profile matches your government identification details.
+              Review the fictional profile fields shown in this prototype.
             </p>
             <div className="pf-quote-field">
-              <label htmlFor="ver-name">Artisan Legal Name</label>
+              <label htmlFor="ver-name">Sample Artisan Name</label>
               <input id="ver-name" type="text" value={defaultArtisan.name} readOnly disabled />
             </div>
             <div className="pf-quote-field">
-              <label htmlFor="ver-workshop">Workshop Base Address</label>
+              <label htmlFor="ver-workshop">Sample Workshop Area (no street address)</label>
               <input
                 id="ver-workshop"
                 type="text"
@@ -1134,7 +1138,7 @@ export function ArtisanVerificationScreen() {
                 className="button button-primary"
                 onClick={() => setCurrentStep(2)}
               >
-                Continue to Trade & Guild →
+                Continue to Sample Trade →
               </button>
             </div>
           </div>
@@ -1142,9 +1146,9 @@ export function ArtisanVerificationScreen() {
 
         {currentStep === 2 && (
           <div style={{ display: "grid", gap: "16px" }}>
-            <h2 className="pf-form-section-title">Step 2: Trade Skills & Guild Affiliation</h2>
+            <h2 className="pf-form-section-title">Step 2: Sample Trade Details</h2>
             <div className="pf-quote-field">
-              <label htmlFor="ver-guild">Recognized Guild or Association</label>
+              <label htmlFor="ver-guild">Sample association value (not verified)</label>
               <input
                 id="ver-guild"
                 type="text"
@@ -1153,7 +1157,7 @@ export function ArtisanVerificationScreen() {
               />
             </div>
             <div className="pf-quote-field">
-              <label htmlFor="ver-cert">Apprenticeship / Certificate Ref Number</label>
+              <label htmlFor="ver-cert">Sample certificate reference (not issued)</label>
               <input
                 id="ver-cert"
                 type="text"
@@ -1162,7 +1166,7 @@ export function ArtisanVerificationScreen() {
               />
             </div>
             <div className="pf-quote-field">
-              <label htmlFor="ver-craftsman">Master Craftsman Endorsement</label>
+              <label htmlFor="ver-craftsman">Sample reviewer value (not assigned)</label>
               <input
                 id="ver-craftsman"
                 type="text"
@@ -1183,7 +1187,7 @@ export function ArtisanVerificationScreen() {
                 className="button button-primary"
                 onClick={() => setCurrentStep(3)}
               >
-                Continue to Evidence & NIN →
+                Continue to Sample Evidence →
               </button>
             </div>
           </div>
@@ -1191,37 +1195,31 @@ export function ArtisanVerificationScreen() {
 
         {currentStep === 3 && (
           <div style={{ display: "grid", gap: "16px" }}>
-            <h2 className="pf-form-section-title">Step 3: Work Evidence & Identity Upload</h2>
+            <h2 className="pf-form-section-title">Step 3: Sample Evidence Preview</h2>
             <div className="pf-quote-field">
-              <label htmlFor="ver-nin">National Identity Number (NIN)</label>
-              <input
-                id="ver-nin"
-                type="text"
-                maxLength={11}
-                value={ninNumber}
-                onChange={(e) => setNinNumber(e.target.value)}
-              />
+              <label htmlFor="ver-nin">Sample identity reference (do not enter a real number)</label>
+              <input id="ver-nin" type="text" value="Not connected in this preview" readOnly disabled />
               <span style={{ fontSize: "11.5px", color: "var(--muted)" }}>
-                Must be an 11-digit number. Verified via local hub intake registry.
+                No identity service is connected. Do not enter real identity details.
               </span>
             </div>
 
             <div style={{ display: "grid", gap: "12px", marginTop: "8px" }}>
               <span style={{ fontSize: "13px", fontWeight: 600 }}>
-                Upload Documentation (Images or PDF)
+                Sample Document Placeholders (not uploaded)
               </span>
               <div className="pf-upload-slot">
                 <Upload size={28} />
-                <span style={{ fontWeight: 600 }}>Government ID Slip / NIN Card</span>
+                <span style={{ fontWeight: 600 }}>Sample identity-document placeholder</span>
                 <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-                  nin_slip_osaze_ighodaro.pdf (Attached)
+                  sample-identity-document-not-uploaded.pdf
                 </span>
               </div>
               <div className="pf-upload-slot">
                 <FileCheck2 size={28} />
-                <span style={{ fontWeight: 600 }}>Workshop Verification Signboard Photo</span>
+                <span style={{ fontWeight: 600 }}>Sample workshop image placeholder</span>
                 <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-                  workshop_signboard_airport_rd.jpg (Attached)
+                  sample-workshop-image-not-uploaded.jpg
                 </span>
               </div>
             </div>
@@ -1239,7 +1237,7 @@ export function ArtisanVerificationScreen() {
                 className="button button-primary"
                 onClick={() => setCurrentStep(4)}
               >
-                Continue to Legal Declaration →
+                Continue to Prototype Disclosure →
               </button>
             </div>
           </div>
@@ -1247,7 +1245,7 @@ export function ArtisanVerificationScreen() {
 
         {currentStep === 4 && (
           <div style={{ display: "grid", gap: "16px" }}>
-            <h2 className="pf-form-section-title">Step 4: Legal Declaration & Submission</h2>
+            <h2 className="pf-form-section-title">Step 4: Prototype Disclosure</h2>
             <div
               style={{
                 background: "#f8fafc",
@@ -1259,9 +1257,7 @@ export function ArtisanVerificationScreen() {
               }}
             >
               <p style={{ margin: "0 0 10px 0" }}>
-                I hereby declare that all information submitted, including trade certifications,
-                workshop addresses, and identity credentials, is authentic and truthful to the best
-                of my knowledge.
+                This is a fictional form preview. No details, identity credentials, documents, or legal declarations are submitted or saved.
               </p>
               <label
                 style={{
@@ -1277,7 +1273,7 @@ export function ArtisanVerificationScreen() {
                   checked={declarationChecked}
                   onChange={(e) => setDeclarationChecked(e.target.checked)}
                 />
-                I accept the SabiWork artisan code of conduct and verification terms.
+                I understand this is a sample interaction and will not enter real personal data.
               </label>
             </div>
 
@@ -1296,7 +1292,7 @@ export function ArtisanVerificationScreen() {
                   onClick={() => handleSubmit(true)}
                   disabled={submitting}
                 >
-                  Simulate Error
+                  Preview sample error
                 </button>
                 <button
                   type="button"
@@ -1304,7 +1300,7 @@ export function ArtisanVerificationScreen() {
                   onClick={() => handleSubmit(false)}
                   disabled={submitting}
                 >
-                  {submitting ? "Lodging Application..." : "Submit Verification Dossier"}
+                  {submitting ? "Preparing preview..." : "Preview Verification Form"}
                 </button>
               </div>
             </div>
@@ -1331,6 +1327,9 @@ export function ArtisanVerificationStatusScreen({
 
   return (
     <div className="pf-page" data-testid="verification-status-screen">
+      <PrototypeNotice>
+        Statuses, reviewer details, and timeline entries are fictional. No application was submitted or reviewed; no badge is issued.
+      </PrototypeNotice>
       <div className="pf-breadcrumbs">
         <Link href="/artisan">Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -1342,7 +1341,7 @@ export function ArtisanVerificationStatusScreen({
       {/* Status Switcher Simulator */}
       <div className="pf-simulator-bar">
         <span className="pf-simulator-label">
-          <SlidersHorizontal size={16} /> Audit Status Simulator:
+          <SlidersHorizontal size={16} /> Sample Status:
         </span>
         <div className="pf-simulator-buttons">
           {(["UNDER_REVIEW", "APPROVED", "CHANGES_REQUESTED"] as const).map((st) => (
@@ -1355,7 +1354,7 @@ export function ArtisanVerificationStatusScreen({
                 setApp({ ...app, status: st });
               }}
             >
-              {st}
+              {st === "UNDER_REVIEW" ? "Sample pending" : st === "APPROVED" ? "Sample approved" : "Sample changes requested"}
             </button>
           ))}
         </div>
@@ -1379,27 +1378,27 @@ export function ArtisanVerificationStatusScreen({
               color: "var(--text-dark, #0e294b)",
             }}
           >
-            Verification Status & Badge Review
+            Sample Verification Status
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            Application #{app.applicationRef} · Lodged on {app.lodgedDate}
+            Sample reference {app.applicationRef} · Example date {app.lodgedDate}
           </p>
         </div>
 
         <div>
           {statusState === "APPROVED" && (
             <span className="pf-badge-reviewed" style={{ fontSize: "13px", padding: "6px 14px" }}>
-              ✓ Verified Master Artisan Badge Active
+              Sample approval state · no badge issued
             </span>
           )}
           {statusState === "UNDER_REVIEW" && (
             <span className="pf-badge-pending" style={{ fontSize: "13px", padding: "6px 14px" }}>
-              ⏳ Desk Review In Progress
+              Sample pending state · no review started
             </span>
           )}
           {statusState === "CHANGES_REQUESTED" && (
             <span className="pf-badge-pending" style={{ fontSize: "13px", padding: "6px 14px" }}>
-              ⚠️ Action Required: Revisions Requested
+              Sample revision state · no reviewer feedback
             </span>
           )}
         </div>
@@ -1413,11 +1412,10 @@ export function ArtisanVerificationStatusScreen({
             <div className="pf-alert pf-alert-success" role="status">
               <Check size={24} />
               <div>
-                <strong>Congratulations! Your Verification Badge is Active</strong>
+                <strong>Sample approval state preview</strong>
                 <p>
-                  Your credentials have been certified by the Benin City Hub Desk. Your public
-                  profile (S04) now displays the verified badge and appears in priority search
-                  results (S03).
+                  This is a local simulator state only. No credentials were reviewed, no badge was issued,
+                  and no search ranking changed.
                 </p>
               </div>
             </div>
@@ -1427,10 +1425,9 @@ export function ArtisanVerificationStatusScreen({
             <div className="pf-alert pf-alert-info" role="status">
               <Info size={24} />
               <div>
-                <strong>Review in progress by Benin City Hub Desk</strong>
+                <strong>Sample review state</strong>
                 <p>
-                  Our field officers are reviewing your trade guild certificate and workshop
-                  location. Average review turnaround is 48 business hours.
+                  No field officer, registry, trade certificate, or workshop location was checked.
                 </p>
               </div>
             </div>
@@ -1440,17 +1437,16 @@ export function ArtisanVerificationStatusScreen({
             <div className="pf-alert pf-alert-warning" role="alert">
               <AlertCircle size={24} />
               <div>
-                <strong>Updates needed before your Pro Badge can be issued</strong>
+                <strong>Sample revision state</strong>
                 <p>
-                  The reviewer has left feedback regarding your proof documents. Please re-upload a
-                  clearer photo of your workshop signboard.
+                  No reviewer left feedback and no file was uploaded. This button only returns to the sample form.
                 </p>
                 <Link
                   href="/artisan/verification"
                   className="button button-primary"
                   style={{ marginTop: "10px" }}
                 >
-                  Resubmit Credentials in S40 →
+                  Return to Sample Form (S40) →
                 </Link>
               </div>
             </div>
@@ -1459,7 +1455,7 @@ export function ArtisanVerificationStatusScreen({
           {/* Audit Timeline */}
           <section className="pf-card" aria-labelledby="timeline-heading">
             <h2 id="timeline-heading" className="pf-card-title">
-              <Clock size={20} /> Administrative Verification Workflow
+              <Clock size={20} /> Sample Status Timeline
             </h2>
             <div className="pf-timeline">
               {app.timeline.map((item, idx) => (
@@ -1476,7 +1472,7 @@ export function ArtisanVerificationStatusScreen({
           {/* Submitted Files Dossier */}
           <section className="pf-card" aria-labelledby="dossier-heading">
             <h2 id="dossier-heading" className="pf-card-title">
-              <FileText size={20} /> Submitted Dossier Snapshot
+              <FileText size={20} /> Sample File List (not uploaded)
             </h2>
             <div style={{ display: "grid", gap: "10px" }}>
               {app.submittedFiles.map((file) => (
@@ -1506,10 +1502,10 @@ export function ArtisanVerificationStatusScreen({
         <div className="pf-side-col">
           <div className="pf-card">
             <h3 style={{ margin: 0, fontSize: "15px", color: "var(--text-dark, #0e294b)" }}>
-              Benin City Hub Desk
+              Sample Review Desk
             </h3>
             <p style={{ margin: "6px 0 0 0", fontSize: "13px", color: "var(--muted)" }}>
-              Vetting Officer: Engr. A. Omoregie (Hub Lead)
+              Reviewer: Not assigned
             </p>
             <div
               style={{
@@ -1521,14 +1517,14 @@ export function ArtisanVerificationStatusScreen({
                 fontSize: "12.5px",
               }}
             >
-              <strong>Reviewer Notes:</strong>
+              <strong>Sample reviewer note:</strong>
               <p style={{ margin: "4px 0 0 0", color: "#334155" }}>{app.reviewNotes}</p>
             </div>
           </div>
 
           <div className="pf-card" style={{ background: "#f8fafc" }}>
             <h3 style={{ margin: 0, fontSize: "14px", color: "var(--text-dark, #0e294b)" }}>
-              Badge Benefits
+              Badge Features (Not Active)
             </h3>
             <ul
               style={{
@@ -1540,9 +1536,9 @@ export function ArtisanVerificationStatusScreen({
                 gap: "6px",
               }}
             >
-              <li>Priority placement on search results (S03)</li>
-              <li>&ldquo;Admin-Reviewed&rdquo; badge on profile & quote cards</li>
-              <li>Eligible for commercial milestone jobs</li>
+              <li>No priority placement is enabled</li>
+              <li>No review badge is issued or displayed</li>
+              <li>No job eligibility or credential is created</li>
             </ul>
           </div>
         </div>

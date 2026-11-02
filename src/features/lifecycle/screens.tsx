@@ -10,6 +10,7 @@ import {
   Clock,
   ShieldCheck,
 } from "lucide-react";
+import { PrototypeNotice } from "@/components/prototype-notice";
 import {
   type ActiveJob,
   type PaymentTransactionRecord,
@@ -32,10 +33,13 @@ export function PaymentHistoryScreen({
 
   return (
     <div className="lc-page" data-testid="payment-history-screen">
+      <PrototypeNotice>
+        Payment history is fictional sample data. No payment, escrow, refund, or payout record exists.
+      </PrototypeNotice>
       <div className="lc-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
-        <strong>Payment History & Escrow Ledger (S26)</strong>
+        <strong>Sample Payment History (S26)</strong>
       </div>
 
       <header>
@@ -47,10 +51,10 @@ export function PaymentHistoryScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Payment History & Transaction Details
+          Sample Payment History
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Itemized milestone escrow deposits and releases under SabiWork SafeTrade.
+          Illustrative amounts and statuses only; no provider or escrow service is connected.
         </p>
       </header>
 
@@ -69,15 +73,15 @@ export function PaymentHistoryScreen({
               <div>
                 <span
                   style={{
-                    background: t.status === "LOCKED" ? "#eff6ff" : "#f0fdf4",
-                    color: t.status === "LOCKED" ? "#1e40af" : "#166534",
+                    background: "#eff6ff",
+                    color: "#1e40af",
                     padding: "2px 8px",
                     borderRadius: "999px",
                     fontSize: "11px",
                     fontWeight: 700,
                   }}
                 >
-                  {t.status === "LOCKED" ? "🔒 Escrow Locked" : "✓ Released to Artisan"}
+                  Sample payment preview · not paid
                 </span>
                 <h2 style={{ margin: "6px 0 2px 0", fontSize: "16px", color: "var(--text-dark, #0e294b)" }}>
                   #{t.id} · {t.jobTitle}
@@ -104,7 +108,7 @@ export function PaymentHistoryScreen({
                     className="button button-outline"
                     style={{ minHeight: "34px", fontSize: "12px", padding: "4px 10px" }}
                   >
-                    View Receipt (S23)
+                    View Sample Receipt (S23)
                   </Link>
                 </div>
               </div>
@@ -129,6 +133,9 @@ export function MyJobsListScreen({
 
   return (
     <div className="lc-page" data-testid="my-jobs-screen">
+      <PrototypeNotice>
+        Jobs, statuses, and balances are fictional samples. No work is active, saved, or paid for.
+      </PrototypeNotice>
       <div className="lc-breadcrumbs">
         <Link href="/jobs">Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -156,7 +163,7 @@ export function MyJobsListScreen({
             My Jobs & Active Engagements
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            Track live milestone progress, photo logs, and release balances upon completion.
+            Preview sample milestone progress and photo-log layouts.
           </p>
         </div>
 
@@ -189,8 +196,8 @@ export function MyJobsListScreen({
                   }}
                 >
                   {j.status === "IN_PROGRESS"
-                    ? "⚡ Work in Progress (Milestone 1 Active)"
-                    : "✓ Awaiting Customer Sign-off"}
+                    ? "Sample in-progress state · Milestone 1"
+                    : "Sample awaiting sign-off state"}
                 </span>
                 <h2 style={{ margin: "6px 0 2px 0", fontSize: "18px", color: "var(--text-dark, #0e294b)" }}>
                   {j.title}
@@ -202,13 +209,13 @@ export function MyJobsListScreen({
 
               <div style={{ textAlign: "right" }}>
                 <span style={{ fontSize: "12px", color: "var(--muted)", display: "block" }}>
-                  Total Contract
+                  Sample Contract Value
                 </span>
                 <strong style={{ fontSize: "20px", color: "var(--primary)" }}>
                   ₦{(j.totalKobo / 100).toLocaleString()}
                 </strong>
                 <div style={{ fontSize: "11.5px", color: "#64748b", marginTop: "2px" }}>
-                  ₦{(j.depositPaidKobo / 100).toLocaleString()} in Escrow
+                  Sample deposit amount: ₦{(j.depositPaidKobo / 100).toLocaleString()} (not paid)
                 </div>
               </div>
             </div>
@@ -225,7 +232,7 @@ export function MyJobsListScreen({
               }}
             >
               <div style={{ fontSize: "12.5px", color: "var(--muted)" }}>
-                {j.updates.length} progress update{j.updates.length === 1 ? "" : "s"} logged
+                {j.updates.length} sample progress update{j.updates.length === 1 ? "" : "s"}
               </div>
               <div style={{ display: "flex", gap: "8px" }}>
                 <Link
@@ -233,7 +240,7 @@ export function MyJobsListScreen({
                   className="button button-outline"
                   style={{ minHeight: "36px", fontSize: "13px" }}
                 >
-                  View Live Progress (S28)
+                  View Sample Progress (S28)
                 </Link>
                 {j.status === "AWAITING_SIGNOFF" && (
                   <Link
@@ -241,7 +248,7 @@ export function MyJobsListScreen({
                     className="button button-primary"
                     style={{ minHeight: "36px", fontSize: "13px" }}
                   >
-                    Sign Off & Release Balance (S30) →
+                    Preview Sign-off (S30) →
                   </Link>
                 )}
               </div>
@@ -266,6 +273,9 @@ export function JobProgressDetailScreen({
 
   return (
     <div className="lc-page" data-testid="job-progress-screen">
+      <PrototypeNotice>
+        This progress log contains fictional sample updates. No job is active and no payment or escrow action has occurred.
+      </PrototypeNotice>
       <div className="lc-breadcrumbs">
         <Link href="/jobs">My Jobs</Link>
         <span aria-hidden="true">/</span>
@@ -308,20 +318,19 @@ export function JobProgressDetailScreen({
             href={`/jobs/${job.id}/signoff`}
             className="button button-primary"
           >
-            Complete & Sign Off (S30) →
+            Preview Sign-off (S30) →
           </Link>
         </div>
       </header>
 
-      {/* Escrow Health Card */}
+      {/* Sample milestone status */}
       <div className="lc-alert lc-alert-info">
         <ShieldCheck size={24} />
         <div>
-          <strong>SabiWork Escrow Protected: Milestone {job.currentMilestone} Active</strong>
+          <strong>Sample milestone {job.currentMilestone} status</strong>
           <p>
-            Deposit of ₦{(job.depositPaidKobo / 100).toLocaleString()} is held in escrow. Final
-            balance of ₦{(job.balanceKobo / 100).toLocaleString()} will be funded upon customer
-            inspection sign-off.
+            Sample amount ₦{(job.depositPaidKobo / 100).toLocaleString()} is not paid or held.
+            No balance release or inspection sign-off is connected.
           </p>
         </div>
       </div>
@@ -329,7 +338,7 @@ export function JobProgressDetailScreen({
       {/* Progress Timeline */}
       <section className="lc-card" aria-labelledby="updates-heading">
         <h2 id="updates-heading" className="lc-card-title">
-          <Clock size={20} /> Live Work Verification Log
+          <Clock size={20} /> Sample Work Progress Log
         </h2>
 
         <div className="lc-timeline">
@@ -361,9 +370,9 @@ export function ArtisanAddProgressScreen({
   job?: ActiveJob;
 }) {
   const router = useRouter();
-  const [title, setTitle] = useState("PPR Pressure Joint Vetted & Tested");
+  const [title, setTitle] = useState("Sample pipe repair progress");
   const [note, setNote] = useState(
-    "Installed high-pressure sleeve and performed 30-minute static pressure leak test. No drops registered.",
+    "Sample note only; no work or test was performed.",
   );
   const [saving, setSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
@@ -389,6 +398,9 @@ export function ArtisanAddProgressScreen({
 
   return (
     <div className="lc-page" data-testid="add-progress-screen">
+      <PrototypeNotice>
+        This form previews a local interaction only. No photo is uploaded, update is saved, or customer notified.
+      </PrototypeNotice>
       <div className="lc-breadcrumbs">
         <Link href="/artisan/jobs">Artisan Jobs</Link>
         <span aria-hidden="true">/</span>
@@ -409,7 +421,7 @@ export function ArtisanAddProgressScreen({
           Add Work Progress Update
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Log technical milestones and photographic evidence for customer review.
+          Preview a sample progress update; image upload and customer delivery are not connected.
         </p>
       </header>
 
@@ -461,10 +473,10 @@ export function ArtisanAddProgressScreen({
           >
             <Camera size={28} style={{ color: "var(--muted)", margin: "0 auto 6px auto" }} />
             <strong style={{ fontSize: "13px", display: "block" }}>
-              Attach Worksite Proof Photograph
+              Sample Photo Attachment Preview
             </strong>
             <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-              ppr_manifold_joint_pressure_test.jpg (Simulated attachment ready)
+              No photo is attached or uploaded.
             </span>
           </div>
         </section>
@@ -476,14 +488,14 @@ export function ArtisanAddProgressScreen({
             onClick={(e) => handleSubmit(e, true)}
             disabled={saving}
           >
-            Simulate Timeout
+            Preview sample error
           </button>
           <button
             type="submit"
             className="button button-primary"
             disabled={saving}
           >
-            {saving ? "Broadcasting..." : "Publish Progress Update →"}
+            {saving ? "Preparing preview..." : "Preview Progress Update →"}
           </button>
         </div>
       </form>
@@ -500,10 +512,9 @@ export function CustomerSignoffScreen({
 }: {
   job?: ActiveJob;
 }) {
-  const router = useRouter();
   const [rating, setRating] = useState(5);
   const [feedback, setFeedback] = useState(
-    "Excellent work by Osaze. Fixed the high pressure pipe burst swiftly without damaging the surrounding floor tiles.",
+    "Sample review text for layout preview only.",
   );
   const [signingOff, setSigningOff] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
@@ -526,7 +537,6 @@ export function CustomerSignoffScreen({
 
     if (res.ok) {
       setStatusMessage({ type: "success", text: res.message });
-      router.push(`/jobs/${job.id}/balance`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
     }
@@ -534,6 +544,9 @@ export function CustomerSignoffScreen({
 
   return (
     <div className="lc-page" data-testid="customer-signoff-screen">
+      <PrototypeNotice>
+        This sign-off form is a sample. No work inspection, completion, payment release, or review publication occurs.
+      </PrototypeNotice>
       <div className="lc-breadcrumbs">
         <Link href="/jobs">My Jobs</Link>
         <span aria-hidden="true">/</span>
@@ -554,7 +567,7 @@ export function CustomerSignoffScreen({
           Customer Review & Completion Sign-off
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Authorize final escrow milestone balance release to {job.artisanName} for Job #{job.id}.
+          Preview a sign-off for sample request {job.id}; no balance is released.
         </p>
       </header>
 
@@ -572,7 +585,7 @@ export function CustomerSignoffScreen({
 
       <form onSubmit={(e) => handleSignoff(e, false)} style={{ display: "grid", gap: "20px" }}>
         <section className="lc-card">
-          <h2 className="lc-card-title">Rate Artisan Work Quality</h2>
+          <h2 className="lc-card-title">Preview Sample Review</h2>
           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -598,7 +611,7 @@ export function CustomerSignoffScreen({
           </div>
 
           <div className="rq-field-group">
-            <label htmlFor="signoff-feedback">Customer Testimonial & Review Note</label>
+            <label htmlFor="signoff-feedback">Sample Review Text</label>
             <textarea
               id="signoff-feedback"
               rows={4}
@@ -616,14 +629,14 @@ export function CustomerSignoffScreen({
             onClick={(e) => handleSignoff(e, true)}
             disabled={signingOff}
           >
-            Simulate Server Decline
+            Preview sample error
           </button>
           <button
             type="submit"
             className="button button-primary"
             disabled={signingOff}
           >
-            {signingOff ? "Signing off..." : "Authorize Escrow Release & Review →"}
+            {signingOff ? "Preparing preview..." : "Preview Sign-off & Review →"}
           </button>
         </div>
       </form>

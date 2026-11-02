@@ -1,4 +1,5 @@
 import { Icon } from "@/components/icon";
+import { Brand } from "@/components/public-shell";
 export function AuthFrame({
   children,
   recovery = false,
@@ -10,6 +11,7 @@ export function AuthFrame({
     <section className={`auth-page ${recovery ? "auth-recovery-page" : ""}`}>
       <div className="container auth-grid">
         <aside className="auth-story">
+          <Brand />
           <p className="eyebrow">SKILLED HANDS. TRUSTED WORK.</p>
           <h2>
             {recovery
@@ -45,7 +47,7 @@ export function AuthFrame({
               </span>
               <div>
                 <strong>Keep your account yours</strong>
-                <p>Use your own account for requests and updates.</p>
+                <p>Keep requests, quotes and updates together.</p>
               </div>
             </li>
           </ul>
@@ -61,9 +63,10 @@ export function AuthFrame({
               <Icon name="hammer" size={34} />
             </span>
           </div>
-          <p className="auth-story-foot">Made for Benin City, Edo State.</p>
+          <p className="auth-story-foot">A clear path from first request to finished work.</p>
         </aside>
         <div className="auth-form-column">
+          <div className="auth-mobile-brand"><Brand /></div>
           <div className="auth-demo-notice">
             <Icon name="help" size={18} />
             <p>

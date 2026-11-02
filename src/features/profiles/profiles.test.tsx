@@ -14,10 +14,10 @@ import { defaultArtisan, defaultVerification } from "./service";
 describe("Artisan Profiles & Verification (S04, S05, S06, S40, S41)", () => {
   it("renders S04 Artisan Profile screen with name, starting price, and badges", () => {
     render(<ArtisanProfileScreen initialArtisan={defaultArtisan} />);
-    expect(screen.getByRole("heading", { level: 1, name: /Osaze Ighodaro/i })).toBeDefined();
+    expect(screen.getByRole("heading", { level: 1, name: /Sample Artisan 1/i })).toBeDefined();
     expect(screen.getByText(/₦10,000/i)).toBeDefined();
-    expect(screen.getByText(/Master Artisan/i)).toBeDefined();
-    expect(screen.getByText(/Admin-Reviewed Profile/i)).toBeDefined();
+    expect(screen.getByText(/Sample Profile/i)).toBeDefined();
+    expect(screen.getByText("Not Verified", { exact: true })).toBeDefined();
   });
 
   it("handles state switching on S04 (pending, skeleton, error)", async () => {
@@ -64,41 +64,41 @@ describe("Artisan Profiles & Verification (S04, S05, S06, S40, S41)", () => {
     fireEvent.click(saveBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Profile updated successfully/i)).toBeDefined();
+      expect(screen.getByText(/Sample profile preview updated locally/i)).toBeDefined();
     });
   });
 
   it("handles step progression and validation in S40 Verification intake", async () => {
     render(<ArtisanVerificationScreen />);
     expect(
-      screen.getByRole("heading", { level: 2, name: /Step 1: Artisan Profile Confirmation/i }),
+      screen.getByRole("heading", { level: 2, name: /Step 1: Sample Profile Preview/i }),
     ).toBeDefined();
 
     // Step 1 -> Step 2
-    fireEvent.click(screen.getByRole("button", { name: /Continue to Trade & Guild/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Continue to Sample Trade/i }));
     expect(
-      screen.getByRole("heading", { level: 2, name: /Step 2: Trade Skills & Guild Affiliation/i }),
+      screen.getByRole("heading", { level: 2, name: /Step 2: Sample Trade Details/i }),
     ).toBeDefined();
 
     // Step 2 -> Step 3
-    fireEvent.click(screen.getByRole("button", { name: /Continue to Evidence & NIN/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Continue to Sample Evidence/i }));
     expect(
-      screen.getByRole("heading", { level: 2, name: /Step 3: Work Evidence & Identity Upload/i }),
+      screen.getByRole("heading", { level: 2, name: /Step 3: Sample Evidence Preview/i }),
     ).toBeDefined();
 
     // Step 3 -> Step 4
-    fireEvent.click(screen.getByRole("button", { name: /Continue to Legal Declaration/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Continue to Prototype Disclosure/i }));
     expect(
-      screen.getByRole("heading", { level: 2, name: /Step 4: Legal Declaration & Submission/i }),
+      screen.getByRole("heading", { level: 2, name: /Step 4: Prototype Disclosure/i }),
     ).toBeDefined();
   });
 
   it("renders S41 Verification Status tracker with audit timeline", () => {
     render(<ArtisanVerificationStatusScreen initialApplication={defaultVerification} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Verification Status & Badge Review/i }),
+      screen.getByRole("heading", { level: 1, name: /Sample Verification Status/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Application Submitted/i)).toBeDefined();
-    expect(screen.getAllByText(/Benin City Hub Desk/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Sample Form Preview/i)).toBeDefined();
+    expect(screen.getAllByText(/Sample Review Desk/i).length).toBeGreaterThan(0);
   });
 });

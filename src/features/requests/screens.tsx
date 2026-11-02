@@ -14,6 +14,7 @@ import {
   SlidersHorizontal,
   User,
 } from "lucide-react";
+import { PrototypeNotice } from "@/components/prototype-notice";
 import {
   type CustomerSettings,
   type JobRequestDraft,
@@ -24,6 +25,14 @@ import {
   requestsDemoService,
 } from "./service";
 import "./requests.css";
+
+function RequestsPrototypeNotice() {
+  return (
+    <PrototypeNotice>
+      Customer settings, job requests, quotes, and matching results are fictional local previews. No backend account data is saved, no artisans are contacted, and no payment or escrow is connected.
+    </PrototypeNotice>
+  );
+}
 
 /* ==========================================================================
    S13: Customer Account Settings Screen
@@ -75,6 +84,7 @@ export function AccountSettingsScreen({
 
   return (
     <div className="rq-page" data-testid="account-settings-screen">
+      <RequestsPrototypeNotice />
       <div className="rq-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -102,7 +112,7 @@ export function AccountSettingsScreen({
             Account Settings
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            Manage your personal profile, primary dispatch district in Benin City, and notifications.
+            Preview sample profile fields, service area, and notification preferences.
           </p>
         </div>
 
@@ -166,7 +176,7 @@ export function AccountSettingsScreen({
               <label htmlFor="settings-email">Email Address</label>
               <input id="settings-email" type="email" value={email} disabled readOnly />
               <span style={{ fontSize: "11.5px", color: "var(--muted)" }}>
-                Verified account identity. Contact support to change email.
+                Sample email only; no account or email verification exists.
               </span>
             </div>
 
@@ -230,7 +240,7 @@ export function AccountSettingsScreen({
                 onChange={(e) => setSmsNotifications(e.target.checked)}
               />
               <span style={{ fontSize: "13.5px" }}>
-                Receive SMS & WhatsApp dispatch updates when verified artisans submit quotes.
+                Sample preference only. No SMS, WhatsApp, or quote notifications are sent.
               </span>
             </label>
 
@@ -241,7 +251,7 @@ export function AccountSettingsScreen({
                 onChange={(e) => setEmailReceipts(e.target.checked)}
               />
               <span style={{ fontSize: "13.5px" }}>
-                Email milestone transaction receipts and escrow release notifications.
+                Sample preference only. No receipts or escrow notifications are sent.
               </span>
             </label>
           </div>
@@ -304,6 +314,7 @@ export function NewJobRequestScreen() {
 
   return (
     <div className="rq-page" data-testid="new-job-request-screen">
+      <RequestsPrototypeNotice />
       <div className="rq-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -322,8 +333,7 @@ export function NewJobRequestScreen() {
           Post a New Job Request
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Describe your task to receive itemized quotes from admin-vetted artisans across Benin
-          City.
+          Preview a fictional request form. No artisan is vetted, contacted, or sent a request.
         </p>
       </header>
 
@@ -435,7 +445,7 @@ export function NewJobRequestScreen() {
                 onChange={(e) => setBudgetNaira(e.target.value)}
               />
               <span style={{ fontSize: "11.5px", color: "var(--muted)" }}>
-                Guidance only. Artisans submit binding milestone quotes.
+                Example amount only. Quotes and milestones are non-binding samples.
               </span>
             </div>
           </div>
@@ -443,7 +453,7 @@ export function NewJobRequestScreen() {
 
         {/* 3. Location */}
         <section className="rq-card">
-          <h2 className="rq-card-title">3. Site Location in Benin City</h2>
+          <h2 className="rq-card-title">3. Sample Service Area</h2>
           <div
             style={{
               display: "grid",
@@ -467,13 +477,14 @@ export function NewJobRequestScreen() {
             </div>
 
             <div className="rq-field-group">
-              <label htmlFor="job-address">Detailed Street Address / Landmark</label>
+              <label htmlFor="job-address">Sample Service Area (no street address)</label>
               <input
                 id="job-address"
                 type="text"
                 required
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+                placeholder="Sample service area, Benin City"
               />
             </div>
           </div>
@@ -494,7 +505,7 @@ export function NewJobRequestScreen() {
             className="button button-primary"
             disabled={saving}
           >
-            {saving ? "Creating Draft..." : "Continue to Job Review (S15) →"}
+            {saving ? "Preparing preview..." : "Continue to Sample Review (S15) →"}
           </button>
         </div>
       </form>
@@ -538,6 +549,7 @@ export function JobRequestReviewScreen({
 
   return (
     <div className="rq-page" data-testid="job-request-review-screen">
+      <RequestsPrototypeNotice />
       <div className="rq-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -567,8 +579,7 @@ export function JobRequestReviewScreen({
             Review Your Job Request
           </h1>
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-            Draft ID #{draft.id} · Verify all work specifications before dispatching to Benin City
-            artisans.
+            Sample reference {draft.id} · Review fictional details only; no dispatch is available.
           </p>
         </div>
 
@@ -587,7 +598,7 @@ export function JobRequestReviewScreen({
             onClick={() => handleDispatch(false)}
             disabled={submitting}
           >
-            {submitting ? "Dispatching..." : "Dispatch to Verified Artisans →"}
+            {submitting ? "Preparing preview..." : "Preview Request →"}
           </button>
         </div>
       </header>
@@ -677,7 +688,7 @@ export function JobRequestReviewScreen({
         </section>
 
         <section className="rq-card">
-          <h2 className="rq-card-title">3. Budget Guidance & Escrow Protection</h2>
+          <h2 className="rq-card-title">3. Sample Budget</h2>
           <div
             style={{
               display: "flex",
@@ -707,8 +718,7 @@ export function JobRequestReviewScreen({
             </div>
             <div style={{ maxWidth: "420px", fontSize: "12.5px", color: "#64748b" }}>
               <ShieldCheck size={20} style={{ color: "#075e46", marginBottom: "4px" }} />
-              <strong>Paystack TEST Mode SafeTrade:</strong> Funds are only deposited into escrow
-              once you accept an artisan quote in S16.
+              <strong>Prototype limitation:</strong> This amount is illustrative. No payment provider, escrow, or financial protection is connected.
             </div>
           </div>
         </section>
@@ -736,6 +746,7 @@ export function ArtisanMatchingScreen({
   if (viewState === "loading") {
     return (
       <div className="rq-page" data-testid="matching-loading">
+        <RequestsPrototypeNotice />
         <div className="rq-simulator-bar">
           <span className="rq-simulator-label">
             <SlidersHorizontal size={16} /> Matching State Simulator:
@@ -756,10 +767,10 @@ export function ArtisanMatchingScreen({
         <div className="rq-card" style={{ textAlign: "center", padding: "48px 24px" }}>
           <Clock size={32} style={{ margin: "0 auto", color: "var(--primary)" }} />
           <h2 style={{ margin: "12px 0 6px 0", fontSize: "20px" }}>
-            Polling Dispatch Desk in GRA Axis...
+            Sample matching loading state...
           </h2>
           <p style={{ color: "var(--muted)", fontSize: "14px" }}>
-            Querying local artisan dispatch queue for incoming milestone quotations.
+            This state is simulated. No queue is queried and no quote is incoming.
           </p>
         </div>
       </div>
@@ -769,6 +780,7 @@ export function ArtisanMatchingScreen({
   if (viewState === "error") {
     return (
       <div className="rq-page" data-testid="matching-error">
+        <RequestsPrototypeNotice />
         <div className="rq-simulator-bar">
           <span className="rq-simulator-label">
             <SlidersHorizontal size={16} /> Matching State Simulator:
@@ -789,10 +801,9 @@ export function ArtisanMatchingScreen({
         <div className="rq-alert rq-alert-error" role="alert">
           <AlertCircle size={24} />
           <div>
-            <strong>Connection to Benin City Dispatch Hub Interrupted</strong>
+            <strong>Sample matching error state</strong>
             <p>
-              We encountered a network timeout while retrieving quotations. Please retry your
-              connection.
+              No dispatch service is connected. Use the state controls to preview another sample.
             </p>
             <button
               type="button"
@@ -811,6 +822,7 @@ export function ArtisanMatchingScreen({
   if (viewState === "awaiting") {
     return (
       <div className="rq-page" data-testid="matching-awaiting">
+        <RequestsPrototypeNotice />
         <div className="rq-simulator-bar">
           <span className="rq-simulator-label">
             <SlidersHorizontal size={16} /> Matching State Simulator:
@@ -831,11 +843,10 @@ export function ArtisanMatchingScreen({
         <div className="rq-card" style={{ textAlign: "center", padding: "48px 24px" }}>
           <Send size={32} style={{ margin: "0 auto", color: "var(--primary)" }} />
           <h2 style={{ margin: "12px 0 6px 0", fontSize: "20px" }}>
-            Dispatched to 14 Verified Plumbers in GRA Axis
+            Sample request waiting state
           </h2>
           <p style={{ color: "var(--muted)", fontSize: "14px", maxWidth: "480px", margin: "0 auto" }}>
-            Your request has been broadcasted to certified artisans in your district. You will
-            receive SMS alerts as quotes arrive.
+            No request was broadcast and no artisan was contacted. This state only previews the waiting layout.
           </p>
         </div>
       </div>
@@ -844,6 +855,7 @@ export function ArtisanMatchingScreen({
 
   return (
     <div className="rq-page" data-testid="artisan-matching-screen">
+      <RequestsPrototypeNotice />
       <div className="rq-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -883,7 +895,7 @@ export function ArtisanMatchingScreen({
           Artisan Matching & Quotes
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          {quotes.length} verified artisans responded with itemized milestone quotes for Job #{jobId}.
+          {quotes.length} sample quote records for request {jobId}. No artisans responded.
         </p>
       </header>
 
@@ -939,7 +951,7 @@ export function ArtisanMatchingScreen({
               <div className="rq-milestone-ledger">
                 <div>
                   <span style={{ fontSize: "11px", color: "var(--muted)", display: "block" }}>
-                    Milestone 1 (Deposit 50%)
+                    Sample Milestone 1 Amount (50%)
                   </span>
                   <strong style={{ color: "var(--primary)", fontSize: "14px" }}>
                     {depositFormatted}
@@ -947,7 +959,7 @@ export function ArtisanMatchingScreen({
                 </div>
                 <div>
                   <span style={{ fontSize: "11px", color: "var(--muted)", display: "block" }}>
-                    Milestone 2 (Balance 50%)
+                    Sample Milestone 2 Amount (50%)
                   </span>
                   <strong style={{ color: "var(--text-dark, #0e294b)", fontSize: "14px" }}>
                     {balanceFormatted}
@@ -958,7 +970,7 @@ export function ArtisanMatchingScreen({
                     Materials
                   </span>
                   <span style={{ fontWeight: 600 }}>
-                    {q.materialsIncluded ? "✓ Included in Quote" : "Customer Supplies"}
+                    {q.materialsIncluded ? "Sample includes materials" : "Sample excludes materials"}
                   </span>
                 </div>
               </div>
@@ -990,7 +1002,7 @@ export function ArtisanMatchingScreen({
                   className="button button-primary"
                   style={{ minHeight: "38px", fontSize: "13px" }}
                 >
-                  Accept Quote & Fund Escrow →
+                  Preview Quote Acceptance →
                 </Link>
               </div>
             </article>

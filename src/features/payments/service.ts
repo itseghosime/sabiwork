@@ -1,10 +1,10 @@
 /**
  * Fictional demonstration data and typed browser-only service adapter
- * for Payment Verification, Receipt, Recovery, and Milestone Balance Checkout (S22, S23, S24, S25).
- * Follows Clear Trade Modern specification, Paystack TEST Mode, and integer-kobo money calculations.
+ * for payment verification, receipt, recovery, and balance checkout previews (S22-S25).
+ * No provider is connected and this adapter does not move money or persist records.
  */
 
-export type PaymentVerificationState = "VERIFIED" | "PENDING_WEBHOOK" | "FAILED";
+export type PaymentVerificationState = "SAMPLE_SUCCESS" | "SAMPLE_PENDING" | "SAMPLE_FAILED";
 
 export interface PaymentReceiptData {
   paymentRef: string;
@@ -18,24 +18,24 @@ export interface PaymentReceiptData {
   amountKobo: number;
   totalContractKobo: number;
   dateWat: string;
-  status: "ESCROW_LOCKED" | "RELEASED_TO_ARTISAN";
+  status: "SAMPLE_PREVIEW";
   channel: string;
 }
 
 export const defaultReceipt: PaymentReceiptData = {
-  paymentRef: "PAY-BN-2026-8819",
-  paystackTestRef: "pstk_test_992140129",
-  jobId: "BEN-78401",
+  paymentRef: "SAMPLE-PAYMENT-001",
+  paystackTestRef: "NOT-CONNECTED",
+  jobId: "SAMPLE-REQUEST-001",
   jobTitle: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
-  artisanName: "Osaze Ighodaro",
-  customerName: "Osamudiamen Osazuwa",
+  artisanName: "Sample Artisan 1",
+  customerName: "Sample Customer",
   milestoneNumber: 1,
   milestoneTitle: "Mobilization & Acoustic Leak Tracing (50% Deposit)",
   amountKobo: 1100000, // ₦11,000
   totalContractKobo: 2200000, // ₦22,000
   dateWat: "31 Oct 2026 · 15:45 WAT",
-  status: "ESCROW_LOCKED",
-  channel: "Paystack TEST Mode (Mastercard •••• 4081)",
+  status: "SAMPLE_PREVIEW",
+  channel: "Prototype preview only; no provider connected",
 };
 
 function waitBriefly(ms = 20) {
@@ -55,7 +55,7 @@ export const paymentsDemoService = {
       };
     }
     return {
-      status: "VERIFIED",
+      status: "SAMPLE_SUCCESS",
       receipt: { ...defaultReceipt, paymentRef: reference || defaultReceipt.paymentRef },
     };
   },
@@ -77,18 +77,18 @@ export const paymentsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Alternative payment gateway timeout. Please retry with virtual account transfer.",
+        message: "Sample payment preview failed. No provider was contacted and no payment was attempted.",
       };
     }
     return {
       ok: true,
-      message: `₦${(amountKobo / 100).toLocaleString()} successfully processed via ${method} (TEST mode).`,
-      newPaymentRef: `PAY-ALT-${Math.floor(10000 + Math.random() * 90000)}`,
+      message: `Sample ${method} preview for ₦${(amountKobo / 100).toLocaleString()}. No transaction was made.`,
+      newPaymentRef: "SAMPLE-NO-PAYMENT",
     };
   },
 
   async processBalanceCheckout(
-    jobId: string,
+    _jobId: string,
     amountKobo: number,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; receiptRef?: string }> {
@@ -96,14 +96,13 @@ export const paymentsDemoService = {
     if (simulateError) {
       return {
         ok: false,
-        message: "Payment declined by Paystack test provider. Check simulated card limit.",
+        message: "Sample balance preview failed. No provider was contacted and no payment was attempted.",
       };
     }
     return {
       ok: true,
-      message: `Milestone 2 final balance (₦${(amountKobo / 100).toLocaleString()}) funded! Work signed off and release approved.`,
-      receiptRef: `PAY-BAL-${Math.floor(10000 + Math.random() * 90000)}`,
+      message: `Sample balance checkout preview for ₦${(amountKobo / 100).toLocaleString()}. No work was signed off and no funds were released.`,
+      receiptRef: "SAMPLE-NO-RECEIPT",
     };
   },
 };
-

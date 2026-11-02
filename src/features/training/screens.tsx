@@ -19,13 +19,14 @@ import {
   FileCheck,
 } from "lucide-react";
 import { WorkspaceShell } from "@/components/workspace-shell";
+import { PrototypeNotice } from "@/components/prototype-notice";
 import {
   type TrainingModule,
   getTrainingModules,
   getTrainingModule,
   getTrainingStats,
-  completeModule,
-  getModuleCertificate,
+  previewModuleCompletion,
+  getSampleCertificatePreview,
 } from "./service";
 import "./training.css";
 
@@ -50,24 +51,27 @@ export function TrainingDirectoryScreen() {
   return (
     <WorkspaceShell role="artisan">
       <div className="space-y-6">
+        <PrototypeNotice>
+          Training content and progress are fictional local previews. No training is accredited and no certificate or profile credential is issued.
+        </PrototypeNotice>
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                Screen S44 • Master Craftsman Academy
+                Screen S44 • Sample Training Library
               </span>
               <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                <ShieldCheck className="w-3.5 h-3.5" /> Edo State Accredited
+                <ShieldCheck className="w-3.5 h-3.5" /> Sample content
               </span>
             </div>
             <h1 className="text-2xl font-bold text-on-surface mt-1">Artisan Training & Master Guides</h1>
             <p className="text-sm text-secondary">
-              Elevate your trade standards in Benin City: client communications, photographic proofs, safety protocols, and 2-stage escrow management.
+              Explore sample content on client communication, jobsite photos, safety, and payment milestones.
             </p>
           </div>
 
-          <Link href="/artisan" className="sabi-btn-secondary">
+          <Link href="/artisan" className="button button-outline">
             Return to Dashboard
           </Link>
         </div>
@@ -75,24 +79,24 @@ export function TrainingDirectoryScreen() {
         {/* Stats Grid */}
         <div className="sabi-training-stats-grid">
           <div className="sabi-training-stat-card">
-            <span className="text-xs font-semibold text-secondary uppercase">Guides Completed</span>
+            <span className="text-xs font-semibold text-secondary uppercase">Sample Guide States</span>
             <div className="sabi-training-stat-val text-emerald-600">{stats.completedCount}</div>
-            <div className="text-xs text-secondary mt-1">Accredited certifications issued</div>
+            <div className="text-xs text-secondary mt-1">Sample progress previews</div>
           </div>
           <div className="sabi-training-stat-card">
-            <span className="text-xs font-semibold text-secondary uppercase">In Progress</span>
+            <span className="text-xs font-semibold text-secondary uppercase">Sample In-Progress States</span>
             <div className="sabi-training-stat-val text-amber-600">{stats.inProgressCount}</div>
             <div className="text-xs text-secondary mt-1">Active learning modules</div>
           </div>
           <div className="sabi-training-stat-card">
-            <span className="text-xs font-semibold text-secondary uppercase">Hours Learned</span>
+            <span className="text-xs font-semibold text-secondary uppercase">Illustrative Study Time</span>
             <div className="sabi-training-stat-val text-primary">{stats.totalHoursLearned} hrs</div>
             <div className="text-xs text-secondary mt-1">Cumulative hands-on study</div>
           </div>
           <div className="sabi-training-stat-card">
-            <span className="text-xs font-semibold text-secondary uppercase">Credentials Earned</span>
-            <div className="sabi-training-stat-val text-indigo-600">{stats.certificatesEarned}</div>
-            <div className="text-xs text-secondary mt-1">Badges on public profile</div>
+            <span className="text-xs font-semibold text-secondary uppercase">Sample Certificate Previews</span>
+            <div className="sabi-training-stat-val text-indigo-600">{stats.sampleCertificatePreviews}</div>
+            <div className="text-xs text-secondary mt-1">Not issued or added to profiles</div>
           </div>
         </div>
 
@@ -175,7 +179,7 @@ export function TrainingDirectoryScreen() {
                 statusTab === "completed" ? "border-primary text-primary" : "border-transparent text-secondary hover:text-black"
               }`}
             >
-              Completed Archive ({stats.completedCount})
+              Sample Completed States ({stats.completedCount})
             </button>
           </div>
         </div>
@@ -222,7 +226,7 @@ export function TrainingDirectoryScreen() {
                         href={`/training/${mod.id}/certificate`}
                         className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 hover:bg-emerald-100 transition-colors"
                       >
-                        <Award className="w-3.5 h-3.5" /> View Certificate (S46)
+                        <Award className="w-3.5 h-3.5" /> View Sample Preview (S46)
                       </Link>
                     ) : (
                       <Link
@@ -272,7 +276,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
           <AlertCircle className="w-10 h-10 text-red-500 mx-auto mb-2" />
           <h2 className="text-lg font-bold">Training Guide Not Found</h2>
           <p className="text-sm text-secondary mt-1">Module reference {id} could not be located.</p>
-          <Link href="/training" className="sabi-btn-secondary mt-4">
+          <Link href="/training" className="button button-outline mt-4">
             Return to Training Directory
           </Link>
         </div>
@@ -291,7 +295,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
   const handleComplete = () => {
     setIsCompleting(true);
     setTimeout(() => {
-      completeModule(mod.id);
+      previewModuleCompletion(mod.id);
       setIsCompleting(false);
       router.push(`/training/${mod.id}/certificate`);
     }, 900);
@@ -300,6 +304,9 @@ export function GuideReaderScreen({ id }: { id: string }) {
   return (
     <WorkspaceShell role="artisan">
       <div className="space-y-6">
+        <PrototypeNotice>
+          This guide is sample content. Checklist progress stays in this page preview; it does not certify training or trigger payment, escrow, or dispute actions.
+        </PrototypeNotice>
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs text-secondary">
           <Link href="/training" className="hover:text-primary">
@@ -327,7 +334,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
                   {mod.title}
                 </h1>
                 <p className="text-sm text-secondary mt-2">
-                  Published by {mod.author} for Edo State Registered Artisans.
+                  Sample learning content by {mod.author}.
                 </p>
               </div>
 
@@ -360,7 +367,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
                   </h3>
                 </div>
                 <p className="text-xs text-secondary">
-                  Check each core protocol to confirm understanding before requesting your accredited completion certificate.
+                  Check each sample takeaway to preview the local checklist interaction.
                 </p>
 
                 <div className="space-y-2">
@@ -399,7 +406,7 @@ export function GuideReaderScreen({ id }: { id: string }) {
                   type="button"
                   disabled={isCompleting || checkedTakeaways.length < 2}
                   onClick={handleComplete}
-                  className="sabi-btn-primary w-full sm:w-auto"
+                  className="button button-primary w-full sm:w-auto"
                 >
                   {isCompleting ? (
                     <>
@@ -431,10 +438,10 @@ export function GuideReaderScreen({ id }: { id: string }) {
 
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 text-xs text-blue-900 space-y-2">
               <div className="font-bold flex items-center gap-1.5">
-                <FileCheck className="w-4 h-4 text-primary" /> Certificate Guarantee
+                <FileCheck className="w-4 h-4 text-primary" /> Completion Preview
               </div>
               <p>
-                Finishing this guide awards the verified course endorsement on your public artisan profile (S04) and unlocks higher matching priority.
+                Completing this guide only previews a local sample state. It does not issue a certificate, verify skills, or change profile visibility or matching.
               </p>
             </div>
           </div>
@@ -447,16 +454,16 @@ export function GuideReaderScreen({ id }: { id: string }) {
 // S46: Module Completion & Certificate Screen
 export function CertificateScreen({ id }: { id: string }) {
   const mod = getTrainingModule(id) || getTrainingModules()[0];
-  const cert = mod.certificate || getModuleCertificate(id) || {
-    id: "CERT-SABI-2026-781",
+  const cert = mod.certificatePreview || getSampleCertificatePreview(id) || {
+    id: "SAMPLE-CERTIFICATE-NOT-ISSUED",
     moduleId: mod.id,
     moduleTitle: mod.title,
-    holderName: "Osaze Victor Ighodaro",
-    trade: "Electrical Installation & Solar Inverters",
-    serialNumber: "EDO-SABI-COM-2026-0941",
-    issuedAt: "2026-10-31T14:30:00Z",
-    verificationHash: "sha256-e91b4028fa77610b2c140",
-    accreditationBody: "Edo State Ministry of Wealth Creation & SabiWork Academy",
+    holderName: "Sample Artisan",
+    trade: "Sample trade",
+    serialNumber: "NOT ISSUED - SAMPLE",
+    issuedAt: "",
+    verificationHash: "NOT VERIFIABLE - SAMPLE",
+    accreditationBody: "None; no accreditation or credential is issued",
   };
 
   const handlePrint = () => {
@@ -466,6 +473,9 @@ export function CertificateScreen({ id }: { id: string }) {
   return (
     <WorkspaceShell role="artisan">
       <div className="space-y-6">
+        <PrototypeNotice>
+          Sample certificate layout only. No course, skill, identity, accreditation, or credential has been verified or issued.
+        </PrototypeNotice>
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs text-secondary">
           <Link href="/training" className="hover:text-primary">
@@ -476,7 +486,7 @@ export function CertificateScreen({ id }: { id: string }) {
             Guide Reader (S45)
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="font-semibold text-on-surface">Certificate of Completion (S46)</span>
+          <span className="font-semibold text-on-surface">Sample Completion Preview (S46)</span>
         </div>
 
         {/* Certificate Card Frame */}
@@ -490,28 +500,28 @@ export function CertificateScreen({ id }: { id: string }) {
 
             <div>
               <span className="text-xs uppercase font-extrabold tracking-widest text-primary">
-                SabiWork Craftsman Academy • Edo State Accreditation
+                SabiWork • Sample Preview
               </span>
               <h1 className="text-2xl sm:text-4xl font-serif font-bold text-on-surface mt-2">
-                Certificate of Course Completion
+                Sample Certificate Preview — Not Issued
               </h1>
               <p className="text-xs text-secondary mt-1">
-                Issued in accordance with Edo State Professional Artisan Practice Standards
+                This preview does not certify training or professional competence.
               </p>
             </div>
 
             <div className="py-4">
-              <span className="text-xs text-secondary uppercase tracking-wider block">This certifies that</span>
+              <span className="text-xs text-secondary uppercase tracking-wider block">Illustrative sample for</span>
               <div className="text-2xl sm:text-3xl font-bold text-on-surface border-b-2 border-slate-300 inline-block px-8 py-2 mt-1">
                 {cert.holderName}
               </div>
               <div className="text-xs font-semibold text-primary mt-2">
-                {cert.trade} • Benin City Chapter
+                {cert.trade} • Sample preview
               </div>
             </div>
 
             <div className="max-w-lg mx-auto text-sm text-slate-700 leading-relaxed">
-              has satisfactorily completed the master training module and demonstrated professional competence in
+              This sample does not confirm module completion or demonstrated competence in
               <div className="font-bold text-on-surface text-base mt-2 px-4 py-2 bg-slate-50 rounded-lg border border-slate-200">
                 &ldquo;{cert.moduleTitle}&rdquo;
               </div>
@@ -519,21 +529,15 @@ export function CertificateScreen({ id }: { id: string }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200 text-xs">
               <div>
-                <span className="text-secondary block">Date of Accreditation</span>
-                <span className="font-semibold text-on-surface">
-                  {new Date(cert.issuedAt).toLocaleDateString("en-NG", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </span>
+                <span className="text-secondary block">Issue status</span>
+                <span className="font-semibold text-on-surface">Not issued</span>
               </div>
               <div>
-                <span className="text-secondary block">Credential Serial No.</span>
+                <span className="text-secondary block">Sample reference</span>
                 <span className="font-mono font-bold text-primary">{cert.serialNumber}</span>
               </div>
               <div>
-                <span className="text-secondary block">Accrediting Authority</span>
+                <span className="text-secondary block">Accreditation status</span>
                 <span className="font-semibold text-on-surface">{cert.accreditationBody}</span>
               </div>
             </div>
@@ -545,21 +549,21 @@ export function CertificateScreen({ id }: { id: string }) {
           <button
             type="button"
             onClick={handlePrint}
-            className="sabi-btn-primary w-full sm:w-auto"
+            className="button button-primary w-full sm:w-auto"
           >
-            <Printer className="w-4 h-4" /> Print / Export Certificate (PDF)
+            <Printer className="w-4 h-4" /> Print / Export Sample Preview
           </button>
 
           <Link
             href="/artisan/profile"
-            className="sabi-btn-secondary w-full sm:w-auto"
+            className="button button-outline w-full sm:w-auto"
           >
-            <ShieldCheck className="w-4 h-4 text-emerald-600" /> View on Profile (S06)
+            <ShieldCheck className="w-4 h-4 text-emerald-600" /> Open Sample Profile Preview
           </Link>
 
           <Link
             href="/training"
-            className="sabi-btn-secondary w-full sm:w-auto"
+            className="button button-outline w-full sm:w-auto"
           >
             <ArrowRight className="w-4 h-4" /> Next Recommended Module
           </Link>
