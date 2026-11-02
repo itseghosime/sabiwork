@@ -5,6 +5,8 @@ Status: code and isolated integration checks complete; authenticated deployment/
 
 ## Problems corrected
 
+- The homepage illustration cards linked to fictional profile IDs that do not exist in the production directory. They now link to the corresponding real trade listings, with trade labels instead of invented popularity/verification claims.
+
 - Saved drafts had no publish action on their detail page.
 - Artisans could see opportunities but received a forbidden response when opening a first quote. Requests also disappeared from opportunities after their first quote, before a booking existed.
 - Quote acceptance was not transactional, and the UI read the wrong response field instead of opening the created booking. Booked requests could still receive quote changes/cancellation attempts.
@@ -30,7 +32,7 @@ Covered: draft → publish → competing artisan quotes → acceptance → booki
 
 In the existing signed-in local customer session, a clearly fictional QA request was saved as a draft and remained after refresh. Its detail view had no publish action before these fixes. That baseline screen had no document overflow at 390, 768 or 1440px; this is not responsive proof for the newly changed screens.
 
-The production tab was signed out at `/login`. No customer/artisan/admin production session or real provider checkout/payout was completed. No real service was requested, no live payment was made, and no production migration or configuration was changed. New code has not been visually approved on a deployment.
+The branch preview deployed successfully and its public directory rendered an honest empty state (zero listed artisan accounts). The homepage illustration links were also traced and corrected. The production tab was signed out at `/login`. No customer/artisan/admin production session or real provider checkout/payout was completed. No real service was requested, no live payment was made, and no production migration or configuration was changed. New code has not been visually approved on a deployment.
 
 ## Setup needed for the remaining walkthrough
 
