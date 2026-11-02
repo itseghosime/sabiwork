@@ -75,10 +75,10 @@ export default function HomePage() {
               <Icon name="pin" size={16} /> Built for Benin City
             </span>
           </div>
-          <div className="artisan-fan" aria-label="Meet local artisan profiles">
+          <div className="artisan-fan" aria-label="Explore local trades">
             {fan.map((person, index) => (
               <Link
-                href={`/artisans/${person.id}`}
+                href={`/artisans?category=${person.category}`}
                 className={`fan-card fan-${index}`}
                 style={rise(index + 5)}
                 key={person.id}
@@ -87,15 +87,15 @@ export default function HomePage() {
                   <Portrait index={person.portrait} name={person.name} />
                   {index === 2 && (
                     <span className="fan-featured">
-                      <Icon name="star" size={12} /> Popular this week
+                      <Icon name="star" size={12} /> Explore local trades
                     </span>
                   )}
                   <span className="fan-badge">
-                    <Icon name="badge" size={12} /> Reviewed profile
+                    <Icon name="badge" size={12} /> Browse trade
                   </span>
                 </div>
                 <div className="fan-caption">
-                  <strong>{person.name}</strong>
+                  <strong>{categories.find(category => category.id === person.category)?.short} specialists</strong>
                   <span>
                     {
                       categories.find(

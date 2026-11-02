@@ -1,4 +1,4 @@
-import { and, desc, eq, ne, sql } from "drizzle-orm";
+import { and, desc, ne, sql } from "drizzle-orm";
 import { authorizeMarketplaceUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
 import { jobRequests, quotes } from "@/lib/server/schema";
@@ -36,7 +36,7 @@ export async function GET() {
       .from(jobRequests)
       .where(
         and(
-          eq(jobRequests.status, "submitted"),
+          sql`${jobRequests.status} in ('submitted', 'matching') and not exists (select 1 from jobs j where j.request_id = ${jobRequests.id})`,
           ne(jobRequests.customer_id, session.user.id),
         ),
       )

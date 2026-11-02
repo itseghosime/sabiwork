@@ -2,6 +2,7 @@ import { and, desc, eq, inArray, ne, sql } from "drizzle-orm";
 import { getDb } from "@/lib/server/db";
 import {
   artisanProfiles,
+  escrowHolds,
   jobProgressUpdates,
   jobRequests,
   jobReviews,
@@ -103,7 +104,7 @@ export async function loadArtisanDesk(userId: string): Promise<ArtisanDesk> {
       created_at: payments.created_at,
     })
     .from(payments)
-    .where(eq(payments.worker_id, userId))
+    .where(and(eq(payments.worker_id, userId), eq(payments.channel, "paystack_verified_test")))
     .orderBy(desc(payments.created_at))
     .limit(200);
 
@@ -170,7 +171,7 @@ export async function loadArtisanDesk(userId: string): Promise<ArtisanDesk> {
     })
     .from(jobRequests)
     .innerJoin(userProfiles, eq(userProfiles.user_id, jobRequests.customer_id))
-    .where(and(eq(jobRequests.status, "submitted"), ne(jobRequests.customer_id, userId)))
+    .where(and(sql`${jobRequests.status} in ('submitted', 'matching') and not exists (select 1 from jobs j where j.request_id = ${jobRequests.id})`, ne(jobRequests.customer_id, userId)))
     .orderBy(desc(jobRequests.created_at))
     .limit(6);
 
@@ -186,30 +187,22 @@ export async function loadArtisanDesk(userId: string): Promise<ArtisanDesk> {
     }
   }
 
+  const holdRows = await db.select().from(escrowHolds).where(eq(escrowHolds.artisan_id, userId));
   const escrowByJob = new Map<string, number>();
-  for (const row of paymentRows) {
-    if (row.status !== "confirmed") continue;
-    escrowByJob.set(row.job_id, (escrowByJob.get(row.job_id) ?? 0) + row.amount_kobo);
-  }
-
-  const jobStatusById = new Map(jobRows.map((row) => [row.id, row.status]));
-
-  const firstOfMonth = startOfMonth(now);
-  const firstOfWeek = startOfWeek(now);
-
   let mtdEarningsKobo = 0;
   let weekEarningsKobo = 0;
   let pendingEscrowKobo = 0;
-  for (const row of paymentRows) {
-    if (row.status !== "confirmed") continue;
-    const settledAt = row.paid_at ?? row.created_at;
-    if (settledAt >= firstOfMonth) mtdEarningsKobo += row.amount_kobo;
-    if (settledAt >= firstOfWeek) weekEarningsKobo += row.amount_kobo;
-
-    const jobStatus = jobStatusById.get(row.job_id);
-    if (jobStatus === "accepted" || jobStatus === "in_progress") {
-      pendingEscrowKobo += row.amount_kobo;
+  const firstOfMonth = startOfMonth(now);
+  const firstOfWeek = startOfWeek(now);
+  for (const hold of holdRows) {
+    if (hold.status !== "released" || hold.transfer_status !== "success") {
+      pendingEscrowKobo += hold.amount_kobo;
+      escrowByJob.set(hold.job_ref, (escrowByJob.get(hold.job_ref) ?? 0) + hold.amount_kobo);
+      continue;
     }
+    const settledAt = hold.paid_out_at;
+    if (settledAt && settledAt >= firstOfMonth) mtdEarningsKobo += hold.amount_kobo;
+    if (settledAt && settledAt >= firstOfWeek) weekEarningsKobo += hold.amount_kobo;
   }
 
   const deskJobs: DeskJob[] = jobRows.map((row) => ({

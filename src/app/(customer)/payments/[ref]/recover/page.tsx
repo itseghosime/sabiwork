@@ -1,10 +1,5 @@
-import { PaymentUnavailableScreen } from "@/features/hire-workspace/screens";
-
-export default async function PaymentRecoverPage({
-  params,
-}: {
-  params: Promise<{ ref: string }>;
-}) {
+import { MilestoneReceipt } from "@/features/payments/milestone-checkout";
+export default async function Page({ params }: { params: Promise<{ ref: string }> }) {
   const { ref } = await params;
-  return <PaymentUnavailableScreen reference={ref} title="Payment recovery" />;
+  return <MilestoneReceipt reference={ref} verify={false} />;
 }

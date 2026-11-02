@@ -1,4 +1,4 @@
-import { and, asc, eq } from "drizzle-orm";
+import { and, asc, eq, or } from "drizzle-orm";
 import { getSessionUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
 import { jobProgressUpdates, jobs } from "@/lib/server/schema";
@@ -31,7 +31,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
       : await getDb()
           .select({ id: jobs.id })
           .from(jobs)
-          .where(and(eq(jobs.id, id), eq(jobs.worker_id, session.user.id)))
+          .where(and(eq(jobs.id, id), or(eq(jobs.worker_id, session.user.id), eq(jobs.customer_id, session.user.id))))
           .limit(1);
 
     if (!workerJob) return jsonError(404, "NOT_FOUND", "Job not found.");
@@ -80,12 +80,12 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const [job] = await getDb()
       .select({ id: jobs.id, status: jobs.status })
       .from(jobs)
-      .where(and(eq(jobs.id, id), eq(jobs.worker_id, session.user.id)))
+      .where(and(eq(jobs.id, id), or(eq(jobs.worker_id, session.user.id), eq(jobs.customer_id, session.user.id))))
       .limit(1);
 
-    if (!job) return jsonError(403, "FORBIDDEN", "Only the assigned worker can add progress updates.");
-    if (job.status === "completed" || job.status === "cancelled") {
-      return jsonError(409, "INVALID_STATE", "Cannot update a completed or cancelled job.");
+    if (!job) return jsonError(403, "FORBIDDEN", "Only the booking participants can add notes.");
+    if (job.status !== "in_progress") {
+      return jsonError(409, "INVALID_STATE", "Notes can be added only once the deposit is verified and work is active.");
     }
 
     const [created] = await getDb()

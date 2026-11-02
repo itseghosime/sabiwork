@@ -1,10 +1,5 @@
-import { PaymentUnavailableScreen } from "@/features/hire-workspace/screens";
-
-export default async function BalanceCheckoutPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+import { MilestoneCheckout } from "@/features/payments/milestone-checkout";
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  return <PaymentUnavailableScreen reference={id} title="Milestone balance payment" />;
+  return <MilestoneCheckout jobId={id} milestone="balance" />;
 }

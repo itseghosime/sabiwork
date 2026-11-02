@@ -1,70 +1,63 @@
-import { settleDeposit } from "@/lib/server/deposits";
-import { paystackConfigured } from "@/lib/server/paystack";
+import { and, eq } from "drizzle-orm";
+import { getSessionUser } from "@/lib/server/authorization";
+import { getDb } from "@/lib/server/db";
+import { payments } from "@/lib/server/schema";
+import { MilestoneError, settleMilestone } from "@/lib/server/milestones";
 
 export const dynamic = "force-dynamic";
-
-function jsonError(status: number, code: string, message: string) {
-  return Response.json({ error: { code, message } }, { status });
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
 export async function POST(request: Request) {
-  if (!paystackConfigured()) {
-    return jsonError(
-      503,
-      "PAYMENT_UNAVAILABLE",
-      "Paystack test keys are not configured on this environment.",
+  const session = await getSessionUser();
+  if (session.kind !== "authenticated")
+    return Response.json(
+      { error: { message: "Sign in to verify your payment." } },
+      { status: session.kind === "unavailable" ? 503 : 401 },
     );
-  }
-
-  let body: unknown;
+  let body;
   try {
     body = await request.json();
   } catch {
-    return jsonError(400, "INVALID_JSON", "Request body must be valid JSON.");
+    return Response.json(
+      { error: { message: "Invalid request." } },
+      { status: 400 },
+    );
   }
-  if (!isRecord(body) || typeof body.reference !== "string" || !body.reference) {
-    return jsonError(400, "INVALID_INPUT", "A payment reference is required.");
-  }
-
+  if (typeof body?.reference !== "string" || body.reference.length > 100)
+    return Response.json(
+      { error: { message: "A valid payment reference is required." } },
+      { status: 400 },
+    );
   try {
-    const result = await settleDeposit(body.reference);
-
-    if (result.kind === "not_found") {
-      return jsonError(404, "NOT_FOUND", "We could not find that deposit.");
-    }
-    if (result.kind === "failed") {
-      return jsonError(402, "PAYMENT_NOT_CONFIRMED", result.reason);
-    }
-    if (result.kind === "pending") {
+    const [owned] = await getDb()
+      .select({ id: payments.id })
+      .from(payments)
+      .where(
+        and(
+          eq(payments.reference, body.reference),
+          eq(payments.customer_id, session.user.id),
+        ),
+      )
+      .limit(1);
+    if (!owned)
       return Response.json(
-        { data: { status: "pending", reference: result.reference } },
-        { status: 202, headers: { "Cache-Control": "private, no-store" } },
+        { error: { message: "Payment not found." } },
+        { status: 404 },
       );
-    }
-
+    const data = await settleMilestone(body.reference);
+    return Response.json(
+      { data },
+      {
+        status: data.status === "pending" ? 202 : 200,
+        headers: { "Cache-Control": "private, no-store" },
+      },
+    );
+  } catch (e) {
     return Response.json(
       {
-        data: {
-          status: "confirmed",
-          reference: result.reference,
-          amountKobo: result.amountKobo,
-          paidAt: result.paidAt ? result.paidAt.toISOString() : null,
-          artisanName: result.artisanName,
-          email: result.email,
+        error: {
+          message: e instanceof Error ? e.message : "Verification failed.",
         },
       },
-      { headers: { "Cache-Control": "private, no-store" } },
-    );
-  } catch (error) {
-    console.error("[payments] Deposit verify failed", error);
-    return jsonError(
-      500,
-      "INTERNAL_ERROR",
-      "Could not verify this deposit. Please try again.",
+      { status: e instanceof MilestoneError ? e.status : 502 },
     );
   }
 }

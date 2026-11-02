@@ -80,8 +80,8 @@ export function PublicArtisanDetail({
           <div className="pa-banner pa-banner-success" role="status">
             <Icon name="check" size={18} />
             <div>
-              <strong>Deposit received.</strong>
-              <span>Reference {paidReference}. This was a Paystack test payment.</span>
+              <strong>Payment reference returned.</strong>
+              <span>Reference {paidReference}. Check the payment status from your account before treating it as paid.</span>
             </div>
           </div>
         ) : paymentOutcome ? (
@@ -206,14 +206,14 @@ export function PublicArtisanDetail({
                   <span>
                     {isPresentationData
                       ? "Test deposit"
-                      : "Booking deposit"}
+                      : "Estimate only"}
                   </span>
                   <strong>{formatNaira(depositKobo)}</strong>
                 </div>
                 <small>
                   {isPresentationData
                     ? "Test-mode checkout only. No real money moves and no work slot is reserved."
-                    : "Reserves this artisan&apos;s next slot. Paid by card through Paystack."}
+                    : "No slot is reserved until the scope and price are agreed in a quote."}
                 </small>
               </div>
               <BookingDeposit

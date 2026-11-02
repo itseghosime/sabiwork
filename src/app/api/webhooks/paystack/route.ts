@@ -1,3 +1,5 @@
+import { settleMilestone } from "@/lib/server/milestones";
+import { paystackTestMode } from "@/lib/server/paystack";
 import { paystackSignatureMatches } from "@/features/payments/deposit";
 import { applyPaystackEvent, type PaystackChargeEvent } from "@/lib/server/deposits";
 import { applyPaystackTransferEvent } from "@/lib/server/payouts";
@@ -10,7 +12,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 export async function POST(request: Request) {
   const secret = process.env.PAYSTACK_SECRET_KEY;
-  if (!secret) {
+  if (!secret || !paystackTestMode()) {
     return Response.json(
       { error: "Paystack webhooks are not configured." },
       { status: 503 },
@@ -39,7 +41,15 @@ export async function POST(request: Request) {
 
   if (event.event === "charge.success" || event.event === "charge.failed") {
     try {
-      await applyPaystackEvent(event as PaystackChargeEvent);
+      const charge = event as PaystackChargeEvent;
+      if (charge.data?.reference?.startsWith("SW-JOB-")) {
+        await settleMilestone(charge.data.reference, {
+          reference: charge.data.reference, status: charge.data.status ?? "unknown",
+          amountKobo: charge.data.amount ?? 0, currency: charge.data.currency ?? "",
+          paidAt: charge.data.paid_at ? new Date(charge.data.paid_at) : null,
+          gatewayResponse: charge.data.gateway_response ?? null,
+        });
+      } else await applyPaystackEvent(charge);
     } catch (error) {
       console.error("[paystack] Webhook handling failed", error);
       return Response.json({ error: "Handler failed." }, { status: 500 });

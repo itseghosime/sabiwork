@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { getSessionUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
-import { jobRequests, quotes } from "@/lib/server/schema";
+import { artisanProfiles, jobRequests, jobs, quotes } from "@/lib/server/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -36,7 +36,14 @@ async function getRequestForUser(id: string, userId: string) {
     .limit(1);
 
   if (request.customer_id !== userId && !ownQuote) {
-    return undefined;
+    const [profile] = await getDb().select().from(artisanProfiles)
+      .where(eq(artisanProfiles.user_id, userId)).limit(1);
+    const [booking] = await getDb().select({ id: jobs.id }).from(jobs)
+      .where(eq(jobs.request_id, id)).limit(1);
+    if (!profile?.is_listed || profile.verification_status === "rejected" || booking ||
+        (request.status !== "submitted" && request.status !== "matching")) return undefined;
+    // The same public brief is already exposed by the opportunities list.
+    return { ...request, customer_id: "" };
   }
 
   return request;
@@ -82,7 +89,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   }
 
   try {
-    const [owned] = await getDb()
+    return await getDb().transaction(async (tx) => {
+    await tx.select({ id: jobRequests.id }).from(jobRequests).where(eq(jobRequests.id, id)).for("update");
+    const [owned] = await tx
       .select({ id: jobRequests.id, status: jobRequests.status, customer_id: jobRequests.customer_id })
       .from(jobRequests)
       .where(and(eq(jobRequests.id, id), eq(jobRequests.customer_id, session.user.id)))
@@ -90,6 +99,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
     if (!owned) return jsonError(404, "NOT_FOUND", "Request not found.");
 
+    const [booking] = await tx.select({ id: jobs.id }).from(jobs)
+      .where(eq(jobs.request_id, id)).limit(1);
+    if (booking) return jsonError(409, "JOB_EXISTS", "This request already has a booking.");
     const targetStatus = action === "submit" ? "submitted" : "cancelled";
     if (action === "submit" && owned.status !== "draft") {
       return jsonError(409, "INVALID_STATE", "Only draft requests can be submitted.");
@@ -98,13 +110,14 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       return jsonError(409, "INVALID_STATE", "Only open submitted requests can be cancelled.");
     }
 
-    const [updated] = await getDb()
+    const [updated] = await tx
       .update(jobRequests)
       .set({ status: targetStatus, updated_at: new Date() })
       .where(and(eq(jobRequests.id, id), eq(jobRequests.customer_id, session.user.id)))
       .returning({ id: jobRequests.id, status: jobRequests.status, updated_at: jobRequests.updated_at });
 
     return Response.json({ data: updated }, { headers: { "Cache-Control": "private, no-store" } });
+    });
   } catch (error) {
     console.error("[requests] Status update failed", error);
     return jsonError(500, "INTERNAL_ERROR", "Could not update this request.");

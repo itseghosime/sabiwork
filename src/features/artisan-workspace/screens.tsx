@@ -2124,6 +2124,8 @@ export function ArtisanSubmitQuoteScreen({ requestId }: { requestId: string }) {
 /* ------------------------ S28/S29 Progress updates ----------------------- */
 
 type JobDetail = {
+  work_ready_at?: string | null;
+  signed_off_at?: string | null;
   id: string;
   request_id: string;
   status: DeskJob["status"];
@@ -2189,16 +2191,16 @@ export function ArtisanProgressUpdateScreen({ jobId }: { jobId: string }) {
     };
   }, [jobId]);
 
-  const startJob = async () => {
+  const startJob = async (nextStatus = "in_progress") => {
     setSubmitting(true);
     setError(null);
     try {
       await readJson(`/api/jobs/${jobId}/status`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: "in_progress" }),
+        body: JSON.stringify({ status: nextStatus }),
       });
-      setStatusMessage("Job status changed to in progress.");
+      setStatusMessage(nextStatus === "awaiting_signoff" ? "Work is ready for customer inspection." : "Job status changed to in progress.");
       await reloadData();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not update status.");
@@ -2278,6 +2280,8 @@ export function ArtisanProgressUpdateScreen({ jobId }: { jobId: string }) {
                 </div>
               </div>
 
+              {job.status === "in_progress" && !job.work_ready_at ? <button className="aw-btn aw-btn-primary" disabled={submitting} onClick={() => void startJob("awaiting_signoff")}>Mark work ready for inspection</button> : null}
+              {job.work_ready_at ? <p role="status">{job.status === "completed" ? "Booking completed; see Earnings for payout status." : job.signed_off_at ? "Customer sign-off saved; awaiting final payment." : "Waiting for customer inspection and sign-off."}</p> : null}
               {job.status === "accepted" ? (
                 <div className="aw-form-actions">
                   <button
