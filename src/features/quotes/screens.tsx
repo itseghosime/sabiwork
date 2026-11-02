@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import {
   AlertCircle,
   Check,
+  Clock,
   CreditCard,
   MapPin,
   ShieldCheck,
+  SlidersHorizontal,
 } from "lucide-react";
 import {
   type OpenRequest,
@@ -18,6 +20,22 @@ import {
   quotesDemoService,
 } from "./service";
 import "./quotes.css";
+
+/* ==========================================================================
+   Demo-mode disclosure labels for the customer quote screens (S19, S20, S21).
+   AGENTS.md honesty rule: never claim escrow or protection the demo flow
+   does not provide. This is a mock checkout in Paystack TEST mode only.
+   ========================================================================== */
+
+function TestModeBadge() {
+  return <span className="qt-test-badge">Paystack TEST Mode</span>;
+}
+
+function DemoDataNote() {
+  return (
+    <span className="qt-demo-note">Demo data only, no real money moves.</span>
+  );
+}
 
 /* ==========================================================================
    S17: Open Requests Feed & Details Screen (Artisan Workspace)
@@ -393,8 +411,85 @@ export function QuoteComparisonScreen({
   request?: OpenRequest;
   quotes?: readonly QuoteItem[];
 }) {
+  const [liveQuotes, setLiveQuotes] = useState(quotes);
+  const [viewState, setViewState] = useState<"loading" | "received" | "empty" | "error">(
+    quotes.length > 0 ? "received" : "empty",
+  );
+
+  /* Re-fetches quotes through the typed mock service, like the retry
+     boundaries on the S24 recovery screen. */
+  const retryQuotes = async () => {
+    setViewState("loading");
+    const next = await quotesDemoService.getQuotesForRequest(request.id);
+    setLiveQuotes(next);
+    setViewState(next.length > 0 ? "received" : "empty");
+  };
+
+  const stateSimulatorBar = (
+    <div className="qt-simulator-bar">
+      <span className="qt-simulator-label">
+        <SlidersHorizontal size={16} /> Comparison State Simulator:
+      </span>
+      <div className="qt-simulator-buttons">
+        {(["received", "loading", "empty", "error"] as const).map((state) => (
+          <button
+            key={state}
+            type="button"
+            className={`qt-sim-btn ${viewState === state ? "active" : ""}`}
+            onClick={() => setViewState(state)}
+          >
+            {state}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (viewState === "loading") {
+    return (
+      <div className="qt-page" data-testid="quote-comparison-loading">
+        {stateSimulatorBar}
+        <section className="qt-card" style={{ textAlign: "center", padding: "48px 24px" }}>
+          <Clock size={32} style={{ margin: "0 auto", color: "var(--primary)" }} aria-hidden="true" />
+          <h2 style={{ margin: "12px 0 6px 0", fontSize: "20px" }}>Loading quotes…</h2>
+          <p style={{ color: "var(--muted)", fontSize: "14px" }}>
+            Requesting itemized quotes for Job #{request.id} from the demo fixture store.
+          </p>
+        </section>
+      </div>
+    );
+  }
+
+  if (viewState === "error") {
+    return (
+      <div className="qt-page" data-testid="quote-comparison-error">
+        {stateSimulatorBar}
+        <div className="qt-alert qt-alert-error" role="alert">
+          <AlertCircle size={24} />
+          <div>
+            <strong>Could Not Load Quotes</strong>
+            <p>
+              The demo adapter timed out while retrieving quotations for Job #{request.id}.
+              Nothing was changed by this error.
+            </p>
+            <button
+              type="button"
+              className="button button-outline"
+              style={{ marginTop: "10px" }}
+              onClick={() => void retryQuotes()}
+            >
+              Retry Connection
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="qt-page" data-testid="quote-comparison-screen">
+    <div className="qt-page" data-testid="quote-comparison-received">
+      {stateSimulatorBar}
+
       <div className="qt-breadcrumbs">
         <Link href="/jobs">Customer Workspace</Link>
         <span aria-hidden="true">/</span>
@@ -415,57 +510,78 @@ export function QuoteComparisonScreen({
           Compare Artisan Quotes
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Review competing offers side-by-side for Job #{request.id}. All deposits are protected
-          under SabiWork SafeTrade.
+          Review competing offers side-by-side for Job #{request.id}. Prices, ratings and
+          artisans are fictional demo fixtures.
         </p>
+        <DemoDataNote />
       </header>
 
-      <div className="qt-comparison-table-wrapper">
-        <table className="qt-table">
-          <thead>
-            <tr>
-              <th>Artisan Details</th>
-              <th>Rating & Jobs</th>
-              <th>Total Quote</th>
-              <th>Deposit (Milestone 1)</th>
-              <th>Duration</th>
-              <th>Materials</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {quotes.map((q) => (
-              <tr key={q.id}>
-                <td>
-                  <strong>{q.artisanName}</strong>
-                  <div style={{ fontSize: "12px", color: "var(--muted)" }}>{q.artisanHeadline}</div>
-                </td>
-                <td>
-                  <span style={{ color: "#b45309", fontWeight: 700 }}>★ {q.artisanRating}</span>
-                  <div style={{ fontSize: "12px", color: "var(--muted)" }}>({q.artisanReviewCount} reviews)</div>
-                </td>
-                <td>
-                  <strong style={{ color: "var(--primary)", fontSize: "15px" }}>
-                    ₦{(q.totalQuoteKobo / 100).toLocaleString()}
-                  </strong>
-                </td>
-                <td>₦{(q.depositKobo / 100).toLocaleString()}</td>
-                <td>{q.estimatedHours}</td>
-                <td>{q.materialsIncluded ? "✓ Included" : "Client Supplies"}</td>
-                <td>
-                  <Link
-                    href={`/requests/${request.id}/quotes/${q.id}`}
-                    className="button button-primary"
-                    style={{ minHeight: "36px", padding: "6px 12px", fontSize: "12.5px" }}
-                  >
-                    View Details (S20) →
-                  </Link>
-                </td>
+      {liveQuotes.length === 0 ? (
+        <section
+          className="qt-card"
+          data-testid="quote-comparison-empty"
+          style={{ textAlign: "center", padding: "48px 24px" }}
+        >
+          <Clock size={32} style={{ margin: "0 auto", color: "var(--primary)" }} aria-hidden="true" />
+          <h2 style={{ margin: "12px 0 6px 0", fontSize: "20px" }}>No quotes yet</h2>
+          <p style={{ color: "var(--muted)", fontSize: "14px" }}>
+            Artisan quotes for Job #{request.id} will appear here as they arrive. This is demo
+            data — nothing is stored.
+          </p>
+          <div>
+            <button type="button" className="button button-outline" onClick={() => void retryQuotes()}>
+              Check Again
+            </button>
+          </div>
+        </section>
+      ) : (
+        <div className="qt-comparison-table-wrapper">
+          <table className="qt-table">
+            <thead>
+              <tr>
+                <th>Artisan Details</th>
+                <th>Rating & Jobs</th>
+                <th>Total Quote</th>
+                <th>Deposit (Milestone 1)</th>
+                <th>Duration</th>
+                <th>Materials</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {liveQuotes.map((q) => (
+                <tr key={q.id}>
+                  <td>
+                    <strong>{q.artisanName}</strong>
+                    <div style={{ fontSize: "12px", color: "var(--muted)" }}>{q.artisanHeadline}</div>
+                  </td>
+                  <td>
+                    <span style={{ color: "#b45309", fontWeight: 700 }}>★ {q.artisanRating}</span>
+                    <div style={{ fontSize: "12px", color: "var(--muted)" }}>({q.artisanReviewCount} reviews)</div>
+                  </td>
+                  <td>
+                    <strong style={{ color: "var(--primary)", fontSize: "15px" }}>
+                      ₦{(q.totalQuoteKobo / 100).toLocaleString()}
+                    </strong>
+                  </td>
+                  <td>₦{(q.depositKobo / 100).toLocaleString()}</td>
+                  <td>{q.estimatedHours}</td>
+                  <td>{q.materialsIncluded ? "✓ Included" : "Client Supplies"}</td>
+                  <td>
+                    <Link
+                      href={`/requests/${request.id}/quotes/${q.id}`}
+                      className="button button-primary"
+                      style={{ minHeight: "44px", padding: "6px 16px", fontSize: "13px" }}
+                    >
+                      View Details (S20) →
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
@@ -494,7 +610,10 @@ export function QuoteDetailsAcceptanceScreen({
     setAccepting(false);
 
     if (res.ok) {
-      setStatusMessage({ type: "success", text: res.message });
+      setStatusMessage({
+        type: "success",
+        text: "Quote accepted (demo). Continue to the Milestone 1 deposit checkout in Paystack TEST mode.",
+      });
       router.push(`/requests/${quote.requestId}/checkout/${quote.id}`);
     } else {
       setStatusMessage({ type: "error", text: res.message });
@@ -534,6 +653,7 @@ export function QuoteDetailsAcceptanceScreen({
           <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
             Quote #{quote.id} for Job #{quote.requestId}
           </p>
+          <DemoDataNote />
         </div>
 
         <div style={{ display: "flex", gap: "8px" }}>
@@ -551,7 +671,7 @@ export function QuoteDetailsAcceptanceScreen({
             onClick={() => handleAccept(false)}
             disabled={accepting}
           >
-            {accepting ? "Locking Quote..." : "Accept Quote & Proceed to Escrow (S21) →"}
+            {accepting ? "Locking Quote..." : "Accept Quote & Continue to Deposit (S21) →"}
           </button>
         </div>
       </header>
@@ -568,7 +688,7 @@ export function QuoteDetailsAcceptanceScreen({
         </div>
       )}
 
-      {/* Two-Milestone Escrow Ledger */}
+      {/* Two-Milestone Payment Plan */}
       <section className="qt-card">
         <h2 className="qt-card-title">Milestone Payment Breakdown (Paystack TEST Mode)</h2>
         <div
@@ -611,7 +731,8 @@ export function QuoteDetailsAcceptanceScreen({
               {quote.milestone1Title}
             </p>
             <span style={{ fontSize: "11.5px", color: "var(--muted)", display: "block", marginTop: "8px" }}>
-              Deposited into escrow upon acceptance. Held securely until artisan arrives and starts.
+              Submitted in Paystack TEST mode when you accept this quote. Confirmation is
+              pending server verification.
             </span>
           </div>
 
@@ -648,7 +769,8 @@ export function QuoteDetailsAcceptanceScreen({
               {quote.milestone2Title}
             </p>
             <span style={{ fontSize: "11.5px", color: "var(--muted)", display: "block", marginTop: "8px" }}>
-              Released only after you inspect and sign off on completed work.
+              Intended only after you inspect and sign off on completed work. Sign-off is not
+              part of this demo.
             </span>
           </div>
         </div>
@@ -672,7 +794,6 @@ export function MilestoneDepositCheckoutScreen({
 }: {
   quote?: QuoteItem;
 }) {
-  const router = useRouter();
   const [processing, setProcessing] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
     type: "success" | "error";
@@ -692,9 +813,13 @@ export function MilestoneDepositCheckoutScreen({
     );
     setProcessing(false);
 
+    /* No automatic redirect in either case: the user must be able to read
+       the pending-verification outcome and choose the next step themselves. */
     if (res.ok) {
-      setStatusMessage({ type: "success", text: res.message });
-      router.push("/jobs");
+      setStatusMessage({
+        type: "success",
+        text: "Payment submitted in Paystack TEST mode. Confirmation is pending server verification.",
+      });
     } else {
       setStatusMessage({ type: "error", text: res.message });
     }
@@ -719,22 +844,75 @@ export function MilestoneDepositCheckoutScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Fund Milestone 1 Escrow Deposit
+          Fund Milestone 1 Deposit
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
-          Paystack TEST Mode · Escrow deposit of {depositFormatted} for Job #{quote.requestId}
+          Simulated transaction of {depositFormatted} for Job #{quote.requestId}
         </p>
+        <div className="qt-test-strip">
+          <TestModeBadge />
+          <DemoDataNote />
+        </div>
       </header>
 
-      {statusMessage && (
-        <div
-          className={`qt-alert ${
-            statusMessage.type === "success" ? "qt-alert-success" : "qt-alert-error"
-          }`}
-          role="status"
-        >
-          {statusMessage.type === "success" ? <Check size={20} /> : <AlertCircle size={20} />}
-          <div>{statusMessage.text}</div>
+      {statusMessage?.type === "success" && (
+        <div className="qt-alert qt-alert-success" role="status">
+          <Check size={24} />
+          <div>
+            <strong>Submitted — Awaiting Server Verification</strong>
+            <p>{statusMessage.text}</p>
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "12px",
+                flexWrap: "wrap",
+              }}
+            >
+              <Link href="/jobs" className="button button-primary">
+                Continue → Back to My Jobs
+              </Link>
+              <button
+                type="button"
+                className="button button-outline"
+                onClick={() => setStatusMessage(null)}
+              >
+                Stay on This Page
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {statusMessage?.type === "error" && (
+        <div className="qt-alert qt-alert-error" role="alert">
+          <AlertCircle size={24} />
+          <div>
+            <strong>Payment Declined (TEST Mode)</strong>
+            <p>{statusMessage.text}</p>
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "12px",
+                flexWrap: "wrap",
+              }}
+            >
+              <Link
+                href={`/payments/${quote.id}/recover`}
+                className="button button-primary"
+              >
+                Switch Payment Channel (S24) →
+              </Link>
+              <button
+                type="button"
+                className="button button-outline"
+                onClick={() => setStatusMessage(null)}
+              >
+                Try Again Here
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
@@ -748,20 +926,21 @@ export function MilestoneDepositCheckoutScreen({
               <div>
                 <strong>Paystack TEST Mode Card / Bank Transfer</strong>
                 <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "var(--muted)" }}>
-                  Zero live bank charges. Test tokens automatically verified.
+                  Test tokens only in this demo. No real charges and no confirmation yet.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Escrow Terms Banner */}
+          {/* Honest terms banner */}
           <div className="qt-alert qt-alert-info">
             <ShieldCheck size={24} />
             <div>
-              <strong>Funds Held in Neutral SabiWork Escrow</strong>
+              <strong>Authorization Only — Demo Checkout</strong>
               <p>
-                The artisan does not receive these funds directly until work milestone 1 has been
-                validated. You can raise a dispute at any point under SabiWork SafeTrade.
+                This demo only simulates a Paystack TEST mode card authorization. No money
+                moves and no funds are kept anywhere. Confirmation is pending server
+                verification, and a dispute process is not part of this prototype.
               </p>
             </div>
           </div>

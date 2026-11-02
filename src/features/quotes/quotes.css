@@ -1,5 +1,6 @@
 /* ==========================================================================
-   Clear Trade Modern — Quotes & Escrow Deposits (S17, S18, S19, S20, S21)
+   Clear Trade Modern — Quote Comparison, Acceptance & Deposit Checkout
+   (S17, S18, S19, S20, S21)
    Tokens from DESIGN.md: Canvas #F7F6F2, Card #FFFFFF, Border #E2E0D8,
    Primary #075E46, Accent #0E294B. Touch targets min 44px.
    ========================================================================== */
@@ -78,7 +79,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
-  min-height: 36px;
+  min-height: 44px;
 }
 
 .qt-sim-btn:hover {
@@ -243,5 +244,48 @@
   padding: 20px;
   display: grid;
   gap: 14px;
+}
+
+/* ==========================================================================
+   Demo disclosure labels (S19, S20, S21).
+   Badge: DESIGN.md navy #0E294B background, light text, #38A8E8 accent.
+   ========================================================================== */
+
+.qt-test-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.qt-test-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: #0e294b; /* DESIGN.md navy */
+  color: #f1f3ff; /* light surface text */
+  border: 1px solid #38a8e8; /* DESIGN.md accent */
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.qt-test-badge::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #38a8e8;
+}
+
+.qt-demo-note {
+  font-size: 12px;
+  color: var(--muted);
 }
 

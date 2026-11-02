@@ -21,7 +21,7 @@ afterEach(() => {
   nav.replace.mockClear();
 });
 
-describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
+describe("Quote screens: comparison, acceptance and deposit checkout (S17, S18, S19, S20, S21)", () => {
   it("renders S17 Open Requests Feed and filters by district", () => {
     render(<OpenRequestsFeedScreen initialRequests={defaultOpenRequests} />);
     expect(
@@ -57,6 +57,43 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     expect(screen.getByText("Osaze Ighodaro")).toBeDefined();
     expect(screen.getByText("Victor E. Edosa")).toBeDefined();
     expect(screen.getByText("Monday Agho")).toBeDefined();
+
+    // Honesty copy on S19: no protection claims
+    expect(screen.queryByText(/SafeTrade/i)).toBeNull();
+    expect(screen.queryByText(/protected/i)).toBeNull();
+  });
+
+  it("shows S19 empty state when no quotes exist and can check again", async () => {
+    render(<QuoteComparisonScreen request={defaultOpenRequests[0]} quotes={[]} />);
+
+    expect(screen.getByText(/No quotes yet/i)).toBeDefined();
+    expect(screen.getByRole("button", { name: "empty" })).toBeDefined();
+
+    // Check Again goes through the mock service and lands on received
+    fireEvent.click(screen.getByRole("button", { name: /Check Again/i }));
+    await waitFor(() => {
+      expect(screen.getByText("Osaze Ighodaro")).toBeDefined();
+    });
+  });
+
+  it("shows S19 loading and error states, and retry reloads through the mock service", async () => {
+    render(
+      <QuoteComparisonScreen
+        request={defaultOpenRequests[0]}
+        quotes={defaultDetailedQuotes}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "loading" }));
+    expect(screen.getByText(/Loading quotes/i)).toBeDefined();
+
+    fireEvent.click(screen.getByRole("button", { name: "error" }));
+    expect(screen.getByText(/Could Not Load Quotes/i)).toBeDefined();
+
+    fireEvent.click(screen.getByRole("button", { name: /Retry Connection/i }));
+    await waitFor(() => {
+      expect(screen.getByText("Victor E. Edosa")).toBeDefined();
+    });
   });
 
   it("renders S20 Quote Details with milestone breakdown and supports acceptance", async () => {
@@ -67,21 +104,22 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     expect(screen.getByText(/Mobilization Deposit/i)).toBeDefined();
 
     const acceptBtn = screen.getByRole("button", {
-      name: /Accept Quote & Proceed to Escrow/i,
+      name: /Accept Quote & Continue to Deposit/i,
     });
     fireEvent.click(acceptBtn);
 
     await waitFor(() => {
       expect(screen.getByText(/Quote accepted/i)).toBeDefined();
+      expect(screen.queryByText(/escrow/i)).toBeNull();
     });
   });
 
   it("renders S21 Milestone Deposit Checkout with Paystack TEST Mode and processes payment", async () => {
     render(<MilestoneDepositCheckoutScreen quote={defaultDetailedQuotes[0]} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Fund Milestone 1 Escrow Deposit/i }),
+      screen.getByRole("heading", { level: 1, name: /Fund Milestone 1 Deposit/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Paystack TEST Mode Card/i)).toBeDefined();
+    expect(screen.getByText(/Paystack TEST Mode Card \/ Bank Transfer/i)).toBeDefined();
 
     const payBtn = screen.getByRole("button", {
       name: /Pay ₦11,000 via TEST Mode/i,
@@ -89,8 +127,30 @@ describe("Quotes & Escrow Deposits (S17, S18, S19, S20, S21)", () => {
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/successfully deposited into SabiWork Paystack TEST escrow/i)).toBeDefined();
+      expect(screen.getByText(/submitted in Paystack TEST mode/i)).toBeDefined();
+      expect(screen.queryByText(/escrow/i)).toBeNull();
     });
+
+    // Success must NOT auto-redirect: the user reads the pending message first
+    expect(nav.push).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("link", { name: /Continue → Back to My Jobs/i }).getAttribute("href"),
+    ).toBe("/jobs");
+  });
+
+  it("shows S21 declined payment with a recovery link to S24 for the quote reference", async () => {
+    render(<MilestoneDepositCheckoutScreen quote={defaultDetailedQuotes[0]} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /Simulate Card Decline/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/Payment Declined \(TEST Mode\)/i)).toBeDefined();
+      expect(screen.getByText(/declined or connection timeout/i)).toBeDefined();
+    });
+    expect(nav.push).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("link", { name: /Switch Payment Channel \(S24\)/i }).getAttribute("href"),
+    ).toBe("/payments/quote-01/recover");
   });
 });
 
