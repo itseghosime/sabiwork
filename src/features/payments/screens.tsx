@@ -31,7 +31,7 @@ export function PaymentVerificationScreen({
   initialReceipt?: PaymentReceiptData;
 }) {
   const [receipt] = useState<PaymentReceiptData>(initialReceipt);
-  const [verifyState, setVerifyState] = useState<PaymentVerificationState>("VERIFIED");
+  const [verifyState, setVerifyState] = useState<PaymentVerificationState>("PENDING_WEBHOOK");
 
   return (
     <div className="py-page" data-testid="payment-verification-screen">
@@ -46,7 +46,7 @@ export function PaymentVerificationScreen({
       {/* Simulator Bar */}
       <div className="py-simulator-bar">
         <span className="py-simulator-label">
-          <SlidersHorizontal size={16} /> Webhook Verification Simulator:
+          <SlidersHorizontal size={16} /> Demo status controls (no Paystack request):
         </span>
         <div className="py-simulator-buttons">
           {(["VERIFIED", "PENDING_WEBHOOK", "FAILED"] as const).map((st) => (
@@ -71,7 +71,7 @@ export function PaymentVerificationScreen({
             color: "var(--text-dark, #0e294b)",
           }}
         >
-          Payment Verification & Escrow Audit
+          Payment status preview (S22)
         </h1>
         <p style={{ margin: "4px 0 0 0", color: "var(--muted)", fontSize: "14px" }}>
           Reference #{receipt.paymentRef} · Paystack TEST Transaction #{receipt.paystackTestRef}
@@ -82,17 +82,16 @@ export function PaymentVerificationScreen({
         <div className="py-alert py-alert-success" role="status">
           <CheckCircle2 size={24} />
           <div>
-            <strong>Paystack TEST Mode Payment Verified!</strong>
+            <strong>Demo verified state only</strong>
             <p>
-              ₦{(receipt.amountKobo / 100).toLocaleString()} is held securely in SabiWork escrow.
-              Artisan {receipt.artisanName} has been notified to commence Milestone {receipt.milestoneNumber}.
+              The preview marks ₦{(receipt.amountKobo / 100).toLocaleString()} as verified for this screen only. No gateway request was made, no funds moved, and no artisan was notified.
             </p>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
               <Link
                 href={`/payments/${receipt.paymentRef}/receipt`}
                 className="button button-primary"
               >
-                View Official Receipt (S23) →
+                View demo receipt (S23) →
               </Link>
               <Link href="/jobs" className="button button-outline">
                 Back to My Jobs
@@ -106,10 +105,9 @@ export function PaymentVerificationScreen({
         <div className="py-alert py-alert-warning" role="status">
           <Clock size={24} />
           <div>
-            <strong>Awaiting Paystack Webhook Confirmation</strong>
+            <strong>Demo pending state</strong>
             <p>
-              Your payment authorization is being confirmed by the banking switch. This page updates
-              automatically once the webhook signal arrives.
+              This preview does not contact Paystack or receive a webhook. Payment verification integration is pending.
             </p>
             <button
               type="button"
@@ -117,7 +115,7 @@ export function PaymentVerificationScreen({
               style={{ marginTop: "12px" }}
               onClick={() => setVerifyState("VERIFIED")}
             >
-              Simulate Webhook Delivery
+              Show verified demo state
             </button>
           </div>
         </div>
@@ -127,10 +125,9 @@ export function PaymentVerificationScreen({
         <div className="py-alert py-alert-error" role="alert">
           <AlertCircle size={24} />
           <div>
-            <strong>Payment Authorization Failed or Declined</strong>
+            <strong>Demo failed state</strong>
             <p>
-              The transaction could not be completed by your test card provider. You can retry or
-              select an alternate payment method.
+              This is a simulated failure state. No transaction was sent to a provider.
             </p>
             <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
               <Link
@@ -144,7 +141,7 @@ export function PaymentVerificationScreen({
                 className="button button-outline"
                 onClick={() => setVerifyState("VERIFIED")}
               >
-                Retry Verification
+                Show verified demo state
               </button>
             </div>
           </div>
@@ -202,15 +199,19 @@ export function PaymentReceiptScreen({
         <span aria-hidden="true">/</span>
         <Link href="/payments">Payment History</Link>
         <span aria-hidden="true">/</span>
-        <strong>Official Receipt (S23)</strong>
+        <strong>Demo receipt (S23)</strong>
+      </div>
+
+      <div role="note" className="py-alert py-alert-warning">
+        Demo receipt for interface preview only. No payment was verified and no funds are held or released.
       </div>
 
       <div className="py-receipt-paper">
         <header className="py-receipt-header">
           <div>
-            <h1 className="py-receipt-title">SabiWork Payment Receipt</h1>
+            <h1 className="py-receipt-title">SabiWork Demo Payment Receipt</h1>
             <span style={{ fontSize: "12px", color: "var(--muted)" }}>
-              Clear Trade Modern SafeTrade Escrow Vetting
+              Clear Trade Modern · Demo preview only
             </span>
           </div>
           <div style={{ textAlign: "right" }}>
@@ -225,7 +226,7 @@ export function PaymentReceiptScreen({
                 borderRadius: "999px",
               }}
             >
-              ✓ Escrow Protected
+              Demo only · no escrow
             </span>
             <div style={{ fontSize: "12px", color: "var(--muted)", marginTop: "4px" }}>
               {receipt.dateWat}
@@ -247,7 +248,7 @@ export function PaymentReceiptScreen({
             <span className="py-receipt-value">{receipt.customerName}</span>
           </div>
           <div className="py-receipt-row">
-            <span className="py-receipt-label">Verified Artisan:</span>
+            <span className="py-receipt-label">Artisan (sample data):</span>
             <span className="py-receipt-value">{receipt.artisanName}</span>
           </div>
           <div className="py-receipt-row">
