@@ -181,11 +181,17 @@ export async function listPaystackBanks(): Promise<PaystackBank[]> {
   const data = await callPaystack<
     { name?: string; code?: string }[]
   >("/bank?currency=NGN", { fallbackMessage: "Paystack could not list banks." });
-  return data
+  const banks = data
     .filter((bank): bank is { name: string; code: string } =>
       Boolean(bank.name && bank.code),
     )
     .map((bank) => ({ name: bank.name, code: bank.code }));
+  // Paystack directs test integrations to bank 001 after the limited real-bank
+  // resolve allowance. Keep resolution and recipient creation provider-backed.
+  if (paystackTestMode() && !banks.some((bank) => bank.code === "001")) {
+    banks.unshift({ name: "Paystack test bank (001)", code: "001" });
+  }
+  return banks;
 }
 
 export interface PaystackResolvedAccount {

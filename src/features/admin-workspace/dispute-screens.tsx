@@ -175,7 +175,7 @@ export function AdminDisputesScreen() {
 
       <SampleNotice>
         {SAMPLE_LEDGER_NOTE} Cases below are stored in the Neon database but describe fictional parties.
-        Status changes persist; no payment provider is connected, so no funds move.
+        Status changes persist; this screen records decisions only. Transfers are handled separately in Escrow & payouts.
       </SampleNotice>
 
       {error ? (
@@ -332,7 +332,7 @@ export function AdminDisputesScreen() {
             <span className="ad-step-num">3</span>
             <div>
               <strong>Determine and record</strong>
-              <p>A ruling requires an officer’s written rationale. In this build, rulings are previews only and are not persisted.</p>
+              <p>A ruling requires an officer’s written rationale. Rulings and their rationale are saved; payout and refund execution are separate actions.</p>
             </div>
           </li>
         </ol>
@@ -407,7 +407,7 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
     }
     await patch(
       { determination, determinationNote: rationale, status: "resolved" },
-      "Determination recorded in Neon and the case marked resolved. No payment provider is connected, so no funds moved.",
+      "Determination recorded in Neon and the case marked resolved. No transfer was initiated by this determination.",
       "determine",
     );
   }
@@ -485,7 +485,7 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
 
       <SampleNotice>
         {SAMPLE_LEDGER_NOTE} This case is stored in the Neon database and describes fictional parties. Status
-        changes, assignments, and determinations persist; no payment provider is connected, so no funds move.
+        changes, assignments, and determinations persist; this screen records decisions only. Transfers are handled separately in Escrow & payouts.
       </SampleNotice>
 
       {error ? (
@@ -558,7 +558,6 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
           <SectionCard
             title="Determination panel"
             description="Recording a ruling writes it to Neon and closes the case."
-            className="ad-sticky"
           >
             <div className="ad-checklist">
               <label>
