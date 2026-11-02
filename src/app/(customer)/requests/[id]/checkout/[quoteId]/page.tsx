@@ -1,19 +1,10 @@
-import { notFound } from "next/navigation";
-import { MilestoneDepositCheckoutScreen } from "@/features/quotes/screens";
-import { quotesDemoService } from "@/features/quotes/service";
+import { CheckoutNoticeScreen } from "@/features/hire-workspace/screens";
 
-export default async function MilestoneCheckoutPage({
+export default async function RequestCheckoutPage({
   params,
 }: {
   params: Promise<{ id: string; quoteId: string }>;
 }) {
-  const { quoteId } = await params;
-  const quote = await quotesDemoService.getQuoteDetails(quoteId);
-
-  if (!quote) {
-    notFound();
-  }
-
-  return <MilestoneDepositCheckoutScreen quote={quote} />;
+  const { id, quoteId } = await params;
+  return <CheckoutNoticeScreen requestId={id} quoteId={quoteId} />;
 }
-

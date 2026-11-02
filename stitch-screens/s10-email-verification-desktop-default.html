@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "primary-container": "#38a8e8", "on-error-container": "#93000a", "on-primary-fixed": "#001e2f", "outline": "#6f7881", "on-secondary-fixed": "#001b3c", "error": "#ba1a1a", "surface": "#f9f9ff", "on-tertiary-fixed-variant": "#3f484e", "primary-fixed-dim": "#8aceff", "surface-bright": "#f9f9ff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#004b6f", "on-tertiary-fixed": "#141d22", "tertiary-fixed-dim": "#bfc8ce", "secondary-container": "#bbd3fe", "tertiary-container": "#97a0a7", "surface-container-high": "#e1e8fd", "surface-container": "#e9edff", "on-tertiary-container": "#2e373d", "primary": "#006491", "on-secondary-fixed-variant": "#30476b", "on-secondary-container": "#435a7f", "on-surface": "#141b2b", "outline-variant": "#bec8d1", "on-error": "#ffffff", "primary-fixed": "#c9e6ff", "on-surface-variant": "#3f4850", "on-primary-container": "#003a56", "inverse-primary": "#8aceff", "secondary": "#485f84", "secondary-fixed": "#d5e3ff", "surface-variant": "#dce2f7", "surface-container-highest": "#dce2f7", "surface-tint": "#006491", "secondary-fixed-dim": "#b0c8f2", "surface-dim": "#d3daef", "tertiary-fixed": "#dbe4eb", "on-background": "#141b2b", "inverse-surface": "#293040", "tertiary": "#576065", "background": "#f9f9ff", "error-container": "#ffdad6", "on-tertiary": "#ffffff", "inverse-on-surface": "#edf0ff", "on-secondary": "#ffffff", "surface-container-low": "#f1f3ff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "margin": "2rem", "space-2xs": "0.25rem", "space-lg": "1.25rem", "space-2xl": "2rem", "gutter-mobile": "0.75rem", "space-sm": "0.625rem", "margin-mobile": "1rem", "space-3xl": "3rem", "space-xs": "0.5rem", "gutter": "1.25rem", "space-xl": "1.5rem" }, "fontFamily": { "body-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "body-lg": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "label-lg": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"] }, "fontSize": { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="w-full bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50"><div class="max-w-7xl mx-auto px-gutter flex items-center justify-between h-16"><div class="flex items-center gap-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><span class="flex items-baseline font-headline-md text-headline-md tracking-tight ml-1"><span class="text-on-secondary-fixed">Sabi</span><span class="text-primary-container font-headline-md text-headline-md">Work</span></span><span class="hidden sm:inline-flex items-center ml-space-xs px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium">Benin City</span></div><div class="flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm"><span class="material-symbols-outlined text-primary text-[16px]">lock</span><span class="font-medium">Secure Access Portal</span></div></div></header><main class="w-full flex-1 flex flex-col justify-center items-center py-space-2xl px-gutter"><div class="flex flex-col w-full items-center justify-center">
+<!-- Interactive Reviewer State Controller Bar -->
+<div class="w-full max-w-5xl mb-space-xl bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-space-xs px-2 py-1">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-headline-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">QA State Switcher</span>
+<span class="text-label-sm font-label-sm text-outline">| Screen S10 Verification Sandbox</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">User Profile:</span>
+<button class="h-9 px-3 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-sm font-label-sm transition-colors flex items-center gap-1.5 font-semibold" id="toggle-user-btn" onclick="toggleUserContext()">
+<span class="material-symbols-outlined text-[16px] text-primary">swap_horiz</span>
+<span id="current-user-tag">Customer: Osasere Aghahowa</span>
+</button>
+</div>
+</div>
+<!-- State Buttons Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-1.5 pt-1">
+<button class="state-btn h-9 px-2 rounded-lg text-label-sm font-label-sm font-semibold transition-all flex items-center justify-center text-center bg-primary text-on-primary shadow-sm" id="btn-state-default" onclick="setState('default')">
+        Default (Wait)
+      </button>
+<button class="state-btn h-9 px-2 rounded-lg text-label-sm font-label-sm font-semibold transition-all flex items-center justify-center text-center bg-surface-container text-on-surface-variant hover:bg-surface-container-high" id="btn-state-cooldown" onclick="setState('cooldown')">
+        Timer (48s)
+      </button>
+<button class="state-btn h-9 px-2 rounded-lg text-label-sm font-label-sm font-semibold transition-all flex items-center justify-center text-center bg-surface-container text-on-surface-variant hover:bg-surface-container-high" id="btn-state-resending" onclick="setState('resending')">
+        Resending...
+      </button>
+<button class="state-btn h-9 px-2 rounded-lg text-label-sm font-label-sm font-semibold transition-all flex items-center justify-center text-center bg-surface-container text-on-surface-variant hover:bg-surface-container-high" id="btn-state-expired" onclick="setState('expired')">
+        Expired / Invalid
+      </button>
+<button class="state-btn h-9 px-2 rounded-lg text-label-sm font-label-sm font-semibold transition-all flex items-center justify-center text-center bg-surface-container text-on-surface-variant hover:bg-surface-container-high" id="btn-state-error" onclick="setState('error')">
+        Network Error
+      </button>
+<button class="state-btn h-9 px-2 rounded-lg text-label-sm font-label-sm font-semibold transition-all flex items-center justify-center text-center bg-surface-container text-on-surface-variant hover:bg-surface-container-high" id="btn-state-success" onclick="setState('success')">
+        Success State
+      </button>
+</div>
+</div>
+<!-- Main Centered Verification Container -->
+<div class="w-full max-w-xl bg-surface-container-lowest rounded-2xl shadow-xl p-6 sm:p-10 flex flex-col items-center text-center relative overflow-hidden">
+<!-- Top Decorative Gradient Glow -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-40 bg-primary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Security Context Pill -->
+<div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm mb-6 z-10 shadow-sm">
+<span class="material-symbols-outlined text-[15px] text-primary" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="tracking-wide font-semibold">Account Security • Benin City Hub</span>
+<span class="text-outline">|</span>
+<span class="text-primary font-bold">S10</span>
+</div>
+<!-- Animated Status Envelope Graphic Section -->
+<div class="relative mb-6 flex items-center justify-center">
+<!-- Outer Soft Glow Rings -->
+<div class="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center relative">
+<div class="absolute inset-0 rounded-full bg-primary-container/20 animate-ping opacity-60" id="graphic-pulse"></div>
+<!-- Center Icon Hub -->
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center transition-all duration-300 shadow-sm z-10" id="graphic-circle">
+<span class="material-symbols-outlined text-primary text-[34px]" id="graphic-icon">mark_email_unread</span>
+</div>
+</div>
+<!-- Accent Mini Badge -->
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md" id="graphic-mini-badge">
+<span class="material-symbols-outlined text-[18px]" id="graphic-mini-icon">bolt</span>
+</div>
+</div>
+<!-- Headline and Core Instructions -->
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2" id="view-headline">
+      Check your email inbox
+    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto mb-5 leading-relaxed" id="view-description">
+      We sent a 6-digit confirmation code and secure verification link to complete your Benin City registration:
+    </p>
+<!-- Masked Email Display Chip & Edit CTA -->
+<div class="w-full max-w-sm flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-surface-container-low mb-6 shadow-sm">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">alternate_email</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate" id="masked-email-label">
+          o•••••••e@beninmail.ng
+        </span>
+</div>
+<button class="flex-shrink-0 text-primary hover:text-on-primary-container font-label-md text-label-md font-bold px-2 py-1 rounded hover:bg-surface-container transition-colors flex items-center gap-1" onclick="handleEditEmail()" type="button">
+<span>Wrong email?</span>
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+</div>
+<!-- Alert / Feedback Notification Box (Toggled dynamically) -->
+<div class="hidden w-full rounded-xl p-3.5 mb-6 text-left flex items-start gap-3 transition-all duration-200" id="status-banner">
+<span class="material-symbols-outlined text-[20px] flex-shrink-0 mt-0.5" id="status-banner-icon">info</span>
+<div class="min-w-0 flex-1">
+<p class="font-label-lg text-label-lg font-bold leading-tight" id="status-banner-title"></p>
+<p class="font-body-sm text-body-sm mt-0.5 leading-snug" id="status-banner-desc"></p>
+</div>
+<button class="hidden text-label-sm font-label-sm font-bold underline flex-shrink-0 self-center" id="status-banner-action" onclick="dismissBanner()">
+        Retry
+      </button>
+</div>
+<!-- Normal Flow Verification Form (States: Default, Cooldown, Resending, Expired, Error) -->
+<div class="w-full flex flex-col items-center" id="flow-verification">
+<!-- 6-Digit OTP Interactive Entry -->
+<div class="w-full mb-6">
+<div class="flex items-center justify-between mb-2.5 px-1">
+<label class="font-label-md text-label-md font-semibold text-on-surface">Enter 6-Digit Passcode</label>
+<span class="font-body-sm text-body-sm text-outline">or tap link in email</span>
+</div>
+<div class="grid grid-cols-6 gap-2 sm:gap-3 w-full max-w-sm mx-auto" id="otp-container">
+<input class="otp-box w-full h-14 text-center font-headline-md text-headline-md font-bold text-on-surface bg-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm" inputmode="numeric" maxlength="1" type="text" value="8"/>
+<input class="otp-box w-full h-14 text-center font-headline-md text-headline-md font-bold text-on-surface bg-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm" inputmode="numeric" maxlength="1" type="text" value="4"/>
+<input class="otp-box w-full h-14 text-center font-headline-md text-headline-md font-bold text-on-surface bg-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm" inputmode="numeric" maxlength="1" type="text" value="2"/>
+<input class="otp-box w-full h-14 text-center font-headline-md text-headline-md font-bold text-on-surface bg-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm" inputmode="numeric" maxlength="1" placeholder="-" type="text" value=""/>
+<input class="otp-box w-full h-14 text-center font-headline-md text-headline-md font-bold text-on-surface bg-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm" inputmode="numeric" maxlength="1" placeholder="-" type="text" value=""/>
+<input class="otp-box w-full h-14 text-center font-headline-md text-headline-md font-bold text-on-surface bg-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm" inputmode="numeric" maxlength="1" placeholder="-" type="text" value=""/>
+</div>
+</div>
+<!-- Primary Action CTA Button (Min-height 48px, accessible) -->
+<button class="w-full min-h-[48px] py-3 px-6 rounded-xl bg-primary hover:bg-on-primary-fixed-variant active:bg-on-primary-fixed text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all flex-shrink-0 cursor-pointer" id="btn-submit-verify" onclick="triggerVerifyAction()">
+<span id="btn-submit-text">Verify &amp; Continue →</span>
+<span class="hidden material-symbols-outlined text-[20px] animate-spin" id="btn-submit-spinner">progress_activity</span>
+</button>
+<!-- Step Guide Accordion / Information Card -->
+<div class="w-full bg-surface-container-low rounded-xl p-4 mt-6 text-left shadow-sm">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold mb-3">Quick Verification Guide</p>
+<div class="flex flex-col gap-3">
+<div class="flex items-start gap-2.5">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary font-bold text-label-sm font-label-sm flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Open the dispatch email sent by <span class="font-semibold text-on-surface">notifications@sabiwork.ng</span>.
+            </p>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary font-bold text-label-sm font-label-sm flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Click the <strong class="text-on-surface">Verify My Account</strong> link or enter the 6-digit code above.
+            </p>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary font-bold text-label-sm font-label-sm flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Your Benin City session updates instantly • zero page reloads required.
+            </p>
+</div>
+</div>
+</div>
+<!-- Resend Controls and Countdown Cooldown Box -->
+<div class="w-full mt-6 pt-5 flex flex-col items-center gap-3">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Didn’t receive the email? Check your spam folder or trigger a new one.
+        </p>
+<div class="flex flex-wrap items-center justify-center gap-3 w-full">
+<!-- Resend Email Button (Min-height 44px) -->
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md font-bold flex items-center justify-center gap-2 transition-all flex-shrink-0 shadow-sm" id="btn-resend" onclick="handleResendClick()">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+<span id="btn-resend-label">Resend Verification Email</span>
+</button>
+<!-- Dynamic Cooldown Pill Indicator -->
+<div class="min-h-[44px] px-4 py-2 rounded-xl bg-surface-container text-on-surface-variant font-label-sm text-label-sm flex items-center gap-2" id="cooldown-pill">
+<span class="material-symbols-outlined text-[18px] text-tertiary">timer</span>
+<span class="font-semibold" id="cooldown-timer-text">Resend available in 0:48</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification Success Flow Panel (State: Success) -->
+<div class="hidden w-full flex flex-col items-center py-4" id="flow-success">
+<div class="w-full bg-surface-container-low rounded-2xl p-6 mb-6 text-center">
+<div class="w-16 h-16 rounded-full bg-primary-container/20 text-primary mx-auto mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Email Verified Successfully!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mx-auto mb-4" id="success-user-message">
+          Welcome aboard, Osasere! Your Benin City Customer profile is activated and ready to request local trades.
+        </p>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span>Edo State Service Grid Node: Active</span>
+</div>
+</div>
+<!-- Continue to Destination CTA Button -->
+<a class="w-full min-h-[48px] py-3.5 px-6 rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md transition-all text-center" href="#S01-Customer-Home" id="btn-success-continue">
+<span id="success-cta-text">Continue to Customer Dashboard (S01) →</span>
+</a>
+<button class="mt-4 text-label-md font-label-md text-on-surface-variant hover:text-on-surface underline" onclick="setState('default')">
+        Back to verification screen demo
+      </button>
+</div>
+<!-- Alternative Links & Assistance Footnotes -->
+<div class="w-full mt-8 pt-5 flex flex-col items-center gap-3">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-medium" href="#S07-Customer-Signup" id="link-return-signup">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span id="link-return-text">Return to Customer Signup (S07)</span>
+</a>
+<div class="flex items-center justify-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline">support_agent</span>
+<span>Need help? Benin City Operations Desk:</span>
+<a class="text-primary font-semibold hover:underline" href="tel:+2348007224236">+234 800-SABI-BENIN</a>
+</div>
+<div class="flex items-center justify-center gap-1.5 text-label-sm font-label-sm text-outline mt-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>256-bit encrypted authentication • Zero credit card storage • Paystack TEST Mode</span>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive State Script -->
+<script>
+    // State storage
+    const state = {
+      userType: 'customer', // 'customer' or 'artisan'
+      currentMode: 'default', // 'default', 'cooldown', 'resending', 'expired', 'error', 'success'
+      cooldownSeconds: 48,
+      timerInterval: null
+    };
+
+    const userData = {
+      customer: {
+        name: 'Osasere Aghahowa',
+        email: 'o•••••••e@beninmail.ng',
+        fullEmail: 'osasere.a@beninmail.ng',
+        signupRef: 'S07 (Customer Signup)',
+        signupHref: '#S07-Customer-Signup',
+        dashRef: 'Customer Dashboard (S01)',
+        dashHref: '#S01-Customer-Dashboard'
+      },
+      artisan: {
+        name: 'Osagie Egharevba',
+        email: 'o•••••••s@gmail.com',
+        fullEmail: 'osagie.trades@gmail.com',
+        signupRef: 'Artisan Onboarding (S08)',
+        signupHref: '#S08-Artisan-Onboarding',
+        dashRef: 'Artisan Workbench (S06)',
+        dashHref: '#S06-Artisan-Workbench'
+      }
+    };
+
+    function toggleUserContext() {
+      state.userType = state.userType === 'customer' ? 'artisan' : 'customer';
+      updateUserContextUI();
+    }
+
+    function updateUserContextUI() {
+      const u = userData[state.userType];
+      document.getElementById('current-user-tag').textContent = `${state.userType === 'customer' ? 'Customer' : 'Artisan'}: ${u.name}`;
+      document.getElementById('masked-email-label').textContent = u.email;
+      document.getElementById('link-return-text').textContent = `Return to ${u.signupRef}`;
+      document.getElementById('link-return-signup').setAttribute('href', u.signupHref);
+      document.getElementById('success-cta-text').textContent = `Continue to ${u.dashRef} \u2192`;
+      document.getElementById('btn-success-continue').setAttribute('href', u.dashHref);
+      
+      const welcomeText = state.userType === 'customer'
+        ? `Welcome aboard, ${u.name}! Your Benin City Customer profile is activated and ready to request local trades.`
+        : `Welcome, ${u.name}! Your Benin City Artisan credential verification is unlocked. Start taking requests!`;
+      document.getElementById('success-user-message').textContent = welcomeText;
+    }
+
+    function handleEditEmail() {
+      const u = userData[state.userType];
+      alert(`Redirecting to ${u.signupRef} to amend email: ${u.fullEmail}`);
+    }
+
+    function startCooldownTimer(seconds) {
+      clearInterval(state.timerInterval);
+      state.cooldownSeconds = seconds;
+      const timerText = document.getElementById('cooldown-timer-text');
+      const pill = document.getElementById('cooldown-pill');
+      const resendBtn = document.getElementById('btn-resend');
+
+      pill.classList.remove('hidden');
+      resendBtn.classList.add('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
+
+      function renderTime() {
+        const mins = Math.floor(state.cooldownSeconds / 60);
+        const secs = state.cooldownSeconds % 60;
+        const formatted = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        timerText.textContent = `Resend available in ${formatted}`;
+      }
+
+      renderTime();
+      state.timerInterval = setInterval(() => {
+        state.cooldownSeconds--;
+        if (state.cooldownSeconds <= 0) {
+          clearInterval(state.timerInterval);
+          pill.classList.add('hidden');
+          resendBtn.classList.remove('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
+          timerText.textContent = 'Resend available now';
+        } else {
+          renderTime();
+        }
+      }, 1000);
+    }
+
+    function setBanner(visible, type, title, desc, showAction = false, actionText = 'Retry') {
+      const banner = document.getElementById('status-banner');
+      const bannerIcon = document.getElementById('status-banner-icon');
+      const bannerTitle = document.getElementById('status-banner-title');
+      const bannerDesc = document.getElementById('status-banner-desc');
+      const bannerAction = document.getElementById('status-banner-action');
+
+      if (!visible) {
+        banner.classList.add('hidden');
+        return;
+      }
+
+      banner.classList.remove('hidden', 'bg-error-container', 'text-on-error-container', 'bg-surface-container', 'text-on-surface', 'bg-surface-container-high', 'text-primary');
+
+      if (type === 'error') {
+        banner.classList.add('bg-error-container', 'text-on-error-container');
+        bannerIcon.textContent = 'warning';
+        bannerIcon.className = 'material-symbols-outlined text-[20px] text-error flex-shrink-0 mt-0.5';
+      } else if (type === 'info') {
+        banner.classList.add('bg-surface-container', 'text-on-surface');
+        bannerIcon.textContent = 'info';
+        bannerIcon.className = 'material-symbols-outlined text-[20px] text-primary flex-shrink-0 mt-0.5';
+      } else if (type === 'warning') {
+        banner.classList.add('bg-surface-variant', 'text-on-surface-variant');
+        bannerIcon.textContent = 'schedule';
+        bannerIcon.className = 'material-symbols-outlined text-[20px] text-secondary flex-shrink-0 mt-0.5';
+      }
+
+      bannerTitle.textContent = title;
+      bannerDesc.textContent = desc;
+
+      if (showAction) {
+        bannerAction.textContent = actionText;
+        bannerAction.classList.remove('hidden');
+      } else {
+        bannerAction.classList.add('hidden');
+      }
+    }
+
+    function dismissBanner() {
+      if (state.currentMode === 'error') {
+        setState('default');
+      } else {
+        setBanner(false);
+      }
+    }
+
+    function setState(mode) {
+      state.currentMode = mode;
+      clearInterval(state.timerInterval);
+
+      // QA button styles
+      document.querySelectorAll('.state-btn').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.add('bg-surface-container', 'text-on-surface-variant');
+      });
+      const activeBtn = document.getElementById(`btn-state-${mode}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        activeBtn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+      }
+
+      // DOM Elements
+      const graphicCircle = document.getElementById('graphic-circle');
+      const graphicIcon = document.getElementById('graphic-icon');
+      const graphicPulse = document.getElementById('graphic-pulse');
+      const graphicMiniBadge = document.getElementById('graphic-mini-badge');
+      const graphicMiniIcon = document.getElementById('graphic-mini-icon');
+      
+      const headline = document.getElementById('view-headline');
+      const desc = document.getElementById('view-description');
+
+      const flowVerify = document.getElementById('flow-verification');
+      const flowSuccess = document.getElementById('flow-success');
+
+      const btnSubmit = document.getElementById('btn-submit-verify');
+      const btnSubmitText = document.getElementById('btn-submit-text');
+      const btnSubmitSpinner = document.getElementById('btn-submit-spinner');
+      
+      const resendBtn = document.getElementById('btn-resend');
+      const resendLabel = document.getElementById('btn-resend-label');
+      const cooldownPill = document.getElementById('cooldown-pill');
+
+      // Reset base visibility
+      flowVerify.classList.remove('hidden');
+      flowSuccess.classList.add('hidden');
+      btnSubmitSpinner.classList.add('hidden');
+      btnSubmit.removeAttribute('disabled');
+      resendBtn.classList.remove('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
+      resendLabel.textContent = 'Resend Verification Email';
+      graphicPulse.classList.remove('hidden');
+
+      if (mode === 'default') {
+        graphicIcon.textContent = 'mark_email_unread';
+        graphicIcon.className = 'material-symbols-outlined text-primary text-[34px]';
+        graphicMiniBadge.className = 'absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md';
+        graphicMiniIcon.textContent = 'bolt';
+
+        headline.textContent = 'Check your email inbox';
+        desc.textContent = 'We sent a 6-digit confirmation code and secure verification link to complete your Benin City registration:';
+        cooldownPill.classList.add('hidden');
+        btnSubmitText.textContent = 'Verify & Continue \u2192';
+        setBanner(false);
+      }
+
+      else if (mode === 'cooldown') {
+        graphicIcon.textContent = 'hourglass_top';
+        graphicIcon.className = 'material-symbols-outlined text-secondary text-[34px]';
+        graphicMiniBadge.className = 'absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-md';
+        graphicMiniIcon.textContent = 'timer';
+
+        headline.textContent = 'Email Sent & In Transit';
+        desc.textContent = 'Please wait momentarily before triggering another automated dispatch to avoid rate limits:';
+        btnSubmitText.textContent = 'Verify & Continue \u2192';
+        startCooldownTimer(48);
+        setBanner(true, 'warning', 'Rate Limiter Engaged', 'Anti-spam protection limits link generation to once every 60 seconds.');
+      }
+
+      else if (mode === 'resending') {
+        graphicIcon.textContent = 'sync';
+        graphicIcon.className = 'material-symbols-outlined text-primary text-[34px] animate-spin';
+        graphicPulse.classList.add('hidden');
+
+        headline.textContent = 'Resending confirmation...';
+        desc.textContent = 'Generating a fresh 256-bit signed validation token for your Benin City mailbox.';
+        resendBtn.classList.add('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
+        resendLabel.textContent = 'Dispatching email...';
+        btnSubmit.setAttribute('disabled', 'true');
+        cooldownPill.classList.add('hidden');
+        setBanner(true, 'info', 'Transmitting via Benin City Node', 'Encrypting authentication package with Paystack TEST Mode keys.');
+      }
+
+      else if (mode === 'expired') {
+        graphicIcon.textContent = 'link_off';
+        graphicIcon.className = 'material-symbols-outlined text-error text-[34px]';
+        graphicPulse.classList.add('hidden');
+        graphicMiniBadge.className = 'absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-error text-on-error flex items-center justify-center shadow-md';
+        graphicMiniIcon.textContent = 'close';
+
+        headline.textContent = 'Verification Link Expired';
+        desc.textContent = 'For your security, verification links expire after 15 minutes. Request a fresh code below:';
+        btnSubmitText.textContent = 'Request Fresh Verification Link \u2192';
+        cooldownPill.classList.add('hidden');
+        setBanner(true, 'error', 'Token Invalidation (ERR_TOKEN_EXPIRED)', 'Previous authorization payload was revoked. Request a new email to continue.', true, 'Request Link');
+      }
+
+      else if (mode === 'error') {
+        graphicIcon.textContent = 'wifi_off';
+        graphicIcon.className = 'material-symbols-outlined text-error text-[34px]';
+        graphicPulse.classList.add('hidden');
+        graphicMiniBadge.className = 'absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-error text-on-error flex items-center justify-center shadow-md';
+        graphicMiniIcon.textContent = 'priority_high';
+
+        headline.textContent = 'Temporary Network Flake';
+        desc.textContent = 'Unable to establish handshake with auth cluster. Your entered 6-digit code has been preserved.';
+        btnSubmitText.textContent = 'Retry Verification';
+        cooldownPill.classList.add('hidden');
+        setBanner(true, 'error', 'Network Socket Timeout (504 Gateway)', 'Connection interrupted. Please verify your connection or click retry.', true, 'Retry Now');
+      }
+
+      else if (mode === 'success') {
+        flowVerify.classList.add('hidden');
+        flowSuccess.classList.remove('hidden');
+
+        graphicIcon.textContent = 'check_circle';
+        graphicIcon.className = 'material-symbols-outlined text-primary text-[34px]';
+        graphicMiniBadge.className = 'absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md';
+        graphicMiniIcon.textContent = 'done_all';
+
+        headline.textContent = 'Verification Complete';
+        desc.textContent = 'Your email credential was signed and verified by the Benin City security gate.';
+        setBanner(false);
+      }
+    }
+
+    function triggerVerifyAction() {
+      if (state.currentMode === 'expired') {
+        setState('resending');
+        setTimeout(() => {
+          setState('cooldown');
+        }, 1500);
+        return;
+      }
+
+      const btnSubmitText = document.getElementById('btn-submit-text');
+      const btnSubmitSpinner = document.getElementById('btn-submit-spinner');
+      const btnSubmit = document.getElementById('btn-submit-verify');
+
+      btnSubmitText.textContent = 'Verifying Code...';
+      btnSubmitSpinner.classList.remove('hidden');
+      btnSubmit.setAttribute('disabled', 'true');
+
+      setTimeout(() => {
+        btnSubmitSpinner.classList.add('hidden');
+        btnSubmit.removeAttribute('disabled');
+        setState('success');
+      }, 1200);
+    }
+
+    function handleResendClick() {
+      setState('resending');
+      setTimeout(() => {
+        setState('cooldown');
+      }, 1500);
+    }
+
+    // Auto-advance OTP box typing interaction
+    document.querySelectorAll('.otp-box').forEach((input, index, list) => {
+      input.addEventListener('input', (e) => {
+        if (e.target.value.length === 1 && index < list.length - 1) {
+          list[index + 1].focus();
+        }
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !e.target.value && index > 0) {
+          list[index - 1].focus();
+        }
+      });
+    });
+
+    // Initialize initial state
+    updateUserContextUI();
+    setState('default');
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.02)] py-space-lg"><div class="max-w-7xl mx-auto px-gutter flex flex-col sm:flex-row items-center justify-between gap-space-md text-label-sm font-label-sm text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-on-secondary-fixed text-surface text-label-sm font-label-sm"><span class="h-2 w-2 rounded-full bg-primary-container animate-pulse"></span>Paystack TEST Mode</span><span class="text-outline">|</span><span>Benin City Artisan Exchange Sandbox</span></div><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-tertiary">verified_user</span><span>256-Bit Encrypted Authentication</span></div></div></footer></body></html>

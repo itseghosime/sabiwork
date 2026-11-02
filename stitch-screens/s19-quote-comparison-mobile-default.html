@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SabiWork - Compare Quotes</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "outline": "#6f7881",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-surface-variant": "#3f4850",
+            "secondary-fixed": "#d5e3ff",
+            "tertiary": "#576065",
+            "primary-container": "#38a8e8",
+            "inverse-on-surface": "#edf0ff",
+            "on-secondary-fixed": "#001b3c",
+            "on-background": "#141b2b",
+            "surface-dim": "#d3daef",
+            "on-primary-container": "#003a56",
+            "on-primary-fixed-variant": "#004b6f",
+            "on-tertiary-fixed": "#141d22",
+            "tertiary-container": "#97a0a7",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#8aceff",
+            "surface-container-low": "#f1f3ff",
+            "on-tertiary-fixed-variant": "#3f484e",
+            "surface-variant": "#dce2f7",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#293040",
+            "primary": "#006491",
+            "primary-fixed": "#c9e6ff",
+            "primary-fixed-dim": "#8aceff",
+            "tertiary-fixed-dim": "#bfc8ce",
+            "surface": "#f9f9ff",
+            "on-primary-fixed": "#001e2f",
+            "surface-container": "#e9edff",
+            "secondary": "#485f84",
+            "secondary-fixed-dim": "#b0c8f2",
+            "surface-container-highest": "#dce2f7",
+            "on-tertiary-container": "#2e373d",
+            "on-secondary-fixed-variant": "#30476b",
+            "on-surface": "#141b2b",
+            "secondary-container": "#bbd3fe",
+            "on-error": "#ffffff",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bec8d1",
+            "tertiary-fixed": "#dbe4eb",
+            "error": "#ba1a1a",
+            "surface-bright": "#f9f9ff",
+            "on-secondary-container": "#435a7f",
+            "surface-tint": "#006491",
+            "surface-container-high": "#e1e8fd",
+            "background": "#f9f9ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-2xs": "0.25rem",
+            "space-lg": "1.25rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "3rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.625rem",
+            "gutter": "1.25rem",
+            "margin": "2rem",
+            "space-2xl": "2rem",
+            "space-xl": "1.5rem",
+            "gutter-mobile": "0.75rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface flex justify-center antialiased min-h-screen">
+<!-- 390px Mobile Viewport Container -->
+<main class="w-full max-w-[390px] min-h-screen bg-surface flex flex-col shadow-xl border-x border-outline-variant/30 relative pb-28">
+<!-- Prototype State Bar -->
+<header class="bg-surface-container-high px-3 py-2 border-b border-outline-variant/40 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-xs font-semibold text-primary uppercase tracking-wider">Prototype View</span>
+</div>
+<div class="flex bg-surface-container rounded-lg p-0.5 text-[10px] font-label-md">
+<button class="px-2 py-0.5 rounded bg-surface text-on-surface font-semibold shadow-xs" type="button">All 3</button>
+<button class="px-2 py-0.5 rounded text-on-surface-variant hover:text-on-surface" type="button">Loading</button>
+<button class="px-2 py-0.5 rounded text-on-surface-variant hover:text-on-surface" type="button">1 Quote</button>
+<button class="px-2 py-0.5 rounded text-on-surface-variant hover:text-on-surface" type="button">Error</button>
+</div>
+</header>
+<!-- Top Navigation Header -->
+<nav class="sticky top-0 z-30 bg-surface/95 backdrop-blur-md px-4 py-3 border-b border-outline-variant/40 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button aria-label="Go back" class="w-10 h-10 -ml-1 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-sm text-base text-on-surface leading-snug">Compare Quotes</h1>
+<p class="font-body-sm text-[11px] text-tertiary">3 competitive verified bids</p>
+</div>
+</div>
+<button aria-label="Filter quotes" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors border border-outline-variant/40 bg-surface-container-lowest" type="button">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</nav>
+<!-- Customer Context Subtitle Banner -->
+<div class="bg-primary/5 border-b border-primary/15 px-4 py-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">person</span>
+<span class="font-label-md text-xs text-on-surface">Customer: <strong class="text-primary font-bold">Ada O.</strong></span>
+</div>
+<span class="font-label-sm text-[11px] bg-secondary-fixed/50 text-on-secondary-fixed px-2 py-0.5 rounded-full font-medium">Benin City</span>
+</div>
+<!-- Scrollable Content -->
+<div class="px-3.5 pt-3.5 space-y-3.5">
+<!-- Job Request Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/50 shadow-xs">
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-[10px] font-bold text-primary bg-primary-fixed/60 px-2 py-0.5 rounded">Job #BN-REQ-8421</span>
+<span class="font-body-sm text-[11px] text-tertiary">GRA Axis, Benin</span>
+</div>
+<h2 class="font-headline-sm text-sm text-on-surface mt-1 leading-snug">Kitchen drain pipe leak repair</h2>
+</div>
+<div class="w-12 h-12 rounded-lg overflow-hidden shrink-0 border border-outline-variant/40">
+<img class="w-full h-full object-cover" data-alt="A focused high quality close-up photograph of a contemporary residential stainless steel kitchen sink plumbing pipe system showing minor water droplets near the connector joints under soft realistic natural ambient light with muted modern interior palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALhAZvEo_nKvr-2B-Iuupy8VG7cH52Fp-B3SzP_yjyFqVrnAjcIAP2Kn5ET2zeRt5lQO-wQLUQXJpQ-uZXrDgMfbFGDynTr8rrJxyOCrmtSDivwa-J6e7LGN2BE6SvNs-JnI_CkhppCVVhKS2aD0Mn8C_Bh2oXqWHmTWbvJQtK4wsOqp01GpEkVCG9YP6ncPh-t8Mx_N16e2C5RJzDv-PYlHxqsYf_nEaySibJd6o"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-2.5 border-t border-outline-variant/30 text-xs font-body-sm">
+<div class="bg-surface-container-low p-2 rounded-lg">
+<span class="text-tertiary block text-[10px]">Benchmark Guidance</span>
+<span class="font-headline-sm text-xs font-bold text-on-surface">₦18,000</span>
+<span class="text-[9px] text-tertiary block leading-none mt-0.5">(Non-binding)</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg">
+<span class="text-tertiary block text-[10px]">Preferred Timing</span>
+<span class="font-label-md text-xs font-semibold text-on-surface">Thu, 8:30am - 1pm</span>
+<span class="text-[9px] text-primary block leading-none mt-0.5">Flexible window</span>
+</div>
+</div>
+</section>
+<!-- Paystack TEST Escrow Banner -->
+<section class="bg-surface-container-low rounded-xl p-3 border border-primary/30 flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[19px]">lock</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-xs font-bold text-on-surface">Paystack Safe Trade Escrow</h3>
+<span class="font-label-sm text-[10px] text-primary bg-primary/10 px-1.5 py-0.5 rounded font-bold">TEST MODE</span>
+</div>
+<p class="font-body-sm text-[11px] text-tertiary mt-0.5 leading-relaxed">
+            Simulated secure payment. Funds are locked safely in escrow and only released when milestone stages are approved by you.
+          </p>
+</div>
+</section>
+<!-- Section Title -->
+<div class="flex items-center justify-between px-0.5 pt-1">
+<h3 class="font-headline-sm text-sm font-bold text-on-surface">Available Quotes (3)</h3>
+<span class="font-body-sm text-xs text-primary font-semibold">Sorted by Best Fit</span>
+</div>
+<!-- Card 1: Recommended / Top Match (Osaze Ighodaro) -->
+<article class="bg-surface-container-lowest rounded-xl border-2 border-primary shadow-sm overflow-hidden relative">
+<!-- Recommended Ribbon -->
+<div class="bg-primary text-on-primary px-3 py-1 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-[11px] font-bold uppercase tracking-wide">Top Match Recommended</span>
+</div>
+<span class="font-label-sm text-[10px] bg-white/20 px-1.5 py-0.2 rounded font-semibold">Fastest Arrival</span>
+</div>
+<div class="p-3.5">
+<!-- Artisan Profile Header -->
+<div class="flex items-start gap-3">
+<div class="relative shrink-0">
+<img class="w-13 h-13 rounded-full object-cover border-2 border-primary/20 w-[52px] h-[52px]" data-alt="A clean professional studio portrait of an experienced Nigerian male artisan plumber in his late thirties wearing a crisp navy work uniform with a warm confident friendly expression against a clean bright studio backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ7RkepHC2BQe6vh7-3vWshdHlgmzc9aLzFv7LeFSXhwoR5oqcQYgwmOmVLDjlFFOT81z49ngsuvQKfokBitHe9vC39WOQoefV2Hefkci9j-ptvkOU8WXXrCQfOb_NHfoiCpVHT6V6zTzxruQGnkmRZj_EhDIYWgCifwmCE1CuxcgXvTD2yo9ZFwkjLy7zwAhJXMO_amLxOAjOu26bWj-Jk4PcpmVGAMqPP7_qmno"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-surface-container-lowest" title="Online now"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h4 class="font-headline-sm text-base font-bold text-on-surface truncate">Osaze Ighodaro</h4>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="inline-flex items-center gap-0.5 font-label-md text-xs font-bold text-amber-600">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.9
+                </span>
+<span class="text-tertiary text-xs">• 38 jobs in GRA Axis</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[10px] font-label-md text-primary font-semibold mt-1 bg-primary/10 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px]">verified_user</span>
+                Admin-Reviewed Artisan
+              </span>
+</div>
+</div>
+<!-- Total & Time Strip -->
+<div class="mt-3.5 bg-surface-container-low rounded-xl p-3 flex items-center justify-between border border-outline-variant/30">
+<div>
+<span class="font-body-sm text-[11px] text-tertiary block">Total Quote</span>
+<span class="font-headline-lg-mobile text-xl font-bold text-on-surface tracking-tight">₦30,000</span>
+</div>
+<div class="text-right">
+<span class="font-body-sm text-[11px] text-tertiary block">Arrival Window</span>
+<div class="flex items-center gap-1 justify-end font-label-md text-xs font-bold text-primary">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+                Thu, 9:30 AM
+              </div>
+<span class="text-[10px] text-tertiary block mt-0.5">Est. 2 - 3 hrs</span>
+</div>
+</div>
+<!-- Itemized Breakdown Accordion Style -->
+<div class="mt-3 bg-surface rounded-lg p-2.5 border border-outline-variant/30 space-y-1.5">
+<div class="flex justify-between text-xs">
+<span class="text-tertiary font-body-sm">Labour Fee</span>
+<span class="font-semibold text-on-surface">₦17,000</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-tertiary font-body-sm">Materials (PVC trap &amp; silicone seal)</span>
+<span class="font-semibold text-on-surface">₦13,000</span>
+</div>
+<!-- Escrow Milestones -->
+<div class="pt-2 border-t border-outline-variant/30 grid grid-cols-2 gap-2 text-[11px]">
+<div class="bg-surface-container-lowest p-1.5 rounded border border-outline-variant/20">
+<span class="text-tertiary block text-[10px]">Stage 1 (Deposit)</span>
+<span class="font-bold text-on-surface">₦10,000</span>
+</div>
+<div class="bg-surface-container-lowest p-1.5 rounded border border-outline-variant/20">
+<span class="text-tertiary block text-[10px]">Stage 2 (Balance)</span>
+<span class="font-bold text-on-surface">₦20,000</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-3.5 space-y-2">
+<button class="w-full h-12 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-sm rounded-xl font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all whitespace-nowrap active:scale-[0.99]" type="button">
+<span>Accept Osaze's Quote (₦30,000)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="h-11 border border-outline text-on-surface hover:bg-surface-container font-label-md text-xs rounded-xl font-semibold flex items-center justify-center gap-1 transition-colors whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+                View Details (S20)
+              </button>
+<button class="h-11 border border-primary/40 text-primary hover:bg-primary/5 font-label-md text-xs rounded-xl font-semibold flex items-center justify-center gap-1 transition-colors whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+                Chat with Osaze
+              </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Victor E. Edosa -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-xs overflow-hidden">
+<div class="p-3.5">
+<div class="flex items-start gap-3">
+<div class="relative shrink-0">
+<img class="w-12 h-12 rounded-full object-cover border border-outline-variant/50" data-alt="A professional headshot portrait of a dedicated Nigerian craftsman plumber in his early forties with tidy short hair and a focused respectful smile wearing a grey workshop polo shirt in bright daylight setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBXcP_NH6iDI3bzTQ3epwfqpUqAi6g6kfKwTl0NqBLIvYF568G2Aaied623DnVNK4g20rkZUBGYWNgi78a-TRohcIiw-cdvRER1JAXxmhlZHiTuOZ6sGrGfAHSxyFzvQ9qEc5olhalPG2Ko8InI9RcwKLB91NPs6OQW7pAL0vGqs86xZveojF-oEA0lhRSilSdiO9MBEVKegvso2WAw0LQxlKg0zeDZ4JvMe5FsnU"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-headline-sm text-base font-bold text-on-surface truncate">Victor E. Edosa</h4>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="inline-flex items-center gap-0.5 font-label-md text-xs font-bold text-amber-600">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.85
+                </span>
+<span class="text-tertiary text-xs">• 29 jobs completed</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[10px] font-label-md text-secondary font-medium mt-1 bg-secondary-fixed/40 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px]">verified_user</span>
+                Admin-Reviewed
+              </span>
+</div>
+</div>
+<!-- Total & Time Strip -->
+<div class="mt-3 bg-surface-container-low rounded-xl p-3 flex items-center justify-between border border-outline-variant/30">
+<div>
+<span class="font-body-sm text-[11px] text-tertiary block">Total Quote</span>
+<span class="font-headline-lg-mobile text-lg font-bold text-on-surface tracking-tight">₦32,500</span>
+</div>
+<div class="text-right">
+<span class="font-body-sm text-[11px] text-tertiary block">Arrival</span>
+<div class="flex items-center gap-1 justify-end font-label-md text-xs font-semibold text-on-surface">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+                Thu, 11:00 AM
+              </div>
+</div>
+</div>
+<!-- Quick breakdown pill -->
+<div class="mt-2.5 px-2 py-1.5 bg-surface rounded-lg text-[11px] text-tertiary flex justify-between border border-outline-variant/20">
+<span>Labour: ₦18,500 | Materials: ₦14,000</span>
+<span class="font-semibold text-on-surface">Deposit: ₦12,500</span>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-2">
+<button class="h-11 bg-primary text-on-primary hover:bg-primary-container font-label-md text-xs rounded-xl font-bold flex items-center justify-center transition-colors whitespace-nowrap" type="button">
+              Accept (₦32,500)
+            </button>
+<button class="h-11 border border-outline text-on-surface hover:bg-surface-container font-label-md text-xs rounded-xl font-semibold flex items-center justify-center transition-colors whitespace-nowrap" type="button">
+              View Quote (S20)
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 3: Monday Agho -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-xs overflow-hidden">
+<div class="p-3.5">
+<div class="flex items-start gap-3">
+<div class="relative shrink-0">
+<img class="w-12 h-12 rounded-full object-cover border border-outline-variant/50" data-alt="A clear portrait photograph of a young skilled Nigerian male pipe technician wearing a collared blue technician shirt with tools visible in the subtle blurred background under natural warm outdoor shade." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq5ECBkz4dwtAiywtPuUKtSPLtoDnzSs2In9UfhMgzAfKlqEW_W7Z6H3Pb5H3PmKHHTPWXwuu08Ktb8a_Yj4jQEPzbfoDxKSYJHzMQvJQjOutkOcqw4UvRcv0NsFRNi0RSBS4gyQSKg34M61BdNkXgAjPcYnNj286xXZl4BkZWKP6rzE2p7uq6WjHDTBxTv04DlwvprTWFyCDfwctZRZcFdT5W4BvfS8nCyc94wO8"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-base font-bold text-on-surface truncate">Monday Agho</h4>
+<span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Lowest Price</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="inline-flex items-center gap-0.5 font-label-md text-xs font-bold text-amber-600">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.8
+                </span>
+<span class="text-tertiary text-xs">• 19 jobs</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[10px] font-label-md text-secondary font-medium mt-1 bg-secondary-fixed/40 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px]">verified_user</span>
+                Admin-Reviewed
+              </span>
+</div>
+</div>
+<!-- Total & Time Strip -->
+<div class="mt-3 bg-surface-container-low rounded-xl p-3 flex items-center justify-between border border-outline-variant/30">
+<div>
+<span class="font-body-sm text-[11px] text-tertiary block">Total Quote</span>
+<span class="font-headline-lg-mobile text-lg font-bold text-on-surface tracking-tight">₦28,000</span>
+</div>
+<div class="text-right">
+<span class="font-body-sm text-[11px] text-tertiary block">Arrival</span>
+<div class="flex items-center gap-1 justify-end font-label-md text-xs font-semibold text-on-surface">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+                Thu, 10:00 AM
+              </div>
+</div>
+</div>
+<!-- Quick breakdown pill -->
+<div class="mt-2.5 px-2 py-1.5 bg-surface rounded-lg text-[11px] text-tertiary flex justify-between border border-outline-variant/20">
+<span>Labour: ₦16,000 | Materials: ₦12,000</span>
+<span class="font-semibold text-on-surface">Deposit: ₦10,000</span>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-2">
+<button class="h-11 bg-primary text-on-primary hover:bg-primary-container font-label-md text-xs rounded-xl font-bold flex items-center justify-center transition-colors whitespace-nowrap" type="button">
+              Accept (₦28,000)
+            </button>
+<button class="h-11 border border-outline text-on-surface hover:bg-surface-container font-label-md text-xs rounded-xl font-semibold flex items-center justify-center transition-colors whitespace-nowrap" type="button">
+              View Quote (S20)
+            </button>
+</div>
+</div>
+</article>
+<!-- Quick Comparison Matrix Accordion -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-3.5 shadow-xs">
+<details class="group" open="">
+<summary class="flex items-center justify-between cursor-pointer list-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">compare</span>
+<h3 class="font-headline-sm text-sm font-bold text-on-surface">Quick Comparison Matrix</h3>
+</div>
+<span class="material-symbols-outlined text-tertiary transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-3 overflow-x-auto pt-2 border-t border-outline-variant/30">
+<table class="w-full text-[11px] text-left border-collapse">
+<thead>
+<tr class="text-tertiary border-b border-outline-variant/30">
+<th class="py-1.5 font-medium pr-1">Factor</th>
+<th class="py-1.5 px-1 font-bold text-primary">Osaze</th>
+<th class="py-1.5 px-1 font-medium">Victor</th>
+<th class="py-1.5 pl-1 font-medium">Monday</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 font-body-sm">
+<tr>
+<td class="py-2 text-tertiary pr-1 font-medium">Labour</td>
+<td class="py-2 px-1 font-bold text-on-surface">₦17,000</td>
+<td class="py-2 px-1 text-on-surface">₦18,500</td>
+<td class="py-2 pl-1 text-on-surface">₦16,000</td>
+</tr>
+<tr>
+<td class="py-2 text-tertiary pr-1 font-medium">Materials</td>
+<td class="py-2 px-1 font-bold text-primary">HD PVC trap</td>
+<td class="py-2 px-1 text-on-surface">Standard</td>
+<td class="py-2 pl-1 text-on-surface">Basic kit</td>
+</tr>
+<tr>
+<td class="py-2 text-tertiary pr-1 font-medium">Arrival</td>
+<td class="py-2 px-1 font-bold text-emerald-700">9:30 AM</td>
+<td class="py-2 px-1 text-on-surface">11:00 AM</td>
+<td class="py-2 pl-1 text-on-surface">10:00 AM</td>
+</tr>
+<tr>
+<td class="py-2 text-tertiary pr-1 font-medium">Deposit Split</td>
+<td class="py-2 px-1 font-bold text-on-surface">₦10k / ₦20k</td>
+<td class="py-2 px-1 text-on-surface">₦12.5k / ₦20k</td>
+<td class="py-2 pl-1 text-on-surface">₦10k / ₦18k</td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+</section>
+<!-- Security Microcopy & Help -->
+<div class="px-2 py-2 text-center space-y-1">
+<p class="font-body-sm text-[11px] text-tertiary">
+          Need assistance selecting? <a class="text-primary font-bold underline" href="#">Talk to SabiWork Support</a>
+</p>
+<p class="text-[10px] text-tertiary flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-emerald-600">verified</span>
+          All artisans backed by SabiWork Guarantee
+        </p>
+</div>
+</div>
+<!-- Fixed Bottom Navigation (Shared Component compliant) -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] z-40 bg-slate-50 border-t border-[#e7eff3] shadow-lg">
+<div class="flex gap-2 px-4 pb-3 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#4e7d97]" href="#">
+<div class="text-[#4e7d97] flex h-8 items-center justify-center" data-icon="Wrench" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z"></path>
+</svg>
+</div>
+<p class="text-[#4e7d97] text-xs font-medium leading-normal tracking-[0.015em]">Jobs</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-[#0e161b]" href="#">
+<div class="text-[#0e161b] flex h-8 items-center justify-center" data-icon="FileText" data-size="24px" data-weight="fill">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,176H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm-8-56V44l44,44Z"></path>
+</svg>
+</div>
+<p class="text-[#0e161b] text-xs font-medium leading-normal tracking-[0.015em]">Quotes</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#4e7d97]" href="#">
+<div class="text-[#4e7d97] flex h-8 items-center justify-center" data-icon="ChatDots" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M216,48H40A16,16,0,0,0,24,64V224a15.85,15.85,0,0,0,9.24,14.5A16.13,16.13,0,0,0,40,240a15.89,15.89,0,0,0,10.25-3.78.69.69,0,0,0,.13-.11L82.5,208H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48ZM40,224h0ZM216,192H82.5a16,16,0,0,0-10.3,3.75l-.12.11L40,224V64H216ZM116,128a12,12,0,1,1,12,12A12,12,0,0,1,116,128Zm-44,0a12,12,0,1,1,12,12A12,12,0,0,1,72,128Zm88,0a12,12,0,1,1,12,12A12,12,0,0,1,160,128Z"></path>
+</svg>
+</div>
+<p class="text-[#4e7d97] text-xs font-medium leading-normal tracking-[0.015em]">Messages</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#4e7d97]" href="#">
+<div class="text-[#4e7d97] flex h-8 items-center justify-center" data-icon="User" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
+</svg>
+</div>
+<p class="text-[#4e7d97] text-xs font-medium leading-normal tracking-[0.015em]">Profile</p>
+</a>
+</div>
+</footer>
+</main>
+</body></html>

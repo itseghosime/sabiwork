@@ -23,7 +23,7 @@ Use the existing app: `npm ci`, then `npm run dev`. No authentication credential
 
 ## How the code works
 
-`validation.ts` checks fields without trimming passwords. `demo-adapter.ts` provides typed, cancellable local preview results. `account-form.tsx` renders signup/login/recovery variants and preserves input after failures. `verification-form.tsx` owns resend/verification feedback and its local countdown. The route group supplies the shared public navigation, brand and demo notice; its prefixed CSS keeps the homepage unchanged. Inputs use labels/error descriptions; invalid submission focuses the first invalid field. Buttons remain at least 44px high, password controls 44px square. Forms come first on mobile/tablet.
+`validation.ts` checks fields without trimming passwords. `demo-adapter.ts` provides typed, cancellable local preview results. `account-form.tsx` renders signup/login/recovery variants and preserves input after failures. `/verify-email` is a static notice that email verification is not used in this prototype. The route group supplies the shared public navigation, brand and demo notice; its prefixed CSS keeps the homepage unchanged. Inputs use labels/error descriptions; invalid submission focuses the first invalid field. Buttons remain at least 44px high, password controls 44px square. Forms come first on mobile/tablet.
 
 The five server route wrappers provide metadata; reset/verification await Next.js `searchParams` and pass only a bounded token string. There is no custom API, database, cookie, session or email send. Success text explicitly describes a preview. Artisan registration belongs to Sophia’s S08. The customer form shows an availability notice until that route exists, rather than linking to a missing page.
 

@@ -1,10 +1,17 @@
-import { WorkspaceShell } from "@/components/workspace-shell";
+import { ArtisanShell } from "@/components/artisan-shell";
+import { requireMarketplacePage } from "@/lib/server/authorization";
 
-export default function ArtisanWorkspaceLayout({
+export const dynamic = "force-dynamic";
+
+export default async function ArtisanWorkspaceLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <WorkspaceShell role="artisan">{children}</WorkspaceShell>;
+  const user = await requireMarketplacePage();
+  return (
+    <ArtisanShell displayName={user.name ?? user.email ?? ""}>
+      {children}
+    </ArtisanShell>
+  );
 }
-

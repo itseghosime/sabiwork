@@ -1,10 +1,17 @@
-import { WorkspaceShell } from "@/components/workspace-shell";
+import { CustomerShell } from "@/features/customer-workspace/customer-shell";
+import { requireMarketplacePage } from "@/lib/server/authorization";
 
-export default function CustomerWorkspaceLayout({
+export const dynamic = "force-dynamic";
+
+export default async function CustomerWorkspaceLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <WorkspaceShell role="customer">{children}</WorkspaceShell>;
+  const user = await requireMarketplacePage();
+  return (
+    <CustomerShell displayName={user.name ?? user.email ?? ""}>
+      {children}
+    </CustomerShell>
+  );
 }
-

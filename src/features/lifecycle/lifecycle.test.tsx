@@ -22,25 +22,27 @@ afterEach(() => {
 });
 
 describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
-  it("renders S26 Payment History with escrow status pills", () => {
+  it("renders S26 sample Payment History without claiming escrow records", () => {
     render(<PaymentHistoryScreen initialTransactions={defaultTransactions} />);
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Payment History & Transaction Details/i,
+        name: /Sample Payment History/i,
       }),
     ).toBeDefined();
-    expect(screen.getByText(/TXN-8819/i)).toBeDefined();
-    expect(screen.getByText(/Escrow Locked/i)).toBeDefined();
+    expect(screen.getByText(new RegExp(defaultTransactions[0]!.id, "i"))).toBeDefined();
+    expect(screen.getAllByText(/Sample payment preview · not paid/i)).toHaveLength(
+      defaultTransactions.length,
+    );
   });
 
-  it("renders S27 My Jobs list with active jobs and milestones", () => {
+  it("renders S27 sample job statuses and milestones", () => {
     render(<MyJobsListScreen initialJobs={defaultActiveJobs} />);
     expect(
       screen.getByRole("heading", { level: 1, name: /My Jobs & Active Engagements/i }),
     ).toBeDefined();
-    expect(screen.getByText(/PPR Water Pipe Burst/i)).toBeDefined();
-    expect(screen.getByText(/Work in Progress/i)).toBeDefined();
+    expect(screen.getByText(defaultActiveJobs[0]!.title)).toBeDefined();
+    expect(screen.getByText(/Sample in-progress state/i)).toBeDefined();
   });
 
   it("renders S28 Shared Job Detail & Progress tracker with audit log", () => {
@@ -48,11 +50,11 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /PPR Water Pipe Burst & Overhead Tank Balancing in GRA/i,
+        name: new RegExp(defaultActiveJobs[0]!.title, "i"),
       }),
     ).toBeDefined();
-    expect(screen.getByText(/Live Work Verification Log/i)).toBeDefined();
-    expect(screen.getByText(/Acoustic Leak Tracing Complete/i)).toBeDefined();
+    expect(screen.getByText(/Sample Work Progress Log/i)).toBeDefined();
+    expect(screen.getByText(/Sample milestone 1 status/i)).toBeDefined();
   });
 
   it("renders S29 Artisan Add Progress Update form and posts technical update", async () => {
@@ -62,12 +64,12 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     ).toBeDefined();
 
     const publishBtn = screen.getByRole("button", {
-      name: /Publish Progress Update/i,
+      name: /Preview Progress Update/i,
     });
     fireEvent.click(publishBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Work progress logged/i)).toBeDefined();
+      expect(screen.getByText(/Progress update posted/i)).toBeDefined();
     });
   });
 
@@ -81,12 +83,12 @@ describe("Job Lifecycle & Work Progress (S26, S27, S28, S29, S30)", () => {
     ).toBeDefined();
 
     const signoffBtn = screen.getByRole("button", {
-      name: /Authorize Escrow Release & Review/i,
+      name: /Preview Sign-off & Review/i,
     });
     fireEvent.click(signoffBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/signed off successfully/i)).toBeDefined();
+      expect(screen.getByText(/Job marked as completed/i)).toBeDefined();
     });
   });
 });

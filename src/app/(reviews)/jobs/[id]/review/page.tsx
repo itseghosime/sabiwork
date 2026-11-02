@@ -1,8 +1,11 @@
 import { CustomerShell } from "@/components/workspace-shell";
-import { ReviewScreen } from "@/features/reviews/screens";
+import { JobReviewScreen } from "@/features/hire-workspace/screens";
 
 export default async function ReviewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  return <CustomerShell><ReviewScreen jobId={id} /></CustomerShell>;
+  return (
+    <CustomerShell>
+      <JobReviewScreen jobId={id} />
+    </CustomerShell>
+  );
 }
-

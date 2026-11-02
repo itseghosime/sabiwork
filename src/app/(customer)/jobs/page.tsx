@@ -1,7 +1,7 @@
-import { MyJobsListScreen } from "@/features/lifecycle/screens";
-import { defaultActiveJobs } from "@/features/lifecycle/service";
+import { MyBookingsScreen } from "@/features/customer-workspace/screens";
 
-export default function MyJobsPage() {
-  return <MyJobsListScreen initialJobs={defaultActiveJobs} />;
+export const dynamic = "force-dynamic";
+
+export default function JobsPage() {
+  return <MyBookingsScreen />;
 }
-

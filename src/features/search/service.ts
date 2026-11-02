@@ -65,7 +65,10 @@ export function searchArtisans(
     return (
       (!filters.category ||
         person.skills.some((skill) => skill === filters.category)) &&
-      (!filters.area || person.area === filters.area) &&
+      (!filters.area ||
+        person.area
+          .split(",")
+          .some((value) => value.trim() === filters.area)) &&
       person.rating >= filters.rating &&
       (!query || text.includes(query))
     );
@@ -91,13 +94,6 @@ export function searchArtisans(
     page,
     pages,
   };
-}
-// This is the single replacement point for the future server search/database adapter.
-// Failures deliberately propagate to the route error boundary rather than look empty.
-export async function listArtisans(
-  filters: SearchFilters,
-): Promise<SearchResult> {
-  return searchArtisans(filters);
 }
 export function searchHref(
   filters: SearchFilters,

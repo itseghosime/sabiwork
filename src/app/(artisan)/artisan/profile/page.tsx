@@ -1,6 +1,5 @@
-import { ArtisanProfileEditorScreen } from "@/features/profiles/screens";
-import { defaultArtisan } from "@/features/profiles/service";
+import { ArtisanProfileEditorScreen } from "@/features/artisan-workspace/screens";
 
 export default function ArtisanProfilePage() {
-  return <ArtisanProfileEditorScreen initialProfile={defaultArtisan} />;
+  return <ArtisanProfileEditorScreen />;
 }

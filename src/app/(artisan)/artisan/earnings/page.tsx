@@ -1,8 +1,5 @@
-import { ArtisanEarningsLedgerScreen } from "@/features/artisan-ops/screens";
-import { artisanOperationsDemoService } from "@/features/artisan-ops/service";
+import { ArtisanEarningsScreen } from "@/features/artisan-workspace/screens";
 
-export default async function ArtisanEarningsPage() {
-  const ledger = await artisanOperationsDemoService.getEarningsLedger();
-  return <ArtisanEarningsLedgerScreen initialLedger={ledger} />;
+export default function ArtisanEarningsPage() {
+  return <ArtisanEarningsScreen />;
 }
-

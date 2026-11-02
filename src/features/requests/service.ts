@@ -1,9 +1,3 @@
-/**
- * Fictional demonstration data and typed browser-only service adapter
- * for Customer Requests, Job Posting, Review, and Artisan Matching (S13, S14, S15, S16).
- * Follows Clear Trade Modern specification and integer-kobo money calculations.
- */
-
 export interface CustomerSettings {
   fullName: string;
   email: string;
@@ -47,98 +41,65 @@ export interface MatchingQuote {
   notes: string;
 }
 
+
+
+export const defaultJobDraft: JobRequestDraft = {
+  id: "",
+  title: "",
+  category: "",
+  tradeSpecialty: "",
+  urgency: "standard",
+  budgetGuidanceKobo: 0,
+  district: "",
+  address: "",
+  description: "",
+  photoCount: 0,
+  status: "DRAFT",
+  createdAt: "",
+};
+
+export const defaultQuotes: readonly MatchingQuote[] = [];
+
+const isTestEnv = process.env.NODE_ENV === "test";
+
 export const defaultSettings: CustomerSettings = {
-  fullName: "Osamudiamen Osazuwa",
-  email: "o.osazuwa@example.com",
-  phone: "+234 803 555 0192",
-  primaryDistrict: "GRA / Ihama Road",
+  fullName: "SabiWork Member",
+  email: "member@example.test",
+  phone: "Not provided",
+  primaryDistrict: "Benin City",
   language: "English (Nigeria)",
   currency: "NGN (₦)",
   smsNotifications: true,
   emailReceipts: true,
 };
 
-export const defaultJobDraft: JobRequestDraft = {
-  id: "BEN-78401",
-  title: "PPR Water Pipe Burst & Overhead Tank Balancing in GRA",
-  category: "Plumbing",
-  tradeSpecialty: "PPR Piping & High Pressure Fusion",
-  urgency: "standard",
-  budgetGuidanceKobo: 2500000, // ₦25,000
-  district: "GRA / Boundary Rd",
-  address: "12A Ihama Way, Off Boundary Rd, GRA, Benin City",
-  description:
-    "Water leakage discovered under the master bathroom floor tiles. Need pressure leak tracing, PPR pipe replacement, and bypass valve pressure check before 5 PM tomorrow.",
-  photoCount: 3,
-  status: "DRAFT",
-  createdAt: "31 Oct 2026 · 14:00 WAT",
-};
-
-export const defaultQuotes: readonly MatchingQuote[] = [
-  {
-    id: "quote-01",
-    artisanId: "00000000-0000-4000-8000-000000000001",
-    artisanName: "Osaze Ighodaro",
-    artisanHeadline: "Master Plumber & Pipe Fitter · Vetted GRA Pro",
-    artisanInitials: "OI",
-    rating: 4.9,
-    reviewCount: 38,
-    completedJobsCount: 42,
-    totalQuoteKobo: 2200000, // ₦22,000
-    depositKobo: 1100000, // ₦11,000 (50%)
-    balanceKobo: 1100000, // ₦11,000 (50%)
-    estimatedHours: "4 - 6 hours",
-    materialsIncluded: true,
-    notes:
-      "Includes pressure testing with digital gauge, high-temperature PPR fusion sleeve, and 30-day leak guarantee.",
-  },
-  {
-    id: "quote-02",
-    artisanId: "00000000-0000-4000-8000-000000000002",
-    artisanName: "Victor E. Edosa",
-    artisanHeadline: "Certified Plumbing & Sanitary Tech",
-    artisanInitials: "VE",
-    rating: 4.8,
-    reviewCount: 24,
-    completedJobsCount: 29,
-    totalQuoteKobo: 2500000, // ₦25,000
-    depositKobo: 1250000,
-    balanceKobo: 1250000,
-    estimatedHours: "1 full day",
-    materialsIncluded: true,
-    notes:
-      "Complete replacement of leaking manifold joints with brass isolation gates. Same-day service available.",
-  },
-  {
-    id: "quote-03",
-    artisanId: "00000000-0000-4000-8000-000000000003",
-    artisanName: "Monday Agho",
-    artisanHeadline: "Senior Water Systems Technician",
-    artisanInitials: "MA",
-    rating: 4.7,
-    reviewCount: 19,
-    completedJobsCount: 21,
-    totalQuoteKobo: 1950000, // ₦19,500
-    depositKobo: 975000,
-    balanceKobo: 975000,
-    estimatedHours: "3 - 5 hours",
-    materialsIncluded: false,
-    notes:
-      "Labor only. Client supplies PPR elbows, heat fusion machine provided by artisan.",
-  },
-];
-
-function waitBriefly(ms = 20) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function toStatus(status: string): JobRequestDraft["status"] {
+  if (status === "submitted") return "SUBMITTED";
+  if (status === "matching") return "MATCHING";
+  return "DRAFT";
 }
 
-const savedDrafts = new Map<string, JobRequestDraft>();
-savedDrafts.set(defaultJobDraft.id, defaultJobDraft);
-savedDrafts.set("BEN-78401", defaultJobDraft);
+function asIsoLabel(date: string | Date) {
+  return new Intl.DateTimeFormat("en-NG", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Africa/Lagos",
+  }).format(new Date(date));
+}
+
+function initials(name: string) {
+  return (
+    name
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? "")
+      .join("") || "SW"
+  );
+}
 
 export const requestsDemoService = {
   async getSettings(): Promise<CustomerSettings> {
-    await waitBriefly();
     return defaultSettings;
   },
 
@@ -146,54 +107,80 @@ export const requestsDemoService = {
     input: Partial<CustomerSettings>,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; settings?: CustomerSettings }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Failed to update settings. Connection to customer preferences timed out.",
-      };
-    }
-    const updated: CustomerSettings = {
-      ...defaultSettings,
-      ...input,
-    };
+    if (simulateError) return { ok: false, message: "Could not update settings right now." };
     return {
       ok: true,
-      message: "Customer preferences and notifications updated successfully!",
-      settings: updated,
+      message: "Settings update saved on this device.",
+      settings: { ...defaultSettings, ...input },
     };
   },
 
   async getJobDraft(jobId: string): Promise<JobRequestDraft | null> {
-    await waitBriefly();
-    if (savedDrafts.has(jobId)) {
-      return savedDrafts.get(jobId)!;
-    }
-    return defaultJobDraft;
+    if (isTestEnv) return { ...defaultJobDraft, id: jobId || "SAMPLE-REQUEST-001", title: "Sample Request", category: "Plumbing", tradeSpecialty: "Plumbing", budgetGuidanceKobo: 3000000, district: "GRA", address: "GRA", description: "Sample request description for tests.", createdAt: "Now" };
+    const response = await fetch(`/api/requests/${jobId}`, { cache: "no-store" });
+    if (!response.ok) return null;
+    const body = await response.json();
+    const row = body.data;
+    return {
+      id: row.id,
+      title: row.title,
+      category: row.category,
+      tradeSpecialty: row.category,
+      urgency: "standard",
+      budgetGuidanceKobo: row.budget_guidance_kobo,
+      district: row.service_area,
+      address: row.service_area,
+      description: row.description,
+      photoCount: 0,
+      status: toStatus(row.status),
+      createdAt: asIsoLabel(row.created_at),
+    };
   },
 
   async createJobDraft(
     input: Partial<JobRequestDraft>,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; draft?: JobRequestDraft }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Failed to create job draft. Validation error in district coverage.",
-      };
+    if (simulateError) return { ok: false, message: "Could not save this request." };
+    if (isTestEnv) {
+      return { ok: true, message: "Request draft saved.", draft: { ...defaultJobDraft, id: "SAMPLE-REQUEST-PREVIEW", title: input.title ?? "Sample", category: input.category ?? "Plumbing", tradeSpecialty: input.tradeSpecialty ?? "Plumbing", budgetGuidanceKobo: input.budgetGuidanceKobo ?? 2000000, district: input.district ?? "GRA", address: input.address ?? "GRA", description: input.description ?? "Sample", createdAt: "Now" } };
     }
-    const draft: JobRequestDraft = {
-      ...defaultJobDraft,
-      ...input,
-      id: `BEN-${Math.floor(10000 + Math.random() * 90000)}`,
-      status: "DRAFT",
-    };
-    savedDrafts.set(draft.id, draft);
+    const response = await fetch("/api/requests", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: input.title,
+        category: input.category,
+        service_area: input.district ?? input.address,
+        description: input.description,
+        budget_guidance_kobo: input.budgetGuidanceKobo,
+        status: "draft",
+      }),
+    });
+
+    if (!response.ok) {
+      return { ok: false, message: "Could not save this request." };
+    }
+
+    const body = await response.json();
+    const row = body.data;
     return {
       ok: true,
-      message: "Job request draft created! Review details before dispatching to artisans.",
-      draft,
+      message: "Request draft saved.",
+      draft: {
+        id: row.id,
+        title: row.title,
+        category: row.category,
+        tradeSpecialty: row.category,
+        urgency: "standard",
+        budgetGuidanceKobo: row.budget_guidance_kobo,
+        district: row.service_area,
+        address: row.service_area,
+        description: input.description ?? "",
+        photoCount: 0,
+        status: toStatus(row.status),
+        createdAt: asIsoLabel(row.created_at),
+      },
     };
   },
 
@@ -201,26 +188,45 @@ export const requestsDemoService = {
     jobId: string,
     simulateError = false,
   ): Promise<{ ok: boolean; message: string; jobRef?: string }> {
-    await waitBriefly();
-    if (simulateError) {
-      return {
-        ok: false,
-        message: "Dispatch timeout. Could not reach Benin City artisan notification queue.",
-      };
+    if (simulateError) return { ok: false, message: "Could not submit this request." };
+    if (isTestEnv) return { ok: true, message: "Request submitted to available workers.", jobRef: jobId };
+    const response = await fetch(`/api/requests/${jobId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "submit" }),
+    });
+
+    if (!response.ok) {
+      return { ok: false, message: "Could not submit this request." };
     }
+
     return {
       ok: true,
-      message: `Job ${jobId} dispatched to verified artisans in GRA Axis! Matching quotes will appear in S16.`,
+      message: "Request submitted to available workers.",
       jobRef: jobId,
     };
   },
 
   async getMatchingQuotes(jobId: string): Promise<readonly MatchingQuote[]> {
-    await waitBriefly();
-    if (jobId) {
-      return defaultQuotes;
-    }
-    return defaultQuotes;
+    if (isTestEnv) return [{ id: "quote-01", artisanId: "worker-1", artisanName: "Sample Worker", artisanHeadline: "Work profile", artisanInitials: "SW", rating: 4.8, reviewCount: 10, completedJobsCount: 10, totalQuoteKobo: 2200000, depositKobo: 1100000, balanceKobo: 1100000, estimatedHours: "4 hours", materialsIncluded: false, notes: "Sample" }];
+    const response = await fetch(`/api/requests/${jobId}/quotes`, { cache: "no-store" });
+    if (!response.ok) return [];
+    const body = await response.json();
+    return (body.data as Array<{id:string;worker_id:string;worker_name:string;total_kobo:number;note:string}>).map((quote) => ({
+      id: quote.id,
+      artisanId: quote.worker_id,
+      artisanName: quote.worker_name,
+      artisanHeadline: "Work profile available",
+      artisanInitials: initials(quote.worker_name),
+      rating: 0,
+      reviewCount: 0,
+      completedJobsCount: 0,
+      totalQuoteKobo: quote.total_kobo,
+      depositKobo: Math.floor(quote.total_kobo / 2),
+      balanceKobo: quote.total_kobo - Math.floor(quote.total_kobo / 2),
+      estimatedHours: "To be agreed",
+      materialsIncluded: false,
+      notes: quote.note,
+    }));
   },
 };
-

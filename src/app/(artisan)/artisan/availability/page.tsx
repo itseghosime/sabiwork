@@ -1,8 +1,5 @@
-import { ArtisanAvailabilityScreen } from "@/features/artisan-ops/screens";
-import { artisanOperationsDemoService } from "@/features/artisan-ops/service";
+import { ArtisanAvailabilityScreen } from "@/features/artisan-workspace/screens";
 
-export default async function ArtisanAvailabilityPage() {
-  const schedule = await artisanOperationsDemoService.getSchedule();
-  return <ArtisanAvailabilityScreen initialSchedule={schedule} />;
+export default function ArtisanAvailabilityPage() {
+  return <ArtisanAvailabilityScreen />;
 }
-

@@ -23,7 +23,7 @@ export function RecoveryScreen({ forbidden = false }: { forbidden?: boolean }) {
         <Link href="/" className="button button-primary">
           <Icon name="home" size={18} /> Back to home
         </Link>
-        <Link href="/artisans" className="button button-outline">
+        <Link href="/artisans" className="button button-primary">
           Find an artisan <Icon name="arrow" size={18} />
         </Link>
       </div>

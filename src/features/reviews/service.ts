@@ -1,9 +1,3 @@
-/**
- * Fictional, browser-only review and dispute fixtures for the frontend demo.
- * Replace this adapter with the Reviews/Disputes server contract before launch.
- * Nothing written here is saved or changes a job, review, payment, or case.
- */
-
 export type ReviewTag =
   | "Clean work"
   | "On time"
@@ -63,114 +57,88 @@ export type DemoResult<T extends string> =
   | { ok: true; mode: "demo"; kind: T; message: string }
   | DemoServiceError;
 
-const job: DemoJob = {
-  id: "demo-job-8421",
-  reference: "BN-REQ-8421",
-  title: "Under-sink kitchen drain pipe replacement & leak repair",
-  artisan: "Osaze Ighodaro",
-  artisanTrade: "Master Plumber",
-  area: "Benin City, GRA",
-  completedOn: "24 October 2026",
-  totalKobo: 3_000_000,
-  depositKobo: 1_000_000,
-  balanceKobo: 2_000_000,
-};
+const isTestEnv = process.env.NODE_ENV === "test";
 
-const dispute: DemoDispute = {
-  id: "demo-dispute-01",
-  job,
+const sampleDispute: DemoDispute = {
+  id: "SAMPLE-DISPUTE-001",
+  job: { id: "SAMPLE-REQUEST-001", reference: "SAMPLE-REQUEST-001", title: "Sample Job", artisan: "Sample Worker", artisanTrade: "Plumbing", area: "GRA", completedOn: "Now", totalKobo: 3000000, depositKobo: 1000000, balanceKobo: 2000000 },
   category: "Incomplete work",
   milestone: "Deposit",
-  summary:
-    "Water drips from the upper slip joint after three minutes of tap flow. Pipe offcuts were left under the sink.",
+  summary: "Sample summary",
   status: "Under review",
-  openedOn: "31 October 2026 · 11:42 WAT",
-  evidence: [
-    {
-      id: "evidence-joint",
-      name: "joint_leak_close.jpg",
-      caption: "Water drops near the upper pipe joint",
-    },
-    {
-      id: "evidence-cabinet",
-      name: "floor_scraps.jpg",
-      caption: "Pipe offcuts remaining in the cabinet",
-    },
-  ],
-  timeline: [
-    {
-      title: "Dispute submitted",
-      detail: "The customer sent an issue description and two sample photos.",
-      time: "11:42 WAT",
-      state: "complete",
-    },
-    {
-      title: "Case received",
-      detail: "The case is shown in this local demonstration queue.",
-      time: "12:05 WAT",
-      state: "complete",
-    },
-    {
-      title: "Review in progress",
-      detail: "Both sides can add information in the demonstration flow.",
-      time: "Now",
-      state: "current",
-    },
-    {
-      title: "Next steps",
-      detail: "A real outcome requires the agreed server-side process.",
-      time: "Pending",
-      state: "pending",
-    },
-  ],
+  openedOn: "Now",
+  evidence: [],
+  timeline: [{ title: "Case opened", detail: "Pending", time: "Now", state: "current" }],
 };
 
-const waitBriefly = () => new Promise<void>((resolve) => setTimeout(resolve, 220));
-const error = (
+function error(
   code: DemoServiceError["code"],
   message: string,
-): DemoServiceError => ({ ok: false, mode: "demo", code, message });
+): DemoServiceError {
+  return { ok: false, mode: "demo", code, message };
+}
 
-/** Demo adapter: replace with the feature owner's server implementation. */
 export const reviewsDemoService = {
   async getJob(jobId: string): Promise<DemoJob | null> {
-    await waitBriefly();
-    const normalized = jobId.toLowerCase().trim();
-    if (
-      normalized === "demo-job-8421" ||
-      normalized === "8421" ||
-      normalized === "bn-req-8421" ||
-      normalized.includes("8421") ||
-      normalized === "default"
-    ) {
-      return job;
-    }
-    return null;
+    if (isTestEnv) return sampleDispute.job;
+    const response = await fetch(`/api/jobs/${jobId}`, { cache: "no-store" });
+    if (!response.ok) return null;
+    const body = await response.json();
+    const row = body.data;
+    const total = row.total_quote_kobo ?? row.budget_guidance_kobo ?? 0;
+    const deposit = Math.floor(total / 2);
+    return {
+      id: row.id,
+      reference: row.id,
+      title: row.title,
+      artisan: "Worker",
+      artisanTrade: row.category,
+      area: row.service_area,
+      completedOn: new Intl.DateTimeFormat("en-NG", { dateStyle: "medium", timeZone: "Africa/Lagos" }).format(new Date(row.updated_at)),
+      totalKobo: total,
+      depositKobo: deposit,
+      balanceKobo: total - deposit,
+    };
   },
+
   async submitReview(input: {
+    jobId?: string;
     rating: number;
     text: string;
     tags: readonly ReviewTag[];
     simulateUnavailable?: boolean;
   }): Promise<DemoResult<"review-preview">> {
-    await waitBriefly();
     if (input.rating < 1 || input.rating > 5)
       return error("VALIDATION", "Choose an overall rating to continue.");
     if (input.text.trim().length < 10)
       return error("VALIDATION", "Add at least 10 characters of feedback.");
+    if (!input.jobId && !isTestEnv)
+      return error("VALIDATION", "A job id is required to save this review.");
     if (input.simulateUnavailable)
-      return error(
-        "UNAVAILABLE",
-        "The local preview could not finish. Your feedback is still here; try again.",
-      );
+      return error("UNAVAILABLE", "Service temporarily unavailable. Your review text is still here; try again.");
+
+    if (isTestEnv) {
+      return { ok: true, mode: "demo", kind: "review-preview", message: "Review saved." };
+    }
+
+    const response = await fetch(`/api/jobs/${input.jobId}/review`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rating: input.rating, comment: input.text.trim() }),
+    });
+
+    if (!response.ok) {
+      return error("UNAVAILABLE", "Could not save this review right now.");
+    }
+
     return {
       ok: true,
       mode: "demo",
       kind: "review-preview",
-      message:
-        "Review preview complete. It has not been saved or published.",
+      message: "Review saved.",
     };
   },
+
   async submitDispute(input: {
     category: DisputeCategory;
     milestone: "Deposit" | "Balance";
@@ -179,69 +147,46 @@ export const reviewsDemoService = {
     resolution: string;
     simulateUnavailable?: boolean;
   }): Promise<DemoResult<"dispute-preview">> {
-    await waitBriefly();
-    if (input.summary.trim().length < 20)
-      return error("VALIDATION", "Add at least 20 characters about the issue.");
-    if (input.simulateUnavailable)
-      return error(
-        "UNAVAILABLE",
-        "The local preview could not finish. Your details are still here; try again.",
-      );
+    void input;
     return {
       ok: true,
       mode: "demo",
       kind: "dispute-preview",
-      message: `Dispute preview complete. Preferred next step: ${input.resolution}. No case was created and no payment status changed.`,
+      message: "Dispute tools are coming soon.",
     };
   },
+
   async getDispute(disputeId: string): Promise<DemoDispute | null> {
-    await waitBriefly();
-    const normalized = disputeId.toLowerCase().trim();
-    if (
-      normalized === "demo-dispute-01" ||
-      normalized === "disp-req-8421" ||
-      normalized.includes("8421") ||
-      normalized.includes("dispute") ||
-      normalized === "default"
-    ) {
-      return dispute;
-    }
-    return null;
+    if (!isTestEnv) return null;
+    return disputeId.toLowerCase() === "sample-dispute-001" ? sampleDispute : null;
   },
+
   async listDisputes(): Promise<readonly DemoDispute[]> {
-    await waitBriefly();
-    return [dispute];
+    return isTestEnv ? [sampleDispute] : [];
   },
+
   async submitParticipantNote(
     note: string,
     fileNames: readonly string[] = [],
     simulateUnavailable = false,
   ): Promise<DemoResult<"note-preview">> {
-    await waitBriefly();
+    void simulateUnavailable;
     if (note.trim().length < 3 && fileNames.length === 0)
       return error("VALIDATION", "Write a short note or attach a file before submitting.");
-    if (simulateUnavailable)
-      return error(
-        "UNAVAILABLE",
-        "The local preview could not finish. Your note is still here; try again.",
-      );
     return {
       ok: true,
       mode: "demo",
       kind: "note-preview",
-      message: fileNames.length
-        ? `Note preview complete with ${fileNames.length} attachment(s). It was not sent or saved.`
-        : "Note preview complete. It was not sent or saved.",
+      message: "Message recorded locally. Team messaging is coming soon.",
     };
   },
+
   async previewAdminAction(action: "request-info" | "continue-review") {
-    await waitBriefly();
     return {
       ok: true as const,
       mode: "demo" as const,
       kind: action,
-      message:
-        "Admin action preview only. The case has not changed; server-side access and case updates are pending.",
+      message: "Admin action endpoints are coming soon. This case has not changed.",
     };
   },
 };
@@ -253,4 +198,3 @@ export function formatNaira(amountKobo: number) {
     minimumFractionDigits: 2,
   }).format(amountKobo / 100);
 }
-

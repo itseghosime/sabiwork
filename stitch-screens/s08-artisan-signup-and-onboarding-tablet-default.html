@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClearTrade Artisan Portal - Onboarding</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#3f484e",
+            "on-tertiary": "#ffffff",
+            "inverse-primary": "#8aceff",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "surface": "#f9f9ff",
+            "on-secondary-fixed-variant": "#30476b",
+            "background": "#f9f9ff",
+            "surface-bright": "#f9f9ff",
+            "secondary-container": "#bbd3fe",
+            "secondary-fixed": "#d5e3ff",
+            "on-primary-fixed-variant": "#004b6f",
+            "on-secondary-fixed": "#001b3c",
+            "surface-variant": "#dce2f7",
+            "on-error-container": "#93000a",
+            "inverse-on-surface": "#edf0ff",
+            "inverse-surface": "#293040",
+            "tertiary-fixed-dim": "#bfc8ce",
+            "primary": "#006491",
+            "outline": "#6f7881",
+            "surface-dim": "#d3daef",
+            "on-secondary-container": "#435a7f",
+            "on-tertiary-fixed": "#141d22",
+            "secondary": "#485f84",
+            "on-tertiary-container": "#2e373d",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#001e2f",
+            "on-primary-container": "#003a56",
+            "on-surface": "#141b2b",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#3f4850",
+            "on-secondary": "#ffffff",
+            "surface-container-low": "#f1f3ff",
+            "surface-container-highest": "#dce2f7",
+            "surface-container": "#e9edff",
+            "primary-container": "#38a8e8",
+            "outline-variant": "#bec8d1",
+            "surface-tint": "#006491",
+            "secondary-fixed-dim": "#b0c8f2",
+            "on-background": "#141b2b",
+            "primary-fixed": "#c9e6ff",
+            "surface-container-high": "#e1e8fd",
+            "primary-fixed-dim": "#8aceff",
+            "tertiary-container": "#97a0a7",
+            "tertiary": "#576065",
+            "tertiary-fixed": "#dbe4eb"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.625rem",
+            "space-3xl": "3rem",
+            "space-xs": "0.5rem",
+            "margin": "2rem",
+            "space-2xl": "2rem",
+            "gutter-mobile": "0.75rem",
+            "space-xl": "1.5rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.25rem",
+            "space-2xs": "0.25rem",
+            "space-lg": "1.25rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Minimal Tablet Focused View Header (Hierarchy of Focus: Form Onboarding Flow) -->
+<header class="w-full bg-surface-container-lowest border-b border-surface-variant sticky top-0 z-30 px-6 py-3.5">
+<div class="max-w-[768px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<a class="flex items-center justify-center size-10 rounded-lg hover:bg-surface-container text-on-surface transition-colors" href="#" id="global-back-btn" title="Go Back">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</a>
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary flex items-center justify-center">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div>
+<h1 class="text-on-surface font-headline-sm tracking-tight text-base font-bold">ClearTrade</h1>
+<p class="text-[11px] text-tertiary font-medium -mt-1 tracking-wide uppercase">Artisan Portal • Benin City Hub</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="min-h-[44px] px-3.5 flex items-center justify-center rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md font-semibold transition-all" type="button">
+<span class="material-symbols-outlined text-[18px] mr-1.5">help</span>
+          Need Help?
+        </button>
+<button class="min-h-[44px] px-3.5 flex items-center justify-center rounded-lg bg-primary text-on-primary hover:bg-on-primary-fixed-variant text-label-md font-semibold shadow-sm transition-all" id="save-draft-btn" type="button">
+<span class="material-symbols-outlined text-[18px] mr-1.5">save</span>
+          Save Draft
+        </button>
+</div>
+</div>
+</header>
+<!-- Interactive State / Scenario Switcher for Reviewing Prototype -->
+<aside class="w-full bg-surface-container-high border-b border-surface-variant px-6 py-2.5">
+<div class="max-w-[768px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[18px] text-primary">tune</span>
+<span class="text-label-sm uppercase tracking-wider font-bold">State Switcher:</span>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-1.5">
+<button class="state-pill px-2.5 py-1 text-xs rounded-full border border-outline-variant bg-surface-container-lowest font-medium text-on-surface hover:border-primary active:scale-95 transition-all" data-step="1" onclick="setStep(1)">Step 1: Account</button>
+<button class="state-pill px-2.5 py-1 text-xs rounded-full border border-outline-variant bg-surface-container-lowest font-medium text-on-surface hover:border-primary active:scale-95 transition-all" data-step="2" onclick="setStep(2)">Step 2: Skills</button>
+<button class="state-pill px-2.5 py-1 text-xs rounded-full border border-outline-variant bg-surface-container-lowest font-medium text-on-surface hover:border-primary active:scale-95 transition-all" data-step="3" onclick="setStep(3)">Step 3: Portfolio</button>
+<button class="state-pill px-2.5 py-1 text-xs rounded-full border border-outline-variant bg-surface-container-lowest font-medium text-on-surface hover:border-primary active:scale-95 transition-all" data-step="4" onclick="setStep(4)">Step 4: Review</button>
+<button class="state-pill px-2.5 py-1 text-xs rounded-full border border-outline-variant bg-surface-container-lowest font-medium text-on-surface hover:border-primary active:scale-95 transition-all" data-step="5" onclick="setStep(5)">Step 5: Submitted</button>
+<button class="px-2.5 py-1 text-xs rounded-full border border-error bg-error-container text-on-error-container font-semibold hover:opacity-90 active:scale-95 transition-all" onclick="triggerValidationError()">Validation Error</button>
+<button class="px-2.5 py-1 text-xs rounded-full border border-error bg-error-container text-on-error-container font-semibold hover:opacity-90 active:scale-95 transition-all" onclick="triggerUploadError()">Upload Error</button>
+<button class="px-2.5 py-1 text-xs rounded-full border border-primary bg-primary-fixed text-on-primary-fixed font-semibold hover:opacity-90 active:scale-95 transition-all" onclick="triggerSubmittingState()">Submitting...</button>
+</div>
+</div>
+</aside>
+<!-- Main Tablet Workspace (768px layout standard, 24px margin, adaptive 8-col grid) -->
+<main class="w-full max-w-[768px] mx-auto px-6 py-6 grow flex flex-col">
+<!-- Stepper Context Header & Progress Bar -->
+<div class="mb-6">
+<div class="flex items-center justify-between gap-4 mb-2">
+<div>
+<span class="text-xs uppercase font-bold tracking-wider text-primary inline-flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+            Artisan Registration • Edo State
+          </span>
+<h2 class="font-headline-lg text-on-surface text-[24px] font-bold mt-0.5" id="step-title">Trade Classification &amp; Coverage</h2>
+</div>
+<div class="text-right">
+<span class="text-label-md font-semibold text-tertiary" id="step-number-text">Step 2 of 5</span>
+<p class="text-headline-sm font-bold text-primary" id="step-percentage">40%</p>
+</div>
+</div>
+<!-- Linear Progress Bar -->
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden mb-4">
+<div class="h-full bg-primary rounded-full transition-all duration-300 ease-out" id="progress-bar-fill" style="width: 40%;"></div>
+</div>
+<!-- Step Indicator Bar: Tablet 5-Node Flow -->
+<nav aria-label="Registration Progress" class="w-full overflow-x-auto pb-1">
+<ol class="flex items-center justify-between min-w-[620px] bg-surface-container-low p-2 rounded-xl border border-surface-variant">
+<li class="step-node flex items-center gap-2 cursor-pointer px-2 py-1 rounded-lg hover:bg-surface-container transition" data-step="1" onclick="setStep(1)">
+<span class="step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-primary text-on-primary">1</span>
+<span class="step-label text-xs font-semibold text-on-surface">Account</span>
+</li>
+<li class="h-0.5 w-5 bg-surface-variant rounded"></li>
+<li class="step-node flex items-center gap-2 cursor-pointer px-2 py-1 rounded-lg bg-surface-container transition" data-step="2" onclick="setStep(2)">
+<span class="step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-primary text-on-primary ring-2 ring-primary-container">2</span>
+<span class="step-label text-xs font-semibold text-primary">Trade &amp; Area</span>
+</li>
+<li class="h-0.5 w-5 bg-surface-variant rounded"></li>
+<li class="step-node flex items-center gap-2 cursor-pointer px-2 py-1 rounded-lg hover:bg-surface-container transition" data-step="3" onclick="setStep(3)">
+<span class="step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-surface-container-high text-tertiary">3</span>
+<span class="step-label text-xs font-medium text-tertiary">Portfolio</span>
+</li>
+<li class="h-0.5 w-5 bg-surface-variant rounded"></li>
+<li class="step-node flex items-center gap-2 cursor-pointer px-2 py-1 rounded-lg hover:bg-surface-container transition" data-step="4" onclick="setStep(4)">
+<span class="step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-surface-container-high text-tertiary">4</span>
+<span class="step-label text-xs font-medium text-tertiary">Review</span>
+</li>
+<li class="h-0.5 w-5 bg-surface-variant rounded"></li>
+<li class="step-node flex items-center gap-2 cursor-pointer px-2 py-1 rounded-lg hover:bg-surface-container transition" data-step="5" onclick="setStep(5)">
+<span class="step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-surface-container-high text-tertiary">5</span>
+<span class="step-label text-xs font-medium text-tertiary">Completed</span>
+</li>
+</ol>
+</nav>
+</div>
+<!-- Feedback Banner / Error Notice Area -->
+<div class="hidden mb-6 rounded-xl p-4 border transition-all" id="status-banner">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[22px] mt-0.5" id="status-icon">error</span>
+<div class="grow">
+<h3 class="text-label-lg font-bold" id="status-heading">Please check required fields</h3>
+<p class="text-body-sm mt-0.5" id="status-description">Some details were left incomplete or invalid for Benin City dispatch verification.</p>
+</div>
+<button class="text-current opacity-70 hover:opacity-100 p-1" onclick="dismissBanner()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Multi-Step Card (Grid System: Adaptive 8 columns across tablet) -->
+<form class="bg-surface-container-lowest rounded-2xl border border-surface-variant p-6 sm:p-8 shadow-sm flex flex-col grow justify-between" id="artisan-form" onsubmit="event.preventDefault(); handleNext();">
+<!-- STEP 1: Account Setup -->
+<section class="step-pane hidden" id="step-1-content">
+<div class="mb-6">
+<h3 class="font-headline-md text-on-surface font-bold text-xl mb-1">Personal &amp; Contact Credentials</h3>
+<p class="text-tertiary text-body-sm">Enter your legally registered Nigerian identity details to establish your artisan credentials.</p>
+</div>
+<div class="grid grid-cols-8 gap-4">
+<div class="col-span-8 sm:col-span-4">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5" for="full-name">
+              Full Legal Name <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full min-h-[44px] px-3.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-colors" id="full-name" name="fullName" placeholder="e.g. Osagie Agho" required="" type="text" value="Osagie Agho"/>
+</div>
+<span class="field-error-text text-error text-xs font-medium hidden mt-1">Please enter your legal name as shown on your NIN/ID.</span>
+</div>
+<div class="col-span-8 sm:col-span-4">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5" for="phone-number">
+              Nigerian Mobile Number (+234) <span class="text-error">*</span>
+</label>
+<div class="relative flex">
+<span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-outline-variant bg-surface-container-high text-on-surface text-label-md font-semibold">
+                +234
+              </span>
+<input class="w-full min-h-[44px] px-3.5 rounded-r-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-colors" id="phone-number" name="phone" placeholder="801 234 5678" required="" type="tel" value="0803 456 7890"/>
+</div>
+<p class="text-tertiary text-[11px] mt-1">Used for dispatch SMS and escrow withdrawal OTP verification.</p>
+</div>
+<div class="col-span-8 sm:col-span-4">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5" for="trade-email">
+              Trade Email Address <span class="text-error">*</span>
+</label>
+<input class="w-full min-h-[44px] px-3.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-colors" id="trade-email" name="email" placeholder="yourname@gmail.com" required="" type="email" value="osagie.artisan@cleartrade.ng"/>
+<span class="field-error-text text-error text-xs font-medium hidden mt-1">Please provide a valid email format.</span>
+</div>
+<div class="col-span-8 sm:col-span-4">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5" for="account-password">
+              Secure Portal Password <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full min-h-[44px] px-3.5 pr-10 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-colors" id="account-password" name="password" placeholder="Min. 8 characters" required="" type="password" value="••••••••••••"/>
+<button class="absolute right-3 top-2.5 text-tertiary hover:text-on-surface" onclick="togglePasswordVisibility('account-password')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+<p class="text-tertiary text-[11px] mt-1">Include at least 8 alphanumeric characters and 1 symbol.</p>
+</div>
+<div class="col-span-8 mt-2 p-3.5 rounded-xl bg-surface-container-low border border-surface-variant flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">verified_user</span>
+<p class="text-body-sm text-on-surface-variant">
+              Your data is secured in compliance with the Edo State Consumer Protection Framework and ClearTrade Fair Escrow charter.
+            </p>
+</div>
+</div>
+</section>
+<!-- STEP 2: Trade & Coverage Area (Default Active) -->
+<section class="step-pane" id="step-2-content">
+<div class="mb-6">
+<h3 class="font-headline-md text-on-surface font-bold text-xl mb-1">Trade Specialization &amp; Operating Zones</h3>
+<p class="text-tertiary text-body-sm">Specify your principal trade guild and operational coverage radius within Benin City metropolitan districts.</p>
+</div>
+<div class="grid grid-cols-8 gap-5">
+<!-- Primary Trade Selection -->
+<div class="col-span-8">
+<label class="block text-label-md font-semibold text-on-surface mb-2">
+              Primary Trade Specialization <span class="text-error">*</span>
+</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="trade-category-group">
+<label class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-primary bg-primary-fixed/20 cursor-pointer text-center hover:bg-primary-fixed/30 transition-all">
+<input checked="" class="hidden" name="tradeCategory" type="radio" value="Plumbing &amp; Pipefitting"/>
+<span class="material-symbols-outlined text-primary text-[28px] mb-1">plumbing</span>
+<span class="text-label-md font-bold text-on-surface">Plumbing</span>
+<span class="text-[11px] text-tertiary">Pipes, fittings &amp; pumps</span>
+</label>
+<label class="flex flex-col items-center justify-center p-3 rounded-xl border border-outline-variant bg-surface-container-lowest cursor-pointer text-center hover:border-primary transition-all">
+<input class="hidden" name="tradeCategory" type="radio" value="Electrical &amp; Solar Installation"/>
+<span class="material-symbols-outlined text-tertiary text-[28px] mb-1">bolt</span>
+<span class="text-label-md font-bold text-on-surface">Electrical</span>
+<span class="text-[11px] text-tertiary">Wiring, solar &amp; inverters</span>
+</label>
+<label class="flex flex-col items-center justify-center p-3 rounded-xl border border-outline-variant bg-surface-container-lowest cursor-pointer text-center hover:border-primary transition-all">
+<input class="hidden" name="tradeCategory" type="radio" value="Carpentry &amp; Woodwork"/>
+<span class="material-symbols-outlined text-tertiary text-[28px] mb-1">carpenter</span>
+<span class="text-label-md font-bold text-on-surface">Carpentry</span>
+<span class="text-[11px] text-tertiary">Roofing &amp; bespoke fittings</span>
+</label>
+<label class="flex flex-col items-center justify-center p-3 rounded-xl border border-outline-variant bg-surface-container-lowest cursor-pointer text-center hover:border-primary transition-all">
+<input class="hidden" name="tradeCategory" type="radio" value="HVAC &amp; Refrigeration"/>
+<span class="material-symbols-outlined text-tertiary text-[28px] mb-1">ac_unit</span>
+<span class="text-label-md font-bold text-on-surface">HVAC &amp; AC</span>
+<span class="text-[11px] text-tertiary">Cooling units &amp; chilling</span>
+</label>
+</div>
+</div>
+<!-- Secondary Sub-trade Specialization -->
+<div class="col-span-8 sm:col-span-4">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5" for="sub-skills">
+              Primary Skillset Tags
+            </label>
+<input class="w-full min-h-[44px] px-3.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-colors" id="sub-skills" name="subSkills" placeholder="e.g. Inverter Wiring, Conduit piping" type="text" value="Borehole Installation, Overhead Tanks, Industrial Leak Sealing"/>
+</div>
+<div class="col-span-8 sm:col-span-4">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5" for="trade-experience">
+              Years in Active Practice <span class="text-error">*</span>
+</label>
+<select class="w-full min-h-[44px] px-3.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-colors" id="trade-experience" name="experienceYears">
+<option value="1-3">1 - 3 Years (Apprentice / Junior)</option>
+<option selected="" value="4-7">4 - 7 Years (Senior Journeyman)</option>
+<option value="8-12">8 - 12 Years (Master Craftsman)</option>
+<option value="12+">12+ Years (Guild Specialist)</option>
+</select>
+</div>
+<!-- Benin City Operational Districts (Multi-checkbox) -->
+<div class="col-span-8">
+<div class="flex items-center justify-between mb-2">
+<label class="block text-label-md font-semibold text-on-surface">
+                Benin City Operational Service Coverage <span class="text-error">*</span>
+</label>
+<span class="text-xs text-primary font-medium">Selected: <span id="districts-count">4</span> districts</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-primary bg-primary-fixed/20 cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="GRA Axis"/>
+<span class="text-label-md text-on-surface font-medium">GRA Axis</span>
+</label>
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-primary bg-primary-fixed/20 cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="Ugbowo / UNIBEN"/>
+<span class="text-label-md text-on-surface font-medium">Ugbowo / UNIBEN</span>
+</label>
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-primary bg-primary-fixed/20 cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="Airport Road / Oko"/>
+<span class="text-label-md text-on-surface font-medium">Airport Rd / Oko</span>
+</label>
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-primary bg-primary-fixed/20 cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="Sapele Road / Limit"/>
+<span class="text-label-md text-on-surface font-medium">Sapele Rd / Limit</span>
+</label>
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="Ikpoba Hill"/>
+<span class="text-label-md text-on-surface font-medium">Ikpoba Hill</span>
+</label>
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="Ekenwan Road"/>
+<span class="text-label-md text-on-surface font-medium">Ekenwan Road</span>
+</label>
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="Aduwawa"/>
+<span class="text-label-md text-on-surface font-medium">Aduwawa</span>
+</label>
+<label class="district-chip flex items-center gap-2 p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary" name="district" type="checkbox" value="Upper Sokponba"/>
+<span class="text-label-md text-on-surface font-medium">Upper Sokponba</span>
+</label>
+</div>
+<p class="text-tertiary text-xs mt-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">info</span>
+              Jobs outside selected zones will only be routed if you accept extended travel compensation.
+            </p>
+</div>
+</div>
+</section>
+<!-- STEP 3: Experience, Bio & Portfolio File Upload -->
+<section class="step-pane hidden" id="step-3-content">
+<div class="mb-6">
+<h3 class="font-headline-md text-on-surface font-bold text-xl mb-1">Work History, Bio &amp; Proof of Projects</h3>
+<p class="text-tertiary text-body-sm">Upload verifiable photos or job certificates from completed projects in Edo State for customer trust verification.</p>
+</div>
+<div class="grid grid-cols-8 gap-5">
+<div class="col-span-8">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5" for="craftsman-bio">
+              Artisan Profile Bio &amp; Guarantee Statement <span class="text-error">*</span>
+</label>
+<textarea class="w-full px-3.5 py-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-colors" id="craftsman-bio" name="bio" placeholder="Describe your expertise, standard response time, and guarantee on installations..." required="" rows="3">Certified master plumber with over 6 years of residential and commercial piping in Benin City. Specializing in high-pressure solar water heaters, pump automation, and leak-proof PPR pipe fusion. Always punctual with 30-day warranty guarantee.</textarea>
+</div>
+<!-- Portfolio Upload Dropzone -->
+<div class="col-span-8">
+<label class="block text-label-md font-semibold text-on-surface mb-1.5">
+              Portfolio Uploads (Photos of Previous Jobs / Certifications) <span class="text-error">*</span>
+</label>
+<div class="border-2 border-dashed border-outline-variant hover:border-primary rounded-xl p-6 text-center bg-surface-container-low transition-colors cursor-pointer" id="dropzone-box">
+<input accept="image/*,.pdf" class="hidden" id="file-upload-input" multiple="" type="file"/>
+<span class="material-symbols-outlined text-primary text-[36px] mb-2">cloud_upload</span>
+<p class="text-label-lg font-bold text-on-surface">Click to upload or drag &amp; drop job evidence</p>
+<p class="text-tertiary text-body-sm mt-0.5">High-resolution PNG, JPG or PDF up to 15MB each</p>
+</div>
+<p class="text-error text-xs font-semibold mt-1 hidden flex items-center gap-1" id="upload-error-msg">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+              File upload rejected: File exceeds the maximum 15MB file cap or format unsupported.
+            </p>
+</div>
+<!-- Uploaded Samples Gallery -->
+<div class="col-span-8">
+<p class="text-label-md font-semibold text-on-surface mb-2.5">Uploaded Job Previews (3 Attached)</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<!-- Item 1 -->
+<div class="flex items-center gap-3 p-2.5 rounded-xl border border-surface-variant bg-surface-container-lowest shadow-sm">
+<img class="size-14 rounded-lg object-cover bg-surface-container" data-alt="A close-up photograph of newly installed shiny copper and ppr plumbing pipes connected to a modern water heating system inside a contemporary Nigerian residence. Crisp neutral daylight illuminates the clean joints and brass pressure valves. High aesthetic presentation in line with Clear Trade Modern architectural palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1eoHk9v7sEVPrUfU6Qg4ybcOU0NSZK0qplnzOnTOM2d5GA2duFvE60rfz9kiBnl_v4SaOV08U9Ej2H2pxyzCCYJ0istJOWdR-Qsntl-9-8VWHZmv-9iBWj6s4AY_wjgZ0dsrkI3MA8PqujcVgittUBsTB_n0h2iZkNGfw56IxXqYY0_j9hI19DEtAhdytbqItguryRVBQfjIKZIL94f05ua2V-iKz7pUWa-NUSpE"/>
+<div class="overflow-hidden grow">
+<p class="text-label-md font-bold text-on-surface truncate">Duplex_GRA_Plumbing.jpg</p>
+<p class="text-[11px] text-tertiary">2.4 MB • Job verified</p>
+</div>
+<button class="text-tertiary hover:text-error p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-3 p-2.5 rounded-xl border border-surface-variant bg-surface-container-lowest shadow-sm">
+<img class="size-14 rounded-lg object-cover bg-surface-container" data-alt="An industrial overhead water tank installation with high-pressure booster pump assembly positioned on a clean concrete rooftop platform overlooking Benin City greenery under open afternoon daylight. Pristine engineering work with neat color-coded electrical conduit channels." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBek66u38dYrk7msJoulgVC7K1GAkyQa-r_4LY8TsOmqXOUSbQ66h83lWs64-BM3gbKdr_xL7FaAFb_z39ARk9CxbHfQDbTJP5InvG3O8z5I0srI6I07tB5coCT1Ye03QHfeRNBVFkxL2nwxSQ-FnZpvIKsJZqkdTCbn7MbLgumm5UqES1sqSYBZbbQdC5NTIKzKd9ykpMQdH_mL_JK4BfuaLXg8aBd02hSa6A-Opw"/>
+<div class="overflow-hidden grow">
+<p class="text-label-md font-bold text-on-surface truncate">Pump_Automation_Oko.png</p>
+<p class="text-[11px] text-tertiary">3.8 MB • Job verified</p>
+</div>
+<button class="text-tertiary hover:text-error p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-3 p-2.5 rounded-xl border border-surface-variant bg-surface-container-lowest shadow-sm">
+<img class="size-14 rounded-lg object-cover bg-surface-container" data-alt="Official Nigerian vocational training certification parchment document framed neatly under crisp natural office illumination. Crisp seal of technical apprenticeship in engineering plumbing craftsmanship, rendered in a professional high clarity documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8wdoXLbmbnmmyXKdAwq3rzOMCC3tr4mTC0VAVel9-ajLK6dDEjDgLz7Q7la8Tww3UjpJTjNrJs0ifOe0VpFxVvGY6zwqXvRbdUzFkVO7co1Mssiies_GvmjeBIWasQH7s2BKM0FopH-8Ul4h_YSnrBlVrBD6K8MLcn0OgUGJNLnQO8-GxfuvC8SRQkto4RstRCND4Fu24Mu4kkB0ztALXorqW4siI88NBp4XH8SI"/>
+<div class="overflow-hidden grow">
+<p class="text-label-md font-bold text-on-surface truncate">NABTEB_Cert_2022.pdf</p>
+<p class="text-[11px] text-tertiary">1.1 MB • Certificate</p>
+</div>
+<button class="text-tertiary hover:text-error p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 4: Review Summary & Benin City Field Office Vetting Notice -->
+<section class="step-pane hidden" id="step-4-content">
+<div class="mb-5">
+<h3 class="font-headline-md text-on-surface font-bold text-xl mb-1">Review Details &amp; Vetting Acknowledgement</h3>
+<p class="text-tertiary text-body-sm">Ensure your operating information is accurate prior to dispatch activation and office interview scheduling.</p>
+</div>
+<div class="space-y-4">
+<!-- Summary Details -->
+<div class="rounded-xl border border-surface-variant bg-surface-container-low p-4 sm:p-5">
+<div class="flex items-center justify-between pb-3 border-b border-surface-variant mb-3">
+<div>
+<span class="text-xs uppercase tracking-wider text-tertiary font-bold">Artisan Identity</span>
+<p class="font-headline-sm text-on-surface font-bold" id="review-name">Osagie Agho</p>
+<p class="text-body-sm text-tertiary" id="review-contact">+234 803 456 7890 • osagie.artisan@cleartrade.ng</p>
+</div>
+<button class="min-h-[44px] px-3 text-label-md font-semibold text-primary hover:bg-surface-container rounded-lg" onclick="setStep(1)" type="button">Edit</button>
+</div>
+<div class="grid grid-cols-2 gap-4 pb-3 border-b border-surface-variant mb-3">
+<div>
+<span class="text-xs uppercase tracking-wider text-tertiary font-bold">Registered Trade</span>
+<p class="text-body-md font-semibold text-on-surface mt-0.5" id="review-trade">Plumbing &amp; Pipefitting (Senior Journeyman, 4-7 yrs)</p>
+</div>
+<div>
+<span class="text-xs uppercase tracking-wider text-tertiary font-bold">Coverage Areas</span>
+<p class="text-body-md font-semibold text-on-surface mt-0.5" id="review-districts">GRA Axis, Ugbowo / UNIBEN, Airport Rd, Sapele Rd</p>
+</div>
+</div>
+<div>
+<span class="text-xs uppercase tracking-wider text-tertiary font-bold">Guaranteed Specialties</span>
+<p class="text-body-sm text-on-surface mt-1 italic" id="review-bio">
+                "Certified master plumber with over 6 years of residential and commercial piping in Benin City. Specializing in high-pressure solar water heaters, pump automation, and leak-proof PPR pipe fusion."
+              </p>
+</div>
+</div>
+<!-- Policy & Field Office Vetting Notice Card -->
+<div class="rounded-xl border-l-4 border-l-primary bg-primary-fixed/20 p-4 sm:p-5 border border-primary/20">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[24px] mt-0.5">apartment</span>
+<div>
+<h4 class="text-label-lg font-bold text-on-surface">Benin City Field Office Physical Vetting Policy</h4>
+<p class="text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                  Upon digital submission, your application will be routed to our <strong>Edo State Regional Hub located at 12 Boundary Road, GRA, Benin City</strong>. ClearTrade performs background vetting, ID physical verification, and trade guild cross-referencing within <strong>24 to 48 business hours</strong> before granting full escrow dispatch access.
+                </p>
+</div>
+</div>
+</div>
+<!-- Mandatory Declarations -->
+<div class="space-y-2 pt-2">
+<label class="flex items-start gap-3 cursor-pointer">
+<input checked="" class="mt-1 rounded border-outline text-primary focus:ring-primary" id="declaration-agree" required="" type="checkbox"/>
+<span class="text-body-sm text-on-surface">
+                I hereby declare that all provided certifications and portfolio work are genuine representations of my craft, and I agree to adhere to the ClearTrade Nigeria Fair Work Ethics Charter.
+              </span>
+</label>
+</div>
+</div>
+</section>
+<!-- STEP 5: Submission Confirmed / Success Screen -->
+<section class="step-pane hidden text-center py-6" id="step-5-content">
+<div class="size-16 rounded-full bg-primary-fixed text-primary flex items-center justify-center mx-auto mb-4 ring-8 ring-primary-fixed/30">
+<span class="material-symbols-outlined text-[36px]">verified</span>
+</div>
+<h3 class="font-headline-lg text-on-surface font-bold text-2xl mb-2">Application Submitted Successfully!</h3>
+<p class="text-tertiary text-body-md max-w-[500px] mx-auto mb-6">
+          Your credentials and portfolio have been securely registered under Reference ID: <span class="font-mono font-bold text-primary">#CT-BEN-2024-8842</span>.
+        </p>
+<!-- Next Steps Card -->
+<div class="max-w-[540px] mx-auto bg-surface-container-low rounded-xl border border-surface-variant p-5 text-left mb-6 space-y-3">
+<h4 class="text-label-md uppercase tracking-wider font-bold text-primary">Next Steps for Dispatch Activation:</h4>
+<div class="flex items-start gap-3">
+<span class="size-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+<div>
+<p class="text-body-sm font-bold text-on-surface">SMS Verification Notification</p>
+<p class="text-xs text-tertiary">An SMS containing your portal access link and verification token has been dispatched to +234 803 456 7890.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="size-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+<div>
+<p class="text-body-sm font-bold text-on-surface">Field Vetting Appointment</p>
+<p class="text-xs text-tertiary">An agent from our Boundary Road GRA hub will contact you for a brief 10-minute equipment and credential check.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="size-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+<div>
+<p class="text-body-sm font-bold text-on-surface">Live Job Bidding Access</p>
+<p class="text-xs text-tertiary">Begin receiving instant job requests across your chosen Benin City operational zones.</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-center gap-3">
+<button class="min-h-[44px] px-5 rounded-lg border border-outline-variant bg-surface-container-lowest hover:bg-surface-container text-on-surface text-label-md font-semibold transition-all" onclick="setStep(1)" type="button">
+            Review Submitted Form
+          </button>
+<a class="min-h-[44px] px-6 rounded-lg bg-primary hover:bg-on-primary-fixed-variant text-on-primary text-label-md font-semibold inline-flex items-center justify-center transition-all shadow-sm" href="#">
+            Go to Artisan Dashboard
+            <span class="material-symbols-outlined text-[18px] ml-1.5">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Action Controls Bar (Back / Continue with min 44px touch target) -->
+<footer class="mt-8 pt-5 border-t border-surface-variant flex flex-col-reverse sm:flex-row items-center justify-between gap-3" id="form-actions-bar">
+<button class="w-full sm:w-auto min-h-[44px] px-6 rounded-lg border border-outline-variant bg-surface-container-lowest hover:bg-surface-container text-on-surface text-label-md font-semibold flex items-center justify-center gap-2 transition-all active:scale-98" id="prev-btn" onclick="handlePrev()" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span>Previous Step</span>
+</button>
+<div class="w-full sm:w-auto flex items-center gap-3">
+<button class="w-full sm:w-auto min-h-[44px] px-4 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface text-label-md font-medium flex items-center justify-center gap-1.5 transition-all" onclick="triggerDraftSaveNotification()" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+<span>Save &amp; Resume Later</span>
+</button>
+<button class="w-full sm:w-auto min-h-[44px] px-7 rounded-lg bg-primary hover:bg-on-primary-fixed-variant text-on-primary text-label-md font-semibold flex items-center justify-center gap-2 transition-all shadow-sm active:scale-98" id="next-btn" type="submit">
+<span id="next-btn-text">Continue to Portfolio</span>
+<span class="material-symbols-outlined text-[20px]" id="next-btn-icon">arrow_forward</span>
+</button>
+</div>
+</footer>
+</form>
+</main>
+<!-- Footnote / System Status -->
+<footer class="w-full border-t border-surface-variant py-4 px-6 bg-surface-container-lowest">
+<div class="max-w-[768px] mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-tertiary gap-2">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span>ClearTrade Nigeria Portal v2.4 • Edo State Artisan Directorate</span>
+</div>
+<div>
+<span>Encrypted 256-bit TLS Registration • Benin City Hub</span>
+</div>
+</div>
+</footer>
+<!-- Interactive Logic Script -->
+<script>
+    let currentStep = 2; // Default requested: Step 2: Trade & Area at tablet 768px
+    let isSubmitting = false;
+
+    const stepTitles = {
+      1: "Account Credentials & Identity",
+      2: "Trade Classification & Coverage in Benin City",
+      3: "Work Experience & Project Portfolio",
+      4: "Review Application & Vetting Protocol",
+      5: "Application Submission Confirmed"
+    };
+
+    const nextBtnLabels = {
+      1: "Continue to Skills & Area",
+      2: "Continue to Portfolio",
+      3: "Continue to Final Review",
+      4: "Submit Application for Vetting",
+      5: "Return to Dashboard"
+    };
+
+    function updateUI() {
+      // 1. Update Panes
+      for (let i = 1; i <= 5; i++) {
+        const pane = document.getElementById(`step-${i}-content`);
+        if (pane) {
+          if (i === currentStep) {
+            pane.classList.remove('hidden');
+          } else {
+            pane.classList.add('hidden');
+          }
+        }
+      }
+
+      // 2. Update Header info
+      document.getElementById('step-title').textContent = stepTitles[currentStep];
+      document.getElementById('step-number-text').textContent = `Step ${currentStep} of 5`;
+      const percentage = Math.round((currentStep / 5) * 100);
+      document.getElementById('step-percentage').textContent = `${percentage}%`;
+      document.getElementById('progress-bar-fill').style.width = `${percentage}%`;
+
+      // 3. Update Stepper Indicator bar
+      document.querySelectorAll('.step-node').forEach(node => {
+        const stepNum = parseInt(node.getAttribute('data-step'));
+        const circle = node.querySelector('.step-circle');
+        const label = node.querySelector('.step-label');
+
+        if (stepNum < currentStep) {
+          // Completed
+          circle.className = 'step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-primary text-on-primary';
+          circle.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span>';
+          label.className = 'step-label text-xs font-semibold text-on-surface';
+        } else if (stepNum === currentStep) {
+          // Active
+          circle.className = 'step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-primary text-on-primary ring-2 ring-primary-container';
+          circle.textContent = stepNum;
+          label.className = 'step-label text-xs font-semibold text-primary';
+        } else {
+          // Upcoming
+          circle.className = 'step-circle size-7 rounded-full flex items-center justify-center font-bold text-xs bg-surface-container-high text-tertiary';
+          circle.textContent = stepNum;
+          label.className = 'step-label text-xs font-medium text-tertiary';
+        }
+      });
+
+      // 4. Update Footer buttons
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtnText = document.getElementById('next-btn-text');
+      const nextBtnIcon = document.getElementById('next-btn-icon');
+      const footerBar = document.getElementById('form-actions-bar');
+
+      if (currentStep === 1) {
+        prevBtn.disabled = true;
+        prevBtn.classList.add('opacity-40', 'cursor-not-allowed');
+      } else {
+        prevBtn.disabled = false;
+        prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+      }
+
+      if (currentStep === 5) {
+        footerBar.classList.add('hidden');
+      } else {
+        footerBar.classList.remove('hidden');
+        nextBtnText.textContent = nextBtnLabels[currentStep];
+        if (currentStep === 4) {
+          nextBtnIcon.textContent = 'send';
+        } else {
+          nextBtnIcon.textContent = 'arrow_forward';
+        }
+      }
+
+      // 5. Update State switcher pill styles
+      document.querySelectorAll('.state-pill').forEach(pill => {
+        const stepNum = parseInt(pill.getAttribute('data-step'));
+        if (stepNum === currentStep) {
+          pill.classList.add('border-primary', 'bg-primary-fixed', 'text-on-primary-fixed');
+          pill.classList.remove('border-outline-variant', 'bg-surface-container-lowest', 'text-on-surface');
+        } else {
+          pill.classList.remove('border-primary', 'bg-primary-fixed', 'text-on-primary-fixed');
+          pill.classList.add('border-outline-variant', 'bg-surface-container-lowest', 'text-on-surface');
+        }
+      });
+
+      // 6. Refresh review panel if on step 4
+      if (currentStep === 4) {
+        syncReviewData();
+      }
+    }
+
+    function setStep(step) {
+      if (step >= 1 && step <= 5) {
+        currentStep = step;
+        dismissBanner();
+        updateUI();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function handleNext() {
+      if (currentStep < 5) {
+        setStep(currentStep + 1);
+      }
+    }
+
+    function handlePrev() {
+      if (currentStep > 1) {
+        setStep(currentStep - 1);
+      }
+    }
+
+    function syncReviewData() {
+      const name = document.getElementById('full-name').value || "Osagie Agho";
+      const phone = document.getElementById('phone-number').value || "0803 456 7890";
+      const email = document.getElementById('trade-email').value || "osagie.artisan@cleartrade.ng";
+      const exp = document.getElementById('trade-experience').options[document.getElementById('trade-experience').selectedIndex].text;
+      
+      const selectedTrade = document.querySelector('input[name="tradeCategory"]:checked')?.value || "Plumbing & Pipefitting";
+      
+      const checkedDistricts = Array.from(document.querySelectorAll('input[name="district"]:checked')).map(cb => cb.value);
+      const districtStr = checkedDistricts.length > 0 ? checkedDistricts.join(', ') : "None selected";
+
+      document.getElementById('review-name').textContent = name;
+      document.getElementById('review-contact').textContent = `+234 ${phone} • ${email}`;
+      document.getElementById('review-trade').textContent = `${selectedTrade} (${exp})`;
+      document.getElementById('review-districts').textContent = districtStr;
+      
+      const bio = document.getElementById('craftsman-bio').value;
+      if (bio) {
+        document.getElementById('review-bio').textContent = `"${bio}"`;
+      }
+    }
+
+    function triggerValidationError() {
+      setStep(1);
+      const banner = document.getElementById('status-banner');
+      const heading = document.getElementById('status-heading');
+      const desc = document.getElementById('status-description');
+      const icon = document.getElementById('status-icon');
+
+      banner.className = 'mb-6 rounded-xl p-4 border border-error bg-error-container text-on-error-container transition-all flex items-start gap-3';
+      icon.className = 'material-symbols-outlined text-error text-[24px] mt-0.5';
+      icon.textContent = 'report_problem';
+      heading.textContent = 'Validation Incomplete: Legal Name & Mobile Required';
+      desc.textContent = 'Please provide your full identity name matching your Nigerian National ID (NIN) and an active 10-digit mobile number for artisan dispatch.';
+
+      document.querySelectorAll('.field-error-text').forEach(el => el.classList.remove('hidden'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function triggerUploadError() {
+      setStep(3);
+      const banner = document.getElementById('status-banner');
+      const heading = document.getElementById('status-heading');
+      const desc = document.getElementById('status-description');
+      const icon = document.getElementById('status-icon');
+      const uploadError = document.getElementById('upload-error-msg');
+
+      banner.className = 'mb-6 rounded-xl p-4 border border-error bg-error-container text-on-error-container transition-all flex items-start gap-3';
+      icon.className = 'material-symbols-outlined text-error text-[24px] mt-0.5';
+      icon.textContent = 'file_present';
+      heading.textContent = 'Portfolio Upload Failed: File Capacity Exceeded';
+      desc.textContent = 'The uploaded attachment "Site_Survey_Full_32MB.raw" exceeds the 15MB file cap. Please compress or choose JPG/PNG/PDF formats.';
+
+      if (uploadError) uploadError.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function triggerSubmittingState() {
+      setStep(4);
+      const nextBtn = document.getElementById('next-btn');
+      const nextBtnText = document.getElementById('next-btn-text');
+      const nextBtnIcon = document.getElementById('next-btn-icon');
+
+      nextBtnText.textContent = "Verifying with Benin Hub...";
+      nextBtnIcon.textContent = "hourglass_top";
+      nextBtn.classList.add('opacity-75', 'cursor-wait');
+
+      setTimeout(() => {
+        nextBtn.classList.remove('opacity-75', 'cursor-wait');
+        setStep(5);
+      }, 1400);
+    }
+
+    function triggerDraftSaveNotification() {
+      const banner = document.getElementById('status-banner');
+      const heading = document.getElementById('status-heading');
+      const desc = document.getElementById('status-description');
+      const icon = document.getElementById('status-icon');
+
+      banner.className = 'mb-6 rounded-xl p-4 border border-outline-variant bg-surface-container-high text-on-surface transition-all flex items-start gap-3';
+      icon.className = 'material-symbols-outlined text-primary text-[24px] mt-0.5';
+      icon.textContent = 'cloud_done';
+      heading.textContent = 'Draft Successfully Saved';
+      desc.textContent = `Your onboarding progress (${Math.round((currentStep/5)*100)}%) has been safely stored locally. You can resume anytime from this tablet.`;
+      banner.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function dismissBanner() {
+      const banner = document.getElementById('status-banner');
+      banner.classList.add('hidden');
+      document.querySelectorAll('.field-error-text').forEach(el => el.classList.add('hidden'));
+      const uploadError = document.getElementById('upload-error-msg');
+      if (uploadError) uploadError.classList.add('hidden');
+    }
+
+    function togglePasswordVisibility(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (field.type === 'password') {
+        field.type = 'text';
+      } else {
+        field.type = 'password';
+      }
+    }
+
+    // Dynamic district counter & visual chip state
+    document.querySelectorAll('input[name="district"]').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const checkedCount = document.querySelectorAll('input[name="district"]:checked').length;
+        document.getElementById('districts-count').textContent = checkedCount;
+        
+        const parentLabel = this.closest('.district-chip');
+        if (this.checked) {
+          parentLabel.classList.add('border-primary', 'bg-primary-fixed/20');
+          parentLabel.classList.remove('border-outline-variant', 'bg-surface-container-lowest');
+        } else {
+          parentLabel.classList.remove('border-primary', 'bg-primary-fixed/20');
+          parentLabel.classList.add('border-outline-variant', 'bg-surface-container-lowest');
+        }
+      });
+    });
+
+    // Dynamic trade selection styles
+    document.querySelectorAll('input[name="tradeCategory"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('#trade-category-group label').forEach(lbl => {
+          lbl.classList.remove('border-2', 'border-primary', 'bg-primary-fixed/20');
+          lbl.classList.add('border', 'border-outline-variant', 'bg-surface-container-lowest');
+          lbl.querySelector('.material-symbols-outlined').classList.remove('text-primary');
+          lbl.querySelector('.material-symbols-outlined').classList.add('text-tertiary');
+        });
+        const currentLbl = this.closest('label');
+        currentLbl.classList.remove('border', 'border-outline-variant', 'bg-surface-container-lowest');
+        currentLbl.classList.add('border-2', 'border-primary', 'bg-primary-fixed/20');
+        currentLbl.querySelector('.material-symbols-outlined').classList.remove('text-tertiary');
+        currentLbl.querySelector('.material-symbols-outlined').classList.add('text-primary');
+      });
+    });
+
+    // File upload mock trigger
+    const dropzone = document.getElementById('dropzone-box');
+    const fileInput = document.getElementById('file-upload-input');
+    if (dropzone && fileInput) {
+      dropzone.addEventListener('click', () => fileInput.click());
+    }
+
+    // Save draft button top header
+    document.getElementById('save-draft-btn')?.addEventListener('click', triggerDraftSaveNotification);
+    document.getElementById('global-back-btn')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      handlePrev();
+    });
+
+    // Initial load
+    updateUI();
+  </script>
+</body></html>

@@ -1,0 +1,718 @@
+/* Home page — one brand hue.
+   Every colour here is --brand or a tint/shade of it (declared in
+   public-redesign.css). Motion is gated on prefers-reduced-motion, and reveals
+   fall back to fully visible content, so the page never depends on JavaScript
+   to become readable. */
+
+/* ---------- Hero ---------- */
+
+.landing-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.home-hero.landing-hero {
+  padding-block: clamp(52px, 5.6vw, 88px) 0;
+  background:
+    radial-gradient(ellipse at 50% -12%, rgb(0 100 145 / 13%), transparent 58%),
+    linear-gradient(
+      180deg,
+      var(--brand-tint-08) 0%,
+      var(--brand-tint-04) 54%,
+      #fff 100%
+    );
+  border-bottom: 1px solid var(--brand-tint-16);
+}
+
+/* Pin the hero column to the container width. Wide decorative children (the
+   artisan fan) must be clipped by .landing-hero, never widen the grid track. */
+.marketplace-hero-inner {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.landing-hero .eyebrow-pill {
+  justify-self: center;
+  width: fit-content;
+  max-width: 100%;
+  border-color: var(--brand-border);
+  background: #fff;
+  color: var(--brand);
+}
+
+.landing-hero .location-dot {
+  background: var(--brand);
+}
+
+.landing-hero .pill-divider {
+  color: var(--brand-border);
+}
+
+.home-hero.landing-hero h1 {
+  justify-self: center;
+  max-width: 21ch;
+  margin-block: 26px 0;
+  font-size: clamp(36px, 4.2vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.042em;
+  color: var(--brand-ink);
+  text-wrap: balance;
+}
+
+.home-hero.landing-hero .hero-copy {
+  justify-self: center;
+  max-width: 56ch;
+  margin-block: 22px 30px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--brand-muted);
+}
+
+.landing-aurora {
+  position: absolute;
+  inset: -12% -6%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.aurora-orb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+}
+
+.aurora-orb-sky {
+  width: 42rem;
+  height: 42rem;
+  left: -13rem;
+  top: -17rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(0 100 145 / 26%),
+    transparent 66%
+  );
+}
+
+.aurora-orb-navy {
+  width: 34rem;
+  height: 34rem;
+  right: -11rem;
+  top: -13rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(0 70 101 / 16%),
+    transparent 66%
+  );
+}
+
+.aurora-orb-pale {
+  width: 32rem;
+  height: 32rem;
+  left: 44%;
+  bottom: -18rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(0 100 145 / 14%),
+    transparent 68%
+  );
+}
+
+/* ---------- Hero entry ---------- */
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    translate: 0 22px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes auroraDriftA {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(5%, 7%, 0) scale(1.08);
+  }
+}
+
+@keyframes auroraDriftB {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.06);
+  }
+  to {
+    transform: translate3d(-6%, 5%, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise,
+  .fan-card {
+    animation: heroRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--rise, 0ms);
+  }
+
+  .aurora-orb-sky {
+    animation: auroraDriftA 24s ease-in-out infinite alternate;
+  }
+
+  .aurora-orb-navy {
+    animation: auroraDriftB 28s ease-in-out infinite alternate;
+  }
+
+  .aurora-orb-pale {
+    animation: auroraDriftA 32s ease-in-out infinite alternate-reverse;
+  }
+}
+
+/* ---------- Scroll reveals ---------- */
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    translate: 0 26px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 28%;
+    }
+  }
+}
+
+/* ---------- Hero path choices ---------- */
+
+.landing-choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-self: center;
+  gap: 0.75rem;
+}
+
+.landing-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+  min-height: 62px;
+  min-width: 16rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 12px;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.choice-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgb(255 255 255 / 18%);
+}
+
+.choice-text {
+  display: grid;
+  gap: 2px;
+  flex: 1 1 auto;
+  text-align: left;
+  line-height: 1.2;
+  font-weight: 650;
+}
+
+.choice-text small {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  opacity: 0.82;
+}
+
+/* Second path: same hue, quiet surface, so the pair still reads as one choice
+   set rather than two competing calls to action. */
+.landing-choice.button-subtle {
+  border-color: var(--brand-border);
+  background: #fff;
+  color: var(--brand-ink);
+}
+
+.landing-choice.button-subtle .choice-icon {
+  background: var(--brand-tint-12);
+  color: var(--brand);
+}
+
+.landing-choice.button-subtle .choice-text small {
+  color: var(--brand-muted);
+  opacity: 1;
+}
+
+.landing-choice.button-subtle:hover {
+  border-color: var(--brand);
+  background: var(--brand-tint-04);
+}
+
+/* ---------- Hero search + reassurance ---------- */
+
+.landing-hero .discovery-search {
+  border-color: var(--brand-border);
+  box-shadow: 0 12px 34px rgb(0 40 58 / 8%);
+}
+
+.landing-hero .discovery-search label > svg {
+  color: var(--brand);
+}
+
+.landing-hero .trust-row {
+  color: var(--brand-muted);
+}
+
+.landing-hero .trust-row svg {
+  color: var(--brand);
+}
+
+.landing-hero .hero-note {
+  margin-block: 18px 34px;
+  color: var(--brand-muted);
+}
+
+/* ---------- Artisan arc ---------- */
+
+/* The arc keeps its five cards but never stacks one over another, so every
+   caption stays legible. Overlap is what was clipping the names. */
+.landing-hero .artisan-fan {
+  max-width: 1040px;
+  padding-inline: 0;
+}
+
+.landing-hero .fan-card {
+  width: 168px;
+  margin: 0 12px;
+  border-width: 3px;
+  border-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgb(0 40 58 / 12%);
+}
+
+.landing-hero .fan-0 {
+  transform: translateY(-10px) rotate(-5deg);
+}
+
+.landing-hero .fan-1 {
+  transform: translateY(-26px) rotate(-2.5deg);
+}
+
+.landing-hero .fan-2 {
+  width: 196px;
+  transform: translateY(-42px) rotate(0deg);
+}
+
+.landing-hero .fan-3 {
+  transform: translateY(-26px) rotate(2.5deg);
+}
+
+.landing-hero .fan-4 {
+  transform: translateY(-10px) rotate(5deg);
+}
+
+.landing-hero .fan-card:hover,
+.landing-hero .fan-card:focus-visible {
+  transform: translateY(-50px) rotate(0deg);
+  box-shadow: 0 24px 44px rgb(0 40 58 / 20%);
+}
+
+.landing-hero .fan-photo {
+  border-radius: 11px 11px 0 0;
+}
+
+.landing-hero .fan-badge {
+  color: var(--brand);
+}
+
+.landing-hero .fan-featured {
+  background: var(--brand-ink);
+}
+
+.landing-hero .fan-caption strong {
+  color: var(--brand-ink);
+}
+
+.landing-hero .fan-caption > span {
+  color: var(--brand-muted);
+}
+
+/* ---------- Two-path chooser ---------- */
+
+.landing-paths {
+  background:
+    radial-gradient(circle at 12% 0%, rgb(0 100 145 / 7%), transparent 44%),
+    linear-gradient(180deg, var(--brand-tint-04) 0%, #fff 62%);
+}
+
+.landing-paths h2,
+.landing-categories h2,
+.landing-community h2,
+.landing-cta h2 {
+  color: var(--brand-ink);
+}
+
+.landing-paths .demo-notice,
+.landing-cta .demo-notice {
+  color: var(--brand-muted);
+}
+
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: 1.75rem;
+}
+
+.path-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  border: 1px solid var(--brand-tint-16);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgb(0 40 58 / 5%);
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.path-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-border);
+  box-shadow: 0 24px 48px -26px rgb(0 40 58 / 28%);
+}
+
+.path-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.path-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font: 600 12.5px/1.15 var(--body);
+  white-space: nowrap;
+}
+
+.path-customer .path-chip {
+  border: 1px solid var(--brand-border);
+  background: var(--brand-tint-08);
+  color: var(--brand-strong);
+}
+
+.path-kicker {
+  font: 600 10.5px/1 var(--body);
+  letter-spacing: 0.1em;
+  color: var(--brand-muted);
+  white-space: nowrap;
+}
+
+.path-card h3 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  letter-spacing: -0.02em;
+  color: var(--brand-ink);
+}
+
+.path-summary {
+  margin: 0;
+  color: var(--brand-muted);
+  line-height: 1.65;
+}
+
+.path-steps {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.path-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.path-step-number {
+  flex-shrink: 0;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--brand-border);
+  background: var(--brand-tint-08);
+  color: var(--brand);
+  font: 700 10.5px/1 var(--body);
+  letter-spacing: 0.06em;
+}
+
+.path-steps strong {
+  display: block;
+  font-size: 14px;
+}
+
+.path-steps p {
+  margin: 3px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--brand-muted);
+}
+
+.path-cta {
+  margin-top: auto;
+  width: 100%;
+  min-height: 48px;
+  flex-shrink: 0;
+  justify-content: space-between;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.path-aside {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--brand-muted);
+}
+
+/* The artisan side is the darker half of the fork: the same hue, deeper. */
+.path-artisan {
+  background: linear-gradient(
+    160deg,
+    var(--brand-strong) 0%,
+    var(--brand) 58%,
+    var(--brand-deep) 100%
+  );
+  border-color: var(--brand-deep);
+  color: #eaf5fa;
+}
+
+.path-artisan h3 {
+  color: #fff;
+}
+
+.path-artisan .path-chip {
+  background: rgb(255 255 255 / 14%);
+  border: 1px solid rgb(255 255 255 / 32%);
+  color: #e2f2f9;
+}
+
+.path-artisan .path-kicker {
+  color: #a8cddd;
+}
+
+.path-artisan .path-summary,
+.path-artisan .path-aside {
+  color: #cfe3ed;
+}
+
+.path-artisan .path-steps strong {
+  color: #fff;
+}
+
+.path-artisan .path-steps p {
+  color: #bcd6e4;
+}
+
+.path-artisan .path-step-number {
+  background: rgb(255 255 255 / 14%);
+  border-color: rgb(255 255 255 / 32%);
+  color: #e2f2f9;
+}
+
+/* Filled teal on a teal card would disappear, so the dark half gets the
+   inverted button. */
+.path-artisan .path-cta {
+  border-color: #fff;
+  background: #fff;
+  color: var(--brand-ink);
+}
+
+.path-artisan .path-cta:hover {
+  border-color: #fff;
+  background: var(--brand-tint-12);
+}
+
+/* ---------- Categories, community, closing call to action ---------- */
+
+.landing-categories .category-card {
+  border-color: var(--brand-tint-16);
+}
+
+.landing-categories .category-card:hover {
+  border-color: var(--brand-border);
+}
+
+.landing-categories .category-card h3 {
+  color: var(--brand-ink);
+}
+
+.landing-community .photo-caption {
+  border: 1px solid var(--brand-tint-16);
+  background: rgb(255 255 255 / 94%);
+  color: var(--brand-ink);
+}
+
+.landing-community .community-copy > p:not(.eyebrow) {
+  color: var(--brand-muted);
+}
+
+.landing-cta .cta-panel {
+  border-color: var(--brand-tint-16);
+  background: var(--brand-tint-08);
+}
+
+.landing-cta .cta-panel p:not(.eyebrow) {
+  color: var(--brand-muted);
+}
+
+/* ---------- Responsive ---------- */
+
+/* Below 1024 the container narrows faster than five fixed cards can follow, so
+   the widths track the viewport. Fixed 132px cards overflowed the track from
+   769px down and the hero clipped both ends of the row. The centre card keeps
+   its extra width, so the row stays inside the track with the gutter to spare. */
+@media (max-width: 1024px) {
+  .landing-hero .artisan-fan {
+    max-width: 780px;
+  }
+
+  .landing-hero .fan-card {
+    width: clamp(100px, 18.4vw - 26px, 132px);
+    margin: 0 8px;
+  }
+
+  .landing-hero .fan-2 {
+    width: calc(clamp(100px, 18.4vw - 26px, 132px) + 24px);
+  }
+
+  /* Narrow cards wrapped the badge onto two lines and into the caption. */
+  .landing-hero .fan-badge {
+    padding: 3px 6px;
+    gap: 2px;
+    font-size: 8px;
+    white-space: nowrap;
+  }
+
+  /* The shared 12px caption size is what pushed names onto a third line and
+     stranded the surname on its own. */
+  .landing-hero .fan-caption strong {
+    font-size: 11px;
+  }
+
+  .landing-hero .fan-caption > span {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .path-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  /* Five legible cards cannot sit side by side on a phone, so the arc becomes
+     a snap-scrolling row that bleeds to the screen edge. */
+  /* The row is not a stretched grid item, so a negative margin only moves the
+     box instead of widening it and the last card never reaches the edge. A
+     viewport-wide box shifted by the gutter bleeds both sides exactly. */
+  .landing-hero .artisan-fan {
+    justify-content: flex-start;
+    height: auto;
+    width: 100vw;
+    max-width: none;
+    margin-inline: calc(50% - 50vw);
+    padding: 12px 20px 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .landing-hero .artisan-fan::-webkit-scrollbar {
+    display: none;
+  }
+
+  .landing-hero .artisan-fan .fan-card {
+    transform: none;
+    scroll-snap-align: center;
+  }
+
+  .landing-hero .fan-card {
+    width: 150px;
+    margin: 0 8px;
+  }
+
+  .landing-hero .fan-2 {
+    width: 168px;
+  }
+
+  .landing-hero .fan-photo {
+    height: 190px;
+  }
+
+  .landing-hero .fan-2 .fan-photo {
+    height: 210px;
+  }
+
+  .landing-hero .fan-caption {
+    padding: 10px 9px 9px;
+  }
+
+  .landing-hero .fan-badge {
+    display: inline-flex;
+    font-size: 8px;
+    padding: 3px 6px;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-choices {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .landing-choice {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .aurora-orb-sky {
+    width: 26rem;
+    height: 26rem;
+  }
+
+  .aurora-orb-navy {
+    width: 22rem;
+    height: 22rem;
+  }
+}

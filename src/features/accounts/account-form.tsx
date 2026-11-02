@@ -1,14 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useId, useRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Icon } from "@/components/icon";
-import {
-  demoAuthAdapter,
-  demoCredentials,
-  type DemoAuthResult,
-} from "./demo-adapter";
-import { useAccountDemo } from "./demo-context";
+import { workspaceRoutes, type AccountRole } from "./access";
+import { signupPaths, signupPathList, type SignupPath } from "./signup-paths";
+import { authClient } from "@/lib/auth/client";
 import {
   passwordChecks,
   validateAccount,
@@ -16,32 +14,94 @@ import {
   type AccountMode,
   type AccountValues,
 } from "./validation";
-const copy = {
-  signup: {
-    eyebrow: "YOUR NEXT PROJECT STARTS HERE",
-    title: "Create a customer account",
-    text: "Find skilled local people and plan your next job.",
-    action: "Preview signup",
+const signupCopy: Record<
+  SignupPath,
+  { eyebrow: string; title: string; text: string; action: string }
+> = {
+  customer: {
+    eyebrow: "CREATE A CUSTOMER ACCOUNT",
+    title: "Start hiring local artisans",
+    text: "Post the job, compare itemised quotes, and track the work through to sign-off.",
+    action: "Create customer account",
   },
+  artisan: {
+    eyebrow: "CREATE AN ARTISAN ACCOUNT",
+    title: "Start getting hired for your craft",
+    text: "Create your account, then build the work profile customers see when they quote you.",
+    action: "Create artisan account",
+  },
+};
+const copy = {
   login: {
-    eyebrow: "GOOD TO SEE YOU AGAIN",
+    eyebrow: "WELCOME BACK",
     title: "Welcome back.",
-    text: "Pick up where your next project left off.",
-    action: "Preview login",
+    text: "Sign in to continue your requests, quotes, and optional work profile.",
+    action: "Log in",
   },
   forgot: {
     eyebrow: "LET’S GET YOU BACK IN",
     title: "Forgot your password?",
-    text: "Enter your sample email to preview the recovery journey.",
-    action: "Preview reset request",
+    text: "Enter your email to request password reset instructions.",
+    action: "Send reset instructions",
   },
   reset: {
     eyebrow: "A FRESH START",
     title: "Choose a new password",
-    text: "Use a strong sample password you can remember.",
-    action: "Preview password reset",
+    text: "Choose a strong password for your account.",
+    action: "Reset password",
   },
 } as const;
+
+type FormResult = { ok: boolean; message: string };
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isAccountRole(value: unknown): value is AccountRole {
+  return value === "customer" || value === "artisan" || value === "admin";
+}
+
+function errorMessage(error: unknown) {
+  return error instanceof Error
+    ? error.message
+    : "The request could not be completed. Try again.";
+}
+
+async function setAccountRole(role: SignupPath) {
+  const response = await fetch("/api/account/profile", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ role }),
+  });
+  if (!response.ok) {
+    throw new Error(
+      response.status === 401
+        ? "Your account was created, but the session could not be started. Log in to continue."
+        : "Your account was created, but its profile could not be completed. Log in and try again.",
+    );
+  }
+}
+
+async function getAccountRole(): Promise<AccountRole | null> {
+  const response = await fetch("/api/account/profile", {
+    cache: "no-store",
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new Error("Could not load your account profile.");
+  }
+  const body: unknown = await response.json();
+  if (
+    !isRecord(body) ||
+    !isRecord(body.data) ||
+    !isAccountRole(body.data.role)
+  ) {
+    throw new Error("The account service returned an invalid profile.");
+  }
+  return body.data.role;
+}
+
 function PasswordInput({
   id,
   name,
@@ -100,14 +160,16 @@ function PasswordInput({
 export function AccountForm({
   mode,
   token = "",
+  path = "customer",
 }: {
   mode: AccountMode;
   token?: string;
+  path?: SignupPath;
 }) {
-  const { setEmail } = useAccountDemo();
+  const selectedPath = signupPaths[path];
+  const router = useRouter();
   const id = useId();
   const form = useRef<HTMLFormElement>(null);
-  const controller = useRef<AbortController | null>(null);
   const [values, setValues] = useState<AccountValues>({
     name: "",
     email: "",
@@ -116,8 +178,7 @@ export function AccountForm({
   });
   const [errors, setErrors] = useState<AccountErrors>({});
   const [pending, setPending] = useState(false);
-  const [result, setResult] = useState<DemoAuthResult | null>(null);
-  useEffect(() => () => controller.current?.abort(), []);
+  const [result, setResult] = useState<FormResult | null>(null);
   function update(name: keyof AccountValues, value: string) {
     if (pending) return;
     setValues((previous) => ({ ...previous, [name]: value }));
@@ -137,69 +198,80 @@ export function AccountForm({
         ?.focus();
       return;
     }
-    const request = new AbortController();
-    controller.current?.abort();
-    controller.current = request;
     setPending(true);
+    setResult(null);
     try {
-      let response: DemoAuthResult;
-      if (mode === "signup")
-        response = await demoAuthAdapter.signup(values, request.signal);
-      else if (mode === "login")
-        response = await demoAuthAdapter.login(
-          { email: values.email, password: values.password },
-          request.signal,
-        );
-      else if (mode === "forgot")
-        response = await demoAuthAdapter.requestReset(
-          values.email,
-          request.signal,
-        );
-      else
-        response = await demoAuthAdapter.reset(
-          { password: values.password, confirmation: values.confirmation },
-          token,
-          request.signal,
-        );
-      if (request.signal.aborted) return;
-      if (response.ok && mode !== "reset")
-        setEmail(values.email.trim().toLowerCase());
-      setResult(response);
-      if (response.ok)
-        setValues((previous) => ({
-          ...previous,
-          password: "",
-          confirmation: "",
-        }));
-    } catch (error) {
-      if (!request.signal.aborted)
-        setResult({
-          ok: false,
-          mode: "demo",
-          code: "UNAVAILABLE",
-          message:
-            "The preview could not finish. Your inputs are still here; try again.",
+      if (mode === "signup") {
+        const { error } = await authClient.signUp.email({
+          name: values.name.trim(),
+          email: values.email.trim(),
+          password: values.password,
         });
-      if (error instanceof Error && error.name === "AbortError") return;
+        if (error) throw new Error(error.message || "Could not create account.");
+        await setAccountRole(selectedPath.role);
+        router.replace(selectedPath.workspace);
+        router.refresh();
+        return;
+      }
+
+      if (mode === "login") {
+        const { error } = await authClient.signIn.email({
+          email: values.email.trim(),
+          password: values.password,
+        });
+        if (error) throw new Error(error.message || "Could not log in.");
+        const currentRole = await getAccountRole();
+        router.replace(
+          currentRole ? workspaceRoutes[currentRole] : "/complete-profile",
+        );
+        router.refresh();
+        return;
+      }
+
+      if (mode === "forgot") {
+        const { error } = await authClient.requestPasswordReset({
+          email: values.email.trim(),
+          redirectTo: `${window.location.origin}/reset-password`,
+        });
+        if (error) throw new Error(error.message || "Could not request a reset.");
+        setResult({
+          ok: true,
+          message:
+            "If an account uses this address, password reset instructions have been sent.",
+        });
+        return;
+      }
+
+      const { error } = await authClient.resetPassword({
+        newPassword: values.password,
+        token,
+      });
+      if (error) throw new Error(error.message || "Could not reset password.");
+      setValues((previous) => ({
+        ...previous,
+        password: "",
+        confirmation: "",
+      }));
+      setResult({ ok: true, message: "Your password has been updated." });
+    } catch (error) {
+      setResult({ ok: false, message: errorMessage(error) });
     } finally {
-      if (!request.signal.aborted) setPending(false);
+      setPending(false);
     }
   }
-  const heading = copy[mode];
-  if (mode === "reset" && token !== "demo-valid")
+  const heading = mode === "signup" ? signupCopy[path] : copy[mode];
+  if (mode === "reset" && !token)
     return (
       <div className="auth-card auth-state">
         <span className="auth-state-icon">
           <Icon name="lock" size={28} />
         </span>
         <h1>
-          {token === "demo-expired"
-            ? "This sample link has expired."
-            : "A reset link is needed."}
+          A reset link is needed.
         </h1>
         <p>
-          Request a new sample reset link to continue. No account or password
-          has been changed.
+          Request a password reset email to continue. No password has been
+          changed.
         </p>
         <Link
           className="button button-primary auth-submit"
@@ -213,53 +285,21 @@ export function AccountForm({
       </div>
     );
   if (result?.ok) {
-    const needsVerify =
-      mode === "signup" || result.kind === "verification-required";
     return (
       <div className="auth-card auth-state" role="status">
         <span className="auth-state-icon">
           <Icon name="check" size={30} />
         </span>
-        <p className="eyebrow">DEMO STEP COMPLETE</p>
+        <p className="eyebrow">ACCOUNT UPDATE COMPLETE</p>
         <h1>
-          {result.kind === "verification-required"
-            ? "Preview email verification"
-            : mode === "forgot"
-              ? "Reset request preview ready"
-              : mode === "reset"
-                ? "Password reset preview complete"
-                : mode === "signup"
-                  ? "Your signup preview is ready"
-                  : "Login preview complete"}
+          {mode === "forgot" ? "Check your inbox" : "Password updated"}
         </h1>
-        <p>
-          {mode === "forgot"
-            ? "A real recovery flow would send instructions if an account exists. No email was sent in this demo."
-            : mode === "reset"
-              ? "Your sample password passed validation. No password was changed."
-              : mode === "login" && result.kind !== "verification-required"
-                ? "The sample credentials matched. This preview does not sign you in or create a session."
-                : "Continue to preview the verification step. No account has been created or verified."}
-        </p>
+        <p>{result.message}</p>
         <Link
           className="button button-primary auth-submit"
-          href={
-            needsVerify
-              ? "/verify-email"
-              : mode === "forgot"
-                ? "/reset-password?token=demo-valid"
-                : mode === "reset"
-                  ? "/login"
-                  : "/artisans"
-          }
+          href="/login"
         >
-          {needsVerify
-            ? "Continue to verification"
-            : mode === "forgot"
-              ? "Preview sample reset link"
-              : mode === "reset"
-                ? "Back to login"
-                : "Explore public directory"}
+          Back to login
           <Icon name="arrow" size={18} />
         </Link>
         <button
@@ -279,11 +319,39 @@ export function AccountForm({
       <h1>{heading.title}</h1>
       <p className="auth-intro">{heading.text}</p>
       {mode === "signup" && (
-        <div className="auth-role-choice">
-          <span>
-            <Icon name="home" size={18} /> I’m looking for an artisan
-          </span>
-          <p>Artisan registration will be available soon.</p>
+        <div
+          className="auth-path-picker"
+          role="group"
+          aria-label="Choose how you will use SabiWork"
+        >
+          <span className="auth-path-picker-label">Joining as</span>
+          <div className="auth-path-options">
+            {signupPathList.map((option) => {
+              const active = option.role === path;
+              return (
+                <Link
+                  key={option.role}
+                  href={option.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`auth-path-option ${
+                    active ? "is-active" : ""
+                  }`}
+                >
+                  <Icon name={option.icon} size={18} />
+                  <span className="auth-path-option-text">
+                    <strong>{option.switchLabel}</strong>
+                    <small>{option.roleNote}</small>
+                  </span>
+                  {active && (
+                    <span className="auth-path-check">
+                      <Icon name="check" size={13} />
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+          <p className="auth-path-note">{selectedPath.aside}</p>
         </div>
       )}
       <form ref={form} onSubmit={submit} noValidate aria-busy={pending}>
@@ -298,7 +366,7 @@ export function AccountForm({
                 onChange={(event) => update("name", event.target.value)}
                 autoComplete="name"
                 maxLength={100}
-                placeholder="Ada Okafor"
+                placeholder="Your name"
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? `${id}-name-error` : undefined}
               />
@@ -320,7 +388,7 @@ export function AccountForm({
                 onChange={(event) => update("email", event.target.value)}
                 autoComplete="email"
                 maxLength={254}
-                placeholder="ada@example.test"
+                placeholder="you@example.com"
                 aria-invalid={!!errors.email}
                 aria-describedby={
                   errors.email ? `${id}-email-error` : undefined
@@ -359,7 +427,7 @@ export function AccountForm({
             <>
               <ul
                 className="password-checks"
-                aria-label="Sample password requirements"
+                aria-label="Password requirements"
               >
                 <li data-valid={checks.length}>
                   <Icon name={checks.length ? "check" : "help"} size={14} />
@@ -404,7 +472,13 @@ export function AccountForm({
             {pending ? (
               <>
                 <span className="auth-spinner" aria-hidden="true" />
-                Checking sample details…
+              {mode === "login"
+                ? "Logging in…"
+                : mode === "signup"
+                  ? "Creating account…"
+                  : mode === "forgot"
+                    ? "Sending instructions…"
+                    : "Updating password…"}
               </>
             ) : (
               <>
@@ -414,37 +488,10 @@ export function AccountForm({
             )}
           </button>
           <p className="auth-fineprint">
-            This is a local frontend preview. No account, session, email or
-            password change is created.
+            Authentication is provided by Neon. Payments and dispute handling are not available from this account form.
           </p>
         </fieldset>
       </form>
-      {mode === "login" && (
-        <details className="auth-demo-help">
-          <summary>Sample details for this preview</summary>
-          <p>
-            Email: <code>{demoCredentials.email}</code>
-            <br />
-            Password: <code>{demoCredentials.password}</code>
-          </p>
-          <button
-            type="button"
-            className="text-link auth-text-button"
-            disabled={pending}
-            onClick={() => {
-              setValues((previous) => ({
-                ...previous,
-                email: demoCredentials.email,
-                password: demoCredentials.password,
-              }));
-              setErrors({});
-              setResult(null);
-            }}
-          >
-            Fill sample details
-          </button>
-        </details>
-      )}
       <div className="auth-switch">
         {mode === "signup" ? (
           <>
@@ -457,7 +504,7 @@ export function AccountForm({
           <>
             New to SabiWork?{" "}
             <Link className="text-link" href="/signup/customer">
-              Create a customer account
+              Create an account
             </Link>
           </>
         ) : (

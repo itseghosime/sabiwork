@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>SabiWork Customer Portal</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-highest":"#dce2f7","surface-tint":"#006491","outline":"#6f7881","outline-variant":"#bec8d1","surface-container":"#e9edff","primary-fixed-dim":"#8aceff","surface-container-lowest":"#ffffff","tertiary-fixed":"#dbe4eb","on-tertiary":"#ffffff","surface":"#f9f9ff","secondary-container":"#bbd3fe","on-tertiary-fixed-variant":"#3f484e","background":"#f9f9ff","primary-fixed":"#c9e6ff","on-secondary-fixed-variant":"#30476b","error-container":"#ffdad6","tertiary-container":"#97a0a7","on-secondary-container":"#435a7f","on-error-container":"#93000a","surface-variant":"#dce2f7","tertiary":"#576065","secondary-fixed":"#d5e3ff","on-primary-container":"#003a56","on-secondary-fixed":"#001b3c","secondary-fixed-dim":"#b0c8f2","surface-dim":"#d3daef","on-secondary":"#ffffff","on-tertiary-container":"#2e373d","inverse-on-surface":"#edf0ff","on-tertiary-fixed":"#141d22","surface-bright":"#f9f9ff","tertiary-fixed-dim":"#bfc8ce","inverse-primary":"#8aceff","primary-container":"#38a8e8","on-primary-fixed-variant":"#004b6f","on-primary-fixed":"#001e2f","secondary":"#485f84","error":"#ba1a1a","on-surface-variant":"#3f4850","on-primary":"#ffffff","on-surface":"#141b2b","primary":"#006491","inverse-surface":"#293040","surface-container-high":"#e1e8fd","on-error":"#ffffff","surface-container-low":"#f1f3ff","on-background":"#141b2b"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-2xs":"0.25rem","margin-mobile":"1rem","space-lg":"1.25rem","space-2xl":"2rem","space-xs":"0.5rem","gutter-mobile":"0.75rem","space-xl":"1.5rem","space-sm":"0.625rem",margin:"2rem",gutter:"1.25rem","space-md":"1rem","space-3xl":"3rem"},fontFamily:{"label-lg":["Inter"],"headline-xl":["Plus Jakarta Sans"],"body-sm":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"body-lg":["Inter"],"body-md":["Inter"]},fontSize:{"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"label-md":["13px",{lineHeight:"18px",fontWeight:"500"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[1280px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex flex-col"><div class="flex items-baseline font-headline-sm text-headline-sm tracking-tight leading-none"><span class="text-[#0E294B]">Sabi</span><span class="text-[#38A8E8]">Work</span></div><span class="font-label-sm text-label-sm text-tertiary tracking-normal mt-0.5 hidden sm:inline-block">Skilled hands. Trusted work.</span></div></div><nav class="hidden lg:flex items-center gap-space-xs font-label-md text-label-md" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-full px-4 py-2 transition-all"><a class="px-3 py-2 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="explore-services" href="#">Explore Services</a><a class="px-3 py-2 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="my-bookings" href="#">My Bookings</a><a class="px-3 py-2 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="disputes-and-support" href="#">Disputes &amp; Support</a><a class="px-3 py-2 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" data-path="help" href="#">Help</a></nav><div class="flex items-center gap-space-sm shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0E294B] text-[#EFF8FF] border border-[#38A8E8]"><span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm tracking-wide font-medium">Paystack TEST Mode</span></div><button aria-label="Notifications" class="p-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden xl:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Ada O.</span><span class="font-label-sm text-label-sm text-tertiary leading-tight">Customer</span></div></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full">
+<!-- Subtle decorative ambient glow behind top bar -->
+<div class="relative w-full max-w-[1280px] mx-auto px-margin-mobile md:px-margin pb-space-3xl">
+<!-- Breadcrumbs & Meta Bar -->
+<section class="py-space-md flex flex-wrap items-center justify-between gap-space-sm">
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs font-label-md text-label-md text-tertiary">
+<a class="hover:text-primary transition-colors" href="#">Customer Portal</a>
+<span class="material-symbols-outlined text-[16px] text-outline-variant">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">My Jobs</a>
+<span class="material-symbols-outlined text-[16px] text-outline-variant">chevron_right</span>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">#BN-REQ-8421</a>
+<span class="material-symbols-outlined text-[16px] text-outline-variant">chevron_right</span>
+<span aria-current="page" class="font-label-md text-label-md text-primary">Report Issue / Dispute</span>
+</nav>
+<div class="flex items-center gap-space-xs flex-wrap">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm">Ref: DISP-REQ-8421</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0E294B] text-[#EFF8FF]">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm tracking-wide">Paystack TEST Mode Active</span>
+</div>
+</div>
+</section>
+<!-- Header Section with Distinct Asymmetry -->
+<header class="mb-space-xl">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="max-w-3xl">
+<div class="flex items-center gap-space-xs mb-1.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Mediation Intake Desk • Benin City Hub</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-tertiary">Job #BN-REQ-8421</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Report Job Issue &amp; Request Mediation</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Submit a detailed dispute or quality issue for independent mediation by SabiWork Benin City support team.</p>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<div class="px-3.5 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+<span>Milestone 1 In-Progress (Under Review)</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Top Linked Job Card (Surface Elevation 1 with high contrast data tiles) -->
+<section class="mb-space-xl rounded-xl bg-surface-container-lowest shadow-sm p-space-lg transition-all hover:shadow-md">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+<!-- Job & Artisan Spec -->
+<div class="flex items-start gap-space-md min-w-0 flex-1">
+<div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[32px]">plumbing</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-tertiary">Plumbing Maintenance</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">GRA Axis, Benin City</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate mt-0.5">Under-sink kitchen drain pipe replacement &amp; leak repair</h2>
+<div class="mt-2 flex items-center gap-space-md flex-wrap text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold">OI</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Osaze Ighodaro</span>
+<span class="text-tertiary text-xs">(Master Plumber)</span>
+<div class="flex items-center text-amber-500 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-0.5 font-bold">4.9</span>
+</div>
+</div>
+<span class="text-outline-variant hidden sm:inline">•</span>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span>Work Submitted for Review / Pending Sign-off</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Escrow & Financial Overview Module -->
+<div class="w-full lg:w-auto lg:min-w-[420px] rounded-lg bg-surface-container-low p-space-md">
+<div class="flex items-center justify-between gap-space-md mb-2 pb-2">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary">Agreed Quote</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">₦30,000.00</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-primary font-semibold">Milestone 1 Held</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">₦10,000.00</span>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden mb-2">
+<div class="bg-primary-container h-full rounded-full transition-all duration-500" style="width: 33.3%;"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-tertiary">
+<span>Milestone 2 Balance Due: <strong class="text-on-surface font-semibold">₦20,000.00</strong></span>
+<span class="font-label-sm text-label-sm text-tertiary">33% Escrowed</span>
+</div>
+<div class="mt-2.5 pt-2 flex items-center gap-2 font-label-sm text-label-sm text-on-tertiary-container">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">shield</span>
+<span class="leading-tight">Funds held securely in mock TEST escrow pending dispute assessment.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main 2-Column Responsive Layout (8 cols form / 4 cols sidebar) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- LEFT COLUMN: Dispute Submission Form (8 cols) -->
+<section class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Form Wrapper Card -->
+<form class="rounded-xl bg-surface-container-lowest shadow-sm p-space-xl flex flex-col gap-space-xl transition-all" id="dispute-form" onsubmit="event.preventDefault();">
+<!-- Banner for Interactive Simulator State Messages -->
+<div class="hidden rounded-lg p-space-md items-start gap-space-sm transition-all" id="status-alert">
+<span class="material-symbols-outlined text-[24px] shrink-0" id="status-icon">info</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold" id="status-title">Notice</span>
+<p class="font-body-md text-body-md mt-0.5 leading-normal" id="status-message"></p>
+</div>
+</div>
+<!-- Section 1: Issue Category Selection -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface">1. What is the primary issue?</label>
+<span class="font-label-sm text-label-sm text-error font-semibold">* Required</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary -mt-1">Categorizing accurately helps our local Benin trade mediators assign the appropriate technical reviewer.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mt-1">
+<!-- Option 1: Selected by default -->
+<label class="category-radio-card cursor-pointer rounded-lg p-space-md bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-sm group">
+<input checked="" class="mt-1 w-4 h-4 text-primary focus:ring-0 accent-primary" name="issue_category" type="radio" value="incomplete_scope"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Incomplete Work / Scope Deviation</span>
+<span class="font-body-sm text-body-sm text-tertiary mt-0.5">Agreed parts not installed or cleanup left unfinished</span>
+</div>
+</label>
+<!-- Option 2 -->
+<label class="category-radio-card cursor-pointer rounded-lg p-space-md bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-sm group">
+<input class="mt-1 w-4 h-4 text-primary focus:ring-0 accent-primary" name="issue_category" type="radio" value="defective_work"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Defective Workmanship or Leakage</span>
+<span class="font-body-sm text-body-sm text-tertiary mt-0.5">Issue reoccurred or poor technical quality of craft</span>
+</div>
+</label>
+<!-- Option 3 -->
+<label class="category-radio-card cursor-pointer rounded-lg p-space-md bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-sm group">
+<input class="mt-1 w-4 h-4 text-primary focus:ring-0 accent-primary" name="issue_category" type="radio" value="unprofessional_conduct"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Unprofessional Conduct / Absence</span>
+<span class="font-body-sm text-body-sm text-tertiary mt-0.5">Artisan departed without notice or unpunctual</span>
+</div>
+</label>
+<!-- Option 4 -->
+<label class="category-radio-card cursor-pointer rounded-lg p-space-md bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-sm group">
+<input class="mt-1 w-4 h-4 text-primary focus:ring-0 accent-primary" name="issue_category" type="radio" value="pricing_discrepancy"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Pricing &amp; Milestone Discrepancy</span>
+<span class="font-body-sm text-body-sm text-tertiary mt-0.5">Unauthorized extra material charges demanded</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Section 2: Relevant Milestone Selection -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface">2. Affected Milestone</label>
+<span class="font-label-sm text-label-sm text-tertiary">Select milestone to freeze</span>
+</div>
+<div class="rounded-lg bg-surface-container-low p-space-md flex items-center justify-between gap-space-md">
+<label class="flex items-center gap-space-sm cursor-pointer select-none">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-0 accent-primary cursor-pointer" id="milestone-1-check" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Milestone 1: P-trap Replacement &amp; Leak Sealing</span>
+<span class="font-body-sm text-body-sm text-tertiary">Escrow Deposit: ₦10,000.00 • Paystack TEST</span>
+</div>
+</label>
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Active Escrow</span>
+</div>
+</div>
+<!-- Section 3: Detailed Description of Issue -->
+<div class="flex flex-col gap-space-xs" id="description-container">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface" for="issue-description">3. Issue Description &amp; Facts</label>
+<span class="font-label-sm text-label-sm text-error font-semibold">* Required</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary">Be factual, specific, and chronological. Mention materials, testing done, and parts affected.</p>
+<div class="relative mt-1">
+<textarea class="w-full rounded-lg bg-surface-container-lowest p-space-md font-body-md text-body-md text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-y" id="issue-description" maxlength="1000" oninput="updateCharCount(this)" rows="5">Osaze fitted the replacement P-trap pipe this afternoon, but upon running the tap for 3 minutes during inspection, water continues to seep through the upper slip joint connecting to the main basin. In addition, the old corroded piping was left in the under-sink cupboard rather than cleared as agreed in the scope.</textarea>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-tertiary mt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+                Shared directly with artisan during 12h resolution window
+              </span>
+<span class="font-label-sm text-label-sm font-medium text-tertiary" id="char-count">284 / 1000 characters</span>
+</div>
+</div>
+<!-- Section 4: Evidence Photos & Documents -->
+<div class="flex flex-col gap-space-sm" id="evidence-container">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface">4. Evidence Photos &amp; Documents</label>
+<span class="font-label-sm text-label-sm text-tertiary">Max 5 files (up to 15MB each)</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary -mt-1">Clear photos of joint connections, leaks under running water, or uninstalled components ensure fast mediation.</p>
+<!-- Drop Zone -->
+<div class="rounded-xl bg-surface-container-low p-space-xl flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-all group">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:scale-105 transition-transform mb-2">
+<span class="material-symbols-outlined text-[28px]">cloud_upload</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Drag &amp; drop photos, videos or receipts</span>
+<span class="font-body-sm text-body-sm text-tertiary mt-0.5">Supports JPG, PNG, MP4, PDF • Max 15MB each</span>
+<button class="mt-3 px-4 py-2 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm hover:bg-surface-container transition-all" type="button">
+                Browse Files
+              </button>
+</div>
+<!-- Uploaded Evidence Preview List -->
+<div class="flex flex-col gap-space-sm mt-1" id="uploaded-previews">
+<!-- Evidence Item 1 -->
+<div class="rounded-lg bg-surface-container-low p-space-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0 flex-1">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden shrink-0 flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="Close up photograph showing a leaking PVC P-trap pipe slip joint under a modern residential kitchen sink with visible droplets of clean water gathering along the threaded connection ring, indoor kitchen ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYWbLqaAI7khjULndZ5fqtJxSr16hU0ERz6GgYJCbdCcXXQUkDkplVEHbHVtKpNziTp1ehXobB37Dpkv05MAGqvi-JcPXjwwgmJU9au-QhbdrPyt_cBmHyi6dFSdZWxZKV5a-njutTQ0kvB2dlDoL4SMHRNCmfkmMW9Ulp1kNXZpCq999cXzPnIX_ZbgrmLtmP8DsujM7ffvsuRrLnfpV0qmrwjJJsigXZZk4WsS8"/>
+<span class="absolute bottom-1 right-1 px-1 rounded bg-[#0E294B]/80 text-[10px] text-white font-mono">JPG</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface truncate">leaking_slip_joint_01.jpg</span>
+<span class="font-body-sm text-body-sm text-tertiary shrink-0">(1.8 MB)</span>
+</div>
+<div class="mt-1 flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-tertiary shrink-0">edit_note</span>
+<input class="w-full bg-surface-container-lowest rounded px-2 py-1 text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" placeholder="Add descriptive caption..." type="text" value="Water seepage under joint ring"/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end md:self-center shrink-0">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Verified
+                  </span>
+<button aria-label="Remove file" class="p-2 rounded-lg text-tertiary hover:text-error hover:bg-error-container/40 transition-colors" onclick="this.closest('.flex-col, .md\\:flex-row').remove()" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Evidence Item 2 -->
+<div class="rounded-lg bg-surface-container-low p-space-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0 flex-1">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden shrink-0 flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="High angle shot of an under sink kitchen cabinet floor cluttered with old corroded copper piping pieces, degraded rubber washers, and metal debris left behind on wooden shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqwIUJfMWQfTspaBk-cG6t0n62Al0njfmNJdtiqqvfdXAKIxBZu5GpmrKQCr3p2GfQ07egPC1a4Il53U1cbIr1waFnvMmvQ5MSKzPZ1M1aOeloJRWeDRXiU75vPkZgl1AiHsSMCxkVPv1afS3-yb1V9_o0Vem0vUyYNBAg7Ycu0Fump79wJNs9kJ0iiSUNIGmHwwOZ4EQBvWDRe6A_R0SLb4lymm3EE7-ie_Mdrdk"/>
+<span class="absolute bottom-1 right-1 px-1 rounded bg-[#0E294B]/80 text-[10px] text-white font-mono">JPG</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface truncate">debris_under_cabinet.jpg</span>
+<span class="font-body-sm text-body-sm text-tertiary shrink-0">(2.2 MB)</span>
+</div>
+<div class="mt-1 flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-tertiary shrink-0">edit_note</span>
+<input class="w-full bg-surface-container-lowest rounded px-2 py-1 text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" placeholder="Add descriptive caption..." type="text" value="Corroded pipe pieces left uncleaned"/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end md:self-center shrink-0">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Verified
+                  </span>
+<button aria-label="Remove file" class="p-2 rounded-lg text-tertiary hover:text-error hover:bg-error-container/40 transition-colors" onclick="this.closest('.flex-col, .md\\:flex-row').remove()" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 5: Requested Resolution -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface">5. Desired Outcome / Resolution</label>
+<span class="font-label-sm text-label-sm text-tertiary">Optional Proposal</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="cursor-pointer rounded-lg p-space-md bg-surface-container-low hover:bg-surface-container transition-all flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="w-4 h-4 text-primary focus:ring-0 accent-primary" name="requested_resolution" type="radio" value="rectify"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Request Artisan to Return &amp; Rectify Defect</span>
+<span class="font-body-sm text-body-sm text-tertiary">Gives Osaze a direct 12-hour window to inspect slip joint and clean cabinet</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold shrink-0 hidden sm:inline-block">Recommended</span>
+</label>
+<label class="cursor-pointer rounded-lg p-space-md bg-surface-container-low hover:bg-surface-container transition-all flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-0 accent-primary" name="requested_resolution" type="radio" value="adjust_milestone"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Adjust Milestone Amount / Partial Credit</span>
+<span class="font-body-sm text-body-sm text-tertiary">Deduct cleanup and re-fitting fee from Milestone 1 escrow release</span>
+</div>
+</div>
+</label>
+<label class="cursor-pointer rounded-lg p-space-md bg-surface-container-low hover:bg-surface-container transition-all flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-0 accent-primary" name="requested_resolution" type="radio" value="cancel"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Mediation Support for Mutually Agreed Job Cancellation</span>
+<span class="font-body-sm text-body-sm text-tertiary">Release artisan and negotiate pro-rated settlement via Benin Hub admin</span>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Section 6: Mediation Policy Notice (Crucial Transparent Standard) -->
+<div class="rounded-xl bg-[#0E294B] text-[#EFF8FF] p-space-lg flex items-start gap-space-md shadow-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-white font-bold">How SabiWork Reviews Disputes</h3>
+<span class="px-2 py-0.5 rounded text-[11px] font-mono uppercase bg-primary/30 text-primary-fixed">Policy 4.2</span>
+</div>
+<p class="font-body-md text-body-md text-slate-300 mt-1 leading-relaxed">
+                Our Benin City trade support team inspects submitted photo evidence against the agreed job scope and contacts both the client and Osaze within 4 business hours. Please note: SabiWork conducts objective evidence review and does not promise automatic refunds or guaranteed outcomes without mutual artisan consultation.
+              </p>
+<div class="mt-3 flex items-center gap-space-md flex-wrap font-label-sm text-label-sm text-sky-200">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 4-Hour Response Target
+                </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">handshake</span> Mutual Evidence Protocol
+                </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">lock_reset</span> Escrow Frozen Automatically
+                </span>
+</div>
+</div>
+</div>
+<!-- Section 7: Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-xs">
+<a class="w-full sm:w-auto h-12 px-6 rounded-lg bg-surface-container-low text-on-surface font-label-lg text-label-lg hover:bg-surface-container flex items-center justify-center gap-2 transition-colors order-2 sm:order-1" data-path="cancel-job-link" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+              Cancel &amp; Return to Job #BN-REQ-8421
+            </a>
+<button class="w-full sm:w-auto min-h-[48px] px-8 rounded-lg bg-primary text-on-primary font-headline-sm text-headline-sm hover:bg-[#1478B5] active:bg-[#004B6F] shadow-sm flex items-center justify-center gap-space-xs transition-all shrink-0 order-1 sm:order-2" id="submit-btn" onclick="handleDisputeSubmission()" type="submit">
+<span id="submit-btn-text">Submit Dispute for Mediation</span>
+<span class="material-symbols-outlined text-[20px]" id="submit-btn-icon">arrow_forward</span>
+</button>
+</div>
+</form>
+</section>
+<!-- RIGHT COLUMN: Sidebar Guidance & Simulator (4 cols) -->
+<aside class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Card 1: Interactive State Simulator -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-sm pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Prototype State Simulator</h3>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-mono">S32 Demo</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary mb-space-md">Simulate UX scenarios for presentation and QA testing:</p>
+<div class="flex flex-col gap-2">
+<button class="simulator-btn w-full h-11 px-4 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-between transition-all" id="btn-state-default" onclick="setSimulatorState('default')" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit_document</span>
+                Default Loaded Form
+              </span>
+<span class="material-symbols-outlined text-[16px]">check</span>
+</button>
+<button class="simulator-btn w-full h-11 px-4 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container flex items-center justify-between transition-all" id="btn-state-error" onclick="setSimulatorState('validation_error')" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-error">warning</span>
+                Validation Error State
+              </span>
+</button>
+<button class="simulator-btn w-full h-11 px-4 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container flex items-center justify-between transition-all" id="btn-state-upload" onclick="setSimulatorState('upload_failed')" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-amber-600">cloud_off</span>
+                Upload Failed (Preserved Text)
+              </span>
+</button>
+<button class="simulator-btn w-full h-11 px-4 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container flex items-center justify-between transition-all" id="btn-state-submitting" onclick="setSimulatorState('submitting')" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">progress_activity</span>
+                Submitting State (Spinner)
+              </span>
+</button>
+<button class="simulator-btn w-full h-11 px-4 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container flex items-center justify-between transition-all" id="btn-state-success" onclick="setSimulatorState('success')" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">task_alt</span>
+                Successful Submission (S33)
+              </span>
+</button>
+</div>
+</div>
+<!-- Card 2: Dispute Guidelines & Timeline -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center gap-2 mb-space-sm pb-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">timeline</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mediation Steps</h3>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary mb-space-md">What happens after you lodge this claim:</p>
+<ol class="relative pl-6 space-y-space-md before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-highest">
+<!-- Step 1 -->
+<li class="relative">
+<span class="absolute -left-6 top-0 w-4 h-4 rounded-full bg-primary text-on-primary text-[10px] font-bold flex items-center justify-center ring-4 ring-surface-container-lowest">1</span>
+<span class="font-label-md text-label-md text-on-surface block">Evidence Verification</span>
+<p class="font-body-sm text-body-sm text-tertiary mt-0.5">Your submitted photos must show distinct joint fittings, water ingress, or unrepaired zones with timestamps.</p>
+</li>
+<!-- Step 2 -->
+<li class="relative">
+<span class="absolute -left-6 top-0 w-4 h-4 rounded-full bg-surface-container text-on-surface text-[10px] font-bold flex items-center justify-center ring-4 ring-surface-container-lowest">2</span>
+<span class="font-label-md text-label-md text-on-surface block">12-Hour Artisan Rectification</span>
+<p class="font-body-sm text-body-sm text-tertiary mt-0.5">Osaze receives the photo notes and gets a priority window to propose immediate site revisit or adjustment.</p>
+</li>
+<!-- Step 3 -->
+<li class="relative">
+<span class="absolute -left-6 top-0 w-4 h-4 rounded-full bg-surface-container text-on-surface text-[10px] font-bold flex items-center justify-center ring-4 ring-surface-container-lowest">3</span>
+<span class="font-label-md text-label-md text-on-surface block">Benin Operations Fair Ruling</span>
+<p class="font-body-sm text-body-sm text-tertiary mt-0.5">If unresolved after 12h, an independent plumbing inspector evaluates milestone release or partial refund.</p>
+</li>
+</ol>
+</div>
+<!-- Card 3: Direct Support Contact Card -->
+<div class="rounded-xl bg-surface-container-low p-space-lg flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">headset_mic</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Edo State Support Desk</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Need urgent guidance before lodging a formal dispute? Speak with our Benin City hub customer advocacy team.
+          </p>
+<div class="rounded-lg bg-surface-container-lowest p-space-sm flex flex-col gap-1 mt-1 shadow-xs">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-tertiary">Hub Support:</span>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="mailto:support@sabiwork.ng">support@sabiwork.ng</a>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-tertiary">Physical Center:</span>
+<span class="font-label-sm text-label-sm text-on-surface">Benin City Hub (GRA)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-tertiary">Operating Hours:</span>
+<span class="font-label-sm text-label-sm text-on-surface">Mon–Sat: 8am – 7pm</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-tertiary font-label-sm text-label-sm mt-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>Support Representatives Online</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<!-- Inline Simulation & UX Control Scripts -->
+<script>
+    function updateCharCount(el) {
+      const len = el.value.length;
+      const countEl = document.getElementById('char-count');
+      if (countEl) {
+        countEl.textContent = `${len} / 1000 characters`;
+      }
+    }
+
+    function setSimulatorState(state) {
+      const alertBox = document.getElementById('status-alert');
+      const alertTitle = document.getElementById('status-title');
+      const alertMsg = document.getElementById('status-message');
+      const alertIcon = document.getElementById('status-icon');
+      const descInput = document.getElementById('issue-description');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitBtnText = document.getElementById('submit-btn-text');
+      const submitBtnIcon = document.getElementById('submit-btn-icon');
+      const descContainer = document.getElementById('description-container');
+      const previews = document.getElementById('uploaded-previews');
+
+      // Update button styling in simulator card
+      document.querySelectorAll('.simulator-btn').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-on-primary');
+        btn.classList.add('bg-surface-container-low', 'text-on-surface');
+        const check = btn.querySelector('.simulator-check');
+        if (check) check.remove();
+      });
+
+      const activeBtnMap = {
+        'default': 'btn-state-default',
+        'validation_error': 'btn-state-error',
+        'upload_failed': 'btn-state-upload',
+        'submitting': 'btn-state-submitting',
+        'success': 'btn-state-success'
+      };
+
+      const currentBtn = document.getElementById(activeBtnMap[state]);
+      if (currentBtn) {
+        currentBtn.classList.remove('bg-surface-container-low', 'text-on-surface');
+        currentBtn.classList.add('bg-primary', 'text-on-primary');
+      }
+
+      // Reset base element states
+      alertBox.classList.add('hidden');
+      alertBox.className = "rounded-lg p-space-md flex items-start gap-space-sm transition-all";
+      descInput.classList.remove('ring-2', 'ring-error', 'bg-error-container/20');
+      submitBtn.disabled = false;
+      submitBtnText.textContent = "Submit Dispute for Mediation";
+      submitBtnIcon.className = "material-symbols-outlined text-[20px]";
+      submitBtnIcon.textContent = "arrow_forward";
+
+      if (state === 'default') {
+        alertBox.classList.add('hidden');
+        descInput.value = "Osaze fitted the replacement P-trap pipe this afternoon, but upon running the tap for 3 minutes during inspection, water continues to seep through the upper slip joint connecting to the main basin. In addition, the old corroded piping was left in the under-sink cupboard rather than cleared as agreed in the scope.";
+        updateCharCount(descInput);
+      } 
+      else if (state === 'validation_error') {
+        alertBox.classList.remove('hidden');
+        alertBox.classList.add('bg-error-container', 'text-on-error-container');
+        alertIcon.textContent = 'error';
+        alertIcon.className = 'material-symbols-outlined text-[24px] text-error shrink-0';
+        alertTitle.textContent = 'Incomplete Dispute Submission';
+        alertMsg.textContent = 'Please review required items: A minimum 30-word factual description is required along with at least 1 clear photo evidence file.';
+        descInput.classList.add('ring-2', 'ring-error', 'bg-error-container/20');
+        descInput.focus();
+      }
+      else if (state === 'upload_failed') {
+        alertBox.classList.remove('hidden');
+        alertBox.classList.add('bg-amber-100', 'text-amber-900');
+        alertIcon.textContent = 'cloud_off';
+        alertIcon.className = 'material-symbols-outlined text-[24px] text-amber-700 shrink-0';
+        alertTitle.textContent = 'Attachment Upload Notice (Preserved)';
+        alertMsg.textContent = 'File "drain_leak_video.mp4" exceeded 15MB. Your text draft and previous 2 photos were preserved safely. Please attach a compressed version or continue with existing photos.';
+      }
+      else if (state === 'submitting') {
+        submitBtn.disabled = true;
+        submitBtnText.textContent = "Submitting Evidence...";
+        submitBtnIcon.className = "material-symbols-outlined text-[20px] animate-spin";
+        submitBtnIcon.textContent = "progress_activity";
+        
+        alertBox.classList.remove('hidden');
+        alertBox.classList.add('bg-surface-container-high', 'text-on-surface');
+        alertIcon.textContent = 'lock_clock';
+        alertIcon.className = 'material-symbols-outlined text-[24px] text-primary shrink-0';
+        alertTitle.textContent = 'Securing Milestone Escrow...';
+        alertMsg.textContent = 'Encrypting submitted documents and registering case #DISP-REQ-8421 with Benin City Hub operations...';
+      }
+      else if (state === 'success') {
+        alertBox.classList.remove('hidden');
+        alertBox.classList.add('bg-emerald-100', 'text-emerald-950');
+        alertIcon.textContent = 'check_circle';
+        alertIcon.className = 'material-symbols-outlined text-[24px] text-emerald-600 shrink-0';
+        alertTitle.textContent = 'Dispute Successfully Lodged (Ref: DISP-REQ-8421)';
+        alertMsg.textContent = 'Milestone 1 (₦10,000.00) is now locked in secure dispute escrow. Osaze Ighodaro has been notified with a 12-hour resolution window. Forwarding to Mediation Room (S33)...';
+        submitBtnText.textContent = "Go to Mediation Room (S33) →";
+        submitBtnIcon.textContent = "open_in_new";
+      }
+    }
+
+    function handleDisputeSubmission() {
+      setSimulatorState('submitting');
+      setTimeout(() => {
+        setSimulatorState('success');
+      }, 1200);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg text-center md:text-left"><div class="flex flex-col sm:flex-row items-center gap-space-sm"><div class="flex items-center gap-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex items-baseline font-headline-sm text-headline-sm leading-none"><span class="text-[#0E294B]">Sabi</span><span class="text-[#38A8E8]">Work</span></div></div><span class="hidden sm:inline text-outline-variant">•</span><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 SabiWork Technologies. Paystack TEST Mode Enabled.</p></div><div class="flex flex-wrap items-center justify-center gap-x-space-lg gap-y-space-xs font-label-md text-label-md text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Dispute Mediation Policy</a><a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a><a class="hover:text-on-surface transition-colors" href="#">Privacy Notice</a><a class="hover:text-on-surface transition-colors" href="#">Trust &amp; Safety</a></div></div></footer></body></html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed-variant":"#004b6f","on-secondary-fixed":"#001b3c","on-secondary-fixed-variant":"#30476b","inverse-on-surface":"#edf0ff","tertiary-container":"#97a0a7","inverse-surface":"#293040","outline":"#6f7881","on-secondary":"#ffffff","on-error-container":"#93000a","surface-tint":"#006491","outline-variant":"#bec8d1","on-tertiary-fixed-variant":"#3f484e","surface-container-high":"#e1e8fd","error-container":"#ffdad6","tertiary":"#576065","surface-container-highest":"#dce2f7","on-tertiary-fixed":"#141d22","primary":"#006491","on-surface-variant":"#3f4850","primary-fixed-dim":"#8aceff","secondary-fixed":"#d5e3ff","surface-container-low":"#f1f3ff","on-primary-fixed":"#001e2f","error":"#ba1a1a","secondary-container":"#bbd3fe","secondary":"#485f84","surface-container-lowest":"#ffffff","primary-fixed":"#c9e6ff","on-primary":"#ffffff","surface":"#f9f9ff","on-surface":"#141b2b","surface-variant":"#dce2f7","on-tertiary":"#ffffff","primary-container":"#38a8e8","tertiary-fixed-dim":"#bfc8ce","on-error":"#ffffff","surface-container":"#e9edff","inverse-primary":"#8aceff","secondary-fixed-dim":"#b0c8f2","on-secondary-container":"#435a7f","background":"#f9f9ff","surface-dim":"#d3daef","on-primary-container":"#003a56","on-tertiary-container":"#2e373d","tertiary-fixed":"#dbe4eb","on-background":"#141b2b","surface-bright":"#f9f9ff"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-2xs":"0.25rem","space-md":"1rem","space-sm":"0.625rem","space-xl":"1.5rem","space-lg":"1.25rem","margin-mobile":"1rem",gutter:"1.25rem","space-2xl":"2rem","gutter-mobile":"0.75rem","space-xs":"0.5rem",margin:"2rem","space-3xl":"3rem"},fontFamily:{"body-md":["Inter"],"label-lg":["Inter"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"],"body-lg":["Inter"],"headline-xl":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"body-sm":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"]},fontSize:{"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-md":["13px",{lineHeight:"18px",fontWeight:"500"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"700"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-16 flex items-center gap-space-sm px-space-xl"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Sabi<span class="text-primary-container">Work</span></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Artisan Hub</span></div></div><div class="px-space-md py-space-sm"><div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[20px]">near_me</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Hub Desk</span><span class="font-label-md text-label-md text-on-surface font-semibold">Benin City</span></div></div><span class="h-2 w-2 rounded-full bg-primary-container animate-pulse"></span></div></div><nav class="px-space-md mt-space-xs flex flex-col gap-space-2xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-xl"><div class="px-space-sm pt-space-xs pb-space-2xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Workspace</span></div><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">space_dashboard</span><span>Overview</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="requests-and-quotes" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px] shrink-0">request_quote</span><span>Requests &amp; quotes</span></div><span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">3</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="my-jobs" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">handyman</span><span>My jobs</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="earnings" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">account_balance_wallet</span><span>Earnings</span></a><a aria-current="page" class="flex items-center gap-space-xs px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-semibold rounded-xl" data-path="availability" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">event_available</span><span>Availability</span></a><div class="px-space-sm pt-space-md pb-space-2xs mt-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Artisan Desk</span></div><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="my-profile" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">badge</span><span>My profile</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="verification" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">verified_user</span><span>Verification</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="training" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">school</span><span>Training</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">tune</span><span>Settings</span></a></nav></div><div class="p-space-md"><div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant">Status Mode</span><span class="font-label-sm text-label-sm text-primary font-semibold">Online</span></div><div class="flex items-center gap-space-xs pt-1"><span class="h-2.5 w-2.5 rounded-full bg-primary"></span><span class="font-body-sm text-body-sm text-on-surface">Accepting Bookings</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed"><span class="material-symbols-outlined text-[16px]">location_city</span><span class="font-label-sm text-label-sm font-semibold">Benin City Hub Desk</span></div><div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-on-secondary-fixed text-surface-container-low"><span class="h-2 w-2 rounded-full bg-primary-container"></span><span class="font-label-sm text-label-sm tracking-wide font-medium">Paystack TEST Mode</span></div></div><div class="flex items-center gap-space-md"><button class="h-10 w-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-error"></span></button><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-lg text-label-lg text-on-surface leading-tight">Osaze Ighodaro</span><span class="font-label-sm text-label-sm text-on-surface-variant">Verified Artisan</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen px-space-xl pb-space-2xl"><div class="flex flex-col w-full">
+<!-- Interactive Toast Stack (Prototype States) -->
+<div class="hidden fixed bottom-6 right-6 z-50 flex items-center gap-space-sm px-space-md py- space-sm rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl border-none transition-all duration-300" id="toast-notification">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]" id="toast-icon">check_circle</span>
+<span class="font-body-md text-body-md font-medium" id="toast-msg">Changes saved successfully in West Africa Time (WAT).</span>
+<button class="ml-2 text-inverse-on-surface/70 hover:text-inverse-on-surface" onclick="closeToast()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Breadcrumb & Main Header Controls -->
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<div class="flex items-center gap-space-2xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<span>Artisan Desk</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Operations</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Availability &amp; Working Windows (WAT)</span>
+</div>
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md pt-space-2xs">
+<div>
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Availability &amp; Work Schedule</h1>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> WAT (UTC+1)
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Set active booking windows, manage dispatch availability across Benin City, and view booked job conflicts in West Africa Time.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-xs shrink-0">
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-2 whitespace-nowrap transition-colors" onclick="triggerToast('Recurring pattern active for Benin City desk.')" type="button">
+<span class="material-symbols-outlined text-[18px]">update</span>
+<span>Weekly Recurring Setup</span>
+</button>
+<button class="min-h-[44px] px-space-md py-2.5 rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md flex items-center gap-2 whitespace-nowrap shadow-sm transition-colors" onclick="openWindowDrawer()" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Set Custom Window</span>
+</button>
+<button class="min-h-[44px] px-space-sm py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-2 whitespace-nowrap transition-colors" onclick="triggerToast('iCal sync feed generated for Osaze Ighodaro.')" title="Export .ics Calendar" type="button">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span class="hidden sm:inline">Export (.ics)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Prototype State Switcher Bar -->
+<div class="mb-space-lg p-space-xs rounded-xl bg-surface-container-low flex flex-wrap items-center gap-space-2xs text-label-sm font-label-sm text-on-surface-variant">
+<span class="px-space-xs uppercase tracking-wider font-semibold text-on-surface">Prototype Sandbox:</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-semibold shadow-sm transition-all" id="state-btn-calendar" onclick="switchState('calendar')" type="button">Default Time-Grid</button>
+<button class="px-3 py-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant transition-all" id="state-btn-drawer" onclick="switchState('drawer')" type="button">Edit Window Modal</button>
+<button class="px-3 py-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant transition-all" id="state-btn-agenda" onclick="switchState('agenda')" type="button">Chronological Agenda List</button>
+<button class="px-3 py-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant transition-all" id="state-btn-conflict" onclick="switchState('conflict')" type="button">Conflict Warning Demo</button>
+<button class="px-3 py-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant transition-all" id="state-btn-empty" onclick="switchState('empty')" type="button">Empty Schedule</button>
+<button class="px-3 py-1.5 rounded-lg hover:bg-error-container text-error transition-all" onclick="triggerToast('Simulating network sync error...', true)" type="button">Simulate Error</button>
+</div>
+<!-- Top KPI & Dispatch Summary Bar -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Dispatch Status Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Instant Dispatch Status</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">Accepting Jobs</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="dispatchToggle" onchange="toggleDispatchStatus(this.checked)" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-surface-container-high after:border after:rounded-full after:h-5 after:width-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span>Active in GRA, Airport Rd &amp; Sapele Rd</span>
+</div>
+</div>
+<!-- Capacity Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Weekly Capacity (WAT)</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">32h / 45h Logged</span>
+</div>
+<span class="p-2 rounded-xl bg-primary-fixed text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[20px]">timelapse</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+<span>Utilization</span>
+<span class="font-semibold text-on-surface">71% Booked</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 71%"></div>
+</div>
+</div>
+</div>
+<!-- Booked Jobs Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Booked Work Orders</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">4 Active Jobs</span>
+</div>
+<span class="p-2 rounded-xl bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[20px]">handyman</span>
+</span>
+</div>
+<div class="mt-space-md flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Ada O. (Today 14:00 WAT)</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-primary font-medium">Sapele Rd</span>
+</div>
+</div>
+<!-- Safeguard Safeguard Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Conflict Safeguard</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1 flex items-center gap-1.5">
+<span>0 Overlaps</span>
+<span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</span>
+</div>
+<span class="p-2 rounded-xl bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[20px]">format_image_left</span>
+</span>
+</div>
+<div class="mt-space-md flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Auto-locking buffer windows (WAT)</span>
+</div>
+</div>
+</div>
+<!-- Main Working Area: Dual Column Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Calendar & Time-Grid (8 cols) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Calendar Controls & Segmented View Switcher -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<button class="h-10 w-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<span class="font-headline-sm text-headline-sm text-on-surface px-space-xs">Monday, 27 Oct – Sunday, 2 Nov 2026</span>
+<button class="h-10 w-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors ml-1" type="button">Today</button>
+</div>
+<!-- View Segmented Control -->
+<div class="p-1 rounded-xl bg-surface-container-low flex items-center self-stretch sm:self-auto">
+<button class="flex-1 sm:flex-initial px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-primary font-semibold shadow-sm" onclick="switchState('calendar')" type="button">Weekly Time-Grid</button>
+<button class="flex-1 sm:flex-initial px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface" onclick="switchState('agenda')" type="button">Agenda / List</button>
+</div>
+</div>
+<!-- Time-Grid View Container -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm overflow-x-auto" id="calendar-view">
+<!-- Interactive Legend -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-md mb-space-md">
+<div class="flex flex-wrap items-center gap-space-md font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3.5 h-3.5 rounded bg-primary-fixed border border-primary-container"></span>
+<span class="text-on-surface font-medium">Available Dispatch Slot</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3.5 h-3.5 rounded bg-on-secondary-fixed text-surface-container-lowest"></span>
+<span class="text-on-surface font-medium">Booked Job (Confirmed Escrow)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3.5 h-3.5 rounded bg-surface-container-highest"></span>
+<span class="text-on-surface font-medium">Reserved Personal Window</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Click slot to edit</span>
+</div>
+<!-- Weekly Time-Grid Content -->
+<div class="min-w-[720px]">
+<!-- Day Headers -->
+<div class="grid grid-cols-8 gap-1 pb-space-xs text-center font-label-sm text-label-sm text-on-surface-variant">
+<div class="text-left pl-2 font-medium">Time (WAT)</div>
+<div class="p-2 rounded-lg bg-surface-container-low font-semibold text-on-surface">Mon 27</div>
+<div class="p-2 rounded-lg bg-surface-container-low font-semibold text-on-surface">Tue 28</div>
+<div class="p-2 rounded-lg bg-primary-fixed text-on-primary-fixed-variant font-bold">Wed 29 (Today)</div>
+<div class="p-2 rounded-lg bg-surface-container-low font-semibold text-on-surface">Thu 30</div>
+<div class="p-2 rounded-lg bg-surface-container-low font-semibold text-on-surface">Fri 31</div>
+<div class="p-2 rounded-lg bg-surface-container-low font-semibold text-on-surface">Sat 01</div>
+<div class="p-2 rounded-lg bg-surface-container-low font-semibold text-on-surface">Sun 02</div>
+</div>
+<!-- Time Rows Grid (07:00 to 18:00 WAT) -->
+<div class="flex flex-col gap-1.5 pt-space-xs font-body-sm text-body-sm">
+<!-- 07:00 - 08:30 WAT -->
+<div class="grid grid-cols-8 gap-1 h-14 items-center">
+<div class="text-on-surface-variant font-medium pl-2">07:00 WAT</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<!-- Available window Wed -->
+<div class="h-full rounded-lg bg-primary-fixed/40 hover:bg-primary-fixed/70 cursor-pointer p-1.5 text-on-primary-fixed-variant flex flex-col justify-center transition-colors" onclick="selectWindow('Wednesday, 29 Oct', '07:00 WAT', '12:00 WAT', 'GRA Axis &amp; Airport Rd')">
+<span class="font-label-sm text-label-sm font-semibold truncate leading-tight">Available</span>
+<span class="text-[10px] text-on-surface-variant">GRA Hub</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+</div>
+<!-- 09:00 - 11:30 WAT -->
+<div class="grid grid-cols-8 gap-1 h-20 items-center">
+<div class="text-on-surface-variant font-medium pl-2">09:00 WAT</div>
+<!-- Mon Available -->
+<div class="h-full rounded-lg bg-primary-fixed/40 hover:bg-primary-fixed/70 cursor-pointer p-1.5 text-on-primary-fixed-variant flex flex-col justify-center transition-colors" onclick="selectWindow('Monday, 27 Oct', '08:30 WAT', '12:00 WAT', 'All Hub Zones')">
+<span class="font-label-sm text-label-sm font-semibold">Dispatch Ready</span>
+<span class="text-[10px] text-on-surface-variant">All Zones</span>
+</div>
+<!-- Tue Available -->
+<div class="h-full rounded-lg bg-primary-fixed/40 hover:bg-primary-fixed/70 cursor-pointer p-1.5 text-on-primary-fixed-variant flex flex-col justify-center transition-colors" onclick="selectWindow('Tuesday, 28 Oct', '09:00 WAT', '13:00 WAT', 'Airport Rd')">
+<span class="font-label-sm text-label-sm font-semibold">Available</span>
+</div>
+<!-- Wed Available (continued) -->
+<div class="h-full rounded-lg bg-primary-fixed/40 p-1.5 text-on-primary-fixed-variant flex flex-col justify-center">
+<span class="font-label-sm text-label-sm font-semibold">Available</span>
+<span class="text-[10px] text-on-surface-variant">Until 13:00</span>
+</div>
+<!-- Thu BOOKED JOB OVERLAY: Chief Obaseki -->
+<div class="h-full rounded-lg bg-on-secondary-fixed text-surface-container-lowest p-2 shadow-md cursor-pointer flex flex-col justify-between hover:ring-2 hover:ring-primary-container transition-all" onclick="openJobDetails('JOB-BN-2026-079', 'Chief Obaseki', '09:00 - 12:00 WAT', 'Shower Mixer')">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-primary-container truncate">#JOB-079</span>
+<span class="material-symbols-outlined text-[14px] text-primary-fixed">lock</span>
+</div>
+<div class="font-label-sm text-label-sm font-semibold leading-tight line-clamp-1">Chief Obaseki</div>
+<span class="text-[10px] text-inverse-on-surface/80">09:00 - 12:00 WAT</span>
+</div>
+<!-- Fri Available -->
+<div class="h-full rounded-lg bg-primary-fixed/40 hover:bg-primary-fixed/70 cursor-pointer p-1.5 text-on-primary-fixed-variant flex flex-col justify-center transition-colors" onclick="selectWindow('Friday, 31 Oct', '09:00 WAT', '12:00 WAT', 'GRA Axis')">
+<span class="font-label-sm text-label-sm font-semibold">Available</span>
+</div>
+<!-- Sat Personal Window -->
+<div class="h-full rounded-lg bg-surface-container-highest p-1.5 flex flex-col justify-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-semibold truncate">Workshop Sourcing</span>
+<span class="text-[10px]">Restock tools</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+</div>
+<!-- 12:00 - 13:30 WAT -->
+<div class="grid grid-cols-8 gap-1 h-16 items-center">
+<div class="text-on-surface-variant font-medium pl-2">12:00 WAT</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<!-- Wed Break / Travel Buffer -->
+<div class="h-full rounded-lg bg-surface-container-high p-1.5 flex flex-col justify-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-medium">Transit Buffer</span>
+<span class="text-[10px]">To Sapele Rd</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<!-- Fri Booked Job: Victor E. -->
+<div class="h-full rounded-lg bg-on-secondary-fixed text-surface-container-lowest p-2 shadow-sm cursor-pointer flex flex-col justify-between hover:ring-2 hover:ring-primary-container transition-all" onclick="openJobDetails('JOB-BN-2026-088', 'Victor E.', '12:00 - 14:30 WAT', 'Water Heater Install')">
+<span class="font-label-sm text-label-sm font-bold text-primary-container truncate leading-none">Victor E.</span>
+<span class="text-[10px] text-inverse-on-surface/80">Water Heater</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+</div>
+<!-- 14:00 - 16:30 WAT -->
+<div class="grid grid-cols-8 gap-1 h-20 items-center">
+<div class="text-on-surface-variant font-medium pl-2">14:00 WAT</div>
+<!-- Mon Available -->
+<div class="h-full rounded-lg bg-primary-fixed/40 hover:bg-primary-fixed/70 cursor-pointer p-1.5 text-on-primary-fixed-variant flex flex-col justify-center transition-colors" onclick="selectWindow('Monday, 27 Oct', '14:00 WAT', '18:00 WAT', 'Airport Rd')">
+<span class="font-label-sm text-label-sm font-semibold">Available</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<!-- Wed BOOKED JOB TODAY: Ada O. -->
+<div class="h-full rounded-lg bg-on-secondary-fixed text-surface-container-lowest p-2 shadow-md cursor-pointer flex flex-col justify-between ring-2 ring-primary transition-all" onclick="openJobDetails('JOB-BN-2026-092', 'Ada O.', '14:00 - 16:30 WAT', 'Under-sink Pipe Leak')">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-primary-fixed leading-tight">Ada O. (Today)</span>
+<span class="h-2 w-2 rounded-full bg-primary-container animate-pulse"></span>
+</div>
+<div class="font-label-sm text-label-sm text-surface-container-lowest line-clamp-1">Under-sink Pipe Leak</div>
+<span class="text-[10px] text-inverse-on-surface/90">14:00 - 16:30 WAT • Escrow</span>
+</div>
+<!-- Thu Custom Selected Window -->
+<div class="h-full rounded-lg bg-primary-fixed/70 border-2 border-primary cursor-pointer p-1.5 text-on-primary-fixed-variant flex flex-col justify-center" onclick="selectWindow('Thursday, 30 Oct', '14:00 WAT', '17:30 WAT', 'GRA Axis &amp; Ugbowo')">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-primary">Selected</span>
+<span class="material-symbols-outlined text-[14px] text-primary">edit</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">14:00 - 17:30 WAT</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<!-- Sat Blessing A. -->
+<div class="h-full rounded-lg bg-on-secondary-fixed text-surface-container-lowest p-2 shadow-sm cursor-pointer flex flex-col justify-between hover:ring-2 hover:ring-primary-container transition-all" onclick="openJobDetails('JOB-BN-2026-095', 'Blessing A.', '14:30 - 17:00 WAT', 'Borehole Valve')">
+<span class="font-label-sm text-label-sm font-bold text-primary-container truncate leading-none">Blessing A.</span>
+<span class="text-[10px] text-inverse-on-surface/80">Valve Replace</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+</div>
+<!-- 17:00 - 19:00 WAT -->
+<div class="grid grid-cols-8 gap-1 h-14 items-center">
+<div class="text-on-surface-variant font-medium pl-2">17:00 WAT</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<!-- Fri Available Evening -->
+<div class="h-full rounded-lg bg-primary-fixed/40 hover:bg-primary-fixed/70 cursor-pointer p-1.5 text-on-primary-fixed-variant flex flex-col justify-center transition-colors" onclick="selectWindow('Friday, 31 Oct', '17:00 WAT', '19:00 WAT', 'GRA Axis')">
+<span class="font-label-sm text-label-sm font-semibold truncate">Available</span>
+</div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+<div class="h-full rounded-lg bg-surface-container-low/50"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State View Placeholder (Hidden by Default) -->
+<div class="hidden p-space-2xl rounded-xl bg-surface-container-lowest shadow-sm flex flex-col items-center justify-center text-center" id="empty-state-view">
+<span class="material-symbols-outlined text-[48px] text-outline mb-space-sm">event_busy</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No Working Windows Defined</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-1 mb-space-lg">
+          You are currently marked as offline for this week. Customers in Benin City will not be able to auto-book your plumbing services until you create a window.
+        </p>
+<button class="min-h-[44px] px-space-xl py-2.5 rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md flex items-center gap-2" onclick="openWindowDrawer()" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Set Initial Window (WAT)</span>
+</button>
+</div>
+<!-- Accessible Chronological Agenda List -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md" id="agenda-section">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Accessible Agenda &amp; Chronological Schedule (WAT)</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Screen-reader and keyboard navigable sequential timeline</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface font-medium">7 Events Listed</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Today: Wednesday 29 Oct -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between pb-space-2xs">
+<span class="font-label-lg text-label-lg text-primary font-bold">Wednesday, 29 October 2026 (Today)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 Sessions</span>
+</div>
+<!-- Item 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-10 rounded bg-primary-fixed-dim shrink-0"></span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">07:00 – 12:00 WAT</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">Dispatch Available</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">GRA Hub, Airport Rd • General Plumbing &amp; Emergencies</span>
+</div>
+</div>
+<button class="min-h-[44px] px-3 py-2 rounded-lg hover:bg-surface-container text-primary font-label-md text-label-md" onclick="selectWindow('Wednesday, 29 Oct', '07:00 WAT', '12:00 WAT', 'GRA Axis &amp; Airport Rd')" type="button">Edit</button>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm rounded-lg bg-on-secondary-fixed text-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-10 rounded bg-primary-container shrink-0"></span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-surface-container-lowest">14:00 – 16:30 WAT</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">Confirmed Booked Job</span>
+</div>
+<span class="font-body-sm text-body-sm text-surface-container-highest">Ada O. • Under-sink Pipe Leak • Sapele Rd Axis • Job #BN-2026-092</span>
+</div>
+</div>
+<button class="min-h-[44px] px-3 py-2 rounded-lg bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 text-surface-container-lowest font-label-md text-label-md" onclick="openJobDetails('JOB-BN-2026-092', 'Ada O.', '14:00 - 16:30 WAT', 'Under-sink Pipe Leak')" type="button">View Escrow</button>
+</div>
+</div>
+<!-- Tomorrow: Thursday 30 Oct -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between pb-space-2xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Thursday, 30 October 2026</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 Sessions</span>
+</div>
+<!-- Item 1 -->
+<div class="p-space-sm rounded-lg bg-on-secondary-fixed text-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-10 rounded bg-primary-container shrink-0"></span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-surface-container-lowest">09:00 – 12:00 WAT</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">Confirmed Booked Job</span>
+</div>
+<span class="font-body-sm text-body-sm text-surface-container-highest">Chief Obaseki • Shower Mixer Replacement • GRA Axis • Job #BN-2026-079</span>
+</div>
+</div>
+<button class="min-h-[44px] px-3 py-2 rounded-lg bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 text-surface-container-lowest font-label-md text-label-md" onclick="openJobDetails('JOB-BN-2026-079', 'Chief Obaseki', '09:00 - 12:00 WAT', 'Shower Mixer')" type="button">View Escrow</button>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-10 rounded bg-primary-fixed-dim shrink-0"></span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">14:00 – 17:30 WAT</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">Dispatch Available</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">GRA Axis, Ugbowo • Standard Repair Calls</span>
+</div>
+</div>
+<button class="min-h-[44px] px-3 py-2 rounded-lg hover:bg-surface-container text-primary font-label-md text-label-md" onclick="selectWindow('Thursday, 30 Oct', '14:00 WAT', '17:30 WAT', 'GRA Axis &amp; Ugbowo')" type="button">Edit</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side Panel: "Add / Edit Working Window" Drawer Card (4 cols) -->
+<div class="xl:col-span-4 sticky top-20 flex flex-col gap-space-md" id="drawer-panel">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<!-- Header -->
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface" id="drawer-title">Edit Working Window</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Configure dispatch availability limits</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[24px]">edit_calendar</span>
+</div>
+<!-- Selected Date & Status Pill Switcher -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date (WAT)</label>
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface font-semibold">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
+<span id="field-date">Thursday, 30 Oct 2026</span>
+</div>
+<button class="text-primary hover:underline font-label-sm text-label-sm font-semibold" type="button">Change</button>
+</div>
+</div>
+<!-- Mode Radio Pill Switcher -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Window Type</label>
+<div class="grid grid-cols-2 p-1 rounded-xl bg-surface-container-low gap-1">
+<button class="min-h-[40px] px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-semibold shadow-sm transition-all text-center" id="mode-available" onclick="setMode('available')" type="button">
+              Available
+            </button>
+<button class="min-h-[40px] px-3 py-1.5 rounded-lg text-on-surface-variant font-label-md text-label-md transition-all text-center" id="mode-unavailable" onclick="setMode('unavailable')" type="button">
+              Mark Time Off
+            </button>
+</div>
+</div>
+<!-- Start & End Time Controls (WAT) -->
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="startTime">Start Time</label>
+<div class="relative">
+<select class="w-full min-h-[44px] rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md px-3 py-2 appearance-none focus:outline-none focus:ring-2 focus:ring-primary pr-8" id="startTime" onchange="validateConflicts()">
+<option value="07:00">07:00 WAT</option>
+<option value="08:30">08:30 WAT</option>
+<option value="09:00">09:00 WAT</option>
+<option value="12:00">12:00 WAT</option>
+<option selected="" value="14:00">14:00 WAT</option>
+<option value="16:00">16:00 WAT</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute right-2.5 top-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="endTime">End Time</label>
+<div class="relative">
+<select class="w-full min-h-[44px] rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md px-3 py-2 appearance-none focus:outline-none focus:ring-2 focus:ring-primary pr-8" id="endTime" onchange="validateConflicts()">
+<option value="11:30">11:30 WAT</option>
+<option value="13:00">13:00 WAT</option>
+<option value="16:30">16:30 WAT</option>
+<option selected="" value="17:30">17:30 WAT</option>
+<option value="19:00">19:00 WAT</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute right-2.5 top-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Recurrence Checkbox -->
+<div class="flex items-center gap-space-xs p-space-sm rounded-xl bg-surface-container-low">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-primary" id="recurrence-check" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer select-none" for="recurrence-check">
+            Repeat weekly on Thursdays
+          </label>
+</div>
+<!-- Operating Zones Applicable -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Applicable Benin City Zones</label>
+<span class="font-label-sm text-label-sm text-primary cursor-pointer hover:underline" onclick="toggleAllZones()">Select All</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-primary zone-chk" type="checkbox"/>
+<span>GRA Axis</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-primary zone-chk" type="checkbox"/>
+<span>Airport Rd</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-primary zone-chk" type="checkbox"/>
+<span>Ugbowo</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm cursor-pointer">
+<input class="w-4 h-4 rounded text-primary zone-chk" type="checkbox"/>
+<span>Ikpoba Hill</span>
+</label>
+</div>
+</div>
+<!-- Conflict Inspection Alert Box -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-1 transition-all" id="conflict-inspection-box">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md font-semibold" id="conflict-status-title">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>No Overlaps Detected</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="conflict-status-desc">
+            Clean 3.5 hrs available window. Next dispatch buffer safely cleared before 18:00 WAT.
+          </p>
+</div>
+<!-- Overlapping Conflict Warning Demo Box (Initially Hidden unless toggled) -->
+<div class="hidden p-space-md rounded-xl bg-error-container text-on-error-container flex flex-col gap-1.5" id="conflict-warning-card">
+<div class="flex items-center gap-2 font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span>Scheduling Collision Alert</span>
+</div>
+<p class="font-body-sm text-body-sm">
+            This window conflicts with booked job: <strong class="font-semibold">Ada O. (14:00 - 16:30 WAT)</strong> on Sapele Road. Please adjust start or end boundary.
+          </p>
+</div>
+<!-- Notes / Reason -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="window-notes">Notes / Reason (Optional)</label>
+<textarea class="w-full rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md p-3 focus:outline-none focus:ring-2 focus:ring-primary resize-none placeholder:text-on-surface-variant/60" id="window-notes" placeholder="e.g. Dedicated for emergency leak dispatch..." rows="2"></textarea>
+</div>
+<!-- Drawer Footer Action Buttons -->
+<div class="pt-space-xs flex flex-col gap-space-xs">
+<button class="w-full min-h-[44px] px-space-md py-2.5 rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-2 shadow-sm transition-colors whitespace-nowrap" onclick="saveWorkingWindow()" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save Window (WAT)</span>
+</button>
+<div class="flex items-center justify-between gap-space-xs">
+<button class="min-h-[44px] px-3 py-2 rounded-xl text-error hover:bg-error-container/40 font-label-md text-label-md flex items-center gap-1.5 transition-colors" onclick="deleteCurrentWindow()" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span>Delete Window</span>
+</button>
+<button class="min-h-[44px] px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" onclick="cancelDrawer()" type="button">
+              Cancel
+            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchState(stateName) {
+    // Reset all buttons
+    const btnIds = ['state-btn-calendar', 'state-btn-drawer', 'state-btn-agenda', 'state-btn-conflict', 'state-btn-empty'];
+    btnIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.className = 'px-3 py-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant transition-all';
+      }
+    });
+
+    const activeBtn = document.getElementById('state-btn-' + stateName);
+    if (activeBtn) {
+      activeBtn.className = 'px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-semibold shadow-sm transition-all';
+    }
+
+    const calView = document.getElementById('calendar-view');
+    const emptyView = document.getElementById('empty-state-view');
+    const agendaSection = document.getElementById('agenda-section');
+    const conflictWarn = document.getElementById('conflict-warning-card');
+    const drawerPanel = document.getElementById('drawer-panel');
+
+    if (stateName === 'calendar') {
+      calView.classList.remove('hidden');
+      emptyView.classList.add('hidden');
+      conflictWarn.classList.add('hidden');
+      agendaSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else if (stateName === 'drawer') {
+      calView.classList.remove('hidden');
+      emptyView.classList.add('hidden');
+      conflictWarn.classList.add('hidden');
+      drawerPanel.scrollIntoView({ behavior: 'smooth' });
+      triggerToast('Opened editing window panel.');
+    } else if (stateName === 'agenda') {
+      calView.classList.remove('hidden');
+      emptyView.classList.add('hidden');
+      agendaSection.scrollIntoView({ behavior: 'smooth' });
+    } else if (stateName === 'conflict') {
+      calView.classList.remove('hidden');
+      emptyView.classList.add('hidden');
+      conflictWarn.classList.remove('hidden');
+      const inspectBox = document.getElementById('conflict-inspection-box');
+      inspectBox.classList.add('bg-error-container/30');
+      document.getElementById('conflict-status-title').innerHTML = '<span class="material-symbols-outlined text-[18px] text-error">error</span><span class="text-error">Overlap Alert</span>';
+      document.getElementById('conflict-status-desc').innerText = 'Selected window directly impinges on active customer booking Ada O. (Under-sink Pipe).';
+      drawerPanel.scrollIntoView({ behavior: 'smooth' });
+    } else if (stateName === 'empty') {
+      calView.classList.add('hidden');
+      emptyView.classList.remove('hidden');
+      conflictWarn.classList.add('hidden');
+    }
+  }
+
+  function setMode(mode) {
+    const btnAvail = document.getElementById('mode-available');
+    const btnUnavail = document.getElementById('mode-unavailable');
+    if (mode === 'available') {
+      btnAvail.className = 'min-h-[40px] px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-semibold shadow-sm transition-all text-center';
+      btnUnavail.className = 'min-h-[40px] px-3 py-1.5 rounded-lg text-on-surface-variant font-label-md text-label-md transition-all text-center';
+    } else {
+      btnUnavail.className = 'min-h-[40px] px-3 py-1.5 rounded-lg bg-surface-container-lowest text-error font-label-md text-label-md font-semibold shadow-sm transition-all text-center';
+      btnAvail.className = 'min-h-[40px] px-3 py-1.5 rounded-lg text-on-surface-variant font-label-md text-label-md transition-all text-center';
+    }
+  }
+
+  function selectWindow(dateStr, startStr, endStr, zoneStr) {
+    document.getElementById('drawer-title').innerText = 'Edit Working Window';
+    document.getElementById('field-date').innerText = dateStr + ' 2026';
+    document.getElementById('window-notes').value = 'Assigned to ' + zoneStr + ' dispatch queue.';
+    document.getElementById('drawer-panel').scrollIntoView({ behavior: 'smooth' });
+    triggerToast('Loaded window slot for ' + dateStr);
+  }
+
+  function openJobDetails(jobId, client, time, service) {
+    triggerToast('Work Order #' + jobId + ' (' + client + ' - ' + service + ') escrow locked.');
+  }
+
+  function openWindowDrawer() {
+    document.getElementById('drawer-title').innerText = 'Create New Window';
+    document.getElementById('window-notes').value = '';
+    document.getElementById('drawer-panel').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function cancelDrawer() {
+    triggerToast('Action cancelled.');
+  }
+
+  function deleteCurrentWindow() {
+    if (confirm('Delete this working availability window for Benin City hub?')) {
+      triggerToast('Window removed. Capacity adjusted in WAT.');
+    }
+  }
+
+  function saveWorkingWindow() {
+    triggerToast('Availability window saved successfully in WAT.');
+  }
+
+  function toggleAllZones() {
+    const chks = document.querySelectorAll('.zone-chk');
+    const allChecked = Array.from(chks).every(c => c.checked);
+    chks.forEach(c => c.checked = !allChecked);
+    triggerToast(allChecked ? 'Deselected all zones.' : 'All Benin City zones selected.');
+  }
+
+  function toggleDispatchStatus(isOn) {
+    triggerToast(isOn ? 'Dispatch Mode set to ONLINE in GRA & Airport Rd.' : 'Instant Dispatch set to PAUSED.');
+  }
+
+  function validateConflicts() {
+    const s = document.getElementById('startTime').value;
+    const e = document.getElementById('endTime').value;
+    if (s === '14:00' && e === '16:30') {
+      switchState('conflict');
+    }
+  }
+
+  function triggerToast(msg, isError = false) {
+    const toast = document.getElementById('toast-notification');
+    const toastMsg = document.getElementById('toast-msg');
+    const toastIcon = document.getElementById('toast-icon');
+
+    toastMsg.innerText = msg;
+    if (isError) {
+      toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-space-sm px-space-md py-space-sm rounded-xl bg-error text-on-error shadow-xl border-none transition-all duration-300';
+      toastIcon.innerText = 'error_outline';
+      toastIcon.className = 'material-symbols-outlined text-[20px] text-on-error';
+    } else {
+      toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-space-sm px-space-md py-space-sm rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl border-none transition-all duration-300';
+      toastIcon.innerText = 'check_circle';
+      toastIcon.className = 'material-symbols-outlined text-primary-fixed text-[20px]';
+    }
+
+    toast.classList.remove('hidden');
+    clearTimeout(window._toastTimeout);
+    window._toastTimeout = setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 4000);
+  }
+
+  function closeToast() {
+    document.getElementById('toast-notification').classList.add('hidden');
+  }
+</script></main></div></body></html>

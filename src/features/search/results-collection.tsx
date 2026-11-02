@@ -21,7 +21,7 @@ export function ResultsCollection({
   return (
     <>
       <div className="result-view-toolbar">
-        <span>Compare skills, location and sample starting prices.</span>
+        <span>Compare skills, location and starting prices.</span>
         <div role="group" aria-label="Results layout">
           <button
             type="button"

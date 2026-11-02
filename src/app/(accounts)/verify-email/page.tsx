@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AuthFrame } from "@/features/accounts/auth-frame";
-import { VerificationForm } from "@/features/accounts/verification-form";
+
 export const metadata: Metadata = {
   title: "Email verification",
   robots: { index: false, follow: false },
 };
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
-  const query = await searchParams;
-  const token =
-    typeof query.token === "string" && query.token.length < 100
-      ? query.token
-      : "";
+
+export default function Page() {
   return (
     <AuthFrame recovery>
-      <VerificationForm key={token} token={token} />
+      <div className="auth-card auth-state">
+        <p className="eyebrow">EMAIL VERIFICATION</p>
+        <h1>Email OTP is currently turned off</h1>
+        <p>
+          You can continue using your account with email and password only. We will announce if OTP verification is enabled later.
+        </p>
+        <Link className="button button-primary auth-submit" href="/login">
+          Go to login
+        </Link>
+      </div>
     </AuthFrame>
   );
 }

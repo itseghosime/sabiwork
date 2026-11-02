@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-container":"#97a0a7","outline-variant":"#bec8d1","secondary-fixed-dim":"#b0c8f2","background":"#f9f9ff","surface":"#f9f9ff","on-primary-container":"#003a56","on-primary":"#ffffff","inverse-surface":"#293040","surface-container-lowest":"#ffffff","on-tertiary-fixed-variant":"#3f484e","on-secondary-fixed-variant":"#30476b","error":"#ba1a1a","on-background":"#141b2b","on-secondary":"#ffffff","primary":"#006491","secondary-container":"#bbd3fe","surface-bright":"#f9f9ff","surface-container":"#e9edff","on-tertiary":"#ffffff","surface-variant":"#dce2f7","tertiary-fixed":"#dbe4eb","on-primary-fixed":"#001e2f","surface-dim":"#d3daef","on-tertiary-fixed":"#141d22","inverse-primary":"#8aceff","surface-container-low":"#f1f3ff","primary-container":"#38a8e8","on-error":"#ffffff","on-surface":"#141b2b","surface-tint":"#006491","on-tertiary-container":"#2e373d","primary-fixed-dim":"#8aceff","secondary-fixed":"#d5e3ff","primary-fixed":"#c9e6ff","on-surface-variant":"#3f4850","secondary":"#485f84","surface-container-high":"#e1e8fd","on-secondary-container":"#435a7f","outline":"#6f7881","surface-container-highest":"#dce2f7","on-primary-fixed-variant":"#004b6f","on-error-container":"#93000a","inverse-on-surface":"#edf0ff","tertiary":"#576065","on-secondary-fixed":"#001b3c","error-container":"#ffdad6","tertiary-fixed-dim":"#bfc8ce"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-2xs":"0.25rem",gutter:"1.25rem","space-xs":"0.5rem","space-xl":"1.5rem","gutter-mobile":"0.75rem","space-md":"1rem",margin:"2rem","margin-mobile":"1rem","space-lg":"1.25rem","space-sm":"0.625rem","space-2xl":"2rem","space-3xl":"3rem"},fontFamily:{"headline-lg":["Plus Jakarta Sans"],"label-lg":["Inter"],"headline-md":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-lg":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-sm":["Plus Jakarta Sans"]},fontSize:{"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"label-md":["13px",{lineHeight:"18px",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-16 px-space-xl flex items-center gap-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><div class="flex items-center tracking-tight"><span class="font-headline-sm text-headline-sm text-on-surface font-bold">Sabi</span><span class="font-headline-sm text-headline-sm text-primary-container font-bold">Work</span></div></div><div class="px-space-md py-space-xs"><div class="px-space-xs py-space-2xs text-label-sm font-label-sm uppercase tracking-wider text-outline">Artisan Workspace</div></div><nav class="flex flex-col gap-space-2xs px-space-md py-space-xs" data-active-classes="bg-secondary-container text-on-secondary-fixed-variant font-semibold shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]"><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">dashboard</span><span>Overview</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="my-jobs" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">construction</span><span>My Jobs</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="quotes" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">request_quote</span><span>Quotes</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="earnings" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">account_balance_wallet</span><span>Earnings</span></a><a aria-current="page" class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg transition-all bg-secondary-container text-on-secondary-fixed-variant font-semibold shadow-[0_1px_3px_0_rgba(14,41,75,0.05)]" data-path="my-profile" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">badge</span><span>My Profile</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="verification" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">verified_user</span><span>Verification</span></a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px] shrink-0">settings</span><span>Settings</span></a></nav></div><div class="p-space-md bg-surface-container-lowest"><div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col"><span class="text-label-md font-label-md text-on-surface truncate">Artisan Hub</span><span class="text-body-sm font-body-sm text-outline">Paystack TEST</span></div></div><a class="text-outline hover:text-error transition-colors p-space-2xs rounded-lg hover:bg-surface-container" data-path="logout" href="#"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain md:hidden" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high text-on-secondary-container"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span class="text-label-sm font-label-sm tracking-wide">Active Artisan</span></div><div class="hidden sm:inline-flex items-center px-space-sm py-1 rounded bg-inverse-surface text-inverse-on-surface text-label-sm font-label-sm"><span>Paystack TEST Mode</span></div></div><div class="flex items-center gap-space-md"><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-full transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><div class="h-6 w-px bg-outline-variant hidden sm:block"></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden md:flex flex-col text-left"><span class="text-label-md font-label-md text-on-surface leading-tight">Adeola Vance</span><span class="text-body-sm font-body-sm text-on-surface-variant leading-tight">Master Electrician</span></div><a class="hidden sm:inline-flex items-center gap-1 text-label-sm font-label-sm text-on-surface-variant hover:text-error ml-space-xs transition-colors" data-path="logout" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span>Logout</span></a></div></div></header><main class="relative w-full pt-16 px-space-xl bg-surface min-h-screen"><div class="flex flex-col w-full pb-32">
+<!-- Top Demo State Controller Banner -->
+<div class="bg-surface-container-high rounded-xl p-space-md shadow-sm mb-space-xl flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0">tune</span>
+<span class="font-label-md text-label-md text-on-surface">Interactive Prototype States:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Toggle test modes to review live state handling &amp; alerts</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-2xs">
+<button class="px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-primary text-on-primary transition-all" id="btn-state-default" onclick="setAppState('default')" type="button">Default Editing</button>
+<button class="px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-surface-container-lowest text-on-surface hover:bg-surface-variant transition-all" id="btn-state-saving" onclick="setAppState('saving')" type="button">Submitting / Saving</button>
+<button class="px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-surface-container-lowest text-on-surface hover:bg-surface-variant transition-all" id="btn-state-saved" onclick="setAppState('saved')" type="button">Saved Toast</button>
+<button class="px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-surface-container-lowest text-on-surface hover:bg-surface-variant transition-all" id="btn-state-photo-error" onclick="setAppState('photo-error')" type="button">Photo Upload Error</button>
+<button class="px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-surface-container-lowest text-on-surface hover:bg-surface-variant transition-all" id="btn-state-server-error" onclick="setAppState('server-error')" type="button">Server 500 Error</button>
+<button class="px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-surface-container-lowest text-on-surface hover:bg-surface-variant transition-all" id="btn-state-modal" onclick="openDiscardModal()" type="button">Unsaved Modal</button>
+</div>
+</div>
+<!-- Dynamic Notification Toasts & Alerts Container -->
+<div class="flex flex-col gap-space-sm mb-space-lg" id="alert-zone">
+<!-- Success Banner -->
+<div class="hidden items-center justify-between p-space-md rounded-xl bg-secondary-fixed text-on-secondary-fixed shadow-md animate-fade-in" id="toast-success">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">check_circle</span>
+<div>
+<p class="font-label-md text-label-md">Profile Changes Saved Successfully</p>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant">Artisan profile has been synced with the Benin City directory node.</p>
+</div>
+</div>
+<button class="text-on-secondary-fixed-variant hover:text-on-secondary-fixed p-1 rounded-lg" onclick="dismissToast('toast-success')" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Photo Error Alert -->
+<div class="hidden items-center justify-between p-space-md rounded-xl bg-error-container text-on-error-container shadow-md" id="toast-photo-error">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-error text-[22px]">error</span>
+<div>
+<p class="font-label-md text-label-md">Upload failed: File size exceeds 5MB limit</p>
+<p class="font-body-sm text-body-sm">Please compress your portrait photograph and retry.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-error text-on-error text-label-sm font-label-sm" onclick="retryPhotoUpload()" type="button">Retry</button>
+<button class="p-1 rounded hover:bg-surface-container" onclick="dismissToast('toast-photo-error')" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Server 500 Recoverable Error -->
+<div class="hidden items-center justify-between p-space-md rounded-xl bg-error-container text-on-error-container shadow-md" id="toast-server-error">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-error text-[22px]">cloud_off</span>
+<div>
+<p class="font-label-md text-label-md">Network timeout: Unable to sync profile updates to Edo State node</p>
+<p class="font-body-sm text-body-sm">Your inputs have been preserved locally in session memory.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-error text-on-error text-label-sm font-label-sm" onclick="triggerSaveSequence()" type="button">Retry Save</button>
+<button class="p-1 rounded hover:bg-surface-container" onclick="dismissToast('toast-server-error')" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Breadcrumbs & Workspace Meta Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-outline">
+<span>Artisan Workspace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>My Profile</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-label-sm">Profile Editor</span>
+</div>
+<div class="flex items-baseline gap-space-xs mt-1">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Edit Trade Profile</h1>
+<span class="font-body-sm text-body-sm text-outline">#SW-BNI-9842</span>
+</div>
+</div>
+<!-- Read-only Admin Verification Badge & Audit Details Callout -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-sm max-w-lg">
+<div class="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-bold">Admin-Reviewed Profile (Verified)</span>
+<span class="material-symbols-outlined text-outline text-[16px]">lock</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5 leading-snug">
+          Artisans cannot award or modify verified status. Managed by Benin City SabiWork Field Office.
+        </p>
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:underline mt-1" href="#">
+<span>View Verification Audit Details</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Profile Editor Form Grid -->
+<form class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl" id="profile-editor-form" onsubmit="event.preventDefault(); triggerSaveSequence();">
+<!-- LEFT COLUMN: Identity, Profile Photo, Bio, Services & Sub-skills (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-xl">
+<!-- Photo Section Card -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-lg">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Artisan Photo</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your verified portrait shown to booking clients in Benin City</p>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-outline text-label-sm font-label-sm">High Resolution</span>
+</div>
+<div class="flex flex-col sm:flex-row items-center sm:items-start gap-space-xl">
+<!-- Avatar with Camera Badge Overlay -->
+<div class="relative shrink-0">
+<div class="w-28 h-28 rounded-full overflow-hidden shadow-sm bg-surface-container flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Close up professional portrait of Osaze Ighodaro, a skilled Nigerian male master plumber in his mid thirties, smiling confidently wearing neat trade overalls against soft natural light in Benin City Nigeria" id="avatar-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoAafpNKNfUIgBkbzOVI2cz8B6sESS96smy1RSphOkiMp6CYpdkys8IK6UwUG9lQ7O0hDFDf8ua6353t1xNfC3IhVlSnjutr9cmm1eJ22GxoJCEWY5tYYpFXGh-57MFW0T9pzcSfzmBzol9x3b4YV8wxPvTA_TcVbT9I0XnDNuNOUga1zKk9FofVmNPtZnai99vnQawdN8XibDhYOW3V8bzy16z9BcEqct5veQO-I"/>
+</div>
+<label class="absolute bottom-0 right-0 w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center cursor-pointer shadow-md hover:bg-primary-container transition-colors" for="avatar-input">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</label>
+<input accept="image/png, image/jpeg" class="hidden" id="avatar-input" onchange="handlePhotoChange(event)" type="file"/>
+</div>
+<!-- Photo Actions & Guidance -->
+<div class="flex flex-col flex-1 gap-space-sm text-center sm:text-left">
+<div class="flex flex-wrap items-center justify-center sm:justify-start gap-space-sm">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md shrink-0 whitespace-nowrap inline-flex items-center gap-2 hover:bg-primary/90 transition-colors shadow-sm" onclick="document.getElementById('avatar-input').click()" type="button">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+<span>Upload New Photo</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-error-container hover:text-error text-on-surface-variant font-label-md text-label-md shrink-0 whitespace-nowrap inline-flex items-center gap-2 transition-colors" onclick="removePhoto()" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span>Remove Photo</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-outline leading-relaxed mt-1">
+              JPG or PNG. Max 5MB. Clear headshot showing face and trade attire recommended. Heavy filters and company logos will fail verification audit.
+            </p>
+</div>
+</div>
+</div>
+<!-- Core Identity & Biography Card -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Identity &amp; Qualifications</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Essential trade credential details visible on SabiWork search cards</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Full Legal / Trade Name -->
+<div class="flex flex-col gap-1.5 sm:col-span-2">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between">
+<span>Full Legal / Trade Name</span>
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Identity Verified
+              </span>
+</label>
+<input class="min-h-[44px] px-4 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md cursor-not-allowed" readonly="" type="text" value="Osaze Ighodaro"/>
+<span class="font-body-sm text-body-sm text-outline">Name matched to National Identification Number (NIN) record.</span>
+</div>
+<!-- Primary Trade Specialty -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="trade-specialty">Primary Trade Specialty</label>
+<select class="min-h-[44px] px-4 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:bg-surface-container-low outline-none cursor-pointer" id="trade-specialty" onchange="markUnsaved()">
+<option selected="" value="plumbing">Plumbing &amp; Pipe Fitting</option>
+<option value="electrical">Electrical &amp; Solar Inverters</option>
+<option value="generator">Generator Mechanics (Diesel/Petrol)</option>
+<option value="welding">Welding &amp; Metal Fabrication</option>
+<option value="masonry">Masonry &amp; Tiling</option>
+<option value="carpentry">Carpentry &amp; Cabinetry</option>
+</select>
+</div>
+<!-- Years of Experience -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="trade-experience">Years of Experience</label>
+<select class="min-h-[44px] px-4 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:bg-surface-container-low outline-none cursor-pointer" id="trade-experience" onchange="markUnsaved()">
+<option value="1-3">1 - 3 Years Field Exp.</option>
+<option value="4-8">4 - 8 Years Field Exp.</option>
+<option selected="" value="9+">9+ Years Field Exp.</option>
+<option value="15+">15+ Master Craftsman</option>
+</select>
+</div>
+<!-- Bio / Introduction -->
+<div class="flex flex-col gap-1.5 sm:col-span-2">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface" for="bio-textarea">Bio / Introduction</label>
+<span class="font-body-sm text-body-sm text-outline" id="bio-counter">248 / 500 characters</span>
+</div>
+<textarea class="p-3.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:bg-surface-container-low outline-none resize-none leading-relaxed" id="bio-textarea" maxlength="500" oninput="updateBioCount(this); markUnsaved()" rows="4">Specialist master plumber servicing residential villas, estates, and commercial suites throughout the GRA, Airport Road, and greater Benin City corridor. Dedicated to clean copper soldering, high-flow PPR piping, and pressure testing.</textarea>
+<span class="font-body-sm text-body-sm text-outline">Summarize your specialty tools, response commitments, and notable project scale.</span>
+</div>
+</div>
+</div>
+<!-- Service Areas & Districts Card -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Service Areas &amp; Coverage</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Select districts in Benin City where you accept on-demand dispatches</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px]">pin_drop</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm" id="districts-grid">
+<!-- Item 1 -->
+<label class="flex items-center gap-space-sm p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer min-h-[44px]">
+<input checked="" class="w-5 h-5 rounded text-primary-container accent-primary-container shrink-0" onchange="markUnsaved()" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">GRA Axis &amp; Ihama Rd</span>
+<span class="font-body-sm text-body-sm text-outline">Primary priority zone (&lt; 20 min)</span>
+</div>
+</label>
+<!-- Item 2 -->
+<label class="flex items-center gap-space-sm p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer min-h-[44px]">
+<input checked="" class="w-5 h-5 rounded text-primary-container accent-primary-container shrink-0" onchange="markUnsaved()" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Airport Rd &amp; Ekenwan</span>
+<span class="font-body-sm text-body-sm text-outline">Standard service zone</span>
+</div>
+</label>
+<!-- Item 3 -->
+<label class="flex items-center gap-space-sm p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer min-h-[44px]">
+<input class="w-5 h-5 rounded text-primary-container accent-primary-container shrink-0" onchange="markUnsaved()" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Ugbowo / UNIBEN Area</span>
+<span class="font-body-sm text-body-sm text-outline">Extended radius (+₦1,500 logistics)</span>
+</div>
+</label>
+<!-- Item 4 -->
+<label class="flex items-center gap-space-sm p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer min-h-[44px]">
+<input class="w-5 h-5 rounded text-primary-container accent-primary-container shrink-0" onchange="markUnsaved()" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Ikpoba Hill</span>
+<span class="font-body-sm text-body-sm text-outline">Scheduled visits only</span>
+</div>
+</label>
+<!-- Item 5 -->
+<label class="flex items-center gap-space-sm p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer min-h-[44px] sm:col-span-2">
+<input class="w-5 h-5 rounded text-primary-container accent-primary-container shrink-0" onchange="markUnsaved()" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Aduwawa &amp; Ramat Park</span>
+<span class="font-body-sm text-body-sm text-outline">Requires 24-hr advance appointment</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Technical Sub-Skills Chips Card -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Technical Sub-Skills</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Keywords helping matching algorithms pair your profile with client inquiries</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px]">handyman</span>
+</div>
+<!-- Tag Chips Container -->
+<div class="flex flex-wrap items-center gap-space-xs" id="skills-tag-list">
+<div class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm shadow-sm">
+<span>Pipe Burst Repairs</span>
+<button class="hover:text-error transition-colors flex items-center justify-center p-0.5" onclick="removeSkillTag(this)" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<div class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm shadow-sm">
+<span>PPR &amp; Copper Soldering</span>
+<button class="hover:text-error transition-colors flex items-center justify-center p-0.5" onclick="removeSkillTag(this)" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<div class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm shadow-sm">
+<span>Sumo &amp; Borehole Pumps</span>
+<button class="hover:text-error transition-colors flex items-center justify-center p-0.5" onclick="removeSkillTag(this)" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<div class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm shadow-sm">
+<span>Water Heater Installations</span>
+<button class="hover:text-error transition-colors flex items-center justify-center p-0.5" onclick="removeSkillTag(this)" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<div class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm shadow-sm">
+<span>Drainage Inspection Chambers</span>
+<button class="hover:text-error transition-colors flex items-center justify-center p-0.5" onclick="removeSkillTag(this)" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+</div>
+<!-- Add Skill Input Inline -->
+<div class="flex items-center gap-space-xs mt-1">
+<input class="min-h-[44px] flex-1 px-4 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline outline-none focus:bg-surface-container" id="new-skill-input" onkeydown="handleSkillKeyDown(event)" placeholder="e.g., Solar Water Heater Plumb..." type="text"/>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-secondary-container text-on-secondary-fixed-variant font-label-md text-label-md shrink-0 whitespace-nowrap inline-flex items-center gap-2 transition-colors" onclick="addSkillFromInput()" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Add Skill</span>
+</button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Portfolio Showcase, Photo Uploads & Labor Pricing Guide (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-xl">
+<!-- Documented Portfolio Showcase -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Portfolio Works</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="portfolio-count">4 of 8 uploaded</p>
+</div>
+<span class="px-space-sm py-1 rounded bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm">High Quality Gigs</span>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-all group" onclick="document.getElementById('portfolio-file-input').click()">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-primary group-hover:scale-105 transition-transform mb-2">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">Add New Project Photos</p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Drag &amp; drop project photos or click to browse. Max 10MB per image.</p>
+<input accept="image/png, image/jpeg" class="hidden" id="portfolio-file-input" multiple="" onchange="simulateNewPortfolio(event)" type="file"/>
+</div>
+<!-- Existing Portfolio Items List -->
+<div class="flex flex-col gap-space-md" id="portfolio-items-list">
+<!-- Item 1: Full Villa Re-piping -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm transition-all hover:bg-surface-container">
+<div class="flex items-start gap-space-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-high shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Close up photograph of intricate copper and blue PPR piping manifold installation in a modern luxury villa bathroom in Benin City with polished brass valves and clean wall mounts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZqPekfQcp_olOmaeCmcmrVRpwt6fzwDCmF9Ypg_UXNBCgsb_5R67TBWTP5p1S0jI2_B6jlZ8t4DzRgwoehvp_Pe0RqPDKeMJsR0iFIQ--XvfvPvy7ylXQmVCGmlK0gZ02GHT2twK5XKoAOoPQkGLYqCz3VqLWGgRfc1g7ejjhMAs6Lu2WZUb1m7YEi7WLCVsKWZyA_r0nG1rcjfKM-hp0QG2DbgBlijasWZ2EiZ0"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0 gap-1">
+<input class="w-full bg-transparent font-label-md text-label-md text-on-surface outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded" onchange="markUnsaved()" type="text" value="Full Villa Re-piping &amp; PPR Fusion"/>
+<textarea class="w-full bg-transparent font-body-sm text-body-sm text-outline outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded resize-none" onchange="markUnsaved()" rows="2">Dual pressure lines with brass gate valves in GRA duplex</textarea>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-xs pt-1">
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-primary hover:bg-surface-container-lowest transition-colors flex items-center gap-1" onclick="replacePortfolioImage(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span> Replace Image
+              </button>
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-error hover:bg-error-container transition-colors flex items-center gap-1" onclick="deletePortfolioItem(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span> Delete Project
+              </button>
+</div>
+</div>
+<!-- Item 2: 2000L Overhead Tank Stand -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm transition-all hover:bg-surface-container">
+<div class="flex items-start gap-space-md">
+<div class="w-20 h-20 rounded-lg border-0 overflow-hidden shrink-0 bg-surface-container-high shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Clear daytime photograph of a dual 2000 liter black plastic overhead water tank system mounted on tall steel beams with pressure booster pipe setup in Edo State Nigeria" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_zdrzJvvpkrR91ovrRmBjaIjTaoVkLlVimwxyAdlCpw5ktlvu3PZMt8BFwKrn4EgCBvOLY6N7AYOaeSpP5WMesucLiBAHfoR0DGMAw6sY8x95VnN0cYiT_pzVzbSFYhuGRCZiUkMId9bc8jubjxGy7n3zFIJwwRzVbjyzfmnULW26CnkiILK-lV0zEvSLOKigAtc2_Sf2zhyZo2MpQi-FgM26mPbydci-_CkBwBo"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0 gap-1">
+<input class="w-full bg-transparent font-label-md text-label-md text-on-surface outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded" onchange="markUnsaved()" type="text" value="2000L Overhead Tank Stand"/>
+<textarea class="w-full bg-transparent font-body-sm text-body-sm text-outline outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded resize-none" onchange="markUnsaved()" rows="2">Automated float switch &amp; steel girder reinforcement</textarea>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-xs pt-1">
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-primary hover:bg-surface-container-lowest transition-colors flex items-center gap-1" onclick="replacePortfolioImage(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span> Replace
+              </button>
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-error hover:bg-error-container transition-colors flex items-center gap-1" onclick="deletePortfolioItem(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span> Delete
+              </button>
+</div>
+</div>
+<!-- Item 3: Under-Sink Vanity Brass Trap -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm transition-all hover:bg-surface-container">
+<div class="flex items-start gap-space-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-high shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Detail photo showing master craft under-sink plumbing with shiny chrome bottle trap and dual flexi-hoses attached to brass angle valves inside sleek contemporary vanity cabinet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcvFR8R1YTDLvPVRPoyiuLrEke08fsSPP770Qqxs2m8Q6J7Ko2pEPyV1Q_f02Fj_2M-BPKVx9AuJUW4SRwQSrejs0dizYY0x1kvAAUsdhYY9G77219qNCDTisRnbwD-Gmb0zpkb0pBs5Ul2l0ypFyYdh5NlmIySv1iCWzLUdZ9vzq1KAR1ToK6poj7ses0TG0HVyOF8mk4vZFuAZoFIQ8QxwY2fEoBU6p-_7XPtwI"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0 gap-1">
+<input class="w-full bg-transparent font-label-md text-label-md text-on-surface outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded" onchange="markUnsaved()" type="text" value="Under-Sink Vanity Brass Trap"/>
+<textarea class="w-full bg-transparent font-body-sm text-body-sm text-outline outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded resize-none" onchange="markUnsaved()" rows="2">Chrome waste trap with dual angle stops</textarea>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-xs pt-1">
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-primary hover:bg-surface-container-lowest transition-colors flex items-center gap-1" onclick="replacePortfolioImage(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span> Replace
+              </button>
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-error hover:bg-error-container transition-colors flex items-center gap-1" onclick="deletePortfolioItem(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span> Delete
+              </button>
+</div>
+</div>
+<!-- Item 4: Drainage Inspection Chamber -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm transition-all hover:bg-surface-container">
+<div class="flex items-start gap-space-md">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-high shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Outdoor ground perspective photograph of newly cemented inspection chamber manhole with high grade heavy duty composite cover neatly set in interlocking pavers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcY6NLwjNnBWyRt0j93Ja_KEjhiMTNS0lS1Be1bBw9ZYP5C-TcZCRNWgblSee7gUna8ZdTxNHmYfFYzqrdkv5Y-2yGA7_YPbbanOad8zaLJPbSKvJXOQqVED9FQYEmQNwvErK3j_VsIFkgUv9r_jbkvRnIxbUf-gLTClkfr7AsROAOZ9K1DzX5HM6dSNzpp9V844wLOxwbDLlO6DmH30Zhw2DWOavLFZs8A9lGMqo"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0 gap-1">
+<input class="w-full bg-transparent font-label-md text-label-md text-on-surface outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded" onchange="markUnsaved()" type="text" value="Drainage Inspection Chamber"/>
+<textarea class="w-full bg-transparent font-body-sm text-body-sm text-outline outline-none focus:bg-surface-container-lowest px-1.5 py-0.5 rounded resize-none" onchange="markUnsaved()" rows="2">Sealed composite manhole cover at Ihama road</textarea>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-xs pt-1">
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-primary hover:bg-surface-container-lowest transition-colors flex items-center gap-1" onclick="replacePortfolioImage(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span> Replace
+              </button>
+<button class="px-space-sm py-1 rounded text-label-sm font-label-sm text-error hover:bg-error-container transition-colors flex items-center gap-1" onclick="deletePortfolioItem(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span> Delete
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Benchmark Labor Pricing Guide Card -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Labor Pricing Benchmark</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Recommended rate guidance for Benin City inquiries</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px]">payments</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-body-sm text-body-sm text-outline">Base Callout / Inspection</span>
+<div class="flex items-center gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">₦4,500</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Non-refundable standard diagnostics</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-body-sm text-body-sm text-outline">Typical Job Range</span>
+<div class="flex items-center gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">₦15,000 – ₦45,000</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Minor to mid-scale plumbing works</span>
+</div>
+</div>
+<!-- Explanatory note -->
+<div class="p-space-md rounded-xl bg-secondary-container text-on-secondary-fixed-variant flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm leading-relaxed">
+            Transparent benchmark range helps clients budget in Benin City before Paystack TEST Mode escrow deposit. Artisans submit final binding invoices directly after diagnosis.
+          </p>
+</div>
+</div>
+</div>
+</form>
+<!-- Sticky Footer Bar: Form Actions & Unsaved Pill Indicator -->
+<div class="fixed bottom-0 left-64 right-0 bg-surface-container-lowest shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-space-xl py-space-md z-40 flex items-center justify-between">
+<!-- Unsaved status flag -->
+<div class="flex items-center gap-space-sm">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-fixed-variant" id="unsaved-indicator">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide">Unsaved changes detected</span>
+</div>
+<span class="hidden md:inline font-body-sm text-body-sm text-outline">Auto-draft preserved</span>
+</div>
+<!-- Controls -->
+<div class="flex items-center gap-space-sm">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md shrink-0 whitespace-nowrap transition-colors" onclick="openDiscardModal()" type="button">
+        Cancel
+      </button>
+<button class="min-h-[44px] px-6 py-2.5 rounded-xl bg-primary text-on-primary hover:bg-primary/90 font-label-md text-label-md font-semibold shrink-0 whitespace-nowrap inline-flex items-center gap-2 transition-all shadow-md" id="main-save-btn" onclick="triggerSaveSequence()" type="button">
+<span class="material-symbols-outlined text-[18px] hidden animate-spin" id="save-spinner">progress_activity</span>
+<span id="save-text">Save Changes</span>
+</button>
+</div>
+</div>
+<!-- Unsaved Changes Confirmation Modal Dialog -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-space-md" id="unsaved-modal">
+<div class="bg-surface-container-lowest max-w-md w-full rounded-2xl p-space-xl shadow-xl flex flex-col gap-space-lg animate-scale-up">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-full bg-error-container text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Discard unsaved changes?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+            You have edited your biography and skills. Leaving will lose these updates. Are you sure you wish to exit without saving?
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-2">
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md shrink-0 whitespace-nowrap transition-colors" onclick="closeDiscardModal()" type="button">
+          Keep Editing
+        </button>
+<button class="min-h-[44px] px-5 py-2.5 rounded-xl bg-error text-on-error hover:bg-error/90 font-label-md text-label-md shrink-0 whitespace-nowrap transition-colors shadow-sm" onclick="discardAndReset()" type="button">
+          Discard Changes
+        </button>
+</div>
+</div>
+</div>
+<!-- Embedded Vanilla JS for Micro-Interactions and Prototype States -->
+<script>
+    function updateBioCount(textarea) {
+      const counter = document.getElementById('bio-counter');
+      if (counter) {
+        counter.textContent = textarea.value.length + ' / 500 characters';
+      }
+    }
+
+    function markUnsaved() {
+      const indicator = document.getElementById('unsaved-indicator');
+      if (indicator) {
+        indicator.classList.remove('hidden');
+        indicator.classList.add('inline-flex');
+      }
+    }
+
+    function handlePhotoChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        if (file.size > 5 * 1024 * 1024) {
+          setAppState('photo-error');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('avatar-preview');
+          if (preview) {
+            preview.src = e.target.result;
+          }
+          markUnsaved();
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function removePhoto() {
+      const preview = document.getElementById('avatar-preview');
+      if (preview) {
+        preview.src = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80';
+      }
+      markUnsaved();
+    }
+
+    function removeSkillTag(button) {
+      const tag = button.closest('.inline-flex');
+      if (tag) {
+        tag.remove();
+        markUnsaved();
+      }
+    }
+
+    function addSkillFromInput() {
+      const input = document.getElementById('new-skill-input');
+      const val = input.value.trim();
+      if (!val) return;
+
+      const container = document.getElementById('skills-tag-list');
+      const newTag = document.createElement('div');
+      newTag.className = 'inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm shadow-sm';
+      newTag.innerHTML = `<span>${val}</span><button type="button" onclick="removeSkillTag(this)" class="hover:text-error transition-colors flex items-center justify-center p-0.5"><span class="material-symbols-outlined text-[14px]">close</span></button>`;
+      container.appendChild(newTag);
+      input.value = '';
+      markUnsaved();
+    }
+
+    function handleSkillKeyDown(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        addSkillFromInput();
+      }
+    }
+
+    function deletePortfolioItem(btn) {
+      const card = btn.closest('.p-space-md');
+      if (card) {
+        card.remove();
+        const list = document.getElementById('portfolio-items-list');
+        const count = list ? list.children.length : 0;
+        const countEl = document.getElementById('portfolio-count');
+        if (countEl) countEl.textContent = `${count} of 8 uploaded`;
+        markUnsaved();
+      }
+    }
+
+    function replacePortfolioImage(btn) {
+      document.getElementById('portfolio-file-input').click();
+    }
+
+    function simulateNewPortfolio(e) {
+      markUnsaved();
+      const countEl = document.getElementById('portfolio-count');
+      if (countEl) countEl.textContent = '5 of 8 uploaded';
+    }
+
+    function triggerSaveSequence() {
+      setAppState('saving');
+      setTimeout(() => {
+        setAppState('saved');
+      }, 1200);
+    }
+
+    function openDiscardModal() {
+      const modal = document.getElementById('unsaved-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeDiscardModal() {
+      const modal = document.getElementById('unsaved-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function discardAndReset() {
+      closeDiscardModal();
+      setAppState('default');
+      const ind = document.getElementById('unsaved-indicator');
+      if (ind) ind.classList.add('hidden');
+    }
+
+    function dismissToast(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+    }
+
+    function retryPhotoUpload() {
+      dismissToast('toast-photo-error');
+      document.getElementById('avatar-input').click();
+    }
+
+    function setAppState(state) {
+      // Reset button styles
+      ['default', 'saving', 'saved', 'photo-error', 'server-error'].forEach(s => {
+        const b = document.getElementById('btn-state-' + s);
+        if (b) {
+          b.className = 'px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-surface-container-lowest text-on-surface hover:bg-surface-variant transition-all';
+        }
+      });
+      const activeBtn = document.getElementById('btn-state-' + state);
+      if (activeBtn) {
+        activeBtn.className = 'px-space-sm py-1.5 rounded-lg text-label-sm font-label-sm bg-primary text-on-primary transition-all';
+      }
+
+      // Hide all toasts
+      dismissToast('toast-success');
+      dismissToast('toast-photo-error');
+      dismissToast('toast-server-error');
+
+      const saveBtn = document.getElementById('main-save-btn');
+      const saveSpinner = document.getElementById('save-spinner');
+      const saveText = document.getElementById('save-text');
+
+      if (state === 'saving') {
+        if (saveSpinner) saveSpinner.classList.remove('hidden');
+        if (saveText) saveText.textContent = 'Saving Profile...';
+        if (saveBtn) saveBtn.classList.add('opacity-80', 'pointer-events-none');
+      } else {
+        if (saveSpinner) saveSpinner.classList.add('hidden');
+        if (saveText) saveText.textContent = 'Save Changes';
+        if (saveBtn) saveBtn.classList.remove('opacity-80', 'pointer-events-none');
+      }
+
+      if (state === 'saved') {
+        const s = document.getElementById('toast-success');
+        if (s) { s.classList.remove('hidden'); s.classList.add('flex'); }
+      } else if (state === 'photo-error') {
+        const pe = document.getElementById('toast-photo-error');
+        if (pe) { pe.classList.remove('hidden'); pe.classList.add('flex'); }
+      } else if (state === 'server-error') {
+        const se = document.getElementById('toast-server-error');
+        if (se) { se.classList.remove('hidden'); se.classList.add('flex'); }
+      }
+    }
+  </script>
+</div></main></div></body></html>

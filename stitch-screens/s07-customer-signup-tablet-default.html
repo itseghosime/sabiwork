@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-surface":"#141b2b","surface-container-low":"#f1f3ff","on-tertiary-fixed":"#141d22","surface-bright":"#f9f9ff","secondary-fixed-dim":"#b0c8f2","outline":"#6f7881","tertiary-container":"#97a0a7","tertiary-fixed-dim":"#bfc8ce","on-secondary-container":"#435a7f","on-tertiary-fixed-variant":"#3f484e","surface":"#f9f9ff","surface-dim":"#d3daef","error-container":"#ffdad6","on-secondary-fixed":"#001b3c","primary-fixed-dim":"#8aceff","surface-container-highest":"#dce2f7","on-primary-fixed-variant":"#004b6f","primary-fixed":"#c9e6ff","surface-tint":"#006491","on-secondary":"#ffffff","error":"#ba1a1a","on-tertiary":"#ffffff","primary-container":"#38a8e8","on-primary-fixed":"#001e2f","background":"#f9f9ff","inverse-surface":"#293040","secondary-fixed":"#d5e3ff","outline-variant":"#bec8d1","on-error":"#ffffff","on-primary":"#ffffff","on-background":"#141b2b","inverse-on-surface":"#edf0ff","on-primary-container":"#003a56","secondary":"#485f84","tertiary-fixed":"#dbe4eb","inverse-primary":"#8aceff","surface-container-lowest":"#ffffff","tertiary":"#576065","on-surface-variant":"#3f4850","surface-container":"#e9edff","on-tertiary-container":"#2e373d","surface-container-high":"#e1e8fd","secondary-container":"#bbd3fe","surface-variant":"#dce2f7","on-error-container":"#93000a","on-secondary-fixed-variant":"#30476b","primary":"#006491"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-md":"1rem","margin-mobile":"1rem","space-2xl":"2rem","space-lg":"1.25rem","space-3xl":"3rem","gutter-mobile":"0.75rem","space-xl":"1.5rem","space-2xs":"0.25rem","gutter":"1.25rem","space-xs":"0.5rem","margin":"2rem","space-sm":"0.625rem"},fontFamily:{"label-md":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"],"body-lg":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"body-md":["Inter"],"label-lg":["Inter"]},fontSize:{"label-md":["13px",{lineHeight:"18px",fontWeight:"500"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="w-full bg-surface-container-lowest/80 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 max-w-[1280px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between"><a class="inline-flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" data-path="marketplace-home" href="#"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span>Back to SabiWork</span></a><div class="flex items-center gap-space-sm"><div class="flex items-center"><span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">Sabi</span><span class="font-headline-md text-headline-md font-bold tracking-tight text-primary-container ml-0.5">Work</span></div></div><div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary">lock</span><span class="hidden sm:inline font-medium">Secure Portal</span></div></div></header><main class="w-full flex-1 flex items-center justify-center py-space-xl px-margin-mobile md:px-margin bg-surface"><div class="flex flex-col w-full items-center justify-center py-space-md">
+<!-- Layout Wrapper (Designed for 768px tablet width with 24px margins, responsive scaling) -->
+<div class="w-full max-w-[620px] mx-auto flex flex-col gap-space-lg px-2 sm:px-0">
+<!-- Prototype State Interactive Controller Shelf -->
+<aside aria-label="Development Preview Controls" class="w-full bg-surface-container-low rounded-xl p-space-sm shadow-sm flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">developer_mode</span>
+          Interactive State Switcher (QA &amp; Design Review)
+        </span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Tablet Viewport (768px)</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 p-1 bg-surface-container rounded-lg">
+<button class="state-btn py-1.5 px-2 rounded-md font-label-sm text-label-sm font-semibold transition-all bg-surface-container-lowest text-primary shadow-sm text-center" id="btn-state-default" onclick="setState('default')" type="button">
+          Default Form
+        </button>
+<button class="state-btn py-1.5 px-2 rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 text-center" id="btn-state-validation-error" onclick="setState('validation-error')" type="button">
+          Validation Error
+        </button>
+<button class="state-btn py-1.5 px-2 rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 text-center" id="btn-state-duplicate-email" onclick="setState('duplicate-email')" type="button">
+          Duplicate Email
+        </button>
+<button class="state-btn py-1.5 px-2 rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 text-center" id="btn-state-submitting" onclick="setState('submitting')" type="button">
+          Submitting
+        </button>
+<button class="state-btn py-1.5 px-2 rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 col-span-2 sm:col-span-1 text-center" id="btn-state-account-created" onclick="setState('account-created')" type="button">
+          Modal Success
+        </button>
+</div>
+</aside>
+<!-- Main Registration Surface Card -->
+<div class="relative bg-surface-container-lowest rounded-xl shadow-md p-6 sm:p-8 flex flex-col gap-space-lg">
+<!-- Brand & Header Lockup -->
+<header class="flex flex-col items-center text-center gap-space-xs">
+<!-- Brand Ribbon-S standalone badge + Decoupled Editable Branding -->
+<div class="flex items-center gap-space-xs mb-1">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary shadow-sm">
+<svg class="w-5 h-5 text-primary" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.5 4.5C14.5 3 9.5 3 7 5.5C4 8.5 4 12 7.5 13C12 14.2 16.5 13.5 17 17.5C17.5 21.5 12 22.5 8 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.75"></path>
+<circle cx="17.5" cy="5" fill="currentColor" r="1.5"></circle>
+</svg>
+</div>
+<div class="flex items-baseline">
+<span class="font-headline-md text-headline-md tracking-tight text-on-secondary-fixed">Sabi</span>
+<span class="font-headline-md text-headline-md tracking-tight text-primary-container ml-0.5">Work</span>
+</div>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>S07 • Customer Account Portal</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mt-1">Join as a Customer</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[420px]">
+          Hire trusted local technicians, plumbers, electricians, and carpenters across Benin City and beyond.
+        </p>
+</header>
+<!-- Global Error Notification (Shown in Duplicate Email State) -->
+<div class="hidden rounded-lg bg-error-container p-3.5 flex items-start gap-3" id="duplicate-email-banner">
+<span class="material-symbols-outlined text-error text-[20px] flex-shrink-0 mt-0.5">error</span>
+<div class="flex-1 min-w-0 flex flex-col">
+<span class="font-label-md text-label-md text-on-error-container font-semibold">Email Already Registered</span>
+<span class="font-body-sm text-body-sm text-on-error-container">An account with <strong class="font-medium" id="dup-email-text">osahon.omorogbe@example.ng</strong> is already active. Would you like to <a class="underline font-semibold hover:opacity-80" href="#">log in instead</a>?</span>
+</div>
+</div>
+<!-- Registration Form -->
+<form class="flex flex-col gap-space-md" id="signup-form" novalidate="" onsubmit="event.preventDefault(); handleSubmit();">
+<!-- Field 1: Full Name -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="fullName">
+<span>Full Name</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">First &amp; Surname</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-tertiary text-[20px] pointer-events-none">person</span>
+<input class="w-full h-11 pl-10 pr-3.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-sm outline-none transition-all placeholder:text-tertiary focus:bg-surface-container-lowest" id="fullName" name="fullName" placeholder="e.g. Osahon Omorogbe" type="text" value=""/>
+</div>
+<p class="hidden font-body-sm text-body-sm text-error flex items-center gap-1 mt-0.5" id="err-fullName">
+<span class="material-symbols-outlined text-[16px]">error</span>
+            Please enter your legal first and last name.
+          </p>
+</div>
+<!-- Field 2: Email Address -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="email">
+<span>Email Address</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Login &amp; Receipt notifications</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-tertiary text-[20px] pointer-events-none">mail</span>
+<input class="w-full h-11 pl-10 pr-3.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-sm outline-none transition-all placeholder:text-tertiary focus:bg-surface-container-lowest" id="email" name="email" placeholder="osahon.omorogbe@example.ng" type="email" value=""/>
+</div>
+<p class="hidden font-body-sm text-body-sm text-error flex items-center gap-1 mt-0.5" id="err-email">
+<span class="material-symbols-outlined text-[16px]">error</span>
+            Enter a valid email address (e.g., name@domain.com).
+          </p>
+</div>
+<!-- Field 3: Nigerian Phone Number (+234) -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="phoneNumber">
+<span>Nigerian Phone Number</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SMS Job Confirmations</span>
+</label>
+<div class="flex items-center gap-2">
+<!-- Country Code Indicator -->
+<div class="h-11 px-3 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 flex-shrink-0 select-none shadow-sm">
+<span class="text-[16px]">🇳🇬</span>
+<span class="font-semibold text-on-surface">+234</span>
+</div>
+<!-- Number Input -->
+<div class="relative flex-1 flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-tertiary text-[18px] pointer-events-none">phone</span>
+<input class="w-full h-11 pl-9 pr-3.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-sm outline-none transition-all placeholder:text-tertiary focus:bg-surface-container-lowest" id="phoneNumber" maxlength="14" name="phoneNumber" placeholder="803 123 4567" type="tel" value=""/>
+</div>
+</div>
+<p class="hidden font-body-sm text-body-sm text-error flex items-center gap-1 mt-0.5" id="err-phone">
+<span class="material-symbols-outlined text-[16px]">error</span>
+            Enter a valid 10 or 11-digit mobile number.
+          </p>
+</div>
+<!-- Field 4: Password with Show/Hide Toggle & Dynamic Quality Badges -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="password">
+<span>Password</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min. 8 characters</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-tertiary text-[20px] pointer-events-none">lock</span>
+<input class="w-full h-11 pl-10 pr-11 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-sm outline-none transition-all placeholder:text-tertiary focus:bg-surface-container-lowest" id="password" name="password" oninput="checkPasswordRequirements(this.value)" placeholder="••••••••••••" type="password" value=""/>
+<button aria-label="Toggle password view" class="absolute right-1 w-9 h-9 rounded-md flex items-center justify-center text-tertiary hover:text-on-surface transition-colors" id="btn-password-toggle" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="eye-icon">visibility</span>
+</button>
+</div>
+<p class="hidden font-body-sm text-body-sm text-error flex items-center gap-1 mt-0.5" id="err-password">
+<span class="material-symbols-outlined text-[16px]">error</span>
+            Password must meet all security guidelines below.
+          </p>
+<!-- Password Requirement Helper Badges -->
+<div class="grid grid-cols-2 gap-1.5 pt-1" id="pw-guidelines">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container text-tertiary font-label-sm text-label-sm transition-colors" id="badge-length">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span>8+ characters</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container text-tertiary font-label-sm text-label-sm transition-colors" id="badge-number">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span>At least 1 number</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container text-tertiary font-label-sm text-label-sm transition-colors" id="badge-mixed">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span>Upper &amp; lowercase</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container text-tertiary font-label-sm text-label-sm transition-colors" id="badge-special">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span>Special symbol</span>
+</div>
+</div>
+</div>
+<!-- Terms & Privacy Checkbox (With strict 44px min touch container) -->
+<div class="flex flex-col gap-1 pt-1">
+<label class="flex items-start gap-3 min-h-[44px] cursor-pointer select-none group">
+<input class="w-5 h-5 mt-0.5 rounded text-primary focus:ring-0 cursor-pointer accent-[#38A8E8] flex-shrink-0" id="termsCheckbox" name="termsCheckbox" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">
+              I accept the <a class="text-primary font-medium hover:underline" href="#">Terms of Service</a>, confirm I am of legal age, and agree to the <a class="text-primary font-medium hover:underline" href="#">Privacy Policy</a> governing trade requests.
+            </span>
+</label>
+<p class="hidden font-body-sm text-body-sm text-error flex items-center gap-1 ml-8" id="err-terms">
+<span class="material-symbols-outlined text-[16px]">error</span>
+            You must agree before continuing.
+          </p>
+</div>
+<!-- Primary CTA: 'Create Customer Account' (#1478B5 baseline, 48px height) -->
+<button class="w-full h-12 px-5 rounded-lg bg-[#1478B5] hover:bg-[#106599] active:bg-[#0d537f] text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all whitespace-nowrap cursor-pointer mt-1" id="btn-submit" type="submit">
+<span class="material-symbols-outlined text-[20px] flex-shrink-0" id="btn-submit-icon">person_add</span>
+<span id="btn-submit-label">Create Customer Account</span>
+</button>
+</form>
+<!-- Paystack TEST mode demo disclaimer -->
+<div class="w-full rounded-lg bg-surface-container p-3 flex items-center justify-between gap-3">
+<div class="flex items-center gap-2 min-w-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-semibold flex-shrink-0">
+            Paystack TEST Mode
+          </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+            Sandbox simulated environment. No actual payment card will be charged.
+          </p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0">info</span>
+</div>
+<!-- Footer Cross-Navigation Links -->
+<footer class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 text-center sm:text-left">
+<div class="font-body-md text-body-md text-on-surface-variant">
+          Already have an account? 
+          <a class="font-label-md text-label-md text-primary font-semibold hover:underline" href="#">Log in</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-on-secondary-fixed hover:text-primary transition-colors font-semibold" href="#">
+<span>Sign up as an Artisan (S08)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</footer>
+</div>
+<!-- Micro Trust Indicators / Local Service Trade Guarantee (Clear Trade Modern) -->
+<div class="grid grid-cols-3 gap-2 px-1 text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Vetted Trades</span>
+<span class="font-body-sm text-body-sm text-tertiary hidden sm:inline">Background verified artisans</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">price_check</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Upfront Quotes</span>
+<span class="font-body-sm text-body-sm text-tertiary hidden sm:inline">No hidden surprise billing</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Instant Support</span>
+<span class="font-body-sm text-body-sm text-tertiary hidden sm:inline">Direct Benin City dispatch</span>
+</div>
+</div>
+</div>
+<!-- Account Created Success Modal Overlay -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-4" id="modal-success">
+<div class="w-full max-w-[480px] bg-surface-container-lowest rounded-xl shadow-xl p-6 sm:p-8 flex flex-col items-center text-center gap-space-md animate-in fade-in zoom-in duration-200">
+<!-- Visual Confirmation Icon -->
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-1">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="inline-flex self-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+          Customer Account Ready
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Welcome to SabiWork!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Your account for <strong class="text-on-surface" id="modal-user-email">osahon.omorogbe@example.ng</strong> has been configured. We sent an instant 6-digit confirmation PIN to your Nigerian mobile.
+        </p>
+</div>
+<!-- Action Card in Modal -->
+<div class="w-full rounded-lg bg-surface-container-low p-3.5 flex items-center gap-3 text-left">
+<span class="material-symbols-outlined text-primary text-[24px]">phonelink_ring</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold">SMS Sent to +234 803 123 4567</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Standard carrier rates apply • Benin City test gateway</span>
+</div>
+</div>
+<!-- Buttons -->
+<div class="flex flex-col w-full gap-2 mt-2">
+<button class="w-full h-12 rounded-lg bg-[#1478B5] hover:bg-[#106599] text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all" onclick="setState('default')" type="button">
+<span>Continue to Marketplace</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="w-full h-11 rounded-lg bg-transparent hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" onclick="closeModal()" type="button">
+          Review Registration Details
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- State Management & Interaction Script -->
+<script>
+  let currentState = 'default';
+
+  function setState(state) {
+    currentState = state;
+    
+    // Update Switcher UI Tabs
+    const buttons = ['default', 'validation-error', 'duplicate-email', 'submitting', 'account-created'];
+    buttons.forEach(b => {
+      const btn = document.getElementById('btn-state-' + b);
+      if (!btn) return;
+      if (b === state) {
+        btn.className = "state-btn py-1.5 px-2 rounded-md font-label-sm text-label-sm font-semibold transition-all bg-surface-container-lowest text-primary shadow-sm text-center";
+      } else {
+        btn.className = "state-btn py-1.5 px-2 rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 text-center";
+      }
+    });
+
+    // Reset Elements
+    resetFormErrors();
+    const modal = document.getElementById('modal-success');
+    const dupBanner = document.getElementById('duplicate-email-banner');
+    const submitBtn = document.getElementById('btn-submit');
+    const submitIcon = document.getElementById('btn-submit-icon');
+    const submitLabel = document.getElementById('btn-submit-label');
+
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    dupBanner.classList.add('hidden');
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+    submitIcon.className = "material-symbols-outlined text-[20px] flex-shrink-0";
+    submitIcon.innerText = "person_add";
+    submitLabel.innerText = "Create Customer Account";
+
+    // Apply Specific State
+    if (state === 'default') {
+      document.getElementById('fullName').value = "";
+      document.getElementById('email').value = "";
+      document.getElementById('phoneNumber').value = "";
+      document.getElementById('password').value = "";
+      document.getElementById('termsCheckbox').checked = false;
+      checkPasswordRequirements("");
+    } 
+    else if (state === 'validation-error') {
+      document.getElementById('fullName').value = "O.";
+      document.getElementById('email').value = "invalid-email-address";
+      document.getElementById('phoneNumber').value = "12345";
+      document.getElementById('password').value = "pass";
+      document.getElementById('termsCheckbox').checked = false;
+      
+      showError('fullName');
+      showError('email');
+      showError('phone');
+      showError('password');
+      showError('terms');
+      checkPasswordRequirements("pass");
+    } 
+    else if (state === 'duplicate-email') {
+      document.getElementById('fullName').value = "Osahon Omorogbe";
+      document.getElementById('email').value = "osahon.omorogbe@example.ng";
+      document.getElementById('phoneNumber').value = "803 123 4567";
+      document.getElementById('password').value = "BeninTrade#2025";
+      document.getElementById('termsCheckbox').checked = true;
+      dupBanner.classList.remove('hidden');
+      showError('email');
+      checkPasswordRequirements("BeninTrade#2025");
+    } 
+    else if (state === 'submitting') {
+      document.getElementById('fullName').value = "Osahon Omorogbe";
+      document.getElementById('email').value = "osahon.omorogbe@example.ng";
+      document.getElementById('phoneNumber').value = "803 123 4567";
+      document.getElementById('password').value = "BeninTrade#2025";
+      document.getElementById('termsCheckbox').checked = true;
+      checkPasswordRequirements("BeninTrade#2025");
+
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+      submitIcon.className = "material-symbols-outlined text-[20px] flex-shrink-0 animate-spin";
+      submitIcon.innerText = "progress_activity";
+      submitLabel.innerText = "Provisioning Secure Account...";
+    } 
+    else if (state === 'account-created') {
+      document.getElementById('fullName').value = "Osahon Omorogbe";
+      document.getElementById('email').value = "osahon.omorogbe@example.ng";
+      document.getElementById('phoneNumber').value = "803 123 4567";
+      document.getElementById('password').value = "BeninTrade#2025";
+      document.getElementById('termsCheckbox').checked = true;
+      checkPasswordRequirements("BeninTrade#2025");
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+  }
+
+  function showError(field) {
+    const err = document.getElementById('err-' + field);
+    if (err) err.classList.remove('hidden');
+    const input = document.getElementById(field === 'phone' ? 'phoneNumber' : (field === 'terms' ? 'termsCheckbox' : field));
+    if (input && field !== 'terms') {
+      input.classList.add('bg-error-container/20');
+    }
+  }
+
+  function resetFormErrors() {
+    ['fullName', 'email', 'phone', 'password', 'terms'].forEach(field => {
+      const err = document.getElementById('err-' + field);
+      if (err) err.classList.add('hidden');
+      const input = document.getElementById(field === 'phone' ? 'phoneNumber' : (field === 'terms' ? 'termsCheckbox' : field));
+      if (input && field !== 'terms') {
+        input.classList.remove('bg-error-container/20');
+      }
+    });
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('modal-success');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  function togglePasswordVisibility() {
+    const pw = document.getElementById('password');
+    const icon = document.getElementById('eye-icon');
+    if (pw.type === 'password') {
+      pw.type = 'text';
+      icon.innerText = 'visibility_off';
+    } else {
+      pw.type = 'password';
+      icon.innerText = 'visibility';
+    }
+  }
+
+  function checkPasswordRequirements(value) {
+    const hasLength = value.length >= 8;
+    const hasNumber = /\d/.test(value);
+    const hasMixed = /[a-z]/.test(value) && /[A-Z]/.test(value);
+    const hasSpecial = /[^A-Za-z0-9]/.test(value);
+
+    updateBadge('badge-length', hasLength);
+    updateBadge('badge-number', hasNumber);
+    updateBadge('badge-mixed', hasMixed);
+    updateBadge('badge-special', hasSpecial);
+  }
+
+  function updateBadge(id, valid) {
+    const badge = document.getElementById(id);
+    if (!badge) return;
+    const icon = badge.querySelector('.material-symbols-outlined');
+    if (valid) {
+      badge.classList.remove('bg-surface-container', 'text-tertiary');
+      badge.classList.add('bg-primary-fixed', 'text-on-primary-fixed-variant');
+      if (icon) {
+        icon.innerText = 'check_circle';
+        icon.classList.add('text-primary');
+      }
+    } else {
+      badge.classList.add('bg-surface-container', 'text-tertiary');
+      badge.classList.remove('bg-primary-fixed', 'text-on-primary-fixed-variant');
+      if (icon) {
+        icon.innerText = 'circle';
+        icon.classList.remove('text-primary');
+      }
+    }
+  }
+
+  function handleSubmit() {
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const terms = document.getElementById('termsCheckbox').checked;
+
+    if (!name || !email || !terms) {
+      setState('validation-error');
+      return;
+    }
+
+    if (email.toLowerCase().includes('osahon')) {
+      setState('duplicate-email');
+      return;
+    }
+
+    setState('submitting');
+    setTimeout(() => {
+      setState('account-created');
+    }, 1200);
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    setState('default');
+  });
+</script></main><footer class="w-full bg-surface-container-lowest py-space-lg shadow-[0_-1px_4px_rgba(0,0,0,0.02)]"><div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-primary">verified_user</span><span>256-bit encrypted authentication • Benin City, Nigeria</span></div><div class="flex items-center gap-space-sm"><span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">Paystack TEST Mode</span><span>© 2025 SabiWork. All rights reserved.</span></div></div></footer></body></html>

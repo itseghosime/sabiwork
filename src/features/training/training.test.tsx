@@ -9,8 +9,8 @@ import {
   getTrainingModules,
   getTrainingModule,
   getTrainingStats,
-  completeModule,
-  getModuleCertificate,
+  previewModuleCompletion,
+  getSampleCertificatePreview,
 } from "./service";
 
 afterEach(() => {
@@ -42,19 +42,19 @@ describe("Training Service", () => {
   });
 
   it("fetches single module and marks complete with certificate", () => {
-    const mod = getTrainingModule("BEN-MOD-05");
+    const mod = getTrainingModule("SAMPLE-MODULE-05");
     expect(mod).toBeDefined();
-    const res = completeModule("BEN-MOD-05");
-    expect(res.success).toBe(true);
+    const res = previewModuleCompletion("SAMPLE-MODULE-05");
+    expect(res.previewed).toBe(true);
     expect(res.module?.status).toBe("completed");
-    expect(res.module?.certificate).toBeDefined();
-    expect(res.module?.certificate?.serialNumber).toContain("EDO-SABI-");
+    expect(res.module?.certificatePreview).toBeDefined();
+    expect(res.module?.certificatePreview?.serialNumber).toBe("NOT ISSUED - SAMPLE");
   });
 
   it("fetches certificate for completed module", () => {
-    const cert = getModuleCertificate("BEN-MOD-01");
+    const cert = getSampleCertificatePreview("SAMPLE-MODULE-01");
     expect(cert).toBeDefined();
-    expect(cert?.holderName).toBe("Osaze Victor Ighodaro");
+    expect(cert?.holderName).toBe("Sample Artisan");
   });
 });
 
@@ -62,7 +62,7 @@ describe("Training Screens UI", () => {
   it("renders S44 Training Directory with filter pills and modules", () => {
     render(<TrainingDirectoryScreen />);
     expect(screen.getByText(/Artisan Training & Master Guides/i)).toBeDefined();
-    expect(screen.getByText(/Edo State Accredited/i)).toBeDefined();
+    expect(screen.getAllByText(/Sample content/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/Site Safety/i)).toBeDefined();
 
     // Click filter pill
@@ -72,18 +72,17 @@ describe("Training Screens UI", () => {
   });
 
   it("renders S45 Guide Reader and displays sections and takeaways", () => {
-    render(<GuideReaderScreen id="BEN-MOD-01" />);
-    expect(screen.getByText(/Screen S45 • Active Study Guide/i)).toBeDefined();
+    render(<GuideReaderScreen id="SAMPLE-MODULE-01" />);
+    expect(screen.getByText(/Active Study Guide/i)).toBeDefined();
     expect(screen.getByText(/4 Core Takeaways for Every Callout/i)).toBeDefined();
     expect(screen.getByRole("button", { name: /Mark as Complete & Continue/i })).toBeDefined();
   });
 
   it("renders S46 Certificate of Course Completion", () => {
-    render(<CertificateScreen id="BEN-MOD-01" />);
-    expect(screen.getByText(/Certificate of Course Completion/i)).toBeDefined();
-    expect(screen.getByText(/Osaze Victor Ighodaro/i)).toBeDefined();
-    expect(screen.getByRole("button", { name: /Print \/ Export Certificate/i })).toBeDefined();
-    expect(screen.getByRole("link", { name: /View on Profile/i })).toBeDefined();
+    render(<CertificateScreen id="SAMPLE-MODULE-01" />);
+    expect(screen.getByText(/Sample Certificate Preview — Not Issued/i)).toBeDefined();
+    expect(screen.getByText(/Sample Artisan/i)).toBeDefined();
+    expect(screen.getByRole("button", { name: /Print \/ Export Sample Preview/i })).toBeDefined();
+    expect(screen.getByRole("link", { name: /Open Sample Profile Preview/i })).toBeDefined();
   });
 });
-

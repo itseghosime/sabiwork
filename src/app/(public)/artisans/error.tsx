@@ -20,7 +20,7 @@ export default function ResultsError({
         <button className="button button-primary" onClick={retry}>
           Try again <Icon name="arrow" size={17} />
         </button>
-        <Link className="button button-outline" href="/">
+        <Link className="button button-primary" href="/">
           Back to home
         </Link>
       </div>

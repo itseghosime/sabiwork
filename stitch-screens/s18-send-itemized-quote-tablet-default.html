@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary-container":"#003a56","outline-variant":"#bec8d1","secondary-container":"#bbd3fe","primary-container":"#38a8e8","inverse-on-surface":"#edf0ff","primary-fixed":"#c9e6ff","surface-container-high":"#e1e8fd","on-error":"#ffffff","on-tertiary-container":"#2e373d","on-secondary-fixed":"#001b3c","on-surface":"#141b2b","on-primary-fixed":"#001e2f","surface-container":"#e9edff","surface-tint":"#006491","inverse-surface":"#293040","tertiary":"#576065","on-tertiary-fixed":"#141d22","secondary-fixed":"#d5e3ff","inverse-primary":"#8aceff","on-surface-variant":"#3f4850","secondary":"#485f84","surface-container-low":"#f1f3ff","error-container":"#ffdad6","on-secondary":"#ffffff","on-secondary-fixed-variant":"#30476b","secondary-fixed-dim":"#b0c8f2","surface-variant":"#dce2f7","on-primary":"#ffffff","on-error-container":"#93000a","primary":"#006491","primary-fixed-dim":"#8aceff","tertiary-fixed-dim":"#bfc8ce","surface-dim":"#d3daef","on-tertiary":"#ffffff","on-background":"#141b2b","surface-bright":"#f9f9ff","error":"#ba1a1a","surface-container-lowest":"#ffffff","outline":"#6f7881","tertiary-fixed":"#dbe4eb","surface":"#f9f9ff","on-tertiary-fixed-variant":"#3f484e","surface-container-highest":"#dce2f7","on-primary-fixed-variant":"#004b6f","background":"#f9f9ff","on-secondary-container":"#435a7f","tertiary-container":"#97a0a7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-mobile":"0.75rem","margin":"2rem","space-2xl":"2rem","space-xl":"1.5rem","space-sm":"0.625rem","space-lg":"1.25rem","margin-mobile":"1rem","space-md":"1rem","space-3xl":"3rem","space-2xs":"0.25rem","gutter":"1.25rem","space-xs":"0.5rem"},"fontFamily":{"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-lg":["Inter"],"label-md":["Inter"],"body-md":["Inter"]},"fontSize":{"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between py-space-xl"><div class="flex flex-col gap-space-lg"><div class="px-space-xl flex items-center gap-space-xs"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Sabi<span class="text-primary-container">Work</span></span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none mt-1">Artisan Workspace</span></div></div><div class="px-space-xl"><div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-xs"><div class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></div><span class="font-label-sm text-label-sm text-on-surface font-semibold">Hub Active</span></div><span class="font-label-sm text-label-sm text-on-surface-variant">Benin Trade Net</span></div></div><nav class="px-space-md flex flex-col gap-1" data-active-classes="bg-secondary-container text-on-secondary-fixed font-semibold rounded-xl"><a aria-current="page" class="flex items-center gap-space-xs px-space-md py-2.5 transition-colors bg-secondary-container text-on-secondary-fixed font-semibold rounded-xl" data-path="artisan-workspace" href="#"><span class="material-symbols-outlined text-[20px]">handyman</span><span class="font-label-lg text-label-lg">Artisan Workspace</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">space_dashboard</span><span class="font-label-lg text-label-lg">Dashboard</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="open-requests" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">work_outline</span><span class="font-label-lg text-label-lg">Open Requests</span></div><span class="bg-surface-container-high text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded-full">S17</span></a><a class="flex items-center justify-between px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="my-quotes" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px]">request_quote</span><span class="font-label-lg text-label-lg">My Quotes</span></div><span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">S18</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="active-gigs" href="#"><span class="material-symbols-outlined text-[20px]">construction</span><span class="font-label-lg text-label-lg">Active Gigs</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="profile-workshop" href="#"><span class="material-symbols-outlined text-[20px]">store</span><span class="font-label-lg text-label-lg">Profile &amp; Workshop</span></a><a class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-lg text-label-lg">Settings</span></a></nav></div><div class="px-space-md flex flex-col gap-space-sm"><div class="p-space-sm bg-surface-container-low rounded-xl flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary">verified</span><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface font-semibold">Benin City ID</span><span class="font-body-sm text-body-sm text-on-surface-variant">SBN-PLUMB-4091</span></div></div><div class="text-center"><span class="font-label-sm text-label-sm text-on-surface-variant">SabiWork Trade Platform v2.4</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-xl flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low hover:bg-surface-container px-space-md py-1.5 rounded-lg cursor-pointer transition-colors"><span class="material-symbols-outlined text-primary text-[18px]">location_on</span><span class="font-label-md text-label-md text-on-surface font-medium">Benin City Hub (Ring Road / GRA)</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span></div><div class="hidden md:flex items-center gap-1.5 bg-inverse-surface text-inverse-on-surface px-space-sm py-1 rounded-md"><span class="w-2 h-2 rounded-full bg-primary-container"></span><span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase">Paystack TEST Mode</span></div></div><div class="flex items-center gap-space-lg"><button aria-label="Notifications" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Osaze Ighodaro</span><span class="font-label-sm text-label-sm text-primary font-medium leading-tight">Verified Plumber</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-surface w-full px-space-xl"><div class="flex flex-col w-full pb-16">
+<!-- Top Switcher & Prototype Status Shelf -->
+<div class="w-full bg-surface-container-low rounded-2xl p-space-md shadow-sm mb-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Interactive Prototype State</span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">Tablet S18 View</span>
+</div>
+<div class="flex items-center gap-1.5 bg-inverse-surface text-inverse-on-surface px-space-sm py-1 rounded-md self-start md:self-auto">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase">Paystack TEST Mode</span>
+</div>
+</div>
+<!-- State Switcher Pills -->
+<div class="flex items-center gap-2 overflow-x-auto py-1" id="state-tab-container">
+<button class="state-pill px-4 py-2 min-h-[44px] rounded-xl font-label-md text-label-md flex items-center gap-2 bg-on-secondary-fixed text-on-secondary shadow-sm transition-all flex-shrink-0" id="btn-state-default" onclick="setPrototypeState('default')" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Default Quote Builder</span>
+</button>
+<button class="state-pill px-4 py-2 min-h-[44px] rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface text-on-surface-variant hover:bg-surface-container-high transition-all flex-shrink-0" id="btn-state-preview" onclick="setPrototypeState('preview')" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Preview Mode</span>
+</button>
+<button class="state-pill px-4 py-2 min-h-[44px] rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface text-on-surface-variant hover:bg-surface-container-high transition-all flex-shrink-0" id="btn-state-submitting" onclick="setPrototypeState('submitting')" type="button">
+<span class="material-symbols-outlined text-[18px]">hourglass_top</span>
+<span>Submitting...</span>
+</button>
+<button class="state-pill px-4 py-2 min-h-[44px] rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface text-on-surface-variant hover:bg-surface-container-high transition-all flex-shrink-0" id="btn-state-validation" onclick="setPrototypeState('validation')" type="button">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span>Validation Error</span>
+</button>
+<button class="state-pill px-4 py-2 min-h-[44px] rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface text-on-surface-variant hover:bg-surface-container-high transition-all flex-shrink-0" id="btn-state-network" onclick="setPrototypeState('network')" type="button">
+<span class="material-symbols-outlined text-[18px]">wifi_off</span>
+<span>Network Retry</span>
+</button>
+</div>
+</div>
+<!-- Validation Banner (Hidden unless triggered) -->
+<div class="hidden w-full bg-error-container text-on-error-container p-space-md rounded-xl mb-space-lg shadow-sm flex items-start justify-between gap-space-md" id="validation-banner">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-error text-[22px] flex-shrink-0">error</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-error-container">Milestone Balance Mismatch</span>
+<span class="font-body-md text-body-md mt-0.5">The combined milestone installments must equal the total quote calculation (₦30,000). Current sum: <span class="font-semibold" id="val-err-sum">₦25,000</span>.</span>
+</div>
+</div>
+<button class="px-4 py-2 min-h-[44px] bg-error text-on-error rounded-lg font-label-md text-label-md flex-shrink-0" onclick="rebalanceMilestones()" type="button">Auto-Balance</button>
+</div>
+<!-- Network Offline Banner (Hidden unless state chosen) -->
+<div class="hidden w-full bg-inverse-surface text-inverse-on-surface p-space-md rounded-xl mb-space-lg shadow-sm flex items-center justify-between gap-space-md" id="network-banner">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-fixed-dim text-[24px]">signal_cellular_connected_no_internet_4_bar</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold">Network Ping Failed (Benin Node SBN-03)</span>
+<span class="font-body-sm text-body-sm text-surface-container-high">Itemized draft stored safely in offline browser storage.</span>
+</div>
+</div>
+<button class="px-5 py-2.5 min-h-[44px] bg-primary-container text-on-primary-container font-label-md text-label-md font-bold rounded-lg flex items-center gap-2" onclick="setPrototypeState('default')" type="button">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Retry Sync</span>
+</button>
+</div>
+<!-- 1. Linked Job Request Context Card -->
+<div class="w-full bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm mb-space-lg">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md pb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[28px]">plumbing</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm bg-primary text-on-primary px-2.5 py-0.5 rounded-full uppercase tracking-wider font-semibold">Job ID #BN-REQ-8421</span>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2.5 py-0.5 rounded-full font-medium">Kitchen Plumbing</span>
+<span class="font-label-sm text-label-sm text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Posted 45m ago
+            </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1 truncate">Under-sink kitchen drain pipe replacement &amp; leak repair</h2>
+<div class="flex items-center gap-space-xs text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-primary text-[18px]">person_pin_circle</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Ada O.</span>
+<span>•</span>
+<span class="font-body-md text-body-md">GRA Axis (Boundary Rd / Zenith Bank Junction, Benin City)</span>
+</div>
+</div>
+</div>
+<!-- Benchmark Budget Pill -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col items-start md:items-end flex-shrink-0 min-w-[200px]">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Customer Target Budget</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold text-primary mt-0.5">₦18,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 text-right">Non-binding client benchmark</span>
+</div>
+</div>
+<!-- Defect Photos Strip with Inspection Badge -->
+<div class="pt-space-md bg-surface-container-low/50 -mx-space-lg px-space-lg pb-space-sm rounded-b-2xl">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">photo_library</span> Client Inspection Photos (3 Attachments)
+        </span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-secondary-fixed font-semibold px-2 py-0.5 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">verified_user</span> Site Damage Verified
+        </span>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="relative rounded-xl overflow-hidden shadow-sm h-28 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="High quality close up photo of a damaged cracked PVC kitchen sink drain pipe with visible moisture leaks under a modern cabinet in a Nigerian residential home, crisp lighting, clear repair context" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgmbEUMpDjIVUzqyR20opRHKYVJrGy5dxSXBqzwhi8lsc8zJ5AjcHk8gJtMuklhjRl6t3MKotI1lhYnTD8KSqOCP6RrP7W8s2OQjNeSmWbJshxUdIN73ulkASNHugkQKTV6Iryg3hGZc0BiWJM06M6jFiMa3aaKOVx8XGkZTPzOLONGyUl-wB16yz0LEOVUKHgCYrEHckvUWfwnf0slvV3WtwQevtvfAkOd1yrAMs"/>
+<div class="absolute bottom-1 left-1 bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded">Crack at joint</div>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-sm h-28 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Photo of kitchen sink under counter showing worn out p-trap rubber washer seal and water collection basin underneath, documentary trade inspection photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoYp4lN_YDZ_sz7bukbmbN-BDGPwpCyywoT_yUvKlE-f1-6fb5fp7OSyYaQBbGrR10kb443s8lCeKFP8FmG83cvVtWA8H3sy3HvAr-aoXS6IsUqwdiSEHnpoysd2k1N1euDi8UiGmKG-qiIdg08w396pjKzZahlYnnoLy3vFDYl99jtnvCQD4r_g3TJD8wG5vp-BBYXEQVRk0oNhLsoC-xdM16AjLowjGKHA7g66c"/>
+<div class="absolute bottom-1 left-1 bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded">Worn P-trap</div>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-sm h-28 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Wide perspective shot of whole under sink cabinet layout showing hot and cold supply pipes and connection to wall drainage outlet in Benin City apartment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPdlp2_JzWAMTlAbMvOA9OIkXL_56eODUfnV_Rw5SKBd22h8ohgXnLEkj7ASwtXtEVGGMr8XAQh9sfqk9zVjEVROiUk9zwrjgN5vkEzue934n59HAgFaSFzlkaBW5KvrFy-X6VwTk_PXuYb7EospiWsTRFr6DKBw1MJ3jkSpktgPlSOwO_nlcynbaFIBCJBLbsFhpm_5GKMdUGyvvEAOzT9zA5bI_fIengZHJhj3c"/>
+<div class="absolute bottom-1 left-1 bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded">Wall outlet overview</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Builder & Breakdown Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Column: Detailed Form Lines (8 Cols on tablet/lg) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- 2. Line Item Quote Builder: Labour -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">handyman</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">1. Labour Line Items</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Estimated artisan service execution fees</p>
+</div>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-lg flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Labour Subtotal:</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface" id="labour-subtotal-display">₦17,000</span>
+</div>
+</div>
+<!-- Labour Items List -->
+<div class="flex flex-col gap-space-sm" id="labour-items-list">
+<!-- Item 1 -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+<div class="flex items-center gap-space-xs flex-1 min-w-0">
+<span class="material-symbols-outlined text-outline-variant text-[20px] flex-shrink-0">drag_indicator</span>
+<div class="flex flex-col min-w-0 flex-1">
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none focus:bg-surface px-1 py-0.5 rounded" placeholder="Description of labour task" type="text" value="P-trap disassembly &amp; drain realignment"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant px-1">Includes dismantling broken fixtures safely</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm flex-shrink-0">
+<div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg shadow-sm">
+<span class="text-on-surface-variant font-label-md mr-1">₦</span>
+<input class="w-24 text-right font-label-lg text-label-lg text-on-surface font-bold focus:outline-none labour-price-input" onchange="calculateGrandTotal()" type="number" value="12000"/>
+</div>
+<button aria-label="Remove item" class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+<div class="flex items-center gap-space-xs flex-1 min-w-0">
+<span class="material-symbols-outlined text-outline-variant text-[20px] flex-shrink-0">drag_indicator</span>
+<div class="flex flex-col min-w-0 flex-1">
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none focus:bg-surface px-1 py-0.5 rounded" placeholder="Description of labour task" type="text" value="Solvent sealing &amp; pressure test"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant px-1">High-pressure continuous drain flush test</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm flex-shrink-0">
+<div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg shadow-sm">
+<span class="text-on-surface-variant font-label-md mr-1">₦</span>
+<input class="w-24 text-right font-label-lg text-label-lg text-on-surface font-bold focus:outline-none labour-price-input" onchange="calculateGrandTotal()" type="number" value="5000"/>
+</div>
+<button aria-label="Remove item" class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Add Labour Button -->
+<button class="min-h-[44px] px-5 py-2.5 bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-xl flex items-center justify-center gap-space-xs transition-colors flex-shrink-0 w-full sm:w-auto self-start" onclick="addLabourRow()" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary">add_circle</span>
+<span>+ Add Labour Line Item</span>
+</button>
+</div>
+<!-- Line Item Quote Builder: Materials -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">inventory_2</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">2. Material Line Items</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Parts, hardware, and shop supplies procured for client</p>
+</div>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-lg flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Materials Subtotal:</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface" id="material-subtotal-display">₦13,000</span>
+</div>
+</div>
+<!-- Materials Items List -->
+<div class="flex flex-col gap-space-sm" id="material-items-list">
+<!-- Material Item 1 -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+<div class="flex items-center gap-space-xs flex-1 min-w-0">
+<span class="material-symbols-outlined text-outline-variant text-[20px] flex-shrink-0">drag_indicator</span>
+<div class="flex flex-col min-w-0 flex-1">
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none focus:bg-surface px-1 py-0.5 rounded" placeholder="Part description" type="text" value='Heavy-duty 1.5" PVC P-trap kit'/>
+<span class="font-body-sm text-body-sm text-on-surface-variant px-1">Reinforced threaded connectors + slip nuts</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm flex-shrink-0">
+<div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg shadow-sm">
+<span class="text-on-surface-variant font-label-md mr-1">₦</span>
+<input class="w-24 text-right font-label-lg text-label-lg text-on-surface font-bold focus:outline-none material-price-input" onchange="calculateGrandTotal()" type="number" value="8500"/>
+</div>
+<button aria-label="Remove item" class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Material Item 2 -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+<div class="flex items-center gap-space-xs flex-1 min-w-0">
+<span class="material-symbols-outlined text-outline-variant text-[20px] flex-shrink-0">drag_indicator</span>
+<div class="flex flex-col min-w-0 flex-1">
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none focus:bg-surface px-1 py-0.5 rounded" placeholder="Part description" type="text" value="Silicone seals &amp; solvent weld cement"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant px-1">Industrial waterproofing gasket sealant (500ml)</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm flex-shrink-0">
+<div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg shadow-sm">
+<span class="text-on-surface-variant font-label-md mr-1">₦</span>
+<input class="w-24 text-right font-label-lg text-label-lg text-on-surface font-bold focus:outline-none material-price-input" onchange="calculateGrandTotal()" type="number" value="4500"/>
+</div>
+<button aria-label="Remove item" class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Add Material Button -->
+<button class="min-h-[44px] px-5 py-2.5 bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-xl flex items-center justify-center gap-space-xs transition-colors flex-shrink-0 w-full sm:w-auto self-start" onclick="addMaterialRow()" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary">add_circle</span>
+<span>+ Add Material Line Item</span>
+</button>
+</div>
+<!-- 3. Duration & Execution Notes -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">schedule</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">3. Work Schedule &amp; Execution Notes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Clear terms set directly with customer Ada O.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Estimated Turnaround Duration</span>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="material-symbols-outlined text-primary text-[20px]">timer</span>
+<input class="bg-surface px-3 py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface w-full focus:outline-none focus:ring-1 focus:ring-primary" type="text" value="2 to 3 hours"/>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Includes dry-fit testing &amp; final seal hardening</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Earliest Arrival / Start Slot</span>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="material-symbols-outlined text-primary text-[20px]">event_available</span>
+<input class="bg-surface px-3 py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface w-full focus:outline-none focus:ring-1 focus:ring-primary" type="text" value="Thursday 9:30 AM"/>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">GRA Axis dispatch queue confirmed</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md font-semibold text-on-surface">Artisan Notes for Client</label>
+<textarea class="w-full bg-surface-container-low p-space-md rounded-xl text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface focus:ring-2 focus:ring-primary-container resize-none" rows="3">Includes complete removal of cracked pipe, replacement of rubber washer seals, and full pressure testing. Clean-up of under-sink cabinet floor included.</textarea>
+</div>
+</div>
+</div>
+<!-- Right Column: Grand Total Banner & Milestones (4 Cols on tablet/lg) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Grand Total Summary Card -->
+<div class="bg-on-secondary-fixed text-on-secondary rounded-2xl p-space-lg shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-primary-container/10 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary-fixed">Quote Summary</span>
+<span class="bg-primary/30 text-inverse-primary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-bold">Itemized</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center text-surface-container-high font-body-md text-body-md">
+<span>Labour Subtotal</span>
+<span class="font-label-md text-label-md font-semibold text-on-secondary" id="summary-labour">₦17,000</span>
+</div>
+<div class="flex justify-between items-center text-surface-container-high font-body-md text-body-md">
+<span>Materials Subtotal</span>
+<span class="font-label-md text-label-md font-semibold text-on-secondary" id="summary-material">₦13,000</span>
+</div>
+<div class="w-full h-px bg-surface-container-high/20 my-1"></div>
+<div class="flex justify-between items-baseline">
+<span class="font-headline-sm text-headline-sm text-surface-container-lowest font-bold">Grand Total</span>
+<div class="flex flex-col items-end">
+<span class="font-headline-xl text-headline-xl font-bold text-primary-fixed" id="summary-grand-total">₦30,000</span>
+<span class="font-label-sm text-label-sm text-surface-container-high/80">(All inclusive)</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-highest/10 rounded-xl p-space-sm flex items-center gap-space-xs text-secondary-fixed font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-primary-container">info</span>
+<span>Quote valid for 48 hours following submission.</span>
+</div>
+</div>
+<!-- 4. Milestone Split Configuration -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">payments</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">4. Milestone Formulation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Scheduled stage releases</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Milestone 1 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-label-sm font-bold">1</span>
+                Milestone 1 (Material Deposit)
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">33.3%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Released upfront to purchase PVC P-trap kit &amp; pipe seal supplies</p>
+<div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg mt-1">
+<span class="text-on-surface-variant font-label-md mr-1 font-semibold">₦</span>
+<input class="w-full text-right font-label-lg text-label-lg font-bold text-on-surface focus:outline-none" id="milestone-1-input" onchange="validateMilestones()" type="number" value="10000"/>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm text-label-sm font-bold">2</span>
+                Milestone 2 (Completion Balance)
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">66.7%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Released upon inspection and successful water pressure drainage test</p>
+<div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg mt-1">
+<span class="text-on-surface-variant font-label-md mr-1 font-semibold">₦</span>
+<input class="w-full text-right font-label-lg text-label-lg font-bold text-on-surface focus:outline-none" id="milestone-2-input" onchange="validateMilestones()" type="number" value="20000"/>
+</div>
+</div>
+</div>
+<!-- Verification Pill -->
+<div class="bg-surface-container-high text-on-secondary-fixed p-space-sm rounded-xl flex items-center justify-between" id="milestone-sum-badge">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md font-semibold">Total Verification:</span>
+</div>
+<span class="font-label-md text-label-md font-bold" id="milestone-sum-text">✓ Sum equals ₦30,000 total</span>
+</div>
+<!-- Paystack TEST Notice -->
+<div class="bg-inverse-surface text-inverse-on-surface p-space-md rounded-xl flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px] flex-shrink-0 mt-0.5">lock_clock</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary-container">Paystack TEST Mode</span>
+<span class="font-body-sm text-body-sm text-surface-container-high mt-0.5 leading-snug">
+              Milestone escrow funds will be held in sandbox escrow and automatically tracked upon customer checkout. Simulated payment state.
+            </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Full Width Action Shelf (Tablet / Desktop fixed bar) -->
+<div class="mt-space-2xl bg-surface-container-lowest rounded-2xl p-space-lg shadow-md flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md w-full sm:w-auto">
+<button class="min-h-[44px] px-5 py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-2 flex-shrink-0 transition-colors w-full sm:w-auto" onclick="saveDraftNotification()" type="button">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>Save Draft</span>
+</button>
+<button class="min-h-[44px] px-5 py-2.5 bg-surface-container-low hover:bg-surface-container text-primary font-label-lg text-label-lg rounded-xl flex items-center justify-center gap-2 flex-shrink-0 transition-colors w-full sm:w-auto" onclick="setPrototypeState('preview')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+<span>Preview Quote</span>
+</button>
+</div>
+<div class="flex items-center gap-space-md w-full sm:w-auto justify-end">
+<div class="text-right hidden md:flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prepared by Master Plumber</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Osaze Ighodaro</span>
+</div>
+<button class="min-h-[44px] px-6 py-2.5 bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-sm transition-all flex-shrink-0 w-full sm:w-auto" id="submit-quote-btn" onclick="submitFormalQuote()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="submit-btn-icon">send</span>
+<span id="submit-btn-text">Submit Itemized Quote (₦30,000) →</span>
+</button>
+</div>
+</div>
+<!-- Preview Modal Simulation Overlay (Hidden by Default) -->
+<div class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-4" id="quote-preview-modal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-xl w-full p-space-xl shadow-xl flex flex-col gap-space-md max-h-[90vh] overflow-y-auto">
+<div class="flex items-center justify-between border-b pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<img alt="SabiWork" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6cREX_FV6dP-bZPQV6bRSmCcSV5TLhq4DYQ5-d2NiQSO_y5mbex6pEveoJnxgNI_ryp6oGOGMNrtIlrfzCoGohnGLt4tBYVg05Qq-G0LFO71FyOOL4EV1VjnhKBOCUsqZ4qyEDj70eU_-fhGlozXK3eBHif_10bOLqac_2LiHcZuMCpqwQhPV-tQ0HXtHZ1JdGjE_hPLgqT4-0s0gCiFIBY24BXZ-UFDpKShHrtGCXe3YJAvuJUsV"/>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Formal Quote Preview</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface rounded-lg" onclick="closePreviewModal()" type="button">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex justify-between items-center">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Recipient:</span>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">Ada O. (GRA Axis, Benin City)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Job #BN-REQ-8421</p>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Cost:</span>
+<p class="font-headline-md text-headline-md font-bold text-primary" id="modal-preview-total">₦30,000</p>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Breakdown of Work &amp; Supplies:</span>
+<ul class="font-body-md text-body-md text-on-surface flex flex-col gap-1.5 bg-surface-container p-space-md rounded-xl">
+<li class="flex justify-between"><span>• Labour: P-trap disassembly &amp; drain realignment</span><span class="font-semibold">₦12,000</span></li>
+<li class="flex justify-between"><span>• Labour: Solvent sealing &amp; pressure test</span><span class="font-semibold">₦5,000</span></li>
+<li class="flex justify-between"><span>• Material: Heavy-duty 1.5" PVC P-trap kit</span><span class="font-semibold">₦8,500</span></li>
+<li class="flex justify-between"><span>• Material: Silicone seals &amp; weld cement</span><span class="font-semibold">₦4,500</span></li>
+</ul>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Escrow Milestone Plan (Paystack TEST):</span>
+<div class="grid grid-cols-2 gap-2 text-body-sm">
+<div class="bg-surface-container-low p-2 rounded-lg">
+<span class="font-semibold text-on-surface">Milestone 1:</span> ₦10,000 (Materials Deposit)
+          </div>
+<div class="bg-surface-container-low p-2 rounded-lg">
+<span class="font-semibold text-on-surface">Milestone 2:</span> ₦20,000 (Final Balance)
+          </div>
+</div>
+</div>
+<div class="flex justify-end gap-space-sm pt-space-sm">
+<button class="px-5 py-2.5 min-h-[44px] bg-surface-container text-on-surface font-label-md text-label-md rounded-xl" onclick="closePreviewModal()" type="button">Back to Edit</button>
+<button class="px-5 py-2.5 min-h-[44px] bg-primary text-on-primary font-label-md text-label-md font-bold rounded-xl flex items-center gap-2" onclick="closePreviewModal(); submitFormalQuote();" type="button">
+<span>Confirm &amp; Dispatch</span>
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function calculateGrandTotal() {
+    const labourInputs = document.querySelectorAll('.labour-price-input');
+    const materialInputs = document.querySelectorAll('.material-price-input');
+
+    let labourTotal = 0;
+    labourInputs.forEach(input => {
+      labourTotal += parseFloat(input.value) || 0;
+    });
+
+    let materialTotal = 0;
+    materialInputs.forEach(input => {
+      materialTotal += parseFloat(input.value) || 0;
+    });
+
+    const grandTotal = labourTotal + materialTotal;
+
+    const formatNgn = (val) => '₦' + val.toLocaleString();
+
+    document.getElementById('labour-subtotal-display').innerText = formatNgn(labourTotal);
+    document.getElementById('material-subtotal-display').innerText = formatNgn(materialTotal);
+    document.getElementById('summary-labour').innerText = formatNgn(labourTotal);
+    document.getElementById('summary-material').innerText = formatNgn(materialTotal);
+    document.getElementById('summary-grand-total').innerText = formatNgn(grandTotal);
+    document.getElementById('submit-btn-text').innerText = 'Submit Itemized Quote (' + formatNgn(grandTotal) + ') →';
+    
+    validateMilestones(grandTotal);
+  }
+
+  function validateMilestones(expectedGrandTotal) {
+    if (!expectedGrandTotal) {
+      const summaryText = document.getElementById('summary-grand-total').innerText;
+      expectedGrandTotal = parseFloat(summaryText.replace(/[^\d.-]/g, '')) || 30000;
+    }
+
+    const m1 = parseFloat(document.getElementById('milestone-1-input').value) || 0;
+    const m2 = parseFloat(document.getElementById('milestone-2-input').value) || 0;
+    const currentSum = m1 + m2;
+
+    const badge = document.getElementById('milestone-sum-badge');
+    const text = document.getElementById('milestone-sum-text');
+    const valBanner = document.getElementById('validation-banner');
+
+    if (currentSum === expectedGrandTotal) {
+      badge.className = "bg-surface-container-high text-on-secondary-fixed p-space-sm rounded-xl flex items-center justify-between";
+      text.innerHTML = "✓ Sum equals ₦" + expectedGrandTotal.toLocaleString() + " total";
+      valBanner.classList.add('hidden');
+    } else {
+      badge.className = "bg-error-container text-on-error-container p-space-sm rounded-xl flex items-center justify-between";
+      text.innerHTML = "⚠ Sum: ₦" + currentSum.toLocaleString() + " (Diff: ₦" + Math.abs(expectedGrandTotal - currentSum).toLocaleString() + ")";
+    }
+  }
+
+  function addLabourRow() {
+    const list = document.getElementById('labour-items-list');
+    const div = document.createElement('div');
+    div.className = "flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl animate-fade-in";
+    div.innerHTML = `
+      <div class="flex items-center gap-space-xs flex-1 min-w-0">
+        <span class="material-symbols-outlined text-outline-variant text-[20px] flex-shrink-0">drag_indicator</span>
+        <div class="flex flex-col min-w-0 flex-1">
+          <input type="text" value="Supplementary plumbing task" class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none focus:bg-surface px-1 py-0.5 rounded" placeholder="Description of labour task">
+          <span class="font-body-sm text-body-sm text-on-surface-variant px-1">Artisan on-site execution</span>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-space-sm flex-shrink-0">
+        <div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg shadow-sm">
+          <span class="text-on-surface-variant font-label-md mr-1">₦</span>
+          <input type="number" value="3000" onchange="calculateGrandTotal()" class="w-24 text-right font-label-lg text-label-lg text-on-surface font-bold focus:outline-none labour-price-input">
+        </div>
+        <button type="button" onclick="this.closest('.flex-col').remove(); calculateGrandTotal();" class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors flex-shrink-0">
+          <span class="material-symbols-outlined text-[20px]">delete_outline</span>
+        </button>
+      </div>
+    `;
+    list.appendChild(div);
+    calculateGrandTotal();
+  }
+
+  function addMaterialRow() {
+    const list = document.getElementById('material-items-list');
+    const div = document.createElement('div');
+    div.className = "flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm bg-surface-container-low p-space-md rounded-xl animate-fade-in";
+    div.innerHTML = `
+      <div class="flex items-center gap-space-xs flex-1 min-w-0">
+        <span class="material-symbols-outlined text-outline-variant text-[20px] flex-shrink-0">drag_indicator</span>
+        <div class="flex flex-col min-w-0 flex-1">
+          <input type="text" value="Additional brass compression fitting" class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none focus:bg-surface px-1 py-0.5 rounded" placeholder="Part description">
+          <span class="font-body-sm text-body-sm text-on-surface-variant px-1">Hardware component</span>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-space-sm flex-shrink-0">
+        <div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg shadow-sm">
+          <span class="text-on-surface-variant font-label-md mr-1">₦</span>
+          <input type="number" value="2500" onchange="calculateGrandTotal()" class="w-24 text-right font-label-lg text-label-lg text-on-surface font-bold focus:outline-none material-price-input">
+        </div>
+        <button type="button" onclick="this.closest('.flex-col').remove(); calculateGrandTotal();" class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors flex-shrink-0">
+          <span class="material-symbols-outlined text-[20px]">delete_outline</span>
+        </button>
+      </div>
+    `;
+    list.appendChild(div);
+    calculateGrandTotal();
+  }
+
+  function rebalanceMilestones() {
+    document.getElementById('milestone-1-input').value = 10000;
+    document.getElementById('milestone-2-input').value = 20000;
+    document.getElementById('validation-banner').classList.add('hidden');
+    validateMilestones(30000);
+  }
+
+  function setPrototypeState(state) {
+    const pills = document.querySelectorAll('.state-pill');
+    pills.forEach(p => {
+      p.className = "state-pill px-4 py-2 min-h-[44px] rounded-xl font-label-md text-label-md flex items-center gap-2 bg-surface text-on-surface-variant hover:bg-surface-container-high transition-all flex-shrink-0";
+    });
+
+    const activeBtn = document.getElementById('btn-state-' + state);
+    if (activeBtn) {
+      activeBtn.className = "state-pill px-4 py-2 min-h-[44px] rounded-xl font-label-md text-label-md flex items-center gap-2 bg-on-secondary-fixed text-on-secondary shadow-sm transition-all flex-shrink-0";
+    }
+
+    const valBanner = document.getElementById('validation-banner');
+    const netBanner = document.getElementById('network-banner');
+    const submitBtn = document.getElementById('submit-quote-btn');
+    const submitIcon = document.getElementById('submit-btn-icon');
+    const submitText = document.getElementById('submit-btn-text');
+
+    valBanner.classList.add('hidden');
+    netBanner.classList.add('hidden');
+
+    if (state === 'default') {
+      submitBtn.classList.remove('opacity-60', 'pointer-events-none');
+      submitIcon.innerText = 'send';
+      submitText.innerText = 'Submit Itemized Quote (₦30,000) →';
+      rebalanceMilestones();
+    } else if (state === 'preview') {
+      document.getElementById('quote-preview-modal').classList.remove('hidden');
+    } else if (state === 'submitting') {
+      submitBtn.classList.add('opacity-60', 'pointer-events-none');
+      submitIcon.innerText = 'hourglass_top';
+      submitText.innerText = 'Encrypting & Dispatching Quote...';
+    } else if (state === 'validation') {
+      document.getElementById('milestone-2-input').value = 15000;
+      document.getElementById('val-err-sum').innerText = '₦25,000';
+      valBanner.classList.remove('hidden');
+      validateMilestones(30000);
+    } else if (state === 'network') {
+      netBanner.classList.remove('hidden');
+    }
+  }
+
+  function closePreviewModal() {
+    document.getElementById('quote-preview-modal').classList.add('hidden');
+  }
+
+  function submitFormalQuote() {
+    setPrototypeState('submitting');
+    setTimeout(() => {
+      alert('Formal itemized quote for ₦30,000 submitted to Ada O. in GRA Axis! Customer notified via SabiWork client hub.');
+      setPrototypeState('default');
+    }, 1200);
+  }
+
+  function saveDraftNotification() {
+    const saveBtn = event.currentTarget;
+    const originalText = saveBtn.innerHTML;
+    saveBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] text-primary">check</span><span>Draft Saved</span>';
+    setTimeout(() => {
+      saveBtn.innerHTML = originalText;
+    }, 2000);
+  }
+</script></main></div></body></html>

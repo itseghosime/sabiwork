@@ -1,8 +1,5 @@
-import { OpenRequestsFeedScreen } from "@/features/quotes/screens";
-import { quotesDemoService } from "@/features/quotes/service";
+import { ArtisanOpportunitiesScreen } from "@/features/artisan-workspace/screens";
 
-export default async function OpenRequestsPage() {
-  const requests = await quotesDemoService.getOpenRequests();
-  return <OpenRequestsFeedScreen initialRequests={requests} />;
+export default function OpenRequestsPage() {
+  return <ArtisanOpportunitiesScreen />;
 }
-

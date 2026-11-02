@@ -1,6 +1,6 @@
 # Shared implementation contract
 
-This is the starting contract for team implementation, not a claim that endpoints or schemas exist. Friday now targets frontend pages using typed mock adapters; shared foundations start early and backend integration is scheduled for Saturday. SCREEN-OWNERSHIP.md supersedes the approximate routes below. Owners must agree changes in the relevant issue before dependent code is changed.
+This is the shared contract for team implementation. SCREEN-OWNERSHIP.md supersedes the approximate routes below. Owners must agree changes in the relevant issue before dependent code is changed.
 
 ## Application conventions
 
@@ -49,7 +49,28 @@ Preferred JSON envelope for feature APIs: `{ data: ... }`; errors `{ error: { co
 
 Natalie verifies Paystack's signature on the raw webhook body before dispatching to George's transaction-safe handler. Validate reference, expected amount and currency against server records and provider verification. Use unique references and idempotency, never mark success from a browser redirect alone. Persist no card details. Refunds and escrow are outside the prototype unless explicitly implemented and validated; the UI must not promise protection the test flow does not provide.
 
-Settings and training screens currently use in-memory preview adapters. Their changes reset on refresh; certificate views are sample previews and do not represent accredited credentials. Payment pages use TEST-mode UI only and do not confirm or hold funds.
+## Current Neon backend status
+
+Neon Postgres, Managed Auth, and Realtime are provisioned. Application migrations `0001`–`0007` are applied to the production database. Local environment variables are listed in `.env.example`; never commit `.env.local` or `.env.backend-test.local`, and verify `NEON_BRANCH` before running `npm run db:migrate`.
+
+Implemented in this branch:
+
+- Managed Auth signup, login, sign-out, and password reset. Email OTP/verification is intentionally disabled.
+- Server-checked sessions and database-backed role checks. Any signed-in non-admin account can hire; an account may also create an optional work profile to be hired. Admin remains a separately provisioned role.
+- Database-backed work profiles and public search. Production `/explore`, `/artisans`, and public artisan details include only listed account-created profiles and saved review summaries. Local development may show the explicitly disclosed fictional seed profiles for presentations; these do not appear in production listings or public APIs. Missing real portraits render as initials.
+- Customer requests, itemized quotes, jobs, progress updates, and reviews use Neon with ownership and role checks. Amounts are stored as integer kobo.
+- Admin verification, trade, audit, escrow-ledger, and payout workflows are server/API-backed where implemented. Identity-document storage and formal dispute arbitration are not implemented.
+- Paystack deposit/transfer integrations are test-mode only. Deposit status is based on server-side provider verification and webhook validation; no real funds are moved and no escrow guarantee is made.
+- Device preferences are local to the browser. Training progress and certificate views are preview-only and are not persisted or accredited.
+
+The current production database contains 20 seeded artisan records and zero account-created artisan profiles. The public listing filters out those seeds; create and list real work profiles to populate production discovery. Do not run the seed script against production to represent these fixtures as real people.
+
+The migration runner uses the configured database connection. For an isolated validation branch, the smoke-test commands are:
+
+```sh
+node --env-file=.env.backend-test.local scripts/migrate.mjs
+node --env-file=.env.backend-test.local scripts/backend-smoke.mjs
+```
 
 ## Shared component contract
 

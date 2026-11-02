@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Form from "next/form";
-import { DemoNotice } from "@/components/discovery";
 import { ResultsCollection } from "@/features/search/results-collection";
 import { Icon } from "@/components/icon";
 import { areas, categories } from "@/features/search/data";
 import {
-  listArtisans,
   parseFilters,
   searchHref,
   type SearchInput,
 } from "@/features/search/service";
+import { searchPublicArtisans } from "@/lib/server/artisans";
 export const metadata: Metadata = { title: "Find an artisan" };
 
 export default async function ArtisansPage({
@@ -19,7 +18,15 @@ export default async function ArtisansPage({
   searchParams: Promise<SearchInput>;
 }) {
   const filters = parseFilters(await searchParams);
-  const results = await listArtisans(filters);
+  const includeSeedProfiles = process.env.NODE_ENV !== "production";
+  const results = await searchPublicArtisans(
+    filters,
+    undefined,
+    includeSeedProfiles,
+  );
+  const showingPresentationProfiles =
+    includeSeedProfiles &&
+    results.items.some((artisan) => artisan.id.startsWith("seed-artisan-"));
   const resetHref = searchHref(parseFilters({ view: filters.view }));
   const selectedCategory = categories.find(
     (category) => category.id === filters.category,
@@ -57,7 +64,7 @@ export default async function ArtisansPage({
               </h1>
               <p>
                 Explore skilled people around Benin City. Find the right fit for
-                your job.
+                your job, compare rates, and request a quote.
               </p>
             </div>
             <span className="location-label">
@@ -70,6 +77,12 @@ export default async function ArtisansPage({
         key={searchHref(filters)}
         className="container section results-section"
       >
+        {showingPresentationProfiles && (
+          <p className="demo-notice" role="note">
+            Presentation sample data: these fictional seeded profiles are not
+            real artisans. Do not contact them or rely on their credentials.
+          </p>
+        )}
         <Form action="/artisans" className="results-form">
           <input type="hidden" name="view" value={filters.view} />
           <div className="results-toolbar">
@@ -202,7 +215,7 @@ export default async function ArtisansPage({
                     <nav aria-label="Results pages" className="pagination">
                       {results.page > 1 && (
                         <Link
-                          className="button button-outline"
+                          className="button button-primary"
                           href={searchHref(filters, { page: results.page - 1 })}
                         >
                           <Icon name="back" size={16} /> Previous
@@ -213,7 +226,7 @@ export default async function ArtisansPage({
                       </span>
                       {results.page < results.pages && (
                         <Link
-                          className="button button-outline"
+                          className="button button-primary"
                           href={searchHref(filters, { page: results.page + 1 })}
                         >
                           Next <Icon name="arrow" size={16} />
@@ -227,17 +240,33 @@ export default async function ArtisansPage({
                   <span className="empty-icon">
                     <Icon name="search" size={30} />
                   </span>
-                  <h2>No matches just yet.</h2>
+                  <h2>
+                    {!filters.q &&
+                    !filters.category &&
+                    !filters.area &&
+                    !filters.rating
+                      ? "No listed artisan profiles yet."
+                      : "No matches just yet."}
+                  </h2>
                   <p>
-                    Try another area, lower the minimum rating or use a more
-                    general search.
+                    {!filters.q &&
+                    !filters.category &&
+                    !filters.area &&
+                    !filters.rating
+                      ? "New artisan work profiles will appear here when real account holders choose to list their services."
+                      : "Try another area, lower the minimum rating or use a more general search."}
                   </p>
                   <Link href={resetHref} className="button button-primary">
                     Clear filters <Icon name="arrow" size={17} />
                   </Link>
                 </div>
               )}
-              <DemoNotice />
+              <p className="demo-notice">
+                <Icon name="help" size={16} />{" "}
+                {showingPresentationProfiles
+                  ? "Payment actions on seed profiles are presentation-only and require Paystack test keys."
+                  : "Profiles come from listed accounts. Payment and escrow are not active yet, so agree scope and amount before work starts."}
+              </p>
             </div>
           </div>
         </Form>

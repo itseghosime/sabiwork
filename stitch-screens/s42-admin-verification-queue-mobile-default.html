@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Verification Queue - SabiWork Admin</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#bbd3fe", "tertiary": "#576065", "inverse-surface": "#293040", "surface-container-high": "#e1e8fd", "on-secondary-container": "#435a7f", "surface-container-lowest": "#ffffff", "surface-container-low": "#f1f3ff", "primary-fixed-dim": "#8aceff", "inverse-primary": "#8aceff", "on-secondary": "#ffffff", "primary-container": "#38a8e8", "primary": "#006491", "on-error-container": "#93000a", "error-container": "#ffdad6", "on-surface": "#141b2b", "surface-bright": "#f9f9ff", "error": "#ba1a1a", "tertiary-fixed-dim": "#bfc8ce", "inverse-on-surface": "#edf0ff", "surface-container": "#e9edff", "tertiary-container": "#97a0a7", "on-tertiary-container": "#2e373d", "on-background": "#141b2b", "secondary-fixed-dim": "#b0c8f2", "on-secondary-fixed-variant": "#30476b", "surface-variant": "#dce2f7", "on-surface-variant": "#3f4850", "outline": "#6f7881", "primary-fixed": "#c9e6ff", "on-primary-container": "#003a56", "outline-variant": "#bec8d1", "on-error": "#ffffff", "on-secondary-fixed": "#001b3c", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#141d22", "surface": "#f9f9ff", "on-tertiary-fixed-variant": "#3f484e", "surface-container-highest": "#dce2f7", "on-primary-fixed-variant": "#004b6f", "surface-tint": "#006491", "secondary-fixed": "#d5e3ff", "background": "#f9f9ff", "on-primary-fixed": "#001e2f", "on-primary": "#ffffff", "surface-dim": "#d3daef", "tertiary-fixed": "#dbe4eb", "secondary": "#485f84" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter-mobile": "0.75rem", "space-xs": "0.5rem", "space-2xs": "0.25rem", "margin-mobile": "1rem", "space-xl": "1.5rem", "space-sm": "0.625rem", "margin": "2rem", "space-2xl": "2rem", "gutter": "1.25rem", "space-md": "1rem", "space-3xl": "3rem", "space-lg": "1.25rem" }, fontFamily: { "headline-lg": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-lg": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "label-md": ["Inter"], "body-sm": ["Inter"], "body-lg": ["Inter"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "body-md": ["Inter"] }, fontSize: { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;overflow-x:hidden;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs flex-shrink-0 min-w-0"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UEI88dBxELH8_nESvDwHwPUOD6BJEVMKI4xPlRa1g0_d6limR2f2hEr4BXcUk_3wepazlDEg01HKgrOgPhn7_T-mhmNiInTKSfmx-RmQMtotLND8NiYwMseIv29XXHx1-r_uO-cLcHiZG1rXmwcNfBHZHJBV4uVS0TTypJLcW9NgxlInDywptvuttnPO6Jp8Ih7tB6AQzxyoBc9KKhL4GS3rgEleeBoLx_zui9ZVL-rBeVxTpnpEWSsGdT-vHZ18zhJ7tsi8KfyQ"/><div class="flex items-center gap-space-2xs min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight truncate">SabiWork</span><span class="px-1.5 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm uppercase tracking-wider font-bold">ADMIN</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="hidden xs:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span><span class="whitespace-nowrap font-medium text-[10px] uppercase tracking-wide">TEST Mode</span></div><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface max-w-md mx-auto"><div class="flex flex-col w-full">
+<!-- Simulation State & Sandbox Context Banner -->
+<div class="px-margin-mobile pt-space-sm pb-space-xs">
+<div class="bg-surface-container-high rounded-xl p-space-xs shadow-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="w-2 h-2 rounded-full bg-primary-container flex-shrink-0 animate-ping"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase tracking-wider truncate">Sandbox Simulation</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest p-0.5 rounded-lg shadow-sm flex-shrink-0" id="state-toggle-group">
+<button class="state-btn px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm transition-all" data-state="default" type="button">Active</button>
+<button class="state-btn px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" data-state="loading" type="button">Load</button>
+<button class="state-btn px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all" data-state="empty" type="button">Empty</button>
+</div>
+</div>
+</div>
+<!-- Operational Hub Header & Ambient Badge -->
+<div class="px-margin-mobile pt-space-xs pb-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-2xs">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold tracking-tight">Verification Queue</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Hub v2.4</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+<p class="font-body-sm text-body-sm font-medium">Benin City Hub • 8 dossiers pending review</p>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">fact_check</span>
+</div>
+</div>
+</div>
+<!-- Realtime KPI Metric Carousel -->
+<div class="pb-space-sm">
+<div class="flex gap-space-xs overflow-x-auto px-margin-mobile no-scrollbar py-0.5">
+<!-- KPI 1 -->
+<div class="min-w-[130px] flex-1 bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Pending</span>
+<span class="w-6 h-6 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary">hourglass_top</span>
+</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">8</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Dossiers</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="min-w-[130px] flex-1 bg-secondary-container/40 rounded-xl p-space-sm shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-secondary-container font-semibold">Under Review</span>
+<span class="w-6 h-6 rounded-lg bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary">rate_review</span>
+</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">4</span>
+<span class="font-label-sm text-label-sm text-primary font-medium block">Prioritized</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="min-w-[130px] flex-1 bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Changes Req</span>
+<span class="w-6 h-6 rounded-lg bg-error-container/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-error">notification_important</span>
+</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-md text-headline-md text-error font-bold">3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Artisans</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="min-w-[130px] flex-1 bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Approved MTD</span>
+<span class="w-6 h-6 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary">task_alt</span>
+</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-md text-headline-md text-primary font-bold">46</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Search & Filter Controls -->
+<div class="px-margin-mobile pb-space-sm flex flex-col gap-space-xs">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px] text-outline">search</span>
+<input class="w-full h-11 pl-10 pr-4 bg-surface-container-lowest rounded-xl text-on-surface placeholder:text-outline text-body-md font-body-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" id="queue-search" placeholder="Search Dossier #, Artisan, or Trade..." type="search"/>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+<button class="filter-chip px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm whitespace-nowrap shadow-sm font-medium flex-shrink-0" data-filter="all" type="button">All (15)</button>
+<button class="filter-chip px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm hover:bg-surface-container font-medium flex-shrink-0" data-filter="pending" type="button">Pending (8)</button>
+<button class="filter-chip px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm hover:bg-surface-container font-medium flex-shrink-0" data-filter="under-review" type="button">Under Review (4)</button>
+<button class="filter-chip px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm hover:bg-surface-container font-medium flex-shrink-0" data-filter="changes" type="button">Changes (3)</button>
+</div>
+</div>
+<!-- Main Content Container with State Views -->
+<div class="px-margin-mobile flex flex-col gap-space-md" id="cards-container">
+<!-- CARD 1: PRIMARY DEMO CANDIDATE -->
+<div class="queue-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm transition-all duration-200" data-category="under-review">
+<!-- Card Top Meta Bar -->
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-primary">folder_open</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-tight truncate">#VER-BN-2026-104</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1 flex-shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Under Review
+        </span>
+</div>
+<!-- Candidate Profile -->
+<div class="flex items-start gap-space-sm pt-space-2xs">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary font-headline-sm text-headline-sm font-bold shadow-sm">
+          OI
+        </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Osaze Ighodaro</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium flex-shrink-0">Reg #BN-8820</span>
+</div>
+<div class="flex items-center gap-1 text-primary mt-0.5">
+<span class="material-symbols-outlined text-[16px]">plumbing</span>
+<p class="font-label-md text-label-md font-semibold truncate">Master Plumber &amp; Pipe Fitter</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-0.5">
+            GRA Axis • Airport Rd • Ugbowo
+          </p>
+</div>
+</div>
+<!-- Evidence Checklist & SLA -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">checklist</span>
+<span class="font-label-sm text-label-sm font-semibold">4 / 4 Proofs Attached</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">PPR, Drain, Tools, NIN</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span class="truncate">Submitted: 24 Oct, 14:15 WAT</span>
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold flex-shrink-0">
+            4h to SLA
+          </span>
+</div>
+</div>
+<!-- Officer & Assignment Metadata -->
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant px-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+<span class="truncate">Officer: <strong class="text-on-surface font-semibold">O. Osagie</strong></span>
+</div>
+<span class="text-primary font-label-sm text-label-sm font-medium flex-shrink-0">Priority Slot 1</span>
+</div>
+<!-- Primary Action CTA -->
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.99] transition-all whitespace-nowrap flex-shrink-0" onclick="window.location.hash = 'dossier-VER-BN-2026-104'" type="button">
+<span>Review Dossier (S43)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<!-- CARD 2 -->
+<div class="queue-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm transition-all duration-200" data-category="under-review">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-primary">folder_open</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-tight truncate">#VER-BN-2026-108</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1 flex-shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Under Review
+        </span>
+</div>
+<div class="flex items-start gap-space-sm pt-space-2xs">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary font-headline-sm text-headline-sm font-bold shadow-sm">
+          MA
+        </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Monday Agho</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium flex-shrink-0">Reg #BN-7714</span>
+</div>
+<div class="flex items-center gap-1 text-primary mt-0.5">
+<span class="material-symbols-outlined text-[16px]">solar_power</span>
+<p class="font-label-md text-label-md font-semibold truncate">Licensed Wireman &amp; Solar Tech</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-0.5">
+            Ugbowo • UNIBEN Axis
+          </p>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">checklist</span>
+<span class="font-label-sm text-label-sm font-semibold">4 / 4 Proofs Attached</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">DB Board, Inverter, ID</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span class="truncate">Submitted: 24 Oct, 16:40 WAT</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">8h to SLA</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant px-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+<span class="truncate">Officer: <strong class="text-on-surface font-semibold">T. Balogun</strong></span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">In Verification</span>
+</div>
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.99] transition-all whitespace-nowrap flex-shrink-0" type="button">
+<span>Review Dossier (S43)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<!-- CARD 3: CHANGES REQUESTED -->
+<div class="queue-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm transition-all duration-200" data-category="changes">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-error">report_problem</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-tight truncate">#VER-BN-2026-102</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold flex items-center gap-1 flex-shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+          Changes Requested
+        </span>
+</div>
+<div class="flex items-start gap-space-sm pt-space-2xs">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary font-headline-sm text-headline-sm font-bold shadow-sm">
+          KI
+        </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Kingsley Idehen</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium flex-shrink-0">Reg #BN-6920</span>
+</div>
+<div class="flex items-center gap-1 text-primary mt-0.5">
+<span class="material-symbols-outlined text-[16px]">carpenter</span>
+<p class="font-label-md text-label-md font-semibold truncate">Master Carpenter &amp; Roofing</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-0.5">
+            Sapele Rd Axis
+          </p>
+</div>
+</div>
+<div class="bg-error-container/20 rounded-lg p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error">warning</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">3 / 4 Proofs Valid</span>
+</div>
+<span class="font-label-sm text-label-sm text-error font-medium">1 Blurry photo flagged</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span class="truncate">Submitted: 23 Oct, 11:20 WAT</span>
+<span class="font-label-sm text-label-sm text-error font-semibold">Awaiting Artisan Re-upload</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant px-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="material-symbols-outlined text-[16px]">mark_email_read</span>
+<span class="truncate">SMS Dispatch Sent (Today 08:30)</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Follow-up</span>
+</div>
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.99] transition-all whitespace-nowrap flex-shrink-0" type="button">
+<span>Review Dossier (S43)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<!-- CARD 4: PENDING QUEUE -->
+<div class="queue-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm transition-all duration-200" data-category="pending">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-tertiary">schedule</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-tight truncate">#VER-BN-2026-111</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold flex items-center gap-1 flex-shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          Pending Queue
+        </span>
+</div>
+<div class="flex items-start gap-space-sm pt-space-2xs">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary font-headline-sm text-headline-sm font-bold shadow-sm">
+          BO
+        </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Blessing Okon</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium flex-shrink-0">Reg #BN-8105</span>
+</div>
+<div class="flex items-center gap-1 text-primary mt-0.5">
+<span class="material-symbols-outlined text-[16px]">styler</span>
+<p class="font-label-md text-label-md font-semibold truncate">Custom Tailoring &amp; Fashion</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-0.5">
+            Ugbowo • GRA Axis
+          </p>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">checklist</span>
+<span class="font-label-sm text-label-sm font-semibold">4 / 4 Proofs Attached</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Garment samples, ID</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span class="truncate">Submitted: Today, 09:10 WAT</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">Standard SLA (24h)</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant px-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+<span class="truncate">Status: <strong class="text-on-surface font-semibold">Unassigned</strong></span>
+</div>
+<span class="text-primary font-label-sm text-label-sm font-medium">Take Lead</span>
+</div>
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.99] transition-all whitespace-nowrap flex-shrink-0" type="button">
+<span>Assign &amp; Review (S43)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Loading State Skeleton Container (Hidden by Default) -->
+<div class="hidden px-margin-mobile flex-col gap-space-md" id="loading-state">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm animate-pulse flex flex-col gap-3">
+<div class="h-4 bg-surface-container rounded w-1/3"></div>
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-surface-container rounded-xl"></div>
+<div class="flex-1 flex flex-col gap-2">
+<div class="h-4 bg-surface-container rounded w-1/2"></div>
+<div class="h-3 bg-surface-container rounded w-3/4"></div>
+</div>
+</div>
+<div class="h-16 bg-surface-container rounded-lg"></div>
+<div class="h-12 bg-surface-container-high rounded-lg mt-1"></div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm animate-pulse flex flex-col gap-3">
+<div class="h-4 bg-surface-container rounded w-2/5"></div>
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-surface-container rounded-xl"></div>
+<div class="flex-1 flex flex-col gap-2">
+<div class="h-4 bg-surface-container rounded w-3/5"></div>
+<div class="h-3 bg-surface-container rounded w-1/2"></div>
+</div>
+</div>
+<div class="h-16 bg-surface-container rounded-lg"></div>
+<div class="h-12 bg-surface-container-high rounded-lg mt-1"></div>
+</div>
+</div>
+<!-- Empty State View (Hidden by Default) -->
+<div class="hidden px-margin-mobile py-space-xl flex-col items-center justify-center text-center" id="empty-state">
+<div class="w-16 h-16 rounded-2xl bg-secondary-container flex items-center justify-center text-primary mb-space-sm shadow-sm">
+<span class="material-symbols-outlined text-[32px]">task_alt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Queue All Cleared!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-1">
+      No artisan dossiers require administrative attention in Benin City Hub right now.
+    </p>
+<button class="mt-space-md px-4 py-2 bg-surface-container-high text-primary rounded-lg font-label-md text-label-md font-semibold hover:bg-secondary-container transition-colors" id="reset-filter-btn" type="button">
+      Reset Filters
+    </button>
+</div>
+<!-- Regulatory Privacy Notice & Protocol Card -->
+<div class="px-margin-mobile pt-space-sm pb-space-lg">
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-sm flex items-start gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">shield_person</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-label-lg text-label-lg font-bold text-on-surface">Confidential Verification Protocol</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+          Full citizen identity cards, national identification slips, and raw unredacted trade portfolios are strictly viewable only inside authorized S43 case review sessions with audit logging enabled.
+        </p>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // DOM Elements
+    const searchInput = document.getElementById('queue-search');
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const cards = document.querySelectorAll('.queue-card');
+    const cardsContainer = document.getElementById('cards-container');
+    const emptyState = document.getElementById('empty-state');
+    const loadingState = document.getElementById('loading-state');
+    const stateBtns = document.querySelectorAll('.state-btn');
+    const resetFilterBtn = document.getElementById('reset-filter-btn');
+
+    let currentFilter = 'all';
+
+    // State switcher micro-interaction (Active, Load, Empty)
+    stateBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        stateBtns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('text-on-surface-variant');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary');
+        btn.classList.remove('text-on-surface-variant');
+
+        const state = btn.dataset.state;
+        if (state === 'default') {
+          cardsContainer.classList.remove('hidden');
+          emptyState.classList.add('hidden');
+          emptyState.classList.remove('flex');
+          loadingState.classList.add('hidden');
+          loadingState.classList.remove('flex');
+          applyFilters();
+        } else if (state === 'loading') {
+          cardsContainer.classList.add('hidden');
+          emptyState.classList.add('hidden');
+          emptyState.classList.remove('flex');
+          loadingState.classList.remove('hidden');
+          loadingState.classList.add('flex');
+        } else if (state === 'empty') {
+          cardsContainer.classList.add('hidden');
+          loadingState.classList.add('hidden');
+          loadingState.classList.remove('flex');
+          emptyState.classList.remove('hidden');
+          emptyState.classList.add('flex');
+        }
+      });
+    });
+
+    // Filter Chips logic
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        filterChips.forEach(c => {
+          c.classList.remove('bg-primary', 'text-on-primary');
+          c.classList.add('bg-surface-container-lowest', 'text-on-surface');
+        });
+        chip.classList.add('bg-primary', 'text-on-primary');
+        chip.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+
+        currentFilter = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    // Search query & Category Filtering
+    function applyFilters() {
+      const query = (searchInput.value || '').toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const category = card.dataset.category;
+
+        const matchesQuery = !query || text.includes(query);
+        const matchesCategory = currentFilter === 'all' || category === currentFilter;
+
+        if (matchesQuery && matchesCategory) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (visibleCount === 0) {
+        cardsContainer.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+      } else {
+        cardsContainer.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
+
+    if (resetFilterBtn) {
+      resetFilterBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        currentFilter = 'all';
+        filterChips.forEach((c, idx) => {
+          if (idx === 0) {
+            c.classList.add('bg-primary', 'text-on-primary');
+            c.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+          } else {
+            c.classList.remove('bg-primary', 'text-on-primary');
+            c.classList.add('bg-surface-container-lowest', 'text-on-surface');
+          }
+        });
+        applyFilters();
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-space-xs max-w-md mx-auto"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 transition-colors text-primary font-semibold" data-path="verification-queue" href="#"><span class="material-symbols-outlined text-[24px]">verified_user</span><span class="font-label-sm text-label-sm text-center">Verification</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 text-on-surface-variant transition-colors" data-path="disputes-console" href="#"><span class="material-symbols-outlined text-[24px]">balance</span><span class="font-label-sm text-label-sm text-center">Disputes</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 text-on-surface-variant transition-colors" data-path="escrow-operations" href="#"><span class="material-symbols-outlined text-[24px]">account_balance_wallet</span><span class="font-label-sm text-label-sm text-center">Escrow</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-1 text-on-surface-variant transition-colors" data-path="admin-profile-settings" href="#"><span class="material-symbols-outlined text-[24px]">manage_accounts</span><span class="font-label-sm text-label-sm text-center">Profile</span></a></div></nav></body></html>

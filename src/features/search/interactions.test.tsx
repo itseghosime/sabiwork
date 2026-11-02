@@ -42,7 +42,7 @@ describe("discovery interaction and recovery", () => {
       screen.getByRole("button", { name: "Grid" }).getAttribute("aria-pressed"),
     ).toBe("true");
     expect(
-      screen.getByRole("heading", { name: "Osaze Ighodaro" }),
+      screen.getByRole("heading", { name: "Sample Artisan 1" }),
     ).toBeTruthy();
     expect(view.container.querySelector(".artisan-grid")).not.toBeNull();
     expect(view.container.querySelector(".artisan-list")).toBeNull();

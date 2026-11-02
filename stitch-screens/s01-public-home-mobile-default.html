@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#f9f9ff;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed": "#141d22", "primary-fixed": "#c9e6ff", "on-primary": "#ffffff", "on-tertiary-container": "#2e373d", "tertiary-fixed": "#dbe4eb", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed-variant": "#3f484e", "background": "#f9f9ff", "surface-variant": "#dce2f7", "primary-fixed-dim": "#8aceff", "on-surface-variant": "#3f4850", "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "surface-tint": "#006491", "on-secondary-container": "#435a7f", "inverse-surface": "#293040", "surface-container-highest": "#dce2f7", "outline-variant": "#bec8d1", "secondary-fixed": "#d5e3ff", "on-error-container": "#93000a", "secondary-container": "#bbd3fe", "inverse-primary": "#8aceff", "surface": "#f9f9ff", "outline": "#6f7881", "primary-container": "#38a8e8", "on-primary-fixed": "#001e2f", "on-secondary-fixed-variant": "#30476b", "error": "#ba1a1a", "surface-bright": "#f9f9ff", "on-tertiary": "#ffffff", "tertiary": "#576065", "primary": "#006491", "secondary-fixed-dim": "#b0c8f2", "tertiary-fixed-dim": "#bfc8ce", "tertiary-container": "#97a0a7", "on-surface": "#141b2b", "on-error": "#ffffff", "on-primary-fixed-variant": "#004b6f", "surface-container-high": "#e1e8fd", "secondary": "#485f84", "on-secondary-fixed": "#001b3c", "surface-container": "#e9edff", "on-primary-container": "#003a56", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "error-container": "#ffdad6", "on-background": "#141b2b" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "2rem", "gutter-mobile": "0.75rem", "space-2xs": "0.25rem", "space-md": "1rem", "gutter": "1.25rem", "space-3xl": "3rem", "space-lg": "1.25rem", "margin-mobile": "1rem", "space-xl": "1.5rem", "space-2xl": "2rem", "space-sm": "0.625rem", "space-xs": "0.5rem" }, fontFamily: { "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "label-md": ["Inter"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"], "label-lg": ["Inter"] }, fontSize: { "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs"><button aria-label="Open Navigation Menu" class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[24px]">menu</span></button><a class="flex items-center gap-space-xs py-1" data-path="explore-marketplace" href="#"><img alt="sabiwork-icon-sky-blue.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WBNS2lzdv3agZFWIc6tptbuLwM_wqIGra7yhQogjQTqsl2zm0_UwmgtWcJvp6PbbE-Pm4R7JApPrKoZ00Wi5gOBdEByEfVZernDyZuhS8bMV31zItMUYWoZeKcQOah8CibssDJhn_uj1zJmSTCoCL8ko0ubnOSN87omA_2DLc37lS_mZMOP0bOBeEZ-jJQFNUZvaM-9Gcwidgr9GKUAwDjh-rHxLifouTEeEsEtYkDt1Mr0yykK0eQUyE"/><span class="font-headline-sm text-headline-sm tracking-tight flex items-center"><span class="text-[#0E294B]">Sabi</span><span class="text-[#38A8E8]">Work</span></span></a></div><div class="flex items-center gap-space-xs"><a class="min-h-[44px] px-3.5 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-[0_2px_4px_rgba(0,100,145,0.15)] active:scale-95 transition-all flex-shrink-0" data-path="post-job" href="#"><span class="material-symbols-outlined text-[18px]">add_circle</span><span>Post Job</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive Style Scrim / Sub-theme support -->
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<!-- Notice Bar: Platform Status & Test Mode -->
+<section class="px-margin-mobile pt-3 pb-1">
+<div class="bg-surface-container-high rounded-lg p-2.5 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse flex-shrink-0"></span>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">
+          Interactive Sandbox • <span class="font-semibold text-on-surface">Paystack TEST Mode</span>
+</p>
+</div>
+<span class="bg-surface-container-lowest text-primary font-label-sm text-[10px] px-2 py-0.5 rounded-full flex-shrink-0 font-medium">
+        Benin City
+      </span>
+</div>
+</section>
+<!-- 1. Top Hero Section -->
+<section class="px-margin-mobile pt-3 pb-4 flex flex-col gap-3">
+<div class="flex flex-col gap-1.5">
+<div class="inline-flex items-center gap-1.5 self-start bg-secondary-container/40 text-on-secondary-container px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px] text-primary">verified</span>
+<span class="font-label-sm text-label-sm">Admin-Reviewed Artisans</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">
+        Find verified local artisans in Benin City.
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Connect with dependable plumbers, electricians, tailors, carpenters, and painters. Transparent itemized quotes and test milestone payments.
+      </p>
+</div>
+<!-- Hero Search & Filter Surface -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm flex flex-col gap-2.5">
+<!-- Trade selector input -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-primary text-[20px] absolute left-3 pointer-events-none">build</span>
+<select aria-label="Select Trade Specialty" class="w-full min-h-[44px] pl-10 pr-8 bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg appearance-none focus:outline-none focus:bg-surface-container">
+<option disabled="" selected="" value="">e.g. Plumbing &amp; Sanitary</option>
+<option value="plumbing">Plumbing &amp; Sanitary Services</option>
+<option value="electrical">Electrical Wiring &amp; Solar</option>
+<option value="carpentry">Carpentry &amp; Roof Work</option>
+<option value="tailoring">Tailoring &amp; Native Fashion</option>
+<option value="painting">Painting &amp; Wall Screeding</option>
+<option value="cleaning">Post-Construction Cleaning</option>
+</select>
+<span class="material-symbols-outlined text-outline text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+</div>
+<!-- District selector -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined text-secondary text-[20px] absolute left-3 pointer-events-none">location_on</span>
+<select aria-label="Select Benin City District" class="w-full min-h-[44px] pl-10 pr-8 bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg appearance-none focus:outline-none focus:bg-surface-container">
+<option selected="" value="gra">GRA Axis (Boundary Rd, Ihama)</option>
+<option value="ugbowo">Ugbowo (UNIBEN / BDPA / Isihor)</option>
+<option value="ikpoba">Ikpoba Hill &amp; Aduwawa</option>
+<option value="airport">Airport Road &amp; Oko Central</option>
+<option value="eko">Ekenwan Road &amp; Dumez</option>
+<option value="siluko">Siluko Road &amp; Ogida</option>
+</select>
+<span class="material-symbols-outlined text-outline text-[18px] absolute right-3 pointer-events-none">expand_more</span>
+</div>
+<!-- Primary CTA -->
+<button class="w-full min-h-[44px] bg-primary text-on-primary font-label-lg text-label-lg rounded-lg shadow-sm flex items-center justify-center gap-space-xs active:scale-[0.99] transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span>Find Local Artisans</span>
+</button>
+<!-- Quick Search Micro-chips -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1">
+<span class="font-label-sm text-[11px] text-tertiary flex-shrink-0">Popular:</span>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-[11px] flex-shrink-0 active:bg-primary-fixed" type="button">Borehole Repair</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-[11px] flex-shrink-0 active:bg-primary-fixed" type="button">Inverter Tech</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-[11px] flex-shrink-0 active:bg-primary-fixed" type="button">POP Screeding</button>
+</div>
+</div>
+</section>
+<!-- 2. Fan of Five Artisans (Layered Carousel Feature) -->
+<section class="pt-2 pb-5 flex flex-col gap-2.5">
+<div class="px-margin-mobile flex items-end justify-between">
+<div>
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Fan of Five</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Top Vetted Artisans</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">5 Nearby</span>
+</div>
+<!-- Horizontal Swipeable Track with Center Hero Visual Balance -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar px-margin-mobile py-2 -my-2 snap-x snap-mandatory">
+<!-- Card 1: Featured Primary Card - Osaze Ighodaro -->
+<article class="min-w-[270px] max-w-[270px] bg-surface-container-lowest rounded-xl p-3.5 shadow-md snap-center flex flex-col justify-between flex-shrink-0 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary-container text-on-primary font-label-sm text-[10px] px-2 py-0.5 rounded-bl-lg font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified_user</span>
+<span>Admin-Reviewed</span>
+</div>
+<div>
+<div class="flex items-center gap-3 pt-2">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up outdoor portrait of an experienced Nigerian male master plumber in his late 30s smiling warmly wearing a clean navy-blue polo work uniform with plumbing wrenches in background, soft natural sunlight Benin City GRA style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx3lFsqpsLQrxdAs5SsdKJSSjln3qInrlByvABY0B369DRU6v2ZNQO2iKtCn_BU_NIdgjleGn0QEa4p5AXlhNObT3_Tta-BzwC48h-0Ao48ZGhow9N_oc7tKZ5bnu2gh7-yxNA9tZ3cpCXHhMYOVXw4HVsN_2hRa2gggclz2lEYFPhoHVDv7ne6t8bQjIhtSxaKAez0BA3ZMCTpi_Tq1WxAnW01qKM4xHXc5TopbY"/>
+</div>
+<div class="min-w-0 flex-1">
+<h3 class="font-headline-sm text-base text-on-surface font-bold truncate">Osaze Ighodaro</h3>
+<p class="font-label-md text-label-md text-primary font-medium truncate">Master Plumber</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">location_on</span>
+<span class="truncate">GRA Axis</span>
+</div>
+</div>
+</div>
+<div class="mt-3 bg-surface-container-low rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.9</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">(38 demo jobs)</span>
+</div>
+<span class="font-label-sm text-[11px] text-primary font-semibold">Same-Day</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Benchmark rate:</span>
+<span class="font-headline-sm text-base font-bold text-on-surface">From ₦4,500</span>
+</div>
+</div>
+<button class="mt-3 w-full min-h-[44px] bg-primary text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-1 active:bg-primary-fixed-variant transition-colors" type="button">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</article>
+<!-- Card 2: Blessing Okon -->
+<article class="min-w-[270px] max-w-[270px] bg-surface-container-lowest rounded-xl p-3.5 shadow-sm snap-center flex flex-col justify-between flex-shrink-0">
+<div>
+<div class="flex items-center gap-3">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Portrait of an expert Nigerian female bespoke fashion designer and tailor smiling confidentially in her bright atelier with measuring tape around neck and colorful African fabric patterns visible, Benin City workshop ambiance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYv08EjFvQMe8cl_XGMN4ATj22_-8xmbE09ElfAtQoUAPIy023I3xnJCXVLmRDgc9CImpFm4LTVWocZ2lhduXyMS1ws65yzys9_YrcOQPtDHz1-zGYPZR64ZrCm_AS40xPkMiuDjUFbpJuGOj6_fRLdib3Pbyuc07gtc4rTBDl9uSjBJbMbcWWpFJpDHHxff_tQ6MJrmQWG44rRx-7mWmWojqt9ebfuSHiIRe5tG0"/>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-base text-on-surface font-bold truncate">Blessing Okon</h3>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="font-label-md text-label-md text-primary font-medium truncate">Custom Tailor &amp; Fashion</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">location_on</span>
+<span class="truncate">Ugbowo (UNIBEN)</span>
+</div>
+</div>
+</div>
+<div class="mt-3 bg-surface-container-low rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.95</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">(42 demo jobs)</span>
+</div>
+<span class="font-label-sm text-[11px] text-secondary font-medium">Bespoke Fit</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Senator Suit from:</span>
+<span class="font-headline-sm text-base font-bold text-on-surface">From ₦8,000</span>
+</div>
+</div>
+<button class="mt-3 w-full min-h-[44px] bg-surface-container text-on-surface font-label-md text-label-md rounded-lg flex items-center justify-center gap-1 active:bg-surface-container-high transition-colors" type="button">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</article>
+<!-- Card 3: Efe Omoruyi -->
+<article class="min-w-[270px] max-w-[270px] bg-surface-container-lowest rounded-xl p-3.5 shadow-sm snap-center flex flex-col justify-between flex-shrink-0">
+<div>
+<div class="flex items-center gap-3">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young professional Nigerian electrical technician holding digital multimeter tools in bright workshop wearing safety equipment and focused friendly expression, sunny Benin City airport road background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwC4STMenjkvRphVLte0MPYh-bQXyXs9670zMD19Uaa-5fkhMTZvb_1RJdd4CEdt6grhA_GJEBk7ejiPb2stWC9_rUbVG701OX4urbcMFSxk90XEGglM44lMZD_WZugLNVRd24hRbIrKFzGKZ73vFII8PfTj7K_wjT3PbdyFuyb58CmhewvQnl4SMVfpqPFYfCrqNEp9RUguOPFzPWIdBTpit2xzxihaRpfp6MmLs"/>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-base text-on-surface font-bold truncate">Efe Omoruyi</h3>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="font-label-md text-label-md text-primary font-medium truncate">Electrical &amp; Inverter</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">location_on</span>
+<span class="truncate">Airport Road Axis</span>
+</div>
+</div>
+</div>
+<div class="mt-3 bg-surface-container-low rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.88</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">(29 demo jobs)</span>
+</div>
+<span class="font-label-sm text-[11px] text-primary font-medium">Solar Specialist</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Diagnostics from:</span>
+<span class="font-headline-sm text-base font-bold text-on-surface">From ₦5,000</span>
+</div>
+</div>
+<button class="mt-3 w-full min-h-[44px] bg-surface-container text-on-surface font-label-md text-label-md rounded-lg flex items-center justify-center gap-1 active:bg-surface-container-high transition-colors" type="button">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</article>
+<!-- Card 4: Godwin Akenzua -->
+<article class="min-w-[270px] max-w-[270px] bg-surface-container-lowest rounded-xl p-3.5 shadow-sm snap-center flex flex-col justify-between flex-shrink-0">
+<div>
+<div class="flex items-center gap-3">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Portrait of an experienced Nigerian civil drainage technician and plumber outdoors with clean work gear and tool belt smiling approachable, residential street of Ikpoba Hill Benin City in warm late afternoon light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK2fdoFdXmR6_z5LgupCjS55c_v32npiirViTLV2pJRnEEptaj-17WTpO5YSmEYfIuzhUc2ahi3RXRk4O3Yr74zJEnBU22_068cZTvBkpqT4udoLom5fnwrNHG2Cc2WFQuPnMAm7bD30ZxLTR5-myvN3ogrXo7ebUqpZKtOUlq7bdVL9-_-NfMorBibpTSqpqeSYZK37jJfvAUBuRVjdBBfmszJa-hyxJjUP5djEM"/>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-base text-on-surface font-bold truncate">Godwin Akenzua</h3>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="font-label-md text-label-md text-primary font-medium truncate">Drainage &amp; Water Systems</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">location_on</span>
+<span class="truncate">Ikpoba Hill</span>
+</div>
+</div>
+</div>
+<div class="mt-3 bg-surface-container-low rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.82</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">(21 demo jobs)</span>
+</div>
+<span class="font-label-sm text-[11px] text-secondary font-medium">Borehole Piping</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Assessment from:</span>
+<span class="font-headline-sm text-base font-bold text-on-surface">From ₦4,000</span>
+</div>
+</div>
+<button class="mt-3 w-full min-h-[44px] bg-surface-container text-on-surface font-label-md text-label-md rounded-lg flex items-center justify-center gap-1 active:bg-surface-container-high transition-colors" type="button">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</article>
+<!-- Card 5: Monday Efe -->
+<article class="min-w-[270px] max-w-[270px] bg-surface-container-lowest rounded-xl p-3.5 shadow-sm snap-center flex flex-col justify-between flex-shrink-0">
+<div>
+<div class="flex items-center gap-3">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Candid portrait of an energetic young Nigerian apprentice plumber smiling in front of a modern residential bathroom installation holding pipe fittings, clean background natural lighting Benin City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2wCWv1GhTnK_E2RGl-zrC-DkWAb3r3VAGAgMHyXk22YfShFDJ4z7vSvFjGbG2qGT5KEeaAC7zNUAWe1pF-3HBjHQwyL1vxlzjdliLyGC9EHT-ma8LdXSYgDEWLOWiF0ZJnICzerTg1RiPOX3NxwDvoDFMAYS1fd7FODvyaqcprFKRTxjwmktDCT32pKci6RwcmulXvNHIJqyU17MyEoL2UBjxRHGh10YRVUVWPu4"/>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1">
+<h3 class="font-headline-sm text-base text-on-surface font-bold truncate">Monday Efe</h3>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="font-label-md text-label-md text-primary font-medium truncate">Domestic Plumber</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">location_on</span>
+<span class="truncate">Ugbowo (Isihor)</span>
+</div>
+</div>
+</div>
+<div class="mt-3 bg-surface-container-low rounded-lg p-2 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.79</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">(17 demo jobs)</span>
+</div>
+<span class="font-label-sm text-[11px] text-secondary font-medium">Quick Leak Fix</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between text-on-surface">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tap/Valve fix:</span>
+<span class="font-headline-sm text-base font-bold text-on-surface">From ₦3,500</span>
+</div>
+</div>
+<button class="mt-3 w-full min-h-[44px] bg-surface-container text-on-surface font-label-md text-label-md rounded-lg flex items-center justify-center gap-1 active:bg-surface-container-high transition-colors" type="button">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</article>
+</div>
+</section>
+<!-- 3. Six Service Categories Grid -->
+<section class="px-margin-mobile pt-3 pb-6 flex flex-col gap-3">
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Essential Trade Categories</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Standardized labor rates across Benin City</p>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5" data-path="trade-categories" href="#">
+<span>All Trades</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<!-- 2-column mobile grid -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- 1. Plumbing & Sanitary -->
+<a class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between h-36 active:scale-[0.98] transition-transform" data-path="trade-categories" href="#">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">plumbing</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">Plumbing &amp; Sanitary</h3>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5 line-clamp-1">Pipes, borehole, leak fix</p>
+</div>
+</a>
+<!-- 2. Electrical & Wiring -->
+<a class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between h-36 active:scale-[0.98] transition-transform" data-path="trade-categories" href="#">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px]">bolt</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">Electrical &amp; Wiring</h3>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5 line-clamp-1">Conduit, inverter, solar</p>
+</div>
+</a>
+<!-- 3. Carpentry & Furniture -->
+<a class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between h-36 active:scale-[0.98] transition-transform" data-path="trade-categories" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[22px]">carpenter</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">Carpentry &amp; Wood</h3>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5 line-clamp-1">Roof truss, doors, cabinet</p>
+</div>
+</a>
+<!-- 4. Tailoring & Fashion -->
+<a class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between h-36 active:scale-[0.98] transition-transform" data-path="trade-categories" href="#">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed/60 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">styler</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">Tailoring &amp; Fashion</h3>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5 line-clamp-1">Senator suits, alterations</p>
+</div>
+</a>
+<!-- 5. Painting & Finishes -->
+<a class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between h-36 active:scale-[0.98] transition-transform" data-path="trade-categories" href="#">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">format_paint</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">Painting &amp; Finishes</h3>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5 line-clamp-1">Screeding, POP, coat paint</p>
+</div>
+</a>
+<!-- 6. Cleaning & Housekeeping -->
+<a class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between h-36 active:scale-[0.98] transition-transform" data-path="trade-categories" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">cleaning_services</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">Housekeeping</h3>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5 line-clamp-1">Post-building, fumigation</p>
+</div>
+</a>
+</div>
+</section>
+<!-- 4. How SabiWork Functions (4 Clear Steps) -->
+<section class="px-margin-mobile pt-3 pb-6 flex flex-col gap-3">
+<div class="flex flex-col gap-0.5">
+<div class="inline-flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">help_outline</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold">Workflow</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">How SabiWork Functions</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Simple, direct steps without guesswork</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-4">
+<!-- Step 1 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary font-label-md text-label-md font-bold flex items-center justify-center flex-shrink-0">
+          1
+        </div>
+<div class="flex flex-col">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Post a Request</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Describe the repair defect or project requirement. Add job photos and choose your exact Benin City location.
+          </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary font-label-md text-label-md font-bold flex items-center justify-center flex-shrink-0">
+          2
+        </div>
+<div class="flex flex-col">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Compare Quotes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Review itemized quotes from nearby verified artisans clearly separating raw material cost from labor charges.
+          </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary font-label-md text-label-md font-bold flex items-center justify-center flex-shrink-0">
+          3
+        </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Pay Test Deposit</h3>
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-[10px] px-1.5 py-0.2 rounded font-medium">TEST Mode</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Authorize a test milestone deposit via Paystack sandbox. Funds stay locked until you authorize milestone progress.
+          </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary font-label-md text-label-md font-bold flex items-center justify-center flex-shrink-0">
+          4
+        </div>
+<div class="flex flex-col">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Sign-off &amp; Balance</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Inspect the completed job physically at your location, confirm full satisfaction, and release the remaining balance.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Artisan Recruitment Callout -->
+<section class="px-margin-mobile pt-1 pb-5">
+<div class="bg-[#0E294B] text-white rounded-xl p-5 shadow-md flex flex-col gap-3 relative overflow-hidden">
+<!-- Decorative faint SVG watermark -->
+<div class="absolute -right-4 -bottom-4 opacity-10 pointer-events-none text-white">
+<span class="material-symbols-outlined text-[120px]">engineering</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[24px]">construction</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-primary-fixed font-semibold">Artisan Partner Network</span>
+</div>
+<div class="flex flex-col gap-1 z-10">
+<h2 class="font-headline-sm text-headline-sm text-white font-bold">
+          Are you a skilled artisan in Benin City?
+        </h2>
+<p class="font-body-md text-body-md text-surface-container-high/85 leading-snug">
+          Get direct bookings from home and business owners across GRA, Ugbowo, and Airport Road. Fair rates, guaranteed milestone tracking.
+        </p>
+</div>
+<div class="pt-1 z-10 flex flex-col gap-2">
+<a class="min-h-[44px] bg-primary-container hover:bg-[#2597D7] text-white font-label-lg text-label-lg rounded-lg flex items-center justify-center gap-space-xs transition-colors shadow-sm" data-path="account-access" href="#">
+<span>Become an Artisan</span>
+<span class="material-symbols-outlined text-[18px]">badge</span>
+</a>
+<p class="font-body-sm text-[11px] text-center text-surface-variant/80">
+          Profile requires internal admin verification of previous jobs before activation.
+        </p>
+</div>
+</div>
+</section>
+<!-- 6. Trust & Platform Transparency Disclaimer (Strict Compliance) -->
+<section class="px-margin-mobile pb-6 pt-1">
+<div class="bg-surface-container-low rounded-lg p-3 text-center flex flex-col items-center gap-1.5">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">info</span>
+<span class="font-semibold">SabiWork Operational Disclosure</span>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-relaxed">
+        SabiWork provides a community matching directory and milestone tracker for independent tradespeople in Edo State. Payment flows are currently operating under <strong class="text-on-surface">Paystack TEST Mode</strong> demonstration sandbox. Verified badges reflect internal administrative profile documentation review.
+      </p>
+</div>
+</section>
+</div>
+<script>
+  // Simple micro-interaction for category chips and quick selection feedback
+  document.querySelectorAll('button[type="button"]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Haptic feel visual feedback
+      this.classList.add('opacity-90');
+      setTimeout(() => this.classList.remove('opacity-90'), 150);
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-semibold"><div class="grid grid-cols-4 items-center h-16 px-1"><a aria-current="page" class="flex flex-col items-center justify-center h-full gap-0.5 transition-colors min-h-[44px] text-primary font-semibold" data-path="explore-marketplace" href="#"><span class="material-symbols-outlined text-[22px]">explore</span><span class="font-label-sm text-label-sm leading-none">Explore</span></a><a class="flex flex-col items-center justify-center h-full gap-0.5 text-on-surface-variant hover:text-primary transition-colors min-h-[44px]" data-path="trade-categories" href="#"><span class="material-symbols-outlined text-[22px]">category</span><span class="font-label-sm text-label-sm leading-none">Categories</span></a><a class="flex flex-col items-center justify-center h-full gap-0.5 text-on-surface-variant hover:text-primary transition-colors min-h-[44px]" data-path="how-it-works" href="#"><span class="material-symbols-outlined text-[22px]">verified</span><span class="font-label-sm text-label-sm leading-none">How It Works</span></a><a class="flex flex-col items-center justify-center h-full gap-0.5 text-on-surface-variant hover:text-primary transition-colors min-h-[44px]" data-path="account-access" href="#"><span class="material-symbols-outlined text-[22px]">person_outline</span><span class="font-label-sm text-label-sm leading-none">Account</span></a></div></nav></body></html>

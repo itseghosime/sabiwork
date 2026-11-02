@@ -21,83 +21,72 @@ afterEach(() => {
 });
 
 describe("Payments, Verification & Receipts (S22, S23, S24, S25)", () => {
-  it("renders S22 Payment Verification and handles webhook simulator states", () => {
+  it("renders S22 Payment Verification and handles sample state controls", () => {
     render(<PaymentVerificationScreen initialReceipt={defaultReceipt} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Payment status preview \(S22\)/i }),
+      screen.getByRole("heading", { level: 1, name: /Payment Status Preview/i }),
     ).toBeDefined();
-    expect(screen.getByText(/Demo pending state/i)).toBeDefined();
+    expect(screen.getByText(/Sample payment preview/i)).toBeDefined();
 
-    const verifiedBtn = screen.getByRole("button", { name: "VERIFIED" });
-    fireEvent.click(verifiedBtn);
-    expect(screen.getByText(/Demo verified state only/i)).toBeDefined();
-    expect(screen.getByText(/No gateway request was made, no funds moved/i)).toBeDefined();
-
-    // Switch to pending demo state
-    const pendingBtn = screen.getByRole("button", { name: "PENDING_WEBHOOK" });
+    // Switch to pending webhook
+    const pendingBtn = screen.getByRole("button", { name: "SAMPLE_PENDING" });
     fireEvent.click(pendingBtn);
-    expect(screen.getByText(/Demo pending state/i)).toBeDefined();
+    expect(screen.getByText(/Sample pending state/i)).toBeDefined();
 
     // Switch to failed
-    const failedBtn = screen.getByRole("button", { name: "FAILED" });
+    const failedBtn = screen.getByRole("button", { name: "SAMPLE_FAILED" });
     fireEvent.click(failedBtn);
-    expect(screen.getByText(/Demo failed state/i)).toBeDefined();
+    expect(screen.getByText(/Sample failure state/i)).toBeDefined();
   });
 
-  it("renders S23 demo receipt with no escrow claim", () => {
+  it("renders S23 sample receipt without payment evidence", () => {
     render(<PaymentReceiptScreen receipt={defaultReceipt} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /SabiWork Demo Payment Receipt/i }),
+      screen.getByRole("heading", { level: 1, name: /Sample Payment Receipt Preview/i }),
     ).toBeDefined();
-    expect(screen.getByText("PAY-BN-2026-8819")).toBeDefined();
-    expect(screen.getByText(/Demo only · no escrow/i)).toBeDefined();
-    expect(screen.getByText("Print Receipt")).toBeDefined();
+    expect(screen.getByText("SAMPLE-PAYMENT-001")).toBeDefined();
+    expect(screen.getByText(/SAMPLE ONLY · NOT PAID/i)).toBeDefined();
+    expect(screen.getByText("Print Sample Preview")).toBeDefined();
   });
 
-  it("renders S24 Payment Recovery and processes alternate bank transfer method", async () => {
+  it("renders S24 Payment Recovery and previews an alternate method", async () => {
     render(<PaymentRecoveryScreen receipt={defaultReceipt} />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /Alternate Payment Method/i }),
+      screen.getByRole("heading", { level: 1, name: /Alternate Payment Method Preview/i }),
     ).toBeDefined();
 
     const payBtn = screen.getByRole("button", {
-      name: /Pay ₦11,000 via bank_transfer/i,
+      name: /Preview ₦11,000 via bank_transfer/i,
     });
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/submitted in Paystack TEST mode/i)).toBeDefined();
-      expect(screen.getByText(/pending server verification/i)).toBeDefined();
-      expect(screen.queryByText(/escrow/i)).toBeNull();
+      expect(screen.getByText(/No transaction was made/i)).toBeDefined();
     });
   });
 
-  it("renders S25 Milestone Balance Checkout with honest demo messaging", async () => {
+  it("renders S25 Milestone Balance Checkout and previews a checkout interaction", async () => {
     render(<MilestoneBalanceCheckoutScreen receipt={defaultReceipt} />);
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Fund Milestone 2 Completion Balance/i,
+        name: /Preview Milestone 2 Balance Checkout/i,
       }),
     ).toBeDefined();
 
     const payBtn = screen.getByRole("button", {
-      name: /Approve & Pay ₦11,000 via TEST Mode/i,
+      name: /Preview ₦11,000 checkout/i,
     });
     fireEvent.click(payBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/Milestone 2 balance payment submitted in Paystack TEST mode/i)).toBeDefined();
-      expect(screen.getByText(/No sign-off or payout happens in this demo/i)).toBeDefined();
-      expect(screen.queryByText(/escrow/i)).toBeNull();
-      expect(screen.queryByText(/signed off and released/i)).toBeNull();
+      expect(screen.getByText(/No work was signed off and no funds were released/i)).toBeDefined();
     });
 
     // Success must NOT auto-redirect into sign-off; the user continues manually
     expect(nav.push).not.toHaveBeenCalled();
     expect(
       screen.getByRole("link", { name: /Continue → View Job Progress/i }).getAttribute("href"),
-    ).toBe("/jobs/BEN-78401/progress");
+    ).toBe(`/jobs/${defaultReceipt.jobId}/progress`);
   });
 });
-

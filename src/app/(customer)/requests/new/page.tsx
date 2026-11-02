@@ -1,6 +1,7 @@
-import { NewJobRequestScreen } from "@/features/requests/screens";
+import { RequestComposerScreen } from "@/features/customer-workspace/request-composer-screen";
+
+export const dynamic = "force-dynamic";
 
 export default function NewRequestPage() {
-  return <NewJobRequestScreen />;
+  return <RequestComposerScreen />;
 }
-
