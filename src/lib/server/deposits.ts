@@ -181,6 +181,7 @@ export async function settleDeposit(
   }
 
   const matches =
+    observed.reference === reference &&
     observed.status === "success" &&
     observed.currency === "NGN" &&
     observed.amountKobo === deposit.amountKobo;

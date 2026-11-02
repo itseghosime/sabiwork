@@ -133,6 +133,8 @@ export const jobs = pgTable(
       .notNull()
       .references(() => userProfiles.user_id, { onDelete: "cascade" }),
     status: jobStatus("status").notNull().default("accepted"),
+    work_ready_at: timestamp("work_ready_at", { withTimezone: true }),
+    signed_off_at: timestamp("signed_off_at", { withTimezone: true }),
     created_at: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -211,6 +213,8 @@ export const payments = pgTable(
     status: paymentStatus("status").notNull().default("pending"),
     reference: text("reference").notNull().unique(),
     channel: text("channel").notNull().default("paystack_test"),
+    checkout_url: text("checkout_url"),
+    access_code: text("access_code"),
     failure_reason: text("failure_reason"),
     paid_at: timestamp("paid_at", { withTimezone: true }),
     created_at: timestamp("created_at", { withTimezone: true })

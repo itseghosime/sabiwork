@@ -19,6 +19,7 @@ import {
   tradeRequestLabels,
 } from "./data";
 import {
+  readJson,
   agreedAmountKobo,
   balanceKobo,
   customerService,
@@ -1392,14 +1393,12 @@ function bookingReference(job: CustomerJob) {
   return `#SW-${job.id.slice(0, 6).toUpperCase()}`;
 }
 
-/** Milestone money is derived from the job status: the deposit is recorded once
- * work has started and the balance only once the booking is signed off. */
+/** Paid amounts come from confirmed provider records returned by the API. */
 function bookingMoney(job: CustomerJob) {
   const total = agreedAmountKobo(job);
   const deposit = depositKobo(job);
   const balance = balanceKobo(job);
-  const paid =
-    job.status === "completed" ? total : job.status === "in_progress" ? deposit : 0;
+  const paid = job.paid_kobo ?? 0;
 
   return {
     total,
@@ -1837,62 +1836,18 @@ interface LedgerEntry {
   artisanName: string | null;
 }
 
-/** The ledger is derived from bookings: a deposit milestone always exists, and a
- * balance milestone only appears once work has started or the job is closed. */
-function buildLedger(
-  jobs: CustomerJob[],
-  artisans: Record<string, ArtisanSummary>,
-): LedgerEntry[] {
-  const entries: LedgerEntry[] = [];
-
-  jobs.forEach((job) => {
-    const money = bookingMoney(job);
-    const artisanName = artisans[job.worker_id]?.name ?? null;
-    const suffix = job.id.slice(0, 6).toUpperCase();
-
-    const depositStatus: LedgerStatus =
-      job.status === "cancelled"
-        ? "void"
-        : job.status === "accepted"
-          ? "pending"
-          : "confirmed";
-
-    entries.push({
-      id: `${job.id}-deposit`,
-      ref: `TST-PAY-${suffix}`,
-      jobId: job.id,
-      bookingRef: bookingReference(job),
-      jobTitle: job.title,
-      category: job.category,
-      milestone: "Mobilisation deposit · 50%",
-      amountKobo: money.deposit,
-      recordedAt: job.updated_at,
-      status: depositStatus,
-      serviceArea: job.service_area,
-      artisanName,
-    });
-
-    if (job.status === "in_progress" || job.status === "completed") {
-      entries.push({
-        id: `${job.id}-balance`,
-        ref: `TST-BAL-${suffix}`,
-        jobId: job.id,
-        bookingRef: bookingReference(job),
-        jobTitle: job.title,
-        category: job.category,
-        milestone: "Completion balance · 50%",
-        amountKobo: money.balance,
-        recordedAt: job.updated_at,
-        status: job.status === "completed" ? "confirmed" : "pending",
-        serviceArea: job.service_area,
-        artisanName,
-      });
-    }
-  });
-
-  return entries.sort(
-    (a, b) => new Date(b.recordedAt).getTime() - new Date(a.recordedAt).getTime(),
-  );
+interface SavedPayment {
+  id: string; reference: string; job_id: string; job_title: string; job_category: string;
+  milestone: "deposit" | "balance"; amount_kobo: number; created_at: string; paid_at: string | null;
+  status: "confirmed" | "pending" | "failed" | "cancelled"; service_area: string; worker_name: string;
+}
+function buildLedger(payments: SavedPayment[]): LedgerEntry[] {
+  return payments.map(p => ({ id: p.id, ref: p.reference, jobId: p.job_id,
+    bookingRef: `#SW-${p.job_id.slice(0, 6).toUpperCase()}`, jobTitle: p.job_title, category: p.job_category,
+    milestone: p.milestone === "deposit" ? "Mobilisation deposit · 50%" : "Completion balance · 50%",
+    amountKobo: p.amount_kobo, recordedAt: p.paid_at ?? p.created_at,
+    status: p.status === "failed" || p.status === "cancelled" ? "void" : p.status,
+    serviceArea: p.service_area, artisanName: p.worker_name }));
 }
 
 const ledgerPageSize = 6;
@@ -1903,25 +1858,18 @@ export function PaymentsScreen() {
   const [page, setPage] = useState(1);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const fetchLedger = useCallback(
-    () =>
-      customerService.listJobs().then(async (rows) => ({
-        jobs: rows,
-        artisans: await customerService.getArtisanSummaries(
-          rows.map((job) => job.worker_id),
-        ),
-      })),
-    [],
-  );
+  const fetchLedger = useCallback(async () => {
+    const [jobs, payments] = await Promise.all([customerService.listJobs(), readJson<SavedPayment[]>("/api/payments")]);
+    return { jobs, payments };
+  }, []);
   const { data, loading, error, retry } = useScreenData(
     fetchLedger,
     "Could not load the payment ledger.",
   );
 
   const jobs = data?.jobs ?? noJobs;
-  const artisans = data?.artisans ?? noArtisans;
-
-  const ledger = useMemo(() => buildLedger(jobs, artisans), [jobs, artisans]);
+  const paymentRows = data?.payments;
+  const ledger = useMemo(() => buildLedger(paymentRows ?? []), [paymentRows]);
 
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -2149,7 +2097,7 @@ export function PaymentsScreen() {
               <div className="cb-ledger-scroll">
                 <table className="cb-ledger-table">
                   <caption className="cb-visually-hidden">
-                    Milestone payment records derived from your bookings
+                    Saved Paystack milestone payment records
                   </caption>
                   <thead>
                     <tr>

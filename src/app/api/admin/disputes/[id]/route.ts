@@ -1,9 +1,9 @@
-import { asc, eq } from "drizzle-orm";
+import { and, asc, eq } from "drizzle-orm";
 import { adminActor, recordAudit } from "@/lib/server/audit";
 import { authorizeRole } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
 import { toDisputeCase } from "@/lib/server/admin-dto";
-import { disputeEvents, disputeEvidence, disputes } from "@/lib/server/schema";
+import { disputeEvents, disputeEvidence, disputes, escrowHolds, jobs } from "@/lib/server/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -128,7 +128,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   }
 
   try {
-    const db = getDb();
+    const response = await getDb().transaction(async db => {
     const [existing] = await db.select().from(disputes).where(eq(disputes.id, id)).limit(1);
     if (!existing) return jsonError(404, "NOT_FOUND", "Dispute case not found.");
 
@@ -143,7 +143,21 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     if (nextDetermination !== undefined) updates.determination = nextDetermination;
     if (nextNote !== undefined) updates.determination_note = nextNote;
 
+    if (nextStatus === "resolved" && !(nextNote ?? existing.determination_note)) return jsonError(400, "RATIONALE_REQUIRED", "Record a rationale before resolving this case.");
+    if (existing.job_id) await db.select().from(jobs).where(eq(jobs.id, existing.job_id)).for("update");
     const [updated] = await db.update(disputes).set(updates).where(eq(disputes.id, id)).returning();
+
+    if (existing.job_id && nextStatus) {
+      if (nextStatus !== "resolved") {
+        await db.update(escrowHolds).set({ status: "disputed", updated_at: now }).where(and(eq(escrowHolds.job_ref, existing.job_id), eq(escrowHolds.status, "held")));
+        await db.update(escrowHolds).set({ status: "disputed", updated_at: now }).where(and(eq(escrowHolds.job_ref, existing.job_id), eq(escrowHolds.status, "release_due")));
+      } else if (["Release escrow to artisan", "No action required"].includes(nextDetermination ?? existing.determination ?? "")) {
+        const [job] = await db.select().from(jobs).where(eq(jobs.id, existing.job_id));
+        await db.update(escrowHolds).set({ status: job.status === "completed" ? "release_due" : "held", signed_off: job.status === "completed", updated_at: now })
+          .where(and(eq(escrowHolds.job_ref, existing.job_id), eq(escrowHolds.status, "disputed")));
+      }
+      // Refund/split decisions remain frozen: recording a decision is not a refund.
+    }
 
     const events: { label: string; detail: string }[] = [];
     if (nextStatus && nextStatus !== existing.status) {
@@ -172,14 +186,6 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       await db.insert(disputeEvents).values(events.map((event) => ({ dispute_id: id, ...event })));
     }
 
-    await recordAudit({
-      actor: adminActor(user),
-      actorRole: "Case officer",
-      action: nextStatus ? `dispute.${nextStatus}` : "dispute.updated",
-      target: `Case ${id}`,
-      severity: nextStatus === "escalated" ? "warning" : "info",
-    });
-
     const [evidence, eventRows] = await Promise.all([
       db.select().from(disputeEvidence).where(eq(disputeEvidence.dispute_id, id)),
       db
@@ -193,6 +199,18 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       { data: { case: toDisputeCase(updated, evidence, eventRows) } },
       { headers: { "Cache-Control": "private, no-store" } },
     );
+    });
+    if (response.ok) {
+    await recordAudit({
+      actor: adminActor(user),
+      actorRole: "Case officer",
+      action: nextStatus ? `dispute.${nextStatus}` : "dispute.updated",
+      target: `Case ${id}`,
+      severity: nextStatus === "escalated" ? "warning" : "info",
+    });
+
+    }
+    return response;
   } catch (error) {
     console.error("[admin] Dispute update failed", error);
     return jsonError(500, "INTERNAL_ERROR", "Could not update the dispute case.");

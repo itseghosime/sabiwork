@@ -28,7 +28,7 @@ export function paystackPublicKey() {
 
 function paystackSecretKey() {
   const key = process.env.PAYSTACK_SECRET_KEY;
-  if (!key) throw new PaystackError("Paystack test keys are not configured.");
+  if (!key || !paystackTestMode()) throw new PaystackError("Only Paystack test keys are supported.");
   return key;
 }
 
@@ -329,11 +329,12 @@ export async function verifyPaystackTransfer(
 export async function finalizePaystackTransfer(input: {
   transferCode: string;
   otp: string;
+  reference?: string;
 }): Promise<PaystackTransfer> {
   const data = await callPaystack<TransferData>("/transfer/finalize_transfer", {
     method: "POST",
     body: { transfer_code: input.transferCode, otp: input.otp },
     fallbackMessage: "Paystack rejected that transfer OTP.",
   });
-  return toPaystackTransfer(data, "");
+  return toPaystackTransfer(data, input.reference ?? "");
 }

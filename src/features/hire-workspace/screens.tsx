@@ -41,6 +41,12 @@ type JobRow = {
   budget_guidance_kobo: number;
   total_quote_kobo: number;
   quote_note?: string;
+  worker_name?: string;
+  worker_verification?: string | null;
+  payments?: { id: string; reference: string; milestone: string; amount_kobo: number; status: string }[];
+  holds?: { id: string; status: string; amount_kobo: number; transfer_status: string | null }[];
+  work_ready_at?: string | null;
+  signed_off_at?: string | null;
   updates?: Array<{ id: string; author_id: string; note: string; created_at: string }>;
   review?: { id: string; rating: number; comment: string; created_at: string } | null;
   created_at: string;
@@ -187,6 +193,8 @@ export function RequestComposerScreen() {
 // S15: Request Detail Screen
 // ============================================================================
 export function RequestDetailScreen({ requestId }: { requestId: string }) {
+  const [saving, setSaving] = useState(false);
+  const [actionError, setActionError] = useState<string | null>(null);
   const [item, setItem] = useState<RequestRow | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -215,7 +223,16 @@ export function RequestDetailScreen({ requestId }: { requestId: string }) {
         <p><strong>Budget guidance:</strong> {formatMoney(item.budget_guidance_kobo)}</p>
       </article>
       <div className="hire-actions">
-        <Link className="button button-primary" href={`/requests/${item.id}/quotes`}>View incoming quotes</Link>
+        {actionError ? <p role="alert">{actionError}</p> : null}
+        {item.status === "draft" ? <button className="button button-primary" disabled={saving} onClick={async () => {
+          setSaving(true); setActionError(null);
+          try {
+            await readJson(`/api/requests/${item.id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "submit" }) });
+            setItem({ ...item, status: "submitted" });
+          } catch (e) { setActionError(e instanceof Error ? e.message : "Could not publish."); }
+          finally { setSaving(false); }
+        }}>{saving ? "Publishing…" : "Publish request"}</button> : null}
+                <Link className="button button-primary" href={`/requests/${item.id}/quotes`}>View incoming quotes</Link>
         <Link className="button button-primary" href="/requests/new">Create another request</Link>
       </div>
     </PageFrame>
@@ -308,13 +325,13 @@ export function QuoteDetailScreen({ quoteId, requestId }: { quoteId: string; req
     setSubmitting(true);
     setError(null);
     try {
-      const response = await readJson<{ id?: string; job_id?: string }>(`/api/quotes/${quoteId}/decision`, {
+      const response = await readJson<{ job: { id: string }; job_id?: string }>(`/api/quotes/${quoteId}/decision`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ decision }),
       });
       if (decision === "accept") {
-        router.push(response.job_id ? `/jobs/${response.job_id}` : `/requests/${quote?.request_id ?? requestId ?? ""}`);
+        router.push(`/jobs/${response.job.id}/payments/deposit`);
       } else {
         router.push(`/requests/${quote?.request_id ?? requestId ?? ""}/quotes`);
       }
@@ -723,6 +740,8 @@ export function JobDetailScreen({ jobId }: { jobId: string }) {
             <Link className="button button-primary" href={`/jobs/${job.id}/dispute`}>
               Report dispute / Help
             </Link>
+            {job.status === "accepted" ? <Link className="button button-primary" href={`/jobs/${job.id}/payments/deposit`}>Pay deposit</Link> : null}
+            {job.signed_off_at && job.status !== "completed" ? <Link className="button button-primary" href={`/jobs/${job.id}/payments/balance`}>Pay completion balance</Link> : null}
             {job.status === "completed" ? (
               <Link className="button button-primary" href={`/jobs/${job.id}/review`}>
                 ★ Rate experience
@@ -836,15 +855,15 @@ export function JobDetailScreen({ jobId }: { jobId: string }) {
           <div className="hire-panel">
             <div className="hire-panel-head">
               <h3>Assigned Artisan</h3>
-              <span className="hire-eyebrow-pill">Verified Pro</span>
+              <span className="hire-eyebrow-pill">{job.worker_verification === "approved" ? "Profile reviewed" : "Work profile"}</span>
             </div>
             <div className="hire-artisan-box">
               <div className="hire-artisan-avatar">AP</div>
               <div className="hire-artisan-meta">
-                <h4>Verified Trade Artisan</h4>
+                <h4>{job.worker_name || "Assigned artisan"}</h4>
                 <p>{job.category} Specialist</p>
                 <p style={{ fontSize: "12px", color: "var(--muted)", marginTop: "4px" }}>
-                  📍 Physical Workshop Vetted • Edo State Hub
+                  View the work profile for the artisan’s stated experience.
                 </p>
               </div>
             </div>
@@ -872,6 +891,10 @@ export function JobDetailScreen({ jobId }: { jobId: string }) {
                 </tr>
               </tbody>
             </table>
+            <h4>Saved payments</h4>
+            {job.payments?.length ? job.payments.map(payment => <p key={payment.id}><Link href={`/payments/${payment.reference}/receipt`}>{payment.milestone} · {formatMoney(payment.amount_kobo)}</Link> · {payment.status}</p>) : <p>No payments recorded.</p>}
+            <h4>Test hold and payout status</h4>
+            {job.holds?.length ? job.holds.map(hold => <p key={hold.id}>{formatMoney(hold.amount_kobo)} · {hold.status.replaceAll("_", " ")}{hold.transfer_status ? ` · payout ${hold.transfer_status}` : ""}</p>) : <p>No funded milestones yet.</p>}
             <p className="hire-check-desc">
               Transactions operate under Paystack test mode without charging live bank debit cards.
             </p>
@@ -992,10 +1015,10 @@ export function JobProgressScreen({ jobId }: { jobId: string }) {
 export function JobSignoffScreen({ jobId }: { jobId: string }) {
   const router = useRouter();
   const [checklist, setChecklist] = useState({
-    scopeCompleted: true,
-    siteCleaned: true,
-    toolsCleared: true,
-    testedOperational: true,
+    scopeCompleted: false,
+    siteCleaned: false,
+    toolsCleared: false,
+    testedOperational: false,
   });
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -1016,9 +1039,9 @@ export function JobSignoffScreen({ jobId }: { jobId: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "completed" }),
       });
-      setStatus("Job successfully signed off and marked completed.");
+      setStatus("Sign-off saved. Pay the completion balance to finish the booking.");
       setTimeout(() => {
-        router.push(`/jobs/${jobId}/review`);
+        router.push(`/jobs/${jobId}/payments/balance`);
       }, 1200);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to record sign-off.");
@@ -1118,7 +1141,7 @@ export function JobSignoffScreen({ jobId }: { jobId: string }) {
               disabled={!allChecked || submitting}
               onClick={() => void handleConfirmCompletion()}
             >
-              {submitting ? "Confirming..." : "Authorize Sign-Off & Mark Completed →"}
+              {submitting ? "Confirming..." : "Sign off & continue to balance →"}
             </button>
           </div>
         </div>

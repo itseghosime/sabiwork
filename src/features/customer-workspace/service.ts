@@ -25,6 +25,7 @@ export interface CustomerJob {
   description?: string;
   budget_guidance_kobo: number;
   total_quote_kobo: number;
+  paid_kobo?: number;
   quote_note?: string;
   created_at: string;
   updated_at: string;

@@ -1,7 +1,7 @@
-import { desc, eq, or } from "drizzle-orm";
+import { desc, eq, or, sql } from "drizzle-orm";
 import { authorizeMarketplaceUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
-import { jobRequests, jobs, quotes } from "@/lib/server/schema";
+import { jobRequests, jobs, payments, quotes } from "@/lib/server/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -34,6 +34,8 @@ export async function GET(request: Request) {
         id: jobs.id,
         request_id: jobs.request_id,
         status: jobs.status,
+      work_ready_at: jobs.work_ready_at,
+      signed_off_at: jobs.signed_off_at,
         customer_id: jobs.customer_id,
         worker_id: jobs.worker_id,
         created_at: jobs.created_at,
@@ -43,6 +45,7 @@ export async function GET(request: Request) {
         service_area: jobRequests.service_area,
         budget_guidance_kobo: jobRequests.budget_guidance_kobo,
         total_quote_kobo: quotes.total_kobo,
+        paid_kobo: sql<number>`(select coalesce(sum(p.amount_kobo), 0)::int from ${payments} p where p.job_id = ${jobs.id} and p.status = 'confirmed' and p.channel = 'paystack_verified_test')`,
       })
       .from(jobs)
       .innerJoin(jobRequests, eq(jobRequests.id, jobs.request_id))

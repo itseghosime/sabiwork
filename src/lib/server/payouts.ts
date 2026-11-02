@@ -1,6 +1,6 @@
 import "server-only";
 
-import { eq, or } from "drizzle-orm";
+import { and, eq, or, sql } from "drizzle-orm";
 import {
   isNuban,
   maskAccountNumber,
@@ -17,6 +17,7 @@ import {
   PaystackError,
   resolvePaystackAccount,
   type PaystackTransfer,
+  verifyPaystackTransfer,
 } from "./paystack";
 
 function payoutReference(holdId: string): string {
@@ -65,7 +66,7 @@ export async function savePayoutAccount(
       bankCode,
     });
 
-    await db
+    const updated = await db
       .update(escrowHolds)
       .set({
         payout_account_number: input.accountNumber,
@@ -77,7 +78,9 @@ export async function savePayoutAccount(
         transfer_failure_reason: null,
         updated_at: new Date(),
       })
-      .where(eq(escrowHolds.id, holdId));
+      .where(and(eq(escrowHolds.id, holdId), or(eq(escrowHolds.transfer_status, "failed"), eq(escrowHolds.transfer_status, "reversed"), eq(escrowHolds.transfer_status, "abandoned"), sql`${escrowHolds.transfer_status} is null`)))
+      .returning();
+    if (!updated.length) return { kind: "locked", message: "A payout has already started; the recipient cannot be changed." };
 
     await recordAudit({
       actor: "Payout desk",
@@ -150,6 +153,11 @@ async function settleTransfer(hold: HoldRow, transfer: PaystackTransfer): Promis
   const now = new Date();
   const reference = transfer.reference || hold.transfer_reference || payoutReference(hold.id);
 
+  if (transfer.amountKobo !== hold.amount_kobo ||
+      (hold.transfer_reference && transfer.reference !== hold.transfer_reference) ||
+      (transfer.recipientCode && transfer.recipientCode !== hold.recipient_code)) {
+    return { kind: "gateway_error", message: "Provider payout details do not match this hold. The payout remains pending for reconciliation." };
+  }
   if (status === "otp") {
     await db
       .update(escrowHolds)
@@ -167,7 +175,7 @@ async function settleTransfer(hold: HoldRow, transfer: PaystackTransfer): Promis
     await db
       .update(escrowHolds)
       .set({
-        status: "released",
+        status: sql`case when ${escrowHolds.status} = 'disputed' then 'disputed'::escrow_status else 'released'::escrow_status end`,
         released_at: now,
         paid_out_at: now,
         transfer_status: "success",
@@ -227,34 +235,31 @@ async function settleTransfer(hold: HoldRow, transfer: PaystackTransfer): Promis
 
 export async function releaseEscrowHold(holdId: string): Promise<ReleaseResult> {
   const db = getDb();
-  const [hold] = await db.select().from(escrowHolds).where(eq(escrowHolds.id, holdId)).limit(1);
-  if (!hold) return { kind: "not_found" };
-
-  const payable = assertPayable(hold);
-  if (!payable.ok) return payable.result;
-
+  const reserved = await db.transaction(async tx => {
+    const [hold] = await tx.select().from(escrowHolds).where(eq(escrowHolds.id, holdId)).for("update");
+    if (!hold) return { result: { kind: "not_found" } as ReleaseResult };
+    if (hold.transfer_status === "pending" && hold.transfer_reference) return { reconcile: hold };
+    const payable = assertPayable(hold);
+    if (!payable.ok) return { result: payable.result };
+    const reference = payoutReference(hold.id);
+    const [claimed] = await tx.update(escrowHolds).set({ transfer_status: "pending", transfer_reference: reference, transfer_code: null, transfer_failure_reason: null, updated_at: new Date() }).where(eq(escrowHolds.id, holdId)).returning();
+    return { claimed };
+  });
+  if (reserved.result) return reserved.result;
+  const hold = reserved.claimed ?? reserved.reconcile!;
   try {
-    const transfer = await initiatePaystackTransfer({
-      amountKobo: hold.amount_kobo,
-      recipientCode: hold.recipient_code!,
-      reason: `SabiWork escrow ${hold.id} · ${hold.title}`.slice(0, 100),
-      reference: payoutReference(hold.id),
-    });
+    if (reserved.reconcile) {
+      const transfer = await verifyPaystackTransfer(hold.transfer_reference!);
+      if (!transfer) return { kind: "in_flight", reference: hold.transfer_reference! };
+      return await settleTransfer(hold, transfer);
+    }
+    const transfer = await initiatePaystackTransfer({ amountKobo: hold.amount_kobo, recipientCode: hold.recipient_code!,
+      reason: `SabiWork test payout ${hold.id}`.slice(0, 100), reference: hold.transfer_reference! });
     return await settleTransfer(hold, transfer);
-  } catch (error) {
-    const message =
-      error instanceof PaystackError
-        ? error.message
-        : "The payout provider is unavailable right now.";
-
-    // A rejected request means no transfer object exists, so the hold stays
-    // payable and the admin can retry once the cause is fixed.
-    await db
-      .update(escrowHolds)
-      .set({ transfer_status: "failed", transfer_failure_reason: message.slice(0, 400), updated_at: new Date() })
-      .where(eq(escrowHolds.id, hold.id));
-
-    return { kind: "gateway_error", message };
+  } catch {
+    // A network timeout does not prove failure. Keep the reserved reference so
+    // retries reconcile the same transfer instead of sending the money twice.
+    return { kind: "in_flight", reference: hold.transfer_reference! };
   }
 }
 
@@ -277,6 +282,7 @@ export async function finalizeEscrowTransfer(
     const transfer = await finalizePaystackTransfer({
       transferCode: hold.transfer_code,
       otp: otp.trim(),
+      reference: hold.transfer_reference ?? "",
     });
     return await settleTransfer(hold, transfer);
   } catch (error) {
@@ -323,11 +329,17 @@ export async function applyPaystackTransferEvent(event: PaystackTransferEvent): 
     .where(or(...conditions))
     .limit(1);
   if (!hold) return false;
+  if ((reference && reference !== hold.transfer_reference) ||
+      (transferCode && hold.transfer_code && transferCode !== hold.transfer_code) ||
+      data?.amount !== hold.amount_kobo) return false;
 
   const status = normalizeTransferStatus(
     data?.status ?? (name === "transfer.success" ? "success" : name.replace("transfer.", "")),
   );
   const now = new Date();
+  if (hold.transfer_status === "reversed" && status === "success") return true;
+  if (hold.transfer_status === "success" && status !== "success" && status !== "reversed") return true;
+  if (hold.transfer_status === status) return true;
 
   if (status === "success") {
     // A dispute opened while the transfer was in flight outranks the provider

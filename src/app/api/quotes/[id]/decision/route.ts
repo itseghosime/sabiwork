@@ -32,7 +32,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   }
 
   try {
-    const [quote] = await getDb()
+    return await getDb().transaction(async (tx) => {
+    const [quote] = await tx
       .select({
         id: quotes.id,
         request_id: quotes.request_id,
@@ -48,6 +49,13 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       .limit(1);
 
     if (!quote) return jsonError(404, "NOT_FOUND", "Quote not found.");
+    await tx.select({ id: jobRequests.id }).from(jobRequests)
+      .where(eq(jobRequests.id, quote.request_id)).for("update");
+    const [current] = await tx.select().from(quotes).where(eq(quotes.id, id)).limit(1);
+    quote.status = current.status;
+    const [currentRequest] = await tx.select().from(jobRequests).where(eq(jobRequests.id, quote.request_id));
+    quote.request_status = currentRequest.status;
+
     if (quote.request_customer_id !== session.user.id) {
       return jsonError(403, "FORBIDDEN", "Only the request owner can decide this quote.");
     }
@@ -56,7 +64,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     }
 
     if (decision === "decline") {
-      const [updated] = await getDb()
+      const [updated] = await tx
         .update(quotes)
         .set({ status: "declined", updated_at: new Date() })
         .where(eq(quotes.id, id))
@@ -68,7 +76,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       return jsonError(409, "INVALID_STATE", "This request is not open for acceptance.");
     }
 
-    const existingJob = await getDb()
+    const existingJob = await tx
       .select({ id: jobs.id })
       .from(jobs)
       .where(eq(jobs.request_id, quote.request_id))
@@ -78,7 +86,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       return jsonError(409, "JOB_EXISTS", "A job already exists for this request.");
     }
 
-    const [accepted] = await getDb()
+    const [accepted] = await tx
       .update(quotes)
       .set({ status: "accepted", updated_at: new Date() })
       .where(eq(quotes.id, id))
@@ -89,17 +97,17 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
         status: quotes.status,
       });
 
-    await getDb()
+    await tx
       .update(quotes)
       .set({ status: "declined", updated_at: new Date() })
       .where(and(eq(quotes.request_id, quote.request_id), ne(quotes.id, id), eq(quotes.status, "pending")));
 
-    await getDb()
+    await tx
       .update(jobRequests)
       .set({ status: "matching", updated_at: new Date() })
       .where(eq(jobRequests.id, quote.request_id));
 
-    const [job] = await getDb()
+    const [job] = await tx
       .insert(jobs)
       .values({
         request_id: quote.request_id,
@@ -110,7 +118,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       })
       .returning({ id: jobs.id, status: jobs.status, worker_id: jobs.worker_id });
 
-    return Response.json({ data: { quote: accepted, job } }, { headers: { "Cache-Control": "private, no-store" } });
+    return Response.json({ data: { quote: accepted, job, job_id: job.id } }, { headers: { "Cache-Control": "private, no-store" } });
+    });
   } catch (error) {
     console.error("[quotes] Decision failed", error);
     return jsonError(500, "INTERNAL_ERROR", "Could not process this quote decision.");

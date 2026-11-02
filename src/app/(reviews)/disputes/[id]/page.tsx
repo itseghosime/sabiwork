@@ -1,5 +1,5 @@
 import { CustomerShell } from "@/components/workspace-shell";
-import { DisputeStatusScreen } from "@/features/hire-workspace/screens";
+import { BookingDispute } from "@/features/payments/dispute-flow";
 
 export default async function DisputeStatusPage({
   params,
@@ -9,7 +9,7 @@ export default async function DisputeStatusPage({
   const { id } = await params;
   return (
     <CustomerShell>
-      <DisputeStatusScreen disputeId={id} />
+      <BookingDispute jobId={id} statusOnly />
     </CustomerShell>
   );
 }

@@ -79,3 +79,9 @@ AppShell, Sidebar, MobileNav, Button, Input, Select, FilterSheet, ArtisanCard, V
 ## Verification
 
 Every owner supplies a successful path and at least one meaningful failure or access test. Combined checks include wrong-owner job access, forbidden admin signup/access, duplicate quote acceptance, unverified/duplicate payment notification, failed payments, review eligibility, persistence after refresh and keyboard operation. No real credentials in PRs or recordings.
+
+## Connected marketplace payment change (migration 0008)
+
+The journey-fix branch adds migration `0008_connected_marketplace_payments.sql`. It has been exercised in an isolated PostgreSQL test engine, not applied to production by this change. Apply it to an isolated validation database before running this branch's payment/job queries. Directory browsing leads to a scoped quote and booking before collecting money. New milestones use `paystack_verified_test` records and are confirmed by the provider on the server; historical simulated rows do not count as verified funds. Work readiness, customer sign-off, balance settlement, release eligibility and provider payout are separate persisted stages. Release remains an authorized admin action after completion, not an automatic transfer from the browser.
+
+See [the journey QA record](JOURNEY-QA-2026-11-02.md) for tests, remaining authenticated/provider checks and migration requirements.

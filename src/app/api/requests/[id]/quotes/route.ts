@@ -1,7 +1,7 @@
 import { and, asc, eq } from "drizzle-orm";
 import { authorizeMarketplaceUser, getSessionUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
-import { artisanProfiles, jobRequests, quotes, userProfiles } from "@/lib/server/schema";
+import { artisanProfiles, jobRequests, jobs, quotes, userProfiles } from "@/lib/server/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -58,7 +58,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
       })
       .from(quotes)
       .innerJoin(userProfiles, eq(userProfiles.user_id, quotes.worker_id))
-      .where(eq(quotes.request_id, id))
+      .where(and(eq(quotes.request_id, id), access.isCustomer ? undefined : eq(quotes.worker_id, session.user.id)))
       .orderBy(asc(quotes.created_at));
 
     return Response.json({ data: rows }, { headers: { "Cache-Control": "private, no-store" } });
@@ -105,7 +105,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   }
 
   try {
-    const [requestRow] = await getDb()
+    return await getDb().transaction(async (tx) => {
+    await tx.select({ id: jobRequests.id }).from(jobRequests).where(eq(jobRequests.id, id)).for("update");
+    const [requestRow] = await tx
       .select({
         id: jobRequests.id,
         status: jobRequests.status,
@@ -123,7 +125,11 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       return jsonError(409, "INVALID_STATE", "Quotes can only be added to open requests.");
     }
 
-    const [profile] = await getDb()
+    const [booking] = await tx.select({ id: jobs.id }).from(jobs)
+      .where(eq(jobs.request_id, id)).limit(1);
+    if (booking) return jsonError(409, "JOB_EXISTS", "This request already has a booking.");
+
+    const [profile] = await tx
       .select({
         user_id: artisanProfiles.user_id,
         is_listed: artisanProfiles.is_listed,
@@ -144,7 +150,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       );
     }
 
-    const [created] = await getDb()
+    const [created] = await tx
       .insert(quotes)
       .values({
         request_id: id,
@@ -171,12 +177,13 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
         created_at: quotes.created_at,
       });
 
-    await getDb()
+    await tx
       .update(jobRequests)
       .set({ status: "matching", updated_at: new Date() })
       .where(and(eq(jobRequests.id, id), eq(jobRequests.status, "submitted")));
 
     return Response.json({ data: created }, { status: 201, headers: { "Cache-Control": "private, no-store" } });
+    });
   } catch (error) {
     console.error("[quotes] Create failed", error);
     return jsonError(500, "INTERNAL_ERROR", "Could not save this quote.");

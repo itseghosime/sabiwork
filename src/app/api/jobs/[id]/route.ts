@@ -1,7 +1,7 @@
 import { and, asc, eq, or } from "drizzle-orm";
 import { getSessionUser } from "@/lib/server/authorization";
 import { getDb } from "@/lib/server/db";
-import { jobProgressUpdates, jobRequests, jobReviews, jobs, quotes } from "@/lib/server/schema";
+import { jobProgressUpdates, jobRequests, jobReviews, jobs, payments, escrowHolds, quotes, userProfiles, artisanProfiles } from "@/lib/server/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +18,8 @@ async function loadAccessibleJob(jobId: string, userId: string) {
       customer_id: jobs.customer_id,
       worker_id: jobs.worker_id,
       status: jobs.status,
+      work_ready_at: jobs.work_ready_at,
+      signed_off_at: jobs.signed_off_at,
       created_at: jobs.created_at,
       updated_at: jobs.updated_at,
       title: jobRequests.title,
@@ -27,10 +29,14 @@ async function loadAccessibleJob(jobId: string, userId: string) {
       budget_guidance_kobo: jobRequests.budget_guidance_kobo,
       total_quote_kobo: quotes.total_kobo,
       quote_note: quotes.note,
+      worker_name: userProfiles.display_name,
+      worker_verification: artisanProfiles.verification_status,
     })
     .from(jobs)
     .innerJoin(jobRequests, eq(jobRequests.id, jobs.request_id))
     .innerJoin(quotes, eq(quotes.id, jobs.accepted_quote_id))
+    .innerJoin(userProfiles, eq(userProfiles.user_id, jobs.worker_id))
+    .leftJoin(artisanProfiles, eq(artisanProfiles.user_id, jobs.worker_id))
     .where(and(eq(jobs.id, jobId), or(eq(jobs.customer_id, userId), eq(jobs.worker_id, userId))))
     .limit(1);
   return job ?? null;
@@ -72,7 +78,9 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
         .limit(1),
     ]);
 
-    return Response.json({ data: { ...job, updates, review: reviews[0] ?? null } }, { headers: { "Cache-Control": "private, no-store" } });
+    const paymentRows = await getDb().select().from(payments).where(eq(payments.job_id, id));
+    const holds = await getDb().select({ id: escrowHolds.id, status: escrowHolds.status, amount_kobo: escrowHolds.amount_kobo, transfer_status: escrowHolds.transfer_status }).from(escrowHolds).where(eq(escrowHolds.job_ref, id));
+    return Response.json({ data: { ...job, updates, payments: paymentRows.map(row => ({ id: row.id, reference: row.reference, milestone: row.milestone, amount_kobo: row.amount_kobo, status: row.status, paid_at: row.paid_at, created_at: row.created_at })), holds, review: reviews[0] ?? null } }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) {
     console.error("[jobs] Detail failed", error);
     return jsonError(500, "INTERNAL_ERROR", "Could not load this job.");

@@ -332,8 +332,8 @@ export function AdminEscrowScreen() {
       />
 
       <SampleNotice>
-        Releasing a milestone now moves money: it initiates a Paystack transfer to the artisan&apos;s verified
-        NUBAN account. Payout accounts are resolved with Paystack before they can be used, and a
+        Releases use Paystack test mode only. No real money moves and no escrow guarantee is provided.
+        A test transfer is sent to the artisan&apos;s resolved NUBAN recipient. Payout accounts are resolved with Paystack before they can be used, and a
         failed or reversed transfer leaves the milestone payable instead of marking it released.
       </SampleNotice>
 
@@ -472,9 +472,8 @@ export function AdminEscrowScreen() {
                       className="ad-btn ad-btn-ghost ad-btn-sm"
                       disabled={
                         hold.transferStatus === "success" ||
-                        hold.transferStatus === "pending" ||
                         !(
-                          hold.transferStatus === "otp" ||
+                          hold.transferStatus === "otp" || hold.transferStatus === "pending" ||
                           (hold.status === "release_due" && hold.signedOff)
                         )
                       }
@@ -493,7 +492,7 @@ export function AdminEscrowScreen() {
                                   : "Release the funds"
                       }
                     >
-                      {hold.transferStatus === "otp" ? "Finish payout" : "Release"} <Icon name="next" size={14} />
+                      {hold.transferStatus === "pending" ? "Check payout" : hold.transferStatus === "otp" ? "Finish payout" : "Release"} <Icon name="next" size={14} />
                     </button>
                   </td>
                 </tr>
@@ -702,7 +701,7 @@ export function AdminEscrowScreen() {
                   disabled={!pendingRelease.signedOff || releasing}
                 >
                   <Icon name="send" size={16} />{" "}
-                  {releasing ? "Sending payout…" : `Release ${formatNaira(pendingRelease.amountKobo)}`}
+                  {releasing ? "Checking Paystack…" : pendingRelease.transferStatus === "pending" ? "Check payout status" : `Release ${formatNaira(pendingRelease.amountKobo)}`}
                 </button>
               ) : (
                 <button
