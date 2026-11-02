@@ -1,4 +1,6 @@
-import { GuideReaderScreen } from "@/features/training/screens";
+import { notFound } from "next/navigation";
+import { GuideReader } from "@/features/training/guide-reader";
+import { getGuide } from "@/features/training/service";
 
 export default async function GuideReaderPage({
   params,
@@ -6,6 +8,7 @@ export default async function GuideReaderPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  return <GuideReaderScreen id={id} />;
+  const guide = getGuide(id);
+  if (!guide) notFound();
+  return <GuideReader key={id} guide={guide} />;
 }
-
