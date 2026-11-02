@@ -2,7 +2,7 @@
 
 **Skilled hands. Trusted work.** Group Four's artisan marketplace for Nigeria.
 
-Customers discover verified artisans, request work, compare quotes, pay in milestones using Paystack **test mode**, track progress and leave reviews. Artisans manage work, availability and training; admins manage verification and disputes.
+Customers discover artisans, request work, compare quotes, and track progress. Payment screens are Paystack TEST-mode previews; they do not confirm or hold real funds. Artisans can explore training guides, but progress is session-only and sample certificate views are not accredited credentials. Settings saves are also session-only.
 
 ## Team: start your assigned pages
 
@@ -40,7 +40,7 @@ Backend foundations start early; whole-team backend integration is Saturday, 31 
 
 Planned stack follows the guide: Next.js App Router + TypeScript, Neon Postgres, Better Auth, Resend, Paystack test mode and Vercel. Use npm with one committed package-lock.json.
 
-The public discovery frontend is implemented using fictional typed fixtures. Authentication, profile detail, job/payment flows and database search are pending their owners’ integration. No mocked interaction counts as a completed server integration.
+The public discovery frontend is implemented using fictional typed fixtures. Settings and training pages use in-memory preview data; their changes do not persist after refresh. Authentication, profile detail, job/payment flows and database search are pending their owners’ integration. No mocked interaction counts as a completed server integration.
 
 ## Run the shared app
 
