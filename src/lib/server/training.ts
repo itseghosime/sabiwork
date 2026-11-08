@@ -11,11 +11,11 @@ type ProgressRow = typeof artisanTrainingProgress.$inferSelect;
 
 function decorate(module: TrainingModule, row?: ProgressRow): ArtisanTrainingModule {
   const completedSectionIds = row?.completed_section_ids ?? [];
-  const completedCount = trainingModule.sections.filter((section) =>
+  const completedCount = module.sections.filter((section) =>
     completedSectionIds.includes(trainingSectionId(section.sectionTitle)),
   ).length;
-  const percent = trainingModule.sections.length
-    ? Math.round((completedCount / trainingModule.sections.length) * 100)
+  const percent = module.sections.length
+    ? Math.round((completedCount / module.sections.length) * 100)
     : 0;
   const status = percent === 100
     ? "completed"
