@@ -1845,6 +1845,7 @@ interface LedgerEntry {
   amountKobo: number;
   recordedAt: string;
   status: LedgerStatus;
+  milestoneType: SavedPayment["milestone"];
   serviceArea: string;
   artisanName: string | null;
 }
@@ -1858,6 +1859,7 @@ function buildLedger(payments: SavedPayment[]): LedgerEntry[] {
   return payments.map(p => ({ id: p.id, ref: p.reference, jobId: p.job_id,
     bookingRef: `#SW-${p.job_id.slice(0, 6).toUpperCase()}`, jobTitle: p.job_title, category: p.job_category,
     milestone: p.milestone === "deposit" ? "Mobilisation deposit · 50%" : "Completion balance · 50%",
+    milestoneType: p.milestone,
     amountKobo: p.amount_kobo, recordedAt: p.paid_at ?? p.created_at,
     status: p.status === "failed" || p.status === "cancelled" ? "void" : p.status,
     serviceArea: p.service_area, artisanName: p.worker_name }));
@@ -1914,18 +1916,28 @@ export function PaymentsScreen() {
 
   const totals = useMemo(() => {
     const contracted = jobs.reduce((sum, job) => sum + agreedAmountKobo(job), 0);
+    const confirmedByJob = ledger.reduce((amounts, entry) => {
+      if (entry.status === "confirmed") {
+        amounts.set(entry.jobId, (amounts.get(entry.jobId) ?? 0) + entry.amountKobo);
+      }
+      return amounts;
+    }, new Map<string, number>());
     const deposits = ledger
-      .filter((entry) => entry.status === "confirmed" && entry.ref.startsWith("TST-PAY"))
+      .filter((entry) => entry.status === "confirmed" && entry.milestoneType === "deposit")
       .reduce((sum, entry) => sum + entry.amountKobo, 0);
-    const outstanding = ledger
-      .filter((entry) => entry.status === "pending")
-      .reduce((sum, entry) => sum + entry.amountKobo, 0);
-    return {
-      contracted,
-      deposits,
-      outstanding,
-      settled: jobs.filter((job) => job.status === "completed").length,
-    };
+    const outstanding = jobs
+      .filter((job) => job.status !== "cancelled")
+      .reduce((sum, job) => {
+        const due = agreedAmountKobo(job);
+        const paid = confirmedByJob.get(job.id) ?? 0;
+        return sum + Math.max(0, due - paid);
+      }, 0);
+    const settled = jobs.filter(
+      (job) =>
+        job.status === "completed" &&
+        (confirmedByJob.get(job.id) ?? 0) >= agreedAmountKobo(job),
+    ).length;
+    return { contracted, deposits, outstanding, settled };
   }, [jobs, ledger]);
 
   return (
