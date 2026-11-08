@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { ArtisanTrainingScreen } from "./training-screen";
+import { getTrainingModules } from "@/features/training/service";
 import { ArtisanSettingsScreen } from "./settings-screen";
 import { defaultArtisanPreferences } from "./device-settings";
 
@@ -29,6 +30,22 @@ const jsonResponse = (status: number, body: unknown = {}) => ({
 
 const envelope = (data: unknown) => jsonResponse(200, { data });
 
+const trainingModules = getTrainingModules().map((module) => ({
+  ...module,
+  completedSectionIds: [],
+  completedAt: null,
+  status: "not_started" as const,
+  progress: 0,
+}));
+const trainingStats = {
+  completedCount: 0,
+  inProgressCount: 0,
+  availableCount: trainingModules.length,
+  totalHoursLearned: 0,
+};
+const renderTrainingScreen = () =>
+  render(<ArtisanTrainingScreen modules={trainingModules} stats={trainingStats} />);
+
 beforeEach(() => {
   fetchMock.mockReset();
   window.localStorage.clear();
@@ -42,7 +59,7 @@ afterEach(() => {
 
 describe("Artisan training screen (S46)", () => {
   it("lists guides with progress and links into the guide reader", () => {
-    render(<ArtisanTrainingScreen />);
+    renderTrainingScreen();
 
     expect(screen.getByRole("heading", { level: 1, name: /Training & master guides/i })).toBeDefined();
     expect(screen.getAllByRole("link", { name: /guide/i }).length).toBeGreaterThan(0);
@@ -50,7 +67,7 @@ describe("Artisan training screen (S46)", () => {
   });
 
   it("filters by search term and can reset to the full catalogue", () => {
-    render(<ArtisanTrainingScreen />);
+    renderTrainingScreen();
     const searchBox = screen.getByLabelText(/Search training guides/i);
     const allCards = document.querySelectorAll(".aw-course").length;
 
@@ -65,7 +82,7 @@ describe("Artisan training screen (S46)", () => {
   });
 
   it("filters by progress state", () => {
-    render(<ArtisanTrainingScreen />);
+    renderTrainingScreen();
 
     fireEvent.click(screen.getByRole("button", { name: /^Not started$/ }));
     const cards = [...document.querySelectorAll(".aw-course")];
