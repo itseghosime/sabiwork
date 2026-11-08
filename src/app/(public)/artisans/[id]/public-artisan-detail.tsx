@@ -216,24 +216,32 @@ export function PublicArtisanDetail({
                     : "No slot is reserved until the scope and price are agreed in a quote."}
                 </small>
               </div>
-              <BookingDeposit
-                artisanId={artisan.id}
-                artisanName={artisan.name}
-                amountKobo={depositKobo}
-                paymentsEnabled={paymentsEnabled}
-                initialEmail={customerEmail}
-                customerWorkspace={workspace}
-              />
-              <Link
-                className="button button-subtle pa-quote"
-                href={workspace ? "/requests/new" : "/signup/customer"}
-              >
-                Request a quote instead <Icon name="arrow" size={16} />
-              </Link>
-              <p className="pa-test-note">
-                <Icon name="lock" size={14} /> Paystack test mode. Card details
-                never touch SabiWork.
-              </p>
+              {isPresentationData ? (
+                <p className="pa-note" role="note">
+                  This fictional demo profile is for browsing only. Booking and quote requests are disabled.
+                </p>
+              ) : (
+                <>
+                  <BookingDeposit
+                    artisanId={artisan.id}
+                    artisanName={artisan.name}
+                    amountKobo={depositKobo}
+                    paymentsEnabled={paymentsEnabled}
+                    initialEmail={customerEmail}
+                    customerWorkspace={workspace}
+                  />
+                  <Link
+                    className="button button-subtle pa-quote"
+                    href={workspace ? "/requests/new" : "/signup/customer"}
+                  >
+                    Request a quote instead <Icon name="arrow" size={16} />
+                  </Link>
+                  <p className="pa-test-note">
+                    <Icon name="lock" size={14} /> Paystack test mode. Card details
+                    never touch SabiWork.
+                  </p>
+                </>
+              )}
             </section>
             {paymentsEnabled && (
               <section className="pa-side-note">
