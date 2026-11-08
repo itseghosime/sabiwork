@@ -125,7 +125,7 @@ export function PublicArtisanDetail({
                   </li>
                   <li>
                     <Icon name="calendar" size={16} />
-                    <span>{artisan.experienceYears} years experience</span>
+                    <span>{isPresentationData ? "Fictional demo record" : `${artisan.experienceYears} years experience`}</span>
                   </li>
                 </ul>
                 <div className="pa-badges">
@@ -185,37 +185,33 @@ export function PublicArtisanDetail({
             <section className="pa-book">
               <p className="eyebrow">
                 {isPresentationData
-                  ? "TEST BOOKING PREVIEW"
+                  ? "DEMO PROFILE"
                   : "BOOK THIS ARTISAN"}
               </p>
               <div className="pa-price">
                 <span>
                   {isPresentationData
-                    ? "Sample rate guidance"
+                    ? "Illustrative price guide"
                     : "Starting labour"}
                 </span>
                 <strong>{formatNaira(artisan.startingPriceKobo)}</strong>
                 <small>
                   {isPresentationData
-                    ? "Fictional seed amount for presentation only."
+                    ? "Sample price only; this is not a real artisan quote."
                     : "Final cost is agreed in your quote."}
                 </small>
               </div>
-              <div className="pa-deposit">
-                <div>
-                  <span>
-                    {isPresentationData
-                      ? "Test deposit"
-                      : "Estimate only"}
-                  </span>
-                  <strong>{formatNaira(depositKobo)}</strong>
+              {!isPresentationData && (
+                <div className="pa-deposit">
+                  <div>
+                    <span>Estimate only</span>
+                    <strong>{formatNaira(depositKobo)}</strong>
+                  </div>
+                  <small>
+                    No slot is reserved until the scope and price are agreed in a quote.
+                  </small>
                 </div>
-                <small>
-                  {isPresentationData
-                    ? "Test-mode checkout only. No real money moves and no work slot is reserved."
-                    : "No slot is reserved until the scope and price are agreed in a quote."}
-                </small>
-              </div>
+              )}
               {isPresentationData ? (
                 <p className="pa-note" role="note">
                   This fictional demo profile is for browsing only. Booking and quote requests are disabled.
