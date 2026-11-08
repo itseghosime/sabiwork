@@ -15,7 +15,7 @@ function decorate(module: TrainingModule, row?: ProgressRow): ArtisanTrainingMod
     completedSectionIds.includes(trainingSectionId(section.sectionTitle)),
   ).length;
   const percent = module.sections.length
-    ? Math.round((completedCount / module.sections.length) * 100)
+    ? Math.round((completedCount / trainingModule.sections.length) * 100)
     : 0;
   const status = percent === 100
     ? "completed"
@@ -57,8 +57,8 @@ export async function getArtisanTrainingOverview(artisanId: string) {
 }
 
 export async function getArtisanTrainingModule(artisanId: string, moduleId: string) {
-  const module = getTrainingModule(moduleId);
-  if (!module) return null;
+  const trainingModule = getTrainingModule(moduleId);
+  if (!trainingModule) return null;
   const [row] = await getDb()
     .select()
     .from(artisanTrainingProgress)
@@ -67,7 +67,7 @@ export async function getArtisanTrainingModule(artisanId: string, moduleId: stri
       eq(artisanTrainingProgress.module_id, moduleId),
     ))
     .limit(1);
-  return decorate(module, row);
+  return decorate(trainingModule, row);
 }
 
 export async function updateArtisanTrainingProgress(
@@ -78,7 +78,7 @@ export async function updateArtisanTrainingProgress(
 ): Promise<ArtisanTrainingProgress | null> {
   const module = getTrainingModule(moduleId);
   if (!module) return null;
-  const validSectionIds = module.sections.map((section) => trainingSectionId(section.sectionTitle));
+  const validSectionIds = trainingModule.sections.map((section) => trainingSectionId(section.sectionTitle));
   if (!validSectionIds.includes(sectionId)) return null;
 
   const db = getDb();
@@ -125,7 +125,7 @@ export async function updateArtisanTrainingProgress(
   return {
     completedSectionIds: row.completed_section_ids,
     completedCount,
-    totalSections: module.sections.length,
+    totalSections: trainingModule.sections.length,
     percent,
     status,
     completedAt: row.completed_at?.toISOString() ?? null,
