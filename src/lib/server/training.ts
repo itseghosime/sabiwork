@@ -11,10 +11,10 @@ type ProgressRow = typeof artisanTrainingProgress.$inferSelect;
 
 function decorate(module: TrainingModule, row?: ProgressRow): ArtisanTrainingModule {
   const completedSectionIds = row?.completed_section_ids ?? [];
-  const completedCount = module.sections.filter((section) =>
+  const completedCount = trainingModule.sections.filter((section) =>
     completedSectionIds.includes(trainingSectionId(section.sectionTitle)),
   ).length;
-  const percent = module.sections.length
+  const percent = trainingModule.sections.length
     ? Math.round((completedCount / trainingModule.sections.length) * 100)
     : 0;
   const status = percent === 100
@@ -76,8 +76,8 @@ export async function updateArtisanTrainingProgress(
   sectionId: string,
   completed: boolean,
 ): Promise<ArtisanTrainingProgress | null> {
-  const module = getTrainingModule(moduleId);
-  if (!module) return null;
+  const trainingModule = getTrainingModule(moduleId);
+  if (!trainingModule) return null;
   const validSectionIds = trainingModule.sections.map((section) => trainingSectionId(section.sectionTitle));
   if (!validSectionIds.includes(sectionId)) return null;
 
@@ -95,7 +95,7 @@ export async function updateArtisanTrainingProgress(
   else ids.delete(sectionId);
   const completedSectionIds = validSectionIds.filter((id) => ids.has(id));
   const completedCount = completedSectionIds.length;
-  const percent = Math.round((completedCount / module.sections.length) * 100);
+  const percent = Math.round((completedCount / trainingModule.sections.length) * 100);
   const status = percent === 100
     ? "completed"
     : completedCount > 0
