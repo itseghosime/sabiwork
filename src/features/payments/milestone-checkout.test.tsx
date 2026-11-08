@@ -7,6 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { MilestoneCheckout, MilestoneReceipt } from "./milestone-checkout";
+import { PaymentsScreen } from "@/features/customer-workspace/screens";
 import { JobSignoffScreen } from "@/features/hire-workspace/screens";
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }));
 afterEach(() => {
@@ -102,6 +103,49 @@ it("does not display a pending payment as a receipt and supports verification re
   );
   expect(fetch.mock.calls[1][0]).toBe("/api/payments/deposit/verify");
 });
+it("shows the confirmed deposit and remaining job balance in payment summaries", async () => {
+  const job = {
+    id: "qa-job",
+    request_id: "qa-request",
+    status: "in_progress",
+    customer_id: "qa-customer",
+    worker_id: "qa-artisan",
+    title: "Kitchen sink leak",
+    category: "Plumbing",
+    service_area: "GRA, Benin City",
+    budget_guidance_kobo: 0,
+    total_quote_kobo: 3300000,
+    created_at: "2026-11-08T13:00:00.000Z",
+    updated_at: "2026-11-08T14:28:00.000Z",
+  };
+  const payment = {
+    id: "payment-1",
+    reference: "SW-JOB-QA",
+    job_id: "qa-job",
+    job_title: "Kitchen sink leak",
+    job_category: "Plumbing",
+    milestone: "deposit",
+    amount_kobo: 1650000,
+    created_at: "2026-11-08T14:20:00.000Z",
+    paid_at: "2026-11-08T14:28:00.000Z",
+    status: "confirmed",
+    service_area: "GRA, Benin City",
+    worker_name: "QA Artisan",
+  };
+  const fetch = vi
+    .fn()
+    .mockResolvedValueOnce(response([job]))
+    .mockResolvedValueOnce(response([payment]));
+  vi.stubGlobal("fetch", fetch);
+  render(<PaymentsScreen />);
+
+  await screen.findByText("Transaction records");
+  const deposits = screen.getByText("Deposits recorded").parentElement?.parentElement;
+  const outstanding = screen.getByText("Still outstanding").parentElement?.parentElement;
+  expect(deposits?.textContent).toContain("₦16,500");
+  expect(outstanding?.textContent).toContain("₦16,500");
+});
+
 it("requires the customer to affirm each inspection item, without preselected sign-off", () => {
   const fetch = vi.fn();
   vi.stubGlobal("fetch", fetch);
