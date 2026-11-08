@@ -139,7 +139,7 @@ export function toDisputeCase(
     priority: row.priority,
     openedAtIso: row.opened_at.toISOString(),
     slaDueAtIso: row.sla_due_at.toISOString(),
-    slaHoursLeft: Math.max(0, hoursBetween(row.sla_due_at.toISOString(), now)),
+    slaHoursLeft: hoursBetween(row.sla_due_at.toISOString(), now),
     officer: row.officer,
     summary: row.summary,
     customerStatement: row.customer_statement,
