@@ -91,7 +91,7 @@ it("does not display a pending payment as a receipt and supports verification re
     );
   vi.stubGlobal("fetch", fetch);
   render(<MilestoneReceipt reference="SW-JOB-QA" />);
-  await screen.findByText("pending");
+  await screen.findByText("Confirmation pending");
   expect(
     screen.queryByRole("heading", { name: "Test payment receipt" }),
   ).toBeNull();
