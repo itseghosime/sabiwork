@@ -33,8 +33,9 @@ export function Portrait({
         index === null
           ? undefined
           : {
-              backgroundImage: "url(/images/artisan-demo-sheet.png)",
-              backgroundPosition: `${index * 25}% 0%`,
+              backgroundImage: "url(/images/artisan-portraits-grid.png)",
+              backgroundSize: "700% 500%",
+              backgroundPosition: `${((index % 7) / 6) * 100}% ${Math.floor(index / 7) * 25}%`,
             }
       }
     >

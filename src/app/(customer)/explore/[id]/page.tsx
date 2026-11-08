@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { bookingDepositKobo } from "@/features/payments/deposit";
 import { getPublicArtisanProfile } from "@/lib/server/artisans";
 import { requireMarketplacePage } from "@/lib/server/authorization";
-import { paystackConfigured, paystackTestMode } from "@/lib/server/paystack";
+import { paystackConfigured } from "@/lib/server/paystack";
 import { PublicArtisanDetail } from "@/app/(public)/artisans/[id]/public-artisan-detail";
 
 const outcomes = ["missing", "pending", "failed", "error", "not_found"] as const;
@@ -49,7 +49,7 @@ export default async function CustomerArtisanPage({
       customerEmail={user.email ?? ""}
       depositKobo={bookingDepositKobo(artisan.startingPriceKobo)}
       paymentsEnabled={
-        !isPresentationData && paystackConfigured() && paystackTestMode()
+        !isPresentationData && paystackConfigured()
       }
       paidReference={paidReference}
       paymentOutcome={paymentOutcome}

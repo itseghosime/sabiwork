@@ -4,7 +4,7 @@ import type { Artisan } from "./data";
 export const demoArtisans: readonly Artisan[] = [
   {
     "id": "demo-artisan-010",
-    "name": "Demo Artisan 10",
+    "name": "Osaze Agholor",
     "category": "plumbing",
     "skills": [
       "plumbing"
@@ -21,7 +21,7 @@ export const demoArtisans: readonly Artisan[] = [
   },
   {
     "id": "demo-artisan-011",
-    "name": "Demo Artisan 11",
+    "name": "Efe Omoreuyi",
     "category": "electrical",
     "skills": [
       "electrical"
@@ -38,7 +38,7 @@ export const demoArtisans: readonly Artisan[] = [
   },
   {
     "id": "demo-artisan-012",
-    "name": "Demo Artisan 12",
+    "name": "Blessing Okon",
     "category": "carpentry",
     "skills": [
       "carpentry"
@@ -55,7 +55,7 @@ export const demoArtisans: readonly Artisan[] = [
   },
   {
     "id": "demo-artisan-013",
-    "name": "Demo Artisan 13",
+    "name": "Imade Ogbemudia",
     "category": "tailoring",
     "skills": [
       "tailoring"
@@ -72,7 +72,7 @@ export const demoArtisans: readonly Artisan[] = [
   },
   {
     "id": "demo-artisan-014",
-    "name": "Demo Artisan 14",
+    "name": "Edosa Aigbe",
     "category": "painting",
     "skills": [
       "painting"
@@ -89,7 +89,7 @@ export const demoArtisans: readonly Artisan[] = [
   },
   {
     "id": "demo-artisan-015",
-    "name": "Demo Artisan 15",
+    "name": "Chinyere Okafor",
     "category": "cleaning",
     "skills": [
       "cleaning"
@@ -101,12 +101,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1275000,
     "profileReviewed": false,
-    "portrait": 0,
+    "portrait": 5,
     "initials": "D15"
   },
   {
     "id": "demo-artisan-016",
-    "name": "Demo Artisan 16",
+    "name": "Favour Omoregie",
     "category": "plumbing",
     "skills": [
       "plumbing"
@@ -118,12 +118,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1410000,
     "profileReviewed": false,
-    "portrait": 1,
+    "portrait": 6,
     "initials": "D16"
   },
   {
     "id": "demo-artisan-017",
-    "name": "Demo Artisan 17",
+    "name": "Aisha Bello",
     "category": "electrical",
     "skills": [
       "electrical"
@@ -135,12 +135,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1545000,
     "profileReviewed": false,
-    "portrait": 2,
+    "portrait": 7,
     "initials": "D17"
   },
   {
     "id": "demo-artisan-018",
-    "name": "Demo Artisan 18",
+    "name": "Godwin Osaigbovo",
     "category": "carpentry",
     "skills": [
       "carpentry"
@@ -152,12 +152,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1680000,
     "profileReviewed": false,
-    "portrait": 3,
+    "portrait": 8,
     "initials": "D18"
   },
   {
     "id": "demo-artisan-019",
-    "name": "Demo Artisan 19",
+    "name": "Loveth Ede",
     "category": "tailoring",
     "skills": [
       "tailoring"
@@ -169,12 +169,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 615000,
     "profileReviewed": false,
-    "portrait": 4,
+    "portrait": 9,
     "initials": "D19"
   },
   {
     "id": "demo-artisan-020",
-    "name": "Demo Artisan 20",
+    "name": "Aghogho Oghene",
     "category": "painting",
     "skills": [
       "painting"
@@ -186,12 +186,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 750000,
     "profileReviewed": false,
-    "portrait": 0,
+    "portrait": 10,
     "initials": "D20"
   },
   {
     "id": "demo-artisan-021",
-    "name": "Demo Artisan 21",
+    "name": "Ibrahim Sani",
     "category": "cleaning",
     "skills": [
       "cleaning"
@@ -203,12 +203,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 885000,
     "profileReviewed": false,
-    "portrait": 1,
+    "portrait": 11,
     "initials": "D21"
   },
   {
     "id": "demo-artisan-022",
-    "name": "Demo Artisan 22",
+    "name": "Oghenetega Erhabor",
     "category": "plumbing",
     "skills": [
       "plumbing"
@@ -220,12 +220,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1020000,
     "profileReviewed": false,
-    "portrait": 2,
+    "portrait": 12,
     "initials": "D22"
   },
   {
     "id": "demo-artisan-023",
-    "name": "Demo Artisan 23",
+    "name": "Rita Igbinosa",
     "category": "electrical",
     "skills": [
       "electrical"
@@ -237,12 +237,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1155000,
     "profileReviewed": false,
-    "portrait": 3,
+    "portrait": 13,
     "initials": "D23"
   },
   {
     "id": "demo-artisan-024",
-    "name": "Demo Artisan 24",
+    "name": "Efe Oghale",
     "category": "carpentry",
     "skills": [
       "carpentry"
@@ -254,12 +254,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1290000,
     "profileReviewed": false,
-    "portrait": 4,
+    "portrait": 14,
     "initials": "D24"
   },
   {
     "id": "demo-artisan-025",
-    "name": "Demo Artisan 25",
+    "name": "Emmanuel Ehigie",
     "category": "tailoring",
     "skills": [
       "tailoring"
@@ -271,12 +271,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1425000,
     "profileReviewed": false,
-    "portrait": 0,
+    "portrait": 15,
     "initials": "D25"
   },
   {
     "id": "demo-artisan-026",
-    "name": "Demo Artisan 26",
+    "name": "Mariam Danjuma",
     "category": "painting",
     "skills": [
       "painting"
@@ -288,12 +288,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1560000,
     "profileReviewed": false,
-    "portrait": 1,
+    "portrait": 16,
     "initials": "D26"
   },
   {
     "id": "demo-artisan-027",
-    "name": "Demo Artisan 27",
+    "name": "Onome Edewor",
     "category": "cleaning",
     "skills": [
       "cleaning"
@@ -305,12 +305,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1695000,
     "profileReviewed": false,
-    "portrait": 2,
+    "portrait": 17,
     "initials": "D27"
   },
   {
     "id": "demo-artisan-028",
-    "name": "Demo Artisan 28",
+    "name": "Osawe Akpata",
     "category": "plumbing",
     "skills": [
       "plumbing"
@@ -322,12 +322,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 630000,
     "profileReviewed": false,
-    "portrait": 3,
+    "portrait": 18,
     "initials": "D28"
   },
   {
     "id": "demo-artisan-029",
-    "name": "Demo Artisan 29",
+    "name": "Chisom Nwankwo",
     "category": "electrical",
     "skills": [
       "electrical"
@@ -339,12 +339,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 765000,
     "profileReviewed": false,
-    "portrait": 4,
+    "portrait": 19,
     "initials": "D29"
   },
   {
     "id": "demo-artisan-030",
-    "name": "Demo Artisan 30",
+    "name": "Obiageli Ojo",
     "category": "carpentry",
     "skills": [
       "carpentry"
@@ -356,12 +356,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 900000,
     "profileReviewed": false,
-    "portrait": 0,
+    "portrait": 20,
     "initials": "D30"
   },
   {
     "id": "demo-artisan-031",
-    "name": "Demo Artisan 31",
+    "name": "Ifeanyi Eze",
     "category": "tailoring",
     "skills": [
       "tailoring"
@@ -373,12 +373,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1035000,
     "profileReviewed": false,
-    "portrait": 1,
+    "portrait": 21,
     "initials": "D31"
   },
   {
     "id": "demo-artisan-032",
-    "name": "Demo Artisan 32",
+    "name": "Tega Uwagboe",
     "category": "painting",
     "skills": [
       "painting"
@@ -390,12 +390,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1170000,
     "profileReviewed": false,
-    "portrait": 2,
+    "portrait": 22,
     "initials": "D32"
   },
   {
     "id": "demo-artisan-033",
-    "name": "Demo Artisan 33",
+    "name": "Emeka Okoro",
     "category": "cleaning",
     "skills": [
       "cleaning"
@@ -407,12 +407,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1305000,
     "profileReviewed": false,
-    "portrait": 3,
+    "portrait": 23,
     "initials": "D33"
   },
   {
     "id": "demo-artisan-034",
-    "name": "Demo Artisan 34",
+    "name": "Ejiro Akpobome",
     "category": "plumbing",
     "skills": [
       "plumbing"
@@ -424,12 +424,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1440000,
     "profileReviewed": false,
-    "portrait": 4,
+    "portrait": 24,
     "initials": "D34"
   },
   {
     "id": "demo-artisan-035",
-    "name": "Demo Artisan 35",
+    "name": "Halima Abdullahi",
     "category": "electrical",
     "skills": [
       "electrical"
@@ -441,12 +441,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1575000,
     "profileReviewed": false,
-    "portrait": 0,
+    "portrait": 25,
     "initials": "D35"
   },
   {
     "id": "demo-artisan-036",
-    "name": "Demo Artisan 36",
+    "name": "Eseosa Osagie",
     "category": "carpentry",
     "skills": [
       "carpentry"
@@ -458,12 +458,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1710000,
     "profileReviewed": false,
-    "portrait": 1,
+    "portrait": 26,
     "initials": "D36"
   },
   {
     "id": "demo-artisan-037",
-    "name": "Demo Artisan 37",
+    "name": "Amina Yusuf",
     "category": "tailoring",
     "skills": [
       "tailoring"
@@ -475,12 +475,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 645000,
     "profileReviewed": false,
-    "portrait": 2,
+    "portrait": 27,
     "initials": "D37"
   },
   {
     "id": "demo-artisan-038",
-    "name": "Demo Artisan 38",
+    "name": "Oghale Okoro",
     "category": "painting",
     "skills": [
       "painting"
@@ -492,12 +492,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 780000,
     "profileReviewed": false,
-    "portrait": 3,
+    "portrait": 28,
     "initials": "D38"
   },
   {
     "id": "demo-artisan-039",
-    "name": "Demo Artisan 39",
+    "name": "Sunday Osamuyi",
     "category": "cleaning",
     "skills": [
       "cleaning"
@@ -509,12 +509,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 915000,
     "profileReviewed": false,
-    "portrait": 4,
+    "portrait": 29,
     "initials": "D39"
   },
   {
     "id": "demo-artisan-040",
-    "name": "Demo Artisan 40",
+    "name": "Victoria Omoregie",
     "category": "plumbing",
     "skills": [
       "plumbing"
@@ -526,12 +526,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1050000,
     "profileReviewed": false,
-    "portrait": 0,
+    "portrait": 30,
     "initials": "D40"
   },
   {
     "id": "demo-artisan-041",
-    "name": "Demo Artisan 41",
+    "name": "Seyi Adeyemi",
     "category": "electrical",
     "skills": [
       "electrical"
@@ -543,12 +543,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1185000,
     "profileReviewed": false,
-    "portrait": 1,
+    "portrait": 31,
     "initials": "D41"
   },
   {
     "id": "demo-artisan-042",
-    "name": "Demo Artisan 42",
+    "name": "Desmond Eghosa",
     "category": "carpentry",
     "skills": [
       "carpentry"
@@ -560,12 +560,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1320000,
     "profileReviewed": false,
-    "portrait": 2,
+    "portrait": 32,
     "initials": "D42"
   },
   {
     "id": "demo-artisan-043",
-    "name": "Demo Artisan 43",
+    "name": "Nneka Chukwu",
     "category": "tailoring",
     "skills": [
       "tailoring"
@@ -577,12 +577,12 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1455000,
     "profileReviewed": false,
-    "portrait": 3,
+    "portrait": 33,
     "initials": "D43"
   },
   {
     "id": "demo-artisan-044",
-    "name": "Demo Artisan 44",
+    "name": "Blessed Oviawe",
     "category": "painting",
     "skills": [
       "painting"
@@ -594,7 +594,7 @@ export const demoArtisans: readonly Artisan[] = [
     "reviewCount": 0,
     "startingPriceKobo": 1590000,
     "profileReviewed": false,
-    "portrait": 4,
+    "portrait": 34,
     "initials": "D44"
   }
 ];

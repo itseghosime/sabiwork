@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Portrait } from "@/components/discovery";
 import { FormEvent, useCallback, useMemo, useState } from "react";
 import { Icon } from "@/components/icon";
 import {
@@ -734,8 +735,11 @@ export function ExploreServicesScreen({
           {result.items.map((artisan) => (
             <article className="cb-artisan-card" key={artisan.id}>
               <div className="cb-artisan-top">
-                <span className="cb-avatar-sm" aria-hidden="true">
-                  {artisan.initials}
+                <span className={`cb-avatar-sm ${artisan.portrait !== null ? "cb-avatar-photo" : ""}`}
+                  aria-hidden={artisan.portrait === null}>
+                  {artisan.portrait !== null ? (
+                    <Portrait index={artisan.portrait} name={artisan.name} initials={artisan.initials} />
+                  ) : artisan.initials}
                 </span>
                 <div>
                   <h3>{artisan.name}</h3>

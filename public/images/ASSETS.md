@@ -6,3 +6,5 @@
 - `artisan-demo-sheet.png`: Generated on 29 October 2026 for this prototype, showing five illustrative Nigerian artisans. These are fictional people, not actual providers or endorsements. Missing photos use initials.
 
 All brand assets are local, vector-scaled, and licensed for SabiWork.
+
+- `artisan-portraits-grid.png`: AI-generated contact sheet containing 35 distinct fictional artisan portrait images for presentation listings. The 7 × 5 portraits are cropped by the discovery component; no portraits depict actual providers.
