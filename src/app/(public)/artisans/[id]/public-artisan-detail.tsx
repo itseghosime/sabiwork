@@ -70,7 +70,7 @@ export function PublicArtisanDetail({
             <div>
               <strong>Presentation sample profile</strong>
               <span>
-                This seeded profile is fictional and is not a real artisan.
+                This listing uses a fictional profile for the prototype, not a real artisan.
               </span>
             </div>
           </div>

@@ -1064,6 +1064,14 @@
   flex-shrink: 0;
 }
 
+ .cb-avatar-sm.cb-avatar-photo {
+  overflow: hidden;
+  padding: 0;
+  border-radius: 50%;
+}
+.cb-avatar-sm.cb-avatar-photo .portrait {
+  display: block;
+}
 .cb-artisan-top h3 {
   margin: 0;
   font-size: 15px;

@@ -71,6 +71,33 @@ export const artisanProfiles = pgTable("artisan_profiles", {
     .defaultNow(),
 });
 
+export const artisanTrainingProgress = pgTable(
+  "artisan_training_progress",
+  {
+    artisan_id: text("artisan_id")
+      .notNull()
+      .references(() => userProfiles.user_id, { onDelete: "cascade" }),
+    module_id: text("module_id").notNull(),
+    completed_section_ids: text("completed_section_ids")
+      .array()
+      .notNull()
+      .default(sql`ARRAY[]::text[]`),
+    started_at: timestamp("started_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    completed_at: timestamp("completed_at", { withTimezone: true }),
+    updated_at: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    unique("artisan_training_progress_artisan_module_unique").on(
+      table.artisan_id,
+      table.module_id,
+    ),
+  ],
+);
+
 export const jobRequests = pgTable("job_requests", {
   id: uuid("id").defaultRandom().primaryKey(),
   customer_id: text("customer_id")
@@ -451,6 +478,7 @@ export type DeskTicketReply = typeof deskTicketReplies.$inferSelect;
 
 export type UserProfile = typeof userProfiles.$inferSelect;
 export type ArtisanProfile = typeof artisanProfiles.$inferSelect;
+export type ArtisanTrainingProgress = typeof artisanTrainingProgress.$inferSelect;
 export type JobRequest = typeof jobRequests.$inferSelect;
 export type Quote = typeof quotes.$inferSelect;
 export type Job = typeof jobs.$inferSelect;
