@@ -4,7 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
+import { SignOutButton } from "@/features/accounts/sign-out-button";
 import { Icon } from "./icon";
+
+export type PublicAccount = {
+  name: string;
+  workspaceHref: string;
+  workspaceLabel: string;
+};
 
 export function Brand({ href = "/" }: { href?: string } = {}) {
   return (
@@ -25,20 +32,39 @@ export function Brand({ href = "/" }: { href?: string } = {}) {
     </Link>
   );
 }
-export function PublicShell({ children }: { children: React.ReactNode }) {
+
+export function PublicShell({
+  children,
+  account = null,
+  sessionUnavailable = false,
+}: {
+  children: React.ReactNode;
+  account?: PublicAccount | null;
+  sessionUnavailable?: boolean;
+}) {
   const pathname = usePathname();
   return (
-    <PublicShellContent key={pathname} pathname={pathname}>
+    <PublicShellContent
+      key={pathname}
+      pathname={pathname}
+      account={account}
+      sessionUnavailable={sessionUnavailable}
+    >
       {children}
     </PublicShellContent>
   );
 }
+
 function PublicShellContent({
   children,
   pathname,
+  account,
+  sessionUnavailable,
 }: {
   children: React.ReactNode;
   pathname: string;
+  account: PublicAccount | null;
+  sessionUnavailable: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -48,6 +74,38 @@ function PublicShellContent({
     { href: "/artisans", label: "Find an artisan" },
     { href: "/#how-it-works", label: "How it works" },
   ];
+  const accountActions = account ? (
+    <>
+      <span className="public-account-greeting">
+        <Icon name="user" size={17} />
+        <span>
+          <strong>{account.name}</strong>
+          <small>Signed in</small>
+        </span>
+      </span>
+      <Link href={account.workspaceHref} className="button button-primary">
+        {account.workspaceLabel} <Icon name="arrow" size={17} />
+      </Link>
+      <span className="public-shell-signout">
+        <SignOutButton />
+      </span>
+    </>
+  ) : sessionUnavailable ? (
+    <span className="public-session-unavailable" role="status">
+      <Icon name="help" size={17} />
+      Account temporarily unavailable
+    </span>
+  ) : (
+    <>
+      <Link href="/login" className="text-link">
+        Log in
+      </Link>
+      <Link href="/signup/customer" className="button button-primary">
+        Sign up <Icon name="arrow" size={17} />
+      </Link>
+    </>
+  );
+
   return (
     <>
       <a href="#main-content" className="skip-link">
@@ -75,14 +133,7 @@ function PublicShellContent({
               </Link>
             ))}
           </nav>
-          <div className="desktop-auth">
-            <Link href="/login" className="text-link">
-              Log in
-            </Link>
-            <Link href="/signup/customer" className="button button-primary">
-              Sign up <Icon name="arrow" size={17} />
-            </Link>
-          </div>
+          <div className="desktop-auth">{accountActions}</div>
           <button
             ref={menuButton}
             className="icon-button mobile-toggle"
@@ -117,18 +168,46 @@ function PublicShellContent({
                 <Icon name="next" size={17} />
               </Link>
             ))}
-            <Link href="/login" onClick={() => setOpen(false)}>
-              Log in
-              <Icon name="next" size={17} />
-            </Link>
-            <Link
-              className="button button-primary mobile-path"
-              href="/signup/customer"
-              onClick={() => setOpen(false)}
-            >
-              Sign up
-              <Icon name="arrow" size={17} />
-            </Link>
+            {account ? (
+              <>
+                <div className="public-mobile-account" aria-label="Signed-in account">
+                  <Icon name="user" size={18} />
+                  <span>
+                    <strong>{account.name}</strong>
+                    <small>Signed in</small>
+                  </span>
+                </div>
+                <Link
+                  className="button button-primary mobile-path"
+                  href={account.workspaceHref}
+                  onClick={() => setOpen(false)}
+                >
+                  {account.workspaceLabel} <Icon name="arrow" size={17} />
+                </Link>
+                <span className="public-shell-signout">
+                  <SignOutButton />
+                </span>
+              </>
+            ) : sessionUnavailable ? (
+              <p className="public-session-unavailable" role="status">
+                Account temporarily unavailable. Please try again shortly.
+              </p>
+            ) : (
+              <>
+                <Link href="/login" onClick={() => setOpen(false)}>
+                  Log in
+                  <Icon name="next" size={17} />
+                </Link>
+                <Link
+                  className="button button-primary mobile-path"
+                  href="/signup/customer"
+                  onClick={() => setOpen(false)}
+                >
+                  Sign up
+                  <Icon name="arrow" size={17} />
+                </Link>
+              </>
+            )}
           </nav>
         )}
       </header>
@@ -153,9 +232,20 @@ function PublicShellContent({
           </nav>
           <nav aria-label="Account" className="footer-column">
             <p className="footer-heading">Account</p>
-            <Link href="/login">Log in</Link>
-            <Link href="/signup/customer">Hire an artisan</Link>
-            <Link href="/signup/artisan">Join as an artisan</Link>
+            {account ? (
+              <>
+                <Link href={account.workspaceHref}>{account.workspaceLabel}</Link>
+                <Link href="/settings">Account settings</Link>
+              </>
+            ) : sessionUnavailable ? (
+              <span>Account temporarily unavailable</span>
+            ) : (
+              <>
+                <Link href="/login">Log in</Link>
+                <Link href="/signup/customer">Hire an artisan</Link>
+                <Link href="/signup/artisan">Join as an artisan</Link>
+              </>
+            )}
           </nav>
           <div className="footer-location">
             <p className="footer-heading">Where we work</p>

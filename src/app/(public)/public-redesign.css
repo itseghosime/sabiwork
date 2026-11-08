@@ -665,3 +665,92 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Authenticated public navigation */
+.public-account-greeting,
+.public-mobile-account {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  color: var(--brand-ink);
+}
+.public-account-greeting > span,
+.public-mobile-account > span {
+  display: grid;
+  min-width: 0;
+  line-height: 1.25;
+}
+.public-account-greeting strong,
+.public-mobile-account strong {
+  max-width: 132px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.public-account-greeting small,
+.public-mobile-account small {
+  color: var(--brand-muted);
+  font-size: 11px;
+}
+.desktop-auth .public-shell-signout,
+.mobile-navigation .public-shell-signout {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+.public-shell-signout .workspace-signout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.public-shell-signout .workspace-signout button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  flex: 0 0 auto;
+  padding: 0 12px;
+  border: 1px solid var(--brand-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brand-ink);
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.public-shell-signout .workspace-signout button:hover {
+  background: var(--brand-tint-08);
+}
+.public-shell-signout [role="alert"] {
+  max-width: 180px;
+  color: #ba1a1a;
+  font-size: 12px;
+}
+.public-session-unavailable {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--brand-muted);
+  font-size: 13px;
+}
+.mobile-navigation .public-mobile-account {
+  padding: 12px 0;
+  border-top: 1px solid var(--brand-tint-16);
+}
+.mobile-navigation .public-shell-signout {
+  width: 100%;
+}
+.mobile-navigation .public-shell-signout .workspace-signout,
+.mobile-navigation .public-shell-signout .workspace-signout button {
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .desktop-auth {
+    display: none;
+  }
+  .mobile-navigation .public-session-unavailable {
+    padding: 12px 0;
+  }
+}
