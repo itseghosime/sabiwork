@@ -14,7 +14,7 @@ export default async function ArtisanTrainingModulePage({
   const profile = await getUserRole(user.id);
   if (!profile) redirect("/complete-profile");
   if (profile.role !== "artisan") redirect("/forbidden");
-  const module = await getArtisanTrainingModule(user.id, moduleId);
-  if (!module) notFound();
-  return <ArtisanTrainingModuleScreen module={module} />;
+  const trainingModule = await getArtisanTrainingModule(user.id, moduleId);
+  if (!trainingModule) notFound();
+  return <ArtisanTrainingModuleScreen module={trainingModule} />;
 }
