@@ -58,6 +58,17 @@ type DisputeCaseRecord = DisputeCase & {
   determinationNote: string | null;
 };
 
+function formatSlaCountdown(hoursLeft: number) {
+  if (hoursLeft < 0) {
+    const overdueHours = Math.abs(hoursLeft);
+    const days = Math.floor(overdueHours / 24);
+    const remainingHours = overdueHours % 24;
+    return days > 0 ? `Overdue ${days}d ${remainingHours}h` : `Overdue ${overdueHours}h`;
+  }
+  if (hoursLeft === 0) return "Due now";
+  return `${hoursLeft}h left`;
+}
+
 const DETERMINATION_OPTIONS = [
   "Release escrow to artisan",
   "Refund the customer",
@@ -289,9 +300,9 @@ export function AdminDisputesScreen() {
                     {dispute.status === "resolved" ? (
                       <span className="ad-cell-muted">Closed</span>
                     ) : dispute.slaHoursLeft <= 6 ? (
-                      <StatusPill tone="danger">{dispute.slaHoursLeft}h left</StatusPill>
+                      <StatusPill tone="danger">{formatSlaCountdown(dispute.slaHoursLeft)}</StatusPill>
                     ) : (
-                      <span className="ad-cell-muted">{dispute.slaHoursLeft}h left</span>
+                      <span className="ad-cell-muted">{formatSlaCountdown(dispute.slaHoursLeft)}</span>
                     )}
                   </td>
                   <td>
@@ -476,7 +487,7 @@ export function AdminDisputeDetailScreen({ id }: { id: string }) {
               <StatusPill tone="success" dot={false}>Determination recorded</StatusPill>
             ) : (
               <StatusPill tone={dispute.slaHoursLeft <= 6 ? "danger" : "neutral"} dot={false}>
-                {dispute.slaHoursLeft}h left on SLA
+                {formatSlaCountdown(dispute.slaHoursLeft)} on SLA
               </StatusPill>
             )}
           </>
