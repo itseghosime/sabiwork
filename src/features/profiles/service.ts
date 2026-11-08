@@ -333,9 +333,9 @@ export const profilesDemoService = {
 
   async submitVerification(
     input: {
-      ninNumber: string;
-      certificateRef: string;
-      workshopAddress: string;
+      ninNumber?: string;
+      certificateRef?: string;
+      workshopAddress?: string;
       declarationChecked: boolean;
       simulateError?: boolean;
     },
@@ -344,19 +344,13 @@ export const profilesDemoService = {
     if (input.simulateError) {
       return {
         ok: false,
-        message: "Failed to upload verification documents. Connection to verification vault timed out.",
+        message: "The sample submission preview failed. No documents were uploaded or saved.",
       };
     }
     if (!input.declarationChecked) {
       return {
         ok: false,
         message: "Please accept the legal declaration to submit your verification application.",
-      };
-    }
-    if (!input.ninNumber || input.ninNumber.trim().length < 11) {
-      return {
-        ok: false,
-        message: "Please enter a valid 11-digit National Identity Number (NIN).",
       };
     }
     return {
