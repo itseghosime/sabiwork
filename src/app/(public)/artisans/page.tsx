@@ -24,9 +24,9 @@ export default async function ArtisansPage({
     undefined,
     includeSeedProfiles,
   );
-  const showingPresentationProfiles =
-    includeSeedProfiles &&
-    results.items.some((artisan) => artisan.id.startsWith("seed-artisan-"));
+  const showingPresentationProfiles = results.items.some(
+    (artisan) => artisan.id.startsWith("seed-artisan-") || artisan.id.startsWith("demo-artisan-"),
+  );
   const resetHref = searchHref(parseFilters({ view: filters.view }));
   const selectedCategory = categories.find(
     (category) => category.id === filters.category,
@@ -179,6 +179,9 @@ export default async function ArtisansPage({
               </div>
             </details>
             <div className="results-content">
+              <p className="demo-notice" role="note">
+                This directory includes fictional demo listings for preview. They have no real reviews or verification, and cannot be booked.
+              </p>
               <div className="results-count" aria-live="polite">
                 <h2>
                   {results.total} {results.total === 1 ? "artisan" : "artisans"}{" "}

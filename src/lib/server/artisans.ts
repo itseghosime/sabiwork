@@ -9,6 +9,7 @@ import {
 } from "@/features/search/data";
 import type { SearchFilters, SearchResult } from "@/features/search/service";
 import { getDb } from "./db";
+import { demoArtisans } from "@/features/search/demo-artisans";
 import { artisanProfiles, jobReviews, userProfiles } from "./schema";
 
 const PAGE_SIZE = 6;
@@ -154,16 +155,7 @@ export async function searchPublicArtisans(
     );
   const where = and(...conditions);
 
-  const [{ total }] = await db
-    .select({ total: sql<number>`count(*)::int` })
-    .from(artisanProfiles)
-    .innerJoin(userProfiles, eq(userProfiles.user_id, artisanProfiles.user_id))
-    .where(where);
-
-  const pages = Math.max(1, Math.ceil(total / pageSize));
-  const page = Math.min(Math.max(filters.page, 1), pages);
-  if (!total) return { items: [], total, page, pages };
-
+  // Keep the prototype useful before real artisans publish profiles.
   const rows = await db
     .select({
       id: artisanProfiles.user_id,
@@ -182,10 +174,9 @@ export async function searchPublicArtisans(
     .innerJoin(userProfiles, eq(userProfiles.user_id, artisanProfiles.user_id))
     .where(where)
     .orderBy(...orderFor(filters.sort))
-    .limit(pageSize)
-    .offset((page - 1) * pageSize);
+    .limit(1000);
 
-  const items: Artisan[] = rows.map((row) => {
+  const databaseItems: Artisan[] = rows.map((row) => {
     const category = tradeCategory(row.trade, row.skills);
     return {
       id: row.id,
@@ -206,13 +197,68 @@ export async function searchPublicArtisans(
     };
   });
 
-  return { items, total, page, pages };
+  const query = filters.q.toLocaleLowerCase("en-NG");
+  const sampleItems = demoArtisans.filter((person) => {
+    const text = [person.name, person.headline, person.bio, person.area, person.category]
+      .join(" ")
+      .toLocaleLowerCase("en-NG");
+    return (
+      (!filters.category || person.category === filters.category) &&
+      (!filters.area || person.area.split(",").some((area) => area.trim() === filters.area)) &&
+      person.rating >= filters.rating &&
+      (!query || text.includes(query))
+    );
+  });
+  const items = [...databaseItems, ...sampleItems];
+  items.sort((a, b) => {
+    if (filters.sort === "price-asc")
+      return a.startingPriceKobo - b.startingPriceKobo || a.name.localeCompare(b.name);
+    if (filters.sort === "price-desc")
+      return b.startingPriceKobo - a.startingPriceKobo || a.name.localeCompare(b.name);
+    if (filters.sort === "rating")
+      return b.rating - a.rating || b.reviewCount - a.reviewCount || a.name.localeCompare(b.name);
+    return Number(b.profileReviewed) - Number(a.profileReviewed) ||
+      b.rating - a.rating || b.reviewCount - a.reviewCount || a.name.localeCompare(b.name);
+  });
+  const total = items.length;
+  const pages = Math.max(1, Math.ceil(total / pageSize));
+  const page = Math.min(Math.max(filters.page, 1), pages);
+  return { items: items.slice((page - 1) * pageSize, page * pageSize), total, page, pages };
 }
 
 export async function getPublicArtisanProfile(
   userId: string,
   includeSeedProfile = false,
 ) {
+  const demoProfile = demoArtisans.find((artisan) => artisan.id === userId);
+  if (demoProfile) {
+    const category = categories.find((item) => item.id === demoProfile.category);
+    return {
+      id: demoProfile.id,
+      slug: demoProfile.id,
+      name: demoProfile.name,
+      headline: demoProfile.headline,
+      category: demoProfile.category,
+      trade: category?.name ?? demoProfile.headline,
+      area: demoProfile.area,
+      workshopAddress: `${demoProfile.area}, Benin City`,
+      rating: 0,
+      reviewCount: 0,
+      startingPriceKobo: demoProfile.startingPriceKobo,
+      experienceYears: 0,
+      profileReviewed: false,
+      bvnVerified: false,
+      ninVerified: false,
+      workshopVetted: false,
+      initials: demoProfile.initials,
+      portrait: demoProfile.portrait,
+      bio: demoProfile.bio,
+      skills: [demoProfile.headline, demoProfile.category],
+      portfolio: [],
+      reviews: [],
+    };
+  }
+
   const conditions = [
     eq(artisanProfiles.user_id, userId),
     eq(artisanProfiles.is_listed, true),

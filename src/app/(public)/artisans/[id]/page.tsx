@@ -25,7 +25,7 @@ export default async function ArtisanPage({
     notFound();
   }
   const isPresentationData =
-    includeSeedProfile && artisan.id.startsWith("seed-artisan-");
+    artisan.id.startsWith("seed-artisan-") || artisan.id.startsWith("demo-artisan-");
 
   const paidReference =
     typeof query.paid === "string" && referencePattern.test(query.paid)
@@ -41,13 +41,10 @@ export default async function ArtisanPage({
   return (
     <PublicArtisanDetail
       artisan={artisan}
-      isPresentationData={
-        includeSeedProfile && artisan.id.startsWith("seed-artisan-")
-      }
+      isPresentationData={isPresentationData}
       depositKobo={bookingDepositKobo(artisan.startingPriceKobo)}
       paymentsEnabled={
-        paystackConfigured() &&
-        (!isPresentationData || paystackTestMode())
+        !isPresentationData && paystackConfigured() && paystackTestMode()
       }
       paidReference={paidReference}
       paymentOutcome={paymentOutcome}

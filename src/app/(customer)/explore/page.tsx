@@ -22,10 +22,9 @@ export default async function ExploreServicesPage({
     <ExploreServicesScreen
       initialTrade={trade ?? ""}
       initialArtisans={items}
-      isPresentationData={
-        includeSeedProfiles &&
-        items.some((artisan) => artisan.id.startsWith("seed-artisan-"))
-      }
+      isPresentationData={items.some(
+        (artisan) => artisan.id.startsWith("seed-artisan-") || artisan.id.startsWith("demo-artisan-"),
+      )}
     />
   );
 }

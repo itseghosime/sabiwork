@@ -133,6 +133,7 @@ export function CategoryCard({
   );
 }
 export function ArtisanCard({ artisan }: { artisan: Artisan }) {
+  const isDemoProfile = artisan.id.startsWith("demo-artisan-");
   const category = categories.find((item) => item.id === artisan.category)!;
   return (
     <article className="artisan-card">
@@ -142,7 +143,7 @@ export function ArtisanCard({ artisan }: { artisan: Artisan }) {
           name={artisan.name}
           initials={artisan.initials}
         />
-        <span className="image-label">{category.short}</span>
+        <span className="image-label">{isDemoProfile ? "Demo listing" : category.short}</span>
       </div>
       <div className="artisan-body">
         <div className="artisan-name">
@@ -163,18 +164,22 @@ export function ArtisanCard({ artisan }: { artisan: Artisan }) {
           <Icon name="pin" size={14} /> {artisan.area}, Benin City
         </p>
         <div className="artisan-rating">
-          <span>
-            <Icon name="star" size={15} />{" "}
-            <strong>{artisan.rating.toFixed(1)}</strong>{" "}
+          {isDemoProfile ? (
+            <span>Fictional demo profile · no customer reviews</span>
+          ) : (
             <span>
-              ({artisan.reviewCount}{" "}
-              {artisan.reviewCount === 1 ? "review" : "reviews"})
+              <Icon name="star" size={15} />{" "}
+              <strong>{artisan.rating.toFixed(1)}</strong>{" "}
+              <span>
+                ({artisan.reviewCount}{" "}
+                {artisan.reviewCount === 1 ? "review" : "reviews"})
+              </span>
             </span>
-          </span>
+          )}
         </div>
         <div className="artisan-bottom">
           <p>
-            <span>Starting from</span>
+            <span>{isDemoProfile ? "Illustrative price" : "Starting from"}</span>
             <strong>{formatNaira(artisan.startingPriceKobo)}</strong>
           </p>
           <Link

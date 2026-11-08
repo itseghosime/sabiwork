@@ -29,7 +29,7 @@ export default async function CustomerArtisanPage({
   if (!artisan) notFound();
 
   const isPresentationData =
-    includeSeedProfile && artisan.id.startsWith("seed-artisan-");
+    artisan.id.startsWith("seed-artisan-") || artisan.id.startsWith("demo-artisan-");
   const paidReference =
     typeof query.paid === "string" && referencePattern.test(query.paid)
       ? query.paid
@@ -49,8 +49,7 @@ export default async function CustomerArtisanPage({
       customerEmail={user.email ?? ""}
       depositKobo={bookingDepositKobo(artisan.startingPriceKobo)}
       paymentsEnabled={
-        paystackConfigured() &&
-        (!isPresentationData || paystackTestMode())
+        !isPresentationData && paystackConfigured() && paystackTestMode()
       }
       paidReference={paidReference}
       paymentOutcome={paymentOutcome}

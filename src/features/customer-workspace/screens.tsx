@@ -647,6 +647,12 @@ export function ExploreServicesScreen({
         </div>
       </div>
 
+      {isPresentationData ? (
+        <p className="cb-panel-note" role="note">
+          Fictional demo listings are included for preview. They have no real reviews or verification and cannot be booked.
+        </p>
+      ) : null}
+
       <div className="cb-trade-grid">
         {exploreTrades.map((item) => (
           <button
@@ -733,6 +739,9 @@ export function ExploreServicesScreen({
                 </span>
                 <div>
                   <h3>{artisan.name}</h3>
+                  {artisan.id.startsWith("demo-artisan-") ? (
+                    <p className="cb-panel-note">Fictional demo profile</p>
+                  ) : null}
                   <p>{artisan.headline}</p>
                 </div>
               </div>
@@ -756,7 +765,7 @@ export function ExploreServicesScreen({
               </div>
               <div className="cb-artisan-foot">
                 <span className="cb-artisan-price">
-                  <span>Rate guidance</span>
+                  <span>{artisan.id.startsWith("demo-artisan-") ? "Illustrative only" : "Rate guidance"}</span>
                   <strong>
                     {artisan.startingPriceKobo > 0
                       ? formatNaira(artisan.startingPriceKobo)
