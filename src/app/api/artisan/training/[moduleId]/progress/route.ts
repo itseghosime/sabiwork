@@ -27,8 +27,8 @@ export async function PATCH(
   if (session.kind === "forbidden" || session.role !== "artisan") return jsonError(403, "FORBIDDEN", "Only artisans can save training progress.");
 
   const { moduleId } = await params;
-  const module = getTrainingModule(moduleId);
-  if (!module) return jsonError(404, "MODULE_NOT_FOUND", "Training guide not found.");
+  const trainingModule = getTrainingModule(moduleId);
+  if (!trainingModule) return jsonError(404, "MODULE_NOT_FOUND", "Training guide not found.");
 
   let body: unknown;
   try {
@@ -39,7 +39,7 @@ export async function PATCH(
   if (!isRecord(body) || typeof body.sectionTitle !== "string" || typeof body.completed !== "boolean") {
     return jsonError(400, "INVALID_INPUT", "Provide a lesson title and completed state.");
   }
-  const section = module.sections.find((item) => item.sectionTitle === body.sectionTitle);
+  const section = trainingModule.sections.find((item) => item.sectionTitle === body.sectionTitle);
   if (!section) return jsonError(400, "INVALID_SECTION", "That lesson does not belong to this guide.");
 
   try {
