@@ -14,13 +14,13 @@ export default async function ArtisanTrainingCompletionPage({
   const profile = await getUserRole(user.id);
   if (!profile) redirect("/complete-profile");
   if (profile.role !== "artisan") redirect("/forbidden");
-  const module = await getArtisanTrainingModule(user.id, moduleId);
-  if (!module) notFound();
+  const trainingModule = await getArtisanTrainingModule(user.id, moduleId);
+  if (!trainingModule) notFound();
   return (
     <ArtisanTrainingCertificateScreen
-      title={module.title}
+      title={trainingModule.title}
       artisanName={user.name ?? user.email ?? "Artisan"}
-      completedAt={module.completedAt}
+      completedAt={trainingModule.completedAt}
     />
   );
 }
